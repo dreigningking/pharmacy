@@ -18,23 +18,26 @@
                                     <h3>Login <span>Doccure</span></h3>
                                 </div>
                                 <form method="POST" action="{{ route('login') }}">@csrf
-                                    @error('email')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <div class="form-group form-focus">
+                                    
+                                    <div class="form-group form-focus mb-2">
                                         <input id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus type="email" class="form-control @error('email') is-invalid @enderror floating">
                                         <label class="focus-label">Email</label>
+                                        @error('email')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
-                                    @error('password')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <div class="form-group form-focus">
+                                    
+                                    
+                                    <div class="form-group form-focus mb-2">
                                         <input id="password" name="password" required autocomplete="current-password" type="password" class="form-control @error('password') is-invalid @enderror floating">
                                         <label class="focus-label">Password</label>
+                                        @error('password')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                     <div class="text-right">
                                         <a class="forgot-link" href="{{ route('password.request') }}">Forgot Password ?</a>
