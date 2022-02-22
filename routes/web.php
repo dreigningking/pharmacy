@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/','welcome')->name('index');
-Route::view('/dashboard','main.dashboard.director');
+Route::view('agreement','agreement')->name('agreement');
+Route::view('dashboard','main.dashboard.director');
 Auth::routes();
 
-Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('home');
-
+// Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('home');
+Route::view('setup','main.newpharmacy.details');
+Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getStates');
+Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getCities');
 Route::group(['as'=>'pharmacy.','prefix'=>'{pharmacy}'], function () {
     Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('home');
+    
 });
