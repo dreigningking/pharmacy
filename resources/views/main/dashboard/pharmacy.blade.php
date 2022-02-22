@@ -1,4 +1,7 @@
 @extends('layouts.main.app')
+@push('styles')
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+@endpush
 @section('main')
     <!-- Breadcrumb -->
     <div class="breadcrumb-bar">
@@ -39,9 +42,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="dash-widget-info">
-                                                    <h6>Total Patient</h6>
-                                                    <h3>1500</h3>
-                                                    <p class="text-muted">Till Today</p>
+                                                    <h3>Patients</h3>
+                                                    <h5>1500</h5>
+                                                    <!-- <p class="text-muted">Till Today</p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -54,9 +57,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="dash-widget-info">
-                                                    <h6>Today Patient</h6>
-                                                    <h3>160</h3>
-                                                    <p class="text-muted">06, Nov 2019</p>
+                                                    <h3>Drugs</h3>
+                                                    <h5>160</h5>
+                                                    <!-- <p class="text-muted">06, Nov 2019</p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -69,9 +72,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="dash-widget-info">
-                                                    <h6>Appoinments</h6>
-                                                    <h3>85</h3>
-                                                    <p class="text-muted">06, Apr 2019</p>
+                                                    <h3>Revenue</h3>
+                                                    <h5>Plenty money</h5>
+                                                    <!-- <p class="text-muted">06, Apr 2019</p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -80,21 +83,156 @@
                             </div>
                         </div>
                     </div>
-                    
+                    	<div class="row">
+                            	<div class="col-md-6 d-flex">
+						
+							<!-- Feed Activity -->
+							<div class="card  card-table flex-fill">
+								<div class="card-header">
+									<h4 class="card-title">Revenue</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-hover table-center mb-0">
+											<thead>
+												<tr>													
+													<th>Date</th>
+													<th>Revenue<br/> today</th>
+													<th>Total <br/> revenue</th>
+													<!-- <th>Paid</th>													 -->
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+													01-02-2022
+													</td>
+													<td>82863</td>
+													<td>856459</td>
+													<!-- <td class="text-right">$100.00</td> -->
+												</tr>
+												<tr>
+													<td>
+													02-02-2022
+													</td>
+													<td>2077</td>
+													<td>5784475</td>
+													<!-- <td class="text-right">$200.00</td> -->
+												</tr>
+												<tr>
+													<td>
+														<!-- <h2 class="table-avatar">
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
+															<a href="profile.html">Carl Kelly</a>
+														</h2> -->
+                                                        03-02-2022
+													</td>
+													<td>26072</td>
+													<td>21568754</td>
+													<!-- <td class="text-right">$250.00</td> -->
+												</tr>
+												<tr>
+													<td>
+														04-02-2022
+													</td>
+													<td>50436</td>
+													<td>6586944</td>
+													<!-- <td class="text-right">$150.00</td> -->
+												</tr>
+												<tr>
+													<td>
+														05-02-2022
+													</td>
+													<td>9548</td>
+													<td>846745876</td>
+													<!-- <td class="text-right">$350.00</td> -->
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- /Feed Activity -->
+							
+						</div>
+						<div class="col-md-6 d-flex">
+						
+							<!-- Recent Orders -->
+							<div class="card card-table flex-fill">
+								<div class="card-header">
+									<h4 class="card-title">Expenses</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-hover table-center mb-0">
+											<thead>
+												<tr>
+													<th>Date</th>
+													<th>Expenses <br/> today</th>
+													<th>Total <br /> Expenses</th>
+													
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+													01-02-2022
+													</td>
+													<td>82863</td>
+													<td>856459</td>
+												</tr>
+												<tr>
+													<td>
+													01-02-2022
+													</td>
+													<td>82863</td>
+													<td>856459</td>
+												</tr>
+												<tr>
+													<td>
+													01-02-2022
+													</td>
+													<td>82863</td>
+													<td>856459</td>
+												</tr>
+												<tr>
+													<td>
+													01-02-2022
+													</td>
+													<td>82863</td>
+													<td>856459</td>
+												</tr>
+												<tr>
+													<td>
+													01-02-2022
+													</td>
+													<td>82863</td>
+													<td>856459</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- /Recent Orders -->
+							
+						</div>
+					
+					</div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="mb-4">Patient Appoinment</h4>
+                            <h4 class="mb-4">Assessments</h4>
                             <div class="appointment-tab">
                             
                                 <!-- Appointment Tab -->
-                                <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+                                <!-- <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Upcoming</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#today-appointments" data-toggle="tab">Today</a>
                                     </li> 
-                                </ul>
+                                </ul> -->
                                 <!-- /Appointment Tab -->
                                 
                                 <div class="tab-content">
@@ -108,10 +246,11 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>Patient Name</th>
-                                                                <th>Appt Date</th>
-                                                                <th>Purpose</th>
                                                                 <th>Type</th>
-                                                                <th class="text-center">Paid Amount</th>
+                                                                <th>Date</th>
+                                                                <!-- <th>Purpose</th> -->
+                                                                
+                                                                <th class="text-center">Amount</th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
@@ -123,9 +262,10 @@
                                                                         <a href="patient-profile.html">Richard Wilson <span>#PT0016</span></a>
                                                                     </h2>
                                                                 </td>
-                                                                <td>11 Nov 2019 <span class="d-block text-info">10.00 AM</span></td>
-                                                                <td>General</td>
                                                                 <td>New Patient</td>
+                                                                <td>11 Nov 2019</td>
+                                                                <!-- <td>General</td> -->
+                                                                
                                                                 <td class="text-center">$150</td>
                                                                 <td class="text-right">
                                                                     <div class="table-action">
@@ -133,12 +273,12 @@
                                                                             <i class="far fa-eye"></i> View
                                                                         </a>
                                                                         
-                                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                                        <!-- <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
                                                                             <i class="fas fa-check"></i> Accept
                                                                         </a>
                                                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
                                                                             <i class="fas fa-times"></i> Cancel
-                                                                        </a>
+                                                                        </a> -->
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -149,9 +289,10 @@
                                                                         <a href="patient-profile.html">Charlene Reed <span>#PT0001</span></a>
                                                                     </h2>
                                                                 </td>
-                                                                <td>3 Nov 2019 <span class="d-block text-info">11.00 AM</span></td>
-                                                                <td>General</td>
-                                                                <td>Old Patient</td>
+                                                                 <td>Old Patient</td>
+                                                                <td>3 Nov 2019</td>
+                                                                <!-- <td>General</td> -->
+                                                               
                                                                 <td class="text-center">$200</td>
                                                                 <td class="text-right">
                                                                     <div class="table-action">
@@ -159,12 +300,12 @@
                                                                             <i class="far fa-eye"></i> View
                                                                         </a>
                                                                         
-                                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                                        <!-- <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
                                                                             <i class="fas fa-check"></i> Accept
                                                                         </a>
                                                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
                                                                             <i class="fas fa-times"></i> Cancel
-                                                                        </a>
+                                                                        </a> -->
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -175,9 +316,10 @@
                                                                         <a href="patient-profile.html">Travis Trimble  <span>#PT0002</span></a>
                                                                     </h2>
                                                                 </td>
-                                                                <td>1 Nov 2019 <span class="d-block text-info">1.00 PM</span></td>
-                                                                <td>General</td>
-                                                                <td>New Patient</td>
+                                                                 <td>New Patient</td>
+                                                                <td>1 Nov 2019</td>
+                                                                <!-- <td>General</td> -->
+                                                               
                                                                 <td class="text-center">$75</td>
                                                                 <td class="text-right">
                                                                     <div class="table-action">
@@ -185,12 +327,12 @@
                                                                             <i class="far fa-eye"></i> View
                                                                         </a>
                                                                         
-                                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                                        <!-- <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
                                                                             <i class="fas fa-check"></i> Accept
                                                                         </a>
                                                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
                                                                             <i class="fas fa-times"></i> Cancel
-                                                                        </a>
+                                                                        </a> -->
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -201,9 +343,10 @@
                                                                         <a href="patient-profile.html">Carl Kelly <span>#PT0003</span></a>
                                                                     </h2>
                                                                 </td>
-                                                                <td>30 Oct 2019 <span class="d-block text-info">9.00 AM</span></td>
-                                                                <td>General</td>
                                                                 <td>Old Patient</td>
+                                                                <td>30 Oct 2019</td>
+                                                                <!-- <td>General</td> -->
+                                                                
                                                                 <td class="text-center">$100</td>
                                                                 <td class="text-right">
                                                                     <div class="table-action">
@@ -211,12 +354,12 @@
                                                                             <i class="far fa-eye"></i> View
                                                                         </a>
                                                                         
-                                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                                        <!-- <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
                                                                             <i class="fas fa-check"></i> Accept
                                                                         </a>
                                                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
                                                                             <i class="fas fa-times"></i> Cancel
-                                                                        </a>
+                                                                        </a> -->
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -227,22 +370,23 @@
                                                                         <a href="patient-profile.html">Michelle Fairfax <span>#PT0004</span></a>
                                                                     </h2>
                                                                 </td>
-                                                                <td>28 Oct 2019 <span class="d-block text-info">6.00 PM</span></td>
-                                                                <td>General</td>
                                                                 <td>New Patient</td>
+                                                                <td>28 Oct 2019 </td>
+                                                                <!-- <td>General</td>
+                                                                 -->
                                                                 <td class="text-center">$350</td>
                                                                 <td class="text-right">
                                                                     <div class="table-action">
                                                                         <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                                             <i class="far fa-eye"></i> View
                                                                         </a>
-                                                                        
+<!--                                                                         
                                                                         <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
                                                                             <i class="fas fa-check"></i> Accept
                                                                         </a>
                                                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
                                                                             <i class="fas fa-times"></i> Cancel
-                                                                        </a>
+                                                                        </a> -->
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -253,9 +397,10 @@
                                                                         <a href="patient-profile.html">Gina Moore <span>#PT0005</span></a>
                                                                     </h2>
                                                                 </td>
-                                                                <td>27 Oct 2019 <span class="d-block text-info">8.00 AM</span></td>
-                                                                <td>General</td>
                                                                 <td>Old Patient</td>
+                                                                <td>27 Oct 2019</td>
+                                                                <!-- <td>General</td> -->
+                                                                
                                                                 <td class="text-center">$250</td>
                                                                 <td class="text-right">
                                                                     <div class="table-action">
@@ -263,12 +408,12 @@
                                                                             <i class="far fa-eye"></i> View
                                                                         </a>
                                                                         
-                                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                                        <!-- <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
                                                                             <i class="fas fa-check"></i> Accept
                                                                         </a>
                                                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
                                                                             <i class="fas fa-times"></i> Cancel
-                                                                        </a>
+                                                                        </a> -->
                                                                     </div>
                                                                 </td>
                                                             </tr>

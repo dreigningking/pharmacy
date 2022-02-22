@@ -128,7 +128,7 @@
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="pharmacy-name">Appointment</h6>
+										<h6 class="pharmacy-name">Ramsgate</h6>
 										
 									</div>
 								</div>
@@ -147,7 +147,7 @@
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="pharmacy-name">Revenue</h6>
+										<h6 class="pharmacy-name">Micoson</h6>
 										
 									</div>
 								</div>

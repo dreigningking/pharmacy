@@ -193,6 +193,9 @@
 		<script src="{{asset('assets/js/popper.min.js')}}"></script>
 		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 		
+		<!-- Datatables -->
+		<script src="{{asset('adminassets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+		<script src="{{asset('adminassets/plugins/datatables/datatables.min.js')}}"></script>
 		<!-- Slick JS -->
 		<script src="{{asset('assets/js/slick.js')}}"></script>
 		
@@ -201,7 +204,7 @@
 		<script src="{{asset('adminassets/js/script.js')}}"></script>
 		 
 		
-		
+		@stack('scripts')
 	</body>
 
 <!-- doccure/  30 Nov 2019 04:11:53 GMT -->
