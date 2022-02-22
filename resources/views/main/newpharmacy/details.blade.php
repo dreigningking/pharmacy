@@ -114,7 +114,7 @@
                             </div>
                             
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+                                <button type="submit" class="btn btn-primary submit-btn">Create Pharmacy</button>
                             </div>
                         </div>
                     </div>
