@@ -26,6 +26,12 @@
 			<script src="{{asset('assets/js/html5shiv.min.js')}}"></script>
 			<script src="{{asset('assets/js/respond.min.js')}}"></script>
 		<![endif]-->
+		<!-- Fontawesome CSS -->
+        
+		
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="{{asset('adminassets/css/feathericon.min.css')}}">
+		@stack('styles')
 	
 	</head>
 	<body @if(Route::has('login') || Route::has('register')) class="account-page" @endif>
@@ -180,7 +186,9 @@
 	  
 		<!-- jQuery -->
 		<script src="{{asset('assets/js/jquery.min.js')}}"></script>
-		
+		<!-- morris -->
+		<script src="{{asset('adminassets/plugins/morris/morris.min.js')}}"></script>  
+		<script src="{{asset('adminassets/js/chart.morris.js')}}"></script> 
 		<!-- Bootstrap Core JS -->
 		<script src="{{asset('assets/js/popper.min.js')}}"></script>
 		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
@@ -190,6 +198,9 @@
 		
 		<!-- Custom JS -->
 		<script src="{{asset('assets/js/script.js')}}"></script>
+		<script src="{{asset('adminassets/js/script.js')}}"></script>
+		 
+		
 		
 	</body>
 
