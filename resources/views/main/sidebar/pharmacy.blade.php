@@ -1,17 +1,17 @@
 <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-                    
+
     <!-- Profile Sidebar -->
     <div class="profile-sidebar">
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="#" class="booking-doc-img">
-                    <img src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
+                    <img src="{{asset('assets/img/pharmacy-logo.jpg')}}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
-                    <h3>Dr. Darren Elder</h3>
-                    
+                    <h2>Ramsgate </h2>
+
                     <div class="patient-details">
-                        <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
+                        <span class="mb-0">Ota, Ogun state</span>
                     </div>
                 </div>
             </div>
@@ -19,8 +19,8 @@
         <div class="dashboard-widget">
             <nav class="dashboard-menu">
                 <ul>
-                    <li class="active">
-                        <a href="doctor-dashboard.html">
+                    <li @if(Route::is('pharmacy.dashboard')) class="active" @endif>
+                        <a href="{{route('dashboard')}}">
                             <i class="fas fa-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -34,62 +34,85 @@
                     <li>
                         <a href="my-patients.html">
                             <i class="fas fa-user-injured"></i>
-                            <span>My Patients</span>
+                            <span>Patients</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="my-patients.html">
+                            <i class="fas fa-pen"></i>
+                            <span>Assessments</span>
                         </a>
                     </li>
                     <li>
                         <a href="schedule-timings.html">
-                            <i class="fas fa-hourglass-start"></i>
-                            <span>Schedule Timings</span>
+                            <i class="fas fa-pills"></i>
+                            <span>Drugs</span>
                         </a>
                     </li>
                     <li>
                         <a href="invoices.html">
-                            <i class="fas fa-file-invoice"></i>
-                            <span>Invoices</span>
+                            <i class="fas fa-user"></i>
+                            <span>Suppliers</span>
                         </a>
                     </li>
                     <li>
                         <a href="reviews.html">
-                            <i class="fas fa-star"></i>
-                            <span>Reviews</span>
+                            <i class="fas fa-archive"></i>
+                            <span>Shelf</span>
                         </a>
                     </li>
                     <li>
                         <a href="chat-doctor.html">
-                            <i class="fas fa-comments"></i>
-                            <span>Message</span>
-                            <small class="unread-msg">23</small>
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Supply</span>
+                            <!-- <small class="unread-msg">23</small> -->
                         </a>
                     </li>
                     <li>
                         <a href="doctor-profile-settings.html">
-                            <i class="fas fa-user-cog"></i>
-                            <span>Profile Settings</span>
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Purchase</span>
+                        </a>
+                    </li>
+                    <li @if(Route::is('pharmacy.dashboard')) class="active" @endif>
+                        <a href="{{route('transactions')}}">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Transcation</span>
                         </a>
                     </li>
                     <li>
                         <a href="social-media.html">
-                            <i class="fas fa-share-alt"></i>
-                            <span>Social Media</span>
+                            <i class="fas fa-redo"></i>
+                            <span>Returns</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="social-media.html">
+                            <i class="fas fa-share"></i>
+                            <span>Transfer</span>
                         </a>
                     </li>
                     <li>
                         <a href="doctor-change-password.html">
-                            <i class="fas fa-lock"></i>
-                            <span>Change Password</span>
+                            <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
                     </li>
                     <li>
+                        <a href="doctor-profile-settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <!-- <li>
                         <a href="index-2.html">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>
     </div>
     <!-- /Profile Sidebar -->
-    
+
 </div>

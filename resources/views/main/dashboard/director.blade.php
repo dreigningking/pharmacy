@@ -1,4 +1,8 @@
 @extends('layouts.main.app')
+@push('styles')
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<link rel="stylesheet" href="{{asset('adminassets/plugins/morris/morris.css')}}">
+@endpush
 @section('main')
     <!-- Breadcrumb -->
     <div class="breadcrumb-bar">
@@ -27,7 +31,7 @@
                 
                 <div class="col-md-7 col-lg-8 col-xl-9">
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-12">
                             <div class="card dash-card">
                                 <div class="card-body">
@@ -80,9 +84,78 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div> -->
                     <div class="row">
+						<div class="col-xl-3 col-sm-6 col-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="add-box">
+                                        <i class="fe fe-plus add"></i>
+                                        <p>Add Pharmacy</p>
+                                    </div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 col-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="dash-widget-header">
+										<span class="dash-widget-icon text-success">
+											<i class="fe fe-credit-card"></i>
+										</span>
+										<div class="location">
+											<span>surulere</span>
+										</div>
+									</div>
+									<div class="dash-widget-info">
+										
+										<h6 class="pharmacy-name">Medplus</h6>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 col-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="dash-widget-header">
+										<span class="dash-widget-icon text-danger border-danger">
+											<i class="fe fe-money"></i>
+										</span>
+										<div class="location">
+											<span>Benin</span>
+										</div>
+									</div>
+									<div class="dash-widget-info">
+										
+										<h6 class="pharmacy-name">Ramsgate</h6>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 col-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="dash-widget-header">
+										<span class="dash-widget-icon text-warning border-warning">
+											<i class="fe fe-folder"></i>
+										</span>
+										<div class="location">
+											<span>Abuja</span>
+										</div>
+									</div>
+									<div class="dash-widget-info">
+										
+										<h6 class="pharmacy-name">Micoson</h6>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    
+                    {{--<div class="row">
                         <div class="col-md-12">
                             <h4 class="mb-4">Patient Appoinment</h4>
                             <div class="appointment-tab">
@@ -465,8 +538,144 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
+                    <div class="row">
 
+						<div class="col-md-6 d-flex">
+						
+							<!-- Recent Orders -->
+							<div class="card card-table flex-fill">
+								<div class="card-header">
+									<h4 class="card-title">Subscription Details</h4>
+								</div>
+								<div class="card-body sub-body">
+								<div>
+                                    <div class="subscription">
+                                    <h2 class="sub-first">Subscription type: </h2>
+                                    <h2>Silver</h2>
+                                </div>
+                                 <div class="subscription">
+                                    <h3 class="sub-first">Subscription period: </h3>
+                                    <h3>Annual</h3>
+                                </div>
+								<div class="subscription">
+                                    <h4 class="sub-first">Start Date: </h4>
+                                    <h4>01-02-2022</h4>
+                                </div>
+								<div class="subscription">
+                                    <h5 class="sub-first">Expiry Date: </h5>
+                                    <h5>01-02-2022</h5>
+                                </div>
+                                </div>
+                                <div class="sub-btn">
+                                    <button class="btn btn-primary">Change Plan</button>
+                                </div>
+								</div>
+							</div>
+							<!-- /Recent Orders -->
+							
+						</div>
+						<div class="col-md-6 d-flex">
+						
+							<!-- Feed Activity -->
+							<div class="card  card-table flex-fill">
+								<div class="card-header">
+									<h4 class="card-title">Revenue</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-hover table-center mb-0">
+											<thead>
+												<tr>													
+													<th>Pharmacy Name</th>
+													<th>Revenue</th>
+													<th>Expense</th>
+																									
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<h2 class="table-avatar">
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
+															<a href="profile.html">Medplus Agege </a>
+														</h2>
+													</td>
+													<td>8286329170</td>
+													<td>568685</td>
+													<!-- <td class="text-right">$100.00</td> -->
+												</tr>
+												<tr>
+													<td>
+														<h2 class="table-avatar">
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image"></a>
+															<a href="profile.html">Medplus Abuja </a>
+														</h2>
+													</td>
+													<td>2077299974</td>
+													<td>65796578</td>
+													<!-- <td class="text-right">$200.00</td> -->
+												</tr>
+												<tr>
+													<td>
+														<h2 class="table-avatar">
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
+															<a href="profile.html">Medplus Gbagada</a>
+														</h2>
+													</td>
+													<td>2607247769</td>
+													<td>5876459</td>
+													<!-- <td class="text-right">$250.00</td> -->
+												</tr>
+												<tr>
+													<td>
+														<h2 class="table-avatar">
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient4.jpg" alt="User Image"></a>
+															<a href="profile.html">Ramsgate</a>
+														</h2>
+													</td>
+													<td>5043686874</td>
+													<td>76598876</td>
+													<!-- <td class="text-right">$150.00</td> -->
+												</tr>
+												<tr>
+													<td>
+														<h2 class="table-avatar">
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient5.jpg" alt="User Image"></a>
+															<a href="profile.html">Ramsgate Ibadan</a>
+														</h2>
+													</td>
+													<td>9548207887</td>
+													<td>845769458</td>
+													<!-- <td class="text-right">$350.00</td> -->
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- /Feed Activity -->
+							
+						</div>
+					</div>
+                    <div class="row">
+                        <div class="col-12">
+						
+							<!-- Sales Chart -->
+							<div class="card card-chart">
+								<div class="card-header">
+									<h4 class="card-title">Revenue</h4>
+								</div>
+								<div class="card-body">
+									<div id="morrisArea" class="chart">
+                                        <img src="assets/img/chart.png" alt="chart" />
+                                    </div>
+								</div>
+							</div>
+							<!-- /Sales Chart -->
+							
+						</div>
+                    </div>
                 </div>
             </div>
 
