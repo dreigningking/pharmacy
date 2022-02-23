@@ -92,8 +92,8 @@
                             <span>Transfer</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="doctor-change-password.html">
+                    <li @if(Route::is('pharmacy.staff')) class="active" @endif>
+                        <a href="{{route('pharmacy.staff')}}">
                             <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
                     </li>

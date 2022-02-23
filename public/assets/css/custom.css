@@ -162,3 +162,7 @@
 /* .role-select {
     border: none !important;
 } */
+
+.add-modal {
+    padding-right: 0 !important;
+}

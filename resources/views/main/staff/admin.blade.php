@@ -40,6 +40,12 @@
                         <div class="page-header">
                             <div class="row">
                                 <div class="col-sm-12">
+                                    <div class="row justify-content-end mb-4">
+                                        <a class="btn btn-primary btn-lg" data-toggle="modal" href="#add_staff">Add
+                                            Staff</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
                                     <h3 class="page-title">List of Patient</h3>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
@@ -85,7 +91,7 @@
                                                             <td>Medplus</td>
                                                             <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
-                                                                    <option value="manager">Manager</option>
+
                                                                     <option value="pharmacist">Pharmacist</option>
                                                                     <option value="store-keeper">Store keeper</option>
                                                                 </select>
@@ -118,11 +124,11 @@
                                                                     <a href="profile.html">Travis Trimble </a>
                                                                 </h2>
                                                             </td>
-                                                            <td>23</td>
+                                                            <td>Ramsgate</td>
                                                             <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
                                                                     <option value="pharmacist">Pharmacist</option>
-                                                                    <option value="manager">Manager</option>
+
 
                                                                     <option value="store-keeper">Store keeper</option>
                                                                 </select>
@@ -153,7 +159,7 @@
                                                                     <a href="profile.html">Carl Kelly</a>
                                                                 </h2>
                                                             </td>
-                                                            <td>29</td>
+                                                            <td>Micoson</td>
                                                             <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
                                                                     <option value="store-keeper">Store keeper</option>
@@ -188,7 +194,7 @@
                                                                     <a href="profile.html"> Michelle Fairfax</a>
                                                                 </h2>
                                                             </td>
-                                                            <td>25</td>
+                                                            <td>Meh</td>
                                                             <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
                                                                     <option value="manager">Manager</option>
@@ -222,7 +228,7 @@
                                                                     <a href="profile.html">Gina Moore</a>
                                                                 </h2>
                                                             </td>
-                                                            <td>23</td>
+                                                            <td>Bleh</td>
                                                             <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
                                                                     <option value="agbero">Agbero</option>
@@ -269,47 +275,100 @@
 <!-- /Page Content -->
 
 @endsection
-<!-- Edit Details Modal -->
-<div class="modal fade custom-modal" id="edit_staff">
+<!-- Add Staff Modal -->
+<div class="modal fade custom-modal add-modal" id="add_staff">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Appointment Details</h5>
+                <h5 class="modal-title">Add New Staff</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <ul class="info-details">
-                    <li>
-                        <div class="details-header">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span class="title">#APT0001</span>
-                                    <span class="text">21 Oct 2019 10:00 AM</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-right">
-                                        <button type="button" class="btn bg-success-light btn-sm"
-                                            id="topup_status">Completed</button>
+                <div class="row">
+                    <div class="col-xl-12 d-flex">
+                        <div class="card flex-fill">
+                            <div class="card-header">
+                                <h4 class="card-title">Basic Form</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="#">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">First Name</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Last Name</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Email Address</label>
+                                        <div class="col-lg-9">
+                                            <input type="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Pharmacy</label>
+                                        <div class="col-lg-9">
+                                            <select name="" id="" class="role-select form-control">
+                                                <option value="agbero">Micoson</option>
+                                                <option value="pharmacist">Ramsagate</option>
+                                                <option value="store-keeper">Tewe tegbo</option>
+                                            </select>
+                                            </td>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Role</label>
+                                        <div class="col-lg-9">
+                                            <select name="" id="" class="role-select form-control">
+                                                <option value="agbero">Agbero</option>
+                                                <option value="manager">Manager</option>
+                                                <option value="pharmacist">Pharmacist</option>
+                                                <option value="store-keeper">Store keeper</option>
+                                            </select>
+                                            </td>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <span class="title">Status:</span>
-                        <span class="text">Completed</span>
-                    </li>
-                    <li>
-                        <span class="title">Confirm Date:</span>
-                        <span class="text">29 Jun 2019</span>
-                    </li>
-                    <li>
-                        <span class="title">Paid Amount</span>
-                        <span class="text">$450</span>
-                    </li>
-                </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Staff Modal -->
+
+
+<!-- Edit Details Modal -->
+<div class="modal fade custom-modal" id="edit_staff">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Staff Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="usr">Staff Email:</label>
+                    <input type="email" class="form-control" id="usr">
+                </div>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
