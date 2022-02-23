@@ -74,8 +74,8 @@
                             <span>Purchase</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharmacy.dashboard')) class="active" @endif>
-                        <a href="{{route('transactions')}}">
+                    <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
+                        <a href="{{route('pharmacy.transactions')}}">
                             <i class="fas fa-chart-bar"></i>
                             <span>Transcation</span>
                         </a>

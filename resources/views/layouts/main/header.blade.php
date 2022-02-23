@@ -40,7 +40,7 @@
                         <li><a href="reviews.html">Reviews</a></li>
                         <li><a href="doctor-register.html">Doctor Register</a></li>
                     </ul>
-                </li>	
+                </li>
                 <li class="has-submenu">
                     <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
@@ -55,7 +55,7 @@
                         <li><a href="profile-settings.html">Profile Settings</a></li>
                         <li><a href="change-password.html">Change Password</a></li>
                     </ul>
-                </li>	
+                </li>
                 <li class="has-submenu">
                     <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
@@ -83,21 +83,51 @@
                 <li class="login-link">
                     <a href="login.html">Login / Signup</a>
                 </li>
-            </ul>		 
-        </div>		 
+            </ul>
+        </div>
         <ul class="nav header-navbar-rht">
             <li class="nav-item contact-item">
                 <div class="header-contact-img">
-                    <i class="far fa-hospital"></i>							
+                    <i class="far fa-hospital"></i>
                 </div>
                 <div class="header-contact-detail">
-                    <p class="contact-header">Contact</p>
+                    <p class="contact-header">Support</p>
                     <p class="contact-info-header"> +1 315 369 5943</p>
                 </div>
             </li>
+            @guest
             <li class="nav-item">
-                <a class="nav-link header-login" href="{{route('login')}}">login / Signup </a>
+                <a class="nav-link header-login" href="{{route('login')}}">
+                    Login/Signup
+                </a>
             </li>
+            @else
+            <!-- User Menu -->
+            <li class="nav-item dropdown has-arrow logged-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <span class="user-img">
+                        <img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31"
+                            alt="Darren Elder">
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="user-header">
+                        <div class="avatar avatar-sm">
+                            <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"
+                                class="avatar-img rounded-circle">
+                        </div>
+                        <!-- <div class="user-text">
+                            <h6>Darren Elder</h6>
+                            <p class="text-muted mb-0">Doctor</p>
+                        </div> -->
+                    </div>
+                    <a class="dropdown-item" href="doctor-dashboard.html">Dashboard</a>
+                    <a class="dropdown-item" href="{{route('profile')}}">Profile Settings</a>
+                    <a class="dropdown-item" href="login.html">Logout</a>
+                </div>
+            </li>
+            <!-- /User Menu -->
+            @endauth
         </ul>
     </nav>
 </header>

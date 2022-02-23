@@ -1,5 +1,5 @@
 <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-                    
+
     <!-- Profile Sidebar -->
     <div class="profile-sidebar">
         <div class="widget-profile pro-widget-content">
@@ -9,7 +9,7 @@
                 </a>
                 <div class="profile-det-info">
                     <h3>Dr. Darren Elder</h3>
-                    
+
                     <div class="patient-details">
                         <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
                     </div>
@@ -25,41 +25,47 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="appointments.html">
+                    <li @if(Route::is('pharacies')) class="active" @endif>
+                        <a href="{{route('pharmacies')}}">
                             <i class="fas fa-prescription"></i>
                             <span>Pharmacies</span>
                         </a>
                     </li>
-                   
-                   
+
+
                     <li>
                         <a href="social-media.html">
                             <i class="fas fa-pills"></i>
                             <span>ADI</span>
                         </a>
                     </li>
-                      <li>
+                    <li>
                         <a href="invoices.html">
                             <i class="fas fa-user"></i>
                             <span>Suppliers</span>
                         </a>
                     </li>
-                      <li>
+                    <li>
                         <a href="social-media.html">
-                           <i class="fas fa-share"></i>
+                            <i class="fas fa-share"></i>
                             <span>Transfer</span>
                         </a>
                     </li>
-                     <li @if(Route::is('transactions')) class="active" @endif>
+                    <li @if(Route::is('transactions')) class="active" @endif>
                         <a href="{{route('transactions')}}">
-                           <i class="fas fa-chart-bar"></i>
+                            <i class="fas fa-chart-bar"></i>
                             <span>Transcation</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="doctor-change-password.html">
-<i class="fas fa-users"></i>                            <span>Staff</span>
+                    <li @if(Route::is('staff')) class="active" @endif>
+                        <a href="{{route('staff')}}">
+                            <i class="fas fa-users"></i> <span>Staff</span>
+                        </a>
+                    </li>
+                    <li @if(Route::is('profile')) class="active" @endif>
+                        <a href="{{route('profile')}}">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
                         </a>
                     </li>
                     <li>
@@ -79,5 +85,5 @@
         </div>
     </div>
     <!-- /Profile Sidebar -->
-    
+
 </div>
