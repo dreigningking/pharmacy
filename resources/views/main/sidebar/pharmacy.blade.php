@@ -74,8 +74,8 @@
                             <span>Purchase</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharmacy.dashboard')) class="active" @endif>
-                        <a href="{{route('transactions')}}">
+                    <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
+                        <a href="{{route('pharmacy.transactions')}}">
                             <i class="fas fa-chart-bar"></i>
                             <span>Transcation</span>
                         </a>
@@ -92,8 +92,8 @@
                             <span>Transfer</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="doctor-change-password.html">
+                    <li @if(Route::is('pharmacy.staff')) class="active" @endif>
+                        <a href="{{route('pharmacy.staff')}}">
                             <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
                     </li>
