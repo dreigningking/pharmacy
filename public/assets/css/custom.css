@@ -141,7 +141,8 @@
 }
 
 /* Subscription */
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
     background-color: #343a40 !important;
 }
 .card .sub-card {
@@ -157,3 +158,7 @@
     margin: 0 auto;
     display: flex;
 }
+
+/* .role-select {
+    border: none !important;
+} */
