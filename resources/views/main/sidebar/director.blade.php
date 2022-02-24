@@ -25,10 +25,16 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharacies')) class="active" @endif>
+                    <li @if(Route::is('pharmacies')) class="active" @endif>
                         <a href="{{route('pharmacies')}}">
                             <i class="fas fa-prescription"></i>
                             <span>Pharmacies</span>
+                        </a>
+                    </li>
+                    <li @if(Route::is('payments')) class="active" @endif>
+                        <a href="{{route('payments')}}">
+                            <i class="fas fa-money-bill"></i>
+                            <span>Payments</span>
                         </a>
                     </li>
 

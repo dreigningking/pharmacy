@@ -17,10 +17,11 @@ Route::view('/','welcome')->name('index');
 Route::view('agreement','agreement')->name('agreement');
 Route::view('dashboard','main.dashboard.director')->name('dashboard');
 Route::view('transactions', 'main.transactions.director')->name('transactions');
-Route::view('profile', 'main.profile')->name('profile');
-Route::view('pharmacies', 'main.pharmacies')->name('pharmacies');
+Route::view('profile', 'main.profile.admin')->name('profile');
+Route::view('pharmacies', 'main.pharmacies.admin')->name('pharmacies');
 Route::view('staff', 'main.staff.admin')->name("staff");
 Route::view('new-staff', 'main.addstaff.admin')->name("new-staff");
+Route::view('payments', 'main.payments')->name("payments");
 Auth::routes();
 
 // Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('home');
@@ -35,4 +36,6 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy'], function () {
     Route::view('transactions', 'main.transactions.pharmacy')->name('transactions');
     Route::view('staff', 'main.staff.pharmacy')->name('staff');
     Route::view('new-staff', 'main.addstaff.pharmacy')->name('new-staff');
+    Route::view('workspace', 'main.pharmacies.users')->name('pharmacies');
+    Route::view('staff-profile', 'main.profile.pharmacystaff')->name('staff-profile');
 });
