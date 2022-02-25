@@ -17,7 +17,7 @@ class CreateMedicineInterreactionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('medicine_a');
             $table->unsignedBigInteger('medicine_b');
-            $table->unsignedBigInteger('medicine_b');
+            $table->string('remark');
             $table->timestamps();
         });
     }

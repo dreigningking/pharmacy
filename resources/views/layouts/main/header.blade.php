@@ -86,7 +86,7 @@
             </ul>
         </div>
         <ul class="nav header-navbar-rht">
-            <li class="nav-item contact-item">
+            {{-- <li class="nav-item contact-item">
                 <div class="header-contact-img">
                     <i class="far fa-hospital"></i>
                 </div>
@@ -94,8 +94,14 @@
                     <p class="contact-header">Support</p>
                     <p class="contact-info-header"> +1 315 369 5943</p>
                 </div>
-            </li>
+            </li> --}}
+            
             @guest
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary" href="{{route('register')}}">
+                    Add Pharmacy
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link header-login" href="{{route('login')}}">
                     Login/Signup
@@ -121,9 +127,14 @@
                             <p class="text-muted mb-0">Doctor</p>
                         </div> -->
                     </div>
-                    <a class="dropdown-item" href="doctor-dashboard.html">Dashboard</a>
+                    @if(Auth::user()->role_id)
+                    <a class="dropdown-item" href="{{route('home')}}">@if(Auth::user()->role-name == 'director') Dashboard @else Switch Dashboard @endif</a>
+                    @endif
                     <a class="dropdown-item" href="{{route('profile')}}">Profile Settings</a>
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </li>
             <!-- /User Menu -->

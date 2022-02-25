@@ -21,6 +21,7 @@ class CreatePharmaciesTable extends Migration
             $table->string('mobile');
             $table->string('image')->nullable();
             $table->string('license')->nullable();
+            $table->string('type');
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('city_id');

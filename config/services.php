@@ -29,5 +29,12 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'ip_api'=> env('IP_API_KEY'),
+    'ipdata'=> env('IP_DATA_KEY'),
+    'flutter_public_key' => env('FLUTTER_PUBLIC_KEY'),
+    'flutter_test_public_key' => env('FLUTTER_TEST_PUBLIC_KEY'),
+    'flutter_secret_key' => env('FLUTTER_SECRET_KEY'),
+    'flutter_test_secret_key' => env('FLUTTER_TEST_SECRET_KEY'),
+
 
 ];

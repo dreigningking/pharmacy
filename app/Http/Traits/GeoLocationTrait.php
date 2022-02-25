@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\Traits;
 
-use App\City;
-use App\State;
-use App\Country;
+use Browser;
+use App\Models\City;
+use App\Models\State;
+use App\Models\Country;
 use Ixudra\Curl\Facades\Curl;
 use Illuminate\Support\Facades\Cache;
 

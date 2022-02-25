@@ -16,15 +16,16 @@ class CreateReturnedsTable extends Migration
         Schema::create('returneds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('order_detail_id');
-            $table->unsignedBigInteger('product_id');
-            $table->string('reason');
+            $table->unsignedBigInteger('medicine_id');
+            $table->unsignedBigInteger('pharmacy_id');
+            $table->integer('quantity');
+            $table->double('unit_price')->default(0);
             $table->double('total')->default(0);
-            $table->string('status')->default('waiting'); //waiting, held, cancelled, released
+            $table->string('reason');
             $table->SoftDeletes();
             $table->timestamps();
-            $table->foreign('order_detail_id')->references('id')->on('order_details');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('medicine_id')->references('id')->on('medicines');
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

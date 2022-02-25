@@ -15,6 +15,9 @@ class CreatePharmacyUsersTable extends Migration
     {
         Schema::create('pharmacy_users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('pharmacy_id');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

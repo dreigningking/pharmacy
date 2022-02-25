@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\WebControllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,8 +24,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function director()
     {
-        return view('main.dashboard.director');
+        $user = Auth::user();
+        if(!$user->role)
+        return redirect()->route('setup');
+        if($user->role->name !='director')
+            return $this->dashboard();   
+        else return view('main.dashboard.director');
+    }
+    public function dashboard(){
+        return view('main.dashboard.pharmacist');
     }
 }

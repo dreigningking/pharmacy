@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\Country;
 
 class User extends Authenticatable
 {
 
-    use HasFactory, Notifiable, SoftDeletes,Sluggable;
+    use HasFactory, Notifiable, SoftDeletes;
     
     protected $fillable = [
         'name','email','mobile','password','timezone','currency_id','country_id','state_id','city_id','role_id','parent_id'
@@ -64,8 +66,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Pharmacy::class);
     }
     
-    public function roles(){
-        return $this->belongsToMany(Role::class);
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
     public function hasRole($value){
         return in_array($value,$this->roles->pluck('name')->toArray()) ? true:false;
@@ -89,8 +91,8 @@ class User extends Authenticatable
     public function wishlists(){
         return $this->hasMany(Wishlist::class);
     }
-    public function shops(){
-        return $this->hasMany(Shop::class);
+    public function country(){
+        return $this->belongsTo(Country::class);
     }
     public function orders(){
         return $this->hasMany(Order::class);

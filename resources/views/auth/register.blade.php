@@ -27,7 +27,7 @@
                                     </span>
                                     @enderror
                                     <div class="form-group form-focus">
-                                        <input type="text" class="form-control floating @error('name') is-invalid @enderror">
+                                        <input type="text" name="name" class="form-control floating @error('name') is-invalid @enderror">
                                         <label class="focus-label">Name</label>
                                     </div>
                                     @error('email')
@@ -36,7 +36,7 @@
                                     </span>
                                     @enderror
                                     <div class="form-group form-focus">
-                                        <input type="email" class="form-control floating @error('email') is-invalid @enderror">
+                                        <input type="email" name="email" class="form-control floating @error('email') is-invalid @enderror">
                                         <label class="focus-label">Email</label>
                                     </div>
                                     @error('password')
@@ -45,7 +45,7 @@
                                     </span>
                                     @enderror
                                     <div class="form-group form-focus">
-                                        <input type="password" class="form-control floating @error('password') is-invalid @enderror">
+                                        <input type="password" name="password" class="form-control floating @error('password') is-invalid @enderror">
                                         <label class="focus-label">Create Password</label>
                                     </div>
                                     <div class="text-right">

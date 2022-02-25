@@ -14,109 +14,164 @@
                     
                     <!-- Login Tab Content -->
                     <div class="account-content">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-12 col-md-12">
-                                <div class="login-header">
-                                    <h2>Add New Pharmacy</h2>
-                                </div>
-                                <div class="form-group">
-                                    <div class="change-avatar">
-                                        <div class="profile-img">
-                                            <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="Pharmacy Image">
-                                        </div>
-                                        <div class="upload-img">
-                                            <div class="change-photo-btn">
-                                                <span><i class="fa fa-upload"></i> Upload Logo</span>
-                                                <input type="file" class="upload">
+                        <form action="{{route('setup')}}" method="POST" enctype="multipart/form-data">@csrf
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-12 col-md-12">
+                                    <div class="login-header">
+                                        <h2>Add New Pharmacy</h2>
+                                    </div>
+                                    <div class="form-group">
+                                        @error('image')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                        @error('license')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                        <div class="change-avatar">
+                                            <div class="profile-img">
+                                                <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="Pharmacy Image">
                                             </div>
-                                            <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
-                                        </div>
-                                        <div class="upload-img ml-auto">
-                                            <div class="change-photo-btn">
-                                                <span><i class="fa fa-upload"></i> Upload License</span>
-                                                <input type="file" class="upload">
+                                            <div class="upload-img">
+                                                <div class="change-photo-btn">
+                                                    <span><i class="fa fa-upload"></i> Upload Logo</span>
+                                                    <input type="file" name="image" class="upload">
+                                                </div>
+                                                <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
                                             </div>
-                                            <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                            <div class="upload-img ml-auto">
+                                                <div class="change-photo-btn">
+                                                    <span><i class="fa fa-upload"></i> Upload License</span>
+                                                    <input type="file" name="license" class="upload">
+                                                </div>
+                                                <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group form-focus ">
-                                    <input type="text" class="form-control floating">
-                                    <label class="focus-label">Pharmacy Name</label>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group form-focus ">
+                                        <input type="text" name="name" class="form-control floating">
+                                        <label class="focus-label">Pharmacy Name</label>
+                                        @error('name')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group form-focus">  
-                                    <select class="form-control floating">
-                                        <option>Community Practise</option>
-                                        <option>Hospital Practise</option>
-                                    </select>
-                                    <label class="focus-label">Type</label>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group form-focus">  
+                                        <select name="type" class="form-control floating">
+                                            <option value="community">Community Practise</option>
+                                            <option value="hospital">Hospital Practise</option>
+                                        </select>
+                                        <label class="focus-label">Type</label>
+                                        @error('type')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>                         
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group form-focus">
+                                        <input id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus type="email" class="form-control @error('email') is-invalid @enderror floating">
+                                        <label class="focus-label">Business Email</label>
+                                        @error('email')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    
+                                </div>                           
+                                
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group form-focus">
+                                        <input type="text" name="mobile" value="+1 202-555-0125" class="form-control floating">
+                                        <label class="focus-label">Business Phone</label>
+                                        @error('mobile')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            
-                           
-                            
-                            <div class="col-md-6">
-                                <div class="form-group form-focus">
-                                    <input id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus type="email" class="form-control @error('email') is-invalid @enderror floating">
-                                    <label class="focus-label">Business Email</label>
-                                    @error('email')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group form-focus">
+                                        
+                                        <select name="country_id" id="countries" class="form-control floating">
+                                            @foreach ($countries as $country)
+                                                <option value="{{$country->id}}" @if(Auth::user()->country_id == $country->id) selected @endif>{{$country->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label class="focus-label">Country</label>
+                                        @error('country_id')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group form-focus">
+                                        
+                                        <select name="state_id" id="states" class="form-control select2 floating">
+                                            @foreach (Auth::user()->country->states as $state)
+                                                <option value="{{$state->id}}" @if(Auth::user()->state_id == $state->id) selected @endif>{{$state->name}}</option>
+                                            @endforeach
+                                            
+                                        </select>
+                                        <label class="focus-label">State</label>
+                                        @error('state_id')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group form-focus">
+                                        
+                                        <select name="city_id" id="cities" class="form-control select2 floating">
+                                            @foreach (Auth::user()->country->cities as $city)
+                                                <option value="{{$city->id}}" @if(Auth::user()->city_id == $city->id) selected @endif>{{$city->name}}</option>
+                                            @endforeach
+                                            
+                                        </select>
+                                        <label class="focus-label">State</label>
+                                        @error('city_id')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group form-focus">
+                                        <input type="text" name="address" class="form-control floating" value="{{old('address')}}" placeholder="Physical location of the pharmacy">
+                                        <label class="focus-label">Address</label>
+                                    </div>
+                                </div>                      
+                                
+                                <div class="col-12">
+                                    <div class="checkbox checkbox-primary ">
+                                        <input id="checkbox-primary-1" type="checkbox" data-original-title="" title="" name="agreement" value="1" >
+                                        <label for="checkbox-primary-1 px-2"> <a href="{{route('agreement')}}">I have read the agreement</a></label>
+                                    </div>
+                                    
                                 </div>
                                 
-                            </div>
-                            
-                            
-                            <div class="col-12 col-md-6">
-                                <div class="form-group form-focus">
-                                    <input type="text" value="+1 202-555-0125" class="form-control floating">
-                                    <label class="focus-label">Business Phone</label>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Create Pharmacy</button>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label>Country</label>
-                                    <input type="text" class="form-control" value="United States">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label>State</label>
-                                    <input type="text" class="form-control" value="Newyork">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control" value="Old Forge">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                <label>Address</label>
-                                    <input type="text" class="form-control" value="806 Twin Willow Lane">
-                                </div>
-                            </div>
-                            
-                            
-                            <div class="col-12">
-                                <div class="checkbox checkbox-primary ">
-                                    <input id="checkbox-primary-1" type="checkbox" data-original-title="" title="" name="agreement" value="1" >
-                                    <label for="checkbox-primary-1 px-2"> <a href="{{route('agreement')}}">I have read the agreement</a></label>
-                                </div>
-                                
-                            </div>
-                            
-                            <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Create Pharmacy</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                     <!-- /Login Tab Content -->
                         

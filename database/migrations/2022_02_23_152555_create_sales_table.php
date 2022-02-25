@@ -15,7 +15,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('shop_id'); //seller
+            $table->unsignedBigInteger('pharmacy_id'); //seller
             $table->string('track_code');
             $table->string('order_hash');
             $table->string('currency');
@@ -32,7 +32,7 @@ class CreateSalesTable extends Migration
             $table->timestamp('delivered_at')->nullable();
             $table->SoftDeletes();
             $table->timestamps();
-            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
