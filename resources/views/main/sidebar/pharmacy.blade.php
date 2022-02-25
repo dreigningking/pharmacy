@@ -20,7 +20,7 @@
             <nav class="dashboard-menu">
                 <ul>
                     <li @if(Route::is('pharmacy.dashboard')) class="active" @endif>
-                        <a href="{{route('dashboard')}}">
+                        <a href="{{route('pharmacy.dashboard')}}">
                             <i class="fas fa-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -101,6 +101,12 @@
                         <a href="doctor-profile-settings.html">
                             <i class="fas fa-cog"></i>
                             <span>Settings</span>
+                        </a>
+                    </li>
+                    <li @if(Route::is('pharmacy.staff-profile')) class="active" @endif>
+                        <a href="{{route('pharmacy.staff-profile')}}">
+                            <i class="fas fa-cog"></i>
+                            <span>Profile</span>
                         </a>
                     </li>
                     <!-- <li>
