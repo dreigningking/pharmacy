@@ -87,6 +87,7 @@
                     </div> -->
                     <div class="row">
 						<div class="col-xl-3 col-sm-6 col-12">
+                            <a href="{{route('setup')}}">
 							<div class="card">
 								<div class="card-body">
 									<div class="add-box">
@@ -94,7 +95,7 @@
                                         <p>Add Pharmacy</p>
                                     </div>
 								</div>
-							</div>
+							</div></a>
 						</div>
 						<div class="col-xl-3 col-sm-6 col-12">
 							<div class="card">

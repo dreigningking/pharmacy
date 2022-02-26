@@ -20,7 +20,7 @@
             <nav class="dashboard-menu">
                 <ul>
                     <li @if(Route::is('pharmacy.dashboard')) class="active" @endif>
-                        <a href="{{route('pharmacy.dashboard')}}">
+                        <a href="{{route('pharmacy.dashboard',$pharmacy)}}">
                             <i class="fas fa-columns"></i>
                             <span>Dashboard</span>
                         </a>

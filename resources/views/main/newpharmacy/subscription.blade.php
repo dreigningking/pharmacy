@@ -345,11 +345,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-between">
-                            <p class="text-muted">
-                                You're currently on Quarterly Diamond plan
+                        <div class="row justify-content-end">
+                            <p class="text-muted mx-3">
+                                You're currently on 14days Free Silver plan
                             </p>
-                            <button class="btn btn-info">Continune</button>
+                            <a href="{{route('pharmacy.dashboard',$pharmacy)}}" class="btn btn-info">Continune</a>
                         </div>
                         <!-- <form method=" POST" action="{{ route('login') }}">@csrf
                             <div class="tab-content" id="top-tabContent">

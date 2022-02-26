@@ -27,13 +27,13 @@ class HomeController extends Controller
     public function director()
     {
         $user = Auth::user();
-        if(!$user->role)
-        return redirect()->route('setup');
         if($user->role->name !='director')
-            return $this->dashboard();   
-        else return view('main.dashboard.director');
+        return redirect()->route('workspaces');
+        if($user->role->name =='director' && $user->pharmacies->isNotEmpty())
+        return view('main.dashboard.director');
+        else return redirect()->route('setup');
     }
     public function dashboard(){
-        return view('main.dashboard.pharmacist');
+        // return view('main.dashboard.pharmacist');
     }
 }

@@ -63,7 +63,7 @@ class User extends Authenticatable
     }
 
     public function pharmacies(){
-        return $this->belongsToMany(Pharmacy::class);
+        return $this->belongsToMany(Pharmacy::class,'pharmacy_users');
     }
     
     public function role(){

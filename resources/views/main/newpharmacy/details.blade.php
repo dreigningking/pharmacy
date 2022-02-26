@@ -38,14 +38,14 @@
                                             <div class="upload-img">
                                                 <div class="change-photo-btn">
                                                     <span><i class="fa fa-upload"></i> Upload Logo</span>
-                                                    <input type="file" name="image" class="upload">
+                                                    <input type="file" name="image" class="upload" required>
                                                 </div>
                                                 <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
                                             </div>
                                             <div class="upload-img ml-auto">
                                                 <div class="change-photo-btn">
                                                     <span><i class="fa fa-upload"></i> Upload License</span>
-                                                    <input type="file" name="license" class="upload">
+                                                    <input type="file" name="license" class="upload" required>
                                                 </div>
                                                 <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
                                             </div>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group form-focus ">
-                                        <input type="text" name="name" class="form-control floating">
+                                        <input type="text" name="name" class="form-control floating" required>
                                         <label class="focus-label">Pharmacy Name</label>
                                         @error('name')
                                         <span class="invalid-feedback d-block" role="alert">
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group form-focus">  
-                                        <select name="type" class="form-control floating">
+                                        <select name="type" class="form-control floating" required>
                                             <option value="community">Community Practise</option>
                                             <option value="hospital">Hospital Practise</option>
                                         </select>
@@ -76,7 +76,18 @@
                                         </span>
                                         @enderror
                                     </div>
-                                </div>                         
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group form-focus">  
+                                        <input type="text" name="description" class="form-control floating" required>
+                                        <label class="focus-label">About Pharmacy</label>
+                                        @error('description')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>                                 
                                 
                                 <div class="col-md-6">
                                     <div class="form-group form-focus">
@@ -93,7 +104,7 @@
                                 
                                 <div class="col-12 col-md-6">
                                     <div class="form-group form-focus">
-                                        <input type="text" name="mobile" value="+1 202-555-0125" class="form-control floating">
+                                        <input type="text" name="mobile" value="+1 202-555-0125" class="form-control floating" required>
                                         <label class="focus-label">Business Phone</label>
                                         @error('mobile')
                                         <span class="invalid-feedback d-block" role="alert">
@@ -105,7 +116,7 @@
                                 <div class="col-12 col-md-4">
                                     <div class="form-group form-focus">
                                         
-                                        <select name="country_id" id="countries" class="form-control floating">
+                                        <select name="country_id" id="countries" class="form-control floating" required>
                                             @foreach ($countries as $country)
                                                 <option value="{{$country->id}}" @if(Auth::user()->country_id == $country->id) selected @endif>{{$country->name}}</option>
                                             @endforeach
@@ -121,7 +132,7 @@
                                 <div class="col-12 col-md-4">
                                     <div class="form-group form-focus">
                                         
-                                        <select name="state_id" id="states" class="form-control select2 floating">
+                                        <select name="state_id" id="states" class="form-control select2 floating" required>
                                             @foreach (Auth::user()->country->states as $state)
                                                 <option value="{{$state->id}}" @if(Auth::user()->state_id == $state->id) selected @endif>{{$state->name}}</option>
                                             @endforeach
@@ -138,7 +149,7 @@
                                 <div class="col-12 col-md-4">
                                     <div class="form-group form-focus">
                                         
-                                        <select name="city_id" id="cities" class="form-control select2 floating">
+                                        <select name="city_id" id="cities" class="form-control select2 floating" required>
                                             @foreach (Auth::user()->country->cities as $city)
                                                 <option value="{{$city->id}}" @if(Auth::user()->city_id == $city->id) selected @endif>{{$city->name}}</option>
                                             @endforeach
@@ -154,14 +165,14 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group form-focus">
-                                        <input type="text" name="address" class="form-control floating" value="{{old('address')}}" placeholder="Physical location of the pharmacy">
+                                        <input type="text" name="address" class="form-control floating" value="{{old('address')}}" placeholder="Physical location of the pharmacy" required>
                                         <label class="focus-label">Address</label>
                                     </div>
                                 </div>                      
                                 
                                 <div class="col-12">
                                     <div class="checkbox checkbox-primary ">
-                                        <input id="checkbox-primary-1" type="checkbox" data-original-title="" title="" name="agreement" value="1" >
+                                        <input id="checkbox-primary-1" type="checkbox" data-original-title="" title="" name="agreement" value="1" required>
                                         <label for="checkbox-primary-1 px-2"> <a href="{{route('agreement')}}">I have read the agreement</a></label>
                                     </div>
                                     
