@@ -18,6 +18,7 @@ class PharmacyController extends Controller
 
     public function create(){
         $countries = Country::all();
+        $user = Auth::user();
         return view('main.director.pharmacy.create',compact('countries'));
     }
     public function store(Request $request){

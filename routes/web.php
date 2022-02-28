@@ -22,7 +22,9 @@ Route::view('profile', 'main.profile')->name('profile');
 Route::view('staff', 'main.director.staff.list')->name("staff");
 Route::view('new-staff', 'main.director.staff.create')->name("new-staff");
 Route::view('payments', 'main.payments')->name("payments");
+Route::view('activities', 'main.activities')->name("activities");
 Route::get('subscription/{pharmacy}',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('subscription');
+Route::get('permissions', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'permission'])->name("permissions");
 Auth::routes();
 
 

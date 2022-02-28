@@ -83,5 +83,3 @@ trait GeoLocationTrait
     }
 
 }
-
-
