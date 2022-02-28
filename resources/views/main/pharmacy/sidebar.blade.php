@@ -43,10 +43,10 @@
                             <span>Assessments</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="schedule-timings.html">
+                    <li @if(Route::is('pharmacy.medicine')) class="active" @endif>
+                        <a href="{{route('pharmacy.medicine',$pharmacy)}}">
                             <i class="fas fa-pills"></i>
-                            <span>Drugs</span>
+                            <span>Medicine</span>
                         </a>
                     </li>
                     <li>
