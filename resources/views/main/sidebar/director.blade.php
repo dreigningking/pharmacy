@@ -68,12 +68,25 @@
                             <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
                     </li>
+                    <li @if(Route::is('permissions')) class="active" @endif>
+                        <a href="{{route('permissions')}}">
+                            <i class="fas fa-user-lock"></i>
+                            <span>Permissions</span>
+                        </a>
+                    </li>
+                    <li @if(Route::is('activities')) class="active" @endif>
+                        <a href="{{route('activities')}}">
+                            <i class="fas fa-list-ol"></i>
+                            <span>activities</span>
+                        </a>
+                    </li>
                     <li @if(Route::is('profile')) class="active" @endif>
                         <a href="{{route('profile')}}">
                             <i class="fas fa-user"></i>
                             <span>Profile</span>
                         </a>
                     </li>
+
                     <li>
                         <a href="doctor-change-password.html">
                             <i class="fas fa-lock"></i>

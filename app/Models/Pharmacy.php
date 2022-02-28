@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Country;
 
 class Pharmacy extends Model
 {
@@ -15,5 +16,8 @@ class Pharmacy extends Model
 
     public function users(){
         return $this->belongsToMany(User::class,'pharmacy_users');
+    }
+    public function country(){
+        return $this->belongsTo(Country::class);
     }
 }

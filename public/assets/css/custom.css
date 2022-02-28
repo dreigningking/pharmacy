@@ -288,3 +288,12 @@ color: #007bff;
     display: flex;
     flex-direction: column;
 }
+
+.payment-btn {
+    border: 1px solid rgb(206, 205, 205) !important;
+}
+
+.permission-btn {
+    width: 100% !important;
+    text-align: start !important;
+}

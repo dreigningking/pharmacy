@@ -69,7 +69,7 @@
 
                         <div class="card contact-card">
                             <div class="card-body">
-                                <h4 class="card-title">Payment Details</h4>
+                                <h4 class="card-title">Payment Methods</h4>
                                 <div class="row jusify-content-between pl-2 pr-2">
 
                                     <p class="text-muted">
@@ -84,6 +84,74 @@
                                 </div>
 
 
+                            </div>
+                        </div>
+                        <div class="card contact-card">
+                            <div class="card  card-table flex-fill">
+                                <div class="card-header">
+                                    <h4 class="card-title">Payment History</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Reference</th>
+                                                    <th>Status</th>
+                                                    <th>Amount</th>
+                                                    <th>Date</th>
+                                                    <th>Invoice</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>#3682303</td>
+                                                    <td>Pending</td>
+                                                    <td>$264</td>
+                                                    <td>22/04/2020</td>
+                                                    <td>
+                                                        <button
+                                                            class="btn btn-outline d-flex align-items-center payment-btn">
+                                                            <i class="fas fa-file-download"></i>
+                                                            <p class="ml-2 mt-0 mb-0">PDF</p>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            class="btn btn-outline d-flex align-items-center payment-btn">
+
+                                                            <i class="fas fa-eye"></i>
+                                                            <p class="ml-2 mt-0 mb-0">Quick View</p>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>#3682303</td>
+                                                    <td>Successful</td>
+                                                    <td>$264</td>
+                                                    <td>22/04/2020</td>
+                                                    <td>
+                                                        <button
+                                                            class="btn btn-outline d-flex align-items-center payment-btn">
+                                                            <i class="fas fa-file-download"></i>
+                                                            <p class="ml-2 mt-0 mb-0">PDF</p>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            class="btn btn-outline d-flex align-items-center payment-btn">
+
+                                                            <i class="fas fa-eye"></i>
+                                                            <p class="ml-2 mt-0 mb-0">Quick View</p>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
