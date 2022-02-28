@@ -134,9 +134,9 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td></td>
+                                                        <td><i class="fas fa-exclamation-circle mr-1"></i></td>
                                                         <td class="d-flex align-items-center">
-                                                            <i class="fas fa-exclamation-circle mr-1"></i>
+
 
                                                             Uzumaki Naruto
                                                         </td>
