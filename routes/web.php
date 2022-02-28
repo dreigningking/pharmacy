@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function(){
     Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('dashboard');
     Route::get('pharmacies', [App\Http\Controllers\WebControllers\HomeController::class, 'pharmacies'])->name('pharmacies');
     Route::get('workspace', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'workspaces'])->name('workspaces');
-    // Route::get('dashboards', [App\Http\Controllers\WebControllers\HomeController::class, 'director'])->name('dashboard');
     Route::get('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'create'])->name('setup');
     Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->name('setup');
     Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getStates');
