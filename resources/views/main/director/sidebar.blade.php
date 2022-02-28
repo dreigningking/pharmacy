@@ -8,10 +8,10 @@
                     <img src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
-                    <h3>Dr. Darren Elder</h3>
+                    <h3>{{$user->name}}</h3>
 
                     <div class="patient-details">
-                        <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
+                        <h5 class="mb-0">@if($user->work) {{$user->work}} @endif</h5>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     <li @if(Route::is('dashboard')) class="active" @endif>
                         <a href="{{route('dashboard')}}">
                             <i class="fas fa-columns"></i>
-                            <span>Dashboard</span>
+                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li @if(Route::is('pharmacies')) class="active" @endif>

@@ -17,7 +17,7 @@ Route::view('/','welcome')->name('index');
 Route::view('agreement','agreement')->name('agreement');
 
 Route::view('transactions', 'main.director.transactions')->name('transactions');
-Route::view('profile', 'main.profile')->name('profile');
+Route::get('profile', [App\Http\Controllers\GeneralControllers\UserController::class, 'index'])->name('profile');
 
 Route::view('staff', 'main.director.staff.list')->name("staff");
 Route::view('new-staff', 'main.director.staff.create')->name("new-staff");
@@ -40,11 +40,9 @@ Route::middleware('auth')->group(function(){
 
 
 
-Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy'], function () {
-    Route::get('{pharmacy}/dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
-    Route::view('transactions', 'main.pharmacy.transactions')->name('transactions');
-    Route::view('staff', 'main.pharmacy.staff')->name('staff');
-    Route::view('new-staff', 'main.pharmacy.addstaff')->name('new-staff');
-    
-    Route::view('staff-profile', 'main.profile')->name('staff-profile');
+Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
+    Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
+    Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
+    Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');
+    Route::view('new-staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'newstaff'])->name('new-staff');
 });

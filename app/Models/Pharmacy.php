@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\State;
+use App\Models\City;
 
 class Pharmacy extends Model
 {
@@ -19,5 +21,11 @@ class Pharmacy extends Model
     }
     public function country(){
         return $this->belongsTo(Country::class);
+    }
+    public function state(){
+        return $this->belongsTo(State::class);
+    }
+    public function city(){
+        return $this->belongsTo(City::class);
     }
 }

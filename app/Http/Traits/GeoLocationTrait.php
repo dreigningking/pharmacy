@@ -26,7 +26,7 @@ trait GeoLocationTrait
                             'state_code'=> $place->region_code ,
                             'city'=> $place->city,
                             'dialing_code'=> $place->calling_code,
-                            'flag'=>'https://ipdata.co/flags/'.$place->country_code.'.png',
+                            'flag'=>'https://ipdata.co/flags/'.strtolower($place->country_code).'.png',
                             'timezone'=> $place->time_zone->name,
                             'currency_name' => $place->currency->name,
                             'currency_iso' => $place->currency->code,

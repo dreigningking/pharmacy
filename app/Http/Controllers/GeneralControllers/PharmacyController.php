@@ -57,4 +57,16 @@ class PharmacyController extends Controller
         $user = Auth::user();
         return view('main.pharmacy.workspaces',compact('user'));
     }
+
+    public function transactions(Pharmacy $pharmacy){
+        return view('main.pharmacy.transactions',compact('pharmacy'));
+    }
+
+    public function staff(Pharmacy $pharmacy){
+        return view('main.pharmacy.staff.list',compact('pharmacy'));
+    }
+
+    public function newstaff(Pharmacy $pharmacy){
+        return view('main.pharmacy.staff.create',compact('pharmacy'));
+    }
 }

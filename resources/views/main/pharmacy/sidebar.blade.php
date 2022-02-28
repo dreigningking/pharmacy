@@ -8,10 +8,10 @@
                     <img src="{{asset('storage/pharmacies/logos/'.$pharmacy->image)}}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
-                    <h2>Ramsgate </h2>
+                    <h2>{{$pharmacy->name}} </h2>
 
                     <div class="patient-details">
-                        <span class="mb-0">Ota, Ogun state</span>
+                        <span class="mb-0"><img src="{{$pharmacy->country->flag}}"> {{$pharmacy->state->name.','.$pharmacy->city->name}}</span>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                         </a>
                     </li>
                     <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
-                        <a href="{{route('pharmacy.transactions')}}">
+                        <a href="{{route('pharmacy.transactions',$pharmacy)}}">
                             <i class="fas fa-chart-bar"></i>
                             <span>Transcation</span>
                         </a>
@@ -93,7 +93,7 @@
                         </a>
                     </li>
                     <li @if(Route::is('pharmacy.staff')) class="active" @endif>
-                        <a href="{{route('pharmacy.staff')}}">
+                        <a href="{{route('pharmacy.staff',$pharmacy)}}">
                             <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
                     </li>
@@ -103,12 +103,7 @@
                             <span>Settings</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharmacy.staff-profile')) class="active" @endif>
-                        <a href="{{route('pharmacy.staff-profile')}}">
-                            <i class="fas fa-cog"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
+                    
                     <!-- <li>
                         <a href="index-2.html">
                             <i class="fas fa-sign-out-alt"></i>

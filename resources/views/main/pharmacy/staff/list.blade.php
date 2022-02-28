@@ -27,7 +27,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('main.director.sidebar')
+            @include('main.pharmacy.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
 
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <h3 class="page-title">List of Patient</h3>
+                                    <h3 class="page-title">List of Staff</h3>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
@@ -69,7 +69,7 @@
 
                                                             <th>Staff Name</th>
 
-                                                            <th class="text-right">Role</th>
+                                                            <th class="">Role</th>
 
                                                             <th class="text-right">Action</th>
                                                         </tr>
@@ -82,7 +82,7 @@
                                                                     <a href="profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="assets/img/patients/patient1.jpg"
+                                                                            src="{{asset('assets/img/patients/patient1.jpg')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="profile.html">Charlene Reed </a>
                                                                 </h2>
@@ -115,7 +115,7 @@
                                                                     <a href="profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="assets/img/patients/patient2.jpg"
+                                                                            src="{{asset('assets/img/patients/patient2.jpg')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="profile.html">Travis Trimble </a>
                                                                 </h2>
@@ -147,7 +147,7 @@
                                                                     <a href="profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="assets/img/patients/patient3.jpg"
+                                                                            src="{{asset('assets/img/patients/patient3.jpg')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="profile.html">Carl Kelly</a>
                                                                 </h2>
@@ -179,7 +179,7 @@
                                                                     <a href="profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="assets/img/patients/patient4.jpg"
+                                                                            src="{{asset('assets/img/patients/patient4.jpg')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="profile.html"> Michelle Fairfax</a>
                                                                 </h2>
@@ -210,7 +210,7 @@
                                                                     <a href="profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="assets/img/patients/patient5.jpg"
+                                                                            src="{{asset('assets/img/patients/patient5.jpg')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="profile.html">Gina Moore</a>
                                                                 </h2>

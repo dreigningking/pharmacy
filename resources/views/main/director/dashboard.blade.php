@@ -43,26 +43,31 @@
 								</div>
 							</div></a>
 						</div>
-						<div class="col-xl-3 col-sm-6 col-12">
-							<div class="card">
-								<div class="card-body">
-									<div class="dash-widget-header">
-										<span class="dash-widget-icon text-success">
-											<i class="fe fe-credit-card"></i>
-										</span>
-										<div class="location">
-											<span>surulere</span>
-										</div>
-									</div>
-									<div class="dash-widget-info">
-										
-										<h6 class="pharmacy-name">Medplus</h6>
-										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-sm-6 col-12">
+                        @foreach ($user->pharmacies as $pharmacy)
+                            <div class="col-xl-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-body p-2">
+                                        <a href="{{route('pharmacy.dashboard',$pharmacy)}}">
+                                            <div class="dash-widget-header">
+                                                {{-- <span class="dash-widget-icon text-success">
+                                                    <i class="fe fe-credit-card"></i>
+                                                </span> --}}
+                                                <img src="{{asset('storage/pharmacies/logos/'.$pharmacy->image)}}" class="img-fluid" style="width:100%;height:150px">
+                                                
+                                            </div>
+                                            <div class="dash-widget-info">
+                                                <h6 class="pharmacy-name">{{$pharmacy->name}}</h6>
+                                                <div class="location">
+                                                    <span><img src="{{$pharmacy->country->flag}}"> {{$pharmacy->state->name.','.$pharmacy->city->name}}</span>
+                                                </div>                                           
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+						
+						{{-- <div class="col-xl-3 col-sm-6 col-12">
 							<div class="card">
 								<div class="card-body">
 									<div class="dash-widget-header">
@@ -99,7 +104,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 					</div>
                     
                     {{--<div class="row">
