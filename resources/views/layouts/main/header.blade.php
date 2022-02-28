@@ -89,7 +89,7 @@
                         </div> -->
                     </div>
                     @if(Auth::user()->role_id)
-                    <a class="dropdown-item" href="{{route('home')}}">@if(Auth::user()->role->name == 'director') My Dashboard @else Switch Dashboard @endif</a>
+                    <a class="dropdown-item" href="{{route('dashboard')}}">@if(Auth::user()->role->name == 'director') My Dashboard @else Switch Dashboard @endif</a>
                     <a class="dropdown-item" href="{{route('profile')}}">Profile Settings</a>
                     @endif
                    

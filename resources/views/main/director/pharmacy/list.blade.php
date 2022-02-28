@@ -27,17 +27,18 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('main.sidebar.director')
+            @include('main.director.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
 
 
 
                 <div class="row row-grid">
+                    @foreach ($user->pharmacies as $pharmacy)   
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard')}}">
+                                <a href="{{route('pharmacy.dashboard',$pharmacy)}}">
                                     <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo2.png">
                                 </a>
                                 <a href="javascript:void(0)" class="fav-btn">
@@ -68,11 +69,11 @@
                             </div>
                         </div>
                     </div>
-
+                    @endforeach
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard')}}">
+                                <a href="{{route('pharmacy.dashboard',2)}}">
                                     <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo2.png">
                                 </a>
                                 <a href="javascript:void(0)" class="fav-btn">
@@ -106,7 +107,7 @@
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard')}}">
+                                <a href="{{route('pharmacy.dashboard',2)}}">
                                     <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo.jpg">
                                 </a>
                                 <a href="javascript:void(0)" class="fav-btn">
@@ -140,7 +141,7 @@
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard')}}">
+                                <a href="{{route('pharmacy.dashboard',2)}}">
                                     <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo.jpg">
                                 </a>
                                 <a href="javascript:void(0)" class="fav-btn">
@@ -174,7 +175,7 @@
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard')}}">
+                                <a href="{{route('pharmacy.dashboard',2)}}">
                                     <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo2.png">
                                 </a>
                                 <a href="javascript:void(0)" class="fav-btn">
@@ -208,7 +209,7 @@
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard')}}">
+                                <a href="{{route('pharmacy.dashboard',2)}}">
                                     <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo.jpg">
                                 </a>
                                 <a href="javascript:void(0)" class="fav-btn">

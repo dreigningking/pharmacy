@@ -1,6 +1,8 @@
 @extends('layouts.main.app')
 @push('styles')
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<link rel="stylesheet" href="{{asset('adminassets/plugins/morris/morris.css')}}">
+
 <!-- Datatables CSS -->
 <link rel="stylesheet" href="{{asset('adminassets/plugins/datatables/datatables.min.css')}}">
 @endpush
@@ -13,10 +15,10 @@
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">Transactions</h2>
+                <h2 class="breadcrumb-title">Dashboard</h2>
             </div>
         </div>
     </div>
@@ -28,7 +30,8 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('main.sidebar.pharmacy')
+            @include('main.director.sidebar')
+
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="page-wrapper">
                     <div class="content container-fluid">
@@ -57,10 +60,9 @@
                                                     <tr>
                                                         <th>Invoice Number</th>
 
-                                                        <th>Item</th>
-                                                        <th>Quantity</th>
+                                                        <th>Pharmacy Name</th>
                                                         <th>Total Amount</th>
-
+                                                        <th class="text-center">Type</th>
                                                         <th class="text-right">Actions</th>
                                                     </tr>
                                                 </thead>
@@ -71,19 +73,19 @@
                                                         <td>
                                                             <h2 class="table-avatar">
 
-                                                                Biscuit
+                                                                <a href="profile.html">Ramsgate </a>
                                                             </h2>
                                                         </td>
-                                                        <td Biscuit>200</td>
                                                         <td>$100.00</td>
-
+                                                        <td class="text-center">
+                                                            <span
+                                                                class="badge badge-pill bg-success inv-badge">Revenue</span>
+                                                        </td>
                                                         <td class="text-right">
-                                                            <div class="actions">
-                                                                <a class="btn btn-sm bg-success-light"
-                                                                    data-toggle="modal" href="#delete_modal">
-                                                                    <i class="fe fe-eye"></i> View More
-                                                                </a>
-                                                            </div>
+                                                            <a class="btn btn-sm bg-success-light" data-toggle="modal"
+                                                                href="#delete_modal">
+                                                                <i class="fe fe-eye"></i> View More
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -92,19 +94,19 @@
                                                         <td>
                                                             <h2 class="table-avatar">
 
-                                                                Micoson
+                                                                <a href="profile.html">Micoson</a>
                                                             </h2>
                                                         </td>
-                                                        <td>501</td>
                                                         <td>$200.00</td>
-
+                                                        <td class="text-center">
+                                                            <span
+                                                                class="badge badge-pill bg-success inv-badge">Revenue</span>
+                                                        </td>
                                                         <td class="text-right">
-                                                            <div class="actions">
-                                                                <a class="btn btn-sm bg-success-light"
-                                                                    data-toggle="modal" href="#delete_modal">
-                                                                    <i class="fe fe-eye"></i> View More
-                                                                </a>
-                                                            </div>
+                                                            <a class="btn btn-sm bg-success-light" data-toggle="modal"
+                                                                href="#delete_modal">
+                                                                <i class="fe fe-eye"></i> View More
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -113,19 +115,19 @@
                                                         <td>
                                                             <h2 class="table-avatar">
 
-                                                                Coke
+                                                                <a href="profile.html">Medplus</a>
                                                             </h2>
                                                         </td>
-                                                        <td>100 </td>
                                                         <td>$250.00</td>
-
+                                                        <td class="text-center">
+                                                            <span
+                                                                class="badge badge-pill bg-success inv-badge">Expense</span>
+                                                        </td>
                                                         <td class="text-right">
-                                                            <div class="actions">
-                                                                <a class="btn btn-sm bg-success-light"
-                                                                    data-toggle="modal" href="#delete_modal">
-                                                                    <i class="fe fe-eye"></i> View More
-                                                                </a>
-                                                            </div>
+                                                            <a class="btn btn-sm bg-success-light" data-toggle="modal"
+                                                                href="#delete_modal">
+                                                                <i class="fe fe-eye"></i> View More
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -134,19 +136,19 @@
                                                         <td>
                                                             <h2 class="table-avatar">
 
-                                                                Fairfax
+                                                                <a href="profile.html">Fairfax</a>
                                                             </h2>
                                                         </td>
-                                                        <td>260</td>
                                                         <td>$150.00</td>
-
+                                                        <td class="text-center">
+                                                            <span
+                                                                class="badge badge-pill bg-success inv-badge">Revenue</span>
+                                                        </td>
                                                         <td class="text-right">
-                                                            <div class="actions">
-                                                                <a class="btn btn-sm bg-success-light"
-                                                                    data-toggle="modal" href="#delete_modal">
-                                                                    <i class="fe fe-eye"></i> View More
-                                                                </a>
-                                                            </div>
+                                                            <a class="btn btn-sm bg-success-light" data-toggle="modal"
+                                                                href="#delete_modal">
+                                                                <i class="fe fe-eye"></i> View More
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -155,19 +157,19 @@
                                                         <td>
                                                             <h2 class="table-avatar">
 
-                                                                <a href="profile.html">kuli kuli</a>
+                                                                <a href="profile.html">Moore</a>
                                                             </h2>
                                                         </td>
-                                                        <td>105</td>
-                                                        <td Fairfax>$350.00</td>
-
+                                                        <td>$350.00</td>
+                                                        <td class="text-center">
+                                                            <span
+                                                                class="badge badge-pill bg-success inv-badge">Revenue</span>
+                                                        </td>
                                                         <td class="text-right">
-                                                            <div class="actions">
-                                                                <a class="btn btn-sm bg-success-light"
-                                                                    data-toggle="modal" href="#delete_modal">
-                                                                    <i class="fe fe-eye"></i> View More
-                                                                </a>
-                                                            </div>
+                                                            <a class="btn btn-sm bg-success-light" data-toggle="modal"
+                                                                href="#delete_modal">
+                                                                <i class="fe fe-eye"></i> View More
+                                                            </a>
                                                         </td>
                                                     </tr>
 
@@ -181,7 +183,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
@@ -189,7 +190,6 @@
 </div>
 <!-- /Page Content -->
 @endsection
-
 
 @push('scripts')
 <script src="{{asset('adminassets/js/script.js')}}"></script>
