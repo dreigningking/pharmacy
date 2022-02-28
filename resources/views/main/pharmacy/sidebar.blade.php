@@ -43,10 +43,10 @@
                             <span>Assessments</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="schedule-timings.html">
+                    <li @if(Route::is('pharmacy.medicine')) class="active" @endif>
+                        <a href="{{route('pharmacy.medicine',$pharmacy)}}">
                             <i class="fas fa-pills"></i>
-                            <span>Drugs</span>
+                            <span>Medicine</span>
                         </a>
                     </li>
                     <li>
@@ -75,7 +75,7 @@
                         </a>
                     </li>
                     <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
-                        <a href="{{route('pharmacy.transactions')}}">
+                        <a href="{{route('pharmacy.transactions',$pharmacy)}}">
                             <i class="fas fa-chart-bar"></i>
                             <span>Transcation</span>
                         </a>
@@ -93,7 +93,7 @@
                         </a>
                     </li>
                     <li @if(Route::is('pharmacy.staff')) class="active" @endif>
-                        <a href="{{route('pharmacy.staff')}}">
+                        <a href="{{route('pharmacy.staff',$pharmacy)}}">
                             <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
                     </li>
@@ -104,7 +104,7 @@
                         </a>
                     </li>
                     <li @if(Route::is('pharmacy.staff-profile')) class="active" @endif>
-                        <a href="{{route('pharmacy.staff-profile')}}">
+                        <a href="{{route('pharmacy.staff-profile',$pharmacy)}}">
                             <i class="fas fa-cog"></i>
                             <span>Profile</span>
                         </a>

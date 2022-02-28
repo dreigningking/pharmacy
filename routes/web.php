@@ -23,6 +23,7 @@ Route::view('staff', 'main.director.staff.list')->name("staff");
 Route::view('new-staff', 'main.director.staff.create')->name("new-staff");
 Route::view('payments', 'main.payments')->name("payments");
 Route::view('activities', 'main.activities')->name("activities");
+
 Route::get('subscription/{pharmacy}',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('subscription');
 Route::get('permissions', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'permission'])->name("permissions");
 Auth::routes();
@@ -41,11 +42,11 @@ Route::middleware('auth')->group(function(){
 
 
 
-Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy'], function () {
-    Route::get('{pharmacy}/dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
+Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}/'], function () {
+    Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
     Route::view('transactions', 'main.pharmacy.transactions')->name('transactions');
     Route::view('staff', 'main.pharmacy.staff')->name('staff');
     Route::view('new-staff', 'main.pharmacy.addstaff')->name('new-staff');
-    
+    Route::get('medicine', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'medicines'])->name("medicine");
     Route::view('staff-profile', 'main.profile')->name('staff-profile');
 });
