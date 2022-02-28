@@ -33,19 +33,19 @@
                                         @enderror
                                         <div class="change-avatar">
                                             <div class="profile-img">
-                                                <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="Pharmacy Image">
+                                                <img id="logo" src="{{asset('assets/img/patients/patient.jpg')}}" alt="Pharmacy Image">
                                             </div>
                                             <div class="upload-img">
                                                 <div class="change-photo-btn">
                                                     <span><i class="fa fa-upload"></i> Upload Logo</span>
-                                                    <input type="file" name="image" class="upload" required>
+                                                    <input type="file" name="image" id="image" class="upload" required>
                                                 </div>
                                                 <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
                                             </div>
                                             <div class="upload-img ml-auto">
                                                 <div class="change-photo-btn">
-                                                    <span><i class="fa fa-upload"></i> Upload License</span>
-                                                    <input type="file" name="license" class="upload" required>
+                                                    <span><i class="fa fa-upload"></i> <span id="license_text">Upload License</span></span>
+                                                    <input type="file" name="license" id="license" class="upload" required>
                                                 </div>
                                                 <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
                                             </div>
@@ -152,10 +152,9 @@
                                         <select name="city_id" id="cities" class="form-control select2 floating" required>
                                             @foreach (Auth::user()->country->cities as $city)
                                                 <option value="{{$city->id}}" @if(Auth::user()->city_id == $city->id) selected @endif>{{$city->name}}</option>
-                                            @endforeach
-                                            
+                                            @endforeach    
                                         </select>
-                                        <label class="focus-label">State</label>
+                                        <label class="focus-label">City</label>
                                         @error('city_id')
                                         <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -203,7 +202,7 @@
 			placeholder: "Search Country",
 			width: '100%',
             });
-        $('.countries').on('change',function(){
+        $('#countries').on('change',function(){
             var country_id = $(this).val();
             // alert(state_id)
             $.ajax({
@@ -215,14 +214,14 @@
                     'country_id': country_id
                 },
                 success:function(data) {
-                    $('.cities').html(data);
+                    $('#states').html(data);
                 },
                 error: function(data) {
                     console.log(data);
                 }
             });
         })
-        $('.states').on('change',function(){
+        $('#states').on('change',function(){
             var state_id = $(this).val();
             // alert(state_id)
             $.ajax({
@@ -234,13 +233,30 @@
                     'state_id': state_id
                 },
                 success:function(data) {
-                    $('.cities').html(data);
+                    $('#cities').html(data);
                 },
                 error: function(data) {
                     console.log(data);
                 }
             });
         })
+
+        $("#image").change(function() {
+            readURL(this,'logo');
+        });
+        $("#license").change(function() {
+            $('#license_text').text('1 file Attached')
+        });
+        function readURL(input,output) {
+        console.log(input.id);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+            $('#'+output).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
     </script>
 @endpush
 

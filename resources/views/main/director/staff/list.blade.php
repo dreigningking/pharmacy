@@ -27,7 +27,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('main.sidebar.director')
+            @include('main.director.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
 
@@ -68,10 +68,10 @@
                                                         <tr>
 
                                                             <th>Staff Name</th>
+                                                            <th>Pharmacy</th>
+                                                            <th class="text-center">Role</th>
 
-                                                            <th class="text-right">Role</th>
-
-                                                            <th class="text-right">Action</th>
+                                                            <th class="text-center">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -88,10 +88,11 @@
                                                                 </h2>
                                                             </td>
 
-
-                                                            <td class="text-right">
+                                                            <td>Medplus</td>
+                                                            <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
-                                                                    <option value=" pharmacist">Pharmacist</option>
+
+                                                                    <option value="pharmacist">Pharmacist</option>
                                                                     <option value="store-keeper">Store keeper</option>
                                                                 </select>
                                                             </td>
@@ -100,10 +101,13 @@
 
                                                             <td class="text-right">
                                                                 <div class="actions">
-
+                                                                    <a class="btn btn-sm bg-success-light"
+                                                                        data-toggle="modal" href="#edit_staff">
+                                                                        <i class="fe fe-pencil"></i> Edit
+                                                                    </a>
                                                                     <a data-toggle="modal" href="#delete_modal"
                                                                         class="btn btn-sm bg-danger-light">
-                                                                        Suspend
+                                                                        Disable
                                                                     </a>
                                                                 </div>
                                                             </td>
@@ -120,8 +124,8 @@
                                                                     <a href="profile.html">Travis Trimble </a>
                                                                 </h2>
                                                             </td>
-
-                                                            <td class="text-right">
+                                                            <td>Ramsgate</td>
+                                                            <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
                                                                     <option value="pharmacist">Pharmacist</option>
 
@@ -132,10 +136,13 @@
 
                                                             <td class="text-right">
                                                                 <div class="actions">
-
+                                                                    <a class="btn btn-sm bg-success-light"
+                                                                        data-toggle="modal" href="#edit_staff">
+                                                                        <i class="fe fe-pencil"></i> Edit
+                                                                    </a>
                                                                     <a data-toggle="modal" href="#delete_modal"
                                                                         class="btn btn-sm bg-danger-light">
-                                                                        Suspend
+                                                                        Disable
                                                                     </a>
                                                                 </div>
                                                             </td>
@@ -152,11 +159,11 @@
                                                                     <a href="profile.html">Carl Kelly</a>
                                                                 </h2>
                                                             </td>
-
-                                                            <td class="text-right">
+                                                            <td>Micoson</td>
+                                                            <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
                                                                     <option value="store-keeper">Store keeper</option>
-
+                                                                    <option value="manager">Manager</option>
                                                                     <option value="pharmacist">Pharmacist</option>
 
                                                                 </select>
@@ -164,10 +171,13 @@
 
                                                             <td class="text-right">
                                                                 <div class="actions">
-
+                                                                    <a class="btn btn-sm bg-success-light"
+                                                                        data-toggle="modal" href="#edit_staff">
+                                                                        <i class="fe fe-pencil"></i> Edit
+                                                                    </a>
                                                                     <a data-toggle="modal" href="#delete_modal"
                                                                         class="btn btn-sm bg-danger-light">
-                                                                        Suspend
+                                                                        Disable
                                                                     </a>
                                                                 </div>
                                                             </td>
@@ -184,10 +194,10 @@
                                                                     <a href="profile.html"> Michelle Fairfax</a>
                                                                 </h2>
                                                             </td>
-
-                                                            <td class="text-right">
+                                                            <td>Meh</td>
+                                                            <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
-
+                                                                    <option value="manager">Manager</option>
                                                                     <option value="pharmacist">Pharmacist</option>
                                                                     <option value="store-keeper">Store keeper</option>
                                                                 </select>
@@ -195,10 +205,13 @@
 
                                                             <td class="text-right">
                                                                 <div class="actions">
-
+                                                                    <a class="btn btn-sm bg-success-light"
+                                                                        data-toggle="modal" href="#edit_staff">
+                                                                        <i class="fe fe-pencil"></i> Edit
+                                                                    </a>
                                                                     <a data-toggle="modal" href="#delete_modal"
                                                                         class="btn btn-sm bg-danger-light">
-                                                                        Suspend
+                                                                        Disable
                                                                     </a>
                                                                 </div>
                                                             </td>
@@ -215,11 +228,11 @@
                                                                     <a href="profile.html">Gina Moore</a>
                                                                 </h2>
                                                             </td>
-
-                                                            <td class="text-right">
+                                                            <td>Bleh</td>
+                                                            <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
                                                                     <option value="agbero">Agbero</option>
-
+                                                                    <option value="manager">Manager</option>
                                                                     <option value="pharmacist">Pharmacist</option>
                                                                     <option value="store-keeper">Store keeper</option>
                                                                 </select>
@@ -227,10 +240,13 @@
 
                                                             <td class="text-right">
                                                                 <div class="actions">
-
+                                                                    <a class="btn btn-sm bg-success-light"
+                                                                        data-toggle="modal" href="#edit_staff">
+                                                                        <i class="fe fe-pencil"></i> Edit
+                                                                    </a>
                                                                     <a data-toggle="modal" href="#delete_modal"
                                                                         class="btn btn-sm bg-danger-light">
-                                                                        Suspend
+                                                                        Disable
                                                                     </a>
                                                                 </div>
                                                             </td>
@@ -259,7 +275,6 @@
 <!-- /Page Content -->
 
 @endsection
-
 <!-- Add Staff Modal -->
 <div class="modal fade custom-modal add-modal" id="add_staff">
     <div class="modal-dialog modal-dialog-centered">
@@ -274,7 +289,7 @@
                 <div class="row">
                     <div class="col-xl-12 d-flex">
                         <div class="card flex-fill">
-                           
+                            
                             <div class="card-body">
                                 <form action="#">
                                    
@@ -284,13 +299,23 @@
                                             <input type="email" class="form-control">
                                         </div>
                                     </div>
-
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Pharmacy</label>
+                                        <div class="col-lg-9">
+                                            <select name="" id="" class="role-select form-control">
+                                                <option value="agbero">Micoson</option>
+                                                <option value="pharmacist">Ramsagate</option>
+                                                <option value="store-keeper">Tewe tegbo</option>
+                                            </select>
+                                            </td>
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label">Role</label>
                                         <div class="col-lg-9">
                                             <select name="" id="" class="role-select form-control">
                                                 <option value="agbero">Agbero</option>
-
+                                                <option value="manager">Manager</option>
                                                 <option value="pharmacist">Pharmacist</option>
                                                 <option value="store-keeper">Store keeper</option>
                                             </select>
@@ -313,3 +338,27 @@
 </div>
 
 <!-- Add Staff Modal -->
+
+
+<!-- Edit Details Modal -->
+<div class="modal fade custom-modal" id="edit_staff">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Staff Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="usr">Staff Email:</label>
+                    <input type="email" class="form-control" id="usr">
+                </div>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Edit Details Modal -->

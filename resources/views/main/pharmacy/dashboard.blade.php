@@ -26,7 +26,7 @@
         <div class="container-fluid">
 
             <div class="row">
-                @include('main.sidebar.pharmacy')
+                @include('main.pharmacy.sidebar')
                 <div class="col-md-7 col-lg-8 col-xl-9">
 
                     <div class="row">

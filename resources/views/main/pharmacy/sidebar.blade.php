@@ -5,7 +5,7 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="#" class="booking-doc-img">
-                    <img src="{{asset('assets/img/pharmacy-logo.jpg')}}" alt="User Image">
+                    <img src="{{asset('storage/pharmacies/logos/'.$pharmacy->image)}}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
                     <h2>Ramsgate </h2>

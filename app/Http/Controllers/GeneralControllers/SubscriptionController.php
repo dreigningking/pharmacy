@@ -9,6 +9,6 @@ use App\Models\Pharmacy;
 class SubscriptionController extends Controller
 {
     public function index(Pharmacy $pharmacy){
-        return view('main.newPharmacy.subscription',compact('pharmacy'));
+        return view('main.director.pharmacy.subscription',compact('pharmacy'));
     }
 }

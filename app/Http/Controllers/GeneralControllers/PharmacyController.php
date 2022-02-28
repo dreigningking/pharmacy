@@ -13,12 +13,12 @@ class PharmacyController extends Controller
 {
    
     public function index(Pharmacy $pharmacy){
-        return view('main.dashboard.pharmacy',compact('pharmacy'));
+        return view('main.pharmacy.dashboard',compact('pharmacy'));
     }
 
     public function create(){
         $countries = Country::all();
-        return view('main.newpharmacy.details',compact('countries'));
+        return view('main.director.pharmacy.create',compact('countries'));
     }
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
@@ -54,6 +54,6 @@ class PharmacyController extends Controller
     }
     public function workspaces(){
         $user = Auth::user();
-        return view('main.pharmacies.users',compact('user'));
+        return view('main.pharmacy.workspaces',compact('user'));
     }
 }
