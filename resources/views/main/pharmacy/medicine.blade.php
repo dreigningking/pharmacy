@@ -34,8 +34,14 @@
 
             <div class="col-md-7 col-lg-8 col-xl-9">
                 @if(Auth::user()->role->name != "sales")
-                <div class="row justify-content-end">
-                    <button class="btn btn-primary">Add Medicine</button>
+                <div class="row justify-content-between">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary">Add Medicine</button>
+                    </div>
+                    <div class="col-sm-6 d-flex justify-content-end ">
+                        <button class="btn btn-primary disabled">Add Reaction</button>
+                    </div>
+
                 </div>
                 @endif
                 <div class="page-wrapper">
@@ -45,10 +51,11 @@
                         <div class="page-header">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h3 class="page-title">Transactions</h3>
+                                    <h3 class="page-title">Medicines</h3>
                                     <ul class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                                        <li class="breadcrumb-item active">Transactions</li>
+                                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a>
+                                        </li>
+                                        <li class="breadcrumb-item active">Medicines</li>
                                     </ul>
                                 </div>
                             </div>
@@ -63,106 +70,55 @@
                                             <table class="datatable table table-hover table-center mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Icon</th>
-                                                        <th>Staff Name</th>
+                                                        <th class="text-center">Select</th>
+                                                        <th>Paracetamol</th>
 
-                                                        <th>Pharmacy Name</th>
-                                                        <th>Role</th>
-                                                        <th class="text-center">Activities Description</th>
-                                                        <th class="text-right">Date</th>
+                                                        <th class="text-center">No Of Brands</th>
+                                                        <th class="text-right"> Action</th>
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td> <i class="fas fa-bell"></i></td>
+                                                        <td class=" text-center">
+                                                            <input class="form-check-input medicine-check"
+                                                                type="checkbox" name="remember" required>
+
+                                                        </td>
                                                         <td class="d-flex align-items-center">
 
-                                                            Uzumaki Naruto
+                                                            Paracetamol
                                                         </td>
 
-                                                        <td>
-                                                            <h2 class="table-avatar">
-
-                                                                <a href="profile.html">Konoha </a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>Genin</td>
                                                         <td class="text-center">
-                                                            Beat
-                                                            Sasuke's Ass
+                                                            5
                                                         </td>
-                                                        <td class="text-right">
-                                                            01-02-2022
-                                                        </td>
+                                                        <td class="text-right"> <a class="btn btn-sm bg-success-light"
+                                                                data-toggle="modal" href="#medication_info">
+                                                                <i class="fe fe-eye"></i> View More
+                                                            </a></td>
+
                                                     </tr>
                                                     <tr>
-                                                        <td><i class="fas fa-dot-circle"></i></td>
+                                                        <td class=" text-center">
+                                                            <input class="form-check-input medicine-check"
+                                                                type="checkbox" name="remember" required>
+
+                                                        </td>
                                                         <td class="d-flex align-items-center">
 
-                                                            Hatake Kakashi
+                                                            Ibuprofen
                                                         </td>
 
-                                                        <td>
-                                                            <h2 class="table-avatar">
-
-                                                                <a href="profile.html">Konoha </a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>Chunin</td>
                                                         <td class="text-center">
-                                                            Beat
-                                                            Nagato Ass
+                                                            1
                                                         </td>
-                                                        <td class="text-right">
-                                                            01-02-2022
-                                                        </td>
+                                                        <td class="text-right"> <a class="btn btn-sm bg-success-light"
+                                                                data-toggle="modal" href="#medication_info">
+                                                                <i class="fe fe-eye"></i> View More
+                                                            </a></td>
+
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="fas fa-bell"></i>
-                                                        </td>
-                                                        <td class="d-flex align-items-center">Uzumaki Naruto</td>
-
-                                                        <td>
-                                                            <h2 class="table-avatar">
-
-                                                                <a href="profile.html">Konoha </a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>Genin</td>
-                                                        <td class="text-center">
-                                                            Beat
-                                                            Sasuke's Ass
-                                                        </td>
-                                                        <td class="text-right">
-                                                            01-02-2022
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i class="fas fa-exclamation-circle mr-1"></i></td>
-                                                        <td class="d-flex align-items-center">
-
-
-                                                            Uzumaki Naruto
-                                                        </td>
-
-                                                        <td>
-                                                            <h2 class="table-avatar">
-
-                                                                <a href="profile.html">Konoha </a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>Genin</td>
-                                                        <td class="text-center">
-                                                            Beat
-                                                            Sasuke's Ass
-                                                        </td>
-                                                        <td class="text-right">
-                                                            01-02-2022
-                                                        </td>
-                                                    </tr>
-
-
                                                 </tbody>
                                             </table>
                                         </div>
@@ -184,3 +140,61 @@
 @push('scripts')
 <script src="{{asset('adminassets/js/script.js')}}"></script>
 @endpush
+
+<!-- Medicine Info Modal -->
+<div class="modal fade custom-modal add-modal" id="medication_info">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Medication Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 d-flex">
+                        <div class="card flex-fill">
+
+                            <div class="card-body">
+                                <div class="row mb-4">
+                                    <div class="col-sm-4 pl-0 pr-0">
+                                        Name:
+                                    </div>
+                                    <div class="col-sm-8 pl-0 pr-0">Paracetamol</div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-sm-4 pl-0 pr-0">
+                                        Brands:
+                                    </div>
+                                    <div class="col-sm-8 pl-0 pr-0">Emzor, M&B</div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-sm-4 pl-0 pr-0">
+                                        Contraindications:
+                                    </div>
+                                    <div class="col-sm-8 pl-0 pr-0">Not to be used by sad patients</div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-sm-4 pl-0 pr-0">
+                                        Treats:
+                                    </div>
+                                    <div class="col-sm-8 pl-0 pr-0">Headache et al.,</div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-sm-4 pl-0 pr-0">
+                                        Treats:
+                                    </div>
+                                    <div class="col-sm-8 pl-0 pr-0">Headache et al.,</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Medicine Info Modal -->
