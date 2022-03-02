@@ -72,4 +72,7 @@ class PharmacyController extends Controller
     public function medicines(Pharmacy $pharmacy){
         return view('main.pharmacy.medicine',compact('pharmacy'));
     }
+    public function addmedicines(Pharmacy $pharmacy){
+        return view('main.pharmacy.addmedicine',compact('pharmacy'));
+    }
 }

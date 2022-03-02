@@ -47,4 +47,5 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
     Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');
     Route::view('new-staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'newstaff'])->name('new-staff');
     Route::get('medicine', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'medicines'])->name("medicine");
+    Route::get('addmedicine', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'addmedicine'])->name("addmedicine");
 });

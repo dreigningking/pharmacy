@@ -36,7 +36,8 @@
                 @if(Auth::user()->role->name != "sales")
                 <div class="row justify-content-between">
                     <div class="col-sm-6">
-                        <button class="btn btn-primary">Add Medicine</button>
+                        <button class="btn btn-primary">
+                            <a href="{{route('pharmacy.addmedicine',$pharmacy)}}"> Add Medicine</a></button>
                     </div>
                     <div class="col-sm-6 d-flex justify-content-end ">
                         <button class="btn btn-primary disabled">Add Reaction</button>
