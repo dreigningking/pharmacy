@@ -15,9 +15,9 @@ class CreateShelvesTable extends Migration
     {
         Schema::create('shelves', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pharmacy_id');
             $table->string('name');
             $table->string('description');
+            $table->unsignedBigInteger('pharmacy_id');
             $table->timestamps();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
         });

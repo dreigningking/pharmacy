@@ -24,21 +24,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+
+    public function workspaces(){
         $user = Auth::user();
-        if($user->role->name !='director')
-        return redirect()->route('workspaces');
-        if($user->role->name =='director' && $user->pharmacies->isNotEmpty())
-        return $this->director();
-        else return redirect()->route('setup');
+        return view('main.pharmacy.workspaces',compact('user'));
     }
-    public function director(){
-        $user = Auth::user();
-        return view('main.director.dashboard',compact('user'));
-    }
-    public function pharmacies(){
-        $user = Auth::user();
-        return view('main.director.pharmacy.list',compact('user'));
-    }
+  
+    
 }

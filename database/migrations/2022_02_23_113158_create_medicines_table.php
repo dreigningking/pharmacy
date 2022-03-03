@@ -17,9 +17,8 @@ class CreateMedicinesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->unsignedBigInteger('category_id');
+            $table->text('contraindications')->nullable();
             $table->timestamps();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

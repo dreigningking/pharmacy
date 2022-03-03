@@ -16,6 +16,10 @@ class PharmacyController extends Controller
         return view('main.pharmacy.dashboard',compact('pharmacy'));
     }
 
+    public function subscription(Pharmacy $pharmacy){
+        return view('main.director.pharmacy.subscription',compact('pharmacy'));
+    }
+
     public function create(){
         $countries = Country::all();
         $user = Auth::user();
@@ -53,10 +57,7 @@ class PharmacyController extends Controller
         $pharmacy->users()->attach($user->id);
         return redirect()->route('subscription',$pharmacy);
     }
-    public function workspaces(){
-        $user = Auth::user();
-        return view('main.pharmacy.workspaces',compact('user'));
-    }
+    
 
     public function transactions(Pharmacy $pharmacy){
         return view('main.pharmacy.transactions',compact('pharmacy'));

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Role;
 
 class RoleMiddleware
 {
@@ -14,10 +15,11 @@ class RoleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next,...$role)
+    public function handle($request, Closure $next,$role)
     {
-        if(!$request->user()->hasAnyRole($role))
-            return redirect()->route('dashboard');
+        $role_id = Role::where('name',$role)->first()->id;
+        if(!$request->user()->pharmacies->where('role_id',$role_id)->isEmpty())
+            return redirect()->route('workspaces');
         return $next($request);
     }
 }

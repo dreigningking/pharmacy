@@ -18,7 +18,6 @@ class CreatePaymentsTable extends Migration
             $table->string('reference');
             $table->unsignedBigInteger('user_id'); //the sender
             $table->unsignedBigInteger('subscription_id'); //the subscription
-            $table->unsignedBigInteger('pharmacy_id'); //the subscription
             $table->string('currency');
             $table->double('amount')->default(0); 
             $table->string('method'); //card, bank, ussd  

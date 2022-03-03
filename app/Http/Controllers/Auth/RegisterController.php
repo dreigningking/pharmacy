@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -77,11 +76,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $info = $this->getLocation();
-        $role = Role::where('name','director')->first()->id;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'role_id' => $role,
             'country_id' => $info['country_id'], 
             'state_id' => $info['state_id'], 
             'city_id' => $info['city_id'], 

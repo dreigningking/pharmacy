@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('role_id');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

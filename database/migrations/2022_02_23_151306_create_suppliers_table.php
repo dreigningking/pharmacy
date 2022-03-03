@@ -20,10 +20,18 @@ class CreateSuppliersTable extends Migration
             $table->string('email')->unique();
             $table->string('mobile');
             $table->string('image')->nullable();
+            $table->unsignedBigInteger('pharmacy_id');
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('bank_id')->nullable();
+            $table->string('bank_account')->nullable();
             $table->timestamps();
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('bank_id')->references('id')->on('banks');
         });
     }
 

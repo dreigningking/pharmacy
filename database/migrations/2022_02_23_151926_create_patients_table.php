@@ -19,8 +19,12 @@ class CreatePatientsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('mobile');
-            $table->string('gender')->nullable();
-            $table->integer('age')->nullable();
+            $table->string('gender');
+            $table->date('dob')->nullable();
+            $table->string('address')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->unsignedBigInteger('state_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->timestamps();
         });
     }

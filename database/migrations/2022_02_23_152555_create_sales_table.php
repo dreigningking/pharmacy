@@ -34,6 +34,7 @@ class CreateSalesTable extends Migration
             $table->timestamps();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // SALES : prescription_id, quantity, amount, payment_method
         });
     }
 

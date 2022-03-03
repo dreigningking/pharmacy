@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreatePharmacySettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('pharmacy_settings', function (Blueprint $table) {
             $table->id();
-            
+            $table->unsignedBigInteger('pharmacy_id');
+            $table->string('name');
+            $table->string('value');
             $table->timestamps();
+            //mark_up (what to add to price as profit)
+            //minimum stocklevel
+            //maximum stocklevel
         });
     }
 
@@ -27,6 +32,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('pharmacy_settings');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePharmacyRolePermissionsTable extends Migration
+class CreateExpiredsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,18 @@ class CreatePharmacyRolePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pharmacy_role_permissions', function (Blueprint $table) {
+        Schema::create('expireds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id');
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('permission_id');
+            $table->unsignedBigInteger('purchase_id');
+            $table->string('batch_no');
+            $table->integer('quantity')->default(1);
+            $table->double('unit_price')->default(0);
+            $table->double('unit_cost')->default(0);
+            $table->double('amount')->default(0);
             $table->timestamps();
+            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
-            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
         });
     }
 
@@ -32,6 +35,6 @@ class CreatePharmacyRolePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pharmacy_role_permissions');
+        Schema::dropIfExists('expireds');
     }
 }

@@ -16,7 +16,10 @@ class CreateFeedbackTable extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('pharmacy_id');
+            $table->unsignedBigInteger('assessment_id');
             $table->text('body');
+            $table->boolean('positive')->default(1);
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIngredientsTable extends Migration
+class CreateMedicineReactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateIngredientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ingredients', function (Blueprint $table) {
+        Schema::create('medicine_reactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('medicine_id');
-            $table->string('mg');
+            $table->unsignedBigInteger('disease_id');
             $table->timestamps();
             $table->foreign('medicine_id')->references('id')->on('medicines')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateIngredientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingredients');
+        Schema::dropIfExists('medicine_reactions');
     }
 }

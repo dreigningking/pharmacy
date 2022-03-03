@@ -15,7 +15,9 @@ class CreatePrescriptionsTable extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
+            // id, drug_id,assessment_id, dosage , period, administration, effective? , reaction, therapeutic_alternatives
             $table->timestamps();
+            // NONMEDICAL PRESCRIPTION: id,patient_id, assessment_id, body, effective? , reaction,
         });
     }
 

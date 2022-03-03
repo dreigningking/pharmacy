@@ -18,11 +18,12 @@ class CreatePatientMedicationHistoriesTable extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('disease_id')->nullable();
             $table->unsignedBigInteger('medicine_id');
-            $table->boolean('was_effective');
+            $table->boolean('effective');
             $table->string('remark')->nullable();
             $table->timestamps();
-            $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
-            $table->foreign('medicine_id')->references('id')->on('medicines')->onDelete('cascade');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('disease_id')->references('id')->on('diseases');
+            $table->foreign('medicine_id')->references('id')->on('medicines');
         });
     }
 

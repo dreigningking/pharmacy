@@ -20,6 +20,9 @@ class CreateAssessmentsTable extends Migration
             $table->unsignedBigInteger('disease_id');
             $table->string('treatment');
             $table->timestamps();
+            // patient_id, pregnant, pregnancy_year,BP(mmHg), PR(Beats/min), 
+			// Tempv(degree celcius), Weight(kg), Height(m), BMI (kg/m), Complaints, physical assessment, laboratory, diagnosis, medical plan, desired outcome, achieved?, outcome achieved
+			// next appointnment,
         });
     }
 

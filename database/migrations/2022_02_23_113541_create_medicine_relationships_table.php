@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMedicineInterreactionsTable extends Migration
+class CreateMedicineRelationshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateMedicineInterreactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('medicine_interreactions', function (Blueprint $table) {
+        Schema::create('medicine_relationships', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('medicine_a');
             $table->unsignedBigInteger('medicine_b');
-            $table->string('remark');
+            $table->boolean('healthy');
+            $table->text('remark');
             $table->timestamps();
+            $table->foreign('medicine_a')->references('id')->on('medicines')->onDelete('cascade');
+            $table->foreign('medicine_b')->references('id')->on('medicines')->onDelete('cascade');
         });
     }
 
@@ -29,6 +32,6 @@ class CreateMedicineInterreactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medicine_interreactions');
+        Schema::dropIfExists('medicine_relationships');
     }
 }
