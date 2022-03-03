@@ -20,11 +20,11 @@
             <nav class="dashboard-menu">
                 <ul>
                     
-                    @if(Auth::user()->hasRole('director'))
+                    @if(Auth::user()->isAnyRole(['director']))
                     <li @if(Route::is('dashboard')) class="active" @endif>
                         <a href="{{route('dashboard')}}">
                             <i class="fas fa-columns"></i>
-                             <span>Dashboard</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li @if(Route::is('pharmacies')) class="active" @endif>
@@ -37,6 +37,13 @@
                         <a href="{{route('payments')}}">
                             <i class="fas fa-money-bill"></i>
                             <span>Payments</span>
+                        </a>
+                    </li>
+
+                    <li @if(Route::is('medicine')) class="active" @endif>
+                        <a href="{{route('medicine')}}">
+                            <i class="fas fa-pills"></i>
+                            <span>Medicine</span>
                         </a>
                     </li>
                     <li>

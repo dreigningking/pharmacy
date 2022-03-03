@@ -297,3 +297,33 @@ color: #007bff;
     width: 100% !important;
     text-align: start !important;
 }
+.medicine-check {
+    margin-top: -0.7rem !important;
+}
+
+.add-medicine a {
+    color: inherit;
+}
+.custom-select-sm{
+    min-height: 46px !important;
+    margin-bottom: 10px !important;
+}
+.contra {
+    margin-bottom: 10px !important;
+}
+.disease-data {
+    border-right: 1px solid rgb(226, 225, 225);
+}
+.btn.btn-danger.trash {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+    height: 46px;
+    width: 46px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+}

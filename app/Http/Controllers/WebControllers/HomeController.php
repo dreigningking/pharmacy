@@ -25,6 +25,12 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
+    public function index()
+    {
+        $user = Auth::user();
+        return view('main.user.dashboard',compact('user'));
+    }
+    
     public function workspaces(){
         $user = Auth::user();
         return view('main.user.workspaces',compact('user'));

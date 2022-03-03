@@ -71,7 +71,7 @@ trait GeoLocationTrait
                         [
                             'name'=> $info['country'],
                             'dialing_code'=> $info['dialing_code'],
-                            'flag'=> 'https://ipdata.co/flags/'.$info['iso_code'].'.png',
+                            'flag'=> 'https://ipdata.co/flags/'.strtolower($info['iso_code']).'.png',
                             'currency_name'=> $info['currency_name'],
                             'currency_iso'=> $info['currency_iso'],
                             'currency_symbol'=> $info['currency_symbol'],

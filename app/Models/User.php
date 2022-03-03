@@ -64,15 +64,12 @@ class User extends Authenticatable
     }
 
     public function pharmacies(){
-        return $this->belongsToMany(Pharmacy::class,'pharmacy_users');
+        return $this->belongsToMany(Pharmacy::class,'pharmacy_users')->withPivot('role_id','status');
     }
     
-    public function role(){
-        return $this->belongsTo(Role::class);
-    }
-    public function hasRole($value){
-        $role_id = Role::where('name',$value)->first()->id;
-        return $this->pharmacies->where('role_id',$role_id)->isNotEmpty() ? true:false;
+    public function isAnyRole($value){
+        $roles = Role::whereIn('name',$value)->get()->pluck('id')->toArray();
+        return $this->pharmacies->whereIn('pivot.role_id', $roles)->isNotEmpty()? true:false;
     }
 
     public function messages(){

@@ -34,12 +34,13 @@
 
 
                 <div class="row row-grid">
-                    @foreach ($user->pharmacies as $pharmacy)   
+                    @foreach ($user->pharmacies as $pharmacy)
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="doc-img">
                                 <a href="{{route('pharmacy.dashboard',$pharmacy)}}">
-                                    <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo2.png">
+                                    <img class="img-fluid" alt="User Image"
+                                        src="{{asset('storage/pharmacies/logos/'.$pharmacy->image)}}">
                                 </a>
                                 <a href="javascript:void(0)" class="fav-btn">
                                     <i class="far fa-bookmark"></i>
@@ -47,7 +48,7 @@
                             </div>
                             <div class="pro-content">
                                 <h3 class="title">
-                                    <a href="doctor-profile.html">Medicraft</a>
+                                    <a href="{{route('pharmacy.dashboard',$pharmacy)}}">{{$pharmacy->name}}</a>
                                     <i class="fas fa-check-circle verified"></i>
                                 </h3>
 
@@ -60,7 +61,8 @@
                                 </ul>
                                 <div class="row row-sm">
                                     <div class="col-6">
-                                        <a href="doctor-profile.html" class="btn btn-primary">View</a>
+                                        <a href="{{route('pharmacy.dashboard',$pharmacy)}}"
+                                            class="btn btn-primary">View</a>
                                     </div>
                                     <div class="col-6">
                                         <a href="booking.html" class="btn btn-danger">Delete</a>
@@ -70,176 +72,6 @@
                         </div>
                     </div>
                     @endforeach
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="profile-widget">
-                            <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard',2)}}">
-                                    <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo2.png">
-                                </a>
-                                <a href="javascript:void(0)" class="fav-btn">
-                                    <i class="far fa-bookmark"></i>
-                                </a>
-                            </div>
-                            <div class="pro-content">
-                                <h3 class="title">
-                                    <a href="doctor-profile.html">Micoson</a>
-                                    <i class="fas fa-check-circle verified"></i>
-                                </h3>
-
-                                <ul class="available-info">
-                                    <li>
-                                        <i class="fas fa-map-marker-alt"></i> Sango ota, Lagos
-                                    </li>
-
-                                </ul>
-                                <div class="row row-sm">
-                                    <div class="col-6">
-                                        <a href="doctor-profile.html" class="btn btn-primary">View</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="booking.html" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="profile-widget">
-                            <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard',2)}}">
-                                    <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo.jpg">
-                                </a>
-                                <a href="javascript:void(0)" class="fav-btn">
-                                    <i class="far fa-bookmark"></i>
-                                </a>
-                            </div>
-                            <div class="pro-content">
-                                <h3 class="title">
-                                    <a href="doctor-profile.html">Women's health</a>
-                                    <i class="fas fa-check-circle verified"></i>
-                                </h3>
-
-                                <ul class="available-info">
-                                    <li>
-                                        <i class="fas fa-map-marker-alt"></i>Lekki, Lagos
-                                    </li>
-
-                                </ul>
-                                <div class="row row-sm">
-                                    <div class="col-6">
-                                        <a href="doctor-profile.html" class="btn btn-primary">View</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="booking.html" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="profile-widget">
-                            <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard',2)}}">
-                                    <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo.jpg">
-                                </a>
-                                <a href="javascript:void(0)" class="fav-btn">
-                                    <i class="far fa-bookmark"></i>
-                                </a>
-                            </div>
-                            <div class="pro-content">
-                                <h3 class="title">
-                                    <a href="doctor-profile.html">Medicare</a>
-                                    <i class="fas fa-check-circle verified"></i>
-                                </h3>
-
-                                <ul class="available-info">
-                                    <li>
-                                        <i class="fas fa-map-marker-alt"></i>Ota, Ogun State
-                                    </li>
-
-                                </ul>
-                                <div class="row row-sm">
-                                    <div class="col-6">
-                                        <a href="doctor-profile.html" class="btn btn-primary">View</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="booking.html" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="profile-widget">
-                            <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard',2)}}">
-                                    <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo2.png">
-                                </a>
-                                <a href="javascript:void(0)" class="fav-btn">
-                                    <i class="far fa-bookmark"></i>
-                                </a>
-                            </div>
-                            <div class="pro-content">
-                                <h3 class="title">
-                                    <a href="doctor-profile.html">Bolatito Pharmacy</a>
-                                    <i class="fas fa-check-circle verified"></i>
-                                </h3>
-
-                                <ul class="available-info">
-                                    <li>
-                                        <i class="fas fa-map-marker-alt"></i>Agege, Lagos
-                                    </li>
-
-                                </ul>
-                                <div class="row row-sm">
-                                    <div class="col-6">
-                                        <a href="doctor-profile.html" class="btn btn-primary">View</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="booking.html" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="profile-widget">
-                            <div class="doc-img">
-                                <a href="{{route('pharmacy.dashboard',2)}}">
-                                    <img class="img-fluid" alt="User Image" src="assets/img/pharmacy-logo.jpg">
-                                </a>
-                                <a href="javascript:void(0)" class="fav-btn">
-                                    <i class="far fa-bookmark"></i>
-                                </a>
-                            </div>
-                            <div class="pro-content">
-                                <h3 class="title">
-                                    <a href="doctor-profile.html">Ramsgate</a>
-                                    <i class="fas fa-check-circle verified"></i>
-                                </h3>
-
-                                <ul class="available-info">
-                                    <li>
-                                        <i class="fas fa-map-marker-alt"></i> Sango Ota, Ogun State
-                                    </li>
-
-                                </ul>
-                                <div class="row row-sm">
-                                    <div class="col-6">
-                                        <a href="doctor-profile.html" class="btn btn-primary">View</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="booking.html" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
 
                 </div>
             </div>

@@ -1,0 +1,4 @@
+http://pharmacy.test/doccure/search.html  -- use for workspaces and list of pharmacies
+show Add New Pharmacy as side menu for director.. then show it on homepage  \
+
+what will be on everybody's dashboard

@@ -83,15 +83,16 @@
                             <img src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image"
                                 class="avatar-img rounded-circle">
                         </div>
-                        <!-- <div class="user-text">
-                            <h6>Darren Elder</h6>
+                         <div class="user-text">
+                            <h6>{{explode(' ',Auth::user()->name)[0]}}</h6>
                             <p class="text-muted mb-0">Doctor</p>
-                        </div> -->
+                        </div> 
                     </div>
-                    @if(Auth::user()->role_id)
-                    <a class="dropdown-item" href="{{route('dashboard')}}">@if(Auth::user()->role->name == 'director') My Dashboard @else Switch Dashboard @endif</a>
-                    <a class="dropdown-item" href="{{route('profile')}}">Profile Settings</a>
-                    @endif
+                    
+                    <a class="dropdown-item" href="{{route('workspaces')}}">Switch Pharmacy</a>
+                    <a class="dropdown-item" href="{{route('dashboard')}}">My Account</a>
+                    
+                    
                    
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
