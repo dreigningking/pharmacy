@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 
-class SupportRequestNotification extends Notification implements ShouldQueue
+class SubscriptionExpiryNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $message;

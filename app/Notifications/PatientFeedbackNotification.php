@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class OrderReadyNotification extends Notification
+class PatientFeedbackNotification extends Notification
 {
     use Queueable;
 

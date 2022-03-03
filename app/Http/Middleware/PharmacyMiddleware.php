@@ -14,14 +14,14 @@ class PharmacyMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next,Pharmacy $pharmacy)
+    public function handle(Request $request, Closure $next)
     {
         if($request->user()->pharmacies->isEmpty())
         return redirect()->route('setup');
-        if($request->user()->pharmacies->where('status',false)->isNotEmpty())
+        if($request->user()->pharmacies->where('pharmacy_id',$request->route('pharmacy')->id)->where('status',false)->isNotEmpty())
         return redirect()->route('invitations');
-        if($request->user()->pharmacies->where('pharmacy_id',$pharmacy)->isEmpty())
-        abort(404,'You do not have permission to view this page');
+        // if($request->user()->pharmacies->where('pharmacy_id',$request->route('pharmacy')->id)->isEmpty())
+        // abort(404,'You do not have permission to view this page');
         return $next($request);
     }
 }

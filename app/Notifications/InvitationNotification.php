@@ -2,15 +2,14 @@
 
 namespace App\Notifications;
 
-use App\Wallet;
+use App\Models\Pharmacy;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
-use App\NotificationSetting;
 
-class PenaltyChargeNotification extends Notification implements ShouldQueue
+class InvitationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $wallet;

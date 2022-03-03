@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\GeneralControllers;
 
 use App\Models\Country;
+use App\Models\Role;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,6 +26,7 @@ class PharmacyController extends Controller
         $user = Auth::user();
         return view('main.director.pharmacy.create',compact('countries'));
     }
+
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'image' => 'required|image|max:5000',
@@ -54,11 +56,11 @@ class PharmacyController extends Controller
         $pharmacy = Pharmacy::create(['name'=> $request->name,'description'=> $request->description,
                         'email'=> $request->email,'mobile'=> $request->mobile,'image'=> $image,'license'=> $license,
                         'type'=> $request->type,'country_id'=> $request->country_id,'state_id'=>$request->state_id,'city_id'=> $request->city_id]);
-        $pharmacy->users()->attach($user->id);
-        return redirect()->route('subscription',$pharmacy);
+        $role_id = $role_id = Role::where('name','director')->first()->id;
+        $pharmacy->users()->attach($user->id,['role_id'=> $role_id,'status'=> true]);
+        return redirect()->route('pharmacy.subscription',$pharmacy);
     }
     
-
     public function transactions(Pharmacy $pharmacy){
         return view('main.pharmacy.transactions',compact('pharmacy'));
     }

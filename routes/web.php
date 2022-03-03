@@ -21,15 +21,16 @@ Route::get('profile', [App\Http\Controllers\GeneralControllers\UserController::c
 
 Route::view('staff', 'main.director.staff.list')->name("staff");
 Route::view('new-staff', 'main.director.staff.create')->name("new-staff");
-Route::view('payments', 'main.payments')->name("payments");
-Route::view('activities', 'main.activities')->name("activities");
+Route::view('payments', 'main.user.payments')->name("payments");
+Route::view('activities', 'main.user.activities')->name("activities");
 
 
 Auth::routes();
 
 
 Route::middleware('auth')->group(function(){
-    Route::get('workspace', [App\Http\Controllers\WebControllers\HomeController::class, 'workspaces'])->name('workspaces');
+    Route::get('workspaces', [App\Http\Controllers\WebControllers\HomeController::class, 'workspaces'])->name('workspaces');
+    Route::get('invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
     Route::get('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'create'])->name('setup');
     Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->name('setup');
 
@@ -46,7 +47,7 @@ Route::middleware('auth')->group(function(){
 
 
 
-Route::group(['as'=>'pharmacy.','middleware'=>'pharmacy:{pharmacy}' ,'prefix'=>'pharmacy/{pharmacy}'], function () {
+Route::group(['as'=>'pharmacy.','middleware'=>['auth','pharmacy'] ,'prefix'=>'pharmacy/{pharmacy}'], function () {
     Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
     Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
     Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');

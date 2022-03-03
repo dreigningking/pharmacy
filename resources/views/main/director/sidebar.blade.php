@@ -19,6 +19,8 @@
         <div class="dashboard-widget">
             <nav class="dashboard-menu">
                 <ul>
+                    
+                    @if(Auth::user()->hasRole('director'))
                     <li @if(Route::is('dashboard')) class="active" @endif>
                         <a href="{{route('dashboard')}}">
                             <i class="fas fa-columns"></i>
@@ -37,8 +39,6 @@
                             <span>Payments</span>
                         </a>
                     </li>
-
-
                     <li>
                         <a href="social-media.html">
                             <i class="fas fa-pills"></i>
@@ -74,31 +74,39 @@
                             <span>Permissions</span>
                         </a>
                     </li>
+                    @endif
+
+                    <li @if(Route::is('workspaces')) class="active" @endif>
+                        <a href="{{route('dashboard')}}">
+                            <i class="fas fa-columns"></i>
+                             <span>Workspaces</span>
+                        </a>
+                    </li>
                     <li @if(Route::is('activities')) class="active" @endif>
                         <a href="{{route('activities')}}">
                             <i class="fas fa-list-ol"></i>
                             <span>activities</span>
                         </a>
                     </li>
-                    <li @if(Route::is('profile')) class="active" @endif>
+                    {{-- <li @if(Route::is('profile')) class="active" @endif>
                         <a href="{{route('profile')}}">
                             <i class="fas fa-user"></i>
                             <span>Profile</span>
                         </a>
-                    </li>
+                    </li> --}}
 
-                    <li>
+                    {{-- <li>
                         <a href="doctor-change-password.html">
                             <i class="fas fa-lock"></i>
                             <span>Change Password</span>
                         </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <a href="index-2.html">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </nav>
         </div>

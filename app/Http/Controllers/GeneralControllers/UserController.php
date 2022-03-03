@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('main.profile',compact('user'));
+        return view('main.user.profile',compact('user'));
     }
 
     /**

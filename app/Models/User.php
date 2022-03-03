@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Country;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -70,7 +71,8 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
     public function hasRole($value){
-        return in_array($value,$this->roles->pluck('name')->toArray()) ? true:false;
+        $role_id = Role::where('name',$value)->first()->id;
+        return $this->pharmacies->where('role_id',$role_id)->isNotEmpty() ? true:false;
     }
 
     public function messages(){

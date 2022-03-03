@@ -11,6 +11,11 @@ class State extends Model
 {
     use HasFactory;
 
+    public static function boot(){
+        parent::boot();
+        parent::observe(new \App\Observers\StateObserver);
+    }
+
     protected $fillable = ['name','code','country_id'];
 
     public function cities(){

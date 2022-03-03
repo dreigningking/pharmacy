@@ -13,6 +13,11 @@ class Country extends Model
 
     protected $fillable = ['iso_code','name','dialing_code','flag','currency_name','currency_iso','currency_symbol'];
     
+    public static function boot(){
+        parent::boot();
+        parent::observe(new \App\Observers\CountryObserver);
+    }
+
     public function users(){
         return $this->hasMany(User::class);
     }

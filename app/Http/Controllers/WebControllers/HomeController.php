@@ -27,7 +27,11 @@ class HomeController extends Controller
 
     public function workspaces(){
         $user = Auth::user();
-        return view('main.pharmacy.workspaces',compact('user'));
+        return view('main.user.workspaces',compact('user'));
+    }
+    public function invitations(){
+        $user = Auth::user();
+        return view('main.user.invitations',compact('user'));
     }
   
     

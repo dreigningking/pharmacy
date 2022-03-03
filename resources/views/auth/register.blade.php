@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">
                                 <div class="login-header">
-                                    <h3>Register <a href="#">Add Your Pharmacy</a></h3>
+                                    <h3>Director's Details <a href="#">Add new Pharmacy</a></h3>
                                 </div>
                                 
                                 <!-- Register Form -->
@@ -51,7 +51,7 @@
                                     <div class="text-right">
                                         <a class="forgot-link" href="{{route('login')}}">Already have an account?</a>
                                     </div>
-                                    <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
+                                    <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Get Started</button>
                                     <div class="login-or">
                                         <span class="or-line"></span>
                                         <span class="span-or">or</span>
