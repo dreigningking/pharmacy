@@ -26,6 +26,8 @@ Route::view('activities', 'main.activities')->name("activities");
 
 Route::get('subscription/{pharmacy}',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('subscription');
 Route::get('permissions', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'permission'])->name("permissions");
+Route::get('medicine', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'index'])->name("medicine");
+Route::get('addmedicine', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'create'])->name("addmedicine");
 Auth::routes();
 
 
@@ -46,6 +48,7 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
     Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
     Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');
     Route::view('new-staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'newstaff'])->name('new-staff');
-    Route::get('medicine', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'medicines'])->name("medicine");
+    
     Route::get('addmedicine', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'addmedicine'])->name("addmedicine");
+    Route::get('drug', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'drug'])->name("drug");
 });

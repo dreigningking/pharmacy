@@ -11,7 +11,8 @@
                     <h2>{{$pharmacy->name}} </h2>
 
                     <div class="patient-details">
-                        <span class="mb-0"><img src="{{$pharmacy->country->flag}}"> {{$pharmacy->state->name.','.$pharmacy->city->name}}</span>
+                        <span class="mb-0"><img src="{{$pharmacy->country->flag}}">
+                            {{$pharmacy->state->name.','.$pharmacy->city->name}}</span>
                     </div>
                 </div>
             </div>
@@ -43,16 +44,16 @@
                             <span>Assessments</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharmacy.medicine')) class="active" @endif>
-                        <a href="{{route('pharmacy.medicine',$pharmacy)}}">
+                    <!-- <li @if(Route::is('medicine')) class="active" @endif>
+                        <a href="{{route('medicine')}}">
                             <i class="fas fa-pills"></i>
                             <span>Medicine</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="invoices.html">
-                            <i class="fas fa-user"></i>
-                            <span>Suppliers</span>
+                    </li> -->
+                    <li @if(Route::is('pharmacy.drug')) class="active" @endif>
+                        <a href="{{route('pharmacy.drug',$pharmacy)}}">
+                            <i class="fas fa-columns"></i>
+                            <span>Drugs</span>
                         </a>
                     </li>
                     <li>
@@ -103,7 +104,7 @@
                             <span>Settings</span>
                         </a>
                     </li>
-                    
+
                     <!-- <li>
                         <a href="index-2.html">
                             <i class="fas fa-sign-out-alt"></i>
