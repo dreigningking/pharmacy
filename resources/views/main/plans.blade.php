@@ -75,6 +75,13 @@
                                                                 value="{{$plan->duration}}">
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9">
+                                                            <input type="hidden" class="form-control" name="plan_id"
+                                                                value="{{$plan->id}}">
+                                                        </div>
+                                                    </div>
 
                                                     <div class="d-flex justify-content-center my-4">
                                                         <button class="btn btn-dark btn-lg" type="submit">

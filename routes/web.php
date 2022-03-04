@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('checkout',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
+
 Route::view('/','main.welcome')->name('index');
 Route::view('agreement','main.agreement')->name('agreement');
 Route::get('pricing',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('plans');
@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function(){
     Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->name('setup');
     Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getStates');
     Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getCities');
+    Route::post('checkout',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
     
     //accessible on director dashboard and inside pharmacies
     Route::get('subscription', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'subscription'])->name("subscription");

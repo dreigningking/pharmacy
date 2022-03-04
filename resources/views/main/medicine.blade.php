@@ -181,7 +181,7 @@ function medineCheck() {
                     reaction.removeAttribute("disabled");
                     reaction.classList.remove("disabled");
                 } else {
-                    reaction.addAttribute("disabled");
+                    reaction.setAttribute("disabled", "disabled");
                     reaction.classList.add("disabled");
                 }
             } else {
@@ -192,7 +192,7 @@ function medineCheck() {
                     reaction.removeAttribute("disabled");
                     reaction.classList.remove("disabled");
                 } else {
-                    reaction.addAttribute("disabled");
+                    reaction.setAttribute("disabled", "disabled");
                     reaction.classList.add("disabled");
                 }
             }

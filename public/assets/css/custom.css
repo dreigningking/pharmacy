@@ -308,3 +308,11 @@ color: #007bff;
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
 }
+
+.booking-doc-info {
+    display: flex;
+    flex-direction: column;
+}
+.disabled {
+    cursor: not-allowed !important;
+}

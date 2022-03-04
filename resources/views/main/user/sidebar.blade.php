@@ -19,7 +19,7 @@
         <div class="dashboard-widget">
             <nav class="dashboard-menu">
                 <ul>
-                    
+
                     @if(Auth::user()->isAnyRole(['director']))
                     <li @if(Route::is('dashboard')) class="active" @endif>
                         <a href="{{route('dashboard')}}">
@@ -54,7 +54,7 @@
                     </li>
                     <li>
                         <a href="{{route('suppliers')}}">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-users"></i>
                             <span>Suppliers</span>
                         </a>
                     </li>
@@ -64,19 +64,19 @@
                             <span>Transfer</span>
                         </a>
                     </li>
-                    
+
                     <li @if(Route::is('staff')) class="active" @endif>
                         <a href="{{route('staff')}}">
                             <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
                     </li>
-                    
+
                     @endif
 
                     <li @if(Route::is('workspaces')) class="active" @endif>
                         <a href="{{route('workspaces')}}">
                             <i class="fas fa-columns"></i>
-                             <span>Workspaces</span>
+                            <span>Workspaces</span>
                         </a>
                     </li>
                     <li @if(Route::is('activities')) class="active" @endif>
@@ -93,18 +93,18 @@
                     </li>
                     <li @if(Route::is('security')) class="active" @endif>
                         <a href="{{route('security')}}">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-user-shield"></i>
                             <span>Security</span>
                         </a>
                     </li>
                     <li @if(Route::is('setting')) class="active" @endif>
                         <a href="{{route('setting')}}">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-cog"></i>
                             <span>Settings</span>
                         </a>
                     </li>
 
-                    
+
                 </ul>
             </nav>
         </div>
