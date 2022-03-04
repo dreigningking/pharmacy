@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\State;
@@ -13,7 +13,7 @@ use App\Models\City;
 
 class Pharmacy extends Model
 {
-    use HasFactory,Notifiable,SoftDeletes;
+    use HasFactory,Notifiable;
     
     protected $fillable = [
         'name','description','email','mobile','image','license','type','country_id','state_id','city_id'

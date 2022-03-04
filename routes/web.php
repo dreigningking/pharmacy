@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::view('/','main.welcome')->name('index');
 Route::view('agreement','main.agreement')->name('agreement');
 Route::get('pharmacy/{pharmacy}/{user}/invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
@@ -30,6 +32,7 @@ Route::middleware('auth')->group(function(){
     Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->name('setup');
     Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getStates');
     Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getCities');
+    Route::post('checkout',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
     
     //accessible on director dashboard and inside pharmacies
     Route::get('subscription', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'subscription'])->name("subscription");
@@ -63,6 +66,3 @@ Route::middleware('auth')->group(function(){
         Route::get('permissions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'permission'])->name("permissions");
     });
 });
-
-
-
