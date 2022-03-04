@@ -17,9 +17,9 @@ class PharmacyController extends Controller
         return view('main.pharmacy.dashboard',compact('pharmacy'));
     }
 
-    public function subscription(Pharmacy $pharmacy){
-        return view('main.director.pharmacy.subscription',compact('pharmacy'));
-    }
+    // public function subscription(Pharmacy $pharmacy){
+    //     return view('main.director.pharmacy.subscription',compact('pharmacy'));
+    // }
 
     public function create(){
         $countries = Country::all();

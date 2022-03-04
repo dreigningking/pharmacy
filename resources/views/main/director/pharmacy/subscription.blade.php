@@ -40,22 +40,50 @@
                         <div class="tab-content">
                             <div id="home" class="container tab-pane active container-fluid">
                                 <div class="row">
-
+                                    @foreach ($plans->where('type','Month') as $plan)
                                     <div class="col-12 col-sm-6 col-md-4">
                                         <div class="card ">
                                             <div class="card-body sub-card">
                                                 <div class="text-center">
                                                     <h4 class="text-muted">
-                                                        Silver
+                                                        {{$plan->name}}
                                                     </h4>
-                                                    <h1>$500
+                                                    <h1>${{$plan->amount}}
                                                     </h1>
                                                 </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
+
+                                                <form action="{{route('checkout')}}" method="POST">@csrf
+
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9 ">
+                                                            <input type="hidden" class="form-control" name="name"
+                                                                value="{{$plan->name}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9">
+                                                            <input type="hidden" class="form-control" name="amount"
+                                                                value="{{$plan->amount}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9">
+                                                            <input type="hidden" class="form-control" name="duration"
+                                                                value="{{$plan->duration}}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center my-4">
+                                                        <button class="btn btn-dark btn-lg" type="submit">
+                                                            Get started
+                                                        </button>
+                                                    </div>
+
+                                                </form>
+
                                                 <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
@@ -73,155 +101,53 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card ">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        Gold
-                                                    </h4>
-                                                    <h1>$1000
-                                                    </h1>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>7 days</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Free trial</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>5 pharmacies</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        Diamond
-                                                    </h4>
-                                                    <h1>$2000
-                                                    </h1>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>7 days</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Free trial</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Unlimited pharmacies</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    @endforeach
                                 </div>
                             </div>
                             <div id="menu1" class="container tab-pane fade">
                                 <div class="row">
-
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card ">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        Silver
-                                                    </h4>
-                                                    <h1>$1500
-                                                    </h1>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>14 days</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Free trial</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>1 pharmacy</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card ">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        Gold
-                                                    </h4>
-                                                    <h1>$2500
-                                                    </h1>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>14 days</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Free trial</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>5 pharmacies</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @foreach ($plans->where('type','Quarter') as $plan)
                                     <div class="col-12 col-sm-6 col-md-4">
                                         <div class="card">
                                             <div class="card-body sub-card">
                                                 <div class="text-center">
                                                     <h4 class="text-muted">
-                                                        Diamond
+                                                        {{$plan->name}}
                                                     </h4>
-                                                    <h1>$5000
+                                                    <h1>${{$plan->amount}}
                                                     </h1>
                                                 </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
+                                                <form action="{{route('checkout')}}" method="POST">@csrf
+
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9 ">
+                                                            <input type="hidden" class="form-control" name="name"
+                                                                value="{{$plan->name}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9">
+                                                            <input type="hidden" class="form-control" name="amount"
+                                                                value="{{$plan->amount}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9">
+                                                            <input type="hidden" class="form-control" name="duration"
+                                                                value="{{$plan->duration}}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center my-4">
+                                                        <button class="btn btn-dark btn-lg" type="submit">
+                                                            Get started
+                                                        </button>
+                                                    </div>
+
+                                                </form>
                                                 <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
@@ -239,91 +165,53 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    @endforeach
                                 </div>
                             </div>
                             <div id="menu2" class="container tab-pane fade">
                                 <div class="row">
-
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card ">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        Silver
-                                                    </h4>
-                                                    <h1>$5000
-                                                    </h1>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>14 days</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Free trial</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>1 pharmacy</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card ">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        Gold
-                                                    </h4>
-                                                    <h1>$10000
-                                                    </h1>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>14 days</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Free trial</p>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>5 pharmacies</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @foreach ($plans->where('type','Annual') as $plan)
                                     <div class="col-12 col-sm-6 col-md-4">
                                         <div class="card">
                                             <div class="card-body sub-card">
                                                 <div class="text-center">
                                                     <h4 class="text-muted">
-                                                        Diamond
+                                                        {{$plan->name}}
                                                     </h4>
-                                                    <h1>$20000
+                                                    <h1>${{$plan->amount}}
                                                     </h1>
                                                 </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <button class="btn btn-dark btn-lg">
-                                                        Get started
-                                                    </button>
-                                                </div>
+                                                <form action="{{route('checkout')}}" method="POST">
+
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9 ">
+                                                            <input type="hidden" class="form-control" name="name"
+                                                                value="{{$plan->name}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9">
+                                                            <input type="hidden" class="form-control" name="amount"
+                                                                value="{{$plan->amount}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-0">
+                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
+                                                        <div class="col-lg-9">
+                                                            <input type="hidden" class="form-control" name="duration"
+                                                                value="{{$plan->duration}}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center my-4">
+                                                        <button class="btn btn-dark btn-lg" type="submit">
+                                                            Get started
+                                                        </button>
+                                                    </div>
+
+                                                </form>
                                                 <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
@@ -341,7 +229,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

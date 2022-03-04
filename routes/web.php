@@ -23,7 +23,7 @@ Route::view('staff', 'main.director.staff.list')->name("staff");
 Route::view('new-staff', 'main.director.staff.create')->name("new-staff");
 Route::view('payments', 'main.user.payments')->name("payments");
 Route::view('activities', 'main.user.activities')->name("activities");
-
+Route::post('checkout',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
 Auth::routes();
 
 
@@ -53,10 +53,7 @@ Route::middleware('auth')->group(function(){
         Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
         Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');
         Route::get('new-staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'newstaff'])->name('new-staff');
-        Route::get('subscription',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'subscription'] )->name('subscription');
+        Route::get('subscription',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('subscription');
         Route::get('drug', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'drug'])->name("drug");
     });
 });
-
-
-
