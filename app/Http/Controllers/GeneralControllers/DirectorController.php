@@ -15,16 +15,20 @@ class DirectorController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function pharmacies(){
+    public function suppliers(){
         $user = Auth::user();
-        return view('main.director.pharmacy.list',compact('user'));
+        return view('main.user.director.suppliers',compact('user'));
     }
 
-    public function permission()
-    {
-        $roles = Role::all();
-        // dd($roles);
-        return view ('main.permissions', compact('roles'));
+    public function subscription(){
+        //payments i've made
+        $user = Auth::user();
+        return view('main.user.director.subscription',compact('user'));
+    }
+    public function transactions(){
+        //all pharmacies transactions
+        $user = Auth::user();
+        return view('main.user.director.transactions',compact('user'));
     }
 
     public function store(Request $request)
@@ -32,14 +36,14 @@ class DirectorController extends Controller
         //
     }
 
-    public function show($id)
-    {
-        //
+    public function staff(){
+        $user = Auth::user();
+        return view('main.user.director.staff.list',compact('user'));
     }
 
-    public function edit($id)
-    {
-        //
+    public function newstaff($id){
+        $user = Auth::user();
+        return view('main.user.director.staff.create',compact('user'));
     }
 
     public function update(Request $request, $id)

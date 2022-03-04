@@ -25,7 +25,7 @@
         <div class="container-fluid">
 
             <div class="row  ">
-                @include('main.director.sidebar')
+                @include('main.user.sidebar')
                 <div class="col-md-12 col-lg-8 col-xl-9 workspaces">
                     @foreach ($user->pharmacies as $pharmacy)
                     <!-- Doctor Widget -->
@@ -34,12 +34,12 @@
                             <div class="doctor-widget">
                                 <div class="doc-info-left">
                                     <div class="doctor-img">
-                                        <a href="doctor-profile.html">
+                                        <a href="{{route('pharmacy.dashboard',$pharmacy)}}">
                                             <img src="{{asset('storage/pharmacies/logos/'.$pharmacy->image)}}" class="img-fluid" alt="User Image">
                                         </a>
                                     </div>
                                     <div class="doc-info-cont">
-                                        <h4 class="doc-name"><a href="doctor-profile.html">{{$pharmacy->name}}</a></h4>
+                                        <h4 class="doc-name"><a href="{{route('pharmacy.dashboard',$pharmacy)}}">{{$pharmacy->name}}</a></h4>
                                         <p class="doc-speciality">{{$pharmacy->description}}</p>
                                         <h5 class="doc-department">Director</h5>
                                         <div class="rating">
@@ -51,7 +51,7 @@
                                             <span class="d-inline-block average-rating">(17)</span>
                                         </div>
                                         <div class="clinic-details">
-                                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{$pharmacy->state->name}}, <img src="{{$pharmacy->country->flag}}" class="img-fluid" alt="Speciality"></p>
+                                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{$pharmacy->state->name}}, <img src="{{$pharmacy->country->flag}}" class="img-fluid" alt="flag"></p>
                                             {{-- <ul class="clinic-gallery">
                                                 <li>
                                                     <a href="{{asset('assets/img/features/feature-01.jpg')}}" data-fancybox="gallery">
@@ -91,8 +91,8 @@
                                         </ul>
                                     </div> --}}
                                     <div class="clinic-booking">
-                                        <a class="view-pro-btn" href="doctor-profile.html">Dashboard</a>
-                                        <a class="apt-btn" href="booking.html">Book Appointment</a>
+                                        <a class="view-pro-btn" href="{{route('pharmacy.dashboard',$pharmacy)}}">Dashboard</a>
+                                        <a class="apt-btn" href="#">Book Appointment</a>
                                     </div>
                                 </div>
                             </div>

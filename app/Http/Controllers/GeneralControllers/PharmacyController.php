@@ -60,6 +60,13 @@ class PharmacyController extends Controller
         $pharmacy->users()->attach($user->id,['role_id'=> $role_id,'status'=> true]);
         return redirect()->route('pharmacy.subscription',$pharmacy);
     }
+
+    public function permission(Pharmacy $pharmacy)
+    {
+        $roles = Role::all();
+        // dd($roles);
+        return view ('main.pharmacy.permissions', compact('pharmacy','roles'));
+    }
     
     public function transactions(Pharmacy $pharmacy){
         return view('main.pharmacy.transactions',compact('pharmacy'));

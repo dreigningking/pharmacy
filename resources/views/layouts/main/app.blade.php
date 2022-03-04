@@ -37,7 +37,7 @@
 
 </head>
 
-<body @if(Route::has('login') || Route::has('register')) class="account-page" @endif>
+<body @if(Route::is('login') || Route::is('register')) class="account-page" @endif>
 
     <!-- Main Wrapper -->
     <div class="main-wrapper">

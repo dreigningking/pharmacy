@@ -13,17 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/','welcome')->name('index');
-Route::view('agreement','agreement')->name('agreement');
 
-Route::view('transactions', 'main.director.transactions')->name('transactions');
-Route::get('profile', [App\Http\Controllers\GeneralControllers\UserController::class, 'index'])->name('profile');
-
-Route::view('staff', 'main.director.staff.list')->name("staff");
-Route::view('new-staff', 'main.director.staff.create')->name("new-staff");
-Route::view('payments', 'main.user.payments')->name("payments");
-Route::view('activities', 'main.user.activities')->name("activities");
 Route::post('checkout',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
+Route::view('/','main.welcome')->name('index');
+Route::view('agreement','main.agreement')->name('agreement');
+Route::get('pricing',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('plans');
+
 Auth::routes();
 
 
@@ -36,15 +31,26 @@ Route::middleware('auth')->group(function(){
     Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->name('setup');
     Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getStates');
     Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getCities');
-
+    
     //accessible on director dashboard and inside pharmacies
+    Route::get('subscription', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'subscription'])->name("subscription");
+    Route::get('transactions',[App\Http\Controllers\GeneralControllers\DirectorController::class, 'transactions'])->name('transactions');
+
+    Route::get('profile', [App\Http\Controllers\GeneralControllers\UserController::class, 'profile'])->name('profile');
+    Route::post('profile', [App\Http\Controllers\GeneralControllers\UserController::class, 'profile_update'])->name('profile');
+    Route::get('security', [App\Http\Controllers\GeneralControllers\UserController::class, 'security'])->name('security');
+    Route::post('security', [App\Http\Controllers\GeneralControllers\UserController::class, 'password_update'])->name('password_update');
+    Route::get('setting', [App\Http\Controllers\GeneralControllers\UserController::class, 'setting'])->name('setting');
+    Route::post('setting', [App\Http\Controllers\GeneralControllers\UserController::class, 'store_setting'])->name('setting');
+    Route::get('activities', [App\Http\Controllers\GeneralControllers\UserController::class, 'activities'])->name("activities");
     Route::get('medicine', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'index'])->name("medicine");
     Route::get('addmedicine', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'create'])->name("addmedicine");
     
 
     Route::group(['middleware'=>'role:director'], function () {
-        Route::get('pharmacies', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'pharmacies'])->name('pharmacies');
-        Route::get('permissions', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'permission'])->name("permissions");
+        Route::get('suppliers', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'suppliers'])->name('suppliers');
+        Route::get('staff', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'staff'])->name("staff");
+        Route::get('new-staff',[App\Http\Controllers\GeneralControllers\DirectorController::class, 'newstaff'])->name("new-staff");
 
     });
 
@@ -55,5 +61,6 @@ Route::middleware('auth')->group(function(){
         Route::get('new-staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'newstaff'])->name('new-staff');
         Route::get('subscription',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('subscription');
         Route::get('drug', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'drug'])->name("drug");
+        Route::get('permissions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'permission'])->name("permissions");
     });
 });
