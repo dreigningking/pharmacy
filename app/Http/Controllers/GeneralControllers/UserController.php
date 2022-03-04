@@ -13,17 +13,30 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function profile()
     {
         $user = Auth::user();
         return view('main.user.profile',compact('user'));
     }
+    public function profile_update(Request $request)
+    {
+        dd($request->all());
+        return redirect()->back();
+    }
+    public function security(){
+        $user = Auth::user();
+        return view('main.user.security',compact('user'));
+    }
+    public function setting(){
+        $user = Auth::user();
+        return view('main.user.setting',compact('user'));
+    }
+    
+    public function activities(){
+        $user = Auth::user();
+        return view('main.user.activities',compact('user'));
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -35,10 +48,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    
 
     /**
      * Display the specified resource.

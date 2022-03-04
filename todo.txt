@@ -1,4 +1,14 @@
-http://pharmacy.test/doccure/search.html  -- use for workspaces and list of pharmacies
 show Add New Pharmacy as side menu for director.. then show it on homepage  \
 
+
 what will be on everybody's dashboard
+1. activities
+2. notifications
+3. things to respond to..
+4. subscription info for directors
+
+add teams
+
+edit profile
+
+data is automatically shared across pharmacies you own (medicine, drug, diseases)

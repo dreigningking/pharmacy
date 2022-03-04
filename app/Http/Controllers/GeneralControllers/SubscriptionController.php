@@ -8,5 +8,7 @@ use App\Models\Pharmacy;
 
 class SubscriptionController extends Controller
 {
-    
+    public function index(){
+        return view('main.plans');
+    }
 }

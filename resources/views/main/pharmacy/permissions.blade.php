@@ -27,7 +27,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('main.sidebar.director')
+            @include('main.pharmacy.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
                 @foreach($roles as $role)

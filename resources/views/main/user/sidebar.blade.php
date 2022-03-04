@@ -27,16 +27,22 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharmacies')) class="active" @endif>
-                        <a href="{{route('pharmacies')}}">
+                    <li @if(Route::is('setup')) class="active" @endif>
+                        <a href="{{route('setup')}}">
                             <i class="fas fa-prescription"></i>
-                            <span>Pharmacies</span>
+                            <span>Add Pharmacy</span>
                         </a>
                     </li>
-                    <li @if(Route::is('payments')) class="active" @endif>
-                        <a href="{{route('payments')}}">
+                    <li @if(Route::is('subscription')) class="active" @endif>
+                        <a href="{{route('subscription')}}">
                             <i class="fas fa-money-bill"></i>
-                            <span>Payments</span>
+                            <span>Subscription</span>
+                        </a>
+                    </li>
+                    <li @if(Route::is('transactions')) class="active" @endif>
+                        <a href="{{route('transactions')}}">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Transcation</span>
                         </a>
                     </li>
 
@@ -47,13 +53,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="social-media.html">
-                            <i class="fas fa-pills"></i>
-                            <span>ADI</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="invoices.html">
+                        <a href="{{route('suppliers')}}">
                             <i class="fas fa-user"></i>
                             <span>Suppliers</span>
                         </a>
@@ -64,27 +64,17 @@
                             <span>Transfer</span>
                         </a>
                     </li>
-                    <li @if(Route::is('transactions')) class="active" @endif>
-                        <a href="{{route('transactions')}}">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Transcation</span>
-                        </a>
-                    </li>
+                    
                     <li @if(Route::is('staff')) class="active" @endif>
                         <a href="{{route('staff')}}">
                             <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
                     </li>
-                    <li @if(Route::is('permissions')) class="active" @endif>
-                        <a href="{{route('permissions')}}">
-                            <i class="fas fa-user-lock"></i>
-                            <span>Permissions</span>
-                        </a>
-                    </li>
+                    
                     @endif
 
                     <li @if(Route::is('workspaces')) class="active" @endif>
-                        <a href="{{route('dashboard')}}">
+                        <a href="{{route('workspaces')}}">
                             <i class="fas fa-columns"></i>
                              <span>Workspaces</span>
                         </a>
@@ -95,25 +85,26 @@
                             <span>activities</span>
                         </a>
                     </li>
-                    {{-- <li @if(Route::is('profile')) class="active" @endif>
+                    <li @if(Route::is('profile')) class="active" @endif>
                         <a href="{{route('profile')}}">
                             <i class="fas fa-user"></i>
                             <span>Profile</span>
                         </a>
-                    </li> --}}
+                    </li>
+                    <li @if(Route::is('security')) class="active" @endif>
+                        <a href="{{route('security')}}">
+                            <i class="fas fa-user"></i>
+                            <span>Security</span>
+                        </a>
+                    </li>
+                    <li @if(Route::is('setting')) class="active" @endif>
+                        <a href="{{route('setting')}}">
+                            <i class="fas fa-user"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
 
-                    {{-- <li>
-                        <a href="doctor-change-password.html">
-                            <i class="fas fa-lock"></i>
-                            <span>Change Password</span>
-                        </a>
-                    </li> --}}
-                    {{-- <li>
-                        <a href="index-2.html">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li> --}}
+                    
                 </ul>
             </nav>
         </div>

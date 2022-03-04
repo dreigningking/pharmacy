@@ -18,7 +18,7 @@ class PharmacyController extends Controller
     }
 
     public function subscription(Pharmacy $pharmacy){
-        return view('main.director.pharmacy.subscription',compact('pharmacy'));
+        return view('main.pharmacy.subscription',compact('pharmacy'));
     }
 
     public function create(){
@@ -59,6 +59,13 @@ class PharmacyController extends Controller
         $role_id = $role_id = Role::where('name','director')->first()->id;
         $pharmacy->users()->attach($user->id,['role_id'=> $role_id,'status'=> true]);
         return redirect()->route('pharmacy.subscription',$pharmacy);
+    }
+
+    public function permission(Pharmacy $pharmacy)
+    {
+        $roles = Role::all();
+        // dd($roles);
+        return view ('main.pharmacy.permissions', compact('pharmacy','roles'));
     }
     
     public function transactions(Pharmacy $pharmacy){

@@ -30,10 +30,10 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('main.director.sidebar')
+            @include('main.user.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
-                @if(Auth::user()->role->name != "sales")
+                @if(!Auth::user()->isAnyRole(['sales']))
                 <div class="row justify-content-between">
                     <div class="col-sm-6">
                         <button class="btn btn-primary add-medicine">

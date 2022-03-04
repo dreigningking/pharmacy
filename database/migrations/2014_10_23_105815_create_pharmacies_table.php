@@ -25,6 +25,7 @@ class CreatePharmaciesTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('city_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

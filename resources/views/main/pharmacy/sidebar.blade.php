@@ -69,6 +69,12 @@
                             <!-- <small class="unread-msg">23</small> -->
                         </a>
                     </li>
+                    <li @if(Route::is('pharmacy.permissions')) class="active" @endif>
+                        <a href="{{route('pharmacy.permissions',$pharmacy)}}">
+                            <i class="fas fa-user-lock"></i>
+                            <span>Permissions</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="doctor-profile-settings.html">
                             <i class="fas fa-file-invoice"></i>
