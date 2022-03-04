@@ -291,21 +291,26 @@
                         <div class="card flex-fill">
                             
                             <div class="card-body">
-                                <form action="#">
-                                   
+                                <form action="{{route('staff')}}" method="POST"> @csrf
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Name</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" name="name" class="form-control">
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label">Email Address</label>
                                         <div class="col-lg-9">
-                                            <input type="email" class="form-control">
+                                            <input type="email" name="email" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label">Pharmacy</label>
                                         <div class="col-lg-9">
-                                            <select name="" id="" class="role-select form-control">
-                                                <option value="agbero">Micoson</option>
-                                                <option value="pharmacist">Ramsagate</option>
-                                                <option value="store-keeper">Tewe tegbo</option>
+                                            <select name="pharmacy_id" id="pharmacy_id" class="role-select form-control">
+                                                @foreach ($user->pharmacies as $pharmacy )
+                                                    <option value="{{$pharmacy->id}}">{{ucwords($pharmacy->name)}}</option>
+                                                @endforeach
                                             </select>
                                             </td>
                                         </div>
@@ -313,11 +318,10 @@
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label">Role</label>
                                         <div class="col-lg-9">
-                                            <select name="" id="" class="role-select form-control">
-                                                <option value="agbero">Agbero</option>
-                                                <option value="manager">Manager</option>
-                                                <option value="pharmacist">Pharmacist</option>
-                                                <option value="store-keeper">Store keeper</option>
+                                            <select name="role_id" id="role_id" class="role-select form-control">
+                                                @foreach ($roles as $role )
+                                                    <option value="{{$role->id}}">{{ucwords($role->name)}}</option>
+                                                @endforeach
                                             </select>
                                             </td>
                                         </div>

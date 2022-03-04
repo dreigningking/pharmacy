@@ -7,25 +7,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\NexmoMessage;
 
 class InvitationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-    public $wallet;
-    public $penalty;
-    public $reason;
+    public $pharmacy;
+    public $role;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Wallet $wallet, $penalty, $reason)
+    public function __construct(Pharmacy $pharmacy,$role)
     {
-        $this->wallet = $wallet;
-        $this->penalty = $penalty;
-        $this->reason = $reason;
+        $this->pharmacy = $pharmacy;
+        $this->role = $role;
     }
 
     /**
@@ -36,13 +33,14 @@ class InvitationNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        $setting = NotificationSetting::where('name','penalty_charges')->first();
-        $destination = [];
-        if($setting->sms && $notifiable->sms_notify && $notifiable->mobile) $destination[] = 'nexmo';
-        if($setting->email && $notifiable->email_notify)  $destination[] = 'mail';
-        if($setting->app) $destination[] = 'database';
-        $destination[] = 'broadcast';
-        return $destination;
+        // $setting = NotificationSetting::where('name','penalty_charges')->first();
+        // $destination = [];
+        // if($setting->sms && $notifiable->sms_notify && $notifiable->mobile) $destination[] = 'nexmo';
+        // if($setting->email && $notifiable->email_notify)  $destination[] = 'mail';
+        // if($setting->app) $destination[] = 'database';
+        // $destination[] = 'broadcast';
+        // return $destination;
+        return ['mail'];
     }
 
     /**
@@ -54,26 +52,18 @@ class InvitationNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Penalty Charge Notification.')
-                    ->line('The sum of '.$this->wallet->currency->symbol.' '.$this->penalty.' has been charged to your '.$this->wallet->currency->name.' wallet as penalty for '.$this->reason)
-                    ->line('Thank you for using our application!');
+                    ->subject($this->pharmacy->name.' Invitation.')
+                    ->greeting('Dear '.$notifiable->name)
+                    ->line('Here is an invitation to join us to work at '.$this->pharmacy->name.' as a '.$this->role.'.')
+                    ->line('Click the button below to Accept Invitation')
+                    ->action('Accept Invitation', route('invitations',[$this->pharmacy,$notifiable]));
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function toArray($notifiable)
     {
         return [
-            'message'=> 'The sum of '.$this->wallet->currency->symbol.' '.$this->penalty.' has been charged to your '.$this->wallet->currency->name.' wallet as penalty for '.$this->reason,
-            'url' => route('transactions')
+            
         ];
     }
-    public function toNexmo($notifiable)
-    {
-        return (new NexmoMessage)->content('The sum of '.$this->wallet->currency->symbol.' '.$this->penalty.' has been charged to your '.$this->wallet->currency->name.' wallet as penalty for '.$this->reason);
-    }
+    
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\WebControllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Pharmacy;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -19,12 +21,6 @@ class HomeController extends Controller
 
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
     public function index()
     {
         $user = Auth::user();
@@ -35,9 +31,11 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('main.user.workspaces',compact('user'));
     }
-    public function invitations(){
-        $user = Auth::user();
-        return view('main.user.invitations',compact('user'));
+    public function invitations(Pharmacy $pharmacy,User $user){
+        return view('main.user.invitations',compact('user','pharmacy'));
+    }
+    public function invitation_submit(Request $request){
+        return 'something';
     }
     
   

@@ -27,7 +27,7 @@
             <div class="row  ">
                 @include('main.user.sidebar')
                 <div class="col-md-12 col-lg-8 col-xl-9 workspaces">
-                    @foreach ($user->pharmacies as $pharmacy)
+                    @foreach ($user->pharmacies->where('pivot.status',true) as $pharmacy)
                     <!-- Doctor Widget -->
                     <div class="card">
                         <div class="card-body">
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /Doctor Widget -->
+                   
                     @endforeach
                     <!-- Doctor Widget -->
                     {{-- <div class="card">

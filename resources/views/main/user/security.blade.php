@@ -34,57 +34,71 @@
                     
                     <div class="card-body">
                         <h4 class="card-title">Password Update</h4>
-                        <div class="row form-row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Current Password</label>
-                                    <input type="password" class="form-control">
+                        <form action="{{route('password_update')}}" method="post">@csrf
+                            <div class="row form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Current Password</label>
+                                        <input type="password" name="oldpassword" id="oldpassword" class="form-control">
+                                        @error('oldpassword')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">New Password</label>
-                                    <input type="password" class="form-control">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">New Password</label>
+                                        <input type="password" name="password" id="password" class="form-control">
+                                        @error('password')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Confirm New Password</label>
-                                    <input type="password" class="form-control">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Confirm New Password</label>
+                                        <input type="password" name="password_confirmation" id="password_confirm" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
 
 
-                        </div>
-                        <div class="row requirements">
-                            <h5>password Requirements</h5><br>
-                            <p>Ensure that these requirements are met:</p>
-                            <ul>
-                                <li>Minimum 8 characters long - the more, the better</li>
-                                <li>
-                                    At least one lowercase character
-                                </li>
-                                <li>
-                                    At least one uppercase character
-                                </li>
-                                <li>
-                                    At least one number, symbol, or whitespace character
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="row ">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button class="btn btn-outline-secondary mr-4">
-                                        Cancel
-                                    </button>
-                                    <button class="btn btn-primary">
-                                        Update
-                                    </button>
-                                </div>
                             </div>
-                            
-                        </div>
+                            {{-- <div class="row requirements">
+                                <h5>password Requirements</h5><br>
+                                <p>Ensure that these requirements are met:</p>
+                                <ul>
+                                    <li>Minimum 8 characters long - the more, the better</li>
+                                    <li>
+                                        At least one lowercase character
+                                    </li>
+                                    <li>
+                                        At least one uppercase character
+                                    </li>
+                                    <li>
+                                        At least one number, symbol, or whitespace character
+                                    </li>
+                                </ul>
+                            </div> --}}
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="reset" class="btn btn-outline-secondary mr-4">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            Update
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </form>
+                        
+                        
                     </div>
                 </div>
                 <div class="card">

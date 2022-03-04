@@ -16,7 +16,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes;
     
     protected $fillable = [
-        'name','email','mobile','password','timezone','currency_id','country_id','state_id','city_id','role_id','parent_id'
+        'name','email','password','country_id','state_id','city_id',
     ];
 
     /**

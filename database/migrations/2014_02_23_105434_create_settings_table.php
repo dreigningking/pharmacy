@@ -25,6 +25,7 @@ class CreateSettingsTable extends Migration
             array('id' => 2, 'name'=> 'base_currency_symbol', 'value'=>'N'),
             array('id' => 3, 'name'=> 'allow_user_in_multiple_pharmacy', 'value'=> 1),
             array('id' => 4, 'name'=> 'allow_sms_notification', 'value'=> 0),
+            array('id' => 5, 'name'=> 'require_strong_password', 'value'=> 1),
         ));
     }
 

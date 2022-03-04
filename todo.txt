@@ -7,8 +7,7 @@ what will be on everybody's dashboard
 3. things to respond to..
 4. subscription info for directors
 
-add teams
-
-edit profile
+delete your account
+accept & reject invitations
 
 data is automatically shared across pharmacies you own (medicine, drug, diseases)

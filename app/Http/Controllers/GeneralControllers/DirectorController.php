@@ -5,7 +5,11 @@ namespace App\Http\Controllers\GeneralControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\Pharmacy;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\InvitationNotification;
 
 class DirectorController extends Controller
 {
@@ -38,12 +42,18 @@ class DirectorController extends Controller
 
     public function staff(){
         $user = Auth::user();
-        return view('main.user.director.staff.list',compact('user'));
+        $roles = Role::where('name','!=','admin')->get();
+        return view('main.user.director.staff',compact('user','roles'));
     }
 
-    public function newstaff($id){
-        $user = Auth::user();
-        return view('main.user.director.staff.create',compact('user'));
+    public function savestaff(Request $request){
+        // dd($request->all());
+        $pharmacy = Pharmacy::find($request->pharmacy_id);
+        $role = Role::where('id',$request->role_id)->first();
+        $user = User::create(['name'=> $request->name,'email'=> $request->email,'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);
+        $pharmacy->users()->attach($user->id,['role_id'=> $role->id,'status'=> false]);
+        $user->notify(new InvitationNotification($pharmacy,$role->name));
+        return redirect()->back();
     }
 
     public function update(Request $request, $id)

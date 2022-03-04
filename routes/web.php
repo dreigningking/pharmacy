@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/','main.welcome')->name('index');
 Route::view('agreement','main.agreement')->name('agreement');
+Route::get('pharmacy/{pharmacy}/{user}/invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
+Route::post('invitation/submit', [App\Http\Controllers\WebControllers\HomeController::class, 'invitation_submit'])->name('invitations');
 Route::get('pricing',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('plans');
 
 Auth::routes();
@@ -24,7 +26,6 @@ Route::middleware('auth')->group(function(){
     //common to all users
     Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('dashboard');
     Route::get('workspaces', [App\Http\Controllers\WebControllers\HomeController::class, 'workspaces'])->name('workspaces');
-    Route::get('invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
     Route::get('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'create'])->name('setup');
     Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->name('setup');
     Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getStates');
@@ -48,7 +49,7 @@ Route::middleware('auth')->group(function(){
     Route::group(['middleware'=>'role:director'], function () {
         Route::get('suppliers', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'suppliers'])->name('suppliers');
         Route::get('staff', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'staff'])->name("staff");
-        Route::get('new-staff',[App\Http\Controllers\GeneralControllers\DirectorController::class, 'newstaff'])->name("new-staff");
+        Route::post('staff',[App\Http\Controllers\GeneralControllers\DirectorController::class, 'savestaff'])->name("staff");
 
     });
 
@@ -56,7 +57,7 @@ Route::middleware('auth')->group(function(){
         Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
         Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
         Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');
-        Route::get('new-staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'newstaff'])->name('new-staff');
+        Route::post('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'savestaff'])->name('staff');
         Route::get('subscription',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'subscription'] )->name('subscription');
         Route::get('drug', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'drug'])->name("drug");
         Route::get('permissions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'permission'])->name("permissions");
