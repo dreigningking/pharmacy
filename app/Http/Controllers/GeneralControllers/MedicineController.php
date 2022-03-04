@@ -4,6 +4,8 @@ namespace App\Http\Controllers\GeneralControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pharmacy;
+use App\Models\Medicine;
+use App\Models\Disease;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class MedicineController extends Controller
@@ -17,7 +19,8 @@ class MedicineController extends Controller
    
     {
         $user = Auth::user();
-        return view('main.medicine',compact('user'));
+        $medicine = Medicine::all();
+        return view('main.medicine',compact('user', 'medicine'));
     }
 
     /**
@@ -39,7 +42,20 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $medicine = new Medicine;
+        $medicine->name = $request->name;
+        $medicine->description = $request->description;
+        $medicine->contraindications = $request->contraindications;
+        $medicine->save();
+        foreach($request->disease as $disease){
+            $dis = new Disease;
+            $dis->name = $disease;
+            $dis->save();
+
+            $medicine->diseases()->attach($dis->id);
+        }
+       return redirect() ->route("medicine");
     }
 
     /**

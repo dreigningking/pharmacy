@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function(){
     Route::get('activities', [App\Http\Controllers\GeneralControllers\UserController::class, 'activities'])->name("activities");
     Route::get('medicine', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'index'])->name("medicine");
     Route::get('addmedicine', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'create'])->name("addmedicine");
+    Route::post('addmedicine', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'store'])->name("addmedicine");
     
 
     Route::group(['middleware'=>'role:director'], function () {

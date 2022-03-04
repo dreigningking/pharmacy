@@ -38,7 +38,7 @@
                         <div class="row pl-2">
                             <h1 class="text-muted">Add Medicine</h1>
                         </div>
-                        <form action="/action_page.php" class="needs-validation" novalidate>
+                        <form action="{{route('addmedicine')}}" method="POST" class="needs-validation" novalidate>@csrf
                             <div class="form-group">
                                 <label for="uname">Name:</label>
                                 <input type="text" class="form-control" id="uname" placeholder="Enter Name" name="name"
@@ -59,7 +59,7 @@
                                     <div class="row disease-data">
                                         <div class="disease col-12">
                                             <input list="encodings" value=""
-                                                class="col-sm-12 custom-select custom-select-sm">
+                                                class="col-sm-12 custom-select custom-select-sm" name="disease[]">
                                             <datalist id="encodings">
                                                 <option value="ISO-8859-1">ISO-8859-1</option>
                                                 <option value="cp1252">ANSI</option>
@@ -75,16 +75,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group contra">
                                         <label for="pwd">Contraindication:</label>
-                                        <input class="input-tags form-control" list="encoding" data-role="tagsinput"
-                                            placeholder="Enter Specialization" name="specialist"
-                                            value="Children Care,Dental Care" id="specialist">
-                                        <datalist id="encoding">
-                                            <option value="ISO-8859-1">ISO-8859-1</option>
-                                            <option value="cp1252">ANSI</option>
-                                            <option value="utf8">UTF-8</option>
-                                        </datalist>
-                                        <small class="form-text text-muted">Note : Type & Press enter to add new
-                                            specialization</small>
+                                        <input class="form-control" placeholder="Enter Specialization"
+                                            name="contraindications">
+
                                     </div>
 
                                     <div class="add-more">
@@ -140,7 +133,7 @@
         console.log("meh")
         var regcontent = '<div class="col-12 d-flex disease">' +
             '<div class="col-10 pl-0">' +
-            '<input list="encodings" value="" class="col-sm-12 custom-select custom-select-sm">' +
+            '<input list="encodings" value="" class="col-sm-12 custom-select custom-select-sm" name="disease[]">' +
             '<datalist id="encodings">' +
             '<option value="ISO-8859-1">ISO-8859-1</option>' +
             '<option value="cp1252">ANSI</option>' +

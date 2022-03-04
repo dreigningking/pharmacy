@@ -10,7 +10,7 @@
     <title>Pharmacy App</title>
 
     <!-- Favicons -->
-    <link type="image/x-icon" href="{{asset('assets/img/favicon.png')}}" rel="icon">
+    <link type="image/x-icon" href="{{asset('assets/img/icon.png')}}" rel="icon">
 
     <!-- Bootstrap CSS -->
     <!-- <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}"> -->
@@ -95,8 +95,10 @@
                                 <ul>
                                     <li><a href="search.html"><i class="fas fa-angle-double-right"></i> Search for
                                             Doctors</a></li>
-                                    <li><a href="{{route('login')}}"><i class="fas fa-angle-double-right"></i> Login</a></li>
-                                    <li><a href="{{route('register')}}"><i class="fas fa-angle-double-right"></i> Register</a>
+                                    <li><a href="{{route('login')}}"><i class="fas fa-angle-double-right"></i> Login</a>
+                                    </li>
+                                    <li><a href="{{route('register')}}"><i class="fas fa-angle-double-right"></i>
+                                            Register</a>
                                     </li>
                                     <li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a>
                                     </li>
@@ -117,7 +119,8 @@
                                     <li><a href="appointments.html"><i class="fas fa-angle-double-right"></i>
                                             Appointments</a></li>
                                     <li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
-                                    <li><a href="{{route('login')}}"><i class="fas fa-angle-double-right"></i> Login</a></li>
+                                    <li><a href="{{route('login')}}"><i class="fas fa-angle-double-right"></i> Login</a>
+                                    </li>
                                     <li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i>
                                             Register</a></li>
                                     <li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor

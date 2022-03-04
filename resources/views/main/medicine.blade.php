@@ -82,6 +82,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach($medicine as $medic)
                                                     <tr>
                                                         <td class=" text-center">
                                                             <input class="form-check-input medicine-check"
@@ -91,7 +92,7 @@
                                                         </td>
                                                         <td class="d-flex align-items-center">
 
-                                                            Paracetamol
+                                                            {{$medic->name}}
                                                         </td>
 
                                                         <td class="text-center">
@@ -103,48 +104,7 @@
                                                             </a></td>
 
                                                     </tr>
-                                                    <tr>
-                                                        <td class=" text-center">
-                                                            <input class="form-check-input medicine-check"
-                                                                id="medicine-check" type="checkbox" name="remember"
-                                                                required>
-
-                                                        </td>
-                                                        <td class="d-flex align-items-center">
-
-                                                            Ibuprofen
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            1
-                                                        </td>
-                                                        <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                                                data-toggle="modal" href="#medication_info">
-                                                                <i class="fe fe-eye"></i> View More
-                                                            </a></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class=" text-center">
-                                                            <input class="form-check-input medicine-check"
-                                                                id="medicine-check" type="checkbox" name="remember"
-                                                                required>
-
-                                                        </td>
-                                                        <td class="d-flex align-items-center">
-
-                                                            Ibuprofen
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            1
-                                                        </td>
-                                                        <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                                                data-toggle="modal" href="#medication_info">
-                                                                <i class="fe fe-eye"></i> View More
-                                                            </a></td>
-
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -224,13 +184,13 @@ medineCheck();
                 <div class="row">
                     <div class="col-xl-12 d-flex">
                         <div class="card flex-fill">
-
+                            @foreach($medicine as $medic)
                             <div class="card-body">
                                 <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
                                         Name:
                                     </div>
-                                    <div class="col-sm-8 pl-0 pr-0">Paracetamol</div>
+                                    <div class="col-sm-8 pl-0 pr-0">{{$medic->name}}</div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
@@ -242,21 +202,27 @@ medineCheck();
                                     <div class="col-sm-4 pl-0 pr-0">
                                         Contraindications:
                                     </div>
-                                    <div class="col-sm-8 pl-0 pr-0">Not to be used by sad patients</div>
+                                    <div class="col-sm-8 pl-0 pr-0">{{$medic->contraindications}}</div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
                                         Treats:
                                     </div>
-                                    <div class="col-sm-8 pl-0 pr-0">Headache et al.,</div>
+                                    @foreach($medicine as $medic)
+                                    <div class="col-sm-8 pl-0 pr-0">
+                                        @foreach($medic->diseases as $disease)
+                                        {{$disease->name}},
+                                        @endforeach</div>
+                                    @endforeach
                                 </div>
-                                <div class="row mb-4">
+                                <!-- <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
                                         Treats:
                                     </div>
                                     <div class="col-sm-8 pl-0 pr-0">Headache et al.,</div>
-                                </div>
+                                </div> -->
                             </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -272,18 +238,58 @@ medineCheck();
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Reactions</h5>
+                <h5 class="modal-title">Medicine Reactions</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-xl-12 d-flex">
-                        <div class="card flex-fill">
+                    <div class="col-12">
+                        <form action="/action_page.php" class="needs-validation" novalidate>
 
-                            <div class="card-body"></div>
-                        </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="sel1">Select list:</label>
+                                    <select class="form-control" id="sel1" name="medicine_a">
+                                        @foreach($medicine as $medic)
+                                        <option value=" {{$medic->name}}">{{$medic->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="sel1">Select list:</label>
+                                    <select class="form-control" id="sel1" name="medicine_b">
+                                        @foreach($medicine as $medic)
+                                        <option value="{{$medic->name}}">{{$medic->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-2">
+                                <label for="pwd">Remark:</label>
+                                <textarea class="form-control" rows="2" id="description" name="remark"
+                                    required></textarea>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="healthy" value="0">Good
+                                        reaction
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="healthy" value="1">Bad
+                                        reaction
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button>
+                        </form>
                     </div>
 
                 </div>
