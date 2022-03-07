@@ -65,5 +65,7 @@ Route::middleware('auth')->group(function(){
         Route::get('subscription',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'subscription'] )->name('subscription');
         Route::get('drug', [App\Http\Controllers\GeneralControllers\MedicineController::class, 'drug'])->name("drug");
         Route::get('permissions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'permission'])->name("permissions");
+        Route::get('patients', [App\Http\Controllers\GeneralControllers\PatientController::class, 'index'])->name("patients");
+        Route::get('patients/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'read'])->name("showpatients");
     });
 });

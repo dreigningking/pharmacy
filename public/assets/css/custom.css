@@ -316,3 +316,86 @@ color: #007bff;
 .disabled {
     cursor: not-allowed !important;
 }
+.dashboard-menu a {
+    width: 70% !important;
+}
+
+.first {
+    background-color: #4dd0e1 !important;
+    border: 1px solid #4dd0e1 !important;
+}
+.second {
+    background-color: #03a9f4  !important;
+    border: 1px solid #03a9f4  !important;
+}
+.notif {
+    margin-top: 0.5rem;
+    border-bottom: 1px solid rgb(245, 244, 244);
+}
+
+.notif-badge {
+    height: 1.1rem;
+
+}
+
+.minmaxCon {
+    height: 35px;
+    bottom: 1px;
+    left: 1px;
+    position: fixed;
+    right: 1px;
+    z-index: 9999;
+  }
+
+  .modal-control {
+      width: 100px;
+      height: 60px;
+  }
+.custom-modal.minimize {
+    background-color: #ffffff;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 17px;
+    height: 20px;
+    line-height: 15px;
+    opacity: 1;
+    padding: 0;
+    position: absolute;
+    right: 30px !important;
+    top: 26px;
+    width: 20px;
+    z-index: 99;
+}
+.minimize {
+    margin: 8px 0 0 0;
+    border: none !important;
+    outline: none !important;
+    background-color: #a0a0a0;
+    right: 30px !important;
+    color: #ffffff;
+}
+.minimize span {
+    background-color: #a0a0a0;
+  
+    color: #ffffff;
+}
+.min {
+    width: 250px;
+    height: 35px;
+    overflow: hidden !important;
+    padding: 0px !important;
+    margin: 0px;
+    float: left;
+    position: static !important;
+  }
+
+  .display-none {display:none; }
+
+@media screen and (max-width: 480px) {
+    .dashboard-menu  {
+        margin-right: 0.75rem;
+    }
+    .dashboard-menu a {
+        width: 100% !important;
+    }
+}

@@ -32,8 +32,8 @@
                             <span>Appointments</span>
                         </a>
                     </li> -->
-                    <li>
-                        <a href="my-patients.html">
+                    <li @if(Route::is('pharmacy.patients')) class="active" @endif>
+                        <a href="{{route('pharmacy.patients',$pharmacy)}}">
                             <i class="fas fa-user-injured"></i>
                             <span>Patients</span>
                         </a>
