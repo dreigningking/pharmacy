@@ -277,14 +277,14 @@ medineCheck();
                             <div class="form-group mt-2">
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="healthy" value="0">Good
-                                        reaction
+                                        <input type="radio" class="form-check-input" name="healthy" value="0">Positive
+                                        Reaction
                                     </label>
                                 </div>
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="healthy" value="1">Bad
-                                        reaction
+                                        <input type="radio" class="form-check-input" name="healthy" value="1">Negative
+                                        Reaction
                                     </label>
                                 </div>
                             </div>

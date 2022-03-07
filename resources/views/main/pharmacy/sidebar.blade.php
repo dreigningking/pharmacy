@@ -26,12 +26,12 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="appointments.html">
                             <i class="fas fa-calendar-check"></i>
                             <span>Appointments</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="my-patients.html">
                             <i class="fas fa-user-injured"></i>
@@ -50,55 +50,55 @@
                             <span>Medicine</span>
                         </a>
                     </li> -->
-                    <li @if(Route::is('pharmacy.drug')) class="active" @endif>
+                    <!-- <li @if(Route::is('pharmacy.drug')) class="active" @endif>
                         <a href="{{route('pharmacy.drug',$pharmacy)}}">
                             <i class="fas fa-columns"></i>
                             <span>Drugs</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="reviews.html">
                             <i class="fas fa-archive"></i>
                             <span>Shelf</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="chat-doctor.html">
                             <i class="fas fa-file-invoice"></i>
                             <span>Supply</span>
-                            <!-- <small class="unread-msg">23</small> -->
+
                         </a>
-                    </li>
-                    <li @if(Route::is('pharmacy.permissions')) class="active" @endif>
+                    </li> -->
+                    <!-- <li @if(Route::is('pharmacy.permissions')) class="active" @endif>
                         <a href="{{route('pharmacy.permissions',$pharmacy)}}">
                             <i class="fas fa-user-lock"></i>
                             <span>Permissions</span>
                         </a>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <a href="doctor-profile-settings.html">
                             <i class="fas fa-file-invoice"></i>
                             <span>Purchase</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
                         <a href="{{route('pharmacy.transactions',$pharmacy)}}">
                             <i class="fas fa-chart-bar"></i>
-                            <span>Transcation</span>
+                            <span>Sales</span>
                         </a>
                     </li>
                     <li>
                         <a href="social-media.html">
-                            <i class="fas fa-redo"></i>
-                            <span>Returns</span>
+                            <i class="fas fa-boxes"></i>
+                            <span>Inventory</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="social-media.html">
                             <i class="fas fa-share"></i>
                             <span>Transfer</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li @if(Route::is('pharmacy.staff')) class="active" @endif>
                         <a href="{{route('pharmacy.staff',$pharmacy)}}">
                             <i class="fas fa-users"></i> <span>Staff</span>
