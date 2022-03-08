@@ -91,14 +91,14 @@
                 <div class="row">
                     <div class="col-sm-3 ml-3">
                         <div class="row justify-content-start mb-4 dashboard-menu">
-                            <a class="btn btn-primary btn-lg first dash-btn" data-toggle="modal"
-                                href="#assessment">Assessment</a>
+                            <a class="btn btn-primary btn-lg first dash-btn" data-toggle="modal" href="#assessment">New
+                                Assessment</a>
                         </div>
                     </div>
                     <div class="col-sm-3 ml-3">
                         <div class="row justify-content-start mb-4 dashboard-menu">
-                            <a class="btn btn-primary btn-lg second dash-btn" data-toggle="modal"
-                                href="#sales">Sales</a>
+                            <a class="btn btn-primary btn-lg second dash-btn" data-toggle="modal" href="#sales">New
+                                Sales</a>
                         </div>
                     </div>
                     <div class="col-sm-3 ml-3">
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Notification</h4>
@@ -156,6 +156,17 @@
                                     </div>
                                     <div class="col-sm-4 d-flex justify-content-end">
                                         <span class="badge badge-pill badge-success notif-badge">4</span>
+                                    </div>
+
+
+                                </div>
+                                <div class="row notif">
+
+                                    <div class="col-sm-8">
+                                        <p class="text-muted">Incoming Transfers</p>
+                                    </div>
+                                    <div class="col-sm-4 d-flex justify-content-end">
+                                        <span class="badge badge-pill badge-info notif-badge">4</span>
                                     </div>
 
 

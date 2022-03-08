@@ -83,4 +83,12 @@ class PatientController extends Controller
     {
         //
     }
+
+    public function assess(Pharmacy $pharmacy){
+        return view('main.pharmacy.assessment.list', compact('pharmacy'));
+    }
+
+    public function add(Pharmacy $pharmacy) {
+        return view('main.pharmacy.assessment.add', compact('pharmacy'));
+    }
 }
