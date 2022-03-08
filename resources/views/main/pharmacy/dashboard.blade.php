@@ -23,7 +23,7 @@
 
 <!-- Page Content -->
 <div class="content">
-    <div class="minmaxCon"></div>
+
     <div class="container-fluid cont">
 
         <div class="row">
@@ -776,6 +776,7 @@
     </div>
 
 </div>
+
 <!-- /Page Content -->
 @endsection
 @push('scripts')
@@ -793,9 +794,9 @@ $(document).ready(function() {
         e.preventDefault();
         var $id = $(this).attr("data-target");
         $($id).modal({
-            backdrop: false,
-            keyboard: false
-        });
+            backdrop: static,
+            keyboard: true
+        })
 
     });
 
@@ -803,7 +804,7 @@ $(document).ready(function() {
 
         $modalCon = $(this).closest(".add-modal").attr("id");
 
-        $apnData = $(this).closest(".add-modal");
+        $apnData = $(this).closest(".show");
 
         $modal = "#" + $modalCon;
 
@@ -819,7 +820,7 @@ $(document).ready(function() {
 
         } else {
 
-            $(".content").append($apnData);
+            $("body").append($apnData);
 
             $(this).find("i").toggleClass('fa-clone').toggleClass('fa-minus');
 
@@ -849,7 +850,7 @@ $(document).ready(function() {
                     <button class="minimize">
                         <span aria-hidden="true"><i class="fas fa-minus"></i></span>
                     </button>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close end" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
 
@@ -866,7 +867,7 @@ $(document).ready(function() {
 
 
 <!-- Sales Modal -->
-<div class="modal fade custom-modal add-modal" id="sales" role="dialog">
+<div class="modal fade custom-modal add-modal" id="sales" role="dialog" data-backdrop="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -875,7 +876,7 @@ $(document).ready(function() {
                     <button class="minimize">
                         <span aria-hidden="true"><i class="fas fa-minus"></i></span>
                     </button>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close end" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
 
@@ -892,7 +893,7 @@ $(document).ready(function() {
 
 
 <!-- Supply Modal -->
-<div class="modal fade custom-modal add-modal" id="supply" role="dialog">
+<div class="modal fade custom-modal add-modal" id="supply" role="dialog" data-backdrop="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -901,7 +902,7 @@ $(document).ready(function() {
                     <button class="minimize">
                         <span aria-hidden="true"><i class="fas fa-minus"></i></span>
                     </button>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close end" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
 

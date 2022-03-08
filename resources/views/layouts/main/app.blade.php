@@ -196,7 +196,7 @@
         <!-- /Footer -->
 
     </div>
-
+    <div class="minmaxCon"></div>
     <!-- /Main Wrapper -->
 
     <!-- jQuery -->

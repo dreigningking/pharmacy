@@ -339,17 +339,23 @@ color: #007bff;
 }
 
 .minmaxCon {
-    height: 35px;
-    bottom: 1px;
-    left: 1px;
+    height: 45px;
+    bottom: 10px;
+    left: 20%;
+    
     position: fixed;
     right: 1px;
     z-index: 9999;
   }
 
   .modal-control {
-      width: 100px;
+      width: 70px;
       height: 60px;
+  }
+  .end {
+      background-color: transparent !important;
+      color: #a0a0a0 !important;
+      font-size: 19px !important;
   }
 .custom-modal.minimize {
     background-color: #ffffff;
@@ -367,30 +373,55 @@ color: #007bff;
     z-index: 99;
 }
 .minimize {
-    margin: 8px 0 0 0;
+    margin: 5px 0 0 0;
     border: none !important;
     outline: none !important;
-    background-color: #a0a0a0;
+    background-color: transparent;
     right: 30px !important;
-    color: #ffffff;
+    color: transparent;
 }
 .minimize span {
-    background-color: #a0a0a0;
-  
-    color: #ffffff;
+    background-color: transparent;
+  padding: 0 5px;
+    color: #a0a0a0;
 }
 .min {
     width: 250px;
-    height: 35px;
+    height: 45px;
     overflow: hidden !important;
     padding: 0px !important;
-    margin: 0px;
+    margin: 0 5px 0 2px;
+    border-radius: 4px;
+    border: 1px solid rgb(184, 182, 182);
     float: left;
     position: static !important;
   }
+  .min .modal-dialog, .min .modal-content {
+    height: 100%;
+    width: 100%;
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  
+  .min .modal-header {
+    height: 100%;
+    width: 100%;
+    margin: 0px !important;
+    padding: 3px 5px !important;
+  }
+  .min .modal-header .close {
+      top: 10px !important;
+      font-size: 22px !important;
+  }
+  .min .fa { font-size: 14px; }
 
+  .min .menuTab { display: none; }  
   .display-none {display:none; }
 
+  .modal-open .main-wrapper{
+      -webkit-filter: none !important;
+      filter: none !important;
+  }
 @media screen and (max-width: 480px) {
     .dashboard-menu  {
         margin-right: 0.75rem;
