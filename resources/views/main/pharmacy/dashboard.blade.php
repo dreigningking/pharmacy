@@ -813,7 +813,7 @@ $(document).ready(function() {
 
     $(".minimize").on("click", function() {
 
-        $modalCon = $(this).closest(".add-modal").attr("id");
+        $modalCon = $(this).closest(".dash-modal").attr("id");
 
         $apnData = $(this).closest(".show");
 
@@ -840,7 +840,7 @@ $(document).ready(function() {
     });
     $("button[data-dismiss='modal']").click(function() {
 
-        $(this).closest(".add-modal").removeClass("min");
+        $(this).closest(".dash-modal").removeClass("min");
 
         $(".content").removeClass($apnData);
 
@@ -852,11 +852,11 @@ $(document).ready(function() {
 </script>
 @endpush
 <!-- Assessment Modal -->
-<div class="modal fade custom-modal add-modal" id="assessment" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade custom-modal dash-modal" id="assessment" role="dialog">
+    <div class="modal-dialog modal-dialog-centered assessment">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Staff</h5>
+                <h5 class="modal-title">Assessments</h5>
                 <div class="modal-control">
                     <button class="minimize">
                         <span aria-hidden="true"><i class="fas fa-minus"></i></span>
@@ -868,7 +868,42 @@ $(document).ready(function() {
                 </div>
             </div>
             <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 d-flex">
+                        <div class="card flex-fill">
 
+                            <div class="card-body">
+                                <form action="#">
+
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Email Address</label>
+                                        <div class="col-lg-9">
+                                            <input type="email" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Role</label>
+                                        <div class="col-lg-9">
+                                            <select name="" id="" class="role-select form-control">
+                                                <option value="agbero">Agbero</option>
+
+                                                <option value="pharmacist">Pharmacist</option>
+                                                <option value="store-keeper">Store keeper</option>
+                                            </select>
+                                            </td>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -878,11 +913,11 @@ $(document).ready(function() {
 
 
 <!-- Sales Modal -->
-<div class="modal fade custom-modal add-modal" id="sales" role="dialog" data-backdrop="false">
+<div class="modal fade custom-modal dash-modal" id="sales" role="dialog" data-backdrop="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Staff</h5>
+                <h5 class="modal-title">Add Sales</h5>
                 <div class="modal-control">
                     <button class="minimize">
                         <span aria-hidden="true"><i class="fas fa-minus"></i></span>
@@ -904,11 +939,11 @@ $(document).ready(function() {
 
 
 <!-- Supply Modal -->
-<div class="modal fade custom-modal add-modal" id="supply" role="dialog" data-backdrop="false">
+<div class="modal fade custom-modal dash-modal" id="supply" role="dialog" data-backdrop="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Staff</h5>
+                <h5 class="modal-title">Add Supply</h5>
                 <div class="modal-control">
                     <button class="minimize">
                         <span aria-hidden="true"><i class="fas fa-minus"></i></span>
