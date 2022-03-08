@@ -16,7 +16,7 @@ class PharmacyMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        
+      
         if($request->user()->pharmacies->isEmpty())
         return redirect()->route('setup');
         if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->where('pivot.status',false)->isNotEmpty())

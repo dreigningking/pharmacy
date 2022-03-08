@@ -32,14 +32,15 @@
                             <span>Appointments</span>
                         </a>
                     </li> -->
-                    <li>
-                        <a href="my-patients.html">
+                    <li @if(Route::is('pharmacy.patients')) class="active" @endif>
+                        <a href="{{route('pharmacy.patients',$pharmacy)}}">
                             <i class="fas fa-user-injured"></i>
                             <span>Patients</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="my-patients.html">
+                    <li @if(Route::is('pharmacy.assessment')) class="active" @endif>
+                        <a href="{{route('pharmacy.assessment',$pharmacy)}}">
+
                             <i class="fas fa-pen"></i>
                             <span>Assessments</span>
                         </a>
@@ -56,8 +57,8 @@
                             <span>Drugs</span>
                         </a>
                     </li> -->
-                    <li>
-                        <a href="reviews.html">
+                    <li @if(Route::is('pharmacy.shelf')) class="active" @endif>
+                        <a href="{{route('pharmacy.shelf',$pharmacy)}}">
                             <i class="fas fa-archive"></i>
                             <span>Shelf</span>
                         </a>
@@ -87,8 +88,8 @@
                             <span>Sales</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="social-media.html">
+                    <li @if(Route::is('pharmacy.inventory')) class="active" @endif>
+                        <a href="{{route('pharmacy.inventory',$pharmacy)}}">
                             <i class="fas fa-boxes"></i>
                             <span>Inventory</span>
                         </a>
