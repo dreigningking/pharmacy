@@ -35,6 +35,8 @@ return [
     'flutter_test_public_key' => env('FLUTTER_TEST_PUBLIC_KEY'),
     'flutter_secret_key' => env('FLUTTER_SECRET_KEY'),
     'flutter_test_secret_key' => env('FLUTTER_TEST_SECRET_KEY'),
+    'paystack_test_secret_key' => env('PAYSTACK_TEST_SECRET_KEY'),
+    'paystack_test_public_key' => env('PAYSTACK_TEST_PUBLIC_KEY'),
 
 
 ];

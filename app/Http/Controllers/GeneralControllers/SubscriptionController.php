@@ -12,7 +12,6 @@ class SubscriptionController extends Controller
 {
     public function index(Pharmacy $pharmacy){
         $plans = Plan::all();
-        
         return view('main.plans',compact('pharmacy','plans'));
     } 
 

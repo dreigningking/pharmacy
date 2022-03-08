@@ -10,4 +10,8 @@ class Plan extends Model
     use HasFactory;
 
     protected $casts = ['features'=> 'array'];
+
+    public function subscriptions(){
+        return $this->hasMany(Subscription::class);
+    }
 }

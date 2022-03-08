@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Subscription;
 use App\Models\Country;
 use App\Models\Role;
 
@@ -98,6 +99,9 @@ class User extends Authenticatable
     }
     public function withdrawals(){
         return $this->morphMany(Withdrawal::class, 'withdrawable');
+    }
+    public function subscriptions(){
+        return $this->hasMany(Subscription::class);
     }
 
 }
