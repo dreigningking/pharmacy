@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\City;
+use App\Models\User;
+use App\Models\State;
+// use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Country;
+use App\Models\PharmacySubscription;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-// use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\User;
-use App\Models\Country;
-use App\Models\State;
-use App\Models\City;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pharmacy extends Model
 {
@@ -36,4 +37,8 @@ class Pharmacy extends Model
     public function city(){
         return $this->belongsTo(City::class);
     }
+    public function subscriptions(){
+        return $this->hasMany(PharmacySubscription::class);
+    }
+
 }

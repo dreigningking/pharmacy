@@ -21,6 +21,7 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamp('start');
             $table->timestamp('warn');
             $table->timestamp('end');
+            $table->boolean('status')->default(1);
             $table->timestamps();
             $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

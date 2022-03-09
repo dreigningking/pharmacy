@@ -18,6 +18,7 @@ class CreatePharmacySubscriptionsTable extends Migration
             $table->unsignedBigInteger('subscription_id');
             $table->unsignedBigInteger('pharmacy_id');
             $table->unsignedBigInteger('user_id');
+            $table->timestamp('deleted_at');
             $table->timestamps();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
             $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('cascade');

@@ -28,11 +28,13 @@ Route::middleware('auth')->group(function(){
     //common to all users
     Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('dashboard');
     Route::get('workspaces', [App\Http\Controllers\WebControllers\HomeController::class, 'workspaces'])->name('workspaces');
-    Route::get('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'create'])->name('setup');
-    Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->name('setup');
-    Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getStates');
-    Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('getCities');
+    Route::get('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'create'])->middleware('subscription')->name('setup');
+    Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->middleware('subscription')->name('setup');
+    Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'states'])->name('getStates');
+    Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'cities'])->name('getCities');
     Route::post('checkout',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
+    Route::post('pay',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'pay'] )->name('pay');
+    Route::get('verify',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'verify'] )->name('verify');
     
     //accessible on director dashboard and inside pharmacies
     Route::get('subscription', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'subscription'])->name("subscription");

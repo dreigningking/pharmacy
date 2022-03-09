@@ -9,7 +9,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-10 offset-md-1">
 
                 <!-- Login Tab Content -->
                 <div class="account-content">
@@ -19,26 +19,23 @@
                         Login">
                     </div> --}}
                     <div class="col-12 ">
-                        <!-- <div class="login-header">
-                            <h3>Login <span>Doccure</span></h3>
-                        </div> -->
 
                         <div class="row justify-content-center mb-4">
 
                             <ul class="nav nav-pills text-align-center" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="pill" href="#home">Monthly</a>
+                                    <a class="nav-link active" data-toggle="pill" href="#monthly">Monthly</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#menu1">Quarterly</a>
+                                    <a class="nav-link" data-toggle="pill" href="#quarterly">Quarterly</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#menu2">Annually</a>
+                                    <a class="nav-link" data-toggle="pill" href="#annually">Annually</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="tab-content">
-                            <div id="home" class="container tab-pane active container-fluid">
+                            <div id="monthly" class="container tab-pane active container-fluid">
                                 <div class="row">
                                     @foreach ($plans->where('type','month') as $plan)
                                     <div class="col-12 col-sm-6 col-md-4">
@@ -111,7 +108,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div id="menu1" class="container tab-pane fade">
+                            <div id="quarterly" class="container tab-pane fade">
                                 <div class="row">
                                     @foreach ($plans->where('type','quarter') as $plan)
                                     <div class="col-12 col-sm-6 col-md-4">
@@ -177,7 +174,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div id="menu2" class="container tab-pane fade">
+                            <div id="annually" class="container tab-pane fade">
                                 <div class="row">
                                     @foreach ($plans->where('type','annual') as $plan)
                                     <div class="col-12 col-sm-6 col-md-4">

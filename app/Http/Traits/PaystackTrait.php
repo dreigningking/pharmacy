@@ -11,7 +11,8 @@ trait PaystackTrait
         $user = Auth::user();
         $response = Curl::to('https://api.paystack.co/transaction/initialize')
         ->withHeader('Authorization: Bearer '.config('paystack.secretKey'))
-        ->withData( array('email' => $user->email,'amount'=> $order->amount *100,'metadata' => ['order_id'=> $order->id ] ) )
+        ->withData( array('email' => $user->email,
+        'amount'=> $order->amount *100,'metadata' => ['order_id'=> $order->id ] ) )
         ->asJson()
         ->post();
         return $response;
