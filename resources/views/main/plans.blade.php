@@ -61,22 +61,19 @@
                                                     <div class="form-group row mb-0">
                                                         <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
                                                         <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="amount"
-                                                                value="{{$plan->amount}}">
+                                                            <input type="hidden" class="form-control" name="amount" value="{{$plan->amount}}">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-0">
                                                         <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
                                                         <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="duration"
-                                                                value="{{$plan->duration}}">
+                                                            <input type="hidden" class="form-control" name="duration" value="{{$plan->duration}}">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-0">
                                                         <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
                                                         <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="plan_id"
-                                                                value="{{$plan->id}}">
+                                                            <input type="hidden" class="form-control" name="plan_id" value="{{$plan->id}}">
                                                         </div>
                                                     </div>
 
@@ -91,17 +88,27 @@
                                                 <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$plan->duration}} Month</p>
+                                                    <p>Duration: {{$plan->duration}} Month</p>
                                                 </div>
-                                               
+                                                @if($plan->trial)
+                                                <div class="sub-info">
+                                                    <i class="fas fa-check mt-1 mr-1"></i>
+                                                    <p>{{$plan->trial}} days Free trial</p>
+                                                </div>
+                                                @endif
                                                 @foreach($plan->features as $feature)
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
                                                     <p>{{$feature}}</p>
                                                 </div>
                                                 @endforeach
-                                                
-
+                                                @if($plan->trial)
+                                                    @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty()))
+                                                    <div class="text-center">
+                                                        <a href="#" class="btn btn-sm btn-primary">Start Trial</a>
+                                                    </div>
+                                                    @endif
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -155,12 +162,14 @@
                                                 <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$plan->duration}} Months</p>
+                                                    <p>Duration: {{$plan->duration}} Months</p>
                                                 </div>
+                                                @if($plan->trial)
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>14 days Free trial</p>
+                                                    <p>{{$plan->trial}} days Free trial</p>
                                                 </div>
+                                                @endif
                                                 @foreach($plan->features as $feature)
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
@@ -187,7 +196,7 @@
                                                     <h1>${{$plan->amount}}
                                                     </h1>
                                                 </div>
-                                                <form action="{{route('checkout')}}" method="POST">
+                                                <form action="{{route('checkout')}}" method="POST">@csrf
 
                                                     <div class="form-group row mb-0">
                                                         <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
@@ -221,12 +230,14 @@
                                                 <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$plan->duration}} Months</p>
+                                                    <p>Duration: {{$plan->duration}} Months</p>
                                                 </div>
+                                                @if($plan->trial)
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>14 days Free trial</p>
+                                                    <p>{{$plan->trial}} days Free trial</p>
                                                 </div>
+                                                @endif
                                                 @foreach($plan->features as $feature)
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>

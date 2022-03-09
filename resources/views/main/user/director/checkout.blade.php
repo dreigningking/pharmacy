@@ -68,9 +68,9 @@
                                 <!-- Paypal Payment -->
                                 <div class="payment-list">
                                     <label class="payment-radio paypal-option">
-                                        <input type="radio" name="radio">
+                                        <input type="radio" name="radio" checked>
                                         <span class="checkmark"></span>
-                                        Paypal
+                                        Online Payment
                                     </label>
                                 </div>
                                 <!-- /Paypal Payment -->
