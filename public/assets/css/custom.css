@@ -317,7 +317,7 @@ color: #007bff;
     cursor: not-allowed !important;
 }
 .dashboard-menu a {
-    width: 70% !important;
+    width: 90% !important;
 }
 
 .first {
@@ -412,6 +412,7 @@ color: #007bff;
   .min .modal-header .close {
       top: 10px !important;
       font-size: 22px !important;
+      right: 0 !important;
   }
   .min .fa { font-size: 14px; }
 
@@ -421,6 +422,34 @@ color: #007bff;
   .modal-open .main-wrapper{
       -webkit-filter: none !important;
       filter: none !important;
+  }
+  .modal .assessment {
+      max-width: 70% !important;
+  }
+  .minmaxCon .modal .assessment {
+      max-width: 100% !important;
+  }
+  .dash-modal .modal-content {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+  }
+.search-form {
+    width: 60%;
+}
+  .search {
+      outline: none !important;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgb(172, 170, 170);
+      padding: 0 5px;
+      width: 90%;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+  }
+  .search-btn {
+       border-top-left-radius: 0 !important;
+       border-bottom-left-radius: 0 !important;
+       border-top-right-radius: 10px;
+       border-bottom-right-radius: 10px;
   }
 @media screen and (max-width: 480px) {
     .dashboard-menu  {

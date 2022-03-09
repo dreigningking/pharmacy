@@ -74,7 +74,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center">Select</th>
-                                                        <th>Paracetamol</th>
+                                                        <th>Name</th>
 
                                                         <th class="text-center">No Of Brands</th>
                                                         <th class="text-right"> Action</th>
@@ -87,7 +87,7 @@
                                                         <td class=" text-center">
                                                             <input class="form-check-input medicine-check"
                                                                 type="checkbox" name="remember" id="medicine-check"
-                                                                required>
+                                                                value="{{$medic->name}}" required>
 
                                                         </td>
                                                         <td class="d-flex align-items-center">
@@ -129,13 +129,29 @@
 <script>
 function medineCheck() {
     let selectMedicine = document.querySelectorAll("#medicine-check")
+    let medicinesel = document.querySelector("#sel1")
+    let medicinesel2 = document.querySelector("#sel2")
     let selArray = [];
     let reaction = document.querySelector(".reaction-btn");
     for (let i = 0; i <= selectMedicine.length; i++) {
         selectMedicine[i]?.addEventListener('change', function() {
             if (selectMedicine[i].checked) {
-                selArray.push(selectMedicine[i].name)
+                selArray.push(selectMedicine[i].value)
                 console.log(selArray)
+                console.log(selectMedicine[i].value)
+                for (let j = 0; j <= medicinesel?.children.length; j++) {
+                    if (selArray[0] === medicinesel?.children[i]?.innerText) {
+                        console.log("meh")
+                        medicinesel?.children[i].setAttribute("selected", "selected");
+                    }
+                }
+                for (let k = 0; k <= medicinesel2?.children.length; k++) {
+                    if (selArray[1] === medicinesel2?.children[i]?.innerText) {
+                        console.log("meh")
+                        medicinesel?.children[i].setAttribute("selected", "selected");
+                    }
+                }
+
                 if (selArray.length === 2) {
                     console.log("mrh")
                     reaction.removeAttribute("disabled");
@@ -145,7 +161,7 @@ function medineCheck() {
                     reaction.classList.add("disabled");
                 }
             } else {
-                selArray.pop(selectMedicine[i].name)
+                selArray.pop(selectMedicine[i].value)
                 console.log(selArray)
                 if (selArray.length === 2) {
                     console.log("mrh")
@@ -163,6 +179,8 @@ function medineCheck() {
         })
 
     }
+
+    console.log(medicinesel.children)
 
 
 }
@@ -260,7 +278,7 @@ medineCheck();
                                 </div>
                                 <div class="col-md-6">
                                     <label for="sel1">Select list:</label>
-                                    <select class="form-control" id="sel1" name="medicine_b">
+                                    <select class="form-control" id="sel2" name="medicine_b">
                                         @foreach($medicine as $medic)
                                         <option value="{{$medic->name}}">{{$medic->name}}</option>
                                         @endforeach

@@ -61,7 +61,7 @@
                                                 <table class="datatable table table-hover table-center mb-0">
                                                     <thead>
                                                         <tr>
-
+                                                            <th>EMR</th>
                                                             <th>Patient Name</th>
 
                                                             <th class="">Phone Number</th>
@@ -72,7 +72,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-
+                                                            <td>001</td>
                                                             <td>
                                                                 <h2 class="table-avatar">
                                                                     <a href="profile.html"
