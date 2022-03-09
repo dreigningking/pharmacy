@@ -451,6 +451,10 @@ color: #007bff;
        border-top-right-radius: 10px;
        border-bottom-right-radius: 10px;
   }
+
+  .plus-more {
+      margin-left: 10% !important;
+  }
 @media screen and (max-width: 480px) {
     .dashboard-menu  {
         margin-right: 0.75rem;
