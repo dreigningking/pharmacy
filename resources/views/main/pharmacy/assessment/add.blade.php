@@ -109,41 +109,49 @@
                                     <button type="button" class="btn btn-text" data-toggle="collapse"
                                         data-target="#physical_assessment">Patient's Physical Assessment</button>
 
-                                    <div class="row mt-4 pl-4 pr-2 collapse show w-100 justify-content-center physical-assessment"
-                                        id="physical_assessment">
+                                    <div class="row w-100 collapse show">
+                                        <div class="row mt-4 pl-4 pr-2  w-100 justify-content-center physical-assessment"
+                                            id="physical_assessment">
 
-                                        <div class="col-11 physical d-flex">
-                                            <div class="col-md-6 pl-0 pr-0">
-                                                <div class="form-group row">
+                                            <div class="col-11 physical d-flex">
+                                                <div class="col-md-6 pl-0 pr-0">
+                                                    <div class="form-group row">
 
-                                                    <div class="col-lg-11">
-                                                        <select class="form-control" id="sel1">
-                                                            <option value="Temp (&deg;c)">Temp (&deg;c)</option>
-                                                            <option value="BP (mmHg)">BP (mmHg)</option>
-                                                            <option value="PR (Beats/min)">PR (Beats/min)</option>
-                                                            <option value="Wt (Kg)">Wt (Kg)</option>
-                                                            <option value="Ht (m)">Ht (m)</option>
-                                                        </select>
+                                                        <div class="col-lg-11">
+                                                            <select class="form-control" id="sel1">
+                                                                <option value="Temp (&deg;c)">Temp (&deg;c)</option>
+                                                                <option value="BP (mmHg)">BP (mmHg)</option>
+                                                                <option value="PR (Beats/min)">PR (Beats/min)</option>
+                                                                <option value="Wt (Kg)">Wt (Kg)</option>
+                                                                <option value="Ht (m)">Ht (m)</option>
+                                                            </select>
 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 pr-0 pl-0">
+                                                    <div class="form-group row">
+
+                                                        <div class="col-lg-11">
+                                                            <input type="text" class="form-control">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 pr-0 pl-0">
-                                                <div class="form-group row">
 
-                                                    <div class="col-lg-11">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
-
-
+                                        <div class="add-more pl-4">
+                                            <a href="javascript:void(0);" class="add-physical"><i
+                                                    class="fa fa-plus-circle"></i> Add More</a>
+                                        </div>
                                     </div>
-                                    <div class="add-more pl-4">
-                                        <a href="javascript:void(0);" class="add-physical"><i
-                                                class="fa fa-plus-circle"></i> Add More</a>
-                                    </div>
+
+                                </div>
+                                <div class="row justify-content-start mt-4 w-100 ">
+                                    <button type="button" class="btn btn-text" data-toggle="collapse"
+                                        data-target="#medical_history">Medical History</button>
+
                                 </div>
                             </form>
                         </div>
