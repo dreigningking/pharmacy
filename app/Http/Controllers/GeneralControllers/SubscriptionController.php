@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\GeneralControllers;
 
 use App\Models\Plan;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Pharmacy;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Traits\PaystackTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
@@ -19,25 +24,48 @@ class SubscriptionController extends Controller
         return view('main.plans',compact('pharmacy','plans'));
     } 
 
-    public function checkout(Request $request, Pharmacy $pharmacy){
-        $user = Auth::user();
-        $plan = Plan::find($request->plan_id);
-        return view('main.user.director.checkout', compact('pharmacy', 'user','plan'));
+    public function checkout(){
+        abort_if(!request()->query() || !request()->query('id'),403);
+        $plan = Plan::find(request()->query('id'));
+        $trial = $plan->trial && request()->query('trial') ? 1:0;
+        return view('main.user.director.checkout', compact('plan','trial'));
     }
 
     public function pay(Request $request) {
+        // dd($request->all());
         $user = Auth::user();
-        $order = Order::create(['user_id'=> $user->id,'orderable_id'=> $request->orderable_id, 'orderable_type'=> $request->orderable_type,'amount'=> $request->amount]);
-        return redirect()->to($this->initializePayment($order));
+        $plan = Plan::find($request->plan_id);
+        if($request->trial){
+            $subscription = $this->create($plan,$user,true);
+            return redirect()->route('dashboard');
+        }
+        $order = Order::create(['user_id'=> $user->id,'orderable_id'=> $request->plan_id, 'orderable_type'=> 'App\Models\Plan','amount'=> $plan->amount]);
+        // $order = Order::find(1);
+        $response = $this->initializePayment($order);
+        if(!$response || !$response->status)
+        return redirect()->back()->withErrors(['message'=> 'Service Unavailable'])->withInput();
+        else return redirect()->to($response->data->authorization_url);    
+    }
+
+    public function create(Plan $plan,User $user,$trial = false){
+        $trial= false;
+        $start = Carbon::now();
+        $end = Carbon::now()->addMonths($plan->duration);
+        $trial_end = Carbon::now()->addDays($plan->trial);
+        $warn = $trial ? Carbon::now()->addDays($plan->trial)->subDays(2) : Carbon::now()->addMonths($plan->duration)->subWeeks(2);
+        $subscription = Subscription::create(['user_id'=> $user->id,
+        'plan_id'=> $plan->id,'trial'=> $trial,
+        'start'=> $start,
+        'end'=> $trial ? $trial_end : $end,'warn'=> $warn,
+        'status'=> true]);
+        return $subscription;
     }
 
     public function verify() {
-        $user = Auth::user();
-        if(!request()->query('trxref'))
-        return redirect()->route('plans');
+        \abort_if(!request()->query('trxref'),400);
         $paymentDetails = json_decode($this->verifyPayment(request()->query('trxref')));
-        if(!$paymentDetails)
-        return redirect()->route('plans');
+        \abort_if(!$paymentDetails || !$paymentDetails->status ,400);
+        // dd($paymentDetails);
         $order_id = $paymentDetails->data->metadata->order_id;
         $payment_status = $paymentDetails->data->status;
         $payment_amount = $paymentDetails->data->amount;
@@ -45,11 +73,11 @@ class SubscriptionController extends Controller
         $customer_email = $paymentDetails->data->customer->email;
         $order = Order::find($order_id);
         $user = User::whereEmail($customer_email)->first();
-        if ($payment_status == 'success' && $order->amount == $payment_amount/100) {
-            $order->status = true;
-            $order->save();
-            return redirect()->route('user.order.show',$order);
-        }
+        \abort_if($payment_status != 'success' || $order->amount != $payment_amount/100,503);
+        $order->status = true;
+        $order->save();
+        $subscription = $this->create($order->orderable,$user);
+        $payment = Payment::firstOrCreate(['reference'=> request()->query('trxref')],['user_id'=> $user->id,'order_id'=>$order->id,'currency'=> $user->country->currency_iso,'amount'=> $order->amount,'method'=> $payment_method,'status'=> 'success']);
         return redirect()->intended('dashboard');
     }
 

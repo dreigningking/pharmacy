@@ -20,7 +20,7 @@ Route::view('agreement','main.agreement')->name('agreement');
 Route::get('pharmacy/{pharmacy}/{user}/invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
 Route::post('invitation/submit', [App\Http\Controllers\WebControllers\HomeController::class, 'invitation_submit'])->name('invitations');
 Route::get('pricing',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('plans');
-
+Route::get('checkout',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
 Auth::routes();
 
 
@@ -32,9 +32,9 @@ Route::middleware('auth')->group(function(){
     Route::post('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'store'])->middleware('subscription')->name('setup');
     Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'states'])->name('getStates');
     Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'cities'])->name('getCities');
-    Route::post('checkout',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
+    
     Route::post('pay',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'pay'] )->name('pay');
-    Route::get('verify',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'verify'] )->name('verify');
+    Route::get('payment/verification',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'verify'] )->name('verify');
     
     //accessible on director dashboard and inside pharmacies
     Route::get('subscription', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'subscription'])->name("subscription");

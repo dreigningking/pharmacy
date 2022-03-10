@@ -45,47 +45,16 @@
                                                     <h4 class="text-muted">
                                                         {{$plan->name}}
                                                     </h4>
-                                                    <h1>${{$plan->amount}}
+                                                    <h1>₦{{$plan->amount}}
                                                     </h1>
                                                 </div>
-
-                                                <form action="{{route('checkout')}}" method="POST">@csrf
-
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9 ">
-                                                            <input type="hidden" class="form-control" name="name"
-                                                                value="{{$plan->name}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="amount" value="{{$plan->amount}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="duration" value="{{$plan->duration}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="plan_id" value="{{$plan->id}}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="d-flex justify-content-center my-4">
-                                                        <button class="btn btn-dark btn-lg" type="submit">
-                                                            Get started
-                                                        </button>
-                                                    </div>
-
-                                                </form>
-
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
+                                                   
+                                                <div class="d-flex justify-content-center my-4">
+                                                    <a class="btn btn-dark btn-lg" href="{{route('checkout')}}?type=plan&id={{$plan->id}}">
+                                                        Get started
+                                                    </a>
+                                                </div>
+                                                  
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
                                                     <p>Duration: {{$plan->duration}} Month</p>
@@ -103,11 +72,11 @@
                                                 </div>
                                                 @endforeach
                                                 @if($plan->trial)
-                                                    @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty()))
+                                                    {{-- @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty())) --}}
                                                     <div class="text-center">
-                                                        <a href="#" class="btn btn-sm btn-primary">Start Trial</a>
+                                                        <a href="{{route('checkout')}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
                                                     </div>
-                                                    @endif
+                                                    {{-- @endif --}}
                                                 @endif
                                             </div>
                                         </div>
@@ -125,41 +94,14 @@
                                                     <h4 class="text-muted">
                                                         {{$plan->name}}
                                                     </h4>
-                                                    <h1>${{$plan->amount}}
+                                                    <h1>₦{{$plan->amount}}
                                                     </h1>
                                                 </div>
-                                                <form action="{{route('checkout')}}" method="POST">@csrf
-
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9 ">
-                                                            <input type="hidden" class="form-control" name="name"
-                                                                value="{{$plan->name}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="amount"
-                                                                value="{{$plan->amount}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="duration"
-                                                                value="{{$plan->duration}}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="d-flex justify-content-center my-4">
-                                                        <button class="btn btn-dark btn-lg" type="submit">
-                                                            Get started
-                                                        </button>
-                                                    </div>
-
-                                                </form>
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
+                                                <div class="d-flex justify-content-center my-4">
+                                                    <a class="btn btn-dark btn-lg" href="{{route('checkout')}}?type=plan&id={{$plan->id}}">
+                                                        Get started
+                                                    </a>
+                                                </div>
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
                                                     <p>Duration: {{$plan->duration}} Months</p>
@@ -176,6 +118,13 @@
                                                     <p>{{$feature}}</p>
                                                 </div>
                                                 @endforeach
+                                                @if($plan->trial)
+                                                    {{-- @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty())) --}}
+                                                    <div class="text-center">
+                                                        <a href="{{route('checkout')}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
+                                                    </div>
+                                                    {{-- @endif --}}
+                                                @endif
 
                                             </div>
                                         </div>
@@ -193,41 +142,14 @@
                                                     <h4 class="text-muted">
                                                         {{$plan->name}}
                                                     </h4>
-                                                    <h1>${{$plan->amount}}
+                                                    <h1>₦{{$plan->amount}}
                                                     </h1>
                                                 </div>
-                                                <form action="{{route('checkout')}}" method="POST">@csrf
-
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9 ">
-                                                            <input type="hidden" class="form-control" name="name"
-                                                                value="{{$plan->name}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="amount"
-                                                                value="{{$plan->amount}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-0">
-                                                        <!-- <label class="col-lg-3 col-form-label">Email Address</label> -->
-                                                        <div class="col-lg-9">
-                                                            <input type="hidden" class="form-control" name="duration"
-                                                                value="{{$plan->duration}}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="d-flex justify-content-center my-4">
-                                                        <button class="btn btn-dark btn-lg" type="submit">
-                                                            Get started
-                                                        </button>
-                                                    </div>
-
-                                                </form>
-                                                <!-- <p class="text-muted">Renews at &#8358;800 a year</p> -->
+                                                <div class="d-flex justify-content-center my-4">
+                                                    <a class="btn btn-dark btn-lg" href="{{route('checkout')}}?type=plan&id={{$plan->id}}">
+                                                        Get started
+                                                    </a>
+                                                </div>
                                                 <div class="sub-info">
                                                     <i class="fas fa-check mt-1 mr-1"></i>
                                                     <p>Duration: {{$plan->duration}} Months</p>
@@ -244,6 +166,13 @@
                                                     <p>{{$feature}}</p>
                                                 </div>
                                                 @endforeach
+                                                @if($plan->trial)
+                                                    {{-- @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty())) --}}
+                                                    <div class="text-center">
+                                                        <a href="{{route('checkout')}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
+                                                    </div>
+                                                    {{-- @endif --}}
+                                                @endif
 
                                             </div>
                                         </div>

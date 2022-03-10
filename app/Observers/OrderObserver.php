@@ -25,7 +25,9 @@ class OrderObserver
      */
     public function updated(Order $order)
     {
-        //
+        // if($order->isDirty('status') && $order->status){
+        //     $subscription = 
+        // }
         //if status is dirty and is true
         //create payment
     }

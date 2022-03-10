@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Traits;
-use App\Order;
+use App\Models\Order;
 use Ixudra\Curl\Facades\Curl;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,11 +10,12 @@ trait PaystackTrait
     protected function initializePayment(Order $order){
         $user = Auth::user();
         $response = Curl::to('https://api.paystack.co/transaction/initialize')
-        ->withHeader('Authorization: Bearer '.config('paystack.secretKey'))
+        ->withHeader('Authorization: Bearer '.config('services.paystack_secret_key'))
         ->withData( array('email' => $user->email,
         'amount'=> $order->amount *100,'metadata' => ['order_id'=> $order->id ] ) )
         ->asJson()
         ->post();
+        // dd($response);
         return $response;
     }
     // {
@@ -30,7 +31,7 @@ trait PaystackTrait
     protected function verifyPayment($value){
         $transactionRef = $value;
         $paymentDetails = Curl::to('https://api.paystack.co/transaction/verify/'.$transactionRef)
-         ->withHeader('Authorization: Bearer sk_test_d9e9680f24a58a7f9908d11486b94581c15d50d6')
+         ->withHeader('Authorization: Bearer '.config('services.paystack_secret_key'))
          ->get();
         return $paymentDetails;
     }
