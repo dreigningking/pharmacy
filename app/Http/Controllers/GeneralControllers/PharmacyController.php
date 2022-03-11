@@ -58,8 +58,7 @@ class PharmacyController extends Controller
         return redirect()->route('pharmacy.subscription',$pharmacy);
     }
 
-    public function permission(Pharmacy $pharmacy)
-    {
+    public function permission(Pharmacy $pharmacy){
         $roles = Role::all();
         // dd($roles);
         return view ('main.pharmacy.permissions', compact('pharmacy','roles'));
@@ -82,10 +81,10 @@ class PharmacyController extends Controller
     public function shelf(Pharmacy $pharmacy){
         return view('main.pharmacy.shelf',compact('pharmacy'));
     }
-    // public function medicines(Pharmacy $pharmacy){
-    //     return view('main.pharmacy.medicine',compact('pharmacy'));
-    // }
-    // public function addmedicines(Pharmacy $pharmacy){
-    //     return view('main.pharmacy.addmedicine',compact('pharmacy'));
-    // }
+    public function settings(Pharmacy $pharmacy){
+        return view('main.pharmacy.settings',compact('pharmacy'));
+    }
+    public function saveSettings(Pharmacy $pharmacy){
+        return redirect()->back();
+    }
 }

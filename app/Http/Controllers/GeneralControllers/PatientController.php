@@ -88,6 +88,10 @@ class PatientController extends Controller
         return view('main.pharmacy.assessment.list', compact('pharmacy'));
     }
 
+    public function showassessment(Pharmacy $pharmacy){
+        return view('main.pharmacy.assessment.view', compact('pharmacy'));
+    }
+
     public function new(Pharmacy $pharmacy) {
         return view('main.pharmacy.assessment.add', compact('pharmacy'));
     }

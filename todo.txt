@@ -1,7 +1,8 @@
 subscription: renew subscriptions, update plan
 save payment cards ?
 
-allow directors to disable staff
+allow directors to delete staff
+
 
 what will be on everybody's dashboard
 1. activities
