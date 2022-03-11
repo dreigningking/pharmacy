@@ -30,7 +30,6 @@ class PharmacyController extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'image' => 'required|image|max:5000',
-            'license' => 'required|file|max:5000',
             'name' => 'required|string',
             'description' => 'required|string',
             'type' => 'required|string',
@@ -50,11 +49,9 @@ class PharmacyController extends Controller
         }
         $user = Auth::user();
         $image = time().'.jpg';
-        $license = time().'.jpg';
         $request->file('image')->storeAs('public/pharmacies/logos',$image);
-        $request->file('license')->storeAs('public/pharmacies/licenses',$license);
         $pharmacy = Pharmacy::create(['name'=> $request->name,'description'=> $request->description,
-                        'email'=> $request->email,'mobile'=> $request->mobile,'image'=> $image,'license'=> $license,
+                        'email'=> $request->email,'mobile'=> $request->mobile,'image'=> $image,
                         'type'=> $request->type,'country_id'=> $request->country_id,'state_id'=>$request->state_id,'city_id'=> $request->city_id]);
         $role_id = $role_id = Role::where('name','director')->first()->id;
         $pharmacy->users()->attach($user->id,['role_id'=> $role_id,'status'=> true]);

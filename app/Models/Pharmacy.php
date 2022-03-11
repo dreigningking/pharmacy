@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Sale;
 use App\Models\City;
 use App\Models\User;
 use App\Models\State;
@@ -39,6 +40,9 @@ class Pharmacy extends Model
     }
     public function subscriptions(){
         return $this->hasMany(PharmacySubscription::class);
+    }
+    public function sales(){
+        return $this->hasMany(Sale::class);
     }
 
 }
