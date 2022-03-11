@@ -32,11 +32,15 @@ class DirectorController extends Controller
     public function transactions(){
         //all pharmacies transactions
         $user = Auth::user();
+        $transactions = collect([]);
+        foreach($user->pharmacies as $pharmacy){
+            $transactions = $transactions->merge($pharmacy->sales);
+        }
+        dd($transactions);
         return view('main.user.director.transactions',compact('user'));
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //
     }
 

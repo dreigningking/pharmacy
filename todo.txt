@@ -1,5 +1,7 @@
-show Add New Pharmacy as side menu for director.. then show it on homepage  \
+subscription: renew subscriptions, update plan
+save payment cards ?
 
+allow directors to disable staff
 
 what will be on everybody's dashboard
 1. activities

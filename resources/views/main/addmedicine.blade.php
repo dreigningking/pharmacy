@@ -75,7 +75,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group contra">
                                         <label for="pwd">Contraindication:</label>
-                                        <input class="form-control" placeholder="Enter Specialization"
+                                        <input class="form-control" placeholder=""
                                             name="contraindications">
 
                                     </div>

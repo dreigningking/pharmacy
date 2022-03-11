@@ -40,7 +40,7 @@
 
                                     <div class="col-md-6">
                                         <div class="bill">
-                                            <p class=" text-muted">SILVER(BILLED YEARLY):</p>
+                                            <p class=" text-muted">{{strtoupper($user->subscriptions->where('status',true)->sortByDesc('created_at')->first()->plan->name.' ')}} (BILLED YEARLY):</p>
                                             <h6>Starter, February 2022</h6>
 
                                         </div>
@@ -105,28 +105,30 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>#3682303</td>
-                                                    <td>Pending</td>
-                                                    <td>$264</td>
-                                                    <td>22/04/2020</td>
-                                                    <td>
-                                                        <button
-                                                            class="btn btn-outline d-flex align-items-center payment-btn">
-                                                            <i class="fas fa-file-download"></i>
-                                                            <p class="ml-2 mt-0 mb-0">PDF</p>
-                                                        </button>
-                                                    </td>
-                                                    <td>
-                                                        <button
-                                                            class="btn btn-outline d-flex align-items-center payment-btn">
+                                                @foreach ($user->payments as $payment)
+                                                    <tr>
+                                                        <td>#{{$payment->reference}}</td>
+                                                        <td>{{$payment->status}}</td>
+                                                        <td>{{$user->country->currency_symbol.' '.$payment->amount}}</td>
+                                                        <td>{{$payment->created_at->format('d/m/Y') }}</td>
+                                                        <td>
+                                                            <button
+                                                                class="btn btn-outline d-flex align-items-center payment-btn">
+                                                                <i class="fas fa-file-download"></i>
+                                                                <p class="ml-2 mt-0 mb-0">PDF</p>
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button
+                                                                class="btn btn-outline d-flex align-items-center payment-btn">
 
-                                                            <i class="fas fa-eye"></i>
-                                                            <p class="ml-2 mt-0 mb-0">Quick View</p>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
+                                                                <i class="fas fa-eye"></i>
+                                                                <p class="ml-2 mt-0 mb-0">Quick View</p>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                {{-- <tr>
                                                     <td>#3682303</td>
                                                     <td>Successful</td>
                                                     <td>$264</td>
@@ -146,7 +148,7 @@
                                                             <p class="ml-2 mt-0 mb-0">Quick View</p>
                                                         </button>
                                                     </td>
-                                                </tr>
+                                                </tr> --}}
 
                                             </tbody>
                                         </table>

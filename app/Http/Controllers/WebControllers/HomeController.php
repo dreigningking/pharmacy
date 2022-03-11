@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['invitations','invitation_submit']);
 
     }
 
@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('main.pharmacy.invitations',compact('user','pharmacy'));
     }
     public function invitation_submit(Request $request){
-        return 'something';
+        
     }
     
   
