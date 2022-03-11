@@ -51,7 +51,6 @@ class DirectorController extends Controller
     }
 
     public function savestaff(Request $request){
-        // dd($request->all());
         $pharmacy = Pharmacy::find($request->pharmacy_id);
         $role = Role::where('id',$request->role_id)->first();
         $user = User::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);

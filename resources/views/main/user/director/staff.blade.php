@@ -81,7 +81,7 @@
                                                                             class="avatar-img rounded-circle"
                                                                             src="assets/img/patients/patient2.jpg"
                                                                             alt="User Image"></a>
-                                                                      {{$staff}}
+                                                                      {{$staff->name}}
                                                                 </h2>
                                                             </td>
                                                             <td>{{$staff->pharmacies->where("id",$pharmacy->id)->first()->name}}</td>
@@ -104,13 +104,13 @@
                                                                     <div class="form-group-inline">
                                         
                                         <div>
-                                            <input type="hidden" name="pharmacy_id" class="form-control" value="{{$staff->pharmacy_id}}">
+                                            <input type="hidden" name="pharmacy_id" class="form-control" value="{{$pharmacy->id}}">
                                         </div>
                                     </div>
                                                                     <div class="form-group-inline">
                                         
                                         <div>
-                                            <input type="hidden" name="user_id" class="form-control" value="{{$staff->user_id}}">
+                                            <input type="hidden" name="user_id" class="form-control" value="{{$staff->id}}">
                                         </div>
                                     </div>
                                                                     <button type="submit"
