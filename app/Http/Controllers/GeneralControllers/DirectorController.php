@@ -64,7 +64,12 @@ class DirectorController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $pharmacy = Pharmacy::find($request->pharmacy_id);
+        $role = Role::where('id',$request->role_id)->first();
+        $user = User::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);
+        $pharmacy->users()->attach($user->id,['role_id'=> $role->id,'status'=> false]);
+        $user->notify(new InvitationNotification($pharmacy,$role->name));
+        return redirect()->back();
     }
 
     public function destroystaff(Request $request)
@@ -73,8 +78,11 @@ class DirectorController extends Controller
         $pharmacy = Pharmacy::find($request->pharmacy_id);
        
         $user = User::find($request->user_id);
-        $pharmacy->users()->detach($user->id);
-        $user->delete();
+        if($pharmacy->users->count() > 1){
+            $pharmacy->users()->detach($user->id);
+            $user->delete();
+        }
+       
 
         return redirect()->back();
     }
