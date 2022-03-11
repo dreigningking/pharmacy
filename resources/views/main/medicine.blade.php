@@ -189,6 +189,7 @@ medineCheck();
 @endpush
 
 <!-- Medicine Info Modal -->
+@foreach($medicine as $medic)
 <div class="modal fade custom-modal add-modal" id="medication_info">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -202,7 +203,7 @@ medineCheck();
                 <div class="row">
                     <div class="col-xl-12 d-flex">
                         <div class="card flex-fill">
-                            @foreach($medicine as $medic)
+                            
                             <div class="card-body">
                                 <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
@@ -226,12 +227,12 @@ medineCheck();
                                     <div class="col-sm-4 pl-0 pr-0">
                                         Treats:
                                     </div>
-                                    @foreach($medicine as $medic)
+                                
                                     <div class="col-sm-8 pl-0 pr-0">
                                         @foreach($medic->diseases as $disease)
                                         {{$disease->name}},
-                                        @endforeach</div>
-                                    @endforeach
+                                        </div>
+                                @endforeach
                                 </div>
                                 <!-- <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
@@ -240,7 +241,7 @@ medineCheck();
                                     <div class="col-sm-8 pl-0 pr-0">Headache et al.,</div>
                                 </div> -->
                             </div>
-                            @endforeach
+                           
                         </div>
                     </div>
 
@@ -249,7 +250,7 @@ medineCheck();
         </div>
     </div>
 </div>
-
+@endforeach
 <!-- Medicine Info Modal -->
 <!-- Reaction Modal -->
 <div class="modal fade custom-modal add-modal" id="reaction">
