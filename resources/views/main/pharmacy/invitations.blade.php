@@ -20,6 +20,8 @@
                                 <p>Here is an invitation to join us to work at {{$pharmacy->name}} as a manager </p>
                                 
                                 <form action="{{route('invitations')}}" method="POST">@csrf
+                                    {{$user}}
+                                    {{$pharmacy}}
                                     <button type="submit" class="btn btn-primary view-inv-btn">Accept Invitation</button>
                                 </form>
                                

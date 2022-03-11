@@ -20,7 +20,7 @@ class CreateSettingsTable extends Migration
             $table->string('value');
             $table->timestamps();
         });
-        DB::table('roles')->insert(array(
+        DB::table('settings')->insert(array(
             array('id' => 1, 'name'=> 'base_currency', 'value'=>'Naira'),
             array('id' => 2, 'name'=> 'base_currency_symbol', 'value'=>'N'),
             array('id' => 3, 'name'=> 'allow_user_in_multiple_pharmacy', 'value'=> 1),

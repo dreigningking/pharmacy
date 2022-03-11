@@ -32,7 +32,7 @@ class HomeController extends Controller
         return view('main.user.workspaces',compact('user'));
     }
     public function invitations(Pharmacy $pharmacy,User $user){
-        return view('main.user.invitations',compact('user','pharmacy'));
+        return view('main.pharmacy.invitations',compact('user','pharmacy'));
     }
     public function invitation_submit(Request $request){
         return 'something';

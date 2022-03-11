@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function(){
         Route::get('suppliers', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'suppliers'])->name('suppliers');
         Route::get('staff', [App\Http\Controllers\GeneralControllers\DirectorController::class, 'staff'])->name("staff");
         Route::post('staff',[App\Http\Controllers\GeneralControllers\DirectorController::class, 'savestaff'])->name("staff");
+        Route::post('staff/destroy',[App\Http\Controllers\GeneralControllers\DirectorController::class, 'destroystaff'])->name("staff.destroy");
 
     });
 

@@ -50,19 +50,28 @@ class DirectorController extends Controller
         // dd($request->all());
         $pharmacy = Pharmacy::find($request->pharmacy_id);
         $role = Role::where('id',$request->role_id)->first();
-        $user = User::create(['name'=> $request->name,'email'=> $request->email,'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);
+        $user = User::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);
         $pharmacy->users()->attach($user->id,['role_id'=> $role->id,'status'=> false]);
         $user->notify(new InvitationNotification($pharmacy,$role->name));
         return redirect()->back();
     }
+
+   
 
     public function update(Request $request, $id)
     {
         //
     }
 
-    public function destroy($id)
+    public function destroystaff(Request $request)
     {
-        //
+        // dd($request->all());
+        $pharmacy = Pharmacy::find($request->pharmacy_id);
+       
+        $user = User::find($request->user_id);
+        $pharmacy->users()->detach($user->id);
+        $user->delete();
+
+        return redirect()->back();
     }
 }

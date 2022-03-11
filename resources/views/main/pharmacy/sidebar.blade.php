@@ -100,11 +100,11 @@
                             <span>Transfer</span>
                         </a>
                     </li> -->
-                    <li @if(Route::is('pharmacy.staff')) class="active" @endif>
+                    <!-- <li @if(Route::is('pharmacy.staff')) class="active" @endif>
                         <a href="{{route('pharmacy.staff',$pharmacy)}}">
                             <i class="fas fa-users"></i> <span>Staff</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="doctor-profile-settings.html">
                             <i class="fas fa-cog"></i>
