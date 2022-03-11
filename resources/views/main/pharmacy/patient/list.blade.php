@@ -41,7 +41,7 @@
                             <div class="row">
 
                                 <div class="col-sm-12">
-                                    <h3 class="page-title">List of Staff</h3>
+                                    <h3 class="page-title">List of Patients</h3>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
@@ -89,7 +89,7 @@
                                                                 09045682675
                                                             </td>
                                                             <td>test@gmail.com</td>
-                                                            <td>Ancient of Days</td>
+                                                            <td>57</td>
 
                                                             <td class="text-center">
                                                                 <div class="actions">
@@ -102,6 +102,11 @@
                                                                         class="btn btn-sm bg-success-light">
                                                                         <i class="fas fa-pen"></i>
                                                                         Edit
+                                                                    </a>
+                                                                    <a data-toggle="modal" href="#edit_modal"
+                                                                        class="btn btn-sm bg-danger-light">
+                                                                        <i class="fas fa-pen"></i>
+                                                                        Delete
                                                                     </a>
                                                                 </div>
                                                             </td>

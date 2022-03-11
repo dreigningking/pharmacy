@@ -47,11 +47,11 @@
                                     </div>
                                 </div>
                                 <div class=" col-sm-12">
-                                    <h3 class="page-title">List of Staff</h3>
+                                    <h3 class="page-title">List of Assessments</h3>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
-                                        <li class="breadcrumb-item active">Patient</li>
+                                        <li class="breadcrumb-item active">Assessments</li>
                                     </ul>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                                             <td class="text-center">
                                                                 <div class="actions">
 
-                                                                    <a href="{{route('pharmacy.showpatients',$pharmacy)}}"
+                                                                    <a href="{{route('pharmacy.showassessment',$pharmacy)}}"
                                                                         class="btn btn-sm bg-info-light">
                                                                         <i class="fas fa-eye"></i> View
                                                                     </a>

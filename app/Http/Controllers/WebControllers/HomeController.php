@@ -35,7 +35,10 @@ class HomeController extends Controller
         return view('main.pharmacy.invitations',compact('user','pharmacy'));
     }
     public function invitation_submit(Request $request){
-        
+        $user = User::find($request->user_id);
+        $pharmacy = Pharmacy::find($request->pharmacy_id);
+        $pharmacy->users()->updateExistingPivot($user->id, ['status'=>true]);
+        return redirect()->route('pharmacy.dashboard',$pharmacy);
     }
     
   
