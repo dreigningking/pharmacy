@@ -87,10 +87,15 @@
                                                             <td>{{$staff->pharmacies->where("id",$pharmacy->id)->first()->name}}</td>
                                                             <td class="text-center">
                                                                 <select name="" id="" class="role-select form-control">
-                                                                    <option value="pharmacist">Pharmacist</option>
+                                                                    <option selected >{{$pharmacy->staff->where('user_id',$user->id)->first()->role->name}}</option>
+                                                                    @foreach($roles->where("id","!=",$pharmacy->staff->where('user_id',$user->id)->first()->role->id)  as $role)
+                                                                    <option value="pharmacist"> {{$role->name}}</option>
+                                                                    @endforeach
+                                                                   
 
 
-                                                                    <option value="store-keeper">Store keeper</option>
+                                                                    
+                                                                   
                                                                 </select>
                                                             </td>
                                                           

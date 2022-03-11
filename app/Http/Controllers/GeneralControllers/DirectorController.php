@@ -47,6 +47,7 @@ class DirectorController extends Controller
     public function staff(){
         $user = Auth::user();
         $roles = Role::where('name','!=','admin')->get();
+        // dd($roles->all());
         return view('main.user.director.staff',compact('user','roles'));
     }
 
