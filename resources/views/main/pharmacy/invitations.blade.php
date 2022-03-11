@@ -17,9 +17,16 @@
                             <div class="success-cont">
                                 <i class="fas fa-check"></i>
                                 <h3>Pharmacy Invitation!</h3>
-                                <p>Here is an invitation to join us to work at {{$pharmacy->name}} as a manager </p>
+                                <p>Here is an invitation to join us to work at {{$pharmacy->name}} as a {{$pharmacy->staff->where('user_id',$user->id)->first()->role->name}} </p>
                                 
-                                <form action="{{route('invitations')}}" method="POST">@csrf
+                                <p>If you accept this invitation, you will be redirected to login with the following details</p>
+                                <ul class="list-unstyled">
+                                    <li>Email: {{$user->email}}</li>
+                                    <li>Password: {{$user->email}}</li>
+                                </ul>
+                                <form action="{{route('confirm_invitations')}}" method="POST">@csrf
+                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                    <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
                                     <button type="submit" class="btn btn-primary view-inv-btn">Accept Invitation</button>
                                 </form>
                                

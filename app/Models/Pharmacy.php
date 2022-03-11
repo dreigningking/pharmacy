@@ -6,6 +6,7 @@ use App\Models\Sale;
 use App\Models\City;
 use App\Models\User;
 use App\Models\State;
+use App\Models\PharmacyUser;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Country;
 use App\Models\PharmacySubscription;
@@ -27,7 +28,10 @@ class Pharmacy extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(User::class,'pharmacy_users');
+        return $this->belongsToMany(User::class,'pharmacy_users')->withPivot('role_id','status');
+    }
+    public function staff(){
+        return $this->hasMany(PharmacyUser::class);
     }
     public function country(){
         return $this->belongsTo(Country::class);
