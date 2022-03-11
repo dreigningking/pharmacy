@@ -13,7 +13,7 @@
                 <div class="col-md-8 offset-md-2">
                     
                     <!-- Login Tab Content -->
-                    <div class="account-content">
+                    <div class="account-content mb-6">
                         <form action="{{route('setup')}}" method="POST" enctype="multipart/form-data">@csrf
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-12 col-md-12">
@@ -42,13 +42,13 @@
                                                 </div>
                                                 <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
                                             </div>
-                                            <div class="upload-img ml-auto">
+                                            <!-- <div class="upload-img ml-auto">
                                                 <div class="change-photo-btn">
                                                     <span><i class="fa fa-upload"></i> <span id="license_text">Upload License</span></span>
                                                     <input type="file" name="license" id="license" class="upload" required>
                                                 </div>
                                                 <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -171,14 +171,14 @@
                                 
                                 <div class="col-12">
                                     <div class="checkbox checkbox-primary ">
-                                        <input id="checkbox-primary-1" type="checkbox" data-original-title="" title="" name="agreement" value="1" required>
-                                        <label for="checkbox-primary-1 px-2"> <a href="{{route('agreement')}}">I have read the agreement</a></label>
+                                        <input id="agreement_check" type="checkbox" data-original-title="" title="" name="agreement" value="1" required>
+                                        <label for="agreement_check px-2"> <a href="{{route('agreement')}}">I have read the agreement</a></label>
                                     </div>
                                     
                                 </div>
                                 
-                                <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Create Pharmacy</button>
+                                <div class="submit-section mb-4">
+                                    <button type="submit" class="btn btn-primary submit-btn mb-2 disabled" id="create">Create Pharmacy</button>
                                 </div>
                             </div>
                         </form>
@@ -257,6 +257,9 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+    $('#agreement_check').on('change',function(){
+        $(this).is(':checked') ? $('#create').removeClass('disabled') : $('#create').addClass('disabled')
+    })
     </script>
 @endpush
 
