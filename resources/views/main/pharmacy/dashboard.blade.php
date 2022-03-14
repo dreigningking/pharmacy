@@ -987,9 +987,22 @@ $(".add-plan").on('click', function() {
 <div class="modal fade custom-modal dash-modal " id="assessment" role="dialog">
     <div class="modal-dialog modal-dialog-centered assessment">
         <div class="modal-content assessment-modal">
-        <div class="card">
+        <div class="modal-header">
+                <h5 class="modal-title assessment-title">Add Assessment</h5>
+                <div class="modal-control">
+                    <button class="minimize">
+                        <span aria-hidden="true"><i class="fas fa-minus"></i></span>
+                    </button>
+                    <button type="button" class="close end" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+            </div>
+    <div class="modal-body">
+    <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title assessment-title">ADD ASSESSMENT</h4>
+                      
                         <div class="row justify-content-center">
                             <form class="search-form d-flex">
                                 <input class="search" type="text"
@@ -1280,6 +1293,7 @@ $(".add-plan").on('click', function() {
                 </div>
 
         </div>
+    </div>
     </div>
 </div>
 
