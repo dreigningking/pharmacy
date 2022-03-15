@@ -98,7 +98,7 @@
                                                                         class="btn btn-sm bg-info-light">
                                                                         <i class="fas fa-eye"></i> View
                                                                     </a>
-                                                                    <a data-toggle="modal" href="#edit_modal"
+                                                                    <!-- <a data-toggle="modal" href="#edit_modal"
                                                                         class="btn btn-sm bg-success-light">
                                                                         <i class="fas fa-pen"></i>
                                                                         Edit
@@ -107,7 +107,7 @@
                                                                         class="btn btn-sm bg-danger-light">
                                                                         <i class="fas fa-pen"></i>
                                                                         Delete
-                                                                    </a>
+                                                                    </a> -->
                                                                 </div>
                                                             </td>
                                                         </tr>
