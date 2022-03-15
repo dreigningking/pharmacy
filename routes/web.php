@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function(){
         Route::get('assessment/new', [App\Http\Controllers\GeneralControllers\PatientController::class, 'new'])->name("newassessment");
         Route::get('assessment/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'showassessment'])->name("showassessment");
         Route::get('prescription', [App\Http\Controllers\GeneralControllers\PatientController::class, 'prescription'])->name("prescription");
+        Route::get('plan', [App\Http\Controllers\GeneralControllers\PatientController::class, 'plan'])->name("plan");
         Route::get('inventory', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'inventory'])->name("inventory");
         Route::get('shelf', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'shelf'])->name("shelf");
         Route::get('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");

@@ -34,7 +34,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title assessment-title">ADD ASSESSMENT</h4>
-                        <div class="row justify-content-center">
+                        <!-- <div class="row justify-content-center">
                             <form class="search-form d-flex">
                                 <input class="search" type="text"
                                     placeholder="Search by EMR, patient name, phone number or email">
@@ -42,7 +42,7 @@
                                     <i class="fas fa-search"></i>
                                 </button>
                             </form>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <form action="" class="w-100">
                                 <div class="row justify-content-start mt-4 w-100">
@@ -253,37 +253,7 @@
 
                                     </div>
                                 </div>
-                                <div class="row justify-content-start mt-4 w-100">
-
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#prescriptions">Prescription</button>
-
-                                    <div class="row mt-4  pr-2 collapse show w-100 justify-content-center"
-                                        id="prescriptions">
-
-                                        <div class="row w-100 pl-4">
-                                            <div class="col-md-12 w-100 prescriptions">
-                                                <div class="prescription">
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-2 col-form-label pr-0">Prescription</label>
-                                                        <div class="col-lg-10">
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                            </div>
-                                            <div class="plus-more add-more">
-                                                <a href="javascript:void(0);" class="add-prescription"><i
-                                                        class="fa fa-plus-circle"></i> Add More</a>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
+                              
                                 <div class="row justify-content-start mt-4 w-100">
 
                                     <button type="button" class="btn btn-text open" data-toggle="collapse"
@@ -319,7 +289,9 @@
                                     <button type="submit" class="btn btn-primary pl-2 pr-2 ml-2 mr-2">
                                     <a href="{{route('pharmacy.prescription',$pharmacy)}}" class="pres">Save & Prescribe Medicine</a>   
                                     </button>
-                                    <button type="submit" class="btn btn-primary pl-2 pr-2">Add non medication plan</button>
+                                    <button type="submit" class="btn btn-primary pl-2 pr-2">
+                                    <a href="{{route('pharmacy.plan',$pharmacy)}}" class="pres">Add non medication plan</a>    
+                                    </button>
                                 </div>
                             </form>
                         </div>
