@@ -468,7 +468,9 @@ color: #007bff;
   .assessment-title {
       font-weight: 600;
   }
- 
+ .pres {
+     color: white;
+ }
 @media screen and (max-width: 480px) {
     .dashboard-menu  {
         margin-right: 0.75rem;

@@ -316,6 +316,10 @@
                                 </div>
                                 <div class="row pr-4 mt-4 justify-content-end">
                                     <button type="submit" class="btn btn-primary pl-2 pr-2">Save</button>
+                                    <button type="submit" class="btn btn-primary pl-2 pr-2 ml-2 mr-2">
+                                    <a href="{{route('pharmacy.prescription',$pharmacy)}}" class="pres">Save & Prescribe Medicine</a>   
+                                    </button>
+                                    <button type="submit" class="btn btn-primary pl-2 pr-2">Add non medication plan</button>
                                 </div>
                             </form>
                         </div>
@@ -425,29 +429,7 @@ $(".add-past").on('click', function() {
 });
 
 
-$(".prescriptions").on('click', '.trash', function() {
-    $(this).closest('.prescription').remove();
-    return false;
-});
-$(".add-prescription").on('click', function() {
-    console.log("meh")
-    var regcontent = '<div class="col-md-12 pl-0 prescription">' +
-        ' <div class="form-group row">' +
-        '<label class="col-lg-2 col-form-label pr-0">Prescription</label>' +
-        '<div class="col-lg-9">' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '<div class="col-1 pr-0 pl-0 d-flex align-items-start justify-content-end" >' +
-        '<label class="d-md-block d-sm-none d-none">&nbsp;</label>' +
-        '<a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
-        '</div>' +
-        '</div>' +
 
-        '</div>';
-
-    $(".prescriptions").append(regcontent);
-    return false;
-});
 $(".plans").on('click', '.trash', function() {
     $(this).closest('.plan').remove();
     return false;

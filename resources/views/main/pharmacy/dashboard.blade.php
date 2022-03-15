@@ -92,7 +92,7 @@
                     <div class="col-sm-3 ml-3">
                         <div class="row justify-content-start mb-4 dashboard-menu">
                             <a class="btn btn-primary btn-lg first dash-btn" data-toggle="modal" href="#assessment">New
-                                Assessment</a>
+                                Patients</a>
                         </div>
                     </div>
                     <div class="col-sm-3 ml-3">
