@@ -20,7 +20,7 @@ class MedicineController extends Controller
     {
         $user = Auth::user();
         $medicine = Medicine::all();
-        dd($medicine);
+        // dd($medicine);
         return view('main.medicine',compact('user', 'medicine'));
     }
 

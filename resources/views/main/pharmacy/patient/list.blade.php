@@ -98,7 +98,7 @@
                                                                         class="btn btn-sm bg-info-light">
                                                                         <i class="fas fa-eye"></i> View
                                                                     </a>
-                                                                    <a data-toggle="modal" href="#edit_modal"
+                                                                    <!-- <a data-toggle="modal" href="#edit_modal"
                                                                         class="btn btn-sm bg-success-light">
                                                                         <i class="fas fa-pen"></i>
                                                                         Edit
@@ -107,7 +107,7 @@
                                                                         class="btn btn-sm bg-danger-light">
                                                                         <i class="fas fa-pen"></i>
                                                                         Delete
-                                                                    </a>
+                                                                    </a> -->
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -137,7 +137,7 @@
 @endsection
 
 <!-- Edit patient Modal -->
-<div class="modal fade custom-modal add-modal" id="edit_modal">
+<!-- <div class="modal fade custom-modal add-modal" id="edit_modal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -187,6 +187,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Edit patient Modal -->

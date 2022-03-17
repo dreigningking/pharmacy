@@ -31,10 +31,29 @@
 
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <!-- Basic Information -->
+                <div class="page-header">
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <!-- <h3 class="page-title">List of Patients</h3> -->
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{route('pharmacy.addpatient',$pharmacy)}}">Add
+                                        Patient</a></li>
+                                <li class="breadcrumb-item active">Assessment</li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{route('pharmacy.prescription',$pharmacy)}}">Prescription</a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{route('pharmacy.plan',$pharmacy)}}">Non-medication plan</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title assessment-title">ADD ASSESSMENT</h4>
-                        <div class="row justify-content-center">
+                        <!-- <div class="row justify-content-center">
                             <form class="search-form d-flex">
                                 <input class="search" type="text"
                                     placeholder="Search by EMR, patient name, phone number or email">
@@ -42,68 +61,10 @@
                                     <i class="fas fa-search"></i>
                                 </button>
                             </form>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <form action="" class="w-100">
-                                <div class="row justify-content-start mt-4 w-100">
 
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#personal_info">Patient's Personal Information</button>
-
-                                    <div class="row mt-4 pl-4 pr-2 collapse show w-100 justify-content-center"
-                                        id="personal_info">
-
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">EMR</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Patient Name</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Phone Number</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="number" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Email</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Date of
-                                                        birth</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
                                 <div class="row justify-content-start mt-4 w-100 ">
 
                                     <button type="button" class="btn btn-text open" data-toggle="collapse"
@@ -253,37 +214,7 @@
 
                                     </div>
                                 </div>
-                                <div class="row justify-content-start mt-4 w-100">
 
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#prescriptions">Prescription</button>
-
-                                    <div class="row mt-4  pr-2 collapse show w-100 justify-content-center"
-                                        id="prescriptions">
-
-                                        <div class="row w-100 pl-4">
-                                            <div class="col-md-12 w-100 prescriptions">
-                                                <div class="prescription">
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-2 col-form-label pr-0">Prescription</label>
-                                                        <div class="col-lg-10">
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                            </div>
-                                            <div class="plus-more add-more">
-                                                <a href="javascript:void(0);" class="add-prescription"><i
-                                                        class="fa fa-plus-circle"></i> Add More</a>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
                                 <div class="row justify-content-start mt-4 w-100">
 
                                     <button type="button" class="btn btn-text open" data-toggle="collapse"
@@ -314,8 +245,17 @@
 
                                     </div>
                                 </div>
-                                <div class="row pr-4 mt-4 justify-content-end">
-                                    <button type="submit" class="btn btn-primary pl-2 pr-2">Save</button>
+                                <div class="row w-100 pr-4 mt-4 ml-6 justify-content-end">
+                                    <button type="submit" class="btn btn-primary pl-2 pr-2 ml-4">Save</button>
+                                    <!-- <button type="submit" class="btn btn-primary pl-2 pr-2 ml-2 mr-2">
+                                        <a href="{{route('pharmacy.prescription',$pharmacy)}}" class="pres">Save &
+                                            Prescribe
+                                            Medicine</a>
+                                    </button>
+                                    <button type="submit" class="btn btn-primary pl-2 pr-2">
+                                        <a href="{{route('pharmacy.plan',$pharmacy)}}" class="pres">Add non medication
+                                            plan</a>
+                                    </button> -->
                                 </div>
                             </form>
                         </div>
@@ -323,11 +263,11 @@
 
                 </div>
 
-
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
 
 </div>
@@ -425,29 +365,7 @@ $(".add-past").on('click', function() {
 });
 
 
-$(".prescriptions").on('click', '.trash', function() {
-    $(this).closest('.prescription').remove();
-    return false;
-});
-$(".add-prescription").on('click', function() {
-    console.log("meh")
-    var regcontent = '<div class="col-md-12 pl-0 prescription">' +
-        ' <div class="form-group row">' +
-        '<label class="col-lg-2 col-form-label pr-0">Prescription</label>' +
-        '<div class="col-lg-9">' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '<div class="col-1 pr-0 pl-0 d-flex align-items-start justify-content-end" >' +
-        '<label class="d-md-block d-sm-none d-none">&nbsp;</label>' +
-        '<a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
-        '</div>' +
-        '</div>' +
 
-        '</div>';
-
-    $(".prescriptions").append(regcontent);
-    return false;
-});
 $(".plans").on('click', '.trash', function() {
     $(this).closest('.plan').remove();
     return false;
