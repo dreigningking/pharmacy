@@ -33,7 +33,7 @@
                 <div class="card contact-card">
                     
                     <div class="card-body">
-                        <h4 class="card-title">Password Update</h4>
+                        <h4 class="card-title">User Password Update</h4>
                         <form action="{{route('password_update')}}" method="post">@csrf
                             <div class="row form-row">
                                 <div class="col-md-12">

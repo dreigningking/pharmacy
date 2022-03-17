@@ -1,8 +1,10 @@
-subscription: renew subscriptions, update plan
+subscription: renew subscriptions,
 save payment cards ?
 
 allow directors to delete staff
 
+PRICING: http://localhost/logistix/public/frontend/html/landings/classic-advertisement.html
+PRICING: http://localhost/logistix/public/frontend/html/landings/onepage-saas.html#pricingSection
 
 what will be on everybody's dashboard
 1. activities
@@ -11,6 +13,7 @@ what will be on everybody's dashboard
 4. subscription info for directors
 
 delete your account
-accept & reject invitations
 
-data is automatically shared across pharmacies you own (medicine, drug, diseases)
+
+data is central(medicine,diseases)
+data can be shared across pharmacies you own (drug, patient)

@@ -63,6 +63,7 @@
                                                             <th>Staff Name</th>
                                                             <th>Pharmacy</th>
                                                             <th class="text-center">Role</th>
+                                                            <th class="text-center">Status</th>
 
                                                             <th class="text-center">Action</th>
                                                         </tr>
@@ -72,61 +73,50 @@
                                                             @foreach($user->pharmacies as $pharmacy)
 
                                                                 @foreach($pharmacy->users as $staff)
-
-                                                            <tr>
-                                                            <td>
-                                                                <h2 class="table-avatar">
-                                                                    <a href="profile.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                                            class="avatar-img rounded-circle"
-                                                                            src="assets/img/patients/patient2.jpg"
-                                                                            alt="User Image"></a>
-                                                                      {{$staff->name}}
-                                                                </h2>
-                                                            </td>
-                                                            <td>{{$staff->pharmacies->where("id",$pharmacy->id)->first()->name}}</td>
-                                                            <td class="text-center">
-                                                                <select name="" id="" class="role-select form-control">
-                                                                    <option selected >{{$pharmacy->staff->where('user_id',$user->id)->first()->role->name}}</option>
-                                                                    @foreach($roles->where("id","!=",$pharmacy->staff->where('user_id',$user->id)->first()->role->id)  as $role)
-                                                                    <option value="pharmacist"> {{$role->name}}</option>
-                                                                    @endforeach
-                                                                   
-
-
-                                                                    
-                                                                   
-                                                                </select>
-                                                            </td>
-                                                          
-                                                            <td class="text-right d-flex justify-content-center">
-                                                                <div class="actions d-flex align-items-center justity-content-center">
-                                                                    <a class="btn btn-sm bg-success-light"
-                                                                        data-toggle="modal" href="#edit_staff">
-                                                                        <i class="fe fe-pencil"></i> Edit
-                                                                    </a>
-                                                                    <form action="{{route('staff.destroy')}}" method="POST" class="mb-0 ml-2"> @csrf
-                                                                    <div class="form-group-inline">
-                                        
-                                        <div>
-                                            <input type="hidden" name="pharmacy_id" class="form-control" value="{{$pharmacy->id}}">
-                                        </div>
-                                    </div>
-                                                                    <div class="form-group-inline">
-                                        
-                                        <div>
-                                            <input type="hidden" name="user_id" class="form-control" value="{{$staff->id}}">
-                                        </div>
-                                    </div>
-                                                                    <button type="submit"
-                                                                        class="btn btn-sm bg-danger-light">
-                                                                        Delete
-</button>
-                                                                    </form>
-                                                                    
-                                                                </div>
-                                                            </td>
-                                                            @endforeach
+                                                                    <tr>
+                                                                        <td>
+                                                                            <h2 class="table-avatar">
+                                                                                <a href="profile.html"
+                                                                                    class="avatar avatar-sm mr-2"><img
+                                                                                        class="avatar-img rounded-circle"
+                                                                                        src="assets/img/patients/patient2.jpg"
+                                                                                        alt="User Image"></a>
+                                                                                {{$staff->name}}
+                                                                            </h2>
+                                                                        </td>
+                                                                        <td>{{$staff->pharmacies->where("id",$pharmacy->id)->first()->name}}</td>
+                                                                        <td class="text-center">
+                                                                            <select name="" id="" class="role-select form-control">
+                                                                                <option selected >{{$pharmacy->staff->where('user_id',$user->id)->first()->role->name}}</option>
+                                                                                @foreach($roles->where("id","!=",$pharmacy->staff->where('user_id',$user->id)->first()->role->id)  as $role)
+                                                                                <option value="pharmacist"> {{$role->name}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="text-center">@if($pharmacy->staff->where('user_id',$user->id)->first()->status) Active @else Inactive @endif</td>
+                                                                        <td class="text-right d-flex justify-content-center">
+                                                                            <div class="actions d-flex align-items-center justity-content-center">
+                                                                                <a class="btn btn-sm bg-success-light"
+                                                                                    data-toggle="modal" href="#edit_staff">
+                                                                                    <i class="fe fe-pencil"></i> Edit
+                                                                                </a>
+                                                                                <form action="{{route('staff.destroy')}}" method="POST" class="mb-0 ml-2"> @csrf
+                                                                                    <div class="form-group-inline">
+                                                                                        <div>
+                                                                                            <input type="hidden" name="pharmacy_id" class="form-control" value="{{$pharmacy->id}}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group-inline">
+                                                                                        <div>
+                                                                                            <input type="hidden" name="user_id" class="form-control" value="{{$staff->id}}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <button type="submit" class="btn btn-sm bg-danger-light">Delete </button>
+                                                                                </form>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
                                                             @endforeach
 
                                                          
@@ -137,7 +127,7 @@
                                                             
 
                                                             
-                                                        </tr>
+                                                        
                                                
                                                     </tbody>
                                                 </table>

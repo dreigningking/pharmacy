@@ -17,8 +17,8 @@ class CreateMedicineRelationshipsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('medicine_a');
             $table->unsignedBigInteger('medicine_b');
-            $table->boolean('healthy');
-            $table->text('remark');
+            $table->boolean('positive')->default(1);
+            $table->text('remark')->nullable();
             $table->timestamps();
             $table->foreign('medicine_a')->references('id')->on('medicines')->onDelete('cascade');
             $table->foreign('medicine_b')->references('id')->on('medicines')->onDelete('cascade');

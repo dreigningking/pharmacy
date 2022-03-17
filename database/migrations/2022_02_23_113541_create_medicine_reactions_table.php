@@ -17,6 +17,8 @@ class CreateMedicineReactionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('medicine_id');
             $table->unsignedBigInteger('disease_id');
+            $table->boolean('positive')->default(1);
+            $table->text('remark')->nullable();
             $table->timestamps();
             $table->foreign('medicine_id')->references('id')->on('medicines')->onDelete('cascade');
             $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');

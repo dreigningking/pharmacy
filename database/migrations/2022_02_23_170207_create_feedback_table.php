@@ -21,6 +21,9 @@ class CreateFeedbackTable extends Migration
             $table->text('body');
             $table->boolean('positive')->default(1);
             $table->timestamps();
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
+            $table->foreign('assessment_id')->references('id')->on('assessments')->onDelete('cascade');
         });
     }
 

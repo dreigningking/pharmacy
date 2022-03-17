@@ -19,15 +19,13 @@ class CreatePlansTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->text('features')->nullable();
-            $table->double('monthly')->default(0);
-            $table->double('quaterly')->default(0);
-            $table->double('annually')->default(0);
+            $table->double('amount')->default(0);
+            $table->integer('trial')->default(0);
             $table->timestamps();
         });
         DB::table('plans')->insert(array(
-            array('id' => 1, 'name'=> 'Bronze', 'description'=>'super admin of system'),
-            array('id' => 2, 'name'=> 'Silver', 'description'=>'director of pharmacies'),
-            array('id' => 3, 'name'=> 'Gold', 'description'=>'specialist in a pharmacy'),
+            array('id' => 1, 'name'=> 'Pharmacy Subscription', 'description'=>'Subscription for each pharmacy','features'=> '["Create unlimited pharmacies" , "Have unlimited users in all roles for each pharmacy" , "Transfer and share info across pharmacies" , "Import existing data from excel to application e.g Drug Supplies, Staff, Patient Records etc" , "Export your data in excel, csv or pdf format"]','amount'=> 1000,'trial'=>14),
+            array('id' => 2, 'name'=> 'SMS Credit', 'description'=>'Credit to send bulk sms to patients','features'=> '["Send Prescription by SMS to Patients" , "Send Checkup SMS to followup on patients" , "Get Stock Level Notification by SMS" , "Get Notified of activities you subscribe to listen for"]','amount'=> 2,'trial'=>5),
         ));
     }
 

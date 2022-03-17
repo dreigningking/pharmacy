@@ -31,7 +31,7 @@
                     
                 </li>
                 <li>
-                    <a href="{{route('plans')}}">Pricing</a>
+                    <a href="{{route('pricing')}}">Pricing</a>
                     
                 </li>
                 <li>

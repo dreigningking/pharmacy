@@ -19,8 +19,7 @@ class CreatePurchasesTable extends Migration
             $table->unsignedBigInteger('supplier_id');
             $table->string('invoice_number');
             $table->double('total');
-            $table->boolean('payment_status')->default(0);
-            $table->boolean('delivery_status')->default(0);
+            $table->string('status')->default('draft'); //draft, sent, paid, delivered
             $table->timestamps();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');

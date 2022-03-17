@@ -25,6 +25,12 @@ class CreatePharmaciesTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('city_id');
+            $table->bigInteger('sms_credit')->default(0);
+            $table->boolean('send_patient_sms')->default(0);
+            $table->boolean('send_patient_email')->default(1);
+            $table->integer('minimum_stocklevel')->default(1);
+            $table->bigInteger('maximum_stocklevel')->default(1);
+            $table->integer('mark_up')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

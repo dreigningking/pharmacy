@@ -25,9 +25,13 @@ class CreateLoginHistoriesTable extends Migration
             $table->string('device_name');
             $table->string('platform');
             $table->string('browser');
-            $table->string('language');       
+            $table->string('language');  
+            $table->SoftDeletes();     
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 

@@ -17,12 +17,14 @@ class CreateSubscriptionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('plan_id');
             $table->unsignedBigInteger('user_id');
-            $table->boolean('trial');
+            $table->unsignedBigInteger('pharmacy_id');
             $table->timestamp('start');
             $table->timestamp('warn');
             $table->timestamp('end');
+            $table->boolean('trial');
             $table->boolean('status')->default(1);
             $table->timestamps();
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
             $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

@@ -12,9 +12,9 @@ class SubscriptionMiddleware
     public function handle(Request $request, Closure $next)
     {
         if($request->route('pharmacy') && $request->route('pharmacy')->subscriptions->isEmpty()){
-            return redirect()->route('plans');
+            return redirect()->route('pricing');
         }elseif($request->user()->subscriptions->isEmpty() || $request->user()->subscriptions->where('status',true)->isEmpty()){
-            return redirect()->route('plans');
+            return redirect()->route('pricing');
         }
         return $next($request);
     }

@@ -18,10 +18,9 @@ class SubscriptionController extends Controller
 {
     use PaystackTrait;
 
-    public function index(Pharmacy $pharmacy){
-        $plans = Plan::all();
-        $user = Auth::user();
-        return view('main.plans',compact('pharmacy','plans'));
+    public function index(){
+        $plan = Plan::where('name','pharmacy_subscription')->first();
+        return view('main.pricing',compact('plan'));
     } 
 
     public function checkout(){

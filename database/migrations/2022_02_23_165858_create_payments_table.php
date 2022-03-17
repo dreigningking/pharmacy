@@ -17,13 +17,14 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->string('reference');
             $table->unsignedBigInteger('user_id'); //the sender
-            $table->unsignedBigInteger('subscription_id'); //the subscription
+            $table->unsignedBigInteger('order_id'); //the subscription
             $table->string('currency');
             $table->double('amount')->default(0); 
             $table->string('method'); //card, bank, ussd  
             $table->string('status'); // successful, failed, cancelled 
             $table->timestamps();
-            
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 

@@ -18,7 +18,7 @@ class CreatePurchaseDetailsTable extends Migration
             $table->unsignedBigInteger('purchase_id');
             $table->unsignedBigInteger('item_id');
             $table->string('batch_no');
-            $table->string('packaging_type');
+            $table->string('packaging_type')->default('packs');
             $table->integer('unit_order')->default(1);
             $table->integer('quantity')->default(1);
             $table->double('unit_cost')->default(0);
