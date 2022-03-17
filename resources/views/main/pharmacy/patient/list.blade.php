@@ -137,7 +137,7 @@
 @endsection
 
 <!-- Edit patient Modal -->
-<div class="modal fade custom-modal add-modal" id="edit_modal">
+<!-- <div class="modal fade custom-modal add-modal" id="edit_modal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -187,6 +187,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Edit patient Modal -->

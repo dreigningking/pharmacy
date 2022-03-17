@@ -34,9 +34,15 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function add(Pharmacy $pharmacy)
+    {
+        return view('main.pharmacy.patient.add', compact('pharmacy'));
+    }
+
     public function store(Request $request)
     {
-        //
+        $pharmacy = Pharmacy::find($request->pharmacy_id);
+        return view('main.pharmacy.patient.add', compact('pharmacy'));
     }
 
     /**

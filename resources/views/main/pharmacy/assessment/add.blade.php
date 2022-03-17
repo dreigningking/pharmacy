@@ -31,6 +31,25 @@
 
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <!-- Basic Information -->
+                <div class="page-header">
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <!-- <h3 class="page-title">List of Patients</h3> -->
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{route('pharmacy.addpatient',$pharmacy)}}">Add
+                                        Patient</a></li>
+                                <li class="breadcrumb-item active">Assessment</li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{route('pharmacy.prescription',$pharmacy)}}">Prescription</a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{route('pharmacy.plan',$pharmacy)}}">Non-medication plan</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title assessment-title">ADD ASSESSMENT</h4>
@@ -45,65 +64,7 @@
                         </div> -->
                         <div class="row">
                             <form action="" class="w-100">
-                                <div class="row justify-content-start mt-4 w-100">
 
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#personal_info">Patient's Personal Information</button>
-
-                                    <div class="row mt-4 pl-4 pr-2 collapse show w-100 justify-content-center"
-                                        id="personal_info">
-
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">EMR</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Patient Name</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Phone Number</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="number" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Email</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Date of
-                                                        birth</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
                                 <div class="row justify-content-start mt-4 w-100 ">
 
                                     <button type="button" class="btn btn-text open" data-toggle="collapse"
@@ -253,7 +214,7 @@
 
                                     </div>
                                 </div>
-                              
+
                                 <div class="row justify-content-start mt-4 w-100">
 
                                     <button type="button" class="btn btn-text open" data-toggle="collapse"
@@ -284,14 +245,17 @@
 
                                     </div>
                                 </div>
-                                <div class="row pr-4 mt-4 justify-content-end">
-                                    <button type="submit" class="btn btn-primary pl-2 pr-2">Save</button>
-                                    <button type="submit" class="btn btn-primary pl-2 pr-2 ml-2 mr-2">
-                                    <a href="{{route('pharmacy.prescription',$pharmacy)}}" class="pres">Save & Prescribe Medicine</a>   
+                                <div class="row w-100 pr-4 mt-4 ml-6 justify-content-end">
+                                    <button type="submit" class="btn btn-primary pl-2 pr-2 ml-4">Save</button>
+                                    <!-- <button type="submit" class="btn btn-primary pl-2 pr-2 ml-2 mr-2">
+                                        <a href="{{route('pharmacy.prescription',$pharmacy)}}" class="pres">Save &
+                                            Prescribe
+                                            Medicine</a>
                                     </button>
                                     <button type="submit" class="btn btn-primary pl-2 pr-2">
-                                    <a href="{{route('pharmacy.plan',$pharmacy)}}" class="pres">Add non medication plan</a>    
-                                    </button>
+                                        <a href="{{route('pharmacy.plan',$pharmacy)}}" class="pres">Add non medication
+                                            plan</a>
+                                    </button> -->
                                 </div>
                             </form>
                         </div>
@@ -299,11 +263,11 @@
 
                 </div>
 
-
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
 
 </div>

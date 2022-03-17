@@ -35,6 +35,7 @@ class SubscriptionController extends Controller
         // dd($request->all());
         $user = Auth::user();
         $plan = Plan::find($request->plan_id);
+        //dd($plan);
         if($request->trial){
             $subscription = $this->create($plan,$user,true);
             return redirect()->route('dashboard');

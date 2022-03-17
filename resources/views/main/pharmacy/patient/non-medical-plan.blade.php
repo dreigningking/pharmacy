@@ -30,11 +30,12 @@
             @include('main.pharmacy.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
+                
              <div class="row">
              <div class="card col-12">
 
 <div class="card-body">
-    <h4 class="card-title">Prescription</h4>
+    <h4 class="card-title">Non-medication Plan</h4>
 </div>
 
     <div class="row w-100 pl-4">
