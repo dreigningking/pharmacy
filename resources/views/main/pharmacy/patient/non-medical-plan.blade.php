@@ -30,40 +30,43 @@
             @include('main.pharmacy.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
-                
-             <div class="row">
-             <div class="card col-12">
 
-<div class="card-body">
-    <h4 class="card-title">Non-medication Plan</h4>
-</div>
+                <div class="row">
+                    <div class="card col-12">
 
-    <div class="row w-100 pl-4">
-        <form class="row w-100">
-        <div class="col-md-12 w-100 plans">
-                                                <div class="plan">
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-2 col-form-label pr-0">Plan Info</label>
-                                                        <div class="col-lg-10">
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Non-medication Plan</h4>
+                        </div>
 
-
-
+                        <div class="row w-100 pl-4">
+                            <form class="row w-100">
+                                <div class="col-md-12 w-100 plans">
+                                    <div class="plan">
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label pr-0">Plan Info</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control">
                                             </div>
-        <div class="plus-more add-more">
-            <a href="javascript:void(0);" class="add-plan"><i
-                    class="fa fa-plus-circle"></i> Add More</a>
-        </div>
-        </form>
-      
-    </div>
+                                        </div>
+                                    </div>
 
 
-</div>
-             </div>
+
+                                </div>
+                                <div class="plus-more add-more">
+                                    <a href="javascript:void(0);" class="add-plan"><i class="fa fa-plus-circle"></i> Add
+                                        More</a>
+                                </div>
+                                <div class="row w-100 mt-6 justify-content-end">
+<button class="btn btn-primary mb-4">Save</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -77,20 +80,20 @@
 
 @push('scripts')
 <script>
- $(".plans").on('click', '.trash', function() {
+$(".plans").on('click', '.trash', function() {
     $(this).closest('.plan').remove();
     return false;
 });
 $(".add-plan").on('click', function() {
     console.log("meh")
     var regcontent = '<div class="plan row">' +
-    '<div class="col-11 pr-0 pl-0">' +
+        '<div class="col-11 pr-0 pl-0">' +
         ' <div class="form-group row">' +
         '<label class="col-lg-2 col-form-label"></label>' +
         '<div class="col-lg-10">' +
         '<input type="text" class="form-control">' +
         '</div>' +
-        
+
         '</div>' +
         '</div>' +
         '<div class="col-1 pr-0 pl-0 d-flex align-items-start justify-content-end" >' +

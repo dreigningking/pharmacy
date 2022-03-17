@@ -189,15 +189,15 @@
 -----------------------*/
 
 .check {
-	display: block;
-	margin: 0;
-	padding: 0;
-	width: 0;
-	height: 0;
-	visibility: hidden;
-	opacity: 0;
-	pointer-events: none;
-	position: absolute;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
 }
 .checktoggle {
     background-color: #fffdfd;
@@ -213,48 +213,49 @@
     width: 48px;
 }
 .checktoggle:after {
-	content: ' ';
-	display: block;
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translate(5px, -50%);
-	width: 16px;
-	height: 16px;
-	background-color: #777;
-	border-radius: 50%;
-	transition: left 300ms ease, transform 300ms ease;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(5px, -50%);
+    width: 16px;
+    height: 16px;
+    background-color: #777;
+    border-radius: 50%;
+    transition: left 300ms ease, transform 300ms ease;
 }
 .check:checked + .checktoggle {
-	border-color: #007bff;
+    border-color: #007bff;
     background-color: #007bff;
 }
 .check:checked + .checktoggle:after {
     background-color: #fff;
-	left: 100%;
-	transform: translate(calc(-100% - 5px), -50%);
+    left: 100%;
+    transform: translate(calc(-100% - 5px), -50%);
 }
 
-.requirements  {
-flex-direction: column;
+.requirements {
+    flex-direction: column;
 }
 
-.requirements h5, .requirements p {
-    margin-bottom : 0 !important;
+.requirements h5,
+.requirements p {
+    margin-bottom: 0 !important;
     padding-left: 1.5rem;
 }
-.social-icon{
+.social-icon {
     font-size: 1.2rem !important;
     margin-right: 1rem !important;
     color: gray !important;
 }
 
-.social p{
-margin-bottom: 0 !important;
+.social p {
+    margin-bottom: 0 !important;
 }
 
 .social a {
-color: #007bff;
+    color: #007bff;
 }
 .social-button {
     width: 8rem !important;
@@ -285,7 +286,7 @@ color: #007bff;
 .add-medicine a {
     color: inherit;
 }
-.custom-select-sm{
+.custom-select-sm {
     min-height: 46px !important;
     margin-bottom: 10px !important;
 }
@@ -296,17 +297,17 @@ color: #007bff;
     border-right: 1px solid rgb(226, 225, 225);
 }
 .btn.btn-danger.trash {
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     height: 46px;
     width: 46px;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	justify-content: center;
-	-webkit-justify-content: center;
-	-ms-flex-pack: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
 }
 
 .booking-doc-info {
@@ -325,8 +326,8 @@ color: #007bff;
     border: 1px solid #4dd0e1 !important;
 }
 .second {
-    background-color: #03a9f4  !important;
-    border: 1px solid #03a9f4  !important;
+    background-color: #03a9f4 !important;
+    border: 1px solid #03a9f4 !important;
 }
 .notif {
     margin-top: 0.5rem;
@@ -335,28 +336,27 @@ color: #007bff;
 
 .notif-badge {
     height: 1.1rem;
-
 }
 
 .minmaxCon {
     height: 45px;
     bottom: 10px;
     left: 20%;
-    
+
     position: fixed;
     right: 1px;
     z-index: 9999;
-  }
+}
 
-  .modal-control {
-      width: 70px;
-      height: 60px;
-  }
-  .end {
-      background-color: transparent !important;
-      color: #a0a0a0 !important;
-      font-size: 19px !important;
-  }
+.modal-control {
+    width: 70px;
+    height: 60px;
+}
+.end {
+    background-color: transparent !important;
+    color: #a0a0a0 !important;
+    font-size: 19px !important;
+}
 .custom-modal.minimize {
     background-color: #ffffff;
     border-radius: 50%;
@@ -384,7 +384,7 @@ color: #007bff;
 }
 .minimize span {
     background-color: transparent;
-  padding: 0 5px;
+    padding: 0 5px;
     color: #a0a0a0;
 }
 .min {
@@ -397,189 +397,88 @@ color: #007bff;
     border: 1px solid rgb(184, 182, 182);
     float: left;
     position: static !important;
-  }
-  .min .modal-dialog, .min .modal-content {
+}
+.min .modal-dialog,
+.min .modal-content {
     height: 100%;
     width: 100%;
     margin: 0px !important;
     padding: 0px !important;
-  }
-  
-  .min .modal-header {
+}
+
+.min .modal-header {
     height: 100%;
     width: 100%;
     margin: 0px !important;
     padding: 3px 5px !important;
-  }
-  .min .modal-header .close {
-      top: 10px !important;
-      font-size: 22px !important;
-      right: 0 !important;
-  }
-  .min .fa { font-size: 14px; }
+}
+.min .modal-header .close {
+    top: 10px !important;
+    font-size: 22px !important;
+    right: 0 !important;
+}
+.min .fa {
+    font-size: 14px;
+}
 
-  .min .menuTab { display: none; }  
-  .display-none {display:none; }
+.min .menuTab {
+    display: none;
+}
+.display-none {
+    display: none;
+}
 
-  .modal-open .main-wrapper{
-      -webkit-filter: none !important;
-      filter: none !important;
-  }
-  .modal .assessment {
-      max-width: 70% !important;
-  }
-  .minmaxCon .modal .assessment {
-      max-width: 100% !important;
-  }
-  .dash-modal .modal-content {
+.modal-open .main-wrapper {
+    -webkit-filter: none !important;
+    filter: none !important;
+}
+.modal .assessment {
+    max-width: 70% !important;
+}
+.minmaxCon .modal .assessment {
+    max-width: 100% !important;
+}
+.dash-modal .modal-content {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
-  }
+}
 .search-form {
     width: 60%;
 }
-  .search {
-      outline: none !important;
-      height: 40px;
-      border-radius: 10px;
-      border: 1px solid rgb(172, 170, 170);
-      padding: 0 5px;
-      width: 90%;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-  }
-  .search-btn {
-       border-top-left-radius: 0 !important;
-       border-bottom-left-radius: 0 !important;
-       border-top-right-radius: 10px;
-       border-bottom-right-radius: 10px;
-  }
-
-  .plus-more {
-      margin-left: 10% !important;
-  }
-
-  .row .open {
-      width: 100%;
-      text-align: start;
-      padding-left: 1.8rem;
-      border-bottom: 1px solid rgb(245, 242, 242);
-      color: black;
-      text-transform: uppercase;
-      font-weight: 550;
-  }
-  .assessment-title {
-      font-weight: 600;
-  }
- .pres {
-     color: white;
- }
- #grad1 {
-    background-color: #ffffff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+.search {
+    outline: none !important;
+    height: 40px;
     border-radius: 10px;
-}
-#grad1 .child {
+    border: 1px solid rgb(172, 170, 170);
+    padding: 0 5px;
     width: 90%;
-    height: 90%;
-    margin: 0 auto;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
-#msform {
-    text-align: center;
-    position: relative;
-    margin-top: 20px
-}
-
-#msform fieldset .form-card {
-    background: white;
-    border: 0 none;
-    border-radius: 0px;
-    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
-    padding: 20px 40px 30px 40px;
-    box-sizing: border-box;
-    width: 94%;
-    margin: 0 3% 20px 3%;
-    position: relative
+.search-btn {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-#msform fieldset {
-    background: white;
-    border: 0 none;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
+.plus-more {
+    margin-left: 10% !important;
+}
+
+.row .open {
     width: 100%;
-    margin: 0;
-    padding-bottom: 20px;
-    position: relative
+    text-align: start;
+    padding-left: 1.8rem;
+    border-bottom: 1px solid rgb(245, 242, 242);
+    color: black;
+    text-transform: uppercase;
+    font-weight: 550;
 }
-
-#msform fieldset:not(:first-of-type) {
-    display: none
+.assessment-title {
+    font-weight: 600;
 }
-
-#msform fieldset .form-card {
-    text-align: left;
-    color: #9E9E9E
-}
-
-#msform input,
-#msform textarea {
-    padding: 0px 8px 4px 8px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    border-radius: 0px;
-    margin-bottom: 25px;
-    margin-top: 2px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 16px;
-    letter-spacing: 1px
-}
-
-#msform input:focus,
-#msform textarea:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: none;
-    font-weight: bold;
-    border-bottom: 2px solid skyblue;
-    outline-width: 0
-}
-
-#msform .action-button {
-    width: 100px;
-    background: skyblue;
-    font-weight: bold;
+.pres {
     color: white;
-    border: 0 none;
-    border-radius: 0px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px
-}
-
-#msform .action-button:hover,
-#msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue
-}
-
-#msform .action-button-previous {
-    width: 100px;
-    background: #616161;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 0px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px
-}
-
-#msform .action-button-previous:hover,
-#msform .action-button-previous:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
 }
 
 select.list-dt {
@@ -587,36 +486,36 @@ select.list-dt {
     outline: 0;
     border-bottom: 1px solid #ccc;
     padding: 2px 5px 3px 5px;
-    margin: 2px
+    margin: 2px;
 }
 
 select.list-dt:focus {
-    border-bottom: 2px solid skyblue
+    border-bottom: 2px solid skyblue;
 }
 
 .card {
     z-index: 0;
     border: none;
     border-radius: 0.5rem;
-    position: relative
+    position: relative;
 }
 
 .fs-title {
     font-size: 25px;
-    color: #2C3E50;
+    color: #2c3e50;
     margin-bottom: 10px;
     font-weight: bold;
-    text-align: left
+    text-align: left;
 }
 
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;
-    color: lightgrey
+    color: lightgrey;
 }
 
 #progressbar .active {
-    color: #000000
+    color: #000000;
 }
 
 #progressbar li {
@@ -624,27 +523,27 @@ select.list-dt:focus {
     font-size: 12px;
     width: 25%;
     float: left;
-    position: relative
+    position: relative;
 }
 
 #progressbar #account:before {
     font-family: FontAwesome;
-    content: "\f023"
+    content: "\f023";
 }
 
 #progressbar #personal:before {
     font-family: FontAwesome;
-    content: "\f007"
+    content: "\f007";
 }
 
 #progressbar #payment:before {
     font-family: FontAwesome;
-    content: "\f09d"
+    content: "\f09d";
 }
 
 #progressbar #confirm:before {
     font-family: FontAwesome;
-    content: "\f00c"
+    content: "\f00c";
 }
 
 #progressbar li:before {
@@ -657,28 +556,28 @@ select.list-dt:focus {
     background: lightgray;
     border-radius: 50%;
     margin: 0 auto 10px auto;
-    padding: 2px
+    padding: 2px;
 }
 
 #progressbar li:after {
-    content: '';
+    content: "";
     width: 100%;
     height: 2px;
     background: lightgray;
     position: absolute;
     left: 0;
     top: 25px;
-    z-index: -1
+    z-index: -1;
 }
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: skyblue
+    background: skyblue;
 }
 
 .radio-group {
     position: relative;
-    margin-bottom: 25px
+    margin-bottom: 25px;
 }
 
 .radio {
@@ -690,23 +589,24 @@ select.list-dt:focus {
     box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     cursor: pointer;
-    margin: 8px 2px
+    margin: 8px 2px;
 }
 
 .radio:hover {
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .radio.selected {
-    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .fit-image {
     width: 100%;
-    object-fit: cover
+    object-fit: cover;
 }
+
 @media screen and (max-width: 480px) {
-    .dashboard-menu  {
+    .dashboard-menu {
         margin-right: 0.75rem;
     }
     .dashboard-menu a {
