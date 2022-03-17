@@ -63,13 +63,13 @@
                             <span>Shelf</span>
                         </a>
                     </li>
-                    <!-- <li>
-                        <a href="chat-doctor.html">
+                    <li @if(Route::is('pharmacy.supply')) class="active" @endif>
+                        <a href="{{route('pharmacy.supply',$pharmacy)}}">
                             <i class="fas fa-file-invoice"></i>
-                            <span>Supply</span>
+                            <span>Add Supply</span>
 
                         </a>
-                    </li> -->
+                    </li>
                     <!-- <li @if(Route::is('pharmacy.permissions')) class="active" @endif>
                         <a href="{{route('pharmacy.permissions',$pharmacy)}}">
                             <i class="fas fa-user-lock"></i>

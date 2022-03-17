@@ -87,4 +87,7 @@ class PharmacyController extends Controller
     public function saveSettings(Pharmacy $pharmacy){
         return redirect()->back();
     }
+    public function supply(Pharmacy $pharmacy){
+        return view('main.pharmacy.supply',compact('pharmacy'));
+    }
 }

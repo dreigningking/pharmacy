@@ -91,7 +91,8 @@
                 <div class="row">
                     <div class="col-sm-3 ml-3">
                         <div class="row justify-content-start mb-4 dashboard-menu">
-                            <a class="btn btn-primary btn-lg first" href="{{route('pharmacy.addpatient',$pharmacy)}}">New
+                            <a class="btn btn-primary btn-lg first"
+                                href="{{route('pharmacy.addpatient',$pharmacy)}}">New
                                 Patients</a>
                         </div>
                     </div>
@@ -101,12 +102,12 @@
                                 Sales</a>
                         </div>
                     </div>
-                    <div class="col-sm-3 ml-3">
+                    <!-- <div class="col-sm-3 ml-3">
                         <div class="row justify-content-start mb-4 dashboard-menu">
                             <a class="btn btn-primary btn-lg third dash-btn" data-toggle="modal" href="#supply">New
                                 Supply</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -981,72 +982,80 @@ $(".add-plan").on('click', function() {
     $(".plans").append(regcontent);
     return false;
 });
-$(document).ready(function(){
+$(document).ready(function() {
 
-var current_fs, next_fs, previous_fs; //fieldsets
-var opacity;
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var opacity;
 
-$(".next").click(function(){
+    $(".next").click(function() {
 
-current_fs = $(this).parent();
-next_fs = $(this).parent().next();
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
 
-//Add Class Active
-$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        //Add Class Active
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
-//show the next fieldset
-next_fs.show();
-//hide the current fieldset with style
-current_fs.animate({opacity: 0}, {
-step: function(now) {
-// for making fielset appear animation
-opacity = 1 - now;
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({
+            opacity: 0
+        }, {
+            step: function(now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
 
-current_fs.css({
-'display': 'none',
-'position': 'relative'
-});
-next_fs.css({'opacity': opacity});
-},
-duration: 600
-});
-});
+                current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                });
+                next_fs.css({
+                    'opacity': opacity
+                });
+            },
+            duration: 600
+        });
+    });
 
-$(".previous").click(function(){
+    $(".previous").click(function() {
 
-current_fs = $(this).parent();
-previous_fs = $(this).parent().prev();
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
 
-//Remove class active
-$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+        //Remove class active
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
 
-//show the previous fieldset
-previous_fs.show();
+        //show the previous fieldset
+        previous_fs.show();
 
-//hide the current fieldset with style
-current_fs.animate({opacity: 0}, {
-step: function(now) {
-// for making fielset appear animation
-opacity = 1 - now;
+        //hide the current fieldset with style
+        current_fs.animate({
+            opacity: 0
+        }, {
+            step: function(now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
 
-current_fs.css({
-'display': 'none',
-'position': 'relative'
-});
-previous_fs.css({'opacity': opacity});
-},
-duration: 600
-});
-});
+                current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                });
+                previous_fs.css({
+                    'opacity': opacity
+                });
+            },
+            duration: 600
+        });
+    });
 
-$('.radio-group .radio').click(function(){
-$(this).parent().find('.radio').removeClass('selected');
-$(this).addClass('selected');
-});
+    $('.radio-group .radio').click(function() {
+        $(this).parent().find('.radio').removeClass('selected');
+        $(this).addClass('selected');
+    });
 
-$(".submit").click(function(){
-return false;
-})
+    $(".submit").click(function() {
+        return false;
+    })
 
 });
 </script>
@@ -1054,7 +1063,7 @@ return false;
 
 <!-- Sales Modal -->
 <div class="modal fade custom-modal dash-modal" id="sales" role="dialog" data-backdrop="false">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Sales</h5>
@@ -1080,7 +1089,7 @@ return false;
 
 <!-- Supply Modal -->
 <div class="modal fade custom-modal dash-modal" id="supply" role="dialog" data-backdrop="false">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered supply">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Supply</h5>
@@ -1095,7 +1104,58 @@ return false;
                 </div>
             </div>
             <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
 
+                        <form action="">
+                            <div class="container-fluid pl-0 pr-0">
+                                <div class="row ">
+                                    <div class="col-md-7">
+                                        <div class="form-group row align-items-center">
+                                            <label for="usr" class="col-3">Invoice No:</label>
+                                            <input type="text" class="form-control col-9" id="usr">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row w-100 justify-content-end">
+                                            <a class="btn btn-primary btn-lg" data-toggle="modal" href="#">Add New
+                                                Drug</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-7">
+                                        <div class="form-group row align-items-center">
+                                            <label for="usr" class="col-3">Supply:</label>
+                                            <select class="form-control col-9" id="sel1">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row w-100 justify-content-end">
+                                            <a class="btn btn-primary btn-lg" data-toggle="modal" href="#">Add
+                                                Supplier</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-7">
+                                        <div class="form-group row align-items-center">
+                                            <label for="usr" class="col-3">Date:</label>
+                                            <input type="date" class="form-control col-9" id="usr">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
