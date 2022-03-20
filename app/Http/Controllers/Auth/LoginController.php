@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -41,5 +42,16 @@ class LoginController extends Controller
     {
         // dd(in_array('web',request()->route()->action['middleware']));
         return view('auth.login');
+    }
+    public function adminLoginForm()
+    {
+        // dd(in_array('web',request()->route()->action['middleware']));
+        return view('auth.admin');
+    }
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->admin){
+            return redirect()->route('admin.dashboard');
+        }
     }
 }

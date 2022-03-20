@@ -24,15 +24,15 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('main.user.dashboard',compact('user'));
+        return view('user.dashboard',compact('user'));
     }
     
     public function workspaces(){
         $user = Auth::user();
-        return view('main.user.workspaces',compact('user'));
+        return view('user.workspaces',compact('user'));
     }
     public function invitations(Pharmacy $pharmacy,User $user){
-        return view('main.pharmacy.invitations',compact('user','pharmacy'));
+        return view('pharmacy.invitations',compact('user','pharmacy'));
     }
     public function invitation_submit(Request $request){
         $user = User::find($request->user_id);

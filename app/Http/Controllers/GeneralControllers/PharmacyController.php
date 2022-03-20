@@ -14,20 +14,21 @@ class PharmacyController extends Controller
 {
    
     public function index(Pharmacy $pharmacy){
-        return view('main.pharmacy.dashboard',compact('pharmacy'));
+        return view('pharmacy.dashboard',compact('pharmacy'));
     }
 
     public function subscription(Pharmacy $pharmacy){
-        return view('main.pharmacy.subscription',compact('pharmacy'));
+        return view('pharmacy.subscription',compact('pharmacy'));
     }
 
     public function create(){
         $countries = Country::all();
         $user = Auth::user();
-        return view('main.pharmacy.create',compact('countries'));
+        return view('pharmacy.create',compact('countries'));
     }
 
     public function store(Request $request){
+        
         $validator = Validator::make($request->all(), [
             'image' => 'required|image|max:5000',
             'name' => 'required|string',
@@ -47,6 +48,7 @@ class PharmacyController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
             else return response()->json(json_decode($validator->errors(), true));
         }
+        
         $user = Auth::user();
         $image = time().'.jpg';
         $request->file('image')->storeAs('public/pharmacies/logos',$image);
@@ -55,34 +57,35 @@ class PharmacyController extends Controller
                         'type'=> $request->type,'country_id'=> $request->country_id,'state_id'=>$request->state_id,'city_id'=> $request->city_id]);
         $role_id = $role_id = Role::where('name','director')->first()->id;
         $pharmacy->users()->attach($user->id,['role_id'=> $role_id,'status'=> true]);
-        return redirect()->route('pharmacy.subscription',$pharmacy);
+        $plan = Plan::where('name','pharmacy_subscription')->first();
+        return redirect()->route('checkout',$pharmacy,$plan);
     }
 
     public function permission(Pharmacy $pharmacy){
         $roles = Role::all();
         // dd($roles);
-        return view ('main.pharmacy.permissions', compact('pharmacy','roles'));
+        return view ('pharmacy.permissions', compact('pharmacy','roles'));
     }
     
     public function transactions(Pharmacy $pharmacy){
-        return view('main.pharmacy.transactions',compact('pharmacy'));
+        return view('pharmacy.transactions',compact('pharmacy'));
     }
 
     public function staff(Pharmacy $pharmacy){
-        return view('main.pharmacy.staff.list',compact('pharmacy'));
+        return view('pharmacy.staff.list',compact('pharmacy'));
     }
 
     public function newstaff(Pharmacy $pharmacy){
-        return view('main.pharmacy.staff.create',compact('pharmacy'));
+        return view('pharmacy.staff.create',compact('pharmacy'));
     }
     public function inventory(Pharmacy $pharmacy){
-        return view('main.pharmacy.inventory',compact('pharmacy'));
+        return view('pharmacy.inventory',compact('pharmacy'));
     }
     public function shelf(Pharmacy $pharmacy){
-        return view('main.pharmacy.shelf',compact('pharmacy'));
+        return view('pharmacy.shelf',compact('pharmacy'));
     }
     public function settings(Pharmacy $pharmacy){
-        return view('main.pharmacy.settings',compact('pharmacy'));
+        return view('pharmacy.settings',compact('pharmacy'));
     }
     public function saveSettings(Pharmacy $pharmacy){
         return redirect()->back();

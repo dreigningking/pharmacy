@@ -18,10 +18,11 @@ class PharmacyMiddleware
     {
         if($request->user()->pharmacies->isEmpty())
         return redirect()->route('setup');
+        if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->isEmpty())
+        return redirect()->route('workspaces');
         if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->where('pivot.status',false)->isNotEmpty())
         return redirect()->route('invitations');
-        if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->isEmpty())
-        abort(404,'You do not have permission to view this page');
+        
         return $next($request);
     }
 }

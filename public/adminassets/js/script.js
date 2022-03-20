@@ -79,7 +79,7 @@ Version      : 1.0
 	
     if ($('.select').length > 0) {
         $('.select').select2({
-            minimumResultsForSearch: -1,
+            // minimumResultsForSearch: -1,
             width: '100%'
         });
     }

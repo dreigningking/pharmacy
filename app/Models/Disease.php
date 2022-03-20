@@ -9,6 +9,8 @@ use App\Models\Medicine;
 class Disease extends Model
 {
     use HasFactory;
+    protected $fillable = ['name'];
+    
     public function medicines () {
         return $this->belongsToMany(Medicine::class, 'medicine_reactions');
     }

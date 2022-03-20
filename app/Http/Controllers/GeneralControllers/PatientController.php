@@ -15,7 +15,7 @@ class PatientController extends Controller
      */
     public function index(Pharmacy $pharmacy)
     {
-        return view('main.pharmacy.patient.list', compact('pharmacy'));
+        return view('pharmacy.patient.list', compact('pharmacy'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PatientController extends Controller
      */
     public function read(Pharmacy $pharmacy)
     {
-        return view('main.pharmacy.patient.view', compact('pharmacy'));
+        return view('pharmacy.patient.view', compact('pharmacy'));
     }
 
     /**
@@ -36,13 +36,13 @@ class PatientController extends Controller
      */
     public function add(Pharmacy $pharmacy)
     {
-        return view('main.pharmacy.patient.add', compact('pharmacy'));
+        return view('pharmacy.patient.add', compact('pharmacy'));
     }
 
     public function store(Request $request)
     {
         $pharmacy = Pharmacy::find($request->pharmacy_id);
-        return view('main.pharmacy.patient.add', compact('pharmacy'));
+        return view('pharmacy.patient.add', compact('pharmacy'));
     }
 
     /**
@@ -91,22 +91,22 @@ class PatientController extends Controller
     }
 
     public function assess(Pharmacy $pharmacy){
-        return view('main.pharmacy.assessment.list', compact('pharmacy'));
+        return view('pharmacy.assessment.list', compact('pharmacy'));
     }
 
     public function showassessment(Pharmacy $pharmacy){
-        return view('main.pharmacy.assessment.view', compact('pharmacy'));
+        return view('pharmacy.assessment.view', compact('pharmacy'));
     }
 
     public function new(Pharmacy $pharmacy) {
-        return view('main.pharmacy.assessment.add', compact('pharmacy'));
+        return view('pharmacy.assessment.add', compact('pharmacy'));
     }
 
     public function prescription(Pharmacy $pharmacy) {
-        return view('main.pharmacy.assessment.prescription', compact('pharmacy'));
+        return view('pharmacy.assessment.prescription', compact('pharmacy'));
     }
 
     public function plan(Pharmacy $pharmacy) {
-        return view ('main.pharmacy.patient.non-medical-plan', compact('pharmacy'));
+        return view ('pharmacy.patient.non-medical-plan', compact('pharmacy'));
     }
 }

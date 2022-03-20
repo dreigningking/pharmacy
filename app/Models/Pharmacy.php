@@ -9,7 +9,7 @@ use App\Models\State;
 use App\Models\PharmacyUser;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Country;
-use App\Models\PharmacySubscription;
+use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,7 +43,7 @@ class Pharmacy extends Model
         return $this->belongsTo(City::class);
     }
     public function subscriptions(){
-        return $this->hasMany(PharmacySubscription::class);
+        return $this->hasMany(Subscription::class);
     }
     public function sales(){
         return $this->hasMany(Sale::class);
