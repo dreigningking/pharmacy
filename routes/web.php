@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function(){
             Route::get('inventory', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'inventory'])->name("inventory");
             Route::get('shelf', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'shelf'])->name("shelf");
             Route::get('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
+            Route::get('supply', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'supply'])->name("supply");
 
         });
     });

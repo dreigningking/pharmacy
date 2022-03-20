@@ -432,10 +432,10 @@
     -webkit-filter: none !important;
     filter: none !important;
 }
-.modal .assessment {
-    max-width: 70% !important;
+.modal .supply {
+    max-width: 60% !important;
 }
-.minmaxCon .modal .assessment {
+.minmaxCon .modal .supply {
     max-width: 100% !important;
 }
 .dash-modal .modal-content {
