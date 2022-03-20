@@ -78,19 +78,12 @@ class PharmacyController extends Controller
     public function newstaff(Pharmacy $pharmacy){
         return view('pharmacy.staff.create',compact('pharmacy'));
     }
-    public function inventory(Pharmacy $pharmacy){
-        return view('pharmacy.inventory',compact('pharmacy'));
-    }
-    public function shelf(Pharmacy $pharmacy){
-        return view('pharmacy.shelf',compact('pharmacy'));
-    }
+    
     public function settings(Pharmacy $pharmacy){
         return view('pharmacy.settings',compact('pharmacy'));
     }
     public function saveSettings(Pharmacy $pharmacy){
         return redirect()->back();
     }
-    public function supply(Pharmacy $pharmacy){
-        return view('main.pharmacy.supply',compact('pharmacy'));
-    }
+    
 }

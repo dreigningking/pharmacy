@@ -77,10 +77,10 @@ Route::middleware('auth')->group(function(){
             Route::get('assessment/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'showassessment'])->name("showassessment");
             Route::get('prescription', [App\Http\Controllers\GeneralControllers\PatientController::class, 'prescription'])->name("prescription");
             Route::get('nonmedical-plan', [App\Http\Controllers\GeneralControllers\PatientController::class, 'plan'])->name("plan");
-            Route::get('inventory', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'inventory'])->name("inventory");
-            Route::get('shelf', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'shelf'])->name("shelf");
+            Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'inventory'])->name("inventory");
+            Route::get('shelf', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'shelf'])->name("shelf");
             Route::get('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
-            Route::get('supply', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'supply'])->name("supply");
+            Route::get('supply', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'supply'])->name("supply");
 
         });
     });

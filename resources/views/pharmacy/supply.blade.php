@@ -27,7 +27,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('main.pharmacy.sidebar')
+            @include('pharmacy.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
 
@@ -41,49 +41,51 @@
 
                             <form action="">
                                 <div class="container-fluid pl-0 pr-0">
-                                    <div class="row ">
-                                        <div class="col-md-7">
-                                            <div class="form-group row align-items-center">
-                                                <label for="usr" class="col-3">Invoice No:</label>
-                                                <input type="text" class="form-control col-9" id="usr">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="usr">Supplier:</label>
+                                                <select class="form-control" id="sel1">
+                                                    @forelse($suppliers as $supplier)
+                                                        <option>{{$supplier->name}}</option>
+                                                        @empty
+                                                        <option value="0" disabled>No Suppliers</option>
+                                                    @endforelse
+                                                    
+                                                </select>
                                             </div>
+                                            <div><a class="btn btn-primary" data-toggle="modal" href="#">Add Supplier</a></div>
+                                            
+                                        </div>
+                                        <div>
+                                            <div class="form-group align-items-left">
+                                                <label for="usr">Invoice No:</label>
+                                                <input type="text" class="form-control" id="usr">
+                                            </div>
+                                            
+                                            <div class="form-group row align-items-center">
+                                                <label for="usr">Date:</label>
+                                                <input type="date" class="form-control" id="usr">
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                            
                                         </div>
                                         <div class="col-md-5">
                                             <div class="row w-100 justify-content-end">
                                                <div class="col-md-6">
-                                               <a class="btn btn-primary btn-lg w-100" data-toggle="modal" href="#">Add
+                                               <a class="btn btn-primary w-100" data-toggle="modal" href="#">Add
                                                     New
                                                     Drug</a>
                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="row ">
-                                        <div class="col-md-7">
-                                            <div class="form-group row align-items-center">
-                                                <label for="usr" class="col-3">Supply:</label>
-                                                <select class="form-control col-9" id="sel1">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="row w-100 justify-content-end">
-                                               <div class="col-md-6"> <a class="btn btn-primary btn-lg w-100" data-toggle="modal" href="#">Add
-                                                    Supplier</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row ">
-                                        <div class="col-md-7">
-                                            <div class="form-group row align-items-center">
-                                                <label for="usr" class="col-3">Date:</label>
-                                                <input type="date" class="form-control col-9" id="usr">
-                                            </div>
-                                        </div>
+                                        
 
                                     </div>
                                     <div class="row w-100 mt-4">
