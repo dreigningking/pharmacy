@@ -636,3 +636,8 @@
     </div>		
     <!-- /Page Content -->
 @endsection
+@push('scripts')
+    <!-- morris -->
+    <script src="{{asset('plugins/morris/morris.min.js')}}"></script>
+    <script src="{{asset('adminassets/js/chart.morris.js')}}"></script>
+@endpush

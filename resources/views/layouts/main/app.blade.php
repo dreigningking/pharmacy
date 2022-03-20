@@ -201,13 +201,15 @@
 
     <!-- jQuery -->
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
-    <!-- morris -->
-    <script src="{{asset('plugins/morris/morris.min.js')}}"></script>
-    <script src="{{asset('adminassets/js/chart.morris.js')}}"></script>
+    
     <!-- Bootstrap Core JS -->
     <script src="{{asset('assets/js/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 
+    <!-- Sticky Sidebar JS -->
+    <script src="{{asset('plugins/theia-sticky-sidebar/ResizeSensor.js')}}"></script>
+    <script src="{{asset('plugins/theia-sticky-sidebar/theia-sticky-sidebar.js')}}"></script>
+    
     <!-- Datatables -->
     <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>

@@ -1,7 +1,5 @@
 @extends('layouts.main.app')
 @push('styles')
-<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-<link rel="stylesheet" href="{{asset('plugins/morris/morris.css')}}">
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -86,47 +84,25 @@
                                                     
                                                 </td>
                                                 <td>
-                                                    {{-- @if($pharmacy->subscriptions->where('status',true)->first()->end < now() || $pharmacy->subscriptions->where('status',true)->first()->warn < now()) --}}
-                                                    <a href="{{route('pharmacy.checkout',[$pharmacy,$pharmacy->subscriptions->first()->plan])}}"
-                                                        class="btn btn-outline d-flex align-items-center payment-btn">
+                                                    @if($pharmacy->subscriptions->where('status',true)->first()->end < now() || $pharmacy->subscriptions->where('status',true)->first()->warn < now())
+                                                        <a href="{{route('pharmacy.checkout',[$pharmacy,$pharmacy->subscriptions->first()->plan])}}"
+                                                            class="btn btn-outline d-flex align-items-center payment-btn">
 
-                                                        <i class="fas fa-eye"></i>
-                                                        <p class="ml-2 mt-0 mb-0">Renew Subscription</p>
-                                                    </a>
-                                                    {{-- @else --}}
-                                                    {{-- <button
-                                                        class="btn btn-outline d-flex align-items-center payment-btn">
+                                                            <i class="fas fa-eye"></i>
+                                                            <p class="ml-2 mt-0 mb-0">Renew Subscription</p>
+                                                        </a>
+                                                    @else
+                                                        <button
+                                                            class="btn btn-outline d-flex align-items-center payment-btn">
 
-                                                        <i class="fas fa-eye"></i>
-                                                        <p class="ml-2 mt-0 mb-0">View Invoice</p>
-                                                    </button>
-                                                    @endif --}}
+                                                            <i class="fas fa-eye"></i>
+                                                            <p class="ml-2 mt-0 mb-0">View Invoice</p>
+                                                        </button>
+                                                    @endif
                                                     
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        {{-- <tr>
-                                            <td>#3682303</td>
-                                            <td>Successful</td>
-                                            <td>$264</td>
-                                            <td>22/04/2020</td>
-                                            <td>
-                                                <button
-                                                    class="btn btn-outline d-flex align-items-center payment-btn">
-                                                    <i class="fas fa-file-download"></i>
-                                                    <p class="ml-2 mt-0 mb-0">PDF</p>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button
-                                                    class="btn btn-outline d-flex align-items-center payment-btn">
-
-                                                    <i class="fas fa-eye"></i>
-                                                    <p class="ml-2 mt-0 mb-0">Quick View</p>
-                                                </button>
-                                            </td>
-                                        </tr> --}}
-
                                     </tbody>
                                 </table>
                             </div>

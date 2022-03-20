@@ -1,8 +1,5 @@
 @extends('layouts.admin.app')
 @push('styles')
-<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-<link rel="stylesheet" href="{{asset('plugins/morris/morris.css')}}">
-
 <!-- Datatables CSS -->
 <link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
 @endpush

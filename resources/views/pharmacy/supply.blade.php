@@ -1,7 +1,6 @@
 @extends('layouts.main.app')
 @push('styles')
-<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-<link rel="stylesheet" href="{{asset('adminassets/plugins/morris/morris.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -54,8 +53,12 @@
                                                     
                                                 </select>
                                             </div>
-                                            <div><a class="btn btn-primary" data-toggle="modal" href="#">Add Supplier</a></div>
-                                            
+                                            <div>
+                                                <a class="btn btn-primary" data-toggle="modal" href="#">Add Supplier</a>
+                                                
+                                                <a class="btn btn-primary w-100" data-toggle="modal" href="#">Add New Drug</a>
+                                               
+                                            </div> 
                                         </div>
                                         <div>
                                             <div class="form-group align-items-left">
@@ -67,26 +70,28 @@
                                                 <label for="usr">Date:</label>
                                                 <input type="date" class="form-control" id="usr">
                                             </div>
-                                        </div>
-                                        
-                                        
+                                        </div> 
                                     </div>
-                                            
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="row w-100 justify-content-end">
-                                               <div class="col-md-6">
-                                               <a class="btn btn-primary w-100" data-toggle="modal" href="#">Add
-                                                    New
-                                                    Drug</a>
-                                               </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                     <div class="row ">
-                                        
-
+                                        <div class="col-12">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th>Quantity</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select name="medicine" id="" class="form-control select">
+                                                            <option value="1">Lonart</option>
+                                                            <option value="2">Amoxil</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>Quantity</td>
+                                                    <td>Amount</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                     <div class="row w-100 mt-4">
                                         <div class="supplies row w-100">
@@ -141,6 +146,7 @@
 @endsection
 
 @push('scripts')
+<script src="{{asset('plugins/select2/css/select2.min.js')}}"></script>
 <script>
 $(".supplies").on('click', '.trash', function() {
     $(this).closest('.supply').remove();

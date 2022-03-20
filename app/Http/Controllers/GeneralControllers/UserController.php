@@ -95,6 +95,14 @@ class UserController extends Controller
         dd($transactions);
         return view('user.transactions',compact('user'));
     }
+    public function invoice(){
+        $user = Auth::user();
+        return view('invoice',compact('user'));
+    }
+    public function purchase(){
+        $user = Auth::user();
+        return view('purchaseOrder',compact('user'));
+    }
 
     public function store(Request $request){
         //

@@ -1,7 +1,5 @@
 @extends('layouts.main.app')
 @push('styles')
-<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-<link rel="stylesheet" href="{{asset('plugins/morris/morris.css')}}">
 @endpush
 @section('main')
 <!-- Breadcrumb -->

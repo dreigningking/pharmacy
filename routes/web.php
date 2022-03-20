@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::view('/','welcome')->name('index');
+
 Route::view('agreement','main.agreement')->name('agreement');
 Route::get('pharmacy/{pharmacy}/{user}/invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
 Route::post('invitation/submit', [App\Http\Controllers\WebControllers\HomeController::class, 'invitation_submit'])->name('confirm_invitations');
@@ -39,7 +40,10 @@ Route::middleware('auth')->group(function(){
     Route::get('workspaces', [App\Http\Controllers\WebControllers\HomeController::class, 'workspaces'])->name('workspaces');
     Route::get('subscription', [App\Http\Controllers\GeneralControllers\UserController::class, 'subscription'])->name("subscription");
     Route::get('transactions',[App\Http\Controllers\GeneralControllers\UserController::class, 'transactions'])->name('transactions');
-
+    
+    Route::get('invoice',[App\Http\Controllers\GeneralControllers\UserController::class, 'invoice'])->name('invoice');
+    Route::get('purchase',[App\Http\Controllers\GeneralControllers\UserController::class, 'purchase'])->name('purchase');
+    
     Route::get('profile', [App\Http\Controllers\GeneralControllers\UserController::class, 'profile'])->name('profile');
     Route::post('profile', [App\Http\Controllers\GeneralControllers\UserController::class, 'profile_update'])->name('profile');
     Route::get('security', [App\Http\Controllers\GeneralControllers\UserController::class, 'security'])->name('security');
