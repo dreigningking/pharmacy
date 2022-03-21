@@ -66,10 +66,10 @@
                                     </td>
 
                                     <td class="text-center">
-                                        5
+                                        {{$medic->items->count()}}
                                     </td>
                                     <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info">
+                                            data-toggle="modal" href="#medication_info{{$medic->id}}">
                                             <i class="fe fe-eye"></i> View More
                                         </a></td>
 
@@ -89,6 +89,7 @@
 <script>
     function medineCheck() {
         let selectMedicine = document.querySelectorAll("#medicine-check")
+        // console.log(selectMedicine)
         let medicinesel = document.querySelector("#sel1")
         let medicinesel2 = document.querySelector("#sel2")
         let selArray = [];
@@ -144,14 +145,14 @@
 
 
     }
-    // medineCheck();
+    medineCheck();
 </script>
 @endpush
 
 @section('modals')
     <!-- Medicine Info Modal -->
 @foreach($medicine as $medic)
-<div class="modal fade custom-modal add-modal" id="medication_info">
+<div class="modal fade custom-modal add-modal" id="medication_info{{$medic->id}}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -171,12 +172,6 @@
                                         Name:
                                     </div>
                                     <div class="col-sm-8 pl-0 pr-0">{{$medic->name}}</div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-sm-4 pl-0 pr-0">
-                                        Brands:
-                                    </div>
-                                    <div class="col-sm-8 pl-0 pr-0">Emzor, M&B</div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
