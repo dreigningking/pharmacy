@@ -15,12 +15,16 @@ class RoleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next,$role)
+    public function handle($request, Closure $next,...$roles)
     {
-        $role_id = Role::where('name',$role)->first()->id;
-        \abort_if($role == 'admin' && !$request->user()->admin,400);
-        if(!$request->user()->pharmacies->where('role_id',$role_id)->isEmpty())
-        abort(404,'You do not have permission to view this page');
+        // dd($roles);
+        $role_ids = Role::whereIn('name',$roles)->get()->pluck('id')->toArray();
+        if(in_array('admin',$roles) && !($request->user()->admin)){
+            \abort(404,'You do not have permission to view this page');
+        }
+        elseif(!(in_array('admin',$roles)) && $request->user()->pharmacies->whereIn('pivot.role_id',$role_ids)->isEmpty()){
+            abort(404,'You do not have permission to view this page');
+        }
         return $next($request);
     }
 }

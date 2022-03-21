@@ -15,9 +15,15 @@ class CreatePrescriptionsTable extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
-            // id, drug_id,assessment_id, dosage , period, administration, effective? , reaction, therapeutic_alternatives
+            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('assessment_id');
+            $table->integer('dosage');
+            $table->integer('duration');
+            $table->string('administration'); //
+            //effective? , reaction, therapeutic_alternatives
             $table->timestamps();
             // NONMEDICAL PRESCRIPTION: id,patient_id, assessment_id, body, effective? , reaction,
+            //Topical, Oral,Dental,Ophthalmic,Nasal,Sublingual,Rectal,Vaginal,Transdermal,Auricular (otic),
         });
     }
 

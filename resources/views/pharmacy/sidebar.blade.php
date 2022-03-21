@@ -63,8 +63,8 @@
                             <span>Shelf</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharmacy.supply')) class="active" @endif>
-                        <a href="{{route('pharmacy.supply',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.purchase')) class="active" @endif>
+                        <a href="{{route('pharmacy.purchase',$pharmacy)}}">
                             <i class="fas fa-file-invoice"></i>
                             <span>Add Supply</span>
 

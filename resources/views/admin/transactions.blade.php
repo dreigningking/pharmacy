@@ -133,127 +133,129 @@ medineCheck();
 </script>
 @endpush
 
-<!-- Medicine Info Modal -->
-@foreach($payments as $payment)
-<div class="modal fade custom-modal add-modal" id="medication_info">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Medication Information</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xl-12 d-flex">
-                        <div class="card flex-fill">
+@section('modals')
+    <!-- Medicine Info Modal -->
+    @foreach($payments as $payment)
+    <div class="modal fade custom-modal add-modal" id="medication_info">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Medication Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex">
+                            <div class="card flex-fill">
+                                
+                                <div class="card-body">
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Name:
+                                        </div>
+                                        <div class="col-sm-8 pl-0 pr-0">{{$payment->name}}</div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Brands:
+                                        </div>
+                                        <div class="col-sm-8 pl-0 pr-0">Emzor, M&B</div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Contraindications:
+                                        </div>
+                                        <div class="col-sm-8 pl-0 pr-0">{{$payment->contraindications}}</div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Treats:
+                                        </div>
+                                    
+                                        <div class="col-sm-8 pl-0 pr-0">
+                                            
+                                    
+                                    </div>
+                                    <!-- <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Treats:
+                                        </div>
+                                        <div class="col-sm-8 pl-0 pr-0">Headache et al.,</div>
+                                    </div> -->
+                                </div>
                             
-                            <div class="card-body">
-                                <div class="row mb-4">
-                                    <div class="col-sm-4 pl-0 pr-0">
-                                        Name:
-                                    </div>
-                                    <div class="col-sm-8 pl-0 pr-0">{{$payment->name}}</div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-sm-4 pl-0 pr-0">
-                                        Brands:
-                                    </div>
-                                    <div class="col-sm-8 pl-0 pr-0">Emzor, M&B</div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-sm-4 pl-0 pr-0">
-                                        Contraindications:
-                                    </div>
-                                    <div class="col-sm-8 pl-0 pr-0">{{$payment->contraindications}}</div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-sm-4 pl-0 pr-0">
-                                        Treats:
-                                    </div>
-                                
-                                    <div class="col-sm-8 pl-0 pr-0">
-                                        
-                                
-                                </div>
-                                <!-- <div class="row mb-4">
-                                    <div class="col-sm-4 pl-0 pr-0">
-                                        Treats:
-                                    </div>
-                                    <div class="col-sm-8 pl-0 pr-0">Headache et al.,</div>
-                                </div> -->
                             </div>
-                           
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endforeach
-<!-- Medicine Info Modal -->
-<!-- Reaction Modal -->
-<div class="modal fade custom-modal add-modal" id="reaction">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Medicine Reactions</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <form action="/action_page.php" class="needs-validation" novalidate>
+    @endforeach
+    <!-- Medicine Info Modal -->
+    <!-- Reaction Modal -->
+    <div class="modal fade custom-modal add-modal" id="reaction">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Medicine Reactions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="/action_page.php" class="needs-validation" novalidate>
 
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="sel1">Select list:</label>
-                                    <select class="form-control" id="sel1" name="medicine_a">
-                                        
-                                    </select>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="sel1">Select list:</label>
+                                        <select class="form-control" id="sel1" name="medicine_a">
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="sel1">Select list:</label>
+                                        <select class="form-control" id="sel2" name="medicine_b">
+                                            
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="sel1">Select list:</label>
-                                    <select class="form-control" id="sel2" name="medicine_b">
-                                        
-                                    </select>
-                                </div>
-                            </div>
 
-                            <div class="form-group mt-2">
-                                <label for="pwd">Remark:</label>
-                                <textarea class="form-control" rows="2" id="description" name="remark"
-                                    required></textarea>
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                            <div class="form-group mt-2">
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="healthy" value="0">Positive
-                                        Reaction
-                                    </label>
+                                <div class="form-group mt-2">
+                                    <label for="pwd">Remark:</label>
+                                    <textarea class="form-control" rows="2" id="description" name="remark"
+                                        required></textarea>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="healthy" value="1">Negative
-                                        Reaction
-                                    </label>
+                                <div class="form-group mt-2">
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="healthy" value="0">Positive
+                                            Reaction
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="healthy" value="1">Negative
+                                            Reaction
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button>
-                        </form>
+                                <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button>
+                            </form>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Reaction Modal -->
+    <!-- Reaction Modal -->
+@endsection

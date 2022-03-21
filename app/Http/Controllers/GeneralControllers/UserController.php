@@ -5,6 +5,7 @@ namespace App\Http\Controllers\GeneralControllers;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Pharmacy;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -79,6 +80,18 @@ class UserController extends Controller
         $user = Auth::user();
         return view('user.suppliers',compact('user'));
     }
+    public function supplier_save(Request $request){
+        // dd($request->all());
+        $supplier = Supplier::create(['name'=> $request->name,'description' => $request->description ?? null,
+            'email'=> $request->email,'mobile'=> $request->mobile,'image'=> $request->image ?? null,
+            'pharmacy_id'=> $request->pharmacy_id,'country_id'=> $request->country_id,'state_id'=> $request->state_id,'city_id'=> $request->city_id,'bank_id'=> $request->bank_id ?? null,'bank_account'=> $request->account_number ?? null]);
+        // $supplier = Supplier::find(1);
+        if($request->ajax){
+            return response()->json(['supplier'=> $supplier],200);
+        }else{
+            return redirect()->back();
+        }
+    }
 
     public function subscription(){
         //payments i've made
@@ -95,14 +108,7 @@ class UserController extends Controller
         dd($transactions);
         return view('user.transactions',compact('user'));
     }
-    public function invoice(){
-        $user = Auth::user();
-        return view('invoice',compact('user'));
-    }
-    public function purchase(){
-        $user = Auth::user();
-        return view('purchaseOrder',compact('user'));
-    }
+    
 
     public function store(Request $request){
         //

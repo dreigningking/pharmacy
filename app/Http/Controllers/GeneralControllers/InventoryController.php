@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\GeneralControllers;
 
 use App\Models\Supplier;
+use App\Models\Item;
 use App\Models\Medicine;
 use App\Models\Pharmacy;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,15 +16,21 @@ class InventoryController extends Controller
     public function drug(Pharmacy $pharmacy){
         return view('pharmacy.drugs',compact('pharmacy'));
     }
-    public function supply(Pharmacy $pharmacy){
-        $suppliers = Supplier::where('pharmacy_id',$pharmacy->id)->get();
-        return view('pharmacy.supply',compact('pharmacy','suppliers'));
-    }
+    
     public function inventory(Pharmacy $pharmacy){
         return view('pharmacy.inventory',compact('pharmacy'));
     }
     public function shelf(Pharmacy $pharmacy){
         return view('pharmacy.shelf',compact('pharmacy'));
+    }
+    
+    public function purchase(Pharmacy $pharmacy){
+        $user = Auth::user();
+        $suppliers = Supplier::where('pharmacy_id',$pharmacy->id)->get();
+        $items = Item::where('pharmacy_id',$pharmacy->id)->get();
+        $medicines = Medicine::all();
+        $countries = Country::all();
+        return view('pharmacy.purchaseOrder',compact('user','pharmacy','suppliers','items','medicines','countries'));
     }
 
 

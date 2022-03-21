@@ -16,9 +16,11 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('pharmacy_id');
             $table->string('administation');
             $table->string('manufacturer');
             $table->timestamps();
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
         });
     }
 

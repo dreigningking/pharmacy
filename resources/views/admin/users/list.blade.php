@@ -81,6 +81,7 @@
 
 @endpush
 
+@section('modals')
 <div class="modal fade custom-modal add-modal" id="reaction">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -146,3 +147,4 @@
 </div>
 
 <!-- Reaction Modal -->
+@endsection

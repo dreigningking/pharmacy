@@ -265,7 +265,8 @@
 
 @endsection
 
-<!-- Add Staff Modal -->
+@section('modals')
+    <!-- Add Staff Modal -->
 <div class="modal fade custom-modal add-modal" id="add_staff">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -318,3 +319,4 @@
 </div>
 
 <!-- Add Staff Modal -->
+@endsection

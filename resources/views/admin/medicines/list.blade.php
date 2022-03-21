@@ -148,7 +148,8 @@
 </script>
 @endpush
 
-<!-- Medicine Info Modal -->
+@section('modals')
+    <!-- Medicine Info Modal -->
 @foreach($medicine as $medic)
 <div class="modal fade custom-modal add-modal" id="medication_info">
     <div class="modal-dialog modal-dialog-centered">
@@ -278,3 +279,4 @@
 </div>
 
 <!-- Reaction Modal -->
+@endsection

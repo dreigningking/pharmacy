@@ -41,8 +41,7 @@ Route::middleware('auth')->group(function(){
     Route::get('subscription', [App\Http\Controllers\GeneralControllers\UserController::class, 'subscription'])->name("subscription");
     Route::get('transactions',[App\Http\Controllers\GeneralControllers\UserController::class, 'transactions'])->name('transactions');
     
-    Route::get('invoice',[App\Http\Controllers\GeneralControllers\UserController::class, 'invoice'])->name('invoice');
-    Route::get('purchase',[App\Http\Controllers\GeneralControllers\UserController::class, 'purchase'])->name('purchase');
+    Route::get('invoice',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'invoice'])->name('invoice');
     
     Route::get('profile', [App\Http\Controllers\GeneralControllers\UserController::class, 'profile'])->name('profile');
     Route::post('profile', [App\Http\Controllers\GeneralControllers\UserController::class, 'profile_update'])->name('profile');
@@ -54,12 +53,12 @@ Route::middleware('auth')->group(function(){
     
     
 
-    Route::group(['middleware'=>'role:director'], function () {
+    Route::group(['middleware'=>'role:director,manager'], function () {
         Route::get('suppliers', [App\Http\Controllers\GeneralControllers\UserController::class, 'suppliers'])->name('suppliers');
+        Route::post('supplier/save', [App\Http\Controllers\GeneralControllers\UserController::class, 'supplier_save'])->name('supplier.save');
         Route::get('staff', [App\Http\Controllers\GeneralControllers\UserController::class, 'staff'])->name("staff");
         Route::post('staff',[App\Http\Controllers\GeneralControllers\UserController::class, 'savestaff'])->name("staff");
         Route::post('staff/destroy',[App\Http\Controllers\GeneralControllers\UserController::class, 'destroystaff'])->name("staff.destroy");
-
     });
 
     Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/{pharmacy}'], function () {
@@ -84,7 +83,7 @@ Route::middleware('auth')->group(function(){
             Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'inventory'])->name("inventory");
             Route::get('shelf', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'shelf'])->name("shelf");
             Route::get('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
-            Route::get('supply', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'supply'])->name("supply");
+            Route::get('purchase',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'purchase'])->name('purchase');
 
         });
     });

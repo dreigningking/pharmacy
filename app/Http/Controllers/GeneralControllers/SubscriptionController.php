@@ -65,4 +65,9 @@ class SubscriptionController extends Controller
         return redirect()->intended('dashboard');
     }
 
+    public function invoice(){
+        $user = Auth::user();
+        return view('invoice',compact('user'));
+    }
+
 }

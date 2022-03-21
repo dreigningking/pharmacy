@@ -1061,7 +1061,8 @@ $(document).ready(function() {
 </script>
 @endpush
 
-<!-- Sales Modal -->
+@section('modals')
+    <!-- Sales Modal -->
 <div class="modal fade custom-modal dash-modal" id="sales" role="dialog" data-backdrop="false">
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
@@ -1162,3 +1163,4 @@ $(document).ready(function() {
 </div>
 
 <!-- Sales Modal -->
+@endsection
