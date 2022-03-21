@@ -101,11 +101,7 @@ class UserController extends Controller
     public function transactions(){
         //all pharmacies transactions
         $user = Auth::user();
-        $transactions = collect([]);
-        foreach($user->pharmacies as $pharmacy){
-            $transactions = $transactions->merge($pharmacy->sales);
-        }
-        dd($transactions);
+        // dd($user->sales->first()->pharmacy);
         return view('user.transactions',compact('user'));
     }
     

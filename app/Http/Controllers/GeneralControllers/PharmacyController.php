@@ -68,6 +68,8 @@ class PharmacyController extends Controller
     }
     
     public function transactions(Pharmacy $pharmacy){
+        
+
         return view('pharmacy.transactions',compact('pharmacy'));
     }
 

@@ -16,7 +16,7 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id'); //seller
-            $table->string('track_code');
+            $table->unsignedBigInteger('prescription_id');
             $table->string('order_hash');
             $table->string('currency');
             $table->double('subtotal')->default(0);

@@ -3,7 +3,10 @@
 namespace App\Models;
 
 use App\Models\Role;
+use App\Models\Sale;
 use App\Models\Country;
+use App\Models\Pharmacy;
+use App\Models\PharmacyUser;
 use App\Models\Subscription;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -102,6 +105,9 @@ class User extends Authenticatable
     }
     public function subscriptions(){
         return $this->hasMany(Subscription::class);
+    }
+    public function sales(){
+        return $this->hasManyThrough(Sale::class,PharmacyUser::class,'user_id','pharmacy_id');
     }
 
 }
