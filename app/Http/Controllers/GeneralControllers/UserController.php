@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Pharmacy;
 use App\Models\Supplier;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -78,14 +79,18 @@ class UserController extends Controller
 
     public function suppliers(){
         $user = Auth::user();
-        return view('user.suppliers',compact('user'));
+        $countries = Country::all();
+        return view('user.suppliers',compact('user','countries'));
     }
     public function supplier_save(Request $request){
         // dd($request->all());
+        if($user = Auth::check())
+        $user = Auth::user();
+        else $user = User::find($request->user_id);
         $supplier = Supplier::create(['name'=> $request->name,'description' => $request->description ?? null,
             'email'=> $request->email,'mobile'=> $request->mobile,'image'=> $request->image ?? null,
-            'pharmacy_id'=> $request->pharmacy_id,'country_id'=> $request->country_id,'state_id'=> $request->state_id,'city_id'=> $request->city_id,'bank_id'=> $request->bank_id ?? null,'bank_account'=> $request->account_number ?? null]);
-        // $supplier = Supplier::find(1);
+            'country_id'=> $request->country_id,'state_id'=> $request->state_id,'city_id'=> $request->city_id,'bank_id'=> $request->bank_id ?? null,'bank_account'=> $request->account_number ?? null]);
+        $supplier->pharmacies()->attach($user->pharmacies->pluck('id')->toArray());
         if($request->ajax){
             return response()->json(['supplier'=> $supplier],200);
         }else{

@@ -19,7 +19,7 @@ class RoleMiddleware
     {
         // dd($roles);
         $role_ids = Role::whereIn('name',$roles)->get()->pluck('id')->toArray();
-        if(in_array('admin',$roles) && !($request->user()->admin)){
+        if(in_array('admin',$roles) && $request->user()->admin != true){
             \abort(404,'You do not have permission to view this page');
         }
         elseif(!(in_array('admin',$roles)) && $request->user()->pharmacies->whereIn('pivot.role_id',$role_ids)->isEmpty()){
