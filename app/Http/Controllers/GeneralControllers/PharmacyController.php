@@ -58,7 +58,7 @@ class PharmacyController extends Controller
         $role_id = $role_id = Role::where('name','director')->first()->id;
         $pharmacy->users()->attach($user->id,['role_id'=> $role_id,'status'=> true]);
         $plan = Plan::where('name','pharmacy_subscription')->first();
-        return redirect()->route('checkout',$pharmacy,$plan);
+        return redirect()->route('pharmacy.checkout',[$pharmacy,$plan]);
     }
 
     public function permission(Pharmacy $pharmacy){

@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function(){
     Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'cities'])->name('getCities');
     Route::post('planpayment',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'planPayment'] )->name('planPayment');
     Route::get('payment/verification',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'verify'] )->name('verify');
+    Route::get('drugs',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'drugs'] )->name('drugs');
     
     //accessible on director dashboard and inside pharmacies
     Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('dashboard');
@@ -71,7 +72,6 @@ Route::middleware('auth')->group(function(){
             Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');
             Route::post('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'savestaff'])->name('staff');
             Route::get('subscription',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'subscription'] )->name('subscription');
-            Route::get('drug', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'drug'])->name("drug");
             Route::get('permissions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'permission'])->name("permissions");
             Route::get('patients', [App\Http\Controllers\GeneralControllers\PatientController::class, 'index'])->name("patients");
             Route::get('addpatient', [App\Http\Controllers\GeneralControllers\PatientController::class, 'add'])->name("addpatient");

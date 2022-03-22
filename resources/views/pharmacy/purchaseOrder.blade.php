@@ -143,14 +143,8 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>
-                                                                            <select name="item_id" class="select form-control">
-                                                                                <option>Biscuit</option>
-                                                                                <option>Sweet</option>
-                                                                                <option>Chocolate</option>
-                                                                                <option>Pringles</option>
-                                                                                <option>Popcorn</option>
-                                                                                <option>Cheese Balls</option>
-                                                                                <option>Ice Cream</option>
+                                                                            <select name="item_id[]" class="select-remote form-control">
+                                                                                
                                                                             </select>
                                                                         </td>
                                                                         <td class="text-center">$0</td>
@@ -159,20 +153,15 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
-                                                                            <select name="item_id" class="select form-control">
-                                                                                <option>Biscuit</option>
-                                                                                <option>Sweet</option>
-                                                                                <option>Chocolate</option>
-                                                                                <option>Pringles</option>
-                                                                                <option>Popcorn</option>
-                                                                                <option>Cheese Balls</option>
-                                                                                <option>Ice Cream</option>
+                                                                            <select name="item_id[]" class="select-remote form-control">
+                                                                                
                                                                             </select>
                                                                         </td>
                                                                         <td class="text-center">$0</td>
-                                                                        <td class="text-center">1</td>  
-                                                                        <td class="text-right">$250</td>
+                                                                        <td class="text-center">1</td>
+                                                                        <td class="text-right">$100</td>
                                                                     </tr>
+                                                                    
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -386,5 +375,30 @@
             console.log($(this).val())
         })
         
+    </script>
+    <script>
+        $('.select-remote').select2({
+            ajax: {
+                url: "{{route('drugs')}}",
+                dataType: 'json', 
+                cache: true, 
+                data: function (params) {
+                    var query = {
+                        search: params.term,
+                        type: 'ajax'
+                    }
+                    return query;
+                },
+                processResults: function (data) {
+                    var data = $.map(data.drugs, function (obj) {
+                        obj.text = obj.text || obj.name; // replace name with the property used for the text
+                        return obj;
+                    });
+                    return {
+                        results: data
+                    };
+                }
+            }
+        })
     </script>
 @endpush

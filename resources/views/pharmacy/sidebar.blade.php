@@ -51,12 +51,7 @@
                             <span>Medicine</span>
                         </a>
                     </li> --}}
-                    <!-- <li @if(Route::is('pharmacy.drug')) class="active" @endif>
-                        <a href="{{route('pharmacy.drug',$pharmacy)}}">
-                            <i class="fas fa-columns"></i>
-                            <span>Drugs</span>
-                        </a>
-                    </li> -->
+                    
                     <li @if(Route::is('pharmacy.shelf')) class="active" @endif>
                         <a href="{{route('pharmacy.shelf',$pharmacy)}}">
                             <i class="fas fa-archive"></i>
