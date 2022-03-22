@@ -74,7 +74,7 @@
                                                 @if($plan->trial)
                                                     {{-- @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty())) --}}
                                                     <div class="text-center">
-                                                        <a href="{{route('checkout')}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
+                                                        <a href="{{route('pharmacy.checkout', [$pharmacy, $plan])}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
                                                     </div>
                                                     {{-- @endif --}}
                                                 @endif
@@ -98,7 +98,7 @@
                                                     </h1>
                                                 </div>
                                                 <div class="d-flex justify-content-center my-4">
-                                                    <a class="btn btn-dark btn-lg" href="{{route('checkout')}}?type=plan&id={{$plan->id}}">
+                                                    <a class="btn btn-dark btn-lg" href="{{route('pharmacy.checkout', [$pharmacy, $plan])}}?type=plan&id={{$plan->id}}">
                                                         Get started
                                                     </a>
                                                 </div>
@@ -121,7 +121,7 @@
                                                 @if($plan->trial)
                                                     {{-- @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty())) --}}
                                                     <div class="text-center">
-                                                        <a href="{{route('checkout')}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
+                                                        <a href="{{route('pharmacy.checkout', [$pharmacy, $plan])}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
                                                     </div>
                                                     {{-- @endif --}}
                                                 @endif
@@ -146,7 +146,7 @@
                                                     </h1>
                                                 </div>
                                                 <div class="d-flex justify-content-center my-4">
-                                                    <a class="btn btn-dark btn-lg" href="{{route('checkout')}}?type=plan&id={{$plan->id}}">
+                                                    <a class="btn btn-dark btn-lg" href="{{route('pharmacy.checkout', [$pharmacy, $plan])}}?type=plan&id={{$plan->id}}">
                                                         Get started
                                                     </a>
                                                 </div>
@@ -169,7 +169,7 @@
                                                 @if($plan->trial)
                                                     {{-- @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty())) --}}
                                                     <div class="text-center">
-                                                        <a href="{{route('checkout')}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
+                                                        <a href="{{route('pharmacy.checkout', [$pharmacy, $plan])}}?type=plan&id={{$plan->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
                                                     </div>
                                                     {{-- @endif --}}
                                                 @endif
