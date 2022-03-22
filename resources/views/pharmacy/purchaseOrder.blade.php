@@ -6,10 +6,14 @@
         border:0px !important;
     }
     span.select2-selection.select2-selection--single{
-        height:46px;
+        /* height:46px;
         padding-top:10px;
         padding-bottom:10px;
+        width:200px; */
     }
+    /* span.select2.select2-container select2-container--default{
+        width:200px!important;
+    } */
 </style>
 @endpush
 @section('main')
@@ -141,6 +145,26 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <select name="item_id[]" class="select-remote form-control">
+                                                                                
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="text-center">$0</td>
+                                                                        <td class="text-center">1</td>
+                                                                        <td class="text-right">$100</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <select name="item_id[]" class="select-remote form-control">
+                                                                                
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="text-center">$0</td>
+                                                                        <td class="text-center">1</td>
+                                                                        <td class="text-right">$100</td>
+                                                                    </tr>
                                                                     <tr>
                                                                         <td>
                                                                             <select name="item_id[]" class="select-remote form-control">
@@ -378,6 +402,7 @@
     </script>
     <script>
         $('.select-remote').select2({
+            width: 'resolve',
             ajax: {
                 url: "{{route('drugs')}}",
                 dataType: 'json', 
