@@ -6,6 +6,7 @@ use App\Models\Sale;
 use App\Models\City;
 use App\Models\User;
 use App\Models\State;
+use App\Models\Supply;
 use App\Models\PharmacyUser;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Country;
@@ -47,6 +48,9 @@ class Pharmacy extends Model
     }
     public function sales(){
         return $this->hasMany(Sale::class);
+    }
+    public function suppliers(){
+        return $this->belongsToMany(Supplier::class,'pharmacy_suppliers');
     }
 
 }

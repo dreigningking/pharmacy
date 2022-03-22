@@ -26,8 +26,9 @@ class InventoryController extends Controller
     
     public function purchase(Pharmacy $pharmacy){
         $user = Auth::user();
-        $suppliers = Supplier::where('pharmacy_id',$pharmacy->id)->get();
-        $items = Item::where('pharmacy_id',$pharmacy->id)->get();
+        // $suppliers = Supplier::where('pharmacy_id',$pharmacy->id)->get();
+        $suppliers = $pharmacy->suppliers;
+        $items = Item::all();
         $medicines = Medicine::all();
         $countries = Country::all();
         return view('pharmacy.purchaseOrder',compact('user','pharmacy','suppliers','items','medicines','countries'));
