@@ -22,12 +22,10 @@ class Pharmacy extends Model
     protected $fillable = [
         'name','description','email','mobile','image','license','type','country_id','state_id','city_id'
     ];
-
     public static function boot(){
         parent::boot();
         parent::observe(new \App\Observers\PharmacyObserver);
     }
-
     public function users(){
         return $this->belongsToMany(User::class,'pharmacy_users')->withPivot('role_id','status');
     }
