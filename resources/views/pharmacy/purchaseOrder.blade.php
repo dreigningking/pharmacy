@@ -373,6 +373,7 @@
                     //close the modal
                     var newOption = new Option(data.supplier.name,data.supplier.id,true,true);
                     $('#supplier_select').append(newOption).trigger('change');
+                    $('#add_supplier').modal('hide');
                 console.log(data.supplier)
                 },
                 error: function (data, textStatus, errorThrown) {
