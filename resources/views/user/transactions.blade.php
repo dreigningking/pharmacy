@@ -41,34 +41,36 @@
                                         <th>Invoice Number</th>
 
                                         <th>Pharmacy Name</th>
-                                        <th>Total Amount</th>
+                                        <th>Amount</th>
                                         <th class="text-center">Type</th>
                                         <th class="text-right">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($user->sales as $sale)
                                     <tr>
-                                        <td><a href="invoice.html">#IN0001</td>
+                                        <td><a href="invoice.html">#{{$sale->id}}</td>
 
                                         <td>
                                             <h2 class="table-avatar">
-
-                                                <a href="profile.html">Ramsgate </a>
+                                                <a href="profile.html">{{$sale->pharmacy->name}} </a>
                                             </h2>
                                         </td>
                                         <td>$100.00</td>
                                         <td class="text-center">
                                             <span
-                                                class="badge badge-pill bg-success inv-badge">Revenue</span>
+                                                class="badge badge-pill bg-secondary inv-badge">Walk-in</span>
                                         </td>
                                         <td class="text-right">
                                             <a class="btn btn-sm bg-success-light" data-toggle="modal"
                                                 href="#delete_modal">
-                                                <i class="fe fe-eye"></i> View More
+                                                <i class="fe fe-eye"></i> View Prescriptions
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    @endforeach
+                                    
+                                    {{-- <tr>
                                         <td><a href="invoice.html">#IN0002</td>
 
                                         <td>
@@ -151,7 +153,7 @@
                                                 <i class="fe fe-eye"></i> View More
                                             </a>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
 
                                 </tbody>
                             </table>

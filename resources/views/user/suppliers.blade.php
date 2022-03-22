@@ -30,7 +30,11 @@
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <!-- Page Wrapper -->
                 <div class="card">
-                    <div class="card-header border-0"><h3>Suppliers</h3></div>
+                    <div class="card-header border-0 d-flex justify-content-between">
+                        <div><h3>Suppliers</h3></div>
+                        <a class="btn btn-primary btn-lg" data-toggle="modal" href="#add_supplier">Add
+                            Supplier</a>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="datatable table table-hover table-center mb-0">
@@ -44,16 +48,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @forelse ($suppliers as $supplier)
                                     <tr>    
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="profile.html"
+                                                <a href="#"
                                                     class="avatar avatar-sm mr-2"><img
                                                         class="avatar-img rounded-circle"
-                                                        src="assets/img/patients/patient1.jpg"
+                                                        src="{{asset('assets/img/patients/patient1.jpg')}}"
                                                         alt="User Image"></a>
-                                                <a href="profile.html">Charleen Pharma </a>
+                                                <a href="#">Charleen Pharma </a>
                                             </h2>
                                         </td>
 
@@ -74,7 +78,9 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    
+                                    @empty
+                                    <tr><td>No Suppliers</td></tr>
+                                    @endforelse
 
                                 </tbody>
                             </table>
@@ -92,11 +98,11 @@
 @endsection
 @section('modals')
     <!-- Add Staff Modal -->
-<div class="modal fade custom-modal add-modal" id="add_staff">
+<div class="modal fade custom-modal add-modal" id="add_supplier">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Staff</h5>
+                <h5 class="modal-title">Add New Supplier</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -109,38 +115,58 @@
                             <div class="card-body">
                                 <form action="#">
                                    
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label">Email Address</label>
-                                        <div class="col-lg-9">
-                                            <input type="email" class="form-control">
-                                        </div>
+                                    <input type="hidden" name="ajax" value="0">
+                                    <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
+                                    <div class="form-group ">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" name="name" id="supplier_name" class="form-control" required>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label">Pharmacy</label>
-                                        <div class="col-lg-9">
-                                            <select name="" id="" class="role-select form-control">
-                                                <option value="agbero">Micoson</option>
-                                                <option value="pharmacist">Ramsagate</option>
-                                                <option value="store-keeper">Tewe tegbo</option>
-                                            </select>
-                                            </td>
-                                        </div>
+                                    <div class="form-group ">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" name="email" id="supplier_email" class="form-control" required>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label">Role</label>
-                                        <div class="col-lg-9">
-                                            <select name="" id="" class="role-select form-control">
-                                                <option value="agbero">Agbero</option>
-                                                <option value="manager">Manager</option>
-                                                <option value="pharmacist">Pharmacist</option>
-                                                <option value="store-keeper">Store keeper</option>
-                                            </select>
-                                            </td>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label class="form-label">Mobile Number</label>
+                                                <input type="text" name="mobile" id="supplier_mobile" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Country</label>
+                                                <select name="country_id" id="supplier_country" class="select form-control" required>
+                                                    @foreach ($countries as $country)
+                                                        <option value="{{$country->id}}" @if($pharmacy->country_id == $country->id) selected @endif>{{$country->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">State</label>
+                                                <select name="state_id" id="supplier_state" class="select form-control" required>
+                                                    @foreach ($pharmacy->country->states as $state)
+                                                        <option value="{{$state->id}}" @if($pharmacy->state_id == $state->id) selected @endif>{{$state->name}}</option>
+                                                    @endforeach 
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">City</label>
+                                                <select name="city_id" id="supplier_city" class="select form-control" required>
+                                                    @foreach ($pharmacy->country->cities as $city)
+                                                        <option value="{{$city->id}}" @if($pharmacy->city_id == $city->id) selected @endif>{{$city->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="text-right">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id="save_supplier" class="btn btn-primary">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -161,16 +187,45 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Staff Info</h5>
+                <h5 class="modal-title">Edit Supplier Info</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="usr">Staff Email:</label>
+                    <label for="usr">Supplier Name:</label>
+                    <input type="text" class="form-control" id="usr">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Supplier Email:</label>
                     <input type="email" class="form-control" id="usr">
                 </div>
+                <div class="form-group">
+                    <label for="usr">Supplier Phone:</label>
+                    <input type="text" class="form-control" id="usr">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="usr">Country:</label>
+                            <input type="text" class="form-control" id="usr">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="usr">State:</label>
+                            <input type="text" class="form-control" id="usr">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="usr">Supplier Phone:</label>
+                            <input type="text" class="form-control" id="usr">
+                        </div>
+                    </div>
+                </div>
+                
                 <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>

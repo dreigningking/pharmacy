@@ -16,10 +16,11 @@ class CreatePrescriptionsTable extends Migration
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('assessment_id');
-            $table->integer('dosage');
-            $table->integer('duration');
-            $table->string('administration'); //
+            $table->unsignedBigInteger('assessment_id')->nullable();
+            $table->integer('dosage')->nullable();
+            $table->integer('duration')->nullable();
+            $table->string('administration')->nullable(); //
+            $table->boolean('hospital')->default(0); //
             //effective? , reaction, therapeutic_alternatives
             $table->timestamps();
             // NONMEDICAL PRESCRIPTION: id,patient_id, assessment_id, body, effective? , reaction,

@@ -38,8 +38,6 @@ Route::middleware('auth')->group(function(){
     //accessible on director dashboard and inside pharmacies
     Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('dashboard');
     Route::get('workspaces', [App\Http\Controllers\WebControllers\HomeController::class, 'workspaces'])->name('workspaces');
-    Route::get('subscription', [App\Http\Controllers\GeneralControllers\UserController::class, 'subscription'])->name("subscription");
-    Route::get('transactions',[App\Http\Controllers\GeneralControllers\UserController::class, 'transactions'])->name('transactions');
     
     Route::get('invoice',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'invoice'])->name('invoice');
     
@@ -52,7 +50,10 @@ Route::middleware('auth')->group(function(){
     Route::get('activities', [App\Http\Controllers\GeneralControllers\UserController::class, 'activities'])->name("activities");
     
     
-
+    Route::group(['middleware'=>'role:director'], function () {
+        Route::get('subscription', [App\Http\Controllers\GeneralControllers\UserController::class, 'subscription'])->name("subscription");
+        Route::get('transactions',[App\Http\Controllers\GeneralControllers\UserController::class, 'transactions'])->name('transactions');
+    });
     Route::group(['middleware'=>'role:director,manager'], function () {
         Route::get('suppliers', [App\Http\Controllers\GeneralControllers\UserController::class, 'suppliers'])->name('suppliers');
         Route::post('supplier/save', [App\Http\Controllers\GeneralControllers\UserController::class, 'supplier_save'])->name('supplier.save');
