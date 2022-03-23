@@ -16,7 +16,7 @@
         width:200px!important;
     } */
     .select-remote {
-width: 650px !important;
+width: 450px !important;
 }
 </style>
 @endpush
@@ -155,21 +155,23 @@ width: 650px !important;
                                                                         <th class="d-flex justify-content-between"><span>Description</span> <a data-toggle="modal" href="#add_drug" class="font-weight-normal text-info"><u>Add New Item</u></a></th>
                                                                         <th class="text-center">Unit Cost</th>
                                                                         <th class="text-center">Qty</th>
-                                                                        <th class="text-right">Total</th>
+                                                                        <th class="text-right ">Total</th>
+                                                                        <th class="extra-column">Action</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody  class="select-body">
                                                                     <tr>
-                                                                        <td>
+                                                                        <td class="first-column">
                                                                             <select name="item_id[]" class="select-remote form-control w-100">
                                                                                 
                                                                             </select>
                                                                         </td>
-                                                                        <td class="text-center select-row pl-0 pr-0">
+                                                                        <td class="text-center select-row pl-0 pr-0 extra-column">
                                                                             <input type="number" name="" id="" class="table-input">
                                                                         </td>
-                                                                        <td class="text-center pl-0 pr-0"> <input type="number" name="" id="" class="table-input"></td>
+                                                                        <td class="text-center pl-0 pr-0 extra-column"> <input type="number" name="" id="" class="table-input"></td>
                                                                         <td class="text-right">$100</td>
+                                                                        <td><a href="#" class="btn btn-danger trash table-trash no-column"><i class="far fa-trash-alt"></i></a></td>
                                                                     </tr> 
                                                                     <!-- <tr>
                                                                         <td>

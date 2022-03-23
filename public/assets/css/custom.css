@@ -616,13 +616,23 @@ select.list-dt:focus {
     width: 150px;
 }
 .table-input{
-    width: 90px;
+    width: 100px;
     height: 50px;
     border: none;
 }
 .table-input:focus{
     border: none;
     outline: none;
+}
+.first-column {
+    width: 450px !important;
+}
+.no-column {
+    cursor: not-allowed;
+}
+
+.extra-column {
+    width: 120px !important;
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
