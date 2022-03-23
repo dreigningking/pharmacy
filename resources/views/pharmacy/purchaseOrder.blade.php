@@ -82,7 +82,7 @@ width: 650px !important;
                                                             <strong class="customer-text">Purchase Order From</strong>
                                                             <p class="invoice-details invoice-details-two">
                                                                 {{$pharmacy->city->name}}, <br>
-                                                                {{$pharmacy->state->name}}, {{$pharmacy->country->name}}
+                                                                {{$pharmacy->state->name}}, {{$pharmacy->country->name}}.
                                                             </p>
                                                         </div>
                                                     </div>
@@ -125,7 +125,7 @@ width: 650px !important;
                                                             <strong class="customer-text">Delivery</strong>
                                                             <p class="invoice-details invoice-details-two ">
                                                             {{$pharmacy->city->name}}, <br>
-                                                                {{$pharmacy->state->name}}, {{$pharmacy->country->name}}
+                                                                {{$pharmacy->state->name}}, {{$pharmacy->country->name}}.
                                                             </p>
                                                         </div>
                                                     </div>
