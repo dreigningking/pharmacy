@@ -7,17 +7,37 @@
         border:0px !important;
     }
     span.select2-selection.select2-selection--single{
-        /* height:46px;
+        height:46px;
         padding-top:10px;
         padding-bottom:10px;
-        width:200px; */
+        width:200px;
     }
-    /* span.select2.select2-container select2-container--default{
+    span.select2.select2-container select2-container--default{
         width:200px!important;
+    }
+    .select2-container--default .select2-selection--single {
+        height: 50px;
+        border: 1px solid #dcdcdc;
+        border-radius: 3px;
+    }
+    .select2-container--default.select2-selection--single.select2-selection__arrow {
+        top: 10px !important;
+    }
+    .select2-container--default.select2-selection--single.select2-selection__arrow{
+        top: 8px !important;
+    }
+    .select2-container--default.select2-selection--single.select2-selection__rendered {
+        line-height: 42px;
+    }
+    
+    /* .select-remote {
+        width: 650px !important;
     } */
-    .select-remote {
-width: 650px !important;
-}
+    
+    .table-trash {
+        width: 29px !important;
+        height: 29px !important;
+    }
 </style>
 @endpush
 @section('main')
@@ -167,16 +187,7 @@ width: 650px !important;
                                                                         <td class="text-center">1</td>
                                                                         <td class="text-right">$100</td>
                                                                     </tr> 
-                                                                    <!-- <tr>
-                                                                        <td>
-                                                                            <select name="item_id[]" class="select-remote form-control w-100">
-                                                                                
-                                                                            </select>
-                                                                        </td>
-                                                                        <td class="text-center select-row">$0</td>
-                                                                        <td class="text-center">1</td>
-                                                                        <td class="text-right">$100</td>
-                                                                    </tr>  -->
+                                                                    
                                                                 </tbody>
                                                             </table>
                                                         </div>
