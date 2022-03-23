@@ -86,8 +86,9 @@ span.select2-selection.select2-selection--single {
                                                             <div class="invoice-details no_select_border">
                                                                 <select name="supplier_id" id="supplier_select"
                                                                     class="select form-control supplier-select">
-                                                                    @forelse ($suppliers as $supplier)
                                                                     <option value ="" selected>Select Supplier</option>
+                                                                    @forelse ($suppliers as $supplier)
+                                                                   
                                                                     <option value="{{$supplier->id}}"
                                                                         data-city="{{$supplier->city->name}}"
                                                                         data-state="{{$supplier->state->name}}"
@@ -417,7 +418,7 @@ $(".select-body").on('click', '.trash', function() {
     $(this).closest('.select-row').remove();
     return false;
 });
-$(".select-row").on('click', function() {
+$(document).on('click',".select-row", function() {
 
 var regcontent = '<tr class="select-row">' +
     '<td>' +
