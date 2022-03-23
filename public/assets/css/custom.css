@@ -608,12 +608,9 @@ select.list-dt:focus {
 .select2-container--default .select2-selection--single .select2-selection__arrow{
     top: 8px !important;
 }
-.table-trash{
-    display: none;
-    color: white;
-}
-.table-trash:last-of-type{
-    display: block;
+.table-trash {
+    width: 29px !important;
+    height: 29px !important;
 }
 @media screen and (max-width: 480px) {
     .dashboard-menu {
