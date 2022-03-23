@@ -612,6 +612,9 @@ select.list-dt:focus {
     width: 29px !important;
     height: 29px !important;
 }
+.date {
+    width: 150px;
+}
 @media screen and (max-width: 480px) {
     .dashboard-menu {
         margin-right: 0.75rem;
