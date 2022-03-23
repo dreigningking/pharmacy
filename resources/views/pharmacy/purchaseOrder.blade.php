@@ -165,8 +165,10 @@ width: 650px !important;
                                                                                 
                                                                             </select>
                                                                         </td>
-                                                                        <td class="text-center select-row">$0</td>
-                                                                        <td class="text-center">1</td>
+                                                                        <td class="text-center select-row pl-0 pr-0">
+                                                                            <input type="number" name="" id="" class="table-input">
+                                                                        </td>
+                                                                        <td class="text-center pl-0 pr-0"> <input type="number" name="" id="" class="table-input"></td>
                                                                         <td class="text-right">$100</td>
                                                                     </tr> 
                                                                     <!-- <tr>
@@ -441,8 +443,12 @@ var regcontent = '<tr class="new-row">' +
                                                                                 
     '</select>' +
     '</td>' +
-    '<td class="text-center select-row">$0</td>' +
-    '<td class="text-center">1</td>' +
+    '<td class="text-center select-row pl-0 pr-0">' +
+    '  <input type="number" name="" id="" class="table-input">' +
+    '</td>' +
+    '<td class="text-center pl-0 pr-0">' +
+    '<input type="number" name="" id="" class="table-input">' +
+    '</td>' +
     '<td class="text-right">$100</td>' +
     '<td>' +
     '<a href="#" class="btn btn-danger trash table-trash"><i class="far fa-trash-alt"></i></a>' +

@@ -615,6 +615,23 @@ select.list-dt:focus {
 .date {
     width: 150px;
 }
+.table-input{
+    width: 90px;
+    height: 50px;
+    border: none;
+}
+.table-input:focus{
+    border: none;
+    outline: none;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 @media screen and (max-width: 480px) {
     .dashboard-menu {
         margin-right: 0.75rem;
