@@ -1,6 +1,7 @@
 @extends('layouts.main.app')
 @push('styles')
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <style>
     .no_select_border span.select2-selection.select2-selection--single{
         border:0px !important;
@@ -146,7 +147,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="table-responsive no_select_border">
-                                                            <table class="invoice-table table table-bordered">
+                                                            <table class="invoice-table table table-bordered" id="table">
                                                                 <thead>
                                                                     <tr>
                                                                         <th class="d-flex justify-content-between">
@@ -160,13 +161,13 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody class="select-body">
-                                                                    <tr class="select-row">
+                                                                    <tr class="tablerow">
                                                                         <td>
                                                                             <select name="item_id[]" class="select-remote form-control">
                                                                                 
                                                                             </select>
                                                                         </td>
-                                                                        <td class="text-center">$0</td>
+                                                                        <td class="text-center select-row">$0</td>
                                                                         <td class="text-center">1</td>
                                                                         <td class="text-right">$100</td>
                                                                     </tr>
@@ -411,30 +412,32 @@ supplySelect.onchange = function(event) {
 }
 
 $(".select-body").on('click', '.trash', function() {
-    $(this).closest('.select-row').remove();
+    $(this).closest('.tablerow').remove();
     return false;
 });
 $(document).on('click',".select-row", function() {
-
-var regcontent = '<tr class="select-row">' +
+    var selectTable = document.getElementById("table");
+console.log(selectTable)
+var lastRow = selectTable.rows[ selectTable.rows.length - 1 ];
+console.log(lastRow)
+var regcontent = '<tr class="tablerow">' +
     '<td>' +
     '<select name="item_id" class="select form-control">' +
     '<option>Biscuit</option>' +
     '<option>Sweet</option>' +
     '<option>Chocolate</option>' +
     '</select>' +
+    '<a class="btn table-trash trash">Delete last row</a>' +
     '</td>' +
-    '<td class="text-center">$0</td>' +
+    '<td class="text-center select-row">$0</td>' +
     '<td class="text-center">1</td>' +
     '<td class="text-right">$100</td>' +
-    '</tr>' +
-    '<div>' +
-    '<a href="#" class="btn btn-danger trash">Delete last row</a>' +
-    '</div>';
+    '</tr>';
 
 $(".select-body").append(regcontent);
 return false;
 });
+$('.tablerow').next().css({"color": "red",});
 </script>
 
 @endpush
