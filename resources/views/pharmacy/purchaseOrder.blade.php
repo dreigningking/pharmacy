@@ -87,19 +87,27 @@ width: 650px !important;
                                                         <div class="invoice-info invoice-info2">
                                                             <a href="#add_supplier" data-toggle="modal" class="text-info"><u>Add new</u></a>
                                                             <div class="customer-text d-inline mx-2"><bold>Supplier</bold></div>
-                                                            <p class="invoice-details no_select_border">
-                                                                <select name="supplier_id" id="supplier_select" class="select form-control">
+                                                            <div class="invoice-details no_select_border">
+                                                                <select name="supplier_id" id="supplier_select"
+                                                                    class="select form-control supplier-select">
+                                                                    <option value ="" selected>Select Supplier</option>
                                                                     @forelse ($suppliers as $supplier)
-                                                                        <option value="{{$supplier->id}}" >{{$supplier->name}}</option>
+                                                                   
+                                                                    <option value="{{$supplier->id}}"
+                                                                        data-city="{{$supplier->city->name}}"
+                                                                        data-state="{{$supplier->state->name}}"
+                                                                        data-country="{{$supplier->country->name}}">
+                                                                        {{$supplier->name}}</option>
                                                                     @empty
                                                                     <option disabled>No Supplier</option>
                                                                     @endforelse
-                                                                    
-                                                                </select> 
+
+                                                                </select>
                                                                 {{-- <br> --}}
-                                                                299 Star Trek Drive, Panama City, <br>
-                                                                Florida, 32405, USA <br>
-                                                            </p>
+                                                                <p class="city"></p>
+                                                                <p class="state"></p>
+                                                                
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
