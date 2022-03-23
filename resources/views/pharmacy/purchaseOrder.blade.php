@@ -401,29 +401,32 @@
         
     </script>
     <script>
-        $('.select-remote').select2({
-            width: 'resolve',
-            ajax: {
-                url: "{{route('drugs')}}",
-                dataType: 'json', 
-                cache: true, 
-                data: function (params) {
-                    var query = {
-                        search: params.term,
-                        type: 'ajax'
+        $(document).on('select','.select-remote',function(){
+            $(this).select2({
+                width: 'resolve',
+                ajax: {
+                    url: "{{route('drugs')}}",
+                    dataType: 'json', 
+                    cache: true, 
+                    data: function (params) {
+                        var query = {
+                            search: params.term,
+                            type: 'ajax'
+                        }
+                        return query;
+                    },
+                    processResults: function (data) {
+                        var data = $.map(data.drugs, function (obj) {
+                            obj.text = obj.text || obj.name; // replace name with the property used for the text
+                            return obj;
+                        });
+                        return {
+                            results: data
+                        };
                     }
-                    return query;
-                },
-                processResults: function (data) {
-                    var data = $.map(data.drugs, function (obj) {
-                        obj.text = obj.text || obj.name; // replace name with the property used for the text
-                        return obj;
-                    });
-                    return {
-                        results: data
-                    };
                 }
-            }
+            })
         })
+        
     </script>
 @endpush
