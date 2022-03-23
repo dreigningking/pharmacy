@@ -608,6 +608,10 @@ select.list-dt:focus {
 .select2-container--default .select2-selection--single .select2-selection__arrow{
     top: 8px !important;
 }
+.table-trash {
+    width: 29px !important;
+    height: 29px !important;
+}
 @media screen and (max-width: 480px) {
     .dashboard-menu {
         margin-right: 0.75rem;

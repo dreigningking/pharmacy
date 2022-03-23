@@ -1,6 +1,7 @@
 @extends('layouts.main.app')
 @push('styles')
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <style>
     .no_select_border span.select2-selection.select2-selection--single{
         border:0px !important;
@@ -14,6 +15,9 @@
     /* span.select2.select2-container select2-container--default{
         width:200px!important;
     } */
+    .select-remote {
+width: 650px !important;
+}
 </style>
 @endpush
 @section('main')
@@ -135,7 +139,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="table-responsive no_select_border">
-                                                            <table class="invoice-table table table-bordered">
+                                                            <table class="invoice-table table table-bordered" id="table">
                                                                 <thead>
                                                                     <tr>
                                                                         <th class="d-flex justify-content-between"><span>Description</span> <a data-toggle="modal" href="#add_drug" class="font-weight-normal text-info"><u>Add New Item</u></a></th>
@@ -144,48 +148,27 @@
                                                                         <th class="text-right">Total</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
+                                                                <tbody  class="select-body">
                                                                     <tr>
                                                                         <td>
-                                                                            <select name="item_id[]" class="select-remote form-control">
+                                                                            <select name="item_id[]" class="select-remote form-control w-100">
                                                                                 
                                                                             </select>
                                                                         </td>
-                                                                        <td class="text-center">$0</td>
+                                                                        <td class="text-center select-row">$0</td>
                                                                         <td class="text-center">1</td>
                                                                         <td class="text-right">$100</td>
-                                                                    </tr>
-                                                                    <tr>
+                                                                    </tr> 
+                                                                    <!-- <tr>
                                                                         <td>
-                                                                            <select name="item_id[]" class="select-remote form-control">
+                                                                            <select name="item_id[]" class="select-remote form-control w-100">
                                                                                 
                                                                             </select>
                                                                         </td>
-                                                                        <td class="text-center">$0</td>
+                                                                        <td class="text-center select-row">$0</td>
                                                                         <td class="text-center">1</td>
                                                                         <td class="text-right">$100</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <select name="item_id[]" class="select-remote form-control">
-                                                                                
-                                                                            </select>
-                                                                        </td>
-                                                                        <td class="text-center">$0</td>
-                                                                        <td class="text-center">1</td>
-                                                                        <td class="text-right">$100</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <select name="item_id[]" class="select-remote form-control">
-                                                                                
-                                                                            </select>
-                                                                        </td>
-                                                                        <td class="text-center">$0</td>
-                                                                        <td class="text-center">1</td>
-                                                                        <td class="text-right">$100</td>
-                                                                    </tr>
-                                                                    
+                                                                    </tr>  -->
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -428,5 +411,38 @@
             })
         })
         
+    </script>
+    <script>
+        let supplySelect = document.getElementById('supplier_select')
+let cityBox = document.querySelector(".city")
+let stateBox = document.querySelector(".state")
+supplySelect.onchange = function(event) {
+    let rc = event?.target.options[event.target.selectedIndex].dataset.city;
+    let clnc = event?.target.options[event.target.selectedIndex].dataset.state;
+    let cln = event?.target.options[event.target.selectedIndex].dataset.country;
+    cityBox.innerHTML = rc + ",";
+    stateBox.innerHTML = clnc + "," + " " + cln + "."
+}
+$(".select-body").on('click', '.trash', function() {
+    $(this).closest('.new-row').remove();
+    return false;
+});
+$(document).on('click',".select-row", function() {
+var regcontent = '<tr class="new-row">' +
+    '<td>' +
+    ' <select name="item_id[]" class="select-remote form-control w-100">' +
+                                                                                
+    '</select>' +
+    '</td>' +
+    '<td class="text-center select-row">$0</td>' +
+    '<td class="text-center">1</td>' +
+    '<td class="text-right">$100</td>' +
+    '<td>' +
+    '<a href="#" class="btn btn-danger trash table-trash"><i class="far fa-trash-alt"></i></a>' +
+    '</td>' +
+    '</tr>';
+$(".select-body").append(regcontent);
+return false;
+});
     </script>
 @endpush
