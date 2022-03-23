@@ -5,13 +5,15 @@
     .no_select_border span.select2-selection.select2-selection--single{
         border:0px !important;
     }
-    span.select2-selection.select2-selection--single{
+    /* span.select2-selection.select2-selection--single{
         height:46px;
         padding-top:10px;
         padding-bottom:10px;
         width:200px;
-    }
-    
+    } */
+    /* span.select2.select2-container select2-container--default{
+        width:200px!important;
+    } */
 </style>
 @endpush
 @section('main')
