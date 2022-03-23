@@ -13,8 +13,16 @@ use Illuminate\Support\Facades\Auth;
 class InventoryController extends Controller
 {
    
-    public function drug(Pharmacy $pharmacy){
-        return view('pharmacy.drugs',compact('pharmacy'));
+    public function drugs(){
+        if($search = request()->search)
+        $drugs = Item::where('name','LIKE',"%$search%")->get();
+        else
+        $drugs = Item::all();
+        if( request()->type == 'ajax')
+            return response()->json(['drugs'=> $drugs],200);
+        else 
+            return view('pharmacy.drugs',compact('drugs'));
+             
     }
     
     public function inventory(Pharmacy $pharmacy){

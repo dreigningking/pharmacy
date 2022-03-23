@@ -2,15 +2,18 @@
 @push('styles')
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
 <style>
-.no_select_border span.select2-selection.select2-selection--single {
-    border: 0px !important;
-}
-
-span.select2-selection.select2-selection--single {
-    height: 46px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+    .no_select_border span.select2-selection.select2-selection--single{
+        border:0px !important;
+    }
+    span.select2-selection.select2-selection--single{
+        /* height:46px;
+        padding-top:10px;
+        padding-bottom:10px;
+        width:200px; */
+    }
+    /* span.select2.select2-container select2-container--default{
+        width:200px!important;
+    } */
 </style>
 @endpush
 @section('main')
@@ -159,15 +162,8 @@ span.select2-selection.select2-selection--single {
                                                                 <tbody class="select-body">
                                                                     <tr class="select-row">
                                                                         <td>
-                                                                            <select name="item_id"
-                                                                                class="select form-control">
-                                                                                <option>Biscuit</option>
-                                                                                <option>Sweet</option>
-                                                                                <option>Chocolate</option>
-                                                                                <option>Pringles</option>
-                                                                                <option>Popcorn</option>
-                                                                                <option>Cheese Balls</option>
-                                                                                <option>Ice Cream</option>
+                                                                            <select name="item_id[]" class="select-remote form-control">
+                                                                                
                                                                             </select>
                                                                         </td>
                                                                         <td class="text-center">$0</td>
