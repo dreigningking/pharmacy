@@ -591,7 +591,6 @@ select.list-dt:focus {
     object-fit: cover;
 }
 
-
 @media screen and (max-width: 480px) {
     .dashboard-menu {
         margin-right: 0.75rem;

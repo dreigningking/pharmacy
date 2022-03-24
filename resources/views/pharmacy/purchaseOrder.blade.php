@@ -33,6 +33,33 @@
     /* .select-remote {
         width: 650px !important;
     } */
+    .select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 8px !important;
+    }
+    .table-trash {
+        width: 29px !important;
+        height: 29px !important;
+    }
+    .date {
+        width: 150px;
+    }
+    .table-input{
+        width: 90px;
+        height: 50px;
+        border: none;
+    }
+    .table-input:focus{
+        border: none;
+        outline: none;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
     
     .table-trash {
         width: 29px !important;
@@ -82,10 +109,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p class="invoice-details">
-                                                            <strong>Order:</strong> #00124 <br>
-                                                            <strong>Issued:</strong> 20/07/2019
-                                                        </p>
+                                                        <p class="invoice-details ">
+                                                            <strong>Order:</strong> #00124
+                                                            </p>
+                                                            <p class="invoice-details">
+                                                            <strong>Issued:</strong> <input type="date" name="" id="" class="date">
+                                                            </p>
+                                                           
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,9 +128,8 @@
                                                         <div class="invoice-info">
                                                             <strong class="customer-text">Purchase Order From</strong>
                                                             <p class="invoice-details invoice-details-two">
-                                                                Dr. Darren Elder <br>
-                                                                806  Twin Willow Lane, Old Forge,<br>
-                                                                Newyork, USA <br>
+                                                                {{$pharmacy->city->name}}, <br>
+                                                                {{$pharmacy->state->name}}, {{$pharmacy->country->name}}.
                                                             </p>
                                                         </div>
                                                     </div>
@@ -141,9 +171,8 @@
                                                         <div class="invoice-info ">
                                                             <strong class="customer-text">Delivery</strong>
                                                             <p class="invoice-details invoice-details-two ">
-                                                                Walter Roberson <br>
-                                                                299 Star Trek Drive, Panama City, <br>
-                                                                Florida, 32405, USA <br>
+                                                            {{$pharmacy->city->name}}, <br>
+                                                                {{$pharmacy->state->name}}, {{$pharmacy->country->name}}.
                                                             </p>
                                                         </div>
                                                     </div>
@@ -183,8 +212,10 @@
                                                                                 
                                                                             </select>
                                                                         </td>
-                                                                        <td class="text-center select-row">$0</td>
-                                                                        <td class="text-center">1</td>
+                                                                        <td class="text-center select-row pl-0 pr-0">
+                                                                            <input type="number" name="" id="" class="table-input">
+                                                                        </td>
+                                                                        <td class="text-center pl-0 pr-0"> <input type="number" name="" id="" class="table-input"></td>
                                                                         <td class="text-right">$100</td>
                                                                     </tr> 
                                                                     
@@ -453,8 +484,12 @@ var regcontent = '<tr class="new-row">' +
                                                                                 
     '</select>' +
     '</td>' +
-    '<td class="text-center select-row">$0</td>' +
-    '<td class="text-center">1</td>' +
+    '<td class="text-center select-row pl-0 pr-0">' +
+    '  <input type="number" name="" id="" class="table-input">' +
+    '</td>' +
+    '<td class="text-center pl-0 pr-0">' +
+    '<input type="number" name="" id="" class="table-input">' +
+    '</td>' +
     '<td class="text-right">$100</td>' +
     '<td>' +
     '<a href="#" class="btn btn-danger trash table-trash"><i class="far fa-trash-alt"></i></a>' +
