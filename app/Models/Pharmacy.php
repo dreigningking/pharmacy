@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\State;
 use App\Models\PharmacyUser;
 use App\Models\Supplier;
+use App\Models\Item;
+use App\Models\Patient;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Country;
 use App\Models\Subscription;
@@ -48,6 +50,12 @@ class Pharmacy extends Model
         return $this->hasMany(Subscription::class);
     }
     public function sales(){
+        return $this->hasMany(Sale::class);
+    }
+    public function patients(){
+        return $this->hasMany(Sale::class);
+    }
+    public function items(){
         return $this->hasMany(Sale::class);
     }
 
