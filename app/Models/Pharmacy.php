@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\State;
 use App\Models\PharmacyUser;
 use App\Models\Supplier;
+use App\Models\Inventory;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Country;
 use App\Models\Subscription;
@@ -49,6 +50,9 @@ class Pharmacy extends Model
     }
     public function sales(){
         return $this->hasMany(Sale::class);
+    }
+    public function inventories(){
+        return $this->hasMany(Inventory::class);
     }
 
 }

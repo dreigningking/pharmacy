@@ -65,6 +65,9 @@
         width: 29px !important;
         height: 29px !important;
     }
+    .select-remote {
+width: 450px !important;
+}
 </style>
 @endpush
 @section('main')
@@ -202,21 +205,23 @@
                                                                         <th class="d-flex justify-content-between"><span>Description</span> <a data-toggle="modal" href="#add_drug" class="font-weight-normal text-info"><u>Add New Item</u></a></th>
                                                                         <th class="text-center">Unit Cost</th>
                                                                         <th class="text-center">Qty</th>
-                                                                        <th class="text-right">Total</th>
+                                                                        <th class="text-right ">Total</th>
+                                                                        <th class="extra-column">Action</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody  class="select-body">
                                                                     <tr>
-                                                                        <td>
+                                                                        <td class="first-column">
                                                                             <select name="item_id[]" class="select-remote form-control w-100">
                                                                                 
                                                                             </select>
                                                                         </td>
-                                                                        <td class="text-center select-row pl-0 pr-0">
+                                                                        <td class="text-center select-row pl-0 pr-0 extra-column">
                                                                             <input type="number" name="" id="" class="table-input">
                                                                         </td>
-                                                                        <td class="text-center pl-0 pr-0"> <input type="number" name="" id="" class="table-input"></td>
+                                                                        <td class="text-center pl-0 pr-0 extra-column"> <input type="number" name="" id="" class="table-input"></td>
                                                                         <td class="text-right">$100</td>
+                                                                        <td><a href="#" class="btn btn-danger trash table-trash no-column"><i class="far fa-trash-alt"></i></a></td>
                                                                     </tr> 
                                                                     
                                                                 </tbody>
@@ -433,9 +438,8 @@
         })
         
     </script>
-    <script>
-        $(document).on('select','.select-remote',function(){
-            $(this).select2({
+    <script> 
+            $('.select-remote').select2({
                 width: 'resolve',
                 ajax: {
                     url: "{{route('drugs')}}",
@@ -444,6 +448,7 @@
                     data: function (params) {
                         var query = {
                             search: params.term,
+                            pharmacy_id: @json($pharmacy->id),
                             type: 'ajax'
                         }
                         return query;
@@ -459,44 +464,69 @@
                     }
                 }
             })
-        })
+    
         
     </script>
     <script>
         let supplySelect = document.getElementById('supplier_select')
-let cityBox = document.querySelector(".city")
-let stateBox = document.querySelector(".state")
-supplySelect.onchange = function(event) {
-    let rc = event?.target.options[event.target.selectedIndex].dataset.city;
-    let clnc = event?.target.options[event.target.selectedIndex].dataset.state;
-    let cln = event?.target.options[event.target.selectedIndex].dataset.country;
-    cityBox.innerHTML = rc + ",";
-    stateBox.innerHTML = clnc + "," + " " + cln + "."
-}
-$(".select-body").on('click', '.trash', function() {
-    $(this).closest('.new-row').remove();
-    return false;
-});
-$(document).on('click',".select-row", function() {
-var regcontent = '<tr class="new-row">' +
-    '<td>' +
-    ' <select name="item_id[]" class="select-remote form-control w-100">' +
-                                                                                
-    '</select>' +
-    '</td>' +
-    '<td class="text-center select-row pl-0 pr-0">' +
-    '  <input type="number" name="" id="" class="table-input">' +
-    '</td>' +
-    '<td class="text-center pl-0 pr-0">' +
-    '<input type="number" name="" id="" class="table-input">' +
-    '</td>' +
-    '<td class="text-right">$100</td>' +
-    '<td>' +
-    '<a href="#" class="btn btn-danger trash table-trash"><i class="far fa-trash-alt"></i></a>' +
-    '</td>' +
-    '</tr>';
-$(".select-body").append(regcontent);
-return false;
-});
+        let cityBox = document.querySelector(".city")
+        let stateBox = document.querySelector(".state")
+        supplySelect.onchange = function(event) {
+            let rc = event?.target.options[event.target.selectedIndex].dataset.city;
+            let clnc = event?.target.options[event.target.selectedIndex].dataset.state;
+            let cln = event?.target.options[event.target.selectedIndex].dataset.country;
+            cityBox.innerHTML = rc + ",";
+            stateBox.innerHTML = clnc + "," + " " + cln + "."
+        }
+        $(".select-body").on('click', '.trash', function() {
+            $(this).closest('.new-row').remove();
+            return false;
+        });
+    $(document).on('click',".select-row", function() {
+        var regcontent = '<tr class="new-row">' +
+            '<td>' +
+            ' <select name="item_id[]" class="select-remote form-control w-100">' +
+                                                                                        
+            '</select>' +
+            '</td>' +
+            '<td class="text-center select-row pl-0 pr-0">' +
+            '  <input type="number" name="" id="" class="table-input">' +
+            '</td>' +
+            '<td class="text-center pl-0 pr-0">' +
+            '<input type="number" name="" id="" class="table-input">' +
+            '</td>' +
+            '<td class="text-right">$100</td>' +
+            '<td>' +
+            '<a href="#" class="btn btn-danger trash table-trash"><i class="far fa-trash-alt"></i></a>' +
+            '</td>' +
+            '</tr>';
+            $(".select-body").append(regcontent);
+            $('.select-remote:last').select2({
+                width: 'resolve',
+                ajax: {
+                    url: "{{route('drugs')}}",
+                    dataType: 'json', 
+                    cache: true, 
+                    data: function (params) {
+                        var query = {
+                            search: params.term,
+                            pharmacy_id: @json($pharmacy->id),
+                            type: 'ajax'
+                        }
+                        return query;
+                    },
+                    processResults: function (data) {
+                        var data = $.map(data.drugs, function (obj) {
+                            obj.text = obj.text || obj.name; // replace name with the property used for the text
+                            return obj;
+                        });
+                        return {
+                            results: data
+                        };
+                    }
+                }
+            });
+        return false;
+    });
     </script>
 @endpush

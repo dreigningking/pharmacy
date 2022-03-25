@@ -18,16 +18,17 @@ class InventoryController extends Controller
         $drugs = Item::where('name','LIKE',"%$search%")->get();
         else
         $drugs = Item::all();
+        //pharmacyInventory
         if( request()->type == 'ajax')
             return response()->json(['drugs'=> $drugs],200);
         else 
-            return view('pharmacy.drugs',compact('drugs'));
-             
+            return view('pharmacy.drugs',compact('drugs'));    
     }
     
     public function inventory(Pharmacy $pharmacy){
         return view('pharmacy.inventory',compact('pharmacy'));
     }
+    
     public function shelf(Pharmacy $pharmacy){
         return view('pharmacy.shelf',compact('pharmacy'));
     }

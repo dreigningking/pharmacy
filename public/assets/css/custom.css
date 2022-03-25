@@ -591,6 +591,43 @@ select.list-dt:focus {
     object-fit: cover;
 }
 
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 8px !important;
+}
+.table-trash {
+    width: 29px !important;
+    height: 29px !important;
+}
+.date {
+    width: 150px;
+}
+.table-input{
+    width: 100px;
+    height: 50px;
+    border: none;
+}
+.table-input:focus{
+    border: none;
+    outline: none;
+}
+.first-column {
+    width: 450px !important;
+}
+.no-column {
+    cursor: not-allowed;
+}
+
+.extra-column {
+    width: 120px !important;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 @media screen and (max-width: 480px) {
     .dashboard-menu {
         margin-right: 0.75rem;
