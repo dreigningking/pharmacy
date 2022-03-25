@@ -7,17 +7,67 @@
         border:0px !important;
     }
     span.select2-selection.select2-selection--single{
-        /* height:46px;
+        height:46px;
         padding-top:10px;
         padding-bottom:10px;
-        width:200px; */
+        width:200px;
     }
-    /* span.select2.select2-container select2-container--default{
+    span.select2.select2-container select2-container--default{
         width:200px!important;
+    }
+    .select2-container--default .select2-selection--single {
+        height: 50px;
+        border: 1px solid #dcdcdc;
+        border-radius: 3px;
+    }
+    .select2-container--default.select2-selection--single.select2-selection__arrow {
+        top: 10px !important;
+    }
+    .select2-container--default.select2-selection--single.select2-selection__arrow{
+        top: 8px !important;
+    }
+    .select2-container--default.select2-selection--single.select2-selection__rendered {
+        line-height: 42px;
+    }
+    
+    /* .select-remote {
+        width: 650px !important;
     } */
+    .select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 8px !important;
+    }
+    .table-trash {
+        width: 29px !important;
+        height: 29px !important;
+    }
+    .date {
+        width: 150px;
+    }
+    .table-input{
+        width: 90px;
+        height: 50px;
+        border: none;
+    }
+    .table-input:focus{
+        border: none;
+        outline: none;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+    
+    .table-trash {
+        width: 29px !important;
+        height: 29px !important;
+    }
     .select-remote {
-width: 450px !important;
-}
+        width: 450px !important;
+    }
 </style>
 @endpush
 @section('main')
@@ -44,7 +94,7 @@ width: 450px !important;
     <div class="container-fluid">
 
         <div class="row">
-            @include('user.sidebar')
+            @include('pharmacy.sidebar')
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <!-- Page Wrapper -->
                 <div class="page-wrapper">
@@ -170,19 +220,10 @@ width: 450px !important;
                                                                             <input type="number" name="" id="" class="table-input">
                                                                         </td>
                                                                         <td class="text-center pl-0 pr-0 extra-column"> <input type="number" name="" id="" class="table-input"></td>
-                                                                        <td class="text-right">$100</td>
+                                                                        <td class="text-right">{{$pharmacy->country->currency_symbol}}<span class="amount">100</span></td>
                                                                         <td><a href="#" class="btn btn-danger trash table-trash no-column"><i class="far fa-trash-alt"></i></a></td>
                                                                     </tr> 
-                                                                    <!-- <tr>
-                                                                        <td>
-                                                                            <select name="item_id[]" class="select-remote form-control w-100">
-                                                                                
-                                                                            </select>
-                                                                        </td>
-                                                                        <td class="text-center select-row">$0</td>
-                                                                        <td class="text-center">1</td>
-                                                                        <td class="text-right">$100</td>
-                                                                    </tr>  -->
+                                                                    
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -193,7 +234,7 @@ width: 450px !important;
                                                                 <tbody>
                                                                 <tr>
                                                                     <th>Subtotal:</th>
-                                                                    <td><span>$350</span></td>
+                                                                    <td><span>{{$pharmacy->country->currency_symbol}}<span class="subtotal">315</span></span></td>
                                                                 </tr>
                                                                 {{-- <tr>
                                                                     <th>Discount:</th>
@@ -201,7 +242,7 @@ width: 450px !important;
                                                                 </tr> --}}
                                                                 <tr>
                                                                     <th>Total Amount:</th>
-                                                                    <td><span>$315</span></td>
+                                                                    <td><span>{{$pharmacy->country->currency_symbol}}<span class="total">315</span></span></td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -397,67 +438,95 @@ width: 450px !important;
         })
         
     </script>
-    <script>
-        $('.select-remote').select2({
-            width: 'resolve',
-            ajax: {
-                url: "{{route('drugs')}}",
-                dataType: 'json', 
-                cache: true, 
-                data: function (params) {
-                    var query = {
-                        search: params.term,
-                        type: 'ajax'
+    <script> 
+            $('.select-remote').select2({
+                width: 'resolve',
+                ajax: {
+                    url: "{{route('drugs')}}",
+                    dataType: 'json', 
+                    cache: true, 
+                    data: function (params) {
+                        var query = {
+                            search: params.term,
+                            pharmacy_id: @json($pharmacy->id),
+                            type: 'ajax'
+                        }
+                        return query;
+                    },
+                    processResults: function (data) {
+                        var data = $.map(data.drugs, function (obj) {
+                            obj.text = obj.text || obj.name; // replace name with the property used for the text
+                            return obj;
+                        });
+                        return {
+                            results: data
+                        };
                     }
-                    return query;
-                },
-                processResults: function (data) {
-                    var data = $.map(data.drugs, function (obj) {
-                        obj.text = obj.text || obj.name; // replace name with the property used for the text
-                        return obj;
-                    });
-                    return {
-                        results: data
-                    };
                 }
-            }
-        })
+            })
+    
+        
     </script>
     <script>
         let supplySelect = document.getElementById('supplier_select')
-let cityBox = document.querySelector(".city")
-let stateBox = document.querySelector(".state")
-supplySelect.onchange = function(event) {
-    let rc = event?.target.options[event.target.selectedIndex].dataset.city;
-    let clnc = event?.target.options[event.target.selectedIndex].dataset.state;
-    let cln = event?.target.options[event.target.selectedIndex].dataset.country;
-    cityBox.innerHTML = rc + ",";
-    stateBox.innerHTML = clnc + "," + " " + cln + "."
-}
-$(".select-body").on('click', '.trash', function() {
-    $(this).closest('.new-row').remove();
-    return false;
-});
-$(document).on('click',".select-row", function() {
-var regcontent = '<tr class="new-row">' +
-    '<td>' +
-    ' <select name="item_id[]" class="select-remote form-control w-100">' +
-                                                                                
-    '</select>' +
-    '</td>' +
-    '<td class="text-center select-row pl-0 pr-0">' +
-    '  <input type="number" name="" id="" class="table-input">' +
-    '</td>' +
-    '<td class="text-center pl-0 pr-0">' +
-    '<input type="number" name="" id="" class="table-input">' +
-    '</td>' +
-    '<td class="text-right">$100</td>' +
-    '<td>' +
-    '<a href="#" class="btn btn-danger trash table-trash"><i class="far fa-trash-alt"></i></a>' +
-    '</td>' +
-    '</tr>';
-$(".select-body").append(regcontent);
-return false;
-});
+        let cityBox = document.querySelector(".city")
+        let stateBox = document.querySelector(".state")
+        supplySelect.onchange = function(event) {
+            let rc = event?.target.options[event.target.selectedIndex].dataset.city;
+            let clnc = event?.target.options[event.target.selectedIndex].dataset.state;
+            let cln = event?.target.options[event.target.selectedIndex].dataset.country;
+            cityBox.innerHTML = rc + ",";
+            stateBox.innerHTML = clnc + "," + " " + cln + "."
+        }
+        $(".select-body").on('click', '.trash', function() {
+            $(this).closest('.new-row').remove();
+            return false;
+        });
+    $(document).on('click',".select-row", function() {
+        var regcontent = '<tr class="new-row">' +
+            '<td>' +
+            ' <select name="item_id[]" class="select-remote form-control w-100">' +
+                                                                                        
+            '</select>' +
+            '</td>' +
+            '<td class="text-center select-row pl-0 pr-0">' +
+            '  <input type="number" name="" id="" class="table-input">' +
+            '</td>' +
+            '<td class="text-center pl-0 pr-0">' +
+            '<input type="number" name="" id="" class="table-input">' +
+            '</td>' +
+            '<td class="text-right">$100</td>' +
+            '<td>' +
+            '<a href="#" class="btn btn-danger trash table-trash"><i class="far fa-trash-alt"></i></a>' +
+            '</td>' +
+            '</tr>';
+            $(".select-body").append(regcontent);
+            $('.select-remote:last').select2({
+                width: 'resolve',
+                ajax: {
+                    url: "{{route('drugs')}}",
+                    dataType: 'json', 
+                    cache: true, 
+                    data: function (params) {
+                        var query = {
+                            search: params.term,
+                            pharmacy_id: @json($pharmacy->id),
+                            type: 'ajax'
+                        }
+                        return query;
+                    },
+                    processResults: function (data) {
+                        var data = $.map(data.drugs, function (obj) {
+                            obj.text = obj.text || obj.name; // replace name with the property used for the text
+                            return obj;
+                        });
+                        return {
+                            results: data
+                        };
+                    }
+                }
+            });
+        return false;
+    });
     </script>
 @endpush

@@ -4,18 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Inventory;
 // use App\Models\Ingredient;
 use App\Models\Medicine;
-use App\Models\Pharmacy;
 
 
 class Item extends Model
 {
     use HasFactory;
+
     public function ingredients() {
         return $this->belongsToMany(Medicine::class, 'ingredients');
     }
-    public function pharmacies() {
-        return $this->belongsTo(Pharmacy::class, 'ingredients');
+
+    public function inventories(){
+        return $this->hasMany(Inventory::class);
     }
+
+    public function pharmacyInventory($pharmacy_id){
+        return $this->inventories->where('pharmacy_id',$pharmacy_id)->first();
+    }
+
 }
+

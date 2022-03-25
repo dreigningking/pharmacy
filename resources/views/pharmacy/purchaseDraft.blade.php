@@ -31,7 +31,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('user.sidebar')
+            @include('pharmacy.sidebar')
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <!-- Page Wrapper -->
                 <div class="page-wrapper">
