@@ -9,6 +9,7 @@ use App\Models\Pharmacy;
 class Patient extends Model
 {
     use HasFactory;
+    protected $dates = ['dob'];
     public function pharmacies(){
         return $this->hasMany(Pharmacy::class);
     }
