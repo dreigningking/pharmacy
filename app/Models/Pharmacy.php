@@ -9,6 +9,7 @@ use App\Models\State;
 use App\Models\PharmacyUser;
 use App\Models\Supplier;
 use App\Models\Inventory;
+use App\Models\Patient;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Country;
 use App\Models\Subscription;
@@ -53,6 +54,9 @@ class Pharmacy extends Model
     }
     public function inventories(){
         return $this->hasMany(Inventory::class);
+    }
+    public function patients(){
+        return $this->hasMany(Patient::class);
     }
 
 }

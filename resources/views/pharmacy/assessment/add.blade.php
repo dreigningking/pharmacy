@@ -101,8 +101,8 @@
 
 
                                         </div>
-                                        <div class="plus-more add-more">
-                                            <a href="javascript:void(0);" class="add-physical"><i
+                                        <div class="plus-more add-more ml-4">
+                                            <a href="javascript:void(0);" class="add-physical ml-2"><i
                                                     class="fa fa-plus-circle"></i> Add More</a>
                                         </div>
                                     </div>
@@ -157,8 +157,8 @@
 
                                             </div>
 
-                                            <div class="plus-more add-more">
-                                                <a href="javascript:void(0);" class="add-past"><i
+                                            <div class="plus-more add-more ml-4">
+                                                <a href="javascript:void(0);" class="add-past ml-4"><i
                                                         class="fa fa-plus-circle"></i> Add More</a>
                                             </div>
 
@@ -236,7 +236,7 @@
 
                                             </div>
                                             <div class="plus-more add-more">
-                                                <a href="javascript:void(0);" class="add-plan"><i
+                                                <a href="javascript:void(0);" class="add-plan ml-2"><i
                                                         class="fa fa-plus-circle"></i> Add More</a>
                                             </div>
                                         </div>

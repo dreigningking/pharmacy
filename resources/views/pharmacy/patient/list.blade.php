@@ -38,15 +38,21 @@
                         <!-- Page Header -->
                         <div class="page-header">
                             <div class="row">
-
-                                <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                    <div class="row justify-content-end mb-4">
+                                        <a class="btn btn-primary btn-lg"
+                                            href="{{route('pharmacy.addpatient',$pharmacy)}}">New
+                                            Patient</a>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-sm-12">
                                     <h3 class="page-title">List of Patients</h3>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
                                         <li class="breadcrumb-item active">Patient</li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <!-- /Page Header -->

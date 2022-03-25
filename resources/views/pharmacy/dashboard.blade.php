@@ -45,7 +45,7 @@
                                             </div>
                                             <div class="dash-widget-info">
                                                 <h3>Patients</h3>
-                                                <h5>1500</h5>
+                                                <h5>{{$patients->count()}}</h5>
                                                 <!-- <p class="text-muted">Till Today</p> -->
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="dash-widget-info">
                                                 <h3>Drugs</h3>
-                                                <h5>160</h5>
+                                                <h5>{{$items->count()}}</h5>
                                                 <!-- <p class="text-muted">06, Nov 2019</p> -->
                                             </div>
                                         </div>

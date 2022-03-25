@@ -8,6 +8,8 @@ use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
+use App\Models\Item;
+use App\Models\patient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +17,10 @@ class PharmacyController extends Controller
 {
    
     public function index(Pharmacy $pharmacy){
-        return view('pharmacy.dashboard',compact('pharmacy'));
+// dd($pharmacy);
+$items= Item::all();
+$patients= Patient::all();
+        return view('pharmacy.dashboard',compact('pharmacy', 'items', 'patients'));
     }
 
     public function subscription(Pharmacy $pharmacy){
