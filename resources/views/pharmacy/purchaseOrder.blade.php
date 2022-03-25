@@ -66,8 +66,8 @@
         height: 29px !important;
     }
     .select-remote {
-width: 450px !important;
-}
+        width: 450px !important;
+    }
 </style>
 @endpush
 @section('main')
@@ -94,7 +94,7 @@ width: 450px !important;
     <div class="container-fluid">
 
         <div class="row">
-            @include('user.sidebar')
+            @include('pharmacy.sidebar')
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <!-- Page Wrapper -->
                 <div class="page-wrapper">
