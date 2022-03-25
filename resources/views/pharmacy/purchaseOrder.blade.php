@@ -220,7 +220,7 @@ width: 450px !important;
                                                                             <input type="number" name="" id="" class="table-input">
                                                                         </td>
                                                                         <td class="text-center pl-0 pr-0 extra-column"> <input type="number" name="" id="" class="table-input"></td>
-                                                                        <td class="text-right">$100</td>
+                                                                        <td class="text-right">{{$pharmacy->country->currency_symbol}}<span class="amount">100</span></td>
                                                                         <td><a href="#" class="btn btn-danger trash table-trash no-column"><i class="far fa-trash-alt"></i></a></td>
                                                                     </tr> 
                                                                     
@@ -234,7 +234,7 @@ width: 450px !important;
                                                                 <tbody>
                                                                 <tr>
                                                                     <th>Subtotal:</th>
-                                                                    <td><span>$350</span></td>
+                                                                    <td><span>{{$pharmacy->country->currency_symbol}}<span class="subtotal">315</span></span></td>
                                                                 </tr>
                                                                 {{-- <tr>
                                                                     <th>Discount:</th>
@@ -242,7 +242,7 @@ width: 450px !important;
                                                                 </tr> --}}
                                                                 <tr>
                                                                     <th>Total Amount:</th>
-                                                                    <td><span>$315</span></td>
+                                                                    <td><span>{{$pharmacy->country->currency_symbol}}<span class="total">315</span></span></td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>

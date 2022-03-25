@@ -18,7 +18,6 @@ class InventoryController extends Controller
         $drugs = Item::where('name','LIKE',"%$search%")->get();
         else
         $drugs = Item::all();
-        //pharmacyInventory
         if( request()->type == 'ajax')
             return response()->json(['drugs'=> $drugs],200);
         else 
