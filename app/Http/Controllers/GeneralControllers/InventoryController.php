@@ -21,15 +21,15 @@ class InventoryController extends Controller
         if( request()->type == 'ajax')
             return response()->json(['drugs'=> $drugs],200);
         else 
-            return view('pharmacy.drugs',compact('drugs'));    
+            return view('drugs',compact('drugs'));    
     }
     
     public function inventory(Pharmacy $pharmacy){
-        return view('pharmacy.inventory',compact('pharmacy'));
+        return view('pharmacy.inventory.list',compact('pharmacy'));
     }
     
     public function shelf(Pharmacy $pharmacy){
-        return view('pharmacy.shelf',compact('pharmacy'));
+        return view('pharmacy.inventory.shelf',compact('pharmacy'));
     }
     
     public function purchase(Pharmacy $pharmacy){
@@ -39,7 +39,7 @@ class InventoryController extends Controller
         $items = Item::all();
         $medicines = Medicine::all();
         $countries = Country::all();
-        return view('pharmacy.purchaseOrder',compact('user','pharmacy','suppliers','items','medicines','countries'));
+        return view('pharmacy.inventory.supply',compact('user','pharmacy','suppliers','items','medicines','countries'));
     }
 
 

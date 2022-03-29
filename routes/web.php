@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/','welcome')->name('index');
 
+Route::get('drugs',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'drugs'] )->name('drugs');
 Route::view('agreement','main.agreement')->name('agreement');
 Route::get('pharmacy/{pharmacy}/{user}/invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
 Route::post('invitation/submit', [App\Http\Controllers\WebControllers\HomeController::class, 'invitation_submit'])->name('confirm_invitations');
@@ -34,7 +35,7 @@ Route::middleware('auth')->group(function(){
     Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'cities'])->name('getCities');
     Route::post('planpayment',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'planPayment'] )->name('planPayment');
     Route::get('payment/verification',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'verify'] )->name('verify');
-    Route::get('drugs',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'drugs'] )->name('drugs');
+    
     
     //accessible on director dashboard and inside pharmacies
     Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'index'])->name('dashboard');

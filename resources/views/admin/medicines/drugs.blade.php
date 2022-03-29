@@ -5,7 +5,6 @@
 @endpush
 @section('main')
 <div class="content container-fluid">
-
     <!-- Page Header -->
     <div class="page-header">
         <div class="row">
@@ -41,7 +40,7 @@
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     <td class="text-center">
-@foreach($item->ingredients as $ingredient)
+                                        @foreach($item->ingredients as $ingredient)
                                         {{$ingredient->name}},
                                         @endforeach
                                     </td>
