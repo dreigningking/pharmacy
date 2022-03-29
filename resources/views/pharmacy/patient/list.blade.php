@@ -76,25 +76,27 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach($patients as $patient)
                                                         <tr>
-                                                            <td>001</td>
+                                                            <td>{{$patient->EMR}}</td>
                                                             <td>
-                                                                <h2 class="table-avatar">
+                                                                <!-- <h2 class="table-avatar">
                                                                     <a href="profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
                                                                             src="{{asset('assets/img/patients/patient1.jpg')}}"
                                                                             alt="User Image"></a>
-                                                                    <a href="profile.html">Charlene Reed </a>
-                                                                </h2>
+                                                                    <p href="profile.html"></p>
+                                                                </h2> -->
+                                                                {{$patient->name}}
                                                             </td>
 
 
                                                             <td>
-                                                                09045682675
+                                                            {{$patient->mobile}}
                                                             </td>
-                                                            <td>test@gmail.com</td>
-                                                            <td>57</td>
+                                                            <td>{{$patient->email}}</td>
+                                                            <td>{{$patient->dob->diffInYears(now())}}</td>
 
                                                             <td class="text-center">
                                                                 <div class="actions">
@@ -116,7 +118,7 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-
+@endforeach
                                                     </tbody>
                                                 </table>
                                             </div>

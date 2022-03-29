@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <form action="" class="w-100">
+                        <form action="{{route('pharmacy.storepatient', $pharmacy)}}" class="w-100" method="POST">@csrf
                             <div class="row justify-content-start mt-4 w-100">
 
 
@@ -64,46 +64,57 @@
                                     <div class="row w-100">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label pr-0">Patient Name</label>
+                                                <label class="col-lg-3 col-form-label pr-0">First Name</label>
                                                 <div class="col-lg-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="first_name">
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label pr-0">Last Name</label>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control" name="last_name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row w-100">
+                                    <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label pr-0">Email</label>
                                                 <div class="col-lg-9">
-                                                    <input type="email" class="form-control">
+                                                    <input type="email" class="form-control" name="email">
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row w-100">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label pr-0">Phone Number</label>
                                                 <div class="col-lg-9">
-                                                    <input type="number" class="form-control">
+                                                    <input type="number" class="form-control" name="mobile">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                       
+                                    </div>
+                                    <div class="row w-100">
+                                    <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label pr-0">Date of
                                                     birth</label>
                                                 <div class="col-lg-9">
-                                                    <input type="date" class="form-control">
+                                                    <input type="date" class="form-control" name="dob">
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row w-100">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label pr-0">Gender</label>
                                                 <div class="col-lg-9">
-                                                    <select class="form-control" id="gender">
+                                                    <select class="form-control" id="gender" name="gender">
                                                         <option value="female">Female</option>
                                                         <option value="male">Male</option>
                                                         <option value="other">Other</option>

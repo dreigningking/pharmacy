@@ -23,7 +23,7 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     Route::get('pharmacies', [App\Http\Controllers\WebControllers\AdminControllers\TreatmentController::class, 'pharmacies'])->name('pharmacies');
     
     Route::get('roles', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'index'])->name("roles");
-    Route::get('permissions', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'permissions'])->name("permissions");
+    Route::post('permissions', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'store'])->name("permissions");
     
     Route::get('assessments', [App\Http\Controllers\WebControllers\AdminControllers\TreatmentController::class, 'assessments'])->name("assessment");
 

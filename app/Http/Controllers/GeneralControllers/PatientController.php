@@ -5,6 +5,7 @@ namespace App\Http\Controllers\GeneralControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pharmacy;
+use App\Models\Patient;
 
 class PatientController extends Controller
 {
@@ -15,7 +16,8 @@ class PatientController extends Controller
      */
     public function index(Pharmacy $pharmacy)
     {
-        return view('pharmacy.patient.list', compact('pharmacy'));
+        $patients = Patient::all();
+        return view('pharmacy.patient.list', compact('pharmacy', 'patients'));
     }
 
     /**
@@ -39,10 +41,18 @@ class PatientController extends Controller
         return view('pharmacy.patient.add', compact('pharmacy'));
     }
 
-    public function store(Request $request)
+    public function store(Pharmacy $pharmacy, Request $request)
     {
-        $pharmacy = Pharmacy::find($request->pharmacy_id);
-        return view('pharmacy.patient.add', compact('pharmacy'));
+        
+        $patient = new Patient;
+        $patient->name = $request->first_name." ".$request->last_name;
+        $patient->mobile = $request->mobile;
+        $patient->email = $request->email;
+        $patient->dob = $request->dob;
+$patient->gender = $request->gender;
+$patient->emr = $pharmacy->id.$request->first_name.now()->format("Y");
+$patient->save();
+return redirect() ->route("pharmacy.newassessment", $pharmacy);
     }
 
     /**

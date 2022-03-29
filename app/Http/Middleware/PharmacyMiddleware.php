@@ -16,6 +16,7 @@ class PharmacyMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        // dd($request->route('pharmacy'));
         if($request->user()->pharmacies->isEmpty())
         return redirect()->route('setup');
         if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->isEmpty())
