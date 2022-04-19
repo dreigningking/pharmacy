@@ -18,16 +18,7 @@ trait PaystackTrait
         // dd($response);
         return $response;
     }
-    // {
-    //     "status": true,
-    //     "message": "Authorization URL created",
-    //     "data": {
-    //       "authorization_url": "https://checkout.paystack.com/0peioxfhpn",
-    //       "access_code": "0peioxfhpn",
-    //       "reference": "7PVGX8MEk85tgeEpVDtD"
-    //     }
-    //   }
-
+    
     protected function verifyPayment($value){
         $transactionRef = $value;
         $paymentDetails = Curl::to('https://api.paystack.co/transaction/verify/'.$transactionRef)

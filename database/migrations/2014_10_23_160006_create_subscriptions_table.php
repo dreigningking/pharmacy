@@ -18,6 +18,7 @@ class CreateSubscriptionsTable extends Migration
             $table->unsignedBigInteger('plan_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('pharmacy_id');
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->timestamp('start');
             $table->timestamp('warn');
             $table->timestamp('end');

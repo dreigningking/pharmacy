@@ -16,8 +16,7 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id'); //seller
-            $table->unsignedBigInteger('patient_id'); //patient
-            $table->unsignedBigInteger('prescription_id');
+            $table->unsignedBigInteger('payment_id')->nullable(); //payment
             $table->double('subtotal')->default(0);
             $table->double('vat')->default(0);
             $table->double('shipping_fee')->default(0);
@@ -27,8 +26,7 @@ class CreateSalesTable extends Migration
             $table->SoftDeletes();
             $table->timestamps();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
-            $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('prescription_id')->references('id')->on('prescriptions');
+            $table->foreign('payment_id')->references('id')->on('payments');
             // SALES : prescription_id, quantity, amount, payment_method
         });
     }

@@ -15,16 +15,18 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('pharmacy_id');
             $table->unsignedBigInteger('orderable_id');
-            $table->string('orderable_type');
+            $table->string('orderable_type'); //subscription, prescription
+            $table->unsignedBigInteger('sale_id')->nullable(); // 
+            $table->double('amount')->default(0);
             $table->integer('quantity')->default(1);
-            $table->double('amount')->default(1);
-            $table->double('total')->default(1);
+            $table->double('total')->default(0);
             $table->boolean('status')->default(0);
             $table->SoftDeletes();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
+            $table->unsignedBigInteger('sale_id')->on('sales')->onDelete('cascade');
         });
     }
 
