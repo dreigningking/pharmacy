@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\GeneralControllers;
 
+use App\Models\Bank;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Country;
 use App\Models\Pharmacy;
 use App\Models\Supplier;
-use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -80,17 +81,23 @@ class UserController extends Controller
     public function suppliers(){
         $user = Auth::user();
         $countries = Country::all();
-        return view('user.suppliers',compact('user','countries'));
+        $banks = Bank::all();
+        $suppliers = collect([]);
+        // dd($user->pharmacies->first()->suppliers);
+        foreach($user->pharmacies as $pharmacy){
+            $suppliers = $suppliers->merge($pharmacy->suppliers);
+        }
+        return view('user.suppliers',compact('user','countries','suppliers','banks'));
     }
     public function supplier_save(Request $request){
         // dd($request->all());
-        if($user = Auth::check())
-        $user = Auth::user();
-        else $user = User::find($request->user_id);
-        $supplier = Supplier::create(['name'=> $request->name,'description' => $request->description ?? null,
-            'email'=> $request->email,'mobile'=> $request->mobile,'image'=> $request->image ?? null,
-            'country_id'=> $request->country_id,'state_id'=> $request->state_id,'city_id'=> $request->city_id,'bank_id'=> $request->bank_id ?? null,'bank_account'=> $request->account_number ?? null]);
-        $supplier->pharmacies()->attach($user->pharmacies->pluck('id')->toArray());
+        $user = User::find($request->user_id);
+        // dd($request->all());
+        $supplier = Supplier::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'mobile'=> $request->mobile,
+            'country_id'=> $request->country_id,'state_id'=> $request->state_id,'city_id'=> $request->city_id,
+            'bank_id'=> $request->bank_id ?? null,'bank_account'=> $request->account_number ?? null]);
+        
+        $supplier->pharmacies()->sync($user->pharmacies->pluck('id')->toArray());
         if($request->ajax){
             return response()->json(['supplier'=> $supplier],200);
         }else{

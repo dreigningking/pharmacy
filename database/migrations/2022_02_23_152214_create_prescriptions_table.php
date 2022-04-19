@@ -16,15 +16,17 @@ class CreatePrescriptionsTable extends Migration
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('pharmacy_id');
             $table->unsignedBigInteger('assessment_id')->nullable();
-            $table->integer('dosage')->nullable();
-            $table->integer('duration')->nullable();
-            $table->string('administration')->nullable(); //
-            $table->boolean('hospital')->default(0); //
-            //effective? , reaction, therapeutic_alternatives
+            $table->integer('morning')->default(0);
+            $table->integer('afternoon')->default(0);
+            $table->integer('night')->default(0);
+            $table->integer('duration')->nullable();//days
+            $table->string('administration')->nullable(); ////Topical, Oral,Dental,Ophthalmic,Nasal,Sublingual,Rectal,Vaginal,Transdermal,Auricular (otic),
+            $table->string('origin')->nullable(); //hospital, pharmacy, 
+            $table->text('remark')->nullable(); //
             $table->timestamps();
-            // NONMEDICAL PRESCRIPTION: id,patient_id, assessment_id, body, effective? , reaction,
-            //Topical, Oral,Dental,Ophthalmic,Nasal,Sublingual,Rectal,Vaginal,Transdermal,Auricular (otic),
+            
         });
     }
 

@@ -85,7 +85,7 @@
                         </div>
                          <div class="user-text">
                             <h6>{{explode(' ',Auth::user()->name)[0]}}</h6>
-                            <p class="text-muted mb-0">Doctor</p>
+                            {{-- <p class="text-muted mb-0">Doctor</p> --}}
                         </div> 
                     </div>
                     <a class="dropdown-item" href="{{route('workspaces')}}">Switch Pharmacy</a>

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Subscription;
+use App\Models\Pharmacy;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SubscriptionPolicy
+class PharmacyPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class SubscriptionPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subscription  $subscription
+     * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Subscription $subscription)
+    public function view(User $user, Pharmacy $pharmacy)
     {
         //
     }
@@ -48,10 +48,10 @@ class SubscriptionPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subscription  $subscription
+     * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Subscription $subscription)
+    public function update(User $user, Pharmacy $pharmacy)
     {
         //
     }
@@ -60,10 +60,10 @@ class SubscriptionPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subscription  $subscription
+     * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Subscription $subscription)
+    public function delete(User $user, Pharmacy $pharmacy)
     {
         //
     }
@@ -72,10 +72,10 @@ class SubscriptionPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subscription  $subscription
+     * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Subscription $subscription)
+    public function restore(User $user, Pharmacy $pharmacy)
     {
         //
     }
@@ -84,11 +84,15 @@ class SubscriptionPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subscription  $subscription
+     * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Subscription $subscription)
+    public function forceDelete(User $user, Pharmacy $pharmacy)
     {
         //
+    }
+    public function subscribe(User $user,Pharmacy $pharmacy){
+        if($pharmacy->staff->where('user_id',$user->id)->first()->role->permissions->where('name','subscription')->isNotEmpty())
+        return true;
     }
 }

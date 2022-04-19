@@ -16,24 +16,19 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id'); //seller
+            $table->unsignedBigInteger('patient_id'); //patient
             $table->unsignedBigInteger('prescription_id');
-            $table->string('order_hash');
-            $table->string('currency');
             $table->double('subtotal')->default(0);
-            $table->double('discount')->default(0);
-            $table->string('coupon_id')->nullable();
             $table->double('vat')->default(0);
             $table->double('shipping_fee')->default(0);
             $table->double('total')->default(0);
             $table->string('status')->nullable(); //processing, on-hold, ready, completed, cancelled, refunded, failed and trash, delivered. Default is processing.
-            $table->text('customer_note')->nullable(); 
-            $table->unsignedBigInteger('user_id'); //buyer
-            $table->string('user_address');
             $table->timestamp('delivered_at')->nullable();
             $table->SoftDeletes();
             $table->timestamps();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('prescription_id')->references('id')->on('prescriptions');
             // SALES : prescription_id, quantity, amount, payment_method
         });
     }

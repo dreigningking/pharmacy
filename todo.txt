@@ -1,18 +1,26 @@
-subscription: renew subscriptions,
-save payment cards ?
 
-allow directors to delete staff
 
-PRICING: http://localhost/logistix/public/frontend/html/landings/classic-advertisement.html
-PRICING: http://localhost/logistix/public/frontend/html/landings/onepage-saas.html#pricingSection
-
+USER DASHBOARD
 what will be on everybody's dashboard
 1. activities
 2. notifications
 3. things to respond to..
 4. subscription info for directors
+5. subscription: renew subscriptions,
+6. save payment cards ?
+7. user transactions (director): View Prescriptions
+8. user security
+9. user activities
 
+USER SETTINGS
+delete your profile
+
+
+PHARMACY SETTINGS
 delete your account
+initial balance
+markup amount
+
 
 data is central(medicine,diseases)
 data can be shared across pharmacies you own (drug, patient)

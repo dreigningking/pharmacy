@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Bank;
 use App\Models\City;
 use App\Models\State;
 use App\Models\Pharmacy;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Supplier extends Model
 {
-    protected $fillable = [	'name','description','email','mobile','image','pharmacy_id','country_id','state_id','city_id','bank_id','bank_account'];
+    protected $fillable = [	'name','email','mobile','country_id','state_id','city_id','bank_id','bank_account'];
     use HasFactory;
 
     public function country(){
@@ -24,5 +25,8 @@ class Supplier extends Model
     }
     public function pharmacies(){
         return $this->belongsToMany(Pharmacy::class,'pharmacy_suppliers');
+    }
+    public function bank(){
+        return $this->belongsTo(Bank::class);
     }
 }

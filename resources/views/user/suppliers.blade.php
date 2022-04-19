@@ -52,23 +52,18 @@
                                     <tr>    
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="#"
-                                                    class="avatar avatar-sm mr-2"><img
-                                                        class="avatar-img rounded-circle"
-                                                        src="{{asset('assets/img/patients/patient1.jpg')}}"
-                                                        alt="User Image"></a>
-                                                <a href="#">Charleen Pharma </a>
+                                                <a href="#">{{$supplier->name}}</a>
                                             </h2>
                                         </td>
 
-                                        <td>0802 345 6789</td>
-                                        <td>supplier@gmail.com</td>
-                                        <td>GTBank 0051234943</td>
+                                        <td>{{$supplier->mobile}}</td>
+                                        <td>{{$supplier->email}}</td>
+                                        <td>{{$supplier->bank ? $supplier->bank->name: ''}} {{$supplier->bank_account}}</td>
                                         
                                         <td class="text-right">
                                             <div class="actions">
                                                 <a class="btn btn-sm bg-success-light"
-                                                    data-toggle="modal" href="#edit_staff">
+                                                    data-toggle="modal" href="#edit_staff{{$supplier->id}}">
                                                     <i class="fe fe-pencil"></i> Edit
                                                 </a>
                                                 <a data-toggle="modal" href="#delete_modal"
@@ -113,24 +108,22 @@
                         <div class="card flex-fill">
                             
                             <div class="card-body">
-                                <form action="#">
+                                <form action="{{route('supplier.save')}}" method="POST">@csrf
                                    
                                     <input type="hidden" name="ajax" value="0">
-                                    <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
+                                    <input type="hidden" name="user_id" value="{{$user->id}}">
                                     <div class="form-group ">
-                                        <label class="form-label">Name</label>
-                                        <input type="text" name="name" id="supplier_name" class="form-control" required>
+                                        <input type="text" name="name" id="supplier_name" class="form-control" placeholder="Name" required>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" name="email" id="supplier_email" class="form-control" required>
+                                        <input type="email" name="email" id="supplier_email" placeholder="Email" class="form-control" required>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group ">
                                                 <label class="form-label">Mobile Number</label>
-                                                <input type="text" name="mobile" id="supplier_mobile" class="form-control" required>
+                                                <input type="text" name="mobile" placeholder="Mobile Number" id="supplier_mobile" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -138,7 +131,7 @@
                                                 <label class="form-label">Country</label>
                                                 <select name="country_id" id="supplier_country" class="select form-control" required>
                                                     @foreach ($countries as $country)
-                                                        <option value="{{$country->id}}" @if($pharmacy->country_id == $country->id) selected @endif>{{$country->name}}</option>
+                                                        <option value="{{$country->id}}" @if($user->country_id == $country->id) selected @endif>{{$country->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -147,8 +140,8 @@
                                             <div class="form-group">
                                                 <label class="form-label">State</label>
                                                 <select name="state_id" id="supplier_state" class="select form-control" required>
-                                                    @foreach ($pharmacy->country->states as $state)
-                                                        <option value="{{$state->id}}" @if($pharmacy->state_id == $state->id) selected @endif>{{$state->name}}</option>
+                                                    @foreach ($user->country->states as $state)
+                                                        <option value="{{$state->id}}" @if($user->state_id == $state->id) selected @endif>{{$state->name}}</option>
                                                     @endforeach 
                                                 </select>
                                             </div>
@@ -157,10 +150,29 @@
                                             <div class="form-group">
                                                 <label class="form-label">City</label>
                                                 <select name="city_id" id="supplier_city" class="select form-control" required>
-                                                    @foreach ($pharmacy->country->cities as $city)
-                                                        <option value="{{$city->id}}" @if($pharmacy->city_id == $city->id) selected @endif>{{$city->name}}</option>
+                                                    @foreach ($user->country->cities as $city)
+                                                        <option value="{{$city->id}}" @if($user->city_id == $city->id) selected @endif>{{$city->name}}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Bank</label>
+                                                <select name="country_id" id="supplier_country" class="select form-control">
+                                                    @foreach ($banks as $bank)
+                                                        <option value="{{$bank->id}}" >{{$bank->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label class="form-label">Account Number</label>
+                                                <input type="text" name="bank_account" id="supplier_bank_account" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -181,9 +193,8 @@
 
 <!-- Add Staff Modal -->
 
-
-<!-- Edit Details Modal -->
-<div class="modal fade custom-modal" id="edit_staff">
+@foreach ($suppliers as $supplier)
+<div class="modal fade custom-modal" id="edit_staff{{$supplier->id}}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -193,44 +204,86 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label for="usr">Supplier Name:</label>
-                    <input type="text" class="form-control" id="usr">
-                </div>
-                <div class="form-group">
-                    <label for="usr">Supplier Email:</label>
-                    <input type="email" class="form-control" id="usr">
-                </div>
-                <div class="form-group">
-                    <label for="usr">Supplier Phone:</label>
-                    <input type="text" class="form-control" id="usr">
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="usr">Country:</label>
-                            <input type="text" class="form-control" id="usr">
+                <form action="{{route('supplier.save')}}" method="POST">@csrf
+                                   
+                    <input type="hidden" name="ajax" value="0">
+                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                    <div class="form-group ">
+                        <input type="text" value="{{$supplier->name}}" name="name" id="supplier_name" class="form-control" placeholder="Name" required>
+                    </div>
+                    <div class="form-group ">
+                        <input type="email" value="{{$supplier->email}}" name="email" id="supplier_email" placeholder="Email" class="form-control" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">Mobile Number</label>
+                                <input type="text" value="{{$supplier->mobile}}" name="mobile" placeholder="Mobile Number" id="supplier_mobile" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Country</label>
+                                <select name="country_id" id="supplier_country" class="select form-control" required>
+                                    @foreach ($countries as $country)
+                                        <option value="{{$country->id}}" @if($supplier->country_id == $country->id) selected @endif>{{$country->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <select name="state_id" id="supplier_state" class="select form-control" required>
+                                    @foreach ($user->country->states as $state)
+                                        <option value="{{$state->id}}" @if($supplier->state_id == $state->id) selected @endif>{{$state->name}}</option>
+                                    @endforeach 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">City</label>
+                                <select name="city_id" id="supplier_city" class="select form-control" required>
+                                    @foreach ($user->country->cities as $city)
+                                        <option value="{{$city->id}}" @if($supplier->city_id == $city->id) selected @endif>{{$city->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="usr">State:</label>
-                            <input type="text" class="form-control" id="usr">
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Bank</label>
+                                <select name="country_id" id="supplier_country" class="select form-control">
+                                    @foreach ($banks as $bank)
+                                        <option value="{{$bank->id}}"  @if($supplier->bank_id == $bank->id) selected @endif >{{$bank->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">Account Number</label>
+                                <input type="text" value="{{$state->bank_account}}" name="bank_account" id="supplier_bank_account" class="form-control">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="usr">Supplier Phone:</label>
-                            <input type="text" class="form-control" id="usr">
-                        </div>
+
+                    <div class="text-right">
+                        <button type="submit" id="save_supplier" class="btn btn-primary">Submit</button>
                     </div>
-                </div>
-                
-                <button type="button" class="btn btn-primary">Save changes</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+@endforeach
+<!-- Edit Details Modal -->
+
 
 <!-- /Edit Details Modal -->
 @endsection

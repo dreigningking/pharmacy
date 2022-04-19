@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function(){
     Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/{pharmacy}'], function () {
         
         Route::get('checkout/{plan}',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
+        
         Route::group(['middleware'=>['subscription']], function () {
             Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
             Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
@@ -83,7 +84,11 @@ Route::middleware('auth')->group(function(){
             Route::get('assessment/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'showassessment'])->name("showassessment");
             Route::get('prescription', [App\Http\Controllers\GeneralControllers\PatientController::class, 'prescription'])->name("prescription");
             Route::get('nonmedical-plan', [App\Http\Controllers\GeneralControllers\PatientController::class, 'plan'])->name("plan");
+            
+            Route::get('inventory/setup', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'start'])->name("inventory.start");
+            Route::post('inventory/setup', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'setup'])->name("inventory.setup");
             Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'inventory'])->name("inventory");
+            
             Route::get('shelf', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'shelf'])->name("shelf");
             Route::get('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
             Route::get('purchase',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'purchase'])->name('purchase');

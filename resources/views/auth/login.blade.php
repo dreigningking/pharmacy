@@ -22,13 +22,13 @@
                                     <div class="form-group form-focus mb-2">
                                         <input id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus type="email" class="form-control @error('email') is-invalid @enderror floating">
                                         <label class="focus-label">Email</label>
-                                        @error('email')
-                                        <span class="invalid-feedback d-block" role="alert">
+                                        
+                                    </div>
+                                    @error('email')
+                                        <span class="text-danger d-block mb-2" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                        @enderror
-                                    </div>
-                                    
+                                    @enderror
                                     
                                     <div class="form-group form-focus mb-2">
                                         <input id="password" name="password" required autocomplete="current-password" type="password" class="form-control @error('password') is-invalid @enderror floating">

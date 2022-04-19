@@ -38,7 +38,7 @@
                             <table class="datatable table table-hover table-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Invoice Number</th>
+                                        <th>Date</th>
 
                                         <th>Pharmacy Name</th>
                                         <th>Amount</th>
@@ -47,16 +47,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user->sales as $sale)
+                                    @foreach ($user->sales->sortByDesc('created_at') as $sale)
                                     <tr>
-                                        <td><a href="invoice.html">#{{$sale->id}}</td>
+                                        <td>{{$sale->created_at->format('jS-M Y')}}</td>
 
                                         <td>
                                             <h2 class="table-avatar">
                                                 <a href="profile.html">{{$sale->pharmacy->name}} </a>
                                             </h2>
                                         </td>
-                                        <td>$100.00</td>
+                                        <td>{{$sale->pharmacy->country->currency_symbol}}{{$sale->total}}</td>
                                         <td class="text-center">
                                             <span
                                                 class="badge badge-pill bg-secondary inv-badge">Walk-in</span>

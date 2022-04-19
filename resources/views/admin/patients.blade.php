@@ -111,10 +111,9 @@
                                         </div>
                                     
                                         <div class="col-sm-8 pl-0 pr-0">
-                                            @foreach($patient->patients as $patient)
-                                            {{$patient->name}},
-                                            </div>
-                                    @endforeach
+                                            
+                                        </div>
+                                            
                                     </div>
                                     <!-- <div class="row mb-4">
                                         <div class="col-sm-4 pl-0 pr-0">

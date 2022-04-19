@@ -11,6 +11,7 @@ class Medicine extends Model
 {
    
     use HasFactory;
+    protected $fillable = ['name','description','contraindications'];
     protected $casts = ['contraindications'=>'array'];
 
     public function diseases () {

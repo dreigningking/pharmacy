@@ -20,69 +20,56 @@
             <nav class="dashboard-menu">
                 <ul>
 
-                    @if(Auth::user()->isAnyRole(['director']))
+                    
                     <li @if(Route::is('dashboard')) class="active" @endif>
                         <a href="{{route('dashboard')}}">
                             <i class="fas fa-columns"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li @if(Route::is('setup')) class="active" @endif>
-                        <a href="{{route('setup')}}">
-                            <i class="fas fa-prescription"></i>
-                            <span>Add Pharmacy</span>
-                        </a>
-                    </li>
-                    <li @if(Route::is('subscription')) class="active" @endif>
-                        <a href="{{route('subscription')}}">
-                            <i class="fas fa-money-bill"></i>
-                            <span>Subscription</span>
-                        </a>
-                    </li>
-                    <li @if(Route::is('transactions')) class="active" @endif>
-                        <a href="{{route('transactions')}}">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Transcation</span>
-                        </a>
-                    </li>
-
-                    {{-- <li @if(Route::is('medicine')) class="active" @endif>
-                        <a href="{{route('medicine')}}">
-                            <i class="fas fa-pills"></i>
-                            <span>Medicine</span>
-                        </a>
-                    </li> --}}
-                    <li>
-                        <a href="{{route('suppliers')}}">
-                            <i class="fas fa-users"></i>
-                            <span>Suppliers</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="social-media.html">
-                            <i class="fas fa-share"></i>
-                            <span>Transfer</span>
-                        </a>
-                    </li>
-
-                    <li @if(Route::is('staff')) class="active" @endif>
-                        <a href="{{route('staff')}}">
-                            <i class="fas fa-users"></i> <span>Staff</span>
-                        </a>
-                    </li>
-
+                    @if(Auth::user()->isAnyRole(['director']))
+                        <li @if(Route::is('setup')) class="active" @endif>
+                            <a href="{{route('setup')}}">
+                                <i class="fas fa-prescription"></i>
+                                <span>Add Pharmacy</span>
+                            </a>
+                        </li>
+                        <li @if(Route::is('subscription')) class="active" @endif>
+                            <a href="{{route('subscription')}}">
+                                <i class="fas fa-money-bill"></i>
+                                <span>Subscription</span>
+                            </a>
+                        </li>
+                        <li @if(Route::is('transactions')) class="active" @endif>
+                            <a href="{{route('transactions')}}">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Transcation</span>
+                            </a>
+                        </li>
+                        <li @if(Route::is('suppliers')) class="active" @endif>
+                            <a href="{{route('suppliers')}}">
+                                <i class="fas fa-users"></i>
+                                <span>Suppliers</span>
+                            </a>
+                        </li>
+                    
+                        <li @if(Route::is('suppliers')) class="active" @endif>
+                            <a href="social-media.html">
+                                <i class="fas fa-share"></i>
+                                <span>Transfer</span>
+                            </a>
+                        </li>
+                        <li @if(Route::is('staff')) class="active" @endif>
+                            <a href="{{route('staff')}}">
+                                <i class="fas fa-users"></i> <span>Staff</span>
+                            </a>
+                        </li>
                     @endif
 
                     <li @if(Route::is('workspaces')) class="active" @endif>
                         <a href="{{route('workspaces')}}">
                             <i class="fas fa-columns"></i>
                             <span>Workspaces</span>
-                        </a>
-                    </li>
-                    <li @if(Route::is('activities')) class="active" @endif>
-                        <a href="{{route('activities')}}">
-                            <i class="fas fa-list-ol"></i>
-                            <span>activities</span>
                         </a>
                     </li>
                     <li @if(Route::is('profile')) class="active" @endif>

@@ -32,12 +32,15 @@
                             <span>Appointments</span>
                         </a>
                     </li> -->
+                    @cando($pharmacy,'patient')
                     <li @if(Route::is('pharmacy.patients')) class="active" @endif>
                         <a href="{{route('pharmacy.patients',$pharmacy)}}">
                             <i class="fas fa-user-injured"></i>
                             <span>Patients</span>
                         </a>
                     </li>
+                    @endcando
+                    @cando($pharmacy,'assessment')
                     <li @if(Route::is('pharmacy.assessment')) class="active" @endif>
                         <a href="{{route('pharmacy.assessment',$pharmacy)}}">
 
@@ -45,13 +48,14 @@
                             <span>Assessments</span>
                         </a>
                     </li>
+                    @endcando
                      {{-- <li @if(Route::is('medicine')) class="active" @endif>
                         <a href="{{route('medicine')}}">
                             <i class="fas fa-pills"></i>
                             <span>Medicine</span>
                         </a>
                     </li> --}}
-                    
+                    @cando($pharmacy,'inventory')
                     <li @if(Route::is('pharmacy.shelf')) class="active" @endif>
                         <a href="{{route('pharmacy.shelf',$pharmacy)}}">
                             <i class="fas fa-archive"></i>
@@ -65,50 +69,29 @@
 
                         </a>
                     </li>
-                    <!-- <li @if(Route::is('pharmacy.permissions')) class="active" @endif>
-                        <a href="{{route('pharmacy.permissions',$pharmacy)}}">
-                            <i class="fas fa-user-lock"></i>
-                            <span>Permissions</span>
-                        </a>
-                    </li> -->
-                    <!-- <li>
-                        <a href="doctor-profile-settings.html">
-                            <i class="fas fa-file-invoice"></i>
-                            <span>Purchase</span>
-                        </a>
-                    </li> -->
-                    <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
-                        <a href="{{route('pharmacy.transactions',$pharmacy)}}">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Sales</span>
-                        </a>
-                    </li>
                     <li @if(Route::is('pharmacy.inventory')) class="active" @endif>
                         <a href="{{route('pharmacy.inventory',$pharmacy)}}">
                             <i class="fas fa-boxes"></i>
                             <span>Inventory</span>
                         </a>
                     </li>
-                    <!-- <li>
-                        <a href="social-media.html">
-                            <i class="fas fa-share"></i>
-                            <span>Transfer</span>
+                    @endcando
+                    @cando($pharmacy,'sales')
+                    <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
+                        <a href="{{route('pharmacy.transactions',$pharmacy)}}">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Sales</span>
                         </a>
-                    </li> -->
-                    
+                    </li>
+                    @endcando
+                    @cando($pharmacy,'pharmacy')
                     <li>
                         <a href="{{route('pharmacy.settings',$pharmacy)}}">
                             <i class="fas fa-cog"></i>
                             <span>Settings</span>
                         </a>
                     </li>
-
-                    <!-- <li>
-                        <a href="index-2.html">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li> -->
+                    @endcando
                 </ul>
             </nav>
         </div>

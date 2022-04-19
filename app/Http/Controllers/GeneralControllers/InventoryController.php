@@ -10,8 +10,20 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\InventoriesImport;
+use Maatwebsite\Excel\Facades\Excel;
 class InventoryController extends Controller
 {
+
+    public function start(Pharmacy $pharmacy){
+        $drugs = Item::all();
+        return view('pharmacy.inventory.start',compact('pharmacy','drugs'));
+    }
+
+    public function setup(Pharmacy $pharmacy,Request $request){
+        Excel::import(new InventoriesImport, $request->file('your_file'));
+        return redirect()->back()->with('success', 'All good!');
+    }
    
     public function drugs(){
         if($search = request()->search)
@@ -23,6 +35,8 @@ class InventoryController extends Controller
         else 
             return view('drugs',compact('drugs'));    
     }
+
+    
     
     public function inventory(Pharmacy $pharmacy){
         return view('pharmacy.inventory.list',compact('pharmacy'));

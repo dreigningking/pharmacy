@@ -33,26 +33,18 @@
 
                 <!-- Page Wrapper -->
                 <div class="page-wrapper">
-                    <div class="content container-fluid">
-
-                        <!-- Page Header -->
-                        <div class="page-header">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row justify-content-end mb-4">
-                                        <a class="btn btn-primary btn-lg" data-toggle="modal" href="#add_staff">Add
-                                            Staff</a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
+                    <div class="content container-fluid pt-0">
                         <!-- /Page Header -->
 
                         <div class="row">
+                            
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div class="row justify-content-end mb-4">
+                                            <a class="btn btn-primary btn-lg" data-toggle="modal" href="#add_staff">Add
+                                                Staff</a>
+                                        </div>
                                         <div class="table-responsive">
                                             <div class="table-responsive">
                                                 <table class="datatable table table-hover table-center mb-0">
@@ -67,67 +59,52 @@
                                                             <th class="text-center">Action</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                       
-                                                            @foreach($user->pharmacies as $pharmacy)
-
-                                                                @foreach($pharmacy->users as $staff)
-                                                                    <tr>
-                                                                        <td>
-                                                                            <h2 class="table-avatar">
-                                                                                <a href="profile.html"
-                                                                                    class="avatar avatar-sm mr-2"><img
-                                                                                        class="avatar-img rounded-circle"
-                                                                                        src="assets/img/patients/patient2.jpg"
-                                                                                        alt="User Image"></a>
-                                                                                {{$staff->name}}
-                                                                            </h2>
-                                                                        </td>
-                                                                        <td>{{$staff->pharmacies->where("id",$pharmacy->id)->first()->name}}</td>
-                                                                        <td class="text-center">
-                                                                            <select name="" id="" class="role-select form-control">
-                                                                                <option selected >{{$pharmacy->staff->where('user_id',$user->id)->first()->role->name}}</option>
-                                                                                @foreach($roles->where("id","!=",$pharmacy->staff->where('user_id',$user->id)->first()->role->id)  as $role)
-                                                                                <option value="pharmacist"> {{$role->name}}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </td>
-                                                                        <td class="text-center">@if($pharmacy->staff->where('user_id',$user->id)->first()->status) Active @else Inactive @endif</td>
-                                                                        <td class="text-right d-flex justify-content-center">
-                                                                            <div class="actions d-flex align-items-center justity-content-center">
-                                                                                <a class="btn btn-sm bg-success-light"
-                                                                                    data-toggle="modal" href="#edit_staff">
-                                                                                    <i class="fe fe-pencil"></i> Edit
-                                                                                </a>
-                                                                                <form action="{{route('staff.destroy')}}" method="POST" class="mb-0 ml-2"> @csrf
-                                                                                    <div class="form-group-inline">
-                                                                                        <div>
-                                                                                            <input type="hidden" name="pharmacy_id" class="form-control" value="{{$pharmacy->id}}">
-                                                                                        </div>
+                                                    <tbody>                                                   
+                                                        @foreach($user->pharmacies as $pharmacy)
+                                                            @foreach($pharmacy->users as $staff)
+                                                                <tr>
+                                                                    <td>
+                                                                        <h2 class="table-avatar">
+                                                                            <a href="profile.html" class="avatar avatar-sm mr-2">
+                                                                                <img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image">
+                                                                            </a>
+                                                                            {{$staff->name}}
+                                                                        </h2>
+                                                                    </td>
+                                                                    {{-- <td>{{$staff->pharmacies->where("id",$pharmacy->id)->first()->name}}</td> --}}
+                                                                    <td>{{$staff->name}}</td>
+                                                                    <td class="text-center">
+                                                                        <select name="" id="" class="role-select form-control">
+                                                                            @foreach($roles as $role)
+                                                                                <option value="{{$role->id}}" @if($role->id == $staff->pivot->role_id) selected @endif> {{$role->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </td>
+                                                                    <td class="text-center">@if($staff->pivot->status) Active @else Inactive @endif</td>
+                                                                    <td class="text-right d-flex justify-content-center">
+                                                                        <div class="actions d-flex align-items-center justity-content-center">
+                                                                            <a class="btn btn-sm bg-success-light"
+                                                                                data-toggle="modal" href="#edit_staff">
+                                                                                <i class="fe fe-pencil"></i> Edit
+                                                                            </a>
+                                                                            <form action="{{route('staff.destroy')}}" method="POST" class="mb-0 ml-2"> @csrf
+                                                                                <div class="form-group-inline">
+                                                                                    <div>
+                                                                                        <input type="hidden" name="pharmacy_id" class="form-control" value="{{$pharmacy->id}}">
                                                                                     </div>
-                                                                                    <div class="form-group-inline">
-                                                                                        <div>
-                                                                                            <input type="hidden" name="user_id" class="form-control" value="{{$staff->id}}">
-                                                                                        </div>
+                                                                                </div>
+                                                                                <div class="form-group-inline">
+                                                                                    <div>
+                                                                                        <input type="hidden" name="user_id" class="form-control" value="{{$staff->id}}">
                                                                                     </div>
-                                                                                    <button type="submit" class="btn btn-sm bg-danger-light">Delete </button>
-                                                                                </form>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
+                                                                                </div>
+                                                                                <button type="submit" class="btn btn-sm bg-danger-light">Delete </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                             @endforeach
-
-                                                         
-                                                       
-
-                                                            
-                                                            
-                                                            
-
-                                                            
-                                                        
-                                               
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>

@@ -15,8 +15,10 @@ class CreateInventoriesTable extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('item_id')->nullable();
             $table->unsignedBigInteger('pharmacy_id');
+            $table->boolean('is_drug')->default(1);
+            $table->string('name');
             $table->unsignedBigInteger('shelf_id')->nullable();
             $table->string('batch_no');
             $table->integer('quantity')->default(1);

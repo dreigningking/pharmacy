@@ -86,15 +86,12 @@
                                                 <td>
                                                     @if($pharmacy->subscriptions->where('status',true)->first()->end < now() || $pharmacy->subscriptions->where('status',true)->first()->warn < now())
                                                         <a href="{{route('pharmacy.checkout',[$pharmacy,$pharmacy->subscriptions->first()->plan])}}"
-                                                            class="btn btn-outline d-flex align-items-center payment-btn">
-
-                                                            <i class="fas fa-eye"></i>
+                                                            class="btn btn-sm btn-secondary d-flex align-items-center payment-btn">
                                                             <p class="ml-2 mt-0 mb-0">Renew Subscription</p>
                                                         </a>
                                                     @else
                                                         <button
                                                             class="btn btn-outline d-flex align-items-center payment-btn">
-
                                                             <i class="fas fa-eye"></i>
                                                             <p class="ml-2 mt-0 mb-0">View Invoice</p>
                                                         </button>
