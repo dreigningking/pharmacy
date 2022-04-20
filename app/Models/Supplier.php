@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Supplier extends Model
 {
-    protected $fillable = [	'name','email','mobile','country_id','state_id','city_id','bank_id','bank_account'];
+    protected $fillable = [	'name','description','email','mobile','image','country_id','state_id','city_id','bank_id','bank_account'];
     use HasFactory;
 
     public function country(){

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReturnedItemsTable extends Migration
+class CreateReturnedDrugsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateReturnedItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('returned_items', function (Blueprint $table) {
+        Schema::create('returned_Drugs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('returned_id');
             $table->unsignedBigInteger('purchase_details_id');
@@ -34,6 +34,6 @@ class CreateReturnedItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('returned_items');
+        Schema::dropIfExists('returned_Drugs');
     }
 }

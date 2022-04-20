@@ -1,18 +1,15 @@
 <?php
 namespace App\Http\Traits;
-use App\Models\Order;
 use Ixudra\Curl\Facades\Curl;
-use Illuminate\Support\Facades\Auth;
 
 trait PaystackTrait
 {
 
-    protected function initializePayment(Order $order){
-        $user = Auth::user();
+    protected function initializePayment($amount,$drug_id,$name,$email){
         $response = Curl::to('https://api.paystack.co/transaction/initialize')
         ->withHeader('Authorization: Bearer '.config('services.paystack_secret_key'))
-        ->withData( array('email' => $user->email,
-        'amount'=> $order->amount *100,'metadata' => ['order_id'=> $order->id ] ) )
+        ->withData( array('email' => $email,
+        'amount'=> $amount *100,'metadata' => ['order_id'=> $drug_id,'name'=> $name ] ) )
         ->asJson()
         ->post();
         // dd($response);

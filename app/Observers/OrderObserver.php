@@ -29,7 +29,10 @@ class OrderObserver
         //     $subscription = 
         // }
         //if status is dirty and is true
-        //create payment
+        //if orderable_type is plan, create subscription
+
+        //if orderable_type is prescription, 
+    
     }
 
     /**

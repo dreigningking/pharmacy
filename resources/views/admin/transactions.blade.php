@@ -14,8 +14,8 @@
             <div class="col-sm-12">
                 <h3 class="page-title">Transactions</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Transactions</li>
+                    <li class="breadcrumb-Drug"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                    <li class="breadcrumb-Drug active">Transactions</li>
                 </ul>
             </div>
         </div>

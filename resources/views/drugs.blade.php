@@ -12,11 +12,11 @@
 						<div class="col-md-8 col-12">
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Search</li>
+									<li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
+									<li class="breadcrumb-Drug active" aria-current="page">Search</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">{{$drugs->count()}} count of Drugs</h2>
+							<h2 class="breadcrumb-title">{{$drugs->count()}} count of drugs</h2>
 						</div>
 						<div class="col-md-4 col-12 d-md-block d-none">
 							<div class="sort-by">
@@ -108,7 +108,7 @@
                 
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header"><h4>Drugs</h4></div>
+                        <div class="card-header"><h4>drugs</h4></div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="datatable table table-hover table-bordered table-center mb-0">

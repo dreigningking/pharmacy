@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Pharmacy;
 use App\Models\Payment;
 use App\Models\Patient;
-use App\Models\Item;
+use App\Models\Drug;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,9 +17,9 @@ class DashboardController extends Controller
         $user = Auth::user();
         $pharmacies = Pharmacy::all();
         $patients = Patient::all();
-        $items = Item::all();
+        $drugs = Drug::all();
         $payments = Payment::all();
-        return view('admin.dashboard',compact('user','pharmacies','patients','items','payments'));
+        return view('admin.dashboard',compact('user','pharmacies','patients','drugs','payments'));
     }
     public function users(){
         $users = User::where('admin',true)->get();

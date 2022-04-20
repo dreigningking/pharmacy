@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Sale;
+
 use App\Models\City;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\State;
-use App\Models\PharmacyUser;
+use App\Models\Country;
+use App\Models\Patient;
 use App\Models\Supplier;
 use App\Models\Inventory;
-use App\Models\Patient;
 // use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Country;
+use App\Models\PharmacyUser;
 use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -49,8 +50,8 @@ class Pharmacy extends Model
     public function subscriptions(){
         return $this->hasMany(Subscription::class);
     }
-    public function sales(){
-        return $this->hasMany(Sale::class);
+    public function orders(){
+        return $this->hasMany(Order::class);
     }
     public function inventories(){
         return $this->hasMany(Inventory::class);

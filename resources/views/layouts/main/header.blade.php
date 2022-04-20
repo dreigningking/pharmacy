@@ -47,7 +47,7 @@
             </ul>
         </div>
         <ul class="nav header-navbar-rht">
-            {{-- <li class="nav-item contact-item">
+            {{-- <li class="nav-Drug contact-Drug">
                 <div class="header-contact-img">
                     <i class="far fa-hospital"></i>
                 </div>
@@ -58,19 +58,19 @@
             </li> --}}
             
             @guest
-            <li class="nav-item">
+            <li class="nav-Drug">
                 <a class="nav-link btn btn-primary" href="{{route('register')}}">
                     Add Pharmacy
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-Drug">
                 <a class="nav-link header-login" href="{{route('login')}}">
                     Login/Signup
                 </a>
             </li>
             @else
             <!-- User Menu -->
-            <li class="nav-item dropdown has-arrow logged-item">
+            <li class="nav-Drug dropdown has-arrow logged-Drug">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                     <span class="user-img">
                         <img class="rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" width="31"
@@ -88,9 +88,9 @@
                             {{-- <p class="text-muted mb-0">Doctor</p> --}}
                         </div> 
                     </div>
-                    <a class="dropdown-item" href="{{route('workspaces')}}">Switch Pharmacy</a>
-                    <a class="dropdown-item" href="{{route('dashboard')}}">My Account</a>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <a class="dropdown-Drug" href="{{route('workspaces')}}">Switch Pharmacy</a>
+                    <a class="dropdown-Drug" href="{{route('dashboard')}}">My Account</a>
+                    <a class="dropdown-Drug" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>

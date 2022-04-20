@@ -16,17 +16,16 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id');
-            $table->unsignedBigInteger('orderable_id');
-            $table->string('orderable_type'); //subscription, prescription
-            $table->unsignedBigInteger('sale_id')->nullable(); // 
-            $table->double('amount')->default(0);
-            $table->integer('quantity')->default(1);
+            $table->double('subtotal')->default(0);
+            $table->double('vat')->default(0);
+            $table->double('shipping_fee')->default(0);
             $table->double('total')->default(0);
-            $table->boolean('status')->default(0);
+            $table->timestamp('delivered_at')->nullable();
+            $table->string('status')->nullable(); //processing, on-hold, ready, completed, cancelled, refunded, failed and trash, delivered. Default is processing.
             $table->SoftDeletes();
             $table->timestamps();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
-            $table->unsignedBigInteger('sale_id')->on('sales')->onDelete('cascade');
+            $table->unsignedBigInteger('payment_id')->on('payments')->onDelete('cascade');
         });
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\Item;
+use App\Models\Drug;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class ItemsImport implements ToModel
+class DrugsImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,7 +14,7 @@ class ItemsImport implements ToModel
     */
     public function model(array $row)
     {
-        return new Item([
+        return new Drug([
             //
         ]);
     }

@@ -12,8 +12,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -47,7 +47,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user->sales->sortByDesc('created_at') as $sale)
+                                    @foreach ($user->orders->sortByDesc('created_at') as $sale)
                                     <tr>
                                         <td>{{$sale->created_at->format('jS-M Y')}}</td>
 

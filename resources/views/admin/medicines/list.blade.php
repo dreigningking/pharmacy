@@ -14,8 +14,8 @@
             <div class="col-sm-12">
                 <h3 class="page-title">Medicine</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Medicine</li>
+                    <li class="breadcrumb-Drug"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                    <li class="breadcrumb-Drug active">Medicine</li>
                 </ul>
             </div>
         </div>
@@ -66,7 +66,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        {{$medic->items->count()}}
+                                        {{$medic->drugs->count()}}
                                     </td>
                                     <td class="text-right"> <a class="btn btn-sm bg-success-light"
                                             data-toggle="modal" href="#medication_info{{$medic->id}}">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\WebControllers\AdminControllers;
 
-use App\Models\Item;
+use App\Models\Drug;
 use App\Models\Disease;
 use App\Models\Medicine;
 use Illuminate\Http\Request;
@@ -51,8 +51,8 @@ class MedicineController extends Controller
 
     public function drugs()
     {
-        $items = Item::all();
-        return view('admin.medicines.drugs',compact('items'));
+        $drugs = Drug::all();
+        return view('admin.medicines.drugs',compact('drugs'));
     }
 
     public function destroy($id)

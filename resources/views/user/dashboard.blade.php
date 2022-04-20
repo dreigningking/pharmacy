@@ -11,8 +11,8 @@
                 <div class="col-md-12 col-12">
                     <nav aria-label="breadcrumb" class="page-breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
+                            <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
                         </ol>
                     </nav>
                     <h2 class="breadcrumb-title">Dashboard</h2>
@@ -114,10 +114,10 @@
                             
                                 <!-- Appointment Tab -->
                                 <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
-                                    <li class="nav-item">
+                                    <li class="nav-Drug">
                                         <a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Upcoming</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-Drug">
                                         <a class="nav-link" href="#today-appointments" data-toggle="tab">Today</a>
                                     </li> 
                                 </ul>

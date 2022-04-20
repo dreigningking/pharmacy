@@ -5,7 +5,7 @@ namespace App\Exports;
 use App\Models\Inventory;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class ItemsExport implements FromCollection
+class DrugsExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection

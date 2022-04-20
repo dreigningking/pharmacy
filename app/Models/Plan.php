@@ -10,6 +10,7 @@ class Plan extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','description','features','amount','trial'];
     protected $casts = ['features'=> 'array'];
 
     public function subscriptions(){

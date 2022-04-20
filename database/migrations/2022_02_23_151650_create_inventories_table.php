@@ -15,7 +15,7 @@ class CreateInventoriesTable extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('item_id')->nullable();
+            $table->unsignedBigInteger('drug_id')->nullable();
             $table->unsignedBigInteger('pharmacy_id');
             $table->boolean('is_drug')->default(1);
             $table->string('name');
@@ -27,7 +27,7 @@ class CreateInventoriesTable extends Migration
             $table->double('amount')->default(0);
             $table->date('expire_at');
             $table->timestamps();
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->foreign('drug_id')->references('id')->on('drugs')->onDelete('cascade');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
             $table->foreign('shelf_id')->references('id')->on('shelves')->onDelete('cascade');
         });

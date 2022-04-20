@@ -9,10 +9,12 @@ use App\Models\Inventory;
 use App\Models\Medicine;
 
 
-class Item extends Model
+class Drug extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id','name','administation','manufacturer'];
+            
     public function ingredients() {
         return $this->belongsToMany(Medicine::class, 'ingredients');
     }

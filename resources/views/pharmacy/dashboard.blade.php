@@ -10,8 +10,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -60,8 +60,8 @@
                                                 </div>
                                             </div>
                                             <div class="dash-widget-info">
-                                                <h3>Drugs</h3>
-                                                <h5>{{$items->count()}}</h5>
+                                                <h3>drugs</h3>
+                                                <h5>{{$drugs->count()}}</h5>
                                                 <!-- <p class="text-muted">06, Nov 2019</p> -->
                                             </div>
                                         </div>
@@ -119,7 +119,7 @@
                                 <div class="row notif">
 
                                     <div class="col-sm-8">
-                                        <p class="text-muted">Expired Drugs</p>
+                                        <p class="text-muted">Expired drugs</p>
                                     </div>
                                     <div class="col-sm-4 d-flex justify-content-end">
                                         <span class="badge badge-pill badge-danger notif-badge">4</span>

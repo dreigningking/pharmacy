@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function(){
     Route::post('getstates',[App\Http\Controllers\WebControllers\HomeController::class, 'states'])->name('getStates');
     Route::post('getcities',[App\Http\Controllers\WebControllers\HomeController::class, 'cities'])->name('getCities');
     Route::post('planpayment',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'planPayment'] )->name('planPayment');
-    Route::get('payment/verification',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'verify'] )->name('verify');
+    Route::get('payment/verification',[App\Http\Controllers\GeneralControllers\PaymentController::class, 'verify'] )->name('verify');
     
     
     //accessible on director dashboard and inside pharmacies

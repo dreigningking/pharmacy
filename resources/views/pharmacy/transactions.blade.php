@@ -12,8 +12,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-Drug active" aria-current="page">Transactions</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Transactions</h2>
@@ -39,8 +39,8 @@
                                 <div class="col-sm-12">
                                     <h3 class="page-title">Transactions</h3>
                                     <ul class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                                        <li class="breadcrumb-item active">Transactions</li>
+                                        <li class="breadcrumb-Drug"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                                        <li class="breadcrumb-Drug active">Transactions</li>
                                     </ul>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                                     <tr>
                                                         <th>Invoice Number</th>
 
-                                                        <th>Item</th>
+                                                        <th>Drug</th>
                                                         <th>Quantity</th>
                                                         <th>Total Amount</th>
 

@@ -25,4 +25,4 @@ markup amount
 data is central(medicine,diseases)
 data can be shared across pharmacies you own (drug, patient)
 
-create item: name, medicine & milligram, manufacturer
+create Drug: name, medicine & milligram, manufacturer

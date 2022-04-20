@@ -11,8 +11,8 @@
             <div class="col">
                 <h3 class="page-title">Role Management</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Roles & Permissions</li>
+                    <li class="breadcrumb-Drug"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-Drug active">Roles & Permissions</li>
                 </ul>
             </div>
         </div>
@@ -23,16 +23,16 @@
         <div class="col-md-12">
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
-                    <li class="nav-item">
+                    <li class="nav-Drug">
                         <a class="nav-link active" data-toggle="tab" href="#per_details_tab">Director</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-Drug">
                         <a class="nav-link" data-toggle="tab" href="#manager_tab">Manager</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-Drug">
                         <a class="nav-link" data-toggle="tab" href="#pharmacist_tab">Pharmacist</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-Drug">
                         <a class="nav-link" data-toggle="tab" href="#sales_tab">Sales Rep</a>
                     </li>
 

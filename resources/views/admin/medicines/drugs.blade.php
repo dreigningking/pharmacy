@@ -9,10 +9,10 @@
     <div class="page-header">
         <div class="row">
             <div class="col-sm-12">
-                <h3 class="page-title">Drugs</h3>
+                <h3 class="page-title">drugs</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Drugs</li>
+                    <li class="breadcrumb-Drug"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                    <li class="breadcrumb-Drug active">drugs</li>
                 </ul>
             </div>
         </div>
@@ -36,11 +36,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($items as $item)
+                                @foreach($drugs as $Drug)
                                 <tr>
-                                    <td>{{$item->name}}</td>
+                                    <td>{{$Drug->name}}</td>
                                     <td class="text-center">
-                                        @foreach($item->ingredients as $ingredient)
+                                        @foreach($Drug->ingredients as $ingredient)
                                         {{$ingredient->name}},
                                         @endforeach
                                     </td>

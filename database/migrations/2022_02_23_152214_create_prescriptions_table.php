@@ -15,7 +15,7 @@ class CreatePrescriptionsTable extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('drug_id');
             $table->unsignedBigInteger('pharmacy_id');
             $table->unsignedBigInteger('assessment_id')->nullable();
             $table->integer('morning')->default(0);

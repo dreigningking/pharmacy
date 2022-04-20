@@ -16,7 +16,7 @@ class CreatePurchaseDetailsTable extends Migration
         Schema::create('purchase_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('purchase_id');
-            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('drug_id');
             $table->string('batch_no');
             $table->string('packaging_type')->default('packs');
             $table->integer('unit_order')->default(1);
@@ -27,7 +27,7 @@ class CreatePurchaseDetailsTable extends Migration
             $table->date('expire_at');
             $table->timestamps();
             $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->foreign('drug_id')->references('id')->on('drugs')->onDelete('cascade');
         });
     }
 

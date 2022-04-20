@@ -11,8 +11,8 @@
             <div class="col">
                 <h3 class="page-title">Profile</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Profile</li>
+                    <li class="breadcrumb-Drug"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-Drug active">Profile</li>
                 </ul>
             </div>
         </div>
@@ -44,16 +44,16 @@
             </div> --}}
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
-                    <li class="nav-item">
+                    <li class="nav-Drug">
                         <a class="nav-link active" data-toggle="tab" href="#medicines">Upload Medicines</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-Drug">
                         <a class="nav-link" data-toggle="tab" href="#relationships">Upload Medicine Relationships</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-Drug">
                         <a class="nav-link" data-toggle="tab" href="#diseases">Upload Medical Conditions</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-Drug">
                         <a class="nav-link" data-toggle="tab" href="#reactions">Upload Medicine Reactions</a>
                     </li>
                 </ul>

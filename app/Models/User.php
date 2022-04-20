@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Role;
-use App\Models\Sale;
+use App\Models\Order;
 use App\Models\Country;
 use App\Models\Pharmacy;
 use App\Models\PharmacyUser;
@@ -97,17 +97,15 @@ class User extends Authenticatable
     public function country(){
         return $this->belongsTo(Country::class);
     }
-    public function orders(){
-        return $this->hasMany(Order::class);
-    }
+    
     public function withdrawals(){
         return $this->morphMany(Withdrawal::class, 'withdrawable');
     }
     public function subscriptions(){
         return $this->hasMany(Subscription::class);
     }
-    public function sales(){
-        return $this->hasManyThrough(Sale::class,PharmacyUser::class,'user_id','pharmacy_id');
+    public function orders(){
+        return $this->hasManyThrough(Order::class,PharmacyUser::class,'user_id','pharmacy_id');
     }
 
 }

@@ -15,8 +15,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -41,7 +41,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="invoice-content">
-                                            <div class="invoice-item">
+                                            <div class="invoice-Drug">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="invoice-logo">
@@ -57,8 +57,8 @@
                                                 </div>
                                             </div>
                                             
-                                            <!-- Invoice Item -->
-                                            <div class="invoice-item">
+                                            <!-- Invoice Drug -->
+                                            <div class="invoice-Drug">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="invoice-info">
@@ -89,10 +89,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /Invoice Item -->
+                                            <!-- /Invoice Drug -->
                                             
-                                            <!-- Invoice Item -->
-                                            <div class="invoice-item">
+                                            <!-- Invoice Drug -->
+                                            <div class="invoice-Drug">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="invoice-info ">
@@ -117,10 +117,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /Invoice Item -->
+                                            <!-- /Invoice Drug -->
                                             
-                                            <!-- Invoice Item -->
-                                            <div class="invoice-item invoice-table-wrap">
+                                            <!-- Invoice Drug -->
+                                            <div class="invoice-Drug invoice-table-wrap">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="table-responsive">
@@ -176,7 +176,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /Invoice Item -->
+                                            <!-- /Invoice Drug -->
                                             
                                             <!-- Invoice Information -->
                                             <div class="other-info">

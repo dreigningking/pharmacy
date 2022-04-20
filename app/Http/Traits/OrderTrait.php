@@ -58,8 +58,8 @@ trait OrderTrait
 
     protected function getSubtotal(Array $cart){
         $subtotal = 0;
-        foreach($cart as $item){
-            $subtotal += $item['quantity'] * $item['product']->amount;
+        foreach($cart as $Drug){
+            $subtotal += $Drug['quantity'] * $Drug['product']->amount;
         }
         return $subtotal;
     }
@@ -67,7 +67,7 @@ trait OrderTrait
     protected function getCoupon($code){
         $cart = request()->session()->get('cart');
         if(!$cart)
-        return $this->getWorth('No items in your cart');
+        return $this->getWorth('No drugs in your cart');
         $worth = [];
         $coupon = Coupon::where('code',$code)->first();
         if(!$coupon)
@@ -82,14 +82,14 @@ trait OrderTrait
             return $this->getWorth('Coupon is expired');
         if($coupon->meal_limit){
             $meal = false;
-            foreach($cart as $item){
+            foreach($cart as $Drug){
                 foreach($coupon->meal_limit as $value){
-                    if($item['type'] == 'App\Meal' && $value == $item['id'])
+                    if($Drug['type'] == 'App\Meal' && $value == $Drug['id'])
                     $meal = true;
                 }
             }
             if(!$meal)
-            return $this->getWorth('Coupon is not available for the items in your cart');
+            return $this->getWorth('Coupon is not available for the drugs in your cart');
         }
         if($coupon->minimum_spend){
             $subtotal = $this->getSubtotal($cart);

@@ -24,6 +24,7 @@ class UserController extends Controller
         $user = Auth::user();
         return view('user.profile',compact('user'));
     }
+    
     public function profile_update(Request $request){
         $user = Auth::user();
         if($request->filled('name')) $user->name = $request->name;
@@ -89,6 +90,7 @@ class UserController extends Controller
         }
         return view('user.suppliers',compact('user','countries','suppliers','banks'));
     }
+
     public function supplier_save(Request $request){
         // dd($request->all());
         $user = User::find($request->user_id);
@@ -110,10 +112,11 @@ class UserController extends Controller
         $user = Auth::user();
         return view('user.subscription',compact('user'));
     }
+
     public function transactions(){
         //all pharmacies transactions
         $user = Auth::user();
-        // dd($user->sales->first()->pharmacy);
+        //get orders of all users pharmacies
         return view('user.transactions',compact('user'));
     }
     

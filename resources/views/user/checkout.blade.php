@@ -10,8 +10,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -120,7 +120,7 @@
 
                             <div class="booking-summary">
                                 <form action="{{route('planPayment')}}" method="POST">@csrf
-                                    <div class="booking-item-wrap">
+                                    <div class="booking-Drug-wrap">
                                         <ul class="booking-date">
                                             <li>Plan Name <span>{{$plan->name}} </span></li>
                                             <li>Duration (years) <span> <input type="number" name="quantity" id="duration" max="10" min="1" value="1" > </span></li>

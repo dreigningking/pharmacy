@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Disease;
-use App\Models\Item;
+use App\Models\Drug;
 
 class Medicine extends Model
 {
@@ -17,7 +17,7 @@ class Medicine extends Model
     public function diseases () {
         return $this->belongsToMany(Disease::class, 'medicine_reactions');
     }
-    public function items () {
-        return $this->belongsToMany(Item::class, 'ingredients');
+    public function drugs () {
+        return $this->belongsToMany(Drug::class, 'ingredients');
     }
 }

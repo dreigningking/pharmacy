@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\GeneralControllers;
 
 use App\Models\Supplier;
-use App\Models\Item;
+use App\Models\Drug;
 use App\Models\Medicine;
 use App\Models\Pharmacy;
 use App\Models\Country;
@@ -16,7 +16,7 @@ class InventoryController extends Controller
 {
 
     public function start(Pharmacy $pharmacy){
-        $drugs = Item::all();
+        $drugs = Drug::all();
         return view('pharmacy.inventory.start',compact('pharmacy','drugs'));
     }
 
@@ -25,11 +25,11 @@ class InventoryController extends Controller
         return redirect()->back()->with('success', 'All good!');
     }
    
-    public function drugs(){
+    public function drugs(){  
         if($search = request()->search)
-        $drugs = Item::where('name','LIKE',"%$search%")->get();
+        $drugs = Drug::where('name','LIKE',"%$search%")->get();
         else
-        $drugs = Item::all();
+        $drugs = Drug::all();
         if( request()->type == 'ajax')
             return response()->json(['drugs'=> $drugs],200);
         else 
@@ -50,10 +50,10 @@ class InventoryController extends Controller
         $user = Auth::user();
         // $suppliers = Supplier::where('pharmacy_id',$pharmacy->id)->get();
         $suppliers = $pharmacy->suppliers;
-        $items = Item::all();
+        $drugs = Drug::all();
         $medicines = Medicine::all();
         $countries = Country::all();
-        return view('pharmacy.inventory.supply',compact('user','pharmacy','suppliers','items','medicines','countries'));
+        return view('pharmacy.inventory.supply',compact('user','pharmacy','suppliers','drugs','medicines','countries'));
     }
 
 

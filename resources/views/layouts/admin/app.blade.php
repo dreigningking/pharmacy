@@ -68,7 +68,7 @@
 				<ul class="nav user-menu">
 
 					<!-- Notifications -->
-					<li class="nav-item dropdown noti-dropdown">
+					<li class="nav-Drug dropdown noti-dropdown">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
 						</a>
@@ -141,7 +141,7 @@
 					<!-- /Notifications -->
 					
 					<!-- User Menu -->
-					<li class="nav-item dropdown has-arrow">
+					<li class="nav-Drug dropdown has-arrow">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img"><img class="rounded-circle" src="{{asset('adminassets/img/profiles/avatar-01.jpg')}}" width="31" alt="Ryan Taylor"></span>
 						</a>
@@ -155,10 +155,10 @@
 									<p class="text-muted mb-0">Administrator</p>
 								</div>
 							</div>
-							<a class="dropdown-item" href="profile.html">My Profile</a>
-							<a class="dropdown-item" href="settings.html">Settings</a>
+							<a class="dropdown-Drug" href="profile.html">My Profile</a>
+							<a class="dropdown-Drug" href="settings.html">Settings</a>
 							
-							<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+							<a class="dropdown-Drug" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 								@csrf
 							</form>
@@ -187,7 +187,7 @@
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Medicine</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li @if(Route::is('admin.medicines')) class="active" @endif><a href="{{route('admin.medicines')}}">Drug Ingredients</a></li>
-									<li @if(Route::is('admin.drugs')) class="active" @endif><a href="{{route('admin.drugs')}}">Drugs</a></li>
+									<li @if(Route::is('admin.drugs')) class="active" @endif><a href="{{route('admin.drugs')}}">drugs</a></li>
 									<li @if(Route::is('admin.medicines.upload')) class="active" @endif><a href="{{route('admin.medicines.upload')}}">Upload</a></li>
 								</ul>
 							</li>	

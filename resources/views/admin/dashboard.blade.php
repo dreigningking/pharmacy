@@ -11,7 +11,7 @@
             <div class="col-sm-12">
                 <h3 class="page-title">Welcome Admin!</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-Drug active">Dashboard</li>
                 </ul>
             </div>
         </div>
@@ -68,12 +68,12 @@
                             <i class="fe fe-money"></i>
                         </span>
                         <div class="dash-count">
-                            <h3>{{$items->count()}}</h3>
+                            <h3>{{$drugs->count()}}</h3>
                         </div>
                     </div>
                     <div class="dash-widget-info">
                         
-                        <h6 class="text-muted">Drugs</h6>
+                        <h6 class="text-muted">drugs</h6>
                         <div class="progress progress-sm">
                             <div class="progress-bar bg-danger w-50"></div>
                         </div>

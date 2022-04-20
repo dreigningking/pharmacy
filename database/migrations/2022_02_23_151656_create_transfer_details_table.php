@@ -17,7 +17,7 @@ class CreateTransferDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('transfer_id');
             $table->unsignedBigInteger('pharmacy_id');
-            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('drug_id');
             $table->string('batch_no');
             $table->string('packaging_type');
             $table->integer('quantity')->default(1);
@@ -27,7 +27,7 @@ class CreateTransferDetailsTable extends Migration
             $table->double('amount')->default(0);
             $table->date('expire_at');
             $table->timestamps();
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->foreign('drug_id')->references('id')->on('drugs')->onDelete('cascade');
             $table->foreign('transfer_id')->references('id')->on('transfers')->onDelete('cascade');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
         });
