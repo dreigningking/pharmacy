@@ -22,6 +22,7 @@ Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/
         Route::get('nonmedical-plan', [App\Http\Controllers\GeneralControllers\PatientController::class, 'plan'])->name("plan");
         
         Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'list'])->name("inventory.list");
+        Route::get('inventory/batches', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'batches'])->name("inventory.batches");
         Route::get('inventory/setup', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'start'])->name("inventory.start");
         Route::post('inventory/start/export', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'export'])->name("inventory.start.export");
         Route::post('inventory/start/import', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'import'])->name("inventory.start.import");

@@ -19,8 +19,8 @@ class CreateTransfersTable extends Migration
             $table->unsignedBigInteger('from_pharmacy');
             $table->unsignedBigInteger('to_pharmacy');
             $table->unsignedBigInteger('receiving_user');
-            $table->double('total');
-            $table->boolean('received')->default(0);
+            $table->double('total')->default(0);
+            $table->boolean('status')->default(0);
             $table->timestamps();
             $table->foreign('sending_user')->references('id')->on('users');
             $table->foreign('receiving_user')->references('id')->on('users');

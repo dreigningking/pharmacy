@@ -38,12 +38,12 @@
                                 <div class="d-flex justify-content-around my-2">
                                     <table>
                                         <tr>
-                                            <td colspan="3" class="text-center">Selected:   <span id="checkedcount">0</span></td>
+                                            <td colspan="2" class="text-center">Selected:   <span id="checkedcount">0</span></td>
                                         </tr>
                                         <tr>
                                             <td> <button class="btn btn-dark actionbuttons disabled" id="transfer" disabled>Transfer</button></td>
                                             <td> <button class="btn btn-primary actionbuttons disabled" id="purchase" disabled>Purchase</button></td>
-                                            <td> <button class="btn btn-danger actionbuttons disabled" id="confiscate" disabled>Confiscate</button></td>
+                                            
                                         </tr>
                                     </table>
                                 </div>
@@ -68,30 +68,29 @@
                                             <tbody>                                              
                                                 @forelse ($items->sortBy('name') as $item)
                                                     @foreach ($item->batches as $batch)
-                                                        <tr>
-                                                            <td><input type="checkbox" class="checkboxes" name="inventories[]" value="{{$item->id}}"></td>
-                                                            <td>{{$item->name}}</td>
-                                                            <td>@if($item->drug_id) Drug @else Others @endif</td>   
-                                                            <td>{{$item->shelf->name}}</td>   
-                                                            <td>{{$batch->number}}</td>   
-                                                            <td>{{$batch->quantity}}</td>   
-                                                            <td>{{$item->unit_cost}}</td>   
-                                                            <td>{{$item->unit_price}}</td>   
-                                                            <td>
-                                                                @if($batch->quantity <= $pharmacy->minimum_stocklevel)
-                                                                    <span class="badge badge-danger">Stock Level Too Low</span>
-                                                                @elseif($batch->quantity <= $pharmacy->maximum_stocklevel)
-                                                                    <span class="badge badge-danger">Stock Level Too High</span>
-                                                                @elseif($batch->expire_at < now())
-                                                                    <span class="badge badge-danger">Expired</span>
-                                                                @else 
-                                                                <span class="badge badge-primary">Available</span>
-                                                                @endif
-                                                            </td>
-                                                            <td><button data-toggle="modal" data-target="#item{{$item->id}}" class="btn btn-sm btn-primary">view</button></td>
-                                                        </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" class="checkboxes" name="inventories[]" value="{{$item->id}}"></td>
+                                                        <td>{{$item->name}}</td>
+                                                        <td>@if($item->drug_id) Drug @else Others @endif</td>   
+                                                        <td>{{$item->shelf->name}}</td>   
+                                                        <td>{{$batch->number}}</td>   
+                                                        <td>{{$batch->quantity}}</td>   
+                                                        <td>{{$item->unit_cost}}</td>   
+                                                        <td>{{$item->unit_price}}</td>   
+                                                        <td>
+                                                            @if($batch->expire_at && $batch->expire_at < now())
+                                                                <span class="badge badge-danger">Expired</span>
+                                                            @elseif($batch->quantity <= $pharmacy->minimum_stocklevel)
+                                                                <span class="badge badge-danger">Stock Level Too Low</span>
+                                                            @elseif($batch->quantity <= $pharmacy->maximum_stocklevel)
+                                                                <span class="badge badge-danger">Stock Level Too High</span>
+                                                            @else 
+                                                            <span class="badge badge-primary">Available</span>
+                                                            @endif
+                                                        </td>
+                                                        <td><button data-toggle="modal" data-target="#item{{$item->id}}" class="btn btn-sm btn-primary">view</button></td>
+                                                    </tr>
                                                     @endforeach
-                                                    
                                                 @empty
                                                     <tr><td colspan="5" class="text-center">No Item <a href="{{route('pharmacy.inventory.setup',$pharmacy)}}">Start Inventory</a></td></tr>
                                                 @endforelse

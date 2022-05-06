@@ -27,4 +27,4 @@ data can be shared across pharmacies you own (drug, patient)
 
 add staff should send an email to the person
 delete staff should send an email to the person
-
+automatically delete expired batches of inventory

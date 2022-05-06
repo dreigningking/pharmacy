@@ -16,9 +16,9 @@ class CreateBatchesTable extends Migration
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('inventory_id');
-            $table->string('number')->index();
+            $table->string('number')->index()->default('Not Applicable');
             $table->integer('quantity')->default(1);
-            $table->date('expire_at');
+            $table->date('expire_at')->nullable();
             $table->timestamps();
             $table->foreign('inventory_id')->references('id')->on('inventories')->onDelete('cascade');
         });

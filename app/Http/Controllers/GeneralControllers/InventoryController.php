@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\GeneralControllers;
 
 use App\Models\Drug;
-use App\Models\Country;
+use App\Models\Batch;
 use App\Models\Pharmacy;
 use App\Models\Supplier;
 use App\Models\Inventory;
@@ -26,6 +26,17 @@ class InventoryController extends Controller
             return response()->json(['items'=> $items],200);
         else 
             return view('pharmacy.inventory.list',compact('pharmacy','items'));
+    }
+
+    public function batches(Pharmacy $pharmacy){
+        if($search = request()->search){
+            $items =  Batch::with(['inventory'=> function($query) use($pharmacy,$search){
+                $query->where('pharmacy_id',$pharmacy->id)->where('name','LIKE',"%$search%");}])->get();
+        }else{
+        $items = Batch::with(['inventory'=> function($query) use($pharmacy){
+            $query->where('pharmacy_id',$pharmacy->id); }])->get();
+        }
+        return response()->json(['items'=> $items],200);
     }
 
     public function drugs(){  
