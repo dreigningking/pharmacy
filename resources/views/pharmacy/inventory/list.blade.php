@@ -1,6 +1,7 @@
 @extends('layouts.main.app')
 @push('styles')
-
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -10,8 +11,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -29,232 +30,79 @@
             @include('pharmacy.sidebar')
 
             <div class="col-md-7 col-lg-8 col-xl-9">
-
-
-                <!-- Page Wrapper -->
-                <div class="page-wrapper">
-                    <div class="content container-fluid">
-
-                        <!-- Page Header -->
-                        <div class="page-header">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row justify-content-end mb-4">
-                                        <a class="btn btn-primary btn-lg"
-                                            href="{{route('pharmacy.newassessment',$pharmacy)}}">New
-                                            Assessment</a>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="mb-3">Inventory </h2>
+                                <div class="d-flex justify-content-around my-2">
+                                    <table>
+                                        <tr>
+                                            <td colspan="3" class="text-center">Selected:   <span id="checkedcount">0</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <button class="btn btn-dark actionbuttons disabled" id="transfer" disabled>Transfer</button></td>
+                                            <td> <button class="btn btn-primary actionbuttons disabled" id="purchase" disabled>Purchase</button></td>
+                                            <td> <button class="btn btn-danger actionbuttons disabled" id="confiscate" disabled>Confiscate</button></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <form id="submitInventory" action="#" method="POST">@csrf
+                                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                                    <div class="table-responsive">
+                                        <table class="datatable table table-hover table-bordered table-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox" id="header_input"></th>
+                                                    <th>Name</th>
+                                                    <th>Category</th>
+                                                    <th>Shelf</th>
+                                                    <th>Batch</th>
+                                                    <th>Qty</th>
+                                                    <th>Cost</th>
+                                                    <th>Price</th>
+                                                    <th>Status</th>
+                                                    <th>Details</th>   
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                              
+                                                @forelse ($items->sortBy('name') as $item)
+                                                    @foreach ($item->batches as $batch)
+                                                        <tr>
+                                                            <td><input type="checkbox" class="checkboxes" name="inventories[]" value="{{$item->id}}"></td>
+                                                            <td>{{$item->name}}</td>
+                                                            <td>@if($item->drug_id) Drug @else Others @endif</td>   
+                                                            <td>{{$item->shelf->name}}</td>   
+                                                            <td>{{$batch->number}}</td>   
+                                                            <td>{{$batch->quantity}}</td>   
+                                                            <td>{{$item->unit_cost}}</td>   
+                                                            <td>{{$item->unit_price}}</td>   
+                                                            <td>
+                                                                @if($batch->quantity <= $pharmacy->minimum_stocklevel)
+                                                                    <span class="badge badge-danger">Stock Level Too Low</span>
+                                                                @elseif($batch->quantity <= $pharmacy->maximum_stocklevel)
+                                                                    <span class="badge badge-danger">Stock Level Too High</span>
+                                                                @elseif($batch->expire_at < now())
+                                                                    <span class="badge badge-danger">Expired</span>
+                                                                @else 
+                                                                <span class="badge badge-primary">Available</span>
+                                                                @endif
+                                                            </td>
+                                                            <td><button data-toggle="modal" data-target="#item{{$item->id}}" class="btn btn-sm btn-primary">view</button></td>
+                                                        </tr>
+                                                    @endforeach
+                                                    
+                                                @empty
+                                                    <tr><td colspan="5" class="text-center">No Item <a href="{{route('pharmacy.inventory.setup',$pharmacy)}}">Start Inventory</a></td></tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
-                                <div class=" col-sm-12">
-                                    <h3 class="page-title">List of Staff</h3>
-                                    <ul class="breadcrumb">
-                                        <li class="breadcrumb-Drug"><a href="index.html">Dashboard</a></li>
-                                        <li class="breadcrumb-Drug"><a href="javascript:(0);">Users</a></li>
-                                        <li class="breadcrumb-Drug active">Patient</li>
-                                    </ul>
-                                </div>
+                                </form>
                             </div>
                         </div>
-                        <!-- /Page Header -->
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <div class="table-responsive">
-                                                <table class="datatable table table-hover table-center mb-0">
-                                                    <thead>
-                                                        <tr>
-
-                                                            <th>Staff Name</th>
-
-                                                            <th class="">Role</th>
-
-                                                            <th class="text-right">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <td>
-                                                                <h2 class="table-avatar">
-                                                                    <a href="profile.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                                            class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient1.jpg')}}"
-                                                                            alt="User Image"></a>
-                                                                    <a href="profile.html">Charlene Reed </a>
-                                                                </h2>
-                                                            </td>
-
-
-                                                            <td class="text-right">
-                                                                <select name="" id="" class="role-select form-control">
-                                                                    <option value=" pharmacist">Pharmacist</option>
-                                                                    <option value="store-keeper">Store keeper
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-
-
-
-                                                            <td class="text-right">
-                                                                <div class="actions">
-
-                                                                    <a data-toggle="modal" href="#delete_modal"
-                                                                        class="btn btn-sm bg-danger-light">
-                                                                        Suspend
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td>
-                                                                <h2 class="table-avatar">
-                                                                    <a href="profile.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                                            class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient2.jpg')}}"
-                                                                            alt="User Image"></a>
-                                                                    <a href="profile.html">Travis Trimble </a>
-                                                                </h2>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <select name="" id="" class="role-select form-control">
-                                                                    <option value="pharmacist">Pharmacist</option>
-
-
-                                                                    <option value="store-keeper">Store keeper
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <div class="actions">
-
-                                                                    <a data-toggle="modal" href="#delete_modal"
-                                                                        class="btn btn-sm bg-danger-light">
-                                                                        Suspend
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td>
-                                                                <h2 class="table-avatar">
-                                                                    <a href="profile.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                                            class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient3.jpg')}}"
-                                                                            alt="User Image"></a>
-                                                                    <a href="profile.html">Carl Kelly</a>
-                                                                </h2>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <select name="" id="" class="role-select form-control">
-                                                                    <option value="store-keeper">Store keeper
-                                                                    </option>
-
-                                                                    <option value="pharmacist">Pharmacist</option>
-
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <div class="actions">
-
-                                                                    <a data-toggle="modal" href="#delete_modal"
-                                                                        class="btn btn-sm bg-danger-light">
-                                                                        Suspend
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td>
-                                                                <h2 class="table-avatar">
-                                                                    <a href="profile.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                                            class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient4.jpg')}}"
-                                                                            alt="User Image"></a>
-                                                                    <a href="profile.html"> Michelle Fairfax</a>
-                                                                </h2>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <select name="" id="" class="role-select form-control">
-
-                                                                    <option value="pharmacist">Pharmacist</option>
-                                                                    <option value="store-keeper">Store keeper
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <div class="actions">
-
-                                                                    <a data-toggle="modal" href="#delete_modal"
-                                                                        class="btn btn-sm bg-danger-light">
-                                                                        Suspend
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td>
-                                                                <h2 class="table-avatar">
-                                                                    <a href="profile.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                                            class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient5.jpg')}}"
-                                                                            alt="User Image"></a>
-                                                                    <a href="profile.html">Gina Moore</a>
-                                                                </h2>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <select name="" id="" class="role-select form-control">
-                                                                    <option value="agbero">Agbero</option>
-
-                                                                    <option value="pharmacist">Pharmacist</option>
-                                                                    <option value="store-keeper">Store keeper
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <div class="actions">
-
-                                                                    <a data-toggle="modal" href="#delete_modal"
-                                                                        class="btn btn-sm bg-danger-light">
-                                                                        Suspend
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-                <!-- /Page Wrapper -->
-
-
             </div>
         </div>
 
@@ -264,59 +112,86 @@
 <!-- /Page Content -->
 
 @endsection
-
+<!-- Add Staff Modal -->
 @section('modals')
-    <!-- Add Staff Modal -->
-<div class="modal fade custom-modal add-modal" id="add_staff">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add New Staff</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xl-12 d-flex">
-                        <div class="card flex-fill">
 
-                            <div class="card-body">
-                                <form action="#">
+@foreach ($items as $item)
+    <div class=" modal fade custom-modal add-modal" id="item{{$item->id}}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Drug Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex">
+                            <div class="card flex-fill">
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label">Email Address</label>
-                                        <div class="col-lg-9">
-                                            <input type="email" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label">Role</label>
-                                        <div class="col-lg-9">
-                                            <select name="" id="" class="role-select form-control">
-                                                <option value="agbero">Agbero</option>
-
-                                                <option value="pharmacist">Pharmacist</option>
-                                                <option value="store-keeper">Store keeper</option>
-                                            </select>
-                                            </td>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-right">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <tr><td>Name:</td><td>{{$item->name}}</td> </tr>
+                                        <tr><td>Batch:</td><td>{{$item->batch}}</td></tr>
+                                        <tr><td>Shelf:</td><td>{{$item->shelf->name}}</td></tr>
+                                        <tr><td>Remaining:</td><td>{{$item->quantity}}</td></tr>
+                                        <tr><td>Expired:</td><td>{{$item->expired->count()}}</td></tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endforeach
 
-<!-- Add Staff Modal -->
 @endsection
+
+@push('scripts')
+<script src="{{asset('adminassets/js/script.js')}}"></script>
+<script>
+    $('#header_input').on('click',function(){
+        if($(this).is(':checked')){
+            $('.checkboxes').prop('checked', this.checked);
+            updateCounter()
+        } 
+        else{   
+            $('.checkboxes').prop('checked', false);
+            updateCounter()
+        }       
+    })
+    $('.checkboxes').on('change',function(){
+        updateCounter()
+    })
+    function updateCounter(){
+        let num = $('.checkboxes:checked').length
+        if(num)
+            $('.actionbuttons').removeClass('disabled').prop('disabled',false)
+        else
+            $('.actionbuttons').addClass('disabled').prop('disabled',true)
+        $('#checkedcount').text(num)
+    }
+    $('#transfer').on('click',function(){
+        let clicked = []
+        $('.checkboxes:checked').each(function(){
+            clicked.push($(this).val());
+        });
+        $('#submitInventory').attr('action',"{{route('pharmacy.transfer.create',$pharmacy)}}").submit();
+        
+    })
+    $('#purchase').on('click',function(){
+        let clicked = []
+        $('.checkboxes:checked').each(function(){
+            clicked.push($(this).val());
+        });
+        $('#submitInventory').attr('action',"{{route('pharmacy.purchase.inventory.create',$pharmacy)}}").submit();
+        
+    })
+
+</script>
+@endpush

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\GeneralControllers;
 
-use App\Models\Country;
+use App\Models\Drug;
+use App\Models\Plan;
 use App\Models\Role;
+use App\Models\Country;
+use App\Models\Patient;
 use App\Models\Pharmacy;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Plan;
-use App\Models\Drug;
-use App\Models\Patient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,17 +18,19 @@ class PharmacyController extends Controller
 {
    
     public function index(Pharmacy $pharmacy){
-        // dd($pharmacy);
+        $this->authorize('view', $pharmacy);
         $drugs= Drug::all();
         $patients= Patient::all();
         return view('pharmacy.dashboard',compact('pharmacy', 'drugs', 'patients'));
     }
 
     public function subscription(Pharmacy $pharmacy){
+        $this->authorize('list', Subscription::class);
         return view('pharmacy.subscription',compact('pharmacy'));
     }
 
     public function create(){
+        
         $countries = Country::all();
         $user = Auth::user();
         return view('pharmacy.create',compact('countries'));

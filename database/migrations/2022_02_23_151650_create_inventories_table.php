@@ -17,15 +17,11 @@ class CreateInventoriesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('drug_id')->nullable();
             $table->unsignedBigInteger('pharmacy_id');
-            $table->boolean('is_drug')->default(1);
-            $table->string('name');
             $table->unsignedBigInteger('shelf_id')->nullable();
-            $table->string('batch_no');
-            $table->integer('quantity')->default(1);
-            $table->double('unit_price')->default(0);
-            $table->double('unit_cost')->default(0);
-            $table->double('amount')->default(0);
-            $table->date('expire_at');
+            $table->string('name');
+            $table->double('unit_cost')->default(0); //cost price of one tablet
+            $table->double('unit_price')->default(0); //price of one tablet
+            $table->double('profit')->default(0);
             $table->timestamps();
             $table->foreign('drug_id')->references('id')->on('drugs')->onDelete('cascade');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');

@@ -17,7 +17,7 @@ class CreateOrderDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('orderable_id');
-            $table->string('orderable_type'); //plan, prescription
+            $table->string('orderable_type'); //plan, inventory
             $table->double('amount')->default(0);
             $table->integer('quantity')->default(1);
             $table->double('total')->default(0);

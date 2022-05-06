@@ -17,7 +17,7 @@ class CreateTransferDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('transfer_id');
             $table->unsignedBigInteger('pharmacy_id');
-            $table->unsignedBigInteger('drug_id');
+            $table->unsignedBigInteger('inventory_id');
             $table->string('batch_no');
             $table->string('packaging_type');
             $table->integer('quantity')->default(1);

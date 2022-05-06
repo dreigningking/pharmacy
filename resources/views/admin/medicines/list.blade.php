@@ -14,8 +14,8 @@
             <div class="col-sm-12">
                 <h3 class="page-title">Medicine</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-Drug"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-Drug active">Medicine</li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Medicine</li>
                 </ul>
             </div>
         </div>
@@ -45,31 +45,30 @@
                                 <tr>
                                     <th class="text-center">Select</th>
                                     <th>Name</th>
-
                                     <th class="text-center">No Of Brands</th>
                                     <th class="text-right"> Action</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($medicine as $medic)
+                                @foreach($medicines as $medicine)
                                 <tr>
                                     <td class=" text-center">
                                         <input class="form-check-input medicine-check"
                                             type="checkbox" name="remember" id="medicine-check"
-                                            value="{{$medic->name}}" required>
+                                            value="{{$medicine->name}}" required>
 
                                     </td>
                                     <td class="d-flex align-items-center">
 
-                                        {{$medic->name}}
+                                        {{$medicine->name}}
                                     </td>
 
                                     <td class="text-center">
-                                        {{$medic->drugs->count()}}
+                                        {{$medicine->drugs->count()}}
                                     </td>
                                     <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info{{$medic->id}}">
+                                            data-toggle="modal" href="#medication_info{{$medicine->id}}">
                                             <i class="fe fe-eye"></i> View More
                                         </a></td>
 
@@ -151,8 +150,8 @@
 
 @section('modals')
     <!-- Medicine Info Modal -->
-@foreach($medicine as $medic)
-<div class="modal fade custom-modal add-modal" id="medication_info{{$medic->id}}">
+@foreach($medicines as $medicine)
+<div class="modal fade custom-modal add-modal" id="medication_info{{$medicine->id}}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -171,13 +170,18 @@
                                     <div class="col-sm-4 pl-0 pr-0">
                                         Name:
                                     </div>
-                                    <div class="col-sm-8 pl-0 pr-0">{{$medic->name}}</div>
+                                    <div class="col-sm-8 pl-0 pr-0">{{$medicine->name}}</div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
                                         Contraindications:
                                     </div>
-                                    <div class="col-sm-8 pl-0 pr-0">{{$medic->contraindications}}</div>
+                                    <div class="col-sm-8 pl-0 pr-0">
+                                        @if($medicine->contraindications)
+                                        {{implode(',',$medicine->contraindications)}}
+                                        @endif
+                                        
+                                    </div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
@@ -185,10 +189,10 @@
                                     </div>
                                 
                                     <div class="col-sm-8 pl-0 pr-0">
-                                        @foreach($medic->diseases as $disease)
-                                        {{$disease->name}},
-                                        </div>
-                                @endforeach
+                                        @if($medicine->curables)
+                                            {{implode(',',$medicine->curables)}}
+                                        @endif
+                                    </div>
                                 </div>
                                 <!-- <div class="row mb-4">
                                     <div class="col-sm-4 pl-0 pr-0">
@@ -228,16 +232,16 @@
                                 <div class="col-md-6">
                                     <label for="sel1">Select list:</label>
                                     <select class="form-control" id="sel1" name="medicine_a">
-                                        @foreach($medicine as $medic)
-                                        <option value=" {{$medic->name}}">{{$medic->name}}</option>
+                                        @foreach($medicines as $medicine)
+                                        <option value=" {{$medicine->name}}">{{$medicine->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="sel1">Select list:</label>
                                     <select class="form-control" id="sel2" name="medicine_b">
-                                        @foreach($medicine as $medic)
-                                        <option value="{{$medic->name}}">{{$medic->name}}</option>
+                                        @foreach($medicines as $medicine)
+                                        <option value="{{$medicine->name}}">{{$medicine->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

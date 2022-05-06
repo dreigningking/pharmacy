@@ -12,8 +12,8 @@
 						<div class="col-md-8 col-12">
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
-									<li class="breadcrumb-Drug active" aria-current="page">Search</li>
+									<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Search</li>
 								</ol>
 							</nav>
 							<h2 class="breadcrumb-title">{{$drugs->count()}} count of drugs</h2>

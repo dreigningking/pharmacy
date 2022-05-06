@@ -1,7 +1,7 @@
 @extends('layouts.main.app')
 @push('styles')
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-
+<link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -11,8 +11,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -27,20 +27,26 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('pharmacy.sidebar')
+            {{-- @include('pharmacy.sidebar') --}}
 
-            <div class="col-md-7 col-lg-8 col-xl-9">
+            <div class="offset-1 col-10">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
+                                <h3>Inventory Start</h4>
+                                <div class="d-flex justify-content-between my-2">
+                                    <button class="btn btn-dark">View Instructions</button>
+                                    <button class="btn btn-primary">Download 0 Drugs</button>
+                                    <button class="btn btn-success">Upload Inventory</button>
+                                    <button class="btn btn-info">Download Sample Data</button>   
+                                </div>
                                 <div class="table-responsive">
                                     <table class="datatable table table-hover table-bordered table-center mb-0">
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox"></th>
                                                 <th>Drug Name</th>
-                                                <th>Manufacturer</th>
                                                 <th>Contents</th>
                                             </tr>
                                         </thead>
@@ -49,10 +55,7 @@
                                             <tr>
                                                 <td><input type="checkbox"></td>
                                                 <td><a href="invoice.html">{{$drug->name}}</td>
-                                                <td><a href="invoice.html">{{$drug->manufacturer}}</td>
-                                                <td>{{implode(',',$drug->ingredients->pluck('name')->toArray())}}</td>
-                                                
-                                                
+                                                <td>{{implode(',',$drug->ingredients->pluck('name')->toArray())}}</td>   
                                             </tr>
                                             @endforeach
                                             
@@ -78,7 +81,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Staff
+                <h5 class="modal-title">Upload
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -93,7 +96,7 @@
                                 <form action="#">
 
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label">Email
+                                        <label class="col-lg-3 col-form-label">Upload Excel File
                                             Address</label>
                                         <div class="col-lg-9">
                                             <input type="email" class="form-control">
@@ -135,3 +138,6 @@
 </div>
 
 <!-- Add Staff Modal -->
+@push('scripts')
+<script src="{{asset('adminassets/js/script.js')}}"></script>
+@endpush

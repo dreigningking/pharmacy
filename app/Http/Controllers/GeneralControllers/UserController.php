@@ -5,9 +5,12 @@ namespace App\Http\Controllers\GeneralControllers;
 use App\Models\Bank;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Country;
 use App\Models\Pharmacy;
+use App\Models\PharmacyUser;
 use App\Models\Supplier;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -108,24 +111,22 @@ class UserController extends Controller
     }
 
     public function subscription(){
-        //payments i've made
+        $this->authorize('list', Subscription::class);
         $user = Auth::user();
         return view('user.subscription',compact('user'));
     }
 
     public function transactions(){
         //all pharmacies transactions
+        $this->authorize('list', Order::class);
         $user = Auth::user();
         //get orders of all users pharmacies
         return view('user.transactions',compact('user'));
     }
     
 
-    public function store(Request $request){
-        //
-    }
-
     public function staff(){
+        $this->authorize('list', PharmacyUser::class);
         $user = Auth::user();
         $roles = Role::where('name','!=','admin')->get();
         // dd($roles->all());
@@ -133,6 +134,7 @@ class UserController extends Controller
     }
 
     public function savestaff(Request $request){
+        $this->authorize('create', PharmacyUser::class);
         $pharmacy = Pharmacy::find($request->pharmacy_id);
         $role = Role::where('id',$request->role_id)->first();
         $user = User::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);
@@ -143,24 +145,16 @@ class UserController extends Controller
 
    
 
-    public function update(Request $request, $id)
-    {
-        $pharmacy = Pharmacy::find($request->pharmacy_id);
-        $role = Role::where('id',$request->role_id)->first();
-        $user = User::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);
-        $pharmacy->users()->attach($user->id,['role_id'=> $role->id,'status'=> false]);
-        $user->notify(new InvitationNotification($pharmacy,$role->name));
-        return redirect()->back();
-    }
+    
 
     public function destroystaff(Request $request)
     {
         // dd($request->all());
+        $pharmacyUser = PharmacyUser::where('pharmacy_id',$request->pharmacy_id)->where('user_id',$request->user_id)->first();
+        $this->authorize('delete', $pharmacyUser);
         $pharmacy = Pharmacy::find($request->pharmacy_id);
-        $user = User::find($request->user_id);
         if($pharmacy->users->count() > 1){
             $pharmacy->users()->detach($user->id);
-            $user->delete();
         }
         return redirect()->back();
     }

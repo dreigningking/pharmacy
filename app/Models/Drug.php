@@ -14,6 +14,7 @@ class Drug extends Model
     use HasFactory;
 
     protected $fillable = ['id','name','administation','manufacturer'];
+    protected $casts = ['contraindications'=> 'array','side_effects'=>'array'];
             
     public function ingredients() {
         return $this->belongsToMany(Medicine::class, 'ingredients');

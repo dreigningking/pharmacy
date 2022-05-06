@@ -10,16 +10,19 @@ use App\Http\Controllers\Controller;
 class RolePermissionController extends Controller
 {
     public function index(){
-        $roles = Role::all();
-        $permissions = Permission::all();
-        // dd(in_array(2,$roles->where('name', 'director')->first()->permissions->pluck('permission_id')->toArray()));
-        // dd(in_array(2,$roles->where('name', 'director')->first()->permissions->pluck('id')->toArray()));
+        $roles = Role::with('permissions')->get();
+        $permissions = Permission::with('roles')->get();
         return view('admin.roles',compact('roles','permissions'));
     }
 
     public function store(Request $request){
-        $role = Role::find($request->role_id);
-        $role->permissions()->sync($request->permissions);
+        $role = Role::where('name',$request->role)->first();
+        $role->permissions()->detach();
+        foreach($request->permissions as $id => $abilities){
+            $role->permissions()->attach([$id => 
+            ['list' => in_array('list',$abilities) ?? false,'view' => in_array('view',$abilities) ?? false,'edit' => in_array('edit',$abilities) ?? false,
+            'new' => in_array('new',$abilities) ?? false,'remove' => in_array('remove',$abilities) ?? false]]);
+        }
         return redirect()->back();
     }
 }

@@ -10,8 +10,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -35,14 +35,14 @@
                         <div class="col-sm-12">
                             <!-- <h3 class="page-title">List of Patients</h3> -->
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-Drug"><a href="{{route('pharmacy.addpatient',$pharmacy)}}">Add
+                                <li class="breadcrumb-item"><a href="{{route('pharmacy.addpatient',$pharmacy)}}">Add
                                         Patient</a>
                                 </li>
-                                <li class="breadcrumb-Drug"><a
+                                <li class="breadcrumb-item"><a
                                         href="{{route('pharmacy.newassessment',$pharmacy)}}">Assessment</a></li>
-                                <li class="breadcrumb-Drug"><a
+                                <li class="breadcrumb-item"><a
                                         href="{{route('pharmacy.prescription',$pharmacy)}}">Prescription</a></li>
-                                <li class="breadcrumb-Drug active">Non-medication
+                                <li class="breadcrumb-item active">Non-medication
                                     plan</a></li>
 
                             </ul>

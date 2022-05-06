@@ -11,8 +11,8 @@
             <div class="col">
                 <h3 class="page-title">Profile</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-Drug"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-Drug active">Profile</li>
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
                 </ul>
             </div>
         </div>
@@ -44,18 +44,16 @@
             </div> --}}
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
-                    <li class="nav-Drug">
+                    <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#medicines">Upload Medicines</a>
                     </li>
-                    <li class="nav-Drug">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#relationships">Upload Medicine Relationships</a>
                     </li>
-                    <li class="nav-Drug">
-                        <a class="nav-link" data-toggle="tab" href="#diseases">Upload Medical Conditions</a>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#drugs">Upload Drugs</a>
                     </li>
-                    <li class="nav-Drug">
-                        <a class="nav-link" data-toggle="tab" href="#reactions">Upload Medicine Reactions</a>
-                    </li>
+                    
                 </ul>
             </div>	
             <div class="tab-content profile-tab-cont">
@@ -78,18 +76,21 @@
                                         <table class="table table-bordered">
                                             <tr>
                                                 <th>name</th>
-                                                <th>description</th>
-                                                <th>contraindication</th>
+                                                <th>curables</th>
+                                                <th>contraindications</th>
+                                                <th>side_effects</th>
                                             </tr>
                                             <tr>
                                                 <td>Aspirin</td>
-                                                <td>Aspirin is used for treating malaria and thyphoid fever</td>
-                                                <td>It is not good for pregnant woman and people above the age of 60 </td>
+                                                <td>Cough|Catarrh</td>
+                                                <td>It is not good for pregnant woman and people above the age of 60| Do not use at night</td>
+                                                <td>Bloating | Headache </td>
                                             </tr>
                                             <tr>
                                                 <td>Tetracyclin</td>
-                                                <td>It is used for treating malaria and thyphoid fever</td>
-                                                <td>It is not good for pregnant woman and people above the age of 60 </td>
+                                                <td>Weakness|Drowsiness</td>
+                                                <td>It is not good for children| Do not use while eating</td>
+                                                <td>Itching | Amnesia | Crying </td>
                                             </tr>
                                         </table>
                                         
@@ -179,52 +180,61 @@
                                                     <th>medicine_aName</th>
                                                     <th>medicine_b</th>
                                                     <th>medicine_bName</th>
-                                                    <th>positive</th>
-                                                    <th>remark</th>
+                                                    <th>reaction</th>
+                                                   
                                                 </tr>
                                                 <tr>
                                                     <td>48</td>
                                                     <td>Ampicilin</td>
                                                     <td>20</td>
                                                     <td>Aspirin</td>
-                                                    <td>1</td>
-                                                    <td>It is good for pregnant woman and people above the age of 60 </td>
+                                                    <td>Contraindicated </td>
                                                 </tr>
                                                 <tr>
                                                     <td>48</td>
                                                     <td>Ampicilin</td>
                                                     <td>23</td>
                                                     <td>Artemether</td>
-                                                    <td>0</td>
-                                                    <td>It is not good for pregnant woman and people above the age of 60 </td>
+                                                    <td>Look for alternative</td>
+                                                    
                                                 </tr>
                                                 <tr>
                                                     <td>48</td>
                                                     <td>Ampicilin</td>
                                                     <td>3</td>
                                                     <td>Anopheles</td>
-                                                    <td>1</td>
-                                                    <td>It is good for pregnant woman and people above the age of 60 </td>
+                                                    <td>Monitor Closely</td> 
+                                                </tr>
+                                                <tr>
+                                                    <td>48</td>
+                                                    <td>Ampicilin</td>
+                                                    <td>3</td>
+                                                    <td>Anopheles</td>
+                                                    <td>OK</td> 
                                                 </tr>
                                             </table>
                                             
                                         </div>
                                     </form>
-                                    <div class="row my-3">
-                                        <div class="col-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label">Upload File</label>
-                                                <div class="col-lg-9">
-                                                    <input type="file" class="form-control">
+                                    
+                                        <form action="{{route('admin.medicines.uploadrelationship')}}" method="POST" enctype="multipart/form-data">@csrf
+                                            <div class="row my-3">
+                                                <div class="col-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label">Upload File</label>
+                                                        <div class="col-lg-9">
+                                                            <input type="file" name="relationships" class="form-control" required accept=".xlsx,.xls">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-lg  btn-primary">Upload</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <button class="btn btn-lg  btn-primary">Upload</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </form>
+                                    
                                     
                                 </div>
                             </div>
@@ -233,8 +243,9 @@
                     
                     </div>
                 </div>
-                <!-- /Change Password Tab -->
-                <div class="tab-pane fade" id="diseases">
+
+                <!-- Personal Details Tab -->
+                <div class="tab-pane fade show" id="drugs">
                     <!-- Personal Details -->
                     <div class="row">
                         <div class="col-lg-12">
@@ -246,41 +257,51 @@
                                     </h5>
                                     <div class="row">
                                         <p class="col-sm-12 text-muted mb-0 mb-sm-3">Uploading from excel is simple. Prepare the document in the following format:</p>
-                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">conditions.xls</span> </p>
+                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">drugs.xls</span> </p>
                                         <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create the content in the format below. Take note of the table headers that they are written in small textcases </p>
+                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Seperate each of the contents with the pipe character i.e |</p>
+                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Each content is a combination of the medicine name and its miligram ie. Arthemeter:250 </p>
+                                        <p class="col-sm-12 text-danger mb-0 mb-sm-3">Drugs with incorrect medicine names will not be uploaded</p>
                                         <table class="table table-bordered">
                                             <tr>
                                                 <th>name</th>
-                                                <th>description</th>
-                                                <th>symptoms</th>
+                                                <th>administration</th>
+                                                <th>manufacturer</th>
+                                                <th>contents</th>
+            
                                             </tr>
                                             <tr>
-                                                <td>Cough</td>
-                                                <td>Feeling of whoop whoop whoop</td>
-                                                <td> Throat dissactisfaction </td>
+                                                <td>Lonart</td>
+                                                <td>oral|injection</td>
+                                                <td>Sun Microsystems</td>
+                                                <td>Lumenfantrine:500|Abracadabra:250</td>
                                             </tr>
                                             <tr>
-                                                <td>Malaria</td>
-                                                <td>Infection caused by mosquito</td>
-                                                <td>Fever, High Body Temperature</td>
+                                                <td>Baba Blue</td>
+                                                <td>Aural|Dermal</td>
+                                                <td>Nickben Ltd</td>
+                                                <td>Lumenfantrine:500|Abracadabra:250</td>
                                             </tr>
                                         </table>
                                         
                                     </div>
-                                    <div class="row my-3">
-                                        <div class="col-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label">Upload File</label>
-                                                <div class="col-lg-9">
-                                                    <input type="file" class="form-control">
+                                    <div class="my-3">
+                                        <form class="row" action="{{route('admin.medicines.uploadDrug')}}" method="POST" enctype="multipart/form-data">@csrf
+                                            <div class="col-6">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-3 col-form-label">Upload File</label>
+                                                    <div class="col-lg-9">
+                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <button class="btn btn-lg  btn-primary">Upload</button>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-lg  btn-primary">Upload</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
+                                        
                                     </div>
                                     
                                 </div>
@@ -292,106 +313,8 @@
                     <!-- /Personal Details -->
 
                 </div>
-                <!-- Change Password Tab -->
-                <div id="reactions" class="tab-pane fade">
+                <!-- /Personal Details Tab -->
                 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title d-flex justify-content-between">
-                                        <span>Upload Instructions</span> 
-                                        {{-- <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a> --}}
-                                    </h5>
-                                    <div class="row">
-                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Here you can upload the interactions (both positive and negative) between two medicines</p>
-                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">medicine_reactions.xls</span> </p>
-                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create the content in the format below. Take note of the table headers that they are written in small textcases </p>
-                                        
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label>Select Medicine A</label>
-                                                <select class="form-control select" name="medicines">
-                                                    <option>Nive</option>
-                                                    <option>Klod</option>
-                                                    <option>Plog</option>
-                                                    <option>Yuop</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-9">
-                                            <div class="form-group">
-                                                <label>Select All Diseases</label>
-                                                <select class="form-control select" name="medicine_b" multiple>
-                                                    <option>Nive</option>
-                                                    <option>Klod</option>
-                                                    <option>Plog</option>
-                                                    <option>Yuop</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="form-group">
-                                                <button class="btn btn-lg btn-primary">Download Combination</button>
-                                            </div>
-                                        </div>
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <th>medicine_id</th>
-                                                <th>disease_id</th>
-                                                <th>disease_name</th>
-                                                <th>positive</th>
-                                                <th>remark</th>
-                                            </tr>
-                                            <tr>
-                                                <td>48</td>
-                                                <td>1</td>
-                                                <td>Cough</td>
-                                                <td>1</td>
-                                                <td>It is good for pregnant woman and people above the age of 60 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>48</td>
-                                                <td>2</td>
-                                                <td>Diabetes</td>
-                                                <td>0</td>
-                                                <td>It increases sugar </td>
-                                            </tr>
-                                            <tr>
-                                                <td>48</td>
-                                                <td>3</td>
-                                                <td>Malaria</td>
-                                                <td>1</td>
-                                                <td>It is good for treating malaria</td>
-                                            </tr>
-                                        </table>
-                                        
-                                    </div>
-                                    <div class="row my-3">
-                                        <div class="col-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label">Upload File</label>
-                                                <div class="col-lg-9">
-                                                    <input type="file" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <button class="btn btn-lg  btn-primary">Upload</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                    
-                    </div>
-                </div>
-                <!-- /Change Password Tab -->
                 
             </div>
         </div>

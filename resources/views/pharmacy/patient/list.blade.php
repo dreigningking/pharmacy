@@ -10,8 +10,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -48,9 +48,9 @@
                                 <!-- <div class="col-sm-12">
                                     <h3 class="page-title">List of Patients</h3>
                                     <ul class="breadcrumb">
-                                        <li class="breadcrumb-Drug"><a href="index.html">Dashboard</a></li>
-                                        <li class="breadcrumb-Drug"><a href="javascript:(0);">Users</a></li>
-                                        <li class="breadcrumb-Drug active">Patient</li>
+                                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
+                                        <li class="breadcrumb-item active">Patient</li>
                                     </ul>
                                 </div> -->
                             </div>

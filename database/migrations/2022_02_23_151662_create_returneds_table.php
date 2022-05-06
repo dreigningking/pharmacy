@@ -17,7 +17,6 @@ class CreateReturnedsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('pharmacy_id');
-            $table->unsignedBigInteger('purchase_id');
             $table->unsignedBigInteger('supplier_id');
             $table->string('purchase_invoice_number');
             $table->double('total')->default(0);

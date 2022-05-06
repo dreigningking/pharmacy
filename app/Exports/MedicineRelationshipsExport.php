@@ -26,8 +26,7 @@ class MedicineRelationshipsExport implements FromArray,WithHeadings
             'medicine_aName',
             'medicine_b',
             'medicine_bName',
-            'positive',
-            'remark',
+            'reaction'
         ];
     }
 }

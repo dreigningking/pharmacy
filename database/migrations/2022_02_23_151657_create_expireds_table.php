@@ -16,14 +16,14 @@ class CreateExpiredsTable extends Migration
         Schema::create('expireds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id');
-            $table->unsignedBigInteger('purchase_id');
+            $table->unsignedBigInteger('inventory_id');
             $table->string('batch_no');
             $table->integer('quantity')->default(1);
             $table->double('unit_price')->default(0);
             $table->double('unit_cost')->default(0);
             $table->double('amount')->default(0);
             $table->timestamps();
-            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
+            $table->foreign('inventory_id')->references('id')->on('inventories')->onDelete('cascade');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
         });
     }

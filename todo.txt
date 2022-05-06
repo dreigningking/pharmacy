@@ -1,5 +1,3 @@
-
-
 USER DASHBOARD
 what will be on everybody's dashboard
 1. activities
@@ -18,11 +16,15 @@ delete your profile
 
 PHARMACY SETTINGS
 delete your account
-initial balance
-markup amount
+bank accounts - and initial balance
+markup amount, and type
+minimum stock quantity
+maximum stock quantity
 
 
-data is central(medicine,diseases)
 data can be shared across pharmacies you own (drug, patient)
 
-create Drug: name, medicine & milligram, manufacturer
+
+add staff should send an email to the person
+delete staff should send an email to the person
+

@@ -28,42 +28,45 @@
                         </a>
                     </li>
                     @if(Auth::user()->isAnyRole(['director']))
+                        @rolecan('pharmacy','new')
                         <li @if(Route::is('setup')) class="active" @endif>
                             <a href="{{route('setup')}}">
                                 <i class="fas fa-prescription"></i>
                                 <span>Add Pharmacy</span>
                             </a>
                         </li>
+                        @endrolecan
+                        @rolecan('subscription','list')
                         <li @if(Route::is('subscription')) class="active" @endif>
                             <a href="{{route('subscription')}}">
                                 <i class="fas fa-money-bill"></i>
                                 <span>Subscription</span>
                             </a>
                         </li>
+                        @endrolecan
+                        @rolecan('sales','list')
                         <li @if(Route::is('transactions')) class="active" @endif>
                             <a href="{{route('transactions')}}">
                                 <i class="fas fa-chart-bar"></i>
                                 <span>Transcation</span>
                             </a>
                         </li>
+                        @endrolecan
+                        @rolecan('supplier','list')
                         <li @if(Route::is('suppliers')) class="active" @endif>
                             <a href="{{route('suppliers')}}">
                                 <i class="fas fa-users"></i>
                                 <span>Suppliers</span>
                             </a>
                         </li>
-                    
-                        <li @if(Route::is('suppliers')) class="active" @endif>
-                            <a href="social-media.html">
-                                <i class="fas fa-share"></i>
-                                <span>Transfer</span>
-                            </a>
-                        </li>
+                        @endrolecan
+                        @rolecan('staff','list')
                         <li @if(Route::is('staff')) class="active" @endif>
                             <a href="{{route('staff')}}">
                                 <i class="fas fa-users"></i> <span>Staff</span>
                             </a>
                         </li>
+                        @endrolecan
                     @endif
 
                     <li @if(Route::is('workspaces')) class="active" @endif>

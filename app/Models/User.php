@@ -94,6 +94,7 @@ class User extends Authenticatable
     public function wishlists(){
         return $this->hasMany(Wishlist::class);
     }
+
     public function country(){
         return $this->belongsTo(Country::class);
     }
@@ -101,9 +102,11 @@ class User extends Authenticatable
     public function withdrawals(){
         return $this->morphMany(Withdrawal::class, 'withdrawable');
     }
+
     public function subscriptions(){
         return $this->hasMany(Subscription::class);
     }
+    
     public function orders(){
         return $this->hasManyThrough(Order::class,PharmacyUser::class,'user_id','pharmacy_id');
     }

@@ -32,15 +32,15 @@
                             <span>Appointments</span>
                         </a>
                     </li> -->
-                    @cando($pharmacy,'patient')
+                    @usercan($pharmacy,'patient')
                     <li @if(Route::is('pharmacy.patients')) class="active" @endif>
                         <a href="{{route('pharmacy.patients',$pharmacy)}}">
                             <i class="fas fa-user-injured"></i>
                             <span>Patients</span>
                         </a>
                     </li>
-                    @endcando
-                    @cando($pharmacy,'assessment')
+                    @endusercan
+                    @usercan($pharmacy,'assessment')
                     <li @if(Route::is('pharmacy.assessment')) class="active" @endif>
                         <a href="{{route('pharmacy.assessment',$pharmacy)}}">
 
@@ -48,50 +48,55 @@
                             <span>Assessments</span>
                         </a>
                     </li>
-                    @endcando
+                    @endusercan
                      {{-- <li @if(Route::is('medicine')) class="active" @endif>
                         <a href="{{route('medicine')}}">
                             <i class="fas fa-pills"></i>
                             <span>Medicine</span>
                         </a>
                     </li> --}}
-                    @cando($pharmacy,'inventory')
+                    @usercan($pharmacy,'inventory')
                     <li @if(Route::is('pharmacy.shelf')) class="active" @endif>
                         <a href="{{route('pharmacy.shelf',$pharmacy)}}">
                             <i class="fas fa-archive"></i>
                             <span>Shelf</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharmacy.purchase')) class="active" @endif>
-                        <a href="{{route('pharmacy.purchase',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.purchase.list')) class="active" @endif>
+                        <a href="{{route('pharmacy.purchase.list',$pharmacy)}}">
                             <i class="fas fa-file-invoice"></i>
-                            <span>Add Supply</span>
-
+                            <span>Supplies</span>
                         </a>
                     </li>
-                    <li @if(Route::is('pharmacy.inventory')) class="active" @endif>
-                        <a href="{{route('pharmacy.inventory',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.transfer.list')) class="active" @endif>
+                        <a href="{{route('pharmacy.transfer.list',$pharmacy)}}">
+                            <i class="fas fa-share"></i>
+                            <span>Transfers</span>
+                        </a>
+                    </li>
+                    <li @if(Route::is('pharmacy.inventory.list')) class="active" @endif>
+                        <a href="{{route('pharmacy.inventory.list',$pharmacy)}}">
                             <i class="fas fa-boxes"></i>
                             <span>Inventory</span>
                         </a>
                     </li>
-                    @endcando
-                    @cando($pharmacy,'sales')
+                    @endusercan
+                    @usercan($pharmacy,'sales')
                     <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
                         <a href="{{route('pharmacy.transactions',$pharmacy)}}">
                             <i class="fas fa-chart-bar"></i>
                             <span>Sales</span>
                         </a>
                     </li>
-                    @endcando
-                    @cando($pharmacy,'pharmacy')
+                    @endusercan
+                    @usercan($pharmacy,'pharmacy')
                     <li>
                         <a href="{{route('pharmacy.settings',$pharmacy)}}">
                             <i class="fas fa-cog"></i>
                             <span>Settings</span>
                         </a>
                     </li>
-                    @endcando
+                    @endusercan
                 </ul>
             </nav>
         </div>

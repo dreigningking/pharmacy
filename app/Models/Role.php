@@ -17,6 +17,6 @@ class Role extends Model
         return $this->hasMany(PharmacyUser::class);
     }
     public function permissions(){
-        return $this->belongsToMany(Permission::class,'permission_roles');
+        return $this->belongsToMany(Permission::class,'permission_roles')->withPivot('list','view','edit','new','remove');
     }
 }

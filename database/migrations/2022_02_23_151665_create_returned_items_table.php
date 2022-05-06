@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReturnedDrugsTable extends Migration
+class CreateReturnedItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateReturnedDrugsTable extends Migration
      */
     public function up()
     {
-        Schema::create('returned_Drugs', function (Blueprint $table) {
+        Schema::create('returned_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('returned_id');
-            $table->unsignedBigInteger('purchase_details_id');
+            $table->unsignedBigInteger('inventory_id');
             $table->string('batch_no');
             $table->integer('quantity')->default(1);
             $table->double('unit_cost')->default(0);

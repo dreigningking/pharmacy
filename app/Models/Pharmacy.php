@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\State;
+use App\Models\Account;
 use App\Models\Country;
 use App\Models\Patient;
 use App\Models\Supplier;
@@ -37,6 +38,9 @@ class Pharmacy extends Model
     }
     public function staff(){
         return $this->hasMany(PharmacyUser::class);
+    }
+    public function accounts(){
+        return $this->hasMany(Account::class);
     }
     public function country(){
         return $this->belongsTo(Country::class);

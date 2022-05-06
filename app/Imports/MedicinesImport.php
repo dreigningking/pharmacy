@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Medicine;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
@@ -15,7 +16,7 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class MedicinesImport implements ToModel, WithBatchInserts, WithChunkReading, ShouldQueue,SkipsEmptyRows, WithHeadingRow, WithValidation, SkipsOnFailure, SkipsOnError
+class MedicinesImport implements ToModel, WithUpserts, WithBatchInserts, WithChunkReading, ShouldQueue,SkipsEmptyRows, WithHeadingRow, WithValidation, SkipsOnFailure, SkipsOnError
 {
     use SkipsFailures,SkipsErrors;
     /**
@@ -23,26 +24,37 @@ class MedicinesImport implements ToModel, WithBatchInserts, WithChunkReading, Sh
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function collection(Collection $rows)
-    {
-         Validator::make($rows->toArray(), [
+    // public function collection(Collection $rows)
+    // {
+    //      Validator::make($rows->toArray(), [
              
-            '*.name' => 'required',
-            '*.description' => 'nullable',
-            '*.contraindication' => 'nullable'
-         ])->validate();
-        foreach ($rows as $row) {
-            User::create([
-                'name' => $row[0],
-            ]);
-        }
+    //         '*.name' => 'required',
+    //         '*.curables' => 'nullable',
+    //         '*.contraindications' => 'nullable',
+    //         '*.side_effect' => 'nullable'
+    //      ])->validate();
+
+    //     foreach ($rows as $row) {
+    //         Medicine::updateOrCreate(
+    //             ['name' => $row[0]],
+    //             [
+    //                 'curables' => explode('|',$row[1]),
+    //                 'contraindications' => explode('|',$row[2]),
+    //                 'side_effect' => explode('|',$row[3]),
+    //             ]);
+    //     }
+    // }
+    public function uniqueBy()
+    {
+        return 'name';
     }
     public function model(array $row)
     {
         return new Medicine([
             'name'     => $row['name'],
-            'description'    => $row['description'],
-            'contraindications' => $row['contraindications'],
+            'curables'    => explode('|',$row['curables']),
+            'contraindications' => explode('|',$row['contraindications']),
+            'side_effects' => explode('|',$row['side_effects']),
         ]);
     }
     public function batchSize(): int
@@ -57,8 +69,9 @@ class MedicinesImport implements ToModel, WithBatchInserts, WithChunkReading, Sh
     {
         return [
              '*.name' => 'required',
-             '*.description' => 'nullable',
-             '*.contraindication' => 'nullable',
+             '*.curables' => 'required',
+             '*.contraindications' => 'nullable',
+             '*.side_effect' => 'nullable'
         ];
     }
 }

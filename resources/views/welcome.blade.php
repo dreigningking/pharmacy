@@ -43,7 +43,7 @@
                     <div class="specialities-slider slider">
                     
                         <!-- Slider Drug -->
-                        <div class="speicality-Drug text-center">
+                        <div class="speicality-item text-center">
                             <div class="speicality-img">
                                 <img src="{{asset('assets/img/specialities/specialities-01.png')}}" class="img-fluid" alt="Speciality">
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
@@ -53,7 +53,7 @@
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="speicality-Drug text-center">
+                        <div class="speicality-item text-center">
                             <div class="speicality-img">
                                 <img src="{{asset('assets/img/specialities/specialities-02.png')}}" class="img-fluid" alt="Speciality">
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
@@ -63,7 +63,7 @@
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="speicality-Drug text-center">
+                        <div class="speicality-item text-center">
                             <div class="speicality-img">
                                 <img src="{{asset('assets/img/specialities/specialities-03.png')}}" class="img-fluid" alt="Speciality">
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
@@ -73,7 +73,7 @@
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="speicality-Drug text-center">
+                        <div class="speicality-item text-center">
                             <div class="speicality-img">
                                 <img src="{{asset('assets/img/specialities/specialities-04.png')}}" class="img-fluid" alt="Speciality">
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
@@ -83,7 +83,7 @@
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="speicality-Drug text-center">
+                        <div class="speicality-item text-center">
                             <div class="speicality-img">
                                 <img src="{{asset('assets/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
@@ -524,42 +524,42 @@
                     </div>	
                     <div class="features-slider slider">
                         <!-- Slider Drug -->
-                        <div class="feature-Drug text-center">
+                        <div class="feature-item text-center">
                             <img src="{{asset('assets/img/features/feature-01.jpg')}}" class="img-fluid" alt="Feature">
                             <p>Patient Ward</p>
                         </div>
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="feature-Drug text-center">
+                        <div class="feature-item text-center">
                             <img src="{{asset('assets/img/features/feature-02.jpg')}}" class="img-fluid" alt="Feature">
                             <p>Test Room</p>
                         </div>
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="feature-Drug text-center">
+                        <div class="feature-item text-center">
                             <img src="{{asset('assets/img/features/feature-03.jpg')}}" class="img-fluid" alt="Feature">
                             <p>ICU</p>
                         </div>
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="feature-Drug text-center">
+                        <div class="feature-item text-center">
                             <img src="{{asset('assets/img/features/feature-04.jpg')}}" class="img-fluid" alt="Feature">
                             <p>Laboratory</p>
                         </div>
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="feature-Drug text-center">
+                        <div class="feature-item text-center">
                             <img src="{{asset('assets/img/features/feature-05.jpg')}}" class="img-fluid" alt="Feature">
                             <p>Operation</p>
                         </div>
                         <!-- /Slider Drug -->
                         
                         <!-- Slider Drug -->
-                        <div class="feature-Drug text-center">
+                        <div class="feature-item text-center">
                             <img src="{{asset('assets/img/features/feature-06.jpg')}}" class="img-fluid" alt="Feature">
                             <p>Medical</p>
                         </div>

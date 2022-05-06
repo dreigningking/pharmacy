@@ -2,9 +2,9 @@
 
 namespace App\Policies;
 
-use App\Models\Role;
 use App\Models\User;
-use App\Models\Pharmacy;
+use App\Models\PharmacyUser;
+use App\Models\Permission;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class StaffPolicy
@@ -16,41 +16,99 @@ class StaffPolicy
         //
     }
 
-    public function view(User $user, Pharmacy $pharmacy)
+    public function view(User $user, PharmacyUser $pharmacyUser)
     {
-        $roles = Role::whereIn('name',['director','manager'])->get();
-        if($pharmacy->staff->where('user_id',$user->id)->whereIn('role_id',$roles->pluck('id')->toArray())->isNotEmpty())
-        return true;
+        $roles = $user->pharmacies->where('id',$pharmacyUser->pharmacy_id)->pluck('pivot.role_id')->toArray();
+        $permitted_roles = Permission::where('name','staff')->first()->roles->where("pivot.view",1)->pluck('id')->toArray();
+        $checker = false;
+        foreach($permitted_roles as $permitted){
+            if(in_array($permitted,$roles)){
+                $checker = true;
+            }
+        }
+        if($checker){
+            return true;
+        }else{
+            return false;
+        }   
     }
 
     public function create(User $user)
     {
-        $roles = Role::whereHas('permissions',function ($query){
-            $query->where('name','staff');
-        })->get();
-        if($user->pharmacies->whereIn('pivot.role_id', $roles->pluck('id')->toArray())->isNotEmpty())
-        return true;
+        $roles = $user->pharmacies->pluck('pivot.role_id')->toArray();
+        $permitted_roles = Permission::where('name','staff')->first()->roles->where("pivot.new",1)->pluck('id')->toArray();
+        $checker = false;
+        foreach($permitted_roles as $permitted){
+            if(in_array($permitted,$roles)){
+                $checker = true;
+            }
+        }
+        if($checker){
+            return true;
+        }else{
+            return false;
+        }   
     }
 
-    public function update(User $user, Pharmacy $pharmacy)
+    public function list(User $user)
     {
-        if($pharmacy->staff->where('user_id',$user->id)->first()->role->permissions->where('name','staff')->isNotEmpty())
-        return true;
+        $roles = $user->pharmacies->pluck('pivot.role_id')->toArray();
+        $permitted_roles = Permission::where('name','staff')->first()->roles->where("pivot.list",1)->pluck('id')->toArray();
+        $checker = false;
+        foreach($permitted_roles as $permitted){
+            if(in_array($permitted,$roles)){
+                $checker = true;
+            }
+        }
+        if($checker){
+            return true;
+        }else{
+            return false;
+        }   
     }
 
-    public function delete(User $user, Pharmacy $pharmacy)
+    public function update(User $user, PharmacyUser $pharmacyUser)
     {
-        // $role_id = Role::where('name','director')->first()->id;
-        if($pharmacy->staff->where('user_id',$user->id)->first()->role->permissions->where('name','staff')->isNotEmpty())
-        return true;
+        $roles = $user->pharmacies->where('id',$pharmacyUser->pharmacy_id)->pluck('pivot.role_id')->toArray();
+        $permitted_roles = Permission::where('name','staff')->first()->roles->where("pivot.edit",1)->pluck('id')->toArray();
+        $checker = false;
+        foreach($permitted_roles as $permitted){
+            if(in_array($permitted,$roles)){
+                $checker = true;
+            }
+        }
+        if($checker){
+            return true;
+        }else{
+            return false;
+        }   
     }
 
-    public function restore(User $user, Pharmacy $pharmacy)
+    
+    public function delete(User $user, PharmacyUser $pharmacyUser)
+    {
+        $roles = $user->pharmacies->where('id',$pharmacyUser->pharmacy_id)->pluck('pivot.role_id')->toArray();
+        $permitted_roles = Permission::where('name','staff')->first()->roles->where("pivot.remove",1)->pluck('id')->toArray();
+        $checker = false;
+        foreach($permitted_roles as $permitted){
+            if(in_array($permitted,$roles)){
+                $checker = true;
+            }
+        }
+        if($checker){
+            return true;
+        }else{
+            return false;
+        }   
+    }
+
+
+    public function restore(User $user, PharmacyUser $pharmacyUser)
     {
         //
     }
 
-    public function forceDelete(User $user, Pharmacy $pharmacy)
+    public function forceDelete(User $user, PharmacyUser $pharmacyUser)
     {
         //
     }

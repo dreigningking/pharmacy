@@ -78,8 +78,8 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-Drug"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-Drug active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Dashboard</h2>
@@ -104,7 +104,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="invoice-content">
-                                            <div class="invoice-Drug">
+                                            <div class="invoice-item">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="invoice-logo">
@@ -125,7 +125,7 @@
                                             </div>
                                             
                                             <!-- Invoice Drug -->
-                                            <div class="invoice-Drug">
+                                            <div class="invoice-item">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="invoice-info">
@@ -168,7 +168,7 @@
                                             <!-- /Invoice Drug -->
                                             
                                             <!-- Invoice Drug -->
-                                            <div class="invoice-Drug">
+                                            <div class="invoice-item">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="invoice-info ">
@@ -195,14 +195,17 @@
                                             <!-- /Invoice Drug -->
                                             
                                             <!-- Invoice Drug -->
-                                            <div class="invoice-Drug invoice-table-wrap">
+                                            <div class="invoice-item invoice-table-wrap">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="table-responsive no_select_border">
                                                             <table class="invoice-table table table-bordered" id="table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="d-flex justify-content-between"><span>Description</span> <a data-toggle="modal" href="#add_drug" class="font-weight-normal text-info"><u>Add New Drug</u></a></th>
+                                                                        <th class="d-flex justify-content-between">
+                                                                            <span>Description</span> 
+                                                                            <a data-toggle="modal" href="#add_drug" class="font-weight-normal text-info"><u>Add New Drug</u></a>
+                                                                        </th>
                                                                         <th class="text-center">Unit Cost</th>
                                                                         <th class="text-center">Qty</th>
                                                                         <th class="text-right ">Total</th>

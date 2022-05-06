@@ -36,10 +36,11 @@ class SubscriptionController extends Controller
             $subscription = $this->createSubscription($plan,$pharmacy,$plan->trial,true);
             return redirect()->route('dashboard');
         }
-        $order = Order::create(['pharmacy_id'=> $pharmacy->id,'orderable_id'=> $request->plan_id,
-         'orderable_type'=> 'App\Models\Plan','quantity'=> $request->quantity ,'amount'=> $plan->amount,
-         'total'=> $request->quantity * $plan->amount,'currency'=> $pharmacy->country->currency_iso]);
-        // $order = Order::find(1);
+        $order = Order::create(['pharmacy_id'=> $pharmacy->id,'subtotal'=> $request->quantity * $plan->amount,'vat'=> 0,'total'=> $request->quantity * $plan->amount]);
+        $orderdetails = OrderDetails::create([
+            'order_id'=> $order->id,'orderable_id'=> $request->plan_id,'orderable_type'=> 'App\Models\Plan',
+            'quantity'=> $request->quantity ,'amount'=> $plan->amount, 'total'=> $request->quantity * $plan->amount,
+        ]);
         $response = $this->initializePayment($order->amount,$order->id, $user->name,$user->email);
         if(!$response || !$response->status)
         return redirect()->back()->withErrors(['message'=> 'Service Unavailable'])->withInput();

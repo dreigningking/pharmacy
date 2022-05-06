@@ -15,23 +15,23 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class MedicineRelationshipsImport implements ToModel,WithBatchInserts, WithChunkReading, ShouldQueue,SkipsEmptyRows, WithHeadingRow, WithValidation, SkipsOnFailure, SkipsOnError
+// class MedicineRelationshipsImport implements ToModel
+class MedicineRelationshipsImport implements ToModel,WithHeadingRow,SkipsEmptyRows,WithBatchInserts, WithChunkReading, ShouldQueue
 {
-    use SkipsFailures,SkipsErrors;
+    // use SkipsFailures,SkipsErrors;
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    
     public function model(array $row)
     {
+        // dd($row);
         return new MedicineRelationship([
             'medicine_a' => $row['medicine_a'],
-            'medicine_aName'  => $row['medicine_aName'],
             'medicine_b'  => $row['medicine_b'],
-            'medicine_bName'  => $row['medicine_bName'],
-            'positive'  => $row['positive'],
-            'remark'  => $row['remark'],
+            'reaction'  => $row['reaction']
         ]);
     }
     public function batchSize(): int
@@ -45,12 +45,11 @@ class MedicineRelationshipsImport implements ToModel,WithBatchInserts, WithChunk
     public function rules(): array
     {
         return [
-            '*.medicine_a' => 'required|exists:medicines,id',
+            '*.medicine_a' => 'required|numeric|exists:medicines,id',
             '*.medicine_aName' => 'required|exists:medicines,name',
-            '*.medicine_b'  =>  'required|exists:medicines,id',
+            '*.medicine_b'  =>  'required|numeric|exists:medicines,id',
             '*.medicine_bName'  =>  'required|exists:medicines,name',
-            '*.positive'  =>  'required|boolean',
-            '*.remark'  =>  'required|string',
+            '*.reaction'  =>  'required|string',
         ];
     }
 }

@@ -15,10 +15,10 @@ class CreateMedicinesTable extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->longText('curables')->nullable();
             $table->text('contraindications')->nullable();
-            $table->text('side_effect')->nullable();
+            $table->text('side_effects')->nullable();
             $table->timestamps();
         });
     }

@@ -22,13 +22,13 @@
                         <div class="row justify-content-center mb-4">
 
                             <ul class="nav nav-pills text-align-center" role="tablist">
-                                <li class="nav-Drug">
+                                <li class="nav-item">
                                     <a class="nav-link active" data-toggle="pill" href="#monthly">Monthly</a>
                                 </li>
-                                <li class="nav-Drug">
+                                <li class="nav-item">
                                     <a class="nav-link" data-toggle="pill" href="#quarterly">Quarterly</a>
                                 </li>
-                                <li class="nav-Drug">
+                                <li class="nav-item">
                                     <a class="nav-link" data-toggle="pill" href="#annually">Annually</a>
                                 </li>
                             </ul>

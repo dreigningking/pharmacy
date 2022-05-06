@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Pharmacy;
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -20,79 +21,72 @@ class PharmacyPolicy
     {
         //
     }
-
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pharmacy  $pharmacy
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+ 
     public function view(User $user, Pharmacy $pharmacy)
     {
-        //
+        $roles = $user->pharmacies->where('id',$pharmacy->id)->pluck('pivot.role_id')->toArray();
+        $permitted_roles = Permission::where('name','pharmacy')->first()->roles->where("pivot.view",1)->pluck('id')->toArray();
+        $checker = false;
+        foreach($permitted_roles as $permitted){
+            if(in_array($permitted,$roles)){
+                $checker = true;
+            }
+        }
+        if($checker){
+            return true;
+        }else{
+            return false;
+        }   
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function create(User $user)
     {
         //
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pharmacy  $pharmacy
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+    
     public function update(User $user, Pharmacy $pharmacy)
     {
-        //
+        $roles = $user->pharmacies->where('id',$pharmacy->id)->pluck('pivot.role_id')->toArray();
+        $permitted_roles = Permission::where('name','pharmacy')->first()->roles->where("pivot.edit",1)->pluck('id')->toArray();
+        $checker = false;
+        foreach($permitted_roles as $permitted){
+            if(in_array($permitted,$roles)){
+                $checker = true;
+            }
+        }
+        if($checker){
+            return true;
+        }else{
+            return false;
+        }   
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pharmacy  $pharmacy
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function delete(User $user, Pharmacy $pharmacy)
     {
-        //
+        $roles = $user->pharmacies->where('id',$pharmacy->id)->pluck('pivot.role_id')->toArray();
+        $permitted_roles = Permission::where('name','pharmacy')->first()->roles->where("pivot.remove",1)->pluck('id')->toArray();
+        $checker = false;
+        foreach($permitted_roles as $permitted){
+            if(in_array($permitted,$roles)){
+                $checker = true;
+            }
+        }
+        if($checker){
+            return true;
+        }else{
+            return false;
+        }   
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pharmacy  $pharmacy
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function restore(User $user, Pharmacy $pharmacy)
     {
         //
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pharmacy  $pharmacy
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function forceDelete(User $user, Pharmacy $pharmacy)
     {
         //
     }
-    public function subscribe(User $user,Pharmacy $pharmacy){
-        if($pharmacy->staff->where('user_id',$user->id)->first()->role->permissions->where('name','subscription')->isNotEmpty())
-        return true;
-    }
+
 }

@@ -13,8 +13,8 @@
             <div class="col-sm-12">
                 <h3 class="page-title">Medicine</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-Drug"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-Drug active">Medicine</li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Medicine</li>
                 </ul>
             </div>
         </div>
@@ -48,7 +48,7 @@
                                         <input list="encodings" value="" class="col-sm-12 custom-select custom-select-sm" name="disease[]">
                                         <datalist id="encodings">
                                             @foreach ($diseases as $disease)
-                                                <option value="{{$disease->name}}">{{$disease->name}}</option> 
+                                                <option value="{{$disease}}">{{$disease}}</option> 
                                             @endforeach
                                         </datalist>
                                     </div>

@@ -9,5 +9,5 @@ class Ingredient extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['drug_id','medicine_id','mg'];
+    protected $fillable = ['drug_id','medicine_id','size'];
 }

@@ -11,8 +11,8 @@
             <div class="col">
                 <h3 class="page-title">Role Management</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-Drug"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-Drug active">Roles & Permissions</li>
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Roles & Permissions</li>
                 </ul>
             </div>
         </div>
@@ -23,116 +23,63 @@
         <div class="col-md-12">
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
-                    <li class="nav-Drug">
-                        <a class="nav-link active" data-toggle="tab" href="#per_details_tab">Director</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#director">Director</a>
                     </li>
-                    <li class="nav-Drug">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#manager_tab">Manager</a>
                     </li>
-                    <li class="nav-Drug">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#pharmacist_tab">Pharmacist</a>
                     </li>
-                    <li class="nav-Drug">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#sales_tab">Sales Rep</a>
                     </li>
 
                 </ul>
             </div>
             <div class="tab-content profile-tab-cont">
-                <div class="tab-pane fade show active" id="per_details_tab">
-
-                    <!-- Personal Details -->
+                
+                <div class="tab-pane fade show active" id="director">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        @foreach($permissions as $permission)
-
+                                        <div class="col-md-12 d-flex">
+                                            <div class="form-group row w-100 d-flex font-weight-bold">
+                                                <div class="col-sm-12 col-md-5 mr-2">Permission</div>
+                                                <div  class="col-sm-2 col-md-1">List</div>
+                                                <div  class="col-sm-2 col-md-1">View</div>
+                                                <div  class="col-sm-2 col-md-1">Edit</div>
+                                                <div  class="col-sm-2 col-md-1">Create</div>
+                                                <div  class="col-sm-2 col-md-1">Delete</div>
+                                            </div>
+                                        </div>
                                         <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
-                                        <div class="col-md-6 d-flex">
-                                            <div class="form-group w-100 d-flex">
-                                                <label for="usr" class="col-5">{{$permission->description}}</label>
-                                                <input type="checkbox" class="form-control col-1" name="permissions[]" value="{{$permission->id}}" @if(
-                                                    in_array($permission->id,$roles->where('name',
-                                                'director')->first()->permissions->pluck('id')->toArray()) ) checked
-                                                @endif>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                        <div class="row justify-content-end ml-4">
-                                            <button type="submit" class="btn btn-primary ml-2">Save</button>
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                            <input type="hidden" name="role" value="director">
+                                            @foreach($permissions as $permission)
+                                                <div class="col-md-12 d-flex">
 
-                            </div>
-                        </div>
+                                                    <div class="form-group w-100 d-flex">
+                                                        <label for="usr" class="col-5">{{$permission->description}}</label>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
+                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
 
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
+                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                        
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit"  
+                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
 
-                    </div>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new"  
+                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
 
-
-                </div>
-                <div class="tab-pane fade show" id="manager_tab">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <form action="">
-                                            <div class="col-md-12 table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Permission</th>
-                                                            <th>List</th>
-                                                            <th>View</th>
-                                                            <th>Edit</th>
-                                                            <th>Create</th>
-                                                            <th>Delete</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($permissions as $permission)
-                                                            <tr>
-                                                                <td>
-                                                                    {{$permission->description}}
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        <input type="checkbox" class="form-control" name="permissions[]" value="{{$permission->id}}">
-                                                                    </div>
-                                                                    
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        <input type="checkbox" class="form-control" name="permissions[]" value="{{$permission->id}}">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        <input type="checkbox" class="form-control" name="permissions[]" value="{{$permission->id}}">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        <input type="checkbox" class="form-control" name="permissions[]" value="{{$permission->id}}">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        <input type="checkbox" class="form-control" name="permissions[]" value="{{$permission->id}}">
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                    
-                                                </table>
-                                            </div>
-                                            
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="delete"  
+                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                             <div class="row justify-content-end ml-4">
                                                 <button type="submit" class="btn btn-primary ml-2">Save</button>
                                             </div>
@@ -146,28 +93,103 @@
 
                     </div>
                 </div>
+                <div class="tab-pane fade show" id="manager_tab">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 d-flex">
+                                            <div class="form-group row w-100 d-flex font-weight-bold">
+                                                <div class="col-sm-12 col-md-5 mr-2">Permission</div>
+                                                <div  class="col-sm-2 col-md-1">List</div>
+                                                <div  class="col-sm-2 col-md-1">View</div>
+                                                <div  class="col-sm-2 col-md-1">Edit</div>
+                                                <div  class="col-sm-2 col-md-1">Create</div>
+                                                <div  class="col-sm-2 col-md-1">Delete</div>
+                                            </div>
+                                        </div>
+                                        {{-- manager --}}
+                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                            @foreach($permissions as $permission)
+                                                <div class="col-md-12 d-flex">
+
+                                                    <div class="form-group w-100 d-flex">
+                                                        <label for="usr" class="col-5">{{$permission->description}}</label>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
+                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
+                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                        
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit" 
+                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new" 
+                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="remove" 
+                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            <div class="row justify-content-end ml-4">
+                                                <button type="submit" class="btn btn-primary ml-2">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                
                 <div class="tab-pane fade show" id="pharmacist_tab">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        @foreach($permissions as $permission)
-
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
-                                        <div class="col-md-6 d-flex">
-                                            <div class="form-group w-100 d-flex">
-                                                <label for="usr" class="col-5">{{$permission->description}}</label>
-                                                <input type="checkbox" class="form-control col-1" name="permissions[]" value="{{$permission->id}}" @if(
-                                                    in_array($permission->id,$roles->where('name',
-                                                'pharmacist')->first()->permissions->pluck('id')->toArray()) ) checked
-                                                @endif>
+                                        <div class="col-md-12 d-flex">
+                                            <div class="form-group row w-100 d-flex font-weight-bold">
+                                                <div class="col-sm-12 col-md-5 mr-2">Permission</div>
+                                                <div  class="col-sm-2 col-md-1">List</div>
+                                                <div  class="col-sm-2 col-md-1">View</div>
+                                                <div  class="col-sm-2 col-md-1">Edit</div>
+                                                <div  class="col-sm-2 col-md-1">Create</div>
+                                                <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        @endforeach
-                                        <div class="row justify-content-end ml-4">
-                                            <button type="submit" class="btn btn-primary ml-2">Save</button>
-                                        </div>
+                                        {{-- pharmacist --}}
+                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                            @foreach($permissions as $permission)
+                                                <div class="col-md-12 d-flex">
+
+                                                    <div class="form-group w-100 d-flex">
+                                                        <label for="usr" class="col-5">{{$permission->description}}</label>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
+                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
+                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                        
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit" 
+                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new" 
+                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="remove" 
+                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            <div class="row justify-content-end ml-4">
+                                                <button type="submit" class="btn btn-primary ml-2">Save</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -178,32 +200,52 @@
 
                     </div>
 
-
                 </div>
                 <div class="tab-pane fade show" id="sales_tab">
 
-                    <!-- Personal Details -->
+                
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        @foreach($permissions as $permission)
-
-                                       <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
-                                        <div class="col-md-6 d-flex">
-                                            <div class="form-group w-100 d-flex">
-                                                <label for="usr" class="col-5">{{$permission->description}}</label>
-                                                <input type="checkbox" class="form-control col-1" name="permissions[]" value="{{$permission->id}}" @if(
-                                                    in_array($permission->id,$roles->where('name',
-                                                'sales')->first()->permissions->pluck('id')->toArray()) ) checked
-                                                @endif>
+                                        <div class="col-md-12 d-flex">
+                                            <div class="form-group row w-100 d-flex font-weight-bold">
+                                                <div class="col-sm-12 col-md-5 mr-2">Permission</div>
+                                                <div  class="col-sm-2 col-md-1">List</div>
+                                                <div  class="col-sm-2 col-md-1">View</div>
+                                                <div  class="col-sm-2 col-md-1">Edit</div>
+                                                <div  class="col-sm-2 col-md-1">Create</div>
+                                                <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        @endforeach
-                                        <div class="row justify-content-end ml-4">
-                                            <button type="submit" class="btn btn-primary ml-2">Save</button>
-                                        </div>
+                                        {{-- sales --}}
+                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                            @foreach($permissions as $permission)
+                                                <div class="col-md-12 d-flex">
+
+                                                    <div class="form-group w-100 d-flex">
+                                                        <label for="usr" class="col-5">{{$permission->description}}</label>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
+                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
+                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                        
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit" 
+                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new" 
+                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
+
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="remove" 
+                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            <div class="row justify-content-end ml-4">
+                                                <button type="submit" class="btn btn-primary ml-2">Save</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

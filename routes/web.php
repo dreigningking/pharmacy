@@ -64,37 +64,6 @@ Route::middleware('auth')->group(function(){
         Route::post('staff/destroy',[App\Http\Controllers\GeneralControllers\UserController::class, 'destroystaff'])->name("staff.destroy");
     });
 
-    Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/{pharmacy}'], function () {
-        
-        Route::get('checkout/{plan}',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
-        
-        Route::group(['middleware'=>['subscription']], function () {
-            Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
-            Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
-            Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');
-            Route::post('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'savestaff'])->name('staff');
-            Route::get('subscription',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'subscription'] )->name('subscription');
-            Route::get('permissions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'permission'])->name("permissions");
-            Route::get('patients', [App\Http\Controllers\GeneralControllers\PatientController::class, 'index'])->name("patients");
-            Route::get('addpatient', [App\Http\Controllers\GeneralControllers\PatientController::class, 'add'])->name("addpatient");
-            Route::post('storepatient', [App\Http\Controllers\GeneralControllers\PatientController::class, 'store'])->name("storepatient");
-            Route::get('patients/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'read'])->name("showpatients");
-            Route::get('assessment', [App\Http\Controllers\GeneralControllers\PatientController::class, 'assess'])->name("assessment");
-            Route::get('assessment/new', [App\Http\Controllers\GeneralControllers\PatientController::class, 'new'])->name("newassessment");
-            Route::get('assessment/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'showassessment'])->name("showassessment");
-            Route::get('prescription', [App\Http\Controllers\GeneralControllers\PatientController::class, 'prescription'])->name("prescription");
-            Route::get('nonmedical-plan', [App\Http\Controllers\GeneralControllers\PatientController::class, 'plan'])->name("plan");
-            
-            Route::get('inventory/setup', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'start'])->name("inventory.start");
-            Route::post('inventory/setup', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'setup'])->name("inventory.setup");
-            Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'inventory'])->name("inventory");
-            
-            Route::get('shelf', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'shelf'])->name("shelf");
-            Route::get('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
-            Route::get('purchase',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'purchase'])->name('purchase');
-
-        });
-    });
-
+    include('pharmacy.php');
     include('admin.php');
 });
