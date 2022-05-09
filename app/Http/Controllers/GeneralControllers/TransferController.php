@@ -48,10 +48,26 @@ class TransferController extends Controller
         }
         return redirect()->route('pharmacy.transfer.list',$pharmacy);
     }
-    public function add_to_inventory(Pharmacy $pharmacy,Request $request){
-        
+    public function save_to_inventory(Pharmacy $pharmacy,Request $request){
+        // dd($request->all());
+        $transfer = Transfer::find($request->transfer_id);
+        foreach($transfer->details as $detail){
+            $inventory = Inventory::updateOrCreate(['name'=> $detail->inventory->name],
+            ['unit_cost'=> $detail->unit_cost,'unit_price'=> $detail->inventory->unit_price,'profit'=> $detail->inventory->unit_price]);
+            $sender_batch = Batch::find($detail->batch_id);
+            $receiver_batch = Batch::where('inventory_id',$inventory->id)->where('number',$sender_batch->number)->first();
+            if($receiver_batch){
+                $receiver_batch->quantity = $receiver_batch->quantity + $detail->quantity;
+                $receiver_batch->save();
+            }else Batch::create(['inventory_id'=>$inventory->id,'number'=> $sender_batch->number,'quantity'=> $detail->quantity,'expire_at'=> $sender_batch->expiry_at]);
+        }
+        $transfer->status = true;
+        $transfer->save();
+        return redirect()->route('pharmacy.transfer.list',$pharmacy);
     }
     public function delete(Pharmacy $pharmacy,Request $request){
-
+        $transfer = Transfer::find($request->transfer_id);
+        $transfer->delete();
+        return redirect()->route('pharmacy.transfer.list',$pharmacy);
     }
 }

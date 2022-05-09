@@ -61,8 +61,9 @@
                                                                 {{-- <a class="btn btn-sm bg-success-light" href="">
                                                                     <i class="fa fa-plus-circle"></i> Add to Inventory
                                                                 </a> --}}
-                                                                <form class="d-inline-block" action="{{route('pharmacy.transfer.save_to_inventory',[$pharmacy,$transfer])}}" method="POST">
-                                                                    <button class="btn btn-sm bg-success-light">
+                                                                <form class="d-inline-block" action="{{route('pharmacy.transfer.save_to_inventory',$pharmacy)}}" method="POST">@csrf
+                                                                    <input type="hidden" name="transfer_id" value="{{$transfer->id}}">
+                                                                    <button class="btn btn-sm bg-success-light" type="submit">
                                                                         <i class="fa fa-plus-circle"></i> Add to Inventory
                                                                     </button>
                                                                 </form>

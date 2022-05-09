@@ -224,7 +224,7 @@
             }
             
             if(markup_type == '%'){
-                add = (markup * cost) / 100
+                add = ((markup * cost) / 100) + cost
             }else{
                 add = markup + cost
             }
