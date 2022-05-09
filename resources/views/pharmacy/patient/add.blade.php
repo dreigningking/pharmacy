@@ -24,126 +24,186 @@
 <!-- Page Content -->
 <div class="content">
     <div class="container-fluid">
-
         <div class="row">
             @include('pharmacy.sidebar')
-
             <div class="col-md-7 col-lg-8 col-xl-9">
-
-
-                <!-- Page Wrapper -->
-                <div class="page-wrapper">
-                    <div class="page-header">
-                        <div class="row">
-
-                            <div class="col-sm-12">
-                                <!-- <h3 class="page-title">List of Patients</h3> -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item active">Add
+                                    <li class="breadcrumb-item ">Add
                                         Patient</li>
-                                    <li class="breadcrumb-item "><a
-                                            href="{{route('pharmacy.newassessment',$pharmacy)}}">Assessment</a></li>
-                                    <li class="breadcrumb-item"><a
-                                            href="{{route('pharmacy.prescription',$pharmacy)}}">Prescription</a></li>
-                                    <li class="breadcrumb-item"><a
-                                            href="{{route('pharmacy.plan',$pharmacy)}}">Non-medication plan</a></li>
+                                    <li class="breadcrumb-item active">Assessment</li>
+                                    <li class="breadcrumb-item active">Prescription</li>
+                                    <li class="breadcrumb-item active">Non-medication plan</li>
+                                </ul>             
+                                <form action="{{route('pharmacy.patient.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                    <div class="row w-100">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">First Name</label>
+                                                <input type="text" class="form-control" name="first_name">
+                                            </div>
+                                        </div>                         
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" name="last_name">
+                                            </div>
+                                        </div> 
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Phone Number</label>
+                                                <input type="text" class="form-control" name="mobile">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Date of birth</label>
+                                                <input type="date" class="form-control" name="dob">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label class="form-label">Gender</label>
+                                                <select class="form-control" id="gender" name="gender">
+                                                    <option value="female">Female</option>
+                                                    <option value="male">Male</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Address <small>(optional)</small></label>
+                                                <input type="text" class="form-control" name="address">
+                                            </div>
+                                        </div> 
+                                        <div class="col-md-12" id="medical_conditions">
+                                            <h4>Medical History</h4>
+                                            <div class="row my-4 condition">
+                                                <div class="col-md-7">
+                                                    <div class="form-group">  
+                                                        <label class="text-muted text-center">Previous Medical Condition</label>                                        
+                                                        <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                                                        <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
+                                                </div>
+                                                <div class="col-md-12 medications">
+                                                    <div class="med mb-1">
+                                                        <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
+                                                        <label class="form-check-label mx-3">Effective? </label>
+                                                        <label class="form-check-label mx-3">
+                                                            <input type="radio" class="form-check-input" name="effection">Yes
+                                                        </label>
+                                                        <label class="form-check-label mx-3">
+                                                            <input type="radio" class="form-check-input" name="optradio">No
+                                                        </label>
+                                                        <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group mt-2">
+                                                <br>
+                                                <button type="submit" class="btn btn-md btn-info" name="action" value="save">Save & Close</button>
+                                                <button type="submit" class="btn btn-md btn-primary" name="action" value="assessment">Save & Assessment</button>
+                                                <button type="reset" class="btn btn-md btn-danger">Reset</button>
+                                            </div>
+                                        </div> 
 
-                                </ul>
+                                    </div>
+                                </form>                
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <form action="{{route('pharmacy.storepatient', $pharmacy)}}" class="w-100" method="POST">@csrf
-                            <div class="row justify-content-start mt-4 w-100">
-
-
-
-                                <div class="row mt-4 pl-4 pr-2 collapse show w-100 justify-content-center"
-                                    id="personal_info">
-
-                                    <div class="row w-100">
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label pr-0">First Name</label>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control" name="first_name">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label pr-0">Last Name</label>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control" name="last_name">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="row w-100">
-                                    <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label pr-0">Email</label>
-                                                <div class="col-lg-9">
-                                                    <input type="email" class="form-control" name="email">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label pr-0">Phone Number</label>
-                                                <div class="col-lg-9">
-                                                    <input type="number" class="form-control" name="mobile">
-                                                </div>
-                                            </div>
-                                        </div>
-                                       
-                                    </div>
-                                    <div class="row w-100">
-                                    <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label pr-0">Date of
-                                                    birth</label>
-                                                <div class="col-lg-9">
-                                                    <input type="date" class="form-control" name="dob">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label pr-0">Gender</label>
-                                                <div class="col-lg-9">
-                                                    <select class="form-control" id="gender" name="gender">
-                                                        <option value="female">Female</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="other">Other</option>
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="row w-100 justify-content-end pr-4 mt-4">
-                                    <button class="btn btn-primary">Save</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <!-- /Page Wrapper -->
                 </div>
             </div>
-            <!-- /Page Wrapper -->
-
 
         </div>
     </div>
-
-</div>
-
 </div>
 <!-- /Page Content -->
 
 @endsection
+@push('scripts')
+    <script>
+        $(document).on('click',".add_condition", function() {
+            console.log("condition")
+            var condition = ` 
+                                <div class="row my-4 condition">
+                                    <div class="col-md-7">
+                                        <div class="form-group">  
+                                            <label class="text-muted text-center">Previous Medical Condition</label>                                        
+                                            <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                            <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                                            <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
+                                            <button type="button" class="btn btn-danger remove_condition" title="add more"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                    <div class="col-md-12 medications">
+                                        <div class="med mb-1">
+                                            <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
+                                            <label class="form-check-label mx-3">Effective? </label>
+                                            <label class="form-check-label mx-3">
+                                                <input type="radio" class="form-check-input" name="optradio">Yes
+                                            </label>
+                                            <label class="form-check-label mx-3">
+                                                <input type="radio" class="form-check-input" name="optradio">No
+                                            </label>
+                                            <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                        
+                                    </div>     
+                                </div>
+                            `;
+
+            $("#medical_conditions").append(condition);
+        });
+        $(document).on('click',".add_medication", function() {
+            var medication = ` 
+                                <div class="med mb-1">
+                                    <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
+                                    <label class="form-check-label mx-3">Effective? </label>
+                                    <label class="form-check-label mx-3">
+                                        <input type="radio" class="form-check-input" name="optradio">Yes
+                                    </label>
+                                    <label class="form-check-label mx-3">
+                                        <input type="radio" class="form-check-input" name="optradio">No
+                                    </label>
+                                    <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
+                                    <button type="button" class="btn btn-sm btn-danger remove_medication" title="remove"><i class="far fa-trash-alt"></i></button>
+                                </div> 
+                            `;
+
+            $(this).closest(".medications").append(medication);
+        });
+        $(document).on('click', '.remove_condition', function() {
+            $(this).closest('.condition').remove();
+        });
+        $(document).on('click', '.remove_medication', function() {
+            $(this).closest('.med').remove();
+        });
+
+    
+
+                                                    
+    </script>
+@endpush

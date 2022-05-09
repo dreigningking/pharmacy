@@ -33,16 +33,16 @@
                         </a>
                     </li> -->
                     @usercan($pharmacy,'patient')
-                    <li @if(Route::is('pharmacy.patients')) class="active" @endif>
-                        <a href="{{route('pharmacy.patients',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.patient.list')) class="active" @endif>
+                        <a href="{{route('pharmacy.patient.list',$pharmacy)}}">
                             <i class="fas fa-user-injured"></i>
                             <span>Patients</span>
                         </a>
                     </li>
                     @endusercan
                     @usercan($pharmacy,'assessment')
-                    <li @if(Route::is('pharmacy.assessment')) class="active" @endif>
-                        <a href="{{route('pharmacy.assessment',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.assessment.list')) class="active" @endif>
+                        <a href="{{route('pharmacy.assessment.list',$pharmacy)}}">
 
                             <i class="fas fa-pen"></i>
                             <span>Assessments</span>
@@ -68,12 +68,14 @@
                             <span>Supplies</span>
                         </a>
                     </li>
+                    @if(Auth::user()->pharmacies->count() > 1)
                     <li @if(Route::is('pharmacy.transfer.list')) class="active" @endif>
                         <a href="{{route('pharmacy.transfer.list',$pharmacy)}}">
                             <i class="fas fa-share"></i>
                             <span>Transfers</span>
                         </a>
                     </li>
+                    @endif
                     <li @if(Route::is('pharmacy.inventory.list')) class="active" @endif>
                         <a href="{{route('pharmacy.inventory.list',$pharmacy)}}">
                             <i class="fas fa-boxes"></i>

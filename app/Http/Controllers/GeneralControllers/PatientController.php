@@ -2,121 +2,56 @@
 
 namespace App\Http\Controllers\GeneralControllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Pharmacy;
 use App\Models\Patient;
+use App\Models\Pharmacy;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PatientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index(Pharmacy $pharmacy)
     {
-        $patients = Patient::all();
+        $patients = Patient::where('pharmacy_id',$pharmacy->id)->get();
         return view('pharmacy.patient.list', compact('pharmacy', 'patients'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function search(Pharmacy $pharmacy,Request $request){
+        return view('pharmacy.patient.search', compact('pharmacy'));
+    }
+    
+    public function create(Pharmacy $pharmacy){
+        return view('pharmacy.patient.add', compact('pharmacy'));
+    }
+
+    
+    public function store(Pharmacy $pharmacy, Request $request){
+        // dd($request->all());
+        $patient = Patient::updateOrCreate(['email' => $request->email,'pharmacy_id'=> $pharmacy->id],['name' => $request->first_name." ".$request->last_name,
+        'mobile'=> $request->mobile,'dob'=> $request->dob, 'address'=> $request->address,
+        'gender' => $request->gender,'emr'=> $pharmacy->id.$request->first_name.now()->format("Y")]);
+        if($request->action == "save")
+            return redirect()->route("pharmacy.patient.list",$pharmacy);
+        else
+            return redirect()->route("pharmacy.assessment.create",[$pharmacy,$patient]);
+    }
+
     public function read(Pharmacy $pharmacy)
     {
         return view('pharmacy.patient.view', compact('pharmacy'));
     }
+    
+    public function edit(Pharmacy $pharmacy,Patient $patient){
+        return view('pharmacy.patient.edit',compact('pharmacy','patient'));
+    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function add(Pharmacy $pharmacy)
+    
+    public function update(Request $request, $id){
+        return redirect()->route('pharmacy.patient.list',$pharmacy);
+    }
+
+    public function destroy(Request $request)
     {
-        return view('pharmacy.patient.add', compact('pharmacy'));
-    }
-
-    public function store(Pharmacy $pharmacy, Request $request)
-    {
-        
-        $patient = new Patient;
-        $patient->name = $request->first_name." ".$request->last_name;
-        $patient->mobile = $request->mobile;
-        $patient->email = $request->email;
-        $patient->dob = $request->dob;
-$patient->gender = $request->gender;
-$patient->emr = $pharmacy->id.$request->first_name.now()->format("Y");
-$patient->save();
-return redirect() ->route("pharmacy.newassessment", $pharmacy);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function assess(Pharmacy $pharmacy){
-        return view('pharmacy.assessment.list', compact('pharmacy'));
-    }
-
-    public function showassessment(Pharmacy $pharmacy){
-        return view('pharmacy.assessment.view', compact('pharmacy'));
-    }
-
-    public function new(Pharmacy $pharmacy) {
-        return view('pharmacy.assessment.add', compact('pharmacy'));
-    }
-
-    public function prescription(Pharmacy $pharmacy) {
-        return view('pharmacy.assessment.prescription', compact('pharmacy'));
-    }
-
-    public function plan(Pharmacy $pharmacy) {
-        return view ('pharmacy.patient.non-medical-plan', compact('pharmacy'));
+        return redirect()->route('pharmacy.patient.list',$pharmacy);
     }
 }

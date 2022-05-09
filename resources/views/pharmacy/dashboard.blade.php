@@ -92,7 +92,7 @@
                     <div class="col-sm-3 ml-3">
                         <div class="row justify-content-start mb-4 dashboard-menu">
                             <a class="btn btn-primary btn-lg first"
-                                href="{{route('pharmacy.addpatient',$pharmacy)}}">New
+                                href="{{route('pharmacy.patient.create',$pharmacy)}}">New
                                 Patients</a>
                         </div>
                     </div>

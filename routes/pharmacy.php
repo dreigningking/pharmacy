@@ -11,15 +11,23 @@ Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/
         Route::post('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'savestaff'])->name('staff');
         Route::get('subscription',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'subscription'] )->name('subscription');
         Route::get('permissions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'permission'])->name("permissions");
-        Route::get('patients', [App\Http\Controllers\GeneralControllers\PatientController::class, 'index'])->name("patients");
-        Route::get('addpatient', [App\Http\Controllers\GeneralControllers\PatientController::class, 'add'])->name("addpatient");
-        Route::post('storepatient', [App\Http\Controllers\GeneralControllers\PatientController::class, 'store'])->name("storepatient");
-        Route::get('patients/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'read'])->name("showpatients");
-        Route::get('assessment', [App\Http\Controllers\GeneralControllers\PatientController::class, 'assess'])->name("assessment");
-        Route::get('assessment/new', [App\Http\Controllers\GeneralControllers\PatientController::class, 'new'])->name("newassessment");
-        Route::get('assessment/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'showassessment'])->name("showassessment");
-        Route::get('prescription', [App\Http\Controllers\GeneralControllers\PatientController::class, 'prescription'])->name("prescription");
-        Route::get('nonmedical-plan', [App\Http\Controllers\GeneralControllers\PatientController::class, 'plan'])->name("plan");
+        
+        Route::get('patients', [App\Http\Controllers\GeneralControllers\PatientController::class, 'index'])->name("patient.list");
+        Route::get('patients/search', [App\Http\Controllers\GeneralControllers\PatientController::class, 'search'])->name("patient.search");
+        Route::get('patient/add', [App\Http\Controllers\GeneralControllers\PatientController::class, 'create'])->name("patient.create");
+        Route::post('patient/store', [App\Http\Controllers\GeneralControllers\PatientController::class, 'store'])->name("patient.store");
+        Route::get('patient/{patient}/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'read'])->name("patient.read");
+        Route::get('patient/{patient}/edit', [App\Http\Controllers\GeneralControllers\PatientController::class, 'edit'])->name("patient.edit");
+        Route::post('patient/update', [App\Http\Controllers\GeneralControllers\PatientController::class, 'update'])->name("patient.update");
+        Route::post('patient/delete', [App\Http\Controllers\GeneralControllers\PatientController::class, 'destroy'])->name("patient.destroy");
+        
+        Route::get('assessment', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'index'])->name("assessment.list");
+        Route::get('assessment/{patient}/new', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'create'])->name("assessment.create");
+        // Route::get('nonmedical-plan', [App\Http\Controllers\GeneralControllers\PatientController::class, 'plan'])->name("plan");
+        Route::get('assessment/show', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'read'])->name("assessment.read");
+
+        Route::get('prescriptions', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'index'])->name("prescription.list");
+        
         
         Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'list'])->name("inventory.list");
         Route::get('inventory/batches', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'batches'])->name("inventory.batches");

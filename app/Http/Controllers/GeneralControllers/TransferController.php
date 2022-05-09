@@ -32,6 +32,9 @@ class TransferController extends Controller
     }
     public function store(Pharmacy $pharmacy,Request $request){
         // dd($request->all());
+        if($pharmacy->id == $request->to_pharmacy){
+            return redirect()->route('pharmacy.transfer.list',$pharmacy);
+        }
         $transfer = Transfer::create(['sending_user'=> $request->user_id,'from_pharmacy'=> $pharmacy->id,'to_pharmacy'=> $request->to_pharmacy,'total'=> collect(array_filter($request->amounts))->sum(),'info'=> $request->info]);
         foreach ($request->batches as $key => $batch) {
             $_batch = Batch::find($batch);
