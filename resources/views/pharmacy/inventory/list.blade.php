@@ -180,7 +180,7 @@
         $('.checkboxes:checked').each(function(){
             clicked.push($(this).val());
         });
-        $('#submitInventory').attr('action',"{{route('pharmacy.transfer.create',$pharmacy)}}").submit();
+        $('#submitInventory').attr('action',"{{route('pharmacy.transfer.inventory.create',$pharmacy)}}").submit();
         
     })
     $('#purchase').on('click',function(){

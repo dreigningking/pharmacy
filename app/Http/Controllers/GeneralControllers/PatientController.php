@@ -35,11 +35,6 @@ class PatientController extends Controller
         else
             return redirect()->route("pharmacy.assessment.create",[$pharmacy,$patient]);
     }
-
-    public function read(Pharmacy $pharmacy)
-    {
-        return view('pharmacy.patient.view', compact('pharmacy'));
-    }
     
     public function edit(Pharmacy $pharmacy,Patient $patient){
         return view('pharmacy.patient.edit',compact('pharmacy','patient'));

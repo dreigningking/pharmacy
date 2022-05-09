@@ -58,9 +58,14 @@
                                                     <div class="actions">
                                                         @if(!$transfer->status)
                                                             @if($transfer->to_pharmacy == $pharmacy->id)
-                                                                <a class="btn btn-sm bg-success-light" href="{{route('pharmacy.transfer.add_to_inventory',[$pharmacy,$transfer])}}">
+                                                                {{-- <a class="btn btn-sm bg-success-light" href="">
                                                                     <i class="fa fa-plus-circle"></i> Add to Inventory
-                                                                </a>
+                                                                </a> --}}
+                                                                <form class="d-inline-block" action="{{route('pharmacy.transfer.save_to_inventory',[$pharmacy,$transfer])}}" method="POST">
+                                                                    <button class="btn btn-sm bg-success-light">
+                                                                        <i class="fa fa-plus-circle"></i> Add to Inventory
+                                                                    </button>
+                                                                </form>
                                                             @else 
                                                                 <a class="btn btn-sm bg-primary-light" href="#">
                                                                     <i class="fe fe-pencil"></i> Edit

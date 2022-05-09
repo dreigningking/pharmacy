@@ -60,17 +60,15 @@
                                                         <td>{{$patient->email}}</td>
                                                         <td class="text-center">
                                                             <div class="actions">
-
-                                                                <a href="{{route('pharmacy.patient.read',[$pharmacy,$patient])}}"
+                                                                <a data-toggle="modal" href="#view_modal{{$patient->id}}"
                                                                     class="btn btn-sm bg-primary-light">
                                                                     <i class="fas fa-eye"></i> View
                                                                 </a>
-                                                                {{-- <a data-toggle="modal" href="#edit_modal"
+                                                                <a  href="{{route('pharmacy.patient.edit',[$pharmacy,$patient])}}"
                                                                     class="btn btn-sm bg-warning-light">
                                                                     <i class="fas fa-pen"></i>
                                                                     Edit
-                                                                </a> --}}
-                                                                
+                                                                </a>     
                                                             </div>
                                                         </td>
                                                     </tr>

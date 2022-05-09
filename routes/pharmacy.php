@@ -16,7 +16,6 @@ Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/
         Route::get('patients/search', [App\Http\Controllers\GeneralControllers\PatientController::class, 'search'])->name("patient.search");
         Route::get('patient/add', [App\Http\Controllers\GeneralControllers\PatientController::class, 'create'])->name("patient.create");
         Route::post('patient/store', [App\Http\Controllers\GeneralControllers\PatientController::class, 'store'])->name("patient.store");
-        Route::get('patient/{patient}/show', [App\Http\Controllers\GeneralControllers\PatientController::class, 'read'])->name("patient.read");
         Route::get('patient/{patient}/edit', [App\Http\Controllers\GeneralControllers\PatientController::class, 'edit'])->name("patient.edit");
         Route::post('patient/update', [App\Http\Controllers\GeneralControllers\PatientController::class, 'update'])->name("patient.update");
         Route::post('patient/delete', [App\Http\Controllers\GeneralControllers\PatientController::class, 'destroy'])->name("patient.destroy");
@@ -55,7 +54,7 @@ Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/
         Route::get('transfer/{transfer}/edit',[App\Http\Controllers\GeneralControllers\TransferController::class, 'edit'])->name('transfer.edit');
         Route::post('transfer/{transfer}/update',[App\Http\Controllers\GeneralControllers\TransferController::class, 'update'])->name('transfer.update');
         Route::post('transfer/save',[App\Http\Controllers\GeneralControllers\TransferController::class, 'store'])->name('transfer.store');
-        Route::post('transfer/add_to_inventory',[App\Http\Controllers\GeneralControllers\TransferController::class, 'add_to_inventory'])->name('transfer.add_to_inventory');
+        Route::post('transfer/save_to_inventory',[App\Http\Controllers\GeneralControllers\TransferController::class, 'save_to_inventory'])->name('transfer.save_to_inventory');
         Route::post('transfer/delete',[App\Http\Controllers\GeneralControllers\TransferController::class, 'delete'])->name('transfer.delete');
 
     });
