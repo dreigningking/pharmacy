@@ -14,6 +14,7 @@ Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/
         
         Route::get('patients', [App\Http\Controllers\GeneralControllers\PatientController::class, 'index'])->name("patient.list");
         Route::get('patients/search', [App\Http\Controllers\GeneralControllers\PatientController::class, 'search'])->name("patient.search");
+        Route::get('patient/view/{patient}', [App\Http\Controllers\GeneralControllers\PatientController::class, 'view'])->name("patient.view");
         Route::get('patient/add', [App\Http\Controllers\GeneralControllers\PatientController::class, 'create'])->name("patient.create");
         Route::post('patient/store', [App\Http\Controllers\GeneralControllers\PatientController::class, 'store'])->name("patient.store");
         Route::get('patient/{patient}/edit', [App\Http\Controllers\GeneralControllers\PatientController::class, 'edit'])->name("patient.edit");
@@ -22,8 +23,13 @@ Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/
         
         Route::get('assessment', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'index'])->name("assessment.list");
         Route::get('assessment/{patient}/new', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'create'])->name("assessment.create");
-        // Route::get('nonmedical-plan', [App\Http\Controllers\GeneralControllers\PatientController::class, 'plan'])->name("plan");
-        Route::get('assessment/show', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'read'])->name("assessment.read");
+        Route::get('assessment/{patient}/appointment', [App\Http\Controllers\GeneralControllers\PatientController::class, 'appointment'])->name("assessment.appointment");
+        Route::get('assessment/show/{assessment}', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'view'])->name("assessment.view");
+        Route::post('assessment/store', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'store'])->name("assessment.store");
+        Route::get('assessment/{assessment}/edit', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'edit'])->name("assessment.edit");
+        Route::post('assessment/update', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'update'])->name("assessment.update");
+        Route::post('assessment/delete', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'destroy'])->name("assessment.destroy");
+
 
         Route::get('prescriptions', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'index'])->name("prescription.list");
         

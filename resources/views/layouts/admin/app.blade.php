@@ -183,14 +183,20 @@
 							<li @if(Route::is('admin.dashboard')) class="active" @endif> 
 								<a href="{{route('admin.dashboard')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
-							<li class="submenu">
+							<li @if(Route::is('admin.medicines')) class="active" @endif> 
+								<a href="{{route('admin.medicines')}}"><i class="fe fe-building"></i> <span>Medicines</span></a>
+							</li>
+							<li @if(Route::is('admin.drugs')) class="active" @endif> 
+								<a href="{{route('admin.drugs')}}"><i class="fe fe-building"></i> <span>Drugs</span></a>
+							</li>
+							{{-- <li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Medicine</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li @if(Route::is('admin.medicines')) class="active" @endif><a href="{{route('admin.medicines')}}">Drug Ingredients</a></li>
 									<li @if(Route::is('admin.drugs')) class="active" @endif><a href="{{route('admin.drugs')}}">Drugs</a></li>
 									<li @if(Route::is('admin.medicines.upload')) class="active" @endif><a href="{{route('admin.medicines.upload')}}">Upload</a></li>
 								</ul>
-							</li>	
+							</li>	 --}}
 							{{-- <li @if(Route::is('admin.diseases')) class="active" @endif> 
 								<a href="{{route('admin.diseases')}}"><i class="fe fe-bug"></i> <span>Diseases</span></a>
 							</li> --}}

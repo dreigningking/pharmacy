@@ -21,39 +21,46 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class="col-sm-6">
+                        
+                                <a href="{{route('admin.drugs.upload')}}" class="btn btn-primary"> Upload Drugs</a>
+                        </div>
+                        
+    
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="datatable table table-hover table-center mb-0">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th class="text-center">Content</th>
-                                    <th class="text-center">Global Qty</th>
-                                    <th class="text-center">Qty Sold</th>
-                                    <th class="text-right">Global Revenue</th>
-
+                                    <th style="width: 50px;">Name</th>
+                                    <th class="text-left">Content</th>
+                                    <th class="text-left">Sold by</th>
+                                    <th class="text-left">Qty Sold</th>
+                                    <th class="text-left">Global Revenue</th>
+                                    <th class="">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($drugs as $Drug)
-                                <tr>
-                                    <td>{{$Drug->name}}</td>
-                                    <td class="text-center">
-                                        @foreach($Drug->ingredients as $ingredient)
-                                        {{$ingredient->name}},
-                                        @endforeach
-                                    </td>
-
-                                    <td class="text-center">
-                                        5
-                                    </td>
-                                    <td class="text-center">
-                                        50
-                                    </td>
-                                    <td  class="text-right"> $76895697869</td>
-
-                                </tr>
+                                @foreach($drugs as $drug)
+                                    <tr>
+                                        <td>{{$drug->name}}</td>
+                                        <td class="">
+                                            @foreach($drug->ingredients as $ingredient)
+                                                {{$ingredient->name}},
+                                            @endforeach
+                                        </td>
+                                        <td class="">
+                                            {{$drug->batches->sum('quantity')}}
+                                        </td>
+                                        <td class="">
+                                            50
+                                        </td>
+                                        <td class=""> $76895697869</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

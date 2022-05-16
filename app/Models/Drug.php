@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Inventory;
-// use App\Models\Ingredient;
+use App\Models\Batch;
 use App\Models\Medicine;
+use App\Models\Inventory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Drug extends Model
@@ -22,6 +22,10 @@ class Drug extends Model
 
     public function inventories(){
         return $this->hasMany(Inventory::class);
+    }
+
+    public function batches(){
+        return $this->hasManyThrough(Batch::class,Inventory::class);
     }
 
     public function pharmacyInventory($pharmacy_id){

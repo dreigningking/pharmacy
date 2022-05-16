@@ -1,22 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\GeneralControllers;
+namespace App\Http\Controllers\WebControllers\AdminControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pharmacy;
 
-class PrescriptionController extends Controller
+class ReportsController extends Controller
 {
-    
-    
-    public function plan(Pharmacy $pharmacy) {
-        return view ('pharmacy.patient.non-medical-plan', compact('pharmacy'));
-    }
-
-    public function index(Pharmacy $pharmacy)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        return view('pharmacy.assessment.prescription', compact('pharmacy'));
+        //
     }
 
     /**
@@ -24,7 +22,7 @@ class PrescriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Pharmacy $pharmacy)
+    public function create()
     {
         //
     }
@@ -43,10 +41,10 @@ class PrescriptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  Pharmacy $pharmacy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pharmacy $pharmacy)
+    public function show($id)
     {
         //
     }
@@ -54,10 +52,10 @@ class PrescriptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  Pharmacy $pharmacy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pharmacy $pharmacy)
+    public function edit($id)
     {
         //
     }
@@ -66,10 +64,10 @@ class PrescriptionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  Pharmacy $pharmacy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pharmacy $pharmacy)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,10 +75,10 @@ class PrescriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  Pharmacy $pharmacy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pharmacy $pharmacy)
+    public function destroy($id)
     {
         //
     }

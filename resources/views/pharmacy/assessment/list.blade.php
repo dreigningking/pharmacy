@@ -41,7 +41,7 @@
                                 <div class="col-sm-12">
                                     <div class="row justify-content-end mb-4">
                                         <a class="btn btn-primary btn-lg"
-                                            href="{{route('pharmacy.newassessment',$pharmacy)}}">New
+                                            href="{{route('pharmacy.patient.search',$pharmacy)}}">New
                                             Assessment</a>
                                     </div>
                                 </div>
@@ -76,38 +76,37 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        @forelse ($assessments as $assessment)
+                                                            <tr>
+                                                                <td>
+                                                                    <h2 class="table-avatar">
+                                                                        <a href="profile.html"
+                                                                            class="avatar avatar-sm mr-2"><img
+                                                                                class="avatar-img rounded-circle"
+                                                                                src="{{asset('assets/img/patients/patient1.jpg')}}"
+                                                                                alt="User Image"></a>
+                                                                        <a href="profile.html">Charlene Reed </a>
+                                                                    </h2>
+                                                                </td>
+                                                                <td>
+                                                                    09045682675
+                                                                </td>
+                                                                <td>test@gmail.com</td>
+                                                                <td>Ancient of Days</td>
+                                                                <td class="text-center">
+                                                                    <div class="actions">
 
-                                                            <td>
-                                                                <h2 class="table-avatar">
-                                                                    <a href="profile.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                                            class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient1.jpg')}}"
-                                                                            alt="User Image"></a>
-                                                                    <a href="profile.html">Charlene Reed </a>
-                                                                </h2>
-                                                            </td>
+                                                                        <a href="{{route('pharmacy.assessment.view',[$pharmacy,$assessment])}}"
+                                                                            class="btn btn-sm bg-info-light">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
 
-
-                                                            <td>
-                                                                09045682675
-                                                            </td>
-                                                            <td>test@gmail.com</td>
-                                                            <td>Ancient of Days</td>
-
-                                                            <td class="text-center">
-                                                                <div class="actions">
-
-                                                                    <a href="{{route('pharmacy.showassessment',$pharmacy)}}"
-                                                                        class="btn btn-sm bg-info-light">
-                                                                        <i class="fas fa-eye"></i> View
-                                                                    </a>
-
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @empty
+                                                            
+                                                        @endforelse
                                                     </tbody>
                                                 </table>
                                             </div>

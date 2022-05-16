@@ -27,15 +27,8 @@
                 <div class="card-header">
                     <div class="row justify-content-between">
                         <div class="col-sm-6">
-                            <button class="btn btn-primary add-medicine">
-                                <a href="{{route('admin.medicine.create')}}"> Add Medicine</a></button>
+                            <a href="{{route('admin.medicine.interactions')}}" class="btn btn-primary"> Add Medicine Interactions</a>
                         </div>
-                        <div class="col-sm-6 d-flex justify-content-end ">
-                            <button class="btn btn-primary disabled reaction-btn" disabled data-toggle="modal"
-                                href="#reaction">Add
-                                Reaction</button>
-                        </div>
-    
                     </div>
                 </div>
                 <div class="card-body">
@@ -43,11 +36,9 @@
                         <table class="datatable table table-hover table-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Select</th>
                                     <th>Name</th>
                                     <th class="text-center">No Of Brands</th>
                                     <th class="text-right"> Action</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +48,6 @@
                                         <input class="form-check-input medicine-check"
                                             type="checkbox" name="remember" id="medicine-check"
                                             value="{{$medicine->name}}" required>
-
                                     </td>
                                     <td class="d-flex align-items-center">
 
@@ -85,7 +75,7 @@
 @endsection
 
 @push('scripts')
-<script>
+{{-- <script>
     function medineCheck() {
         let selectMedicine = document.querySelectorAll("#medicine-check")
         // console.log(selectMedicine)
@@ -145,10 +135,10 @@
 
     }
     medineCheck();
-</script>
+</script> --}}
 @endpush
 
-@section('modals')
+{{-- @section('modals')
     <!-- Medicine Info Modal -->
 @foreach($medicines as $medicine)
 <div class="modal fade custom-modal add-modal" id="medication_info{{$medicine->id}}">
@@ -278,4 +268,4 @@
 </div>
 
 <!-- Reaction Modal -->
-@endsection
+@endsection --}}

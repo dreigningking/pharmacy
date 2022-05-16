@@ -88,10 +88,27 @@
                                         <div class="col-md-12" id="medical_conditions">
                                             <h4>Medical History</h4>
                                             <div class="row my-4 condition">
-                                                <div class="col-md-7">
+                                                <div class="col-md-4">
                                                     <div class="form-group">  
                                                         <label class="text-muted text-center">Previous Medical Condition</label>                                        
                                                         <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">  
+                                                        <label class="text-muted text-center">How Long</label>    
+                                                        <div class="input-group">
+                                                            <input type="number" name="duration[]" placeholder="1" class="form-control">
+                                                            <div class="input-group-append">
+                                                                <select class="form-control" name="duration_type[]">
+                                                                    <option>Days</option>
+                                                                    <option>Weeks</option>
+                                                                    <option>Months</option>
+                                                                    <option>Years</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>                                    
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -147,10 +164,27 @@
             console.log("condition")
             var condition = ` 
                                 <div class="row my-4 condition">
-                                    <div class="col-md-7">
+                                    <div class="col-md-4">
                                         <div class="form-group">  
                                             <label class="text-muted text-center">Previous Medical Condition</label>                                        
                                             <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">  
+                                            <label class="text-muted text-center">How Long</label>    
+                                            <div class="input-group">
+                                                <input type="number" name="duration[]" placeholder="1" class="form-control">
+                                                <div class="input-group-append">
+                                                    <select class="form-control" name="duration_type[]">
+                                                        <option>Days</option>
+                                                        <option>Weeks</option>
+                                                        <option>Months</option>
+                                                        <option>Years</option>
+                                                    </select>
+                                                </div>
+                                            </div>                                    
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-3">

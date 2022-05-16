@@ -1,6 +1,18 @@
 @extends('layouts.main.app')
 @push('styles')
-
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<style>
+    .select2-container .select2-selection--single{
+        height:40px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered{
+        line-height: 35px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow{
+        position:absolute;
+        top: 6px!important;
+    }
+</style>
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -33,21 +45,33 @@
                     <div class="card-body">
                         
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item active">Add Patient</li>
+                            <li class="breadcrumb-item active">Patient</li>
                             <li class="breadcrumb-item">Assessment</li>
                             <li class="breadcrumb-item active">Prescription</li>
-                            <li class="breadcrumb-item active">Non-medication plan</li>
 
                         </ul>
                         <h4 class="card-title assessment-title">ADD ASSESSMENT</h4>
-                        <form action="" class="w-100">
-                            <button type="button" class="collapse-button btn btn-dark open btn-block my-3" data-toggle="collapse" data-target="#physical_assessment"><span class="shows">  </span> Patient's Physical Assessment</button>
-                            <div class=" collapse show px-3" id="physical_assessment">
-                                <div class="physical-assessment">
+                        <form action="{{route('pharmacy.assessment.store',$pharmacy)}}" method="POST" class="w-100">@csrf
+                            <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                            <div class="card px-3" id="compliant">
+                                <div class="card-header">
+                                    <h4>Compliants</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="complaints" rows="2" required placeholder="What is the patient's complaints"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card px-3" id="physical_assessment">
+                                <div class="card-header">
+                                    <h4>Patient's Physical Assessment</h4>
+                                </div>
+                                <div class="card-body physical-assessment">
                                     <div class="row physical">
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <select class="form-control" id="sel1">
+                                                <select class="form-control" id="sel1" name="physical_assessment[]">
                                                     <option value="Temp (&deg;c)">Temp (&deg;c)</option>
                                                     <option value="BP (mmHg)">BP (mmHg)</option>
                                                     <option value="PR (Beats/min)">PR (Beats/min)</option>
@@ -58,100 +82,71 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="physical_assessment_value[]">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <a href="javascript:void(0);" class="btn btn-primary add-physical ml-2">
+                                                    <i class="fa fa-plus-circle"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="plus-more add-more ml-4">
-                                    <a href="javascript:void(0);" class="add-physical ml-2">
-                                        <i class="fa fa-plus-circle"></i> Add More</a>
+                            </div> 
+                            <div class="card px-3" id="lab">
+                                <div class="card-header">
+                                    <h4>Require Test</h4>
                                 </div>
-                            </div>
-                           
-                            <button type="button" class="collapse-button btn btn-dark btn-block my-3" data-toggle="collapse" data-target="#medical_history"><span class="shows"> </span> Medical History</button>
-                            <div class=" collapse px-3" id="medical_history">                     
-                                <h4 class="text-muted text-center">Medications for Past Medical Condition</h4>
-                                <div class="">
-                                    <div class="row physical my-2 past">
-                                        <div class="col-md-7">
-                                            <div class="form-group">                                          
-                                                <input type="text" name="medical_history" placeholder="Medication" class=" form-control">
+                                <div class="card-body form-group row">
+                                    <div class="col-md-12 labtest ">
+                                        <div class="test mb-3 row">
+                                            <select name="tests[]" class="form-control select2 col-md-6"> 
+                                                <option value="pregnancy">Pregnancy Test</option>
+                                                <option value="brain_scan">Brain Scan</option>
+                                                <option value="tommy_scan">Tommy Scan</option>
+                                            </select>
+                                            
+                                            <label class="form-check-label pt-1 pl-5 col-md-2">
+                                                <input type="radio" class="form-check-input" id="positive" name="test_result[]" value="1">Positive
+                                            </label>
+                                            <label class="form-check-label pt-1 pl-5 col-md-2">
+                                                <input type="radio" class="form-check-input" id="negative" name="test_result[]" value="0">Negative
+                                            </label>
+                                            <div class="col-md-2">
+                                                <button type="button" class="btn btn-sm btn-info add_test " title="add more"><i class="fa fa-plus"></i></button>
+                                                {{-- <button type="button" class="btn btn-sm btn-danger remove_test " title="remove more"><i class="fa fa-trash"></i></button> --}}
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group row">
-                                                <div class="col-lg-4">
-                                                    <p>Effective?</p>
-                                                </div>
-                                                <div class="col-lg-8">
-                                                    <div class="form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input"
-                                                                name="optradio">Yes
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input"
-                                                                name="optradio">No
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="plus-more add-more">
-                                    <a href="javascript:void(0);" class="add-past ml-4"><i
-                                            class="fa fa-plus-circle"></i> Add More</a>
-                                </div>
-                            </div>
-                            
-                            {{-- <div class="row justify-content-start mt-4 w-100"> --}}
-
-                            <button type="button" class="collapse-button btn btn-dark btn-block my-3" data-toggle="collapse" data-target="#lab"><span class="shows"> </span> Laboratory Findings</button>
-                            <div class="collapse px-3" id="lab">
-                                <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label pr-0">Laboratory
-                                        Result</label>
-                                    <div class="col-lg-10">
-                                        <textarea class="form-control" rows="4"
-                                            id="laboratory_result"></textarea>
+                                            
+                                        </div>    
                                     </div>
                                 </div>
                             </div>
                            
 
-                            <button type="button" class="collapse-button btn btn-dark btn-block my-3" data-toggle="collapse" data-target="#diagnosis"><span class="shows"> </span> Diagnosis</button>
-                            <div class="collapse px-3" id="diagnosis">
-                                <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label pr-0">Diagnosis</label>
-                                    <div class="col-lg-10">
-                                        <textarea class="form-control" rows="2"
-                                            id="laboratory_result"></textarea>
+                            <div class="card px-3" id="diagnosis">
+                                <div class="card-header">
+                                    <h4>Diagnosis</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="diagnosis" rows="2" required></textarea>
                                     </div>
                                 </div>
                             </div>
                             
-                            <button type="button" class="collapse-button btn btn-dark btn-block my-3" data-toggle="collapse" data-target="#plan"><span class="shows"> </span> Non-Medication Plan</button>
-                            <div class="collapse px-3" id="plan">
-                                <div class="plans">
-                                    <div class="form-group row">
-                                        <label class="col-lg-2 col-form-label pr-0">Plan</label>
-                                        <div class="col-lg-10">
-                                            <input type="text" class="form-control">
-                                        </div>
+                            <div class="plans px-5">
+                                <div class="form-group">
+                                    <label class="form-label">Non Medical Treatment</label>
+                                    <div class="">
+                                        <input type="text" name="non_medical" class="form-control" placeholder="optional">
                                     </div>
-                                </div>
-                                <div class="plus-more add-more">
-                                    <a href="javascript:void(0);" class="add-plan ml-2"><i class="fa fa-plus-circle"></i> Add More</a>
                                 </div>
                             </div>
                             
-                            <div class="row w-100 pr-4 mt-4 ml-6 justify-content-between">
-                                <button type="submit" class="btn btn-primary pl-2 pr-2 ml-4">Save</button>   
-                                <button type="submit" class="btn btn-primary pres">Save & Prescribe Medicine</button>
+                            <div class="row justify-content-around px-5">
+                                <button type="submit" name="action" value="save" class="col-5 btn btn-dark">Save Only</button>   
+                                <button type="submit" name="action" value="prescribe" class="col-5 btn btn-info">Save & Prescribe Medicine</button>
                             </div>
                         </form>
                     </div>
@@ -173,7 +168,13 @@
 @endsection
 
 @push('scripts')
+<script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
 <script>
+    $('.select2').select2({
+            placeholder: 'Select Test',
+            width: '50%',
+            height:'100px'
+        });
     // $('.collapse-button').click(function(){
     //     if($(this).hasClass('collapsed')){
     //         $(this).find('.shows').html('')
@@ -181,17 +182,17 @@
     //         $(this).find('.shows').html('Show')
     //     }
     // })
-$(".physical-assessment").on('click', '.trash', function() {
+$(".physical-assessment").on('click', '.remove-physical', function() {
     $(this).closest('.physical').remove();
     return false;
 });
-$(".add-physical").on('click', function() {
+$(".physical-assessment").on('click', ".add-physical",function() {
     console.log("meh")
     var regcontent = `
                         <div class="row physical">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <select class="form-control" id="sel1">
+                                    <select class="form-control" id="sel1"name="physical_assessment[]" >
                                         <option value="Temp (&deg;c)">Temp (&deg;c)</option>
                                         <option value="BP (mmHg)">BP (mmHg)</option>
                                         <option value="PR (Beats/min)">PR (Beats/min)</option>
@@ -202,90 +203,55 @@ $(".add-physical").on('click', function() {
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="physical_assessment_value[]">
                                 </div>
                             </div>
-                            <div class="col-1 pr-0 pl-0 d-flex align-items-start justify-content-end" >
-                                <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                                <a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <a href="javascript:void(0);" class="btn btn-primary add-physical ml-2">
+                                        <i class="fa fa-plus-circle"></i></a>
+                                    <a href="#" class="btn btn-danger remove-physical"><i class="far fa-trash-alt"></i></a>
+                                </div>
                             </div>
+                            
                         </div>`;
 
     $(".physical-assessment").append(regcontent);
+    
+});
+$(".labtest").on('click','.add_test',function(){
+    let test = `
+                <div class="test mb-3 row">
+                    <select name="tests[]" class="form-control select2 col-md-6"> 
+                        <option value="pregnancy">Pregnancy Test</option>
+                        <option value="brain_scan">Brain Scan</option>
+                        <option value="tommy_scan">Tommy Scan</option>
+                    </select>
+                    
+                    <label class="form-check-label pt-1 pl-5 col-md-2">
+                        <input type="radio" class="form-check-input" id="positive" name="test_result[]" value="1">Positive
+                    </label>
+                    <label class="form-check-label pt-1 pl-5 col-md-2">
+                        <input type="radio" class="form-check-input" id="negative" name="test_result[]" value="0">Negative
+                    </label>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-sm btn-info add_test " title="add more"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="btn btn-sm btn-danger remove_test " title="remove more"><i class="fa fa-trash"></i></button>
+                    </div>  
+                </div>
+             `
+    $(".labtest").append(test);
+    $('.select2').select2({
+        placeholder: 'Select Test',
+        width: '50%',
+        height:'100px'
+    });
+})
+$(".labtest").on('click', '.remove_test', function() {
+    $(this).closest('.test').remove();
     return false;
 });
 
 
-$(".past-med").on('click', '.trash', function() {
-    $(this).closest('.past').remove();
-    return false;
-});
-$(".add-past").on('click', function() {
-    console.log("meh")
-    var regcontent = ` <div class = "col-11 physical d-flex align-items-start mt-2 mb-2 past" > 
-                            <div class="col-md-7 pl-0 pr-0">
-                                <div class="form-group row">
-                                    <div class="col-lg-11">
-                                        <div class="form-group d-flex align-items-center">
-                                            <label for="usr">Medication:</label>
-                                            <input type="text" name="" id="" class = "ml-2 form-control" > 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="col-md-4 pr-0 pl-0">
-                            <div class="form-group row">
-                                <div class="col-lg-4">
-                                    <p>Effective?</p>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name = "optradio" > Yes 
-                                        </label>
-                                    </div>
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name = "optradio" > No 
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-1 pr-0 pl-0 d-flex align-items-start justify-content-end" >
-                            <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                            <a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                        </div>
-                        </div>`;
-
-    $(".past-med").append(regcontent);
-    return false;
-});
-
-
-
-$(".plans").on('click', '.trash', function() {
-    $(this).closest('.plan').remove();
-    return false;
-});
-$(".add-plan").on('click', function() {
-    console.log("meh")
-    var regcontent = `<div class="col-md-12 pl-0 plan">
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label pr-0"></label>
-                            <div class="col-lg-9">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="col-1 pr-0 pl-0 d-flex align-items-start justify-content-end" >
-                                <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                                    <a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>`;
-
-    $(".plans").append(regcontent);
-    return false;
-});
 </script>
 @endpush

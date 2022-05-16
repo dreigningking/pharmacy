@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\GeneralControllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Pharmacy;
+use App\Models\Assessment;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AssessmentController extends Controller
 {
 
 
-    public function index(Pharmacy $pharmacy)
-    {
-        return view('pharmacy.assessment.list', compact('pharmacy'));
+    public function index(Pharmacy $pharmacy){
+        $assessments = Assessment::where('pharmacy_id',$pharmacy->id)->get();
+        return view('pharmacy.assessment.list', compact('pharmacy','assessments'));
     }
 
     
@@ -21,59 +22,27 @@ class AssessmentController extends Controller
         return view('pharmacy.assessment.add', compact('pharmacy','patient'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Pharmacy $pharmacy,Request $request)
-    {
-        //
+    public function store(Pharmacy $pharmacy,Request $request){
+        dd($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pharmacy $pharmacy,Accessment $assessment)
-    {
-        return view('pharmacy.assessment.view', compact('pharmacy'));
+    public function view(Pharmacy $pharmacy,Accessment $assessment){
+        return view('pharmacy.assessment.view', compact('pharmacy','assessment'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+    public function appointment(Pharmacy $pharmacy,Patient $patient){
+        return 'ok';
+    }
+
+    public function edit($id){
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

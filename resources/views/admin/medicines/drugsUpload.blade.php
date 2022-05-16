@@ -45,85 +45,14 @@
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#medicines">Upload Medicines</a>
+                        <a class="nav-link" data-toggle="tab" href="#drugs">Upload Drugs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#relationships">Upload Medicine Relationships</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#drugs">Upload Drugs</a>
-                    </li>
-                    
                 </ul>
             </div>	
             <div class="tab-content profile-tab-cont">
-                
-                <!-- Personal Details Tab -->
-                <div class="tab-pane fade show active" id="medicines">
-                    <!-- Personal Details -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title d-flex justify-content-between">
-                                        <span>Upload Instructions</span> 
-                                        {{-- <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a> --}}
-                                    </h5>
-                                    <div class="row">
-                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Uploading from excel is simple. Prepare the document in the following format:</p>
-                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">medicines.xls</span> </p>
-                                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create the content in the format below. Take note of the table headers that they are written in small textcases </p>
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <th>name</th>
-                                                <th>curables</th>
-                                                <th>contraindications</th>
-                                                <th>side_effects</th>
-                                            </tr>
-                                            <tr>
-                                                <td>Aspirin</td>
-                                                <td>Cough|Catarrh</td>
-                                                <td>It is not good for pregnant woman and people above the age of 60| Do not use at night</td>
-                                                <td>Bloating | Headache </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tetracyclin</td>
-                                                <td>Weakness|Drowsiness</td>
-                                                <td>It is not good for children| Do not use while eating</td>
-                                                <td>Itching | Amnesia | Crying </td>
-                                            </tr>
-                                        </table>
-                                        
-                                    </div>
-                                    <div class="my-3">
-                                        <form class="row" action="{{route('admin.medicines.uploadsave')}}" method="POST" enctype="multipart/form-data">@csrf
-                                            <div class="col-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label">Upload File</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="file" name="medicines" class="form-control" required accept=".xlsx,.xls">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-lg  btn-primary">Upload</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                    
-                    </div>
-                    <!-- /Personal Details -->
-
-                </div>
-                <!-- /Personal Details Tab -->
                 
                 <!-- Change Password Tab -->
                 <div id="relationships" class="tab-pane fade">
@@ -245,7 +174,7 @@
                 </div>
 
                 <!-- Personal Details Tab -->
-                <div class="tab-pane fade show" id="drugs">
+                <div class="tab-pane fade show active" id="drugs">
                     <!-- Personal Details -->
                     <div class="row">
                         <div class="col-lg-12">

@@ -16,8 +16,14 @@ class PatientController extends Controller
         return view('pharmacy.patient.list', compact('pharmacy', 'patients'));
     }
 
-    public function search(Pharmacy $pharmacy,Request $request){
-        return view('pharmacy.patient.search', compact('pharmacy'));
+    public function view(Pharmacy $pharmacy,Patient $patient=null){
+        dd($patient);
+        return view('pharmacy.patient.view', compact('pharmacy','patient'));
+    }
+
+    public function search(Pharmacy $pharmacy){
+        $patients = Patient::where('pharmacy_id',$pharmacy->id)->get();
+        return view('pharmacy.patient.search', compact('pharmacy','patients'));
     }
     
     public function create(Pharmacy $pharmacy){
