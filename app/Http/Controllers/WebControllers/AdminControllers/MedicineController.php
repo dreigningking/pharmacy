@@ -15,9 +15,7 @@ use App\Exports\MedicineRelationshipsExport;
 use App\Imports\MedicineRelationshipsImport;
 class MedicineController extends Controller
 {
-    public function index()
-   
-    {
+    public function index(){
         $user = Auth::user();
         $medicines = Medicine::all();
         // dd($medicine);

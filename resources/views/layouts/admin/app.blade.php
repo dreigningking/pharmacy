@@ -184,10 +184,10 @@
 								<a href="{{route('admin.dashboard')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
 							<li @if(Route::is('admin.medicines')) class="active" @endif> 
-								<a href="{{route('admin.medicines')}}"><i class="fe fe-building"></i> <span>Medicines</span></a>
+								<a href="{{route('admin.medicines')}}"><i class="fe fe-building"></i> <span>API</span></a>
 							</li>
 							<li @if(Route::is('admin.drugs')) class="active" @endif> 
-								<a href="{{route('admin.drugs')}}"><i class="fe fe-building"></i> <span>Drugs</span></a>
+								<a href="{{route('admin.drugs')}}"><i class="fe fe-building"></i> <span>Drug Formulations</span></a>
 							</li>
 							{{-- <li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Medicine</span> <span class="menu-arrow"></span></a>
