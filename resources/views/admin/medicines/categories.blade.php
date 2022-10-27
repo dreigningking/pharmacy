@@ -68,7 +68,7 @@
                                     <td class=""> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="{{route('admin.drugs')}}"> <i class="fe fe-eye"></i> View More </a>
                                             <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
                                         </div>
                                     </td>                                  
@@ -84,7 +84,7 @@
                                     <td class=""> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="{{route('admin.drugs')}}"> <i class="fe fe-eye"></i> View More </a>
                                             <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
                                         </div>
                                     </td>

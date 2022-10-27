@@ -5,6 +5,7 @@
 <!-- Datatables CSS -->
 <link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
 @endpush
+
 @section('main')
 <div class="content container-fluid">
 					
@@ -25,21 +26,21 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="row justify-content-between">
-                        <div class="col-sm-6">
-                            <a href="{{route('admin.interactions')}}" class="btn btn-primary"> Add Medicine Interactions</a>
-                        </div>
-                    </div>
+                    <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
+                    <a href="{{route('admin.interactions')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="datatable table table-hover table-center mb-0">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th class="text-center">No Of Brands</th>
-                                    <th class="text-right"> Action</th>
-                                    <th class="text-right"> Action</th>
+                                    <th class="text-left"></th>
+                                    <th class="d-flex">Name</th>
+                                    <th class="text-center">Api A</th>
+                                    <th class="text-center">Api B</th>
+                                    <th class="text-center">Remark</th>
+                                    <th class="text-center">Mechanism</th>
+                                    <th class="d-flex">Manage</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,10 +59,38 @@
                                     <td class="text-center">
                                         15
                                     </td>
-                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info1">
-                                            <i class="fe fe-eye"></i> View More
-                                        </a></td>
+                                    <td class="text-center">
+                                        15
+                                    </td>
+                                    <td class="text-center">
+                                        15
+                                    </td>
+                                    <td class="text-center">
+                                        15
+                                    </td>
+                                    <td class="text-center"> 
+                                        <div class="d-flex">
+                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class=" text-center">
+                                        <input class="form-check-input medicine-check"
+                                            type="checkbox" name="remember" id="medicine-check"
+                                            value="ABC" required>
+                                    </td>
+                                    <td class="d-flex align-items-center">Paracetamol</td>
+                                    <td class="text-center">15</td>
+                                    <td class="text-center">15</td>
+                                    <td class="text-center">15</td>
+                                    <td class="text-center">15</td>
+                                    <td class="text-center"> 
+                                        <div class="d-flex">
+                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                        </div>
+                                    </td>
 
                                 </tr>
                                 <tr>
@@ -71,37 +100,25 @@
                                             value="ABC" required>
                                     </td>
                                     <td class="d-flex align-items-center">
-
                                         Paracetamol
                                     </td>
-
                                     <td class="text-center">
                                         15
                                     </td>
-                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info1">
-                                            <i class="fe fe-eye"></i> View More
-                                        </a></td>
-
-                                </tr>
-                                <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-
-                                        Paracetamol
-                                    </td>
-
                                     <td class="text-center">
                                         15
                                     </td>
-                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info1">
-                                            <i class="fe fe-eye"></i> View More
-                                        </a></td>
+                                    <td class="text-center">
+                                        15
+                                    </td>
+                                    <td class="text-center">
+                                        15
+                                    </td>
+                                    <td class="text-center"> 
+                                        <div class="d-flex">
+                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                        </div>
+                                    </td>
 
                                 </tr>
                             </tbody>
@@ -112,6 +129,154 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('modals')
+    <div class="modal fade custom-modal add-modal" id="add">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="#" class="needs-validation" novalidate>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Name:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name" placeholder="Drug Name" >
+                                    </div>
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Api A:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="name" placeholder="First API" ></textarea>
+                                    </div>
+                                </div>        
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Api B:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="name" placeholder="Second API" ></textarea>
+                                    </div>
+                                </div>    
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Remark:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name"  >
+                                    </div>
+                                </div> 
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Mechanism:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name"   >
+                                    </div>
+                                </div>   
+
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <a href="#" class="btn btn-success">Save</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="#" class="btn btn-danger">Cancel</a>
+                                    </div>
+                                </div>
+                                
+                                {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade custom-modal add-modal" id="edit">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Interactions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="#" class="needs-validation" novalidate>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Drug Name:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name" value="Vitamin C" >
+                                    </div>
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Api A:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="name" >15</textarea>
+                                    </div>
+                                </div>        
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Api B:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="name">15</textarea>
+                                    </div>
+                                </div>    
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Remark:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name" value="Not good for pregnant women" >
+                                    </div>
+                                </div> 
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Mechanism:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name" value="15"    >
+                                    </div>
+                                </div>   
+                                
+
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <a href="#" class="btn btn-success">Update</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="#" class="btn btn-danger">Cancel</a>
+                                    </div>
+                                </div>
+                                
+                                {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
