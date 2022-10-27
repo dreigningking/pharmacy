@@ -189,8 +189,8 @@
 							<li @if(Route::is('admin.medicines')) class="submenu" @endif>
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Drug Management</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{route('admin.medicines')}}">APIs</a></li>
-									<li><a href="{{route('admin.medicine.interactions')}}">Interactions</a></li>
+									<li><a href="{{route('admin.apis')}}">APIs</a></li>
+									<li><a href="{{route('admin.interactions')}}">Interactions</a></li>
 									<li><a href="{{route('admin.drugs')}}">Drug Formulations</a></li>
 									<li><a href="{{route('admin.categories')}}">Drug Categories</a></li>
 								</ul>
