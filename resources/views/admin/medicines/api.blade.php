@@ -12,7 +12,7 @@
     <div class="page-header">
         <div class="row">
             <div class="col-sm-12">
-                <h3 class="page-title">Medicine</h3>
+                <h3 class="page-title">APIs</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                     <li class="breadcrumb-item active">Medicine</li>
@@ -25,83 +25,62 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="row justify-content-between">
-                        <div class="col-sm-6">
-                            <a href="{{route('admin.interactions')}}" class="btn btn-primary"> Add Medicine Interactions</a>
-                        </div>
-                    </div>
+                    <a href="#" data-toggle="modal" data-target="" class="btn btn-primary"> Add New</a>
+                    <a href="{{route('admin.apis.upload')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="datatable table table-hover table-center mb-0">
                             <thead>
                                 <tr>
+                                    <th class="text-left"></th>
                                     <th>Name</th>
-                                    <th class="text-center">No Of Brands</th>
-                                    <th class="text-right"> Action</th>
-                                    <th class="text-right"> Action</th>
+                                    <th>Formulations</th>
+                                    <th>Interactions</th>
+                                    <th>Status</th>
+                                    <th class=""> Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                
                                 <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-
-                                        Paracetamol
-                                    </td>
-
                                     <td class="text-center">
-                                        15
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                            <label class="custom-control-label" for="customControlValidation1"></label>
+                                        </div>
                                     </td>
-                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info1">
-                                            <i class="fe fe-eye"></i> View More
-                                        </a></td>
+                                    <td class="d-flex align-items-center"> Medplus Pharmacy </td>
+                                    <td class=""> 5 </td>
+                                    <td class=""> 5 </td>
+                                    <td class=""> Active </td>
+                                    <td class=""> 
+                                        <div class="d-flex">
+                                            <a class="btn btn-sm bg-info-light mx-1" > <i class="fe fe-pencil"></i> Edit </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" > <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-danger-light mx-1" > <i class="fe fe-eye"></i> Delete </a>
+                                        </div>
+                                    </td>
 
                                 </tr>
                                 <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-
-                                        Paracetamol
-                                    </td>
-
                                     <td class="text-center">
-                                        15
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                            <label class="custom-control-label" for="customControlValidation1"></label>
+                                        </div>
                                     </td>
-                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info1">
-                                            <i class="fe fe-eye"></i> View More
-                                        </a></td>
-
-                                </tr>
-                                <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
+                                    <td class="d-flex align-items-center"> Health Plus Pharmacy </td>
+                                    <td class=""> 15 </td>
+                                    <td class=""> 50 </td>
+                                    <td class=""> Active </td>
+                                    <td class=""> 
+                                        <div class="d-flex">
+                                            <a class="btn btn-sm bg-info-light mx-1" > <i class="fe fe-pencil"></i> Edit </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" > <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-danger-light mx-1" > <i class="fe fe-eye"></i> Delete </a>
+                                        </div>
                                     </td>
-                                    <td class="d-flex align-items-center">
-
-                                        Paracetamol
-                                    </td>
-
-                                    <td class="text-center">
-                                        15
-                                    </td>
-                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info1">
-                                            <i class="fe fe-eye"></i> View More
-                                        </a></td>
 
                                 </tr>
                             </tbody>
