@@ -47,7 +47,7 @@
                                             type="checkbox" name="remember" id="medicine-check"
                                             value="ABC" required>
                                     </td>
-                                    <td class="d-flex align-items-center">Paracetamol tetrachloquin</td>
+                                    <td class="d-flex align-items-center">Anti-biotics</td>
                                     <td class="text-center">15</td>
                                     <td class=""> 
                                         <div class="d-flex">
@@ -63,7 +63,7 @@
                                             type="checkbox" name="remember" id="medicine-check"
                                             value="ABC" required>
                                     </td>
-                                    <td class="d-flex align-items-center">Paracetamol</td>
+                                    <td class="d-flex align-items-center">Anti-Septic</td>
                                     <td class="text-center">15</td>
                                     <td class=""> 
                                         <div class="d-flex">
@@ -79,7 +79,41 @@
                                             type="checkbox" name="remember" id="medicine-check"
                                             value="ABC" required>
                                     </td>
-                                    <td class="d-flex align-items-center">Paracetamol</td>
+                                    <td class="d-flex align-items-center">Anti-malaria</td>
+                                    <td class="text-center">15</td>
+                                    <td class=""> 
+                                        <div class="d-flex">
+                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class=" text-center">
+                                        <input class="form-check-input medicine-check"
+                                            type="checkbox" name="remember" id="medicine-check"
+                                            value="ABC" required>
+                                    </td>
+                                    <td class="d-flex align-items-center">Pain Killers</td>
+                                    <td class="text-center">15</td>
+                                    <td class=""> 
+                                        <div class="d-flex">
+                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class=" text-center">
+                                        <input class="form-check-input medicine-check"
+                                            type="checkbox" name="remember" id="medicine-check"
+                                            value="ABC" required>
+                                    </td>
+                                    <td class="d-flex align-items-center">Anti-Burns</td>
                                     <td class="text-center">15</td>
                                     <td class=""> 
                                         <div class="d-flex">
