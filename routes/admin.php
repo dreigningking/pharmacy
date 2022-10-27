@@ -7,7 +7,8 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     Route::view('pharmacies', 'admin.pharmacies')->name('pharmacies');
     Route::view('apis', 'admin.medicines.api')->name('medicines');
     Route::view('drugs','admin.medicines.drugs')->name('drugs');
-    Route::view('categories','admin.medicines.categories')->name('drugs');
+    Route::view('categories','admin.medicines.categories')->name('categories');
+    Route::view('interactions','admin.medicines.interactions')->name('interactions');
     Route::view('users','admin.users.list')->name('users');
     Route::post('user/save', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'saveuser'])->name('user.save');
     
