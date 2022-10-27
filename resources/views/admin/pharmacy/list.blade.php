@@ -27,32 +27,53 @@
                         <table class="datatable table table-hover table-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-left">Select</th>
+                                    <th class="text-left"></th>
                                     <th>Name</th>
-                                    <th>Medicines</th>
+                                    <th>Owned By</th>
+                                    <th>Sales</th>
+                                    <th>Patients</th>
+                                    <th>Status</th>
                                     <th class="text-right"> Action</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="hycent" required>
-
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Medplus Pharmacy
-                                    </td>
-
                                     <td class="text-center">
-                                        5
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                            <label class="custom-control-label" for="customControlValidation1"></label>
+                                        </div>
                                     </td>
-                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info">
+                                    <td class="d-flex align-items-center"> Medplus Pharmacy </td>
+                                    <td class=""> 5 </td>
+                                    <td class=""> 5 </td>
+                                    <td class=""> 5 </td>
+                                    <td class=""> Active </td>
+                                    <td class="text-right"> 
+                                        <a class="btn btn-sm bg-success-light" href="{{route('admin.pharmacy.details')}}">
                                             <i class="fe fe-eye"></i> View More
-                                        </a></td>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                            <label class="custom-control-label" for="customControlValidation1"></label>
+                                        </div>
+                                    </td>
+                                    <td class="d-flex align-items-center"> Health Plus Pharmacy </td>
+                                    <td class=""> 15 </td>
+                                    <td class=""> 50 </td>
+                                    <td class=""> 20 </td>
+                                    <td class=""> Active </td>
+                                    <td class="text-right"> 
+                                        <a class="btn btn-sm bg-success-light" href="{{route('admin.pharmacy.details')}}">
+                                            <i class="fe fe-eye"></i> View More
+                                        </a>
+                                    </td>
 
                                 </tr>
                             </tbody>

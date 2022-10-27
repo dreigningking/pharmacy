@@ -96,6 +96,7 @@
                                                     <option>Dimethicone</option>
                                                     <option>SIMETHICONE</option>
                                                     <option>MAGNESIUM TRISILICATE</option>
+
                                                 </select>
                                             </div>
                                         </div>
