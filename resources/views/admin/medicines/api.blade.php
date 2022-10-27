@@ -25,7 +25,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="#" data-toggle="modal" data-target="" class="btn btn-primary"> Add New</a>
+                    <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
                     <a href="{{route('admin.apis.upload')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
@@ -93,6 +93,79 @@
 @endsection
 
 @section('modals')
+    <div class="modal fade custom-modal add-modal" id="add">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add API</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="#" class="needs-validation" novalidate>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Name:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name" placeholder="API Name" >
+                                    </div>
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Side Effect:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="name" placeholder="Describe the side effects" ></textarea>
+                                    </div>
+                                </div>        
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Contraindications:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="name" placeholder="Describe the contraindications" ></textarea>
+                                    </div>
+                                </div>    
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Pregnancy Status:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name"  >
+                                    </div>
+                                </div> 
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Lactation Status:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name"   >
+                                    </div>
+                                </div>   
+                                
+
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <a href="#" class="btn btn-success">Save</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="#" class="btn btn-danger">Cancel</a>
+                                    </div>
+                                </div>
+                                
+                                {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade custom-modal add-modal" id="edit">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
