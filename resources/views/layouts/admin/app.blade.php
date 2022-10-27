@@ -210,56 +210,23 @@
 								</ul>
 							</li>
 							<li class="submenu">
-								<a href="#"><i class="fe fe-bar-chart"></i> <span> Subscription Settings</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fe fe-bar-chart"></i> <span> Subscription Settings </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="">Subscriptions</a></li>
 									<li><a href="#">Plans</a></li>
+									<li><a href="{{route('admin.payments')}}">Transactions</a></li>
 								</ul>
 							</li>
-							<li @if(Route::is('admin.drugs')) class="active" @endif> 
-								<a href="{{route('admin.drugs')}}"><i class="fe fe-building"></i> <span>Drug Formulations</span></a>
-							</li>
-							{{-- <li class="submenu">
-								<a href="#"><i class="fe fe-bar-chart"></i> <span> Medicine</span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li @if(Route::is('admin.medicines')) class="active" @endif><a href="{{route('admin.medicines')}}">Drug Ingredients</a></li>
-									<li @if(Route::is('admin.drugs')) class="active" @endif><a href="{{route('admin.drugs')}}">Drugs</a></li>
-									<li @if(Route::is('admin.medicines.upload')) class="active" @endif><a href="{{route('admin.medicines.upload')}}">Upload</a></li>
-								</ul>
-							</li>	 --}}
-							{{-- <li @if(Route::is('admin.diseases')) class="active" @endif> 
-								<a href="{{route('admin.diseases')}}"><i class="fe fe-bug"></i> <span>Diseases</span></a>
-							</li> --}}
-							
-							<li @if(Route::is('admin.patients')) class="active" @endif> 
-								<a href="{{route('admin.patients')}}"><i class="fe fe-users"></i> <span>Patients</span></a>
+							<li> 
+								<a href="{{route('admin.roles')}}"><i class="fe fe-vector"></i> <span>Roles</span></a>
 							</li>
 							<li @if(Route::is('admin.settings')) class="active" @endif> 
 								<a href="{{route('admin.settings')}}"><i class="fe fe-gear"></i> <span>Settings</span></a>
 							</li>
 							<li @if(Route::is('admin.users')) class="active" @endif> 
-								<a href="{{route('admin.users')}}"><i class="fe fe-user-plus"></i> <span>Users</span></a>
+								<a href="{{route('admin.users')}}"><i class="fe fe-user-plus"></i> <span>Admin Users</span></a>
 							</li>
-							{{-- <li class="submenu">
-								<a href="#"><i class="fe fe-vector"></i> <span> Settings </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="{{route('admin.settings.global')}}"> Global </a></li>
-									<li><a href="{{route('admin.patients')}}"> Register </a></li>
-									<li><a href="{{route('admin.patients')}}"> Forgot Password </a></li>
-									<li><a href="{{route('admin.patients')}}"> Lock Screen </a></li>
-								</ul>
-							</li> --}}
-							{{-- <li @if(Route::is('admin.subscriptions')) class="active" @endif> 
-								<a href="{{route('admin.subscriptions')}}"><i class="fe fe-star-o"></i> <span>Subscriptions</span></a>
-							</li> --}}
-							<li @if(Route::is('admin.payments')) class="active" @endif> 
-								<a href="{{route('admin.payments')}}"><i class="fe fe-activity"></i> <span>Transactions</span></a>
-							</li>
-							
-							<li> 
-								<a href="{{route('admin.roles')}}"><i class="fe fe-vector"></i> <span>Roles</span></a>
-							</li>
-							
+
 							<li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
