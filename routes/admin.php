@@ -1,17 +1,17 @@
 <?php
 
 Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], function () {
-    Route::get('dashboard', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('users', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'users'])->name('users');
+    Route::view('dashboard','admin.dashboard')->name('dashboard');
+    Route::view('users','admin.users.list')->name('users');
     Route::post('user/save', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'saveuser'])->name('user.save');
     
-    Route::get('medicines', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'index'])->name('medicines');
+    Route::view('medicines', 'admin.medicines.list')->name('medicines');
     Route::get('medicine/interactions', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'interactions'])->name('medicine.interactions');
     
     Route::post('medicines/relationship/download', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'downloadRelationship'])->name('medicines.downloadrelationship');
     Route::post('medicines/relationship/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'uploadRelationship'])->name('medicines.uploadrelationship');
     
-    Route::get('drugs', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'drugs'])->name('drugs');
+    Route::view('drugs','admin.medicines.drugs')->name('drugs');
     Route::get('drugs/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'drugsUpload'])->name('drugs.upload');
     Route::post('drugs/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'uploadDrug'])->name('drugs.upload');
     // Route::get('diseases', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'diseases'])->name('diseases');
@@ -20,10 +20,10 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
 
     Route::get('transactions', [App\Http\Controllers\WebControllers\AdminControllers\PaymentController::class, 'index'])->name('payments');
     // Route::get('subscriptions', [App\Http\Controllers\WebControllers\AdminControllers\PaymentController::class, 'subscriptions'])->name('subscriptions');
-    
-    Route::get('patients', [App\Http\Controllers\WebControllers\AdminControllers\TreatmentController::class, 'patients'])->name('patients');
 
-    Route::get('pharmacies', [App\Http\Controllers\WebControllers\AdminControllers\TreatmentController::class, 'pharmacies'])->name('pharmacies');
+    Route::view('patients', 'admin.patients')->name('patients');
+
+    Route::view('pharmacies', 'admin.pharmacies')->name('pharmacies');
     
     Route::get('roles', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'index'])->name("roles");
     Route::post('permissions', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'store'])->name("permissions");

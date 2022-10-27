@@ -45,23 +45,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($drugs as $drug)
-                                    <tr>
-                                        <td>{{$drug->name}}</td>
-                                        <td class="">
-                                            @foreach($drug->ingredients as $ingredient)
-                                                {{$ingredient->name}},
-                                            @endforeach
-                                        </td>
-                                        <td class="">
-                                            {{$drug->batches->sum('quantity')}}
-                                        </td>
-                                        <td class="">
-                                            50
-                                        </td>
-                                        <td class=""> $76895697869</td>
-                                    </tr>
-                                @endforeach
+                                <tr>
+                                    <td>Lonart</td>
+                                    <td class="">
+                                        Lumenfantrine,Artemeter
+                                    </td>
+                                    <td class="">
+                                        500
+                                    </td>
+                                    <td class="">
+                                        50
+                                    </td>
+                                    <td class=""> $76895697869</td>
+                                </tr>
+                                <tr>
+                                    <td>Procold</td>
+                                    <td class="">
+                                        Paracetamol, HCL
+                                    </td>
+                                    <td class="">
+                                        345
+                                    </td>
+                                    <td class="">
+                                        50
+                                    </td>
+                                    <td class=""> $76895697869</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

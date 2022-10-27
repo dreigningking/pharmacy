@@ -35,17 +35,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($pharmacies as $pharmacy)
                                 <tr>
                                     <td class=" text-center">
                                         <input class="form-check-input medicine-check"
                                             type="checkbox" name="remember" id="medicine-check"
-                                            value="{{$pharmacy->name}}" required>
+                                            value="hycent" required>
 
                                     </td>
                                     <td class="d-flex align-items-center">
-
-                                        {{$pharmacy->name}}
+                                        Medplus Pharmacy
                                     </td>
 
                                     <td class="text-center">
@@ -57,7 +55,6 @@
                                         </a></td>
 
                                 </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -88,17 +85,13 @@
                                     <div class="col-md-6">
                                         <label for="sel1">Select list:</label>
                                         <select class="form-control" id="sel1" name="medicine_a">
-                                            @foreach($pharmacies as $pharmacy)
-                                            <option value=" {{$pharmacy->name}}">{{$pharmacy->name}}</option>
-                                            @endforeach
+                                            <option value="Medplus">Paracetamol</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="sel1">Select list:</label>
                                         <select class="form-control" id="sel2" name="medicine_b">
-                                            @foreach($pharmacies as $pharmacy)
-                                            <option value="{{$pharmacy->name}}">{{$pharmacy->name}}</option>
-                                            @endforeach
+                                            <option value="Medplus">Paracetamol</option>
                                         </select>
                                     </div>
                                 </div>

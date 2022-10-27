@@ -27,7 +27,7 @@
                             <i class="fe fe-building"></i>
                         </span>
                         <div class="dash-count">
-                            <h3>{{$pharmacies->count()}}</h3>
+                            <h3>111</h3>
                         </div>
                     </div>
                     <div class="dash-widget-info">
@@ -47,7 +47,7 @@
                             <i class="fe fe-users"></i>
                         </span>
                         <div class="dash-count">
-                            <h3>{{$patients->count()}}</h3>
+                            <h3>222</h3>
                         </div>
                     </div>
                     <div class="dash-widget-info">
@@ -68,7 +68,7 @@
                             <i class="fe fe-money"></i>
                         </span>
                         <div class="dash-count">
-                            <h3>{{$drugs->count()}}</h3>
+                            <h3>333</h3>
                         </div>
                     </div>
                     <div class="dash-widget-info">
@@ -89,7 +89,7 @@
                             <i class="fe fe-money"></i>
                         </span>
                         <div class="dash-count">
-                            <h3>₦{{$payments->sum('amount')}}</h3>
+                            <h3>₦{{444}}</h3>
                         </div>
                     </div>
                     <div class="dash-widget-info">

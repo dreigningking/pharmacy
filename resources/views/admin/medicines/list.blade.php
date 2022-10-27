@@ -42,28 +42,67 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($medicines as $medicine)
+                                
                                 <tr>
                                     <td class=" text-center">
                                         <input class="form-check-input medicine-check"
                                             type="checkbox" name="remember" id="medicine-check"
-                                            value="{{$medicine->name}}" required>
+                                            value="ABC" required>
                                     </td>
                                     <td class="d-flex align-items-center">
 
-                                        {{$medicine->name}}
+                                        Paracetamol
                                     </td>
 
                                     <td class="text-center">
-                                        {{$medicine->drugs->count()}}
+                                        15
                                     </td>
                                     <td class="text-right"> <a class="btn btn-sm bg-success-light"
-                                            data-toggle="modal" href="#medication_info{{$medicine->id}}">
+                                            data-toggle="modal" href="#medication_info1">
                                             <i class="fe fe-eye"></i> View More
                                         </a></td>
 
                                 </tr>
-                                @endforeach
+                                <tr>
+                                    <td class=" text-center">
+                                        <input class="form-check-input medicine-check"
+                                            type="checkbox" name="remember" id="medicine-check"
+                                            value="ABC" required>
+                                    </td>
+                                    <td class="d-flex align-items-center">
+
+                                        Paracetamol
+                                    </td>
+
+                                    <td class="text-center">
+                                        15
+                                    </td>
+                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
+                                            data-toggle="modal" href="#medication_info1">
+                                            <i class="fe fe-eye"></i> View More
+                                        </a></td>
+
+                                </tr>
+                                <tr>
+                                    <td class=" text-center">
+                                        <input class="form-check-input medicine-check"
+                                            type="checkbox" name="remember" id="medicine-check"
+                                            value="ABC" required>
+                                    </td>
+                                    <td class="d-flex align-items-center">
+
+                                        Paracetamol
+                                    </td>
+
+                                    <td class="text-center">
+                                        15
+                                    </td>
+                                    <td class="text-right"> <a class="btn btn-sm bg-success-light"
+                                            data-toggle="modal" href="#medication_info1">
+                                            <i class="fe fe-eye"></i> View More
+                                        </a></td>
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>

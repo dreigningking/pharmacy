@@ -36,17 +36,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($patients as $patient)
                                 <tr>
                                     <td class=" text-center">
                                         <input class="form-check-input medicine-check"
                                             type="checkbox" name="remember" id="medicine-check"
-                                            value="{{$patient->name}}" required>
+                                            value="Lookman" required>
 
                                     </td>
                                     <td class="d-flex align-items-center">
-
-                                        {{$patient->name}}
+                                        Solomon Ghandi
                                     </td>
 
                                     <td class="text-center">
@@ -58,7 +56,6 @@
                                         </a></td>
 
                                 </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -71,7 +68,7 @@
 
 @section('modals')
     <!-- Medicine Info Modal -->
-    @foreach($patients as $patient)
+    
     <div class="modal fade custom-modal add-modal" id="medication_info">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -91,7 +88,7 @@
                                         <div class="col-sm-4 pl-0 pr-0">
                                             Name:
                                         </div>
-                                        <div class="col-sm-8 pl-0 pr-0">{{$patient->name}}</div>
+                                        <div class="col-sm-8 pl-0 pr-0">Solomon</div>
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-sm-4 pl-0 pr-0">
@@ -103,7 +100,7 @@
                                         <div class="col-sm-4 pl-0 pr-0">
                                             Contraindications:
                                         </div>
-                                        <div class="col-sm-8 pl-0 pr-0">{{$patient->contraindications}}</div>
+                                        <div class="col-sm-8 pl-0 pr-0">Something Something Something</div>
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-sm-4 pl-0 pr-0">
@@ -131,7 +128,7 @@
             </div>
         </div>
     </div>
-    @endforeach
+    
     <!-- Medicine Info Modal -->
     <!-- Reaction Modal -->
     <div class="modal fade custom-modal add-modal" id="reaction">
@@ -153,17 +150,13 @@
                                     <div class="col-md-6">
                                         <label for="sel1">Select list:</label>
                                         <select class="form-control" id="sel1" name="medicine_a">
-                                            @foreach($patients as $patient)
-                                            <option value=" {{$patient->name}}">{{$patient->name}}</option>
-                                            @endforeach
+                                            <option>SOlomon</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="sel1">Select list:</label>
                                         <select class="form-control" id="sel2" name="medicine_b">
-                                            @foreach($patients as $patient)
-                                            <option value="{{$patient->name}}">{{$patient->name}}</option>
-                                            @endforeach
+                                            <option>SOlomon</option>
                                         </select>
                                     </div>
                                 </div>
