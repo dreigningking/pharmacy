@@ -183,6 +183,26 @@
 							<li @if(Route::is('admin.dashboard')) class="active" @endif> 
 								<a href="{{route('admin.dashboard')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
+							<li @if(Route::is('admin.pharmacies')) class="active" @endif> 
+								<a href="{{route('admin.pharmacies')}}"><i class="fe fe-building"></i> <span>Pharmacies</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-bar-chart"></i> <span> Drug Management</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="invoice-report.html">APIs</a></li>
+									<li><a href="invoice-report.html">Drug Formulations</a></li>
+									<li><a href="invoice-report.html">Drug Categories</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-bar-chart"></i> <span> Assessment Settings</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="invoice-report.html">Family & Social Questions</a></li>
+									<li><a href="invoice-report.html">Medical Advises</a></li>
+									<li><a href="invoice-report.html">Laboratory Tests</a></li>
+									<li><a href="invoice-report.html">Vitals</a></li>
+								</ul>
+							</li>
 							<li @if(Route::is('admin.medicines')) class="active" @endif> 
 								<a href="{{route('admin.medicines')}}"><i class="fe fe-building"></i> <span>API</span></a>
 							</li>
@@ -200,9 +220,7 @@
 							{{-- <li @if(Route::is('admin.diseases')) class="active" @endif> 
 								<a href="{{route('admin.diseases')}}"><i class="fe fe-bug"></i> <span>Diseases</span></a>
 							</li> --}}
-							<li @if(Route::is('admin.pharmacies')) class="active" @endif> 
-								<a href="{{route('admin.pharmacies')}}"><i class="fe fe-building"></i> <span>Pharmacies</span></a>
-							</li>
+							
 							<li @if(Route::is('admin.patients')) class="active" @endif> 
 								<a href="{{route('admin.patients')}}"><i class="fe fe-users"></i> <span>Patients</span></a>
 							</li>

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], function () {
     Route::view('dashboard','admin.dashboard')->name('dashboard');
     Route::view('users','admin.users.list')->name('users');
