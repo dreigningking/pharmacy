@@ -44,17 +44,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $user)
                                 <tr>
                                     <td class=" text-center">
                                         <input class="form-check-input medicine-check"
                                             type="checkbox" name="remember" id="medicine-check"
-                                            value="{{$user->name}}" required>
+                                            value="People" required>
 
                                     </td>
                                     <td class="d-flex align-items-center">
 
-                                        {{$user->name}}
+                                        Princess Ruth
                                     </td>
 
                                     <td class="text-center">
@@ -66,7 +65,6 @@
                                         </a></td>
 
                                 </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -101,17 +99,13 @@
                                 <div class="col-md-6">
                                     <label for="sel1">Select list:</label>
                                     <select class="form-control" id="sel1" name="medicine_a">
-                                        @foreach($users as $user)
-                                        <option value=" {{$user->name}}">{{$user->name}}</option>
-                                        @endforeach
+                                        <option value="3">Someone</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="sel1">Select list:</label>
                                     <select class="form-control" id="sel2" name="medicine_b">
-                                        @foreach($users as $user)
-                                        <option value="{{$user->name}}">{{$user->name}}</option>
-                                        @endforeach
+                                        <option value="3">Someone</option>
                                     </select>
                                 </div>
                             </div>
