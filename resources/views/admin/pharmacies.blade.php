@@ -127,6 +127,8 @@
     </div>
 @endsection
 @push('scripts')
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
     <script>
         function medineCheck() {
             let selectMedicine = document.querySelectorAll("#medicine-check")
