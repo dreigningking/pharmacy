@@ -14,6 +14,17 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     Route::view('medicines/api/interactions','admin.medicines.interactions')->name('interactions');
     Route::view('medicines/api/interactions/upload','admin.medicines.uploads.interactions')->name('interactions.upload');
 
+    Route::view('assessment/complaints','admin.assessments.complaints')->name('assessments.complaints');
+    Route::view('assessment/conditions','admin.assessments.conditions')->name('assessments.conditions');
+    Route::view('assessment/errors','admin.assessments.errors')->name('assessments.errors');
+    Route::view('assessment/family-social-questions','admin.assessments.family_social_questions')->name('assessments.family_social_questions');
+    Route::view('assessment/vitals','admin.assessments.vitals')->name('assessments.vitals');
+    Route::view('assessment/system-review-questions','admin.assessments.system_review_questions')->name('assessments.system_review_questions');
+    Route::view('assessment/diagnosis','admin.assessments.diagnosis')->name('assessments.diagnosis');
+    Route::view('assessment/laboratory','admin.assessments.laboratory')->name('assessments.laboratory');
+    Route::view('assessment/advises','admin.assessments.advises')->name('assessments.advises');
+    Route::view('assessment/uploads','admin.assessments.uploads')->name('assessments.uploads');
+
     Route::view('users','admin.users.list')->name('users');
     Route::post('user/save', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'saveuser'])->name('user.save');
     

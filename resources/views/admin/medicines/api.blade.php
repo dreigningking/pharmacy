@@ -146,7 +146,6 @@
                                         <input type="text" class="form-control" name="name"   >
                                     </div>
                                 </div>   
-                                
 
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="">

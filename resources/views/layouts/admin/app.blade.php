@@ -198,17 +198,22 @@
 							<li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Assessment Settings</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="invoice-report.html">Family & Social Questions</a></li>
-									<li><a href="invoice-report.html">Medical Advises</a></li>
-									<li><a href="invoice-report.html">Laboratory Tests</a></li>
-									<li><a href="invoice-report.html">Vitals</a></li>
+									<li><a href="{{route('admin.assessments.complaints')}}">Complaints</a></li>
+									<li><a href="{{route('admin.assessments.conditions')}}">Medical Conditions</a></li>
+									<li><a href="{{route('admin.assessments.errors')}}">Errors & Interventions</a></li>
+									<li><a href="{{route('admin.assessments.family_social_questions')}}">Family & Social History Questions</a></li>
+									<li><a href="{{route('admin.assessments.vitals')}}">Vitals</a></li>
+									<li><a href="{{route('admin.assessments.system_review_questions')}}">System Review Questions</a></li>
+									<li><a href="{{route('admin.assessments.diagnosis')}}">Diagnosis</a></li>
+									<li><a href="{{route('admin.assessments.laboratory')}}">Laboratory Tests</a></li>
+									<li><a href="{{route('admin.assessments.advises')}}">Advises</a></li>
 								</ul>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Subscription Settings</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="">Subscriptions</a></li>
-									<li><a href="invoice-report.html">Plans</a></li>
+									<li><a href="#">Plans</a></li>
 								</ul>
 							</li>
 							<li @if(Route::is('admin.drugs')) class="active" @endif> 
@@ -258,7 +263,7 @@
 							<li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="invoice-report.html">Invoice Reports</a></li>
+									<li><a href="#">Invoice Reports</a></li>
 								</ul>
 							</li>
 						</ul>
