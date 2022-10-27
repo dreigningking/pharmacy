@@ -189,7 +189,7 @@
 							<li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Drug Management</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="invoice-report.html">APIs</a></li>
+									<li><a href="{{route('admin.medicines')}}">APIs</a></li>
 									<li><a href="invoice-report.html">Drug Formulations</a></li>
 									<li><a href="invoice-report.html">Drug Categories</a></li>
 								</ul>
@@ -203,8 +203,12 @@
 									<li><a href="invoice-report.html">Vitals</a></li>
 								</ul>
 							</li>
-							<li @if(Route::is('admin.medicines')) class="active" @endif> 
-								<a href="{{route('admin.medicines')}}"><i class="fe fe-building"></i> <span>API</span></a>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-bar-chart"></i> <span> Subscription Settings</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="">Subscriptions</a></li>
+									<li><a href="invoice-report.html">Plans</a></li>
+								</ul>
 							</li>
 							<li @if(Route::is('admin.drugs')) class="active" @endif> 
 								<a href="{{route('admin.drugs')}}"><i class="fe fe-building"></i> <span>Drug Formulations</span></a>
