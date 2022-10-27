@@ -4,22 +4,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], function () {
     Route::view('dashboard','admin.dashboard')->name('dashboard');
-    Route::view('pharmacies', 'admin.pharmacies')->name('pharmacies');
-    Route::view('apis', 'admin.medicines.api')->name('medicines');
-    Route::view('drugs','admin.medicines.drugs')->name('drugs');
+    Route::view('pharmacies', 'admin.pharmacy.list')->name('pharmacies');
+    Route::view('pharmacy/details', 'admin.pharmacy.view')->name('pharmacy.details');
+    Route::view('medicines/apis', 'admin.medicines.api')->name('apis');
+    Route::view('medicines/apis/upload', 'admin.medicines.uploads.api')->name('apis.upload');
+    Route::view('medicines/drugs','admin.medicines.drugs')->name('drugs');
+    Route::view('medicines/drugs/upload','admin.medicines.uploads.drugs')->name('drugs.upload');
     Route::view('categories','admin.medicines.categories')->name('categories');
-    Route::view('interactions','admin.medicines.interactions')->name('interactions');
+    Route::view('medicines/api/interactions','admin.medicines.interactions')->name('interactions');
+    Route::view('medicines/api/interactions/upload','admin.medicines.uploads.interactions')->name('interactions.upload');
+
     Route::view('users','admin.users.list')->name('users');
     Route::post('user/save', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'saveuser'])->name('user.save');
     
     
-    Route::get('medicine/interactions', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'interactions'])->name('medicine.interactions');
+    // Route::get('medicine/interactions', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'interactions'])->name('medicine.interactions');
     
     Route::post('medicines/relationship/download', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'downloadRelationship'])->name('medicines.downloadrelationship');
     Route::post('medicines/relationship/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'uploadRelationship'])->name('medicines.uploadrelationship');
     
     
-    Route::get('drugs/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'drugsUpload'])->name('drugs.upload');
+    // Route::get('drugs/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'drugsUpload'])->name('drugs.upload');
     Route::post('drugs/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'uploadDrug'])->name('drugs.upload');
     // Route::get('diseases', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'diseases'])->name('diseases');
     

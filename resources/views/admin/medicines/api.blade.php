@@ -27,7 +27,7 @@
                 <div class="card-header">
                     <div class="row justify-content-between">
                         <div class="col-sm-6">
-                            <a href="{{route('admin.medicine.interactions')}}" class="btn btn-primary"> Add Medicine Interactions</a>
+                            <a href="{{route('admin.interactions')}}" class="btn btn-primary"> Add Medicine Interactions</a>
                         </div>
                     </div>
                 </div>
