@@ -10,7 +10,7 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     Route::view('medicines/apis/upload', 'admin.medicines.uploads.api')->name('apis.upload');
     Route::view('medicines/drugs','admin.medicines.drugs')->name('drugs');
     Route::view('medicines/drugs/upload','admin.medicines.uploads.drugs')->name('drugs.upload');
-    Route::view('categories','admin.medicines.categories')->name('categories');
+    Route::view('medicine/drugs/categories','admin.medicines.categories')->name('categories');
     Route::view('medicines/api/interactions','admin.medicines.interactions')->name('interactions');
     Route::view('medicines/api/interactions/upload','admin.medicines.uploads.interactions')->name('interactions.upload');
 
@@ -25,6 +25,10 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     Route::view('assessment/advises','admin.assessments.advises')->name('assessments.advises');
     Route::view('assessment/uploads','admin.assessments.uploads')->name('assessments.uploads');
 
+    Route::view('subscriptions','admin.subscription.list')->name('subscriptions');
+    Route::view('subscriptions/plans','admin.subscription.plans')->name('subscriptions.plans');
+    Route::view('subscriptions/transactions','admin.subscription.transactions')->name('subscriptions.transactions');
+    
     Route::view('users','admin.users.list')->name('users');
     Route::post('user/save', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'saveuser'])->name('user.save');
     
