@@ -52,7 +52,7 @@
                                     <td class=""> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="{{route('admin.drugs')}}"> <i class="fe fe-eye"></i> View More </a>
                                             <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
                                         </div>
                                     </td>
@@ -68,7 +68,7 @@
                                     <td class=""> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="{{route('admin.drugs')}}"> <i class="fe fe-eye"></i> View More </a>
                                             <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
                                         </div>
                                     </td>                                  
@@ -84,7 +84,7 @@
                                     <td class=""> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="{{route('admin.drugs')}}"> <i class="fe fe-eye"></i> View More </a>
                                             <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
                                         </div>
                                     </td>
@@ -219,54 +219,6 @@
                                     </div>
                                     <div class="">
                                         <a href="#" class="btn btn-danger">Cancel</a>
-                                    </div>
-                                </div>
-                                
-                                {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade custom-modal add-modal" id="view">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">View Drug</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="#" class="needs-validation" novalidate>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
-                                        <label for="sel1">Name:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="Paracetamol Tetrachloroquin" readonly>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
-                                        <label for="sel1">Available Quantity:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control" name="name" readonly>15</textarea>
-                                    </div>
-                                </div>
-                                
-                                <div class="row my-2 justify-content-center">
-                                    <div class="col-md-6">
-                                        <a href="#" class="btn btn-primary">View Drug Formulations</a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a href="#" class="btn btn-info">View API Interactions</a>
                                     </div>
                                 </div>
                                 
