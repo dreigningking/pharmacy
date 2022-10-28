@@ -27,7 +27,7 @@
             <div class="card">
                 <div class="card-header">
                     <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
-                    <a href="{{route('admin.interactions')}}" class="btn btn-info"> Upload</a>
+                    <a href="{{route('admin.interactions.upload')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -35,88 +35,95 @@
                             <thead>
                                 <tr>
                                     <th class="text-left"></th>
-                                    <th class="d-flex">Name</th>
-                                    <th class="text-center">Api A</th>
-                                    <th class="text-center">Api B</th>
-                                    <th class="text-center">Remark</th>
-                                    <th class="text-center">Mechanism</th>
+                                    <th class="">Api A</th>
+                                    <th class="">Api B</th>
+                                    <th class="">Remark</th>
+                                    <th class="">Mechanism</th>
                                     <th class="d-flex">Manage</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 
                                 <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-
-                                        Paracetamol
+                                    <td class="text-center">
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                            <label class="custom-control-label" for="customControlValidation1"></label>
+                                        </div>
                                     </td>
 
-                                    <td class="text-center">
-                                        15
+                                    <td class="">
+                                        Lumenfantrine
                                     </td>
-                                    <td class="text-center">
-                                        15
+                                    <td class="">
+                                        Vitamin C
                                     </td>
-                                    <td class="text-center">
-                                        15
+                                    <td class="">
+                                        Contraindicated
                                     </td>
-                                    <td class="text-center">
-                                        15
+                                    <td class="">
+                                        The medicine will not go down well
                                     </td>
-                                    <td class="text-center"> 
+                                    <td class=""> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                            {{-- <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a> --}}
+                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
                                         </div>
                                     </td>
 
                                 </tr>
                                 <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
+                                    <td class="text-center">
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                            <label class="custom-control-label" for="customControlValidation1"></label>
+                                        </div>
                                     </td>
-                                    <td class="d-flex align-items-center">Paracetamol</td>
-                                    <td class="text-center">15</td>
-                                    <td class="text-center">15</td>
-                                    <td class="text-center">15</td>
-                                    <td class="text-center">15</td>
-                                    <td class="text-center"> 
+
+                                    <td class="">
+                                        Lumenfantrine
+                                    </td>
+                                    <td class="">
+                                        Vitamin C
+                                    </td>
+                                    <td class="">
+                                        Severe Interactions, Use alternative
+                                    </td>
+                                    <td class="">
+                                        Lumenfantrine inhibits absorption of Vitamin C
+                                    </td>
+                                    <td class=""> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                            {{-- <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a> --}}
+                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
                                         </div>
                                     </td>
 
                                 </tr>
                                 <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Paracetamol
-                                    </td>
                                     <td class="text-center">
-                                        15
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                            <label class="custom-control-label" for="customControlValidation1"></label>
+                                        </div>
                                     </td>
-                                    <td class="text-center">
-                                        15
+
+                                    <td class="">
+                                        Artemeter</td>
+                                      <td> Vitamin C</td>
+                                    <td class="">
+                                        Monitor Closely
                                     </td>
-                                    <td class="text-center">
-                                        15
+                                    <td class="">
+                                        The medicine cause severe reactions
                                     </td>
-                                    <td class="text-center">
-                                        15
-                                    </td>
-                                    <td class="text-center"> 
+                                    <td class=""> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                            {{-- <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a> --}}
+                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
                                         </div>
                                     </td>
 
@@ -230,7 +237,7 @@
                                         <label for="sel1">Api A:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name" >15</textarea>
+                                        <textarea class="form-control" name="name" >Lumenfantrine</textarea>
                                     </div>
                                 </div>        
                                 <div class="row my-2">
@@ -238,7 +245,7 @@
                                         <label for="sel1">Api B:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name">15</textarea>
+                                        <textarea class="form-control" name="name">Amoxil</textarea>
                                     </div>
                                 </div>    
                                 <div class="row my-2">
@@ -254,7 +261,7 @@
                                         <label for="sel1">Mechanism:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="15"    >
+                                        <input type="text" class="form-control" name="name" value="Lumenfantrine inhibits absorption of vitamin c"    >
                                     </div>
                                 </div>   
                                 
