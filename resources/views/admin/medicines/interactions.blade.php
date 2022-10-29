@@ -35,7 +35,6 @@
                             <thead>
                                 <tr>
                                     <th class="text-left"></th>
-                                    <th class="d-flex">Name</th>
                                     <th class="text-center">Api A</th>
                                     <th class="text-center">Api B</th>
                                     <th class="text-center">Remark</th>
@@ -51,22 +50,17 @@
                                             type="checkbox" name="remember" id="medicine-check"
                                             value="ABC" required>
                                     </td>
-                                    <td class="d-flex align-items-center">
-
-                                        Paracetamol
+                                    <td class="text-left">
+                                        Lumefantrine
                                     </td>
-
-                                    <td class="text-center">
-                                        15
+                                    <td class="text-left">
+                                        Valvas
                                     </td>
                                     <td class="text-center">
-                                        15
+                                        Monitor Closely
                                     </td>
-                                    <td class="text-center">
-                                        15
-                                    </td>
-                                    <td class="text-center">
-                                        15
+                                    <td class="text-left">
+                                        API A inhibits absorption of API B
                                     </td>
                                     <td class="text-center"> 
                                         <div class="d-flex">
@@ -81,11 +75,10 @@
                                             type="checkbox" name="remember" id="medicine-check"
                                             value="ABC" required>
                                     </td>
-                                    <td class="d-flex align-items-center">Paracetamol</td>
-                                    <td class="text-center">15</td>
-                                    <td class="text-center">15</td>
-                                    <td class="text-center">15</td>
-                                    <td class="text-center">15</td>
+                                    <td class="text-left">Lumefantrine</td>
+                                    <td class="text-left">Ampicilin</td>
+                                    <td class="text-center">Contraindicated</td>
+                                    <td class="text-center"></td>
                                     <td class="text-center"> 
                                         <div class="d-flex">
                                             <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
@@ -99,20 +92,17 @@
                                             type="checkbox" name="remember" id="medicine-check"
                                             value="ABC" required>
                                     </td>
-                                    <td class="d-flex align-items-center">
-                                        Paracetamol
+                                    <td class="text-left">
+                                        Lumefantrine
+                                    </td>
+                                    <td class="text-left">
+                                        Cilzec
                                     </td>
                                     <td class="text-center">
-                                        15
+                                        Severe Interaction, use alternative
                                     </td>
                                     <td class="text-center">
-                                        15
-                                    </td>
-                                    <td class="text-center">
-                                        15
-                                    </td>
-                                    <td class="text-center">
-                                        15
+                                    
                                     </td>
                                     <td class="text-center"> 
                                         <div class="d-flex">
@@ -147,18 +137,15 @@
                             <form action="#" class="needs-validation" novalidate>
                                 <div class="row my-2">
                                     <div class="col-md-4">
-                                        <label for="sel1">Name:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" placeholder="Drug Name" >
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
                                         <label for="sel1">Api A:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name" placeholder="First API" ></textarea>
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Select</option>
+                                            <option>Lumefantrine</option>
+                                            <option>Artemether</option>
+                                            <option>polymyxins</option>
+                                        </select>
                                     </div>
                                 </div>        
                                 <div class="row my-2">
@@ -166,7 +153,12 @@
                                         <label for="sel1">Api B:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name" placeholder="Second API" ></textarea>
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Select</option>
+                                            <option>Valvas</option>
+                                            <option>Ampicilin</option>
+                                            <option>Cilzec</option>
+                                        </select>
                                     </div>
                                 </div>    
                                 <div class="row my-2">
@@ -219,18 +211,15 @@
                             <form action="#" class="needs-validation" novalidate>
                                 <div class="row my-2">
                                     <div class="col-md-4">
-                                        <label for="sel1">Drug Name:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="Vitamin C" >
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
                                         <label for="sel1">Api A:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name" >15</textarea>
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Select</option>
+                                            <option>Lumefantrine</option>
+                                            <option>Artemether</option>
+                                            <option>polymyxins</option>
+                                        </select>
                                     </div>
                                 </div>        
                                 <div class="row my-2">
@@ -238,7 +227,12 @@
                                         <label for="sel1">Api B:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name">15</textarea>
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Select</option>
+                                            <option>Valvas</option>
+                                            <option>Ampicilin</option>
+                                            <option>Cilzec</option>
+                                        </select>
                                     </div>
                                 </div>    
                                 <div class="row my-2">
