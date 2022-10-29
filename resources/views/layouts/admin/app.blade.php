@@ -210,11 +210,11 @@
 								</ul>
 							</li>
 							<li class="submenu">
-								<a href="#"><i class="fe fe-bar-chart"></i> <span> Subscription Settings </span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fe fe-bar-chart"></i> <span> Subscriptions </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="">Subscriptions</a></li>
-									<li><a href="#">Plans</a></li>
-									<li><a href="{{route('admin.payments')}}">Transactions</a></li>
+									<li><a href="{{route('admin.subscriptions')}}">Licenses</a></li>
+									<li><a href="{{route('admin.subscriptions.plans')}}">Plans</a></li>
+									<li><a href="{{route('admin.subscriptions.transactions')}}">Transactions</a></li>
 								</ul>
 							</li>
 							<li> 
