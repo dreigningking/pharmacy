@@ -167,12 +167,12 @@
                                     </div>
                                 </div>        
                                 <div class="row my-2">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 form-group">
                                         <label for="sel1">Api B:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <select class="form-control" required="" aria-hidden="true">
-                                            <option>Select</option>
+                                        <select class="form-control select" required="" aria-hidden="true">
+                                            <option></option>
                                             <option>Vitamin C</option>
                                             <option>Valvas</option>
                                             <option>Ampicilin</option>
@@ -181,11 +181,16 @@
                                     </div>
                                 </div>    
                                 <div class="row my-2">
-                                    <div class="col-md-4">
+                                    <div class="form-group col-md-4">
                                         <label for="sel1">Remark:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name"  >
+                                        <select class="form-control" required="" aria-hidden="true"><option>Select</option>
+                                            <option>Contraindicated</option>
+                                            <option>Severe Interaction, use alternative</option>
+                                            <option>Monitor Closely</option>
+                                            <option>OK</option>
+                                        </select>
                                     </div>
                                 </div> 
                                 <div class="row my-2">
@@ -258,7 +263,12 @@
                                         <label for="sel1">Remark:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="Not good for pregnant women" >
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Contraindicated</option>
+                                            <option>Severe Interaction, use alternative</option>
+                                            <option>Monitor Closely</option>
+                                            <option>OK</option>
+                                        </select>
                                     </div>
                                 </div> 
                                 <div class="row my-2">
@@ -282,6 +292,27 @@
                                 
                                 {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
                             </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade custom-modal add-modal" id="delete">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Interactions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Are you sure you want to delete Interactions</p>
+                            <button class="btn btn-danger">Yes, I'm Sure</button>
                         </div>
 
                     </div>

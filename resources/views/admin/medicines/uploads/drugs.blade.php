@@ -36,24 +36,19 @@
                         <p class="col-sm-12 text-danger mb-0 mb-sm-3">Drugs with incorrect medicine names will not be uploaded</p>
                         <table class="table table-bordered">
                             <tr>
-                                <th>name</th>
-                                <th>api</th>
-                                <th>contraindications</th>
-                                <th>side effects</th>
-                                
-
+                                <th>drug name</th>
+                                <th>manufacturer</th>
+                                <th>dosage form</th>
                             </tr>
                             <tr>
                                 <td>Lonart</td>
-                                <td>Arthemeter|Abacavir</td>
-                                <td>Sunny|Darken</td>
-                                <td>Dizziness|Headache</td>
+                                <td>Microsoft Inc</td>
+                                <td>Injection</td>
                             </tr>
                             <tr>
                                 <td>Baba Blue</td>
-                                <td>Lumefantrine|Aspirin</td>
-                                <td>Pregnancy|Baby</td>
-                                <td>Dizziness|Headache</td>
+                                <td>Vicks Inc</td>
+                                <td>Oral</td>
                             </tr>
                         </table>
                         

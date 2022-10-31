@@ -145,7 +145,28 @@
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" name="name"   >
                                     </div>
-                                </div>   
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Drug Alternatives:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select class="form-control"><option>select</option>
+                                            <option>Lonart</option>
+                                            <option>Chloroquine</option>
+                                            <option>Quinine</option>
+                                            <option>Proguanil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Medical Counselling:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name"   >
+                                    </div>
+                                </div>
 
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="">
@@ -218,7 +239,28 @@
                                         <input type="text" class="form-control" name="name" value="No effect on lactating women"    >
                                     </div>
                                 </div>   
-                                
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Drug Alternatives:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select class="form-control"><option>select</option>
+                                            <option>Lonart</option>
+                                            <option>Chloroquine</option>
+                                            <option>Quinine</option>
+                                            <option>Proguanil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Medical Counselling:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name" value="No effect on lactating women"    >
+                                    </div>
+                                </div>  
+
 
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="">
@@ -295,10 +337,10 @@
 
                                 <div class="row my-2 justify-content-center">
                                     <div class="col-md-6">
-                                        <a href="#" class="btn btn-primary">View Drug Formulations</a>
+                                        <a href="#" class="btn btn-primary">View Drug Alternatives</a>
                                     </div>
                                     <div class="col-md-6">
-                                        <a href="#" class="btn btn-info">View API Interactions</a>
+                                        <a href="#" class="btn btn-info">View Medical Counsel</a>
                                     </div>
                                 </div>
                                 
