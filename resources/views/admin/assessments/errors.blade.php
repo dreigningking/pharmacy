@@ -51,6 +51,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Errors</h5>
+                                    <a class="btn btn-primary my-2" href="#">Add New</a>
+                                    <a class="btn btn-info my-2" href="#">Upload</a>
                                     <div class="table-responsive">
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>
@@ -89,8 +91,8 @@
                                                             <label class="custom-control-label" for="customControlValidation1"></label>
                                                         </div>
                                                     </td>
-                                                    <td > Wrong Frequency</td>
-                                                    <td > Drug Administration Error </td>
+                                                    <td> Wrong Frequency</td>
+                                                    <td> Drug Administration Error </td>
                                                     <td class=""> Active </td>
                                                     <td> 
                                                         <div class="d-flex">
@@ -117,6 +119,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Interventions</h5>
+                                    <a class="btn btn-primary my-2" href="#">Add New</a>
+                                    <a class="btn btn-info my-2" href="#">Upload</a>
                                     <div class="table-responsive">
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>
@@ -178,6 +182,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Intervention Outcomes</h5>
+                                    <a class="btn btn-primary my-2" href="#">Add New</a>
+                                    <a class="btn btn-info my-2" href="#">Upload</a>
                                     <div class="table-responsive">
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>
