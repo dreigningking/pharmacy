@@ -114,7 +114,8 @@
                                             <th>medicine_aName</th>
                                             <th>medicine_b</th>
                                             <th>medicine_bName</th>
-                                            <th>reaction</th>
+                                            <th>remark</th>
+                                            <th>mechanism</th>
                                            
                                         </tr>
                                         <tr>
@@ -123,6 +124,7 @@
                                             <td>20</td>
                                             <td>Aspirin</td>
                                             <td>Contraindicated </td>
+                                            <td>API A inhibits absorption of API B</td>
                                         </tr>
                                         <tr>
                                             <td>48</td>
@@ -130,14 +132,15 @@
                                             <td>23</td>
                                             <td>Artemether</td>
                                             <td>Look for alternative</td>
-                                            
+                                            <td>API A inhibits absorption of API B</td>
                                         </tr>
                                         <tr>
                                             <td>48</td>
                                             <td>Ampicilin</td>
                                             <td>3</td>
                                             <td>Anopheles</td>
-                                            <td>Monitor Closely</td> 
+                                            <td>Monitor Closely</td>
+                                            <td>API A inhibits absorption of API B</td>
                                         </tr>
                                         <tr>
                                             <td>48</td>
@@ -145,6 +148,7 @@
                                             <td>3</td>
                                             <td>Anopheles</td>
                                             <td>OK</td> 
+                                            <td>API A inhibits absorption of API B</td>
                                         </tr>
                                     </table>
                                     

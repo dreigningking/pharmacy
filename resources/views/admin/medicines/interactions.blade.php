@@ -111,8 +111,9 @@
                                     </td>
 
                                     <td class="">
-                                        Artemeter</td>
-                                      <td> Vitamin C</td>
+                                        Artemeter
+                                    </td>
+                                    <td> Vitamin C</td>
                                     <td class="">
                                         Monitor Closely
                                     </td>
@@ -154,34 +155,42 @@
                             <form action="#" class="needs-validation" novalidate>
                                 <div class="row my-2">
                                     <div class="col-md-4">
-                                        <label for="sel1">Name:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" placeholder="Drug Name" >
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
                                         <label for="sel1">Api A:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name" placeholder="First API" ></textarea>
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Select</option>
+                                            <option>Lumefantrine</option>
+                                            <option>Artemether</option>
+                                            <option>polymyxins</option>
+                                        </select>
                                     </div>
                                 </div>        
                                 <div class="row my-2">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 form-group">
                                         <label for="sel1">Api B:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name" placeholder="Second API" ></textarea>
+                                        <select class="form-control select" required="" aria-hidden="true">
+                                            <option></option>
+                                            <option>Vitamin C</option>
+                                            <option>Valvas</option>
+                                            <option>Ampicilin</option>
+                                            <option>Cilzec</option>
+                                        </select>
                                     </div>
                                 </div>    
                                 <div class="row my-2">
-                                    <div class="col-md-4">
+                                    <div class="form-group col-md-4">
                                         <label for="sel1">Remark:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name"  >
+                                        <select class="form-control" required="" aria-hidden="true"><option>Select</option>
+                                            <option>Contraindicated</option>
+                                            <option>Severe Interaction, use alternative</option>
+                                            <option>Monitor Closely</option>
+                                            <option>OK</option>
+                                        </select>
                                     </div>
                                 </div> 
                                 <div class="row my-2">
@@ -226,18 +235,14 @@
                             <form action="#" class="needs-validation" novalidate>
                                 <div class="row my-2">
                                     <div class="col-md-4">
-                                        <label for="sel1">Drug Name:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="Vitamin C" >
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
                                         <label for="sel1">Api A:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name" >Lumenfantrine</textarea>
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Lumefantrine</option>
+                                            <option>Artemether</option>
+                                            <option>polymyxins</option>
+                                        </select>
                                     </div>
                                 </div>        
                                 <div class="row my-2">
@@ -245,7 +250,12 @@
                                         <label for="sel1">Api B:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="name">Amoxil</textarea>
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Vitamin C</option>
+                                            <option>Valvas</option>
+                                            <option>Ampicilin</option>
+                                            <option>Cilzec</option>
+                                        </select>
                                     </div>
                                 </div>    
                                 <div class="row my-2">
@@ -253,7 +263,12 @@
                                         <label for="sel1">Remark:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="Not good for pregnant women" >
+                                        <select class="form-control" required="" aria-hidden="true">
+                                            <option>Contraindicated</option>
+                                            <option>Severe Interaction, use alternative</option>
+                                            <option>Monitor Closely</option>
+                                            <option>OK</option>
+                                        </select>
                                     </div>
                                 </div> 
                                 <div class="row my-2">
@@ -277,6 +292,27 @@
                                 
                                 {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
                             </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade custom-modal add-modal" id="delete">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Interactions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Are you sure you want to delete Interactions</p>
+                            <button class="btn btn-danger">Yes, I'm Sure</button>
                         </div>
 
                     </div>

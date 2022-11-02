@@ -10,7 +10,7 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     Route::view('medicines/apis/upload', 'admin.medicines.uploads.api')->name('apis.upload');
     Route::view('medicines/drugs','admin.medicines.drugs')->name('drugs');
     Route::view('medicines/drugs/upload','admin.medicines.uploads.drugs')->name('drugs.upload');
-    Route::view('medicines/drugs/api_matching','admin.medicines.uploads.drugs')->name('drugs.apimatching');
+    Route::view('medicines/drugs/apimatching','admin.medicines.apimatching')->name('drugs.apimatching');
     Route::view('medicine/drugs/categories','admin.medicines.categories')->name('categories');
     Route::view('medicines/api/interactions','admin.medicines.interactions')->name('interactions');
     Route::view('medicines/api/interactions/upload','admin.medicines.uploads.interactions')->name('interactions.upload');

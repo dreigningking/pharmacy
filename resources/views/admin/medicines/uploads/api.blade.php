@@ -40,6 +40,10 @@
                                 <th>api</th>
                                 <th>contraindications</th>
                                 <th>side effects</th>
+                                <th>pregnancy status</th>
+                                <th>lactation status</th>
+                                <th>drug alternative</th>
+                                <th>medical counsel</th>
                                 
 
                             </tr>
@@ -48,12 +52,34 @@
                                 <td>Arthemeter|Abacavir</td>
                                 <td>Sunny|Darken</td>
                                 <td>Dizziness|Headache</td>
+                                <td>safe</td>
+                                <td>unsafe</td>
+                                <td>
+                                    <ul>
+                                        <li>Lonart</li>
+                                        <li>Chloroquine</li>
+                                        <li>Quinine</li>
+                                        <li>Proguanil</li>
+                                    </ul>
+                                </td>
+                                <td>use as prescribed</td>
                             </tr>
                             <tr>
                                 <td>Baba Blue</td>
                                 <td>Lumefantrine|Aspirin</td>
                                 <td>Pregnancy|Baby</td>
                                 <td>Dizziness|Headache</td>
+                                <td>unsafe</td>
+                                <td>unsafe</td>
+                                <td>
+                                    <ul>
+                                        <li>Procold</li>
+                                        <li>Strepsil</li>
+                                        <li>Antihistamines</li>
+                                        <li>Mucolytic</li>
+                                    </ul>
+                                </td>
+                                <td>do not overdose</td>
                             </tr>
                         </table>
                         
