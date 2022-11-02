@@ -38,9 +38,7 @@
                                     <th>API A</th>
                                     <th>API B</th>
                                     <th>API C</th>
-                                    <th>Manufacturer</th>
-                                    <th>Dosage Form</th>
-                                    <th>Status</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,7 +76,7 @@
                                                 <option>Cefpodoxime</option>
                                                 <option>Cerebrolysin</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>
                                     <td>
@@ -96,7 +94,7 @@
                                                 <option>Cefpodoxime</option>
                                                 <option>Cerebrolysin</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>   
                                     <td>
@@ -114,22 +112,10 @@
                                                 <option>Cefpodoxime</option>
                                                 <option>Cerebrolysin</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>
-                                    <td> <input type="text" class="form-control" placeholder="manufacturer"></td>
-                                    <td> <select class="form-control">
-                                        <option>Oral</option>
-                                        <option>Chewable</option>
-                                        <option>With milk</option>
-                                        <option>Injection</option>
-                                        <option>Insertion</option>
-                                        <option>Rub on skin</option>
-                                    </select></td>
-                                    <td> <select class="form-control">
-                                        <option type="button" class="btn btn-block btn-outline-primary">Active</option>
-                                        <option type="button" class="btn btn-block btn-outline-secondary">Inactive</option>
-                                    </select></td>
+                                    
                                 </tr>
                                 <tr>
                                     <td><select class="form-control ">
@@ -160,7 +146,7 @@
                                                 <option>Vitamins</option>
                                                 <option>Anti-Burn</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>
                                     <td>
@@ -173,7 +159,7 @@
                                                 <option>Vitamins</option>
                                                 <option>Anti-Burn</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>   
                                     <td>
@@ -186,22 +172,10 @@
                                                 <option>Vitamins</option>
                                                 <option>Anti-Burn</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>
-                                    <td> <input type="text" class="form-control" placeholder="manufacturer"></td>
-                                    <td> <select class="form-control">
-                                        <option>Oral</option>
-                                        <option>Chewable</option>
-                                        <option>With milk</option>
-                                        <option>Injection</option>
-                                        <option>Insertion</option>
-                                        <option>Rub on skin</option>
-                                    </select></td>
-                                    <td> <select class="form-control">
-                                        <option type="button" class="btn btn-block btn-outline-primary">Active</option>
-                                        <option type="button" class="btn btn-block btn-outline-secondary">Inactive</option>
-                                    </select></td>
+                                    
                                 </tr>
                                 <tr>
                                     <td><select class="form-control ">
@@ -232,7 +206,7 @@
                                                 <option>Vitamins</option>
                                                 <option>Anti-Burn</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>
                                     <td>
@@ -245,7 +219,7 @@
                                                 <option>Vitamins</option>
                                                 <option>Anti-Burn</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>   
                                     <td>
@@ -258,22 +232,10 @@
                                                 <option>Vitamins</option>
                                                 <option>Anti-Burn</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-8" placeholder="mg">
+                                            <input type="text" class="form-control mt-1" placeholder="strength e.g 2mg">
                                         </div>
                                     </td>
-                                    <td> <input type="text" class="form-control" placeholder="manufacturer"></td>
-                                    <td> <select class="form-control">
-                                        <option>Oral</option>
-                                        <option>Chewable</option>
-                                        <option>With milk</option>
-                                        <option>Injection</option>
-                                        <option>Insertion</option>
-                                        <option>Rub on skin</option>
-                                    </select></td>
-                                    <td> <select class="form-control">
-                                        <option type="button" class="btn btn-block btn-outline-primary">Active</option>
-                                        <option type="button" class="btn btn-block btn-outline-secondary">Inactive</option>
-                                    </select></td>
+                                    
                                 </tr>
                             </tbody>
                         </table>
