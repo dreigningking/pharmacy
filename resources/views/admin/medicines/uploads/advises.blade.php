@@ -29,49 +29,26 @@
                     </h5>
                     <div class="row">
                         <p class="col-sm-12 text-muted mb-0 mb-sm-3">Uploading from excel is simple. Prepare the document in the following format:</p>
-                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">drugs.xls</span> </p>
+                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">advises.xls</span> </p>
                         <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create the content in the format below. Take note of the table headers that they are written in small textcases </p>
-                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Seperate each of the contents with the pipe character i.e |</p>
-                        <p class="col-sm-12 text-muted mb-0 mb-sm-3">Each content is a combination of the medicine name and its miligram ie. Arthemeter:250 </p>
-                        <p class="col-sm-12 text-danger mb-0 mb-sm-3">Drugs with incorrect medicine names will not be uploaded</p>
                         <table class="table table-bordered">
                             <tr>
-                                <th>name</th>
-                                <th>api</th>
-                                <th>contraindications</th>
-                                <th>side effects</th>
-                                <th>pregnancy status</th>
-                                <th>lactation status</th>
-                                <th>drug alternative</th>
-                                <th>medical counsel</th>
-                                
-
+                                <th>Advice</th>
+                                <th>Type</th>
                             </tr>
                             <tr>
-                                <td>Lonart</td>
-                                <td>Arthemeter|Abacavir</td>
-                                <td>Sunny|Darken</td>
-                                <td>Dizziness|Headache</td>
-                                <td>safe</td>
-                                <td>unsafe</td>
-                                <td>Chloroquine|Quinine</td>
-                                <td>use as prescribed</td>
+                                <td>Eat well before taking medicine</td>
+                                <td>medical</td>
                             </tr>
                             <tr>
-                                <td>Baba Blue</td>
-                                <td>Lumefantrine|Aspirin</td>
-                                <td>Pregnancy|Baby</td>
-                                <td>Dizziness|Headache</td>
-                                <td>unsafe</td>
-                                <td>unsafe</td>
-                                <td>Procold|Strepsil</td>
-                                <td>do not overdose</td>
+                                <td>Sleep atleast 6 hours daily</td>
+                                <td>non-medical</td>
                             </tr>
                         </table>
                         
                     </div>
                     <div class="my-3">
-                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                        <form class="row" action="" method="POST" enctype="multipart/form-data">@csrf
                             <div class="col-6">
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Upload File</label>
@@ -80,15 +57,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-lg  btn-primary">Upload</button>
-                                </div>
-                            </div>
                         </form>
                         
+                        <div class="col-6">
+                            <div class="form-group" action="">
+                                <a href="{{route('admin.advises.upload')}}" class="btn btn-lg  btn-primary">Upload</a>
+                            </div>
+                        </div>
+                        
                     </div>
-                    
                 </div>
             </div>
         </div>

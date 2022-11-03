@@ -38,7 +38,7 @@
                         <a class="nav-link" data-toggle="tab" href="#password_tab">Non Medical Advises</a>
                     </li>
                     <li class="nav-item border">
-                        <a class="nav-link" href="{{route('admin.assessments.uploads')}}">Upload Advises</a>
+                        <a class="nav-link" href="{{route('admin.advises.upload')}}">Upload Advises</a>
                     </li>
                     
                 </ul>

@@ -182,7 +182,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade custom-modal add-modal" id="edit">
+    <div class="modal fade custom-modal add-modal" id="edit">                       
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">

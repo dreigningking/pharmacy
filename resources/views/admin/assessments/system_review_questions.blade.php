@@ -49,13 +49,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>Have you ever had a head injury or recent fall?</li>
-                                            <li>Do you experience any shaking or tremors of your hands?</li>
-                                            <li>Have you had a seizure or convulsion?</li>
-                                            <li>Have you noticed a problem with balance or coordination?</li>
-                                            <li>Do you ever feel lightheaded or dizzy? If so, does it occur with activity or change in position?</li>
-                                        </ul>
+                                        Have you ever had a head injury or recent fall?
                                     </td>
                                     
                                     <td class="">Nervous</td>
@@ -74,13 +68,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>Do you have any chest pain with breathing?</li>
-                                            <li>Any history of asthma in the family?</li>
-                                            <li>Are you ever short of breath?</li>
-                                            <li>Do you have any allergies?</li>
-                                            <li>Do you smoke now or have you ever smoked?</li>
-                                        </ul>
+                                        Do you have any chest pain with breathing?
                                     </td>
                                     
                                     <td class=""> Respiratory </td>
@@ -99,13 +87,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>Any history of a broken bone, strain, or other injury to a muscle, joint, tendon, or ligament?</li>
-                                            <li>Ever had a broken bone? If so, how was it treated?</li>
-                                            <li>Do you use any assistive devices such as a brace, cane, walker, or wheelchair?</li>
-                                            <li>Have you fallen or had any near falls in the past few months?</li>
-                                            <li>Do you have any difficulty walking, jumping, or playing?</li>
-                                        </ul>
+                                        Ever had a broken bone? If so, how was it treated?
                                     </td>       
                                     <td class="">Muscular</td>
                                     <td class=""> 
@@ -123,10 +105,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>Any family history of osteoporosis?</li>
-                                            <li>Any diffficulty in general body movements?</li>
-                                        </ul>
+                                        Any diffficulty in general body movements?
                                     </td>
                                     
                                     <td class="">Skeletal</td>
@@ -145,12 +124,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>Any change in urinary or bowel habits</li>
-                                            <li>Do you have feelings of depression, irritability, or anxiety?</li>
-                                            <li>Any change in appetite</li>
-                                            <li>Do you feel pain? if so, where?</li>
-                                        </ul>
+                                        Any change in urinary or bowel habits?
                                     </td>
                                     
                                     <td class="">Endocrine</td>
@@ -169,10 +143,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>Do you smoke, use alcohol or other drugs?</li>
-                                            <li>How often do you exercise?</li>
-                                        </ul>
+                                        Do you smoke, use alcohol or other drugs?
                                     </td>
                                     
                                     <td class="">Circulatory</td>
@@ -191,11 +162,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>How would you describe your current level of stress?</li>
-                                            <li>Describe what you typically eat for breakfast, lunch and dinner</li> 
-                                            <li>Pay special attention to foods high in salt, sugar and fat</li>
-                                        </ul>
+                                        How would you describe your current level of stress?
                                     </td>
                                     
                                     <td class="">Lymphatic</td>
@@ -214,11 +181,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>Do you drink enough water?</li>
-                                            <li>Are you belching?</li>
-                                            <li>How often do you take fruits?</li>
-                                        </ul>
+                                        How often do you take fruits?
                                     </td>
                                     
                                     <td class="">Digestive</td>
@@ -237,11 +200,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <ul>
-                                            <li>Any itchiness in ur private part?</li>
-                                            <li>Any pain while urinating?</li>
-                                            <li>Whats the color of your urine?</li>
-                                        </ul>
+                                        Any pain while urinating?
                                     </td>
                                     
                                     <td class="">Urinary</td>

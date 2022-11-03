@@ -26,7 +26,6 @@
             <div class="card">
                 <div class="card-header">
                     <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
-                    <a href="{{route('admin.interactions')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -155,15 +154,7 @@
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" name="name" placeholder="Drug Name" >
                                     </div>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
-                                        <label for="sel1">Quantity:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control" name="name" placeholder="Number Available" ></textarea>
-                                    </div>
-                                </div>        
+                                </div>  
                                
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="">
@@ -202,14 +193,6 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" name="name" value="Paracetamol" >
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
-                                        <label for="sel1">Drug Quantity:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control" name="name" value="15"></textarea>
                                     </div>
                                 </div>
                                 

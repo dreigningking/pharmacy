@@ -14,6 +14,7 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     Route::view('medicine/drugs/categories','admin.medicines.categories')->name('categories');
     Route::view('medicines/api/interactions','admin.medicines.interactions')->name('interactions');
     Route::view('medicines/api/interactions/upload','admin.medicines.uploads.interactions')->name('interactions.upload');
+    Route::view('medicines/advises/upload','admin.medicines.uploads.advises')->name('advises.upload');
 
     Route::view('assessment/complaints','admin.assessments.complaints')->name('assessments.complaints');
     Route::view('assessment/conditions','admin.assessments.conditions')->name('assessments.conditions');
