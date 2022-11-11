@@ -12,7 +12,12 @@ class RolePermissionController extends Controller
     public function index(){
         $roles = Role::with('permissions')->get();
         $permissions = Permission::with('roles')->get();
-        return view('admin.roles',compact('roles','permissions'));
+        return view('admin.roles.admin',compact('roles','permissions'));
+    }
+    public function pharmacy(){
+        $roles = Role::with('permissions')->get();
+        $permissions = Permission::with('roles')->get();
+        return view('admin.roles.pharmacy',compact('roles','permissions'));
     }
 
     public function store(Request $request){

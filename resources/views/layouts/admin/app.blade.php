@@ -187,7 +187,7 @@
 								<a href="{{route('admin.pharmacies')}}"><i class="fe fe-building"></i> <span>Pharmacies</span></a>
 							</li>
 							<li @if(Route::is('admin.medicines')) class="submenu" @endif>
-								<a href="#"><i class="fe fe-bar-chart"></i> <span> Drug Management</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fe fe-pill"></i> <span> Drug Management</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{route('admin.apis')}}">APIs</a></li>
 									<li><a href="{{route('admin.interactions')}}">Interactions</a></li>
@@ -196,7 +196,7 @@
 								</ul>
 							</li>
 							<li class="submenu">
-								<a href="#"><i class="fe fe-bar-chart"></i> <span> Assessment Settings</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fe fe-cloud"></i> <span> Assessment Settings</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{route('admin.assessments.complaints')}}">Complaints</a></li>
 									<li><a href="{{route('admin.assessments.conditions')}}">Medical Conditions</a></li>
@@ -210,23 +210,31 @@
 								</ul>
 							</li>
 							<li class="submenu">
-								<a href="#"><i class="fe fe-bar-chart"></i> <span> Subscriptions </span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fe fe-tablet"></i> <span> Subscriptions </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{route('admin.subscriptions')}}">Licenses</a></li>
-									<li><a href="{{route('admin.subscriptions.plans')}}">Plans</a></li>
+									<li><a href="{{route('admin.subscriptions.sms')}}">SMS</a></li>
 									<li><a href="{{route('admin.subscriptions.transactions')}}">Transactions</a></li>
 								</ul>
 							</li>
-							<li> 
-								<a href="{{route('admin.roles')}}"><i class="fe fe-vector"></i> <span>Roles</span></a>
+							
+							<li class="submenu">
+								<a href="#"><i class="fe fe-vector"></i> <span> Roles </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{route('admin.roles.staff')}}">Admin</a></li>
+									<li><a href="{{route('admin.roles.pharmacy')}}">Pharmacies</a></li>
+								</ul>
 							</li>
+							
 							<li @if(Route::is('admin.settings')) class="active" @endif> 
 								<a href="{{route('admin.settings')}}"><i class="fe fe-gear"></i> <span>Settings</span></a>
 							</li>
 							<li @if(Route::is('admin.users')) class="active" @endif> 
 								<a href="{{route('admin.users')}}"><i class="fe fe-user-plus"></i> <span>Admin Users</span></a>
 							</li>
-
+							<li @if(Route::is('admin.support.inbox')) class="active" @endif> 
+								<a href="{{route('admin.support.inbox')}}"><i class="fe fe-comments"></i> <span>Support</span></a>
+							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -241,7 +249,6 @@
 			
 			<!-- Page Wrapper -->
             <div class="page-wrapper">
-			
                 @yield('main')			
 			</div>
 			<!-- /Page Wrapper -->

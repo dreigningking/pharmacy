@@ -1,6 +1,6 @@
 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
 
-change advises to medication and non-medication advises
+
 
 
 USER DASHBOARD
@@ -16,7 +16,6 @@ what will be on everybody's dashboard
 9. user activities
 
 USER SETTINGS
-delete your profile
 
 
 PHARMACY SETTINGS
@@ -42,3 +41,15 @@ TREATMENT PLAN
 
 add non medication advice
 prescribe medicine
+
+SETTINGS
+general: name of application, currency, vat, 
+drugs: auto-delete expired, allow transfer of drugs
+
+notifications: 
+Send mail to subscribers 2weeks to subscription expiry	
+Send mail to patients on patient add	
+Send prescription to patient email	
+Send follow-up email to patient after treatment
+
+reports

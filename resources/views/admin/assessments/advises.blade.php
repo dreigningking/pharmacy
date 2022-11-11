@@ -23,7 +23,7 @@
                     
                     <div class="col ml-md-n2 profile-user-info">
                         
-                        <div class="about-text">Medical and Non Medical Advises</div>
+                        <div class="about-text">Medication and Non Medication Advises</div>
                         
                     </div>
                     
@@ -32,10 +32,10 @@
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#per_details_tab"> Medical Advises</a>
+                        <a class="nav-link active" data-toggle="tab" href="#per_details_tab"> Medication Advises</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#password_tab">Non Medical Advises</a>
+                        <a class="nav-link" data-toggle="tab" href="#password_tab">Non Medication Advises</a>
                     </li>
                     <li class="nav-item border">
                         <a class="nav-link" href="{{route('admin.advises.upload')}}">Upload Advises</a>
@@ -51,7 +51,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Medical Advises</h5>
+                                    <h5 class="card-title">Medication Advises</h5>
                                     <div class="table-responsive">
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>
@@ -115,7 +115,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Non Medical Advises</h5>
+                                    <h5 class="card-title">Non Medication Advises</h5>
                                     <div class="table-responsive">
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>

@@ -28,10 +28,13 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     Route::view('assessment/uploads','admin.assessments.uploads')->name('assessments.uploads');
 
     Route::view('subscriptions','admin.subscription.list')->name('subscriptions');
-    Route::view('subscriptions/plans','admin.subscription.plans')->name('subscriptions.plans');
+    Route::view('subscriptions/sms','admin.subscription.sms')->name('subscriptions.sms');
     Route::view('subscriptions/transactions','admin.subscription.transactions')->name('subscriptions.transactions');
     
     Route::view('users','admin.users.list')->name('users');
+    Route::view('support/inbox','admin.support.inbox')->name('support.inbox');
+    Route::view('support/read','admin.support.read')->name('support.read');
+
     Route::post('user/save', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'saveuser'])->name('user.save');
     
     
@@ -54,7 +57,8 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
 
     
     
-    Route::get('roles', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'index'])->name("roles");
+    Route::get('roles/staff', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'index'])->name("roles.staff");
+    Route::get('roles/pharmacies', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'pharmacy'])->name("roles.pharmacy");
     Route::post('permissions', [App\Http\Controllers\WebControllers\AdminControllers\RolePermissionController::class, 'store'])->name("permissions");
     
     Route::get('assessments', [App\Http\Controllers\WebControllers\AdminControllers\TreatmentController::class, 'assessments'])->name("assessment");

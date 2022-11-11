@@ -35,10 +35,10 @@
                                 <tr>
                                     <th>User</th>
                                     <th>License Number</th>
-                                    <th>Plan</th>
+                                    <th>Type</th>
                                     <th>Validity Period</th>
+                                    <th>Number of Pharmacies</th>
                                     <th>Status</th>
-                                    <th class="text-right">Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,7 +52,7 @@
                                     <td>LBDKKL83948343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                            Care Modules
                                         </h2>
                                     </td>
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
@@ -62,8 +62,8 @@
                                             <label for="status_1" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $200.00
+                                    <td class="">
+                                        5
                                     </td>
                                 </tr>
                                 <tr>
@@ -76,20 +76,21 @@
                                     <td>LBDKKL83948343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                            Care Modules
                                         </h2>
                                     </td>
                                     
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td class="">
+                                        1
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_2" class="check" checked>
                                             <label for="status_2" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $300.00
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -101,19 +102,20 @@
                                     <td>LBDKKL83j45458343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                            Care Modules and Analytics
                                         </h2>
                                     </td>
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td class="">
+                                        3
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_3" class="check" checked>
                                             <label for="status_3" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $150.00
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -125,19 +127,20 @@
                                     <td>LBDKKL4345458343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                            Care Modules and Analytics
                                         </h2>
                                     </td>
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td class="">
+                                        4
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_4" class="check" checked>
                                             <label for="status_4" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $150.00
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -149,20 +152,21 @@
                                     <td>LBDKKL4345458343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                            Care Modules and Analytics
                                         </h2>
                                     </td>
                                     
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td class="">
+                                        2
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_5" class="check" checked>
                                             <label for="status_5" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $200.00
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -174,20 +178,22 @@
                                     <td>LBDKKL4345458343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                            Care Modules
                                         </h2>
                                     </td>
                                     
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td class="">
+                                      7
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_5" class="check" checked>
                                             <label for="status_5" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $250.00
-                                    </td>
+
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -199,20 +205,21 @@
                                     <td>NeLBDKKL4345458343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                            Care Modules
                                         </h2>
                                     </td>
                                     
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td class="">
+                                        2
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_5" class="check" checked>
                                             <label for="status_5" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $260.00
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -224,20 +231,21 @@
                                     <td>LBDKKL4345458343</td>
                                     <td>
                                         <h2>
-                                            Silver Plan
+                                            Analytics
                                         </h2>
                                     </td>
                                     
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td class="">
+                                        6
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_5" class="check" checked>
                                             <label for="status_5" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $260.00
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -249,20 +257,21 @@
                                     <td>LBDKKL83948343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                            Analytics
                                         </h2>
                                     </td>
                                     
                                     <td>23 Nov 2019 - 12 Dec 2022</span></td>
+                                    <td class="">
+                                        4
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_5" class="check" checked>
                                             <label for="status_5" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $300.00
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -274,20 +283,21 @@
                                     <td>LBDKKL83948343</td>
                                     <td>
                                         <h2>
-                                            Gold Plan
+                                           Care Modules
                                         </h2>
                                     </td>
                                     
                                     <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td class="">
+                                        3
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_5" class="check" checked>
                                             <label for="status_5" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="text-right">
-                                        $300.00
-                                    </td>
+                                    
                                 </tr>
                             </tbody>
                         </table>

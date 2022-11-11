@@ -10,10 +10,10 @@
     <div class="page-header">
         <div class="row">
             <div class="col-sm-12">
-                <h3 class="page-title">Plans</h3>
+                <h3 class="page-title">SMS</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Plans</li>
+                    <li class="breadcrumb-item active">SMS</li>
                 </ul>
             </div>
         </div>
@@ -22,120 +22,38 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-
+                <h3>Total Units Available for sale: 53</h3>
+                <h6>Total Units Sold: 53 | Total SMS Sent: 53 | Total </h6>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="datatable table table-hover table-center mb-0">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Features</th>
-                                    <th>Price/Pharmacy/Year</th>
+                                    <th>Purchase Date</th>
+                                    <th>Customer</th>
+                                    <th>Units Purchased</th>
+                                    <th>Amount</th>
                                     <th>Action</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td> Patient Module</td>
-                                    <td> 
-                                        <span class="badge badge-pill bg-success-light">Patient Module</span>
-                                        <span class="badge badge-pill bg-success-light">Assessment Module</span>
-                                    </td>
-                                    <td> 
-                                        $31.99
-                                       
-                                    </td>
+                                    
+                                    <td> 2/4/20</td>
+                                    <td> Christopher</td>
+                                    <td>50 </td>
+                                    <td>$50 </td>
+                                    
                                     <td class="">
                                         <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            {{-- <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a> --}}
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
+                                            {{-- <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a> --}}
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View Invoice </a>
+                                            {{-- <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a> --}}
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td> Inventory Module</td>
-                                    <td> 
-                                        <span class="badge badge-pill bg-success-light">Inventory Module</span>
-                                        <span class="badge badge-pill bg-success-light">Supplier Module</span>
-                                        <span class="badge badge-pill bg-success-light">Transfer Module</span>
-                                    </td>
-                                    <td> 
-                                        $31.99
-                                       
-                                    </td>
-                                    <td class="">
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            {{-- <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a> --}}
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td> Prescription Module</td>
-                                    <td> 
-                                        <span class="badge badge-pill bg-success-light">Prescription Module</span>
-                                        <span class="badge badge-pill bg-success-light">Error Handling Module</span>
-                                        <span class="badge badge-pill bg-success-light">Follow-up Module</span>
-                                    </td>
-                                    <td> 
-                                        $31.99
-                                       
-                                    </td>
-                                    <td class="">
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            {{-- <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a> --}}
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td> Analytics Module</td>
-                                    <td> 
-                                        <span class="badge badge-pill bg-success-light">Inventory Analysis</span>
-                                        <span class="badge badge-pill bg-success-light">Workload Analysis</span>
-                                        
-                                    </td>
-                                    <td> 
-                                        $31.99
-                                       
-                                    </td>
-                                    <td class="">
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            {{-- <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a> --}}
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
