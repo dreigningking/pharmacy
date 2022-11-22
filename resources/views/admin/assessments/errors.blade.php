@@ -66,6 +66,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @forelse ($erors as $eror)
                                                 <tr>
                                                     <td class=" text-center">
                                                         <div class="custom-control custom-checkbox mb-3">
@@ -84,23 +85,14 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <div class="custom-control custom-checkbox mb-3">
-                                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td> Wrong Frequency</td>
-                                                    <td> Drug Administration Error </td>
-                                                    <td class=""> Active </td>
-                                                    <td> 
-                                                        <div class="d-flex">
-                                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                    
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="5">
+                                                            No Errors
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
                                                 
                                             </tbody>
                                         </table>
@@ -133,39 +125,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <div class="custom-control custom-checkbox mb-3">
-                                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td class=""> Call the doctor</td>
-                                                    <td class=""> Active </td>
-                                                    <td class=""> 
-                                                        <div class="d-flex">
-                                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <div class="custom-control custom-checkbox mb-3">
-                                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td class=""> Change Prescription</td>
-                                                    
-                                                    <td class=""> Active </td>
-                                                    <td class=""> 
-                                                        <div class="d-flex">
-                                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @forelse ($interventions as $intervention)
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <div class="custom-control custom-checkbox mb-3">
+                                                                <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                                                <label class="custom-control-label" for="customControlValidation1"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="d-flex align-items-center">
+                                                            {{$intervention->description}}
+                                                        </td>
+                                                        
+                                                        <td class=""> Active </td>
+                                                        <td class=""> 
+                                                            <div class="d-flex">
+                                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>    
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="4"> No Intervention</td>
+                                                    </tr>
+                                                @endforelse
                                                 
                                             </tbody>
                                         </table>
@@ -196,42 +180,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <div class="custom-control custom-checkbox mb-3">
-                                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td class=""> Something needs to be written here</td>
-                                                    
-                                                    
-                                                    <td class=""> Active </td>
-                                                    <td class=""> 
-                                                        <div class="d-flex">
-                                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <div class="custom-control custom-checkbox mb-3">
-                                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td class=""> Something needs to be written here</td>
-                                                    
-                                                    <td class=""> Active </td>
-                                                    <td class=""> 
-                                                        <div class="d-flex">
-                                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                
+                                                @forelse ($outcomes as $outcome)
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <div class="custom-control custom-checkbox mb-3">
+                                                                <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                                                <label class="custom-control-label" for="customControlValidation1"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="d-flex align-items-center">
+                                                            {{$outcome->description}}
+                                                        </td>
+                                                        
+                                                        <td class=""> Active </td>
+                                                        <td class=""> 
+                                                            <div class="d-flex">
+                                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>    
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="4"> No Intervention Outcomes</td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

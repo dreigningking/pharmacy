@@ -41,176 +41,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Have you ever had a head injury or recent fall?
-                                    </td>
-                                    
-                                    <td class="">Nervous</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Do you have any chest pain with breathing?
-                                    </td>
-                                    
-                                    <td class=""> Respiratory </td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Ever had a broken bone? If so, how was it treated?
-                                    </td>       
-                                    <td class="">Muscular</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Any diffficulty in general body movements?
-                                    </td>
-                                    
-                                    <td class="">Skeletal</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Any change in urinary or bowel habits?
-                                    </td>
-                                    
-                                    <td class="">Endocrine</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Do you smoke, use alcohol or other drugs?
-                                    </td>
-                                    
-                                    <td class="">Circulatory</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        How would you describe your current level of stress?
-                                    </td>
-                                    
-                                    <td class="">Lymphatic</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        How often do you take fruits?
-                                    </td>
-                                    
-                                    <td class="">Digestive</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Any pain while urinating?
-                                    </td>
-                                    
-                                    <td class="">Urinary</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @forelse ($questions as $question)
+                                    <tr>
+                                        <td class="text-center">
+                                            <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                                <label class="custom-control-label" for="customControlValidation1"></label>
+                                            </div>
+                                        </td>
+                                        <td class="d-flex align-items-center">
+                                            {{$comlaint->description}}
+                                        </td>
+                                        
+                                        <td class=""> Active </td>
+                                        <td class=""> 
+                                            <div class="d-flex">
+                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                            </div>
+                                        </td>
+                                    </tr>    
+                                @empty
+                                    <tr>
+                                        <td colspan="4"> No question</td>
+                                    </tr>
+                                @endforelse 
                             </tbody>
                         </table>
                     </div>
@@ -237,7 +92,7 @@
                             <form action="#" class="needs-validation" novalidate>
                                 <div class="row my-3">
                                     <div class="form-group col-md-4">
-                                        <label for="sel1">Describe Complaints:</label>
+                                        <label for="sel1">Describe questions:</label>
                                     </div>
                                     <div class="col-md-8">
                                         <textarea class="form-control" rows="" name="name" placeholder="" ></textarea>

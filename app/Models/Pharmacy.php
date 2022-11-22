@@ -7,13 +7,15 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\State;
-use App\Models\Account;
 use App\Models\Country;
+use App\Models\License;
 use App\Models\Patient;
 use App\Models\Supplier;
 use App\Models\Inventory;
 // use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Assessment;
 use App\Models\PharmacyUser;
+use App\Models\Prescription;
 use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -33,15 +35,13 @@ class Pharmacy extends Model
     public function users(){
         return $this->belongsToMany(User::class,'pharmacy_users')->withPivot('role_id','status');
     }
+    public function owner(){
+        return $this->belongsTo(User::class,'owner_id');
+    }
     public function suppliers(){
         return $this->belongsToMany(Supplier::class,'pharmacy_suppliers');
     }
-    public function staff(){
-        return $this->hasMany(PharmacyUser::class);
-    }
-    public function accounts(){
-        return $this->hasMany(Account::class);
-    }
+    
     public function country(){
         return $this->belongsTo(Country::class);
     }
@@ -51,17 +51,24 @@ class Pharmacy extends Model
     public function city(){
         return $this->belongsTo(City::class);
     }
-    public function subscriptions(){
-        return $this->hasMany(Subscription::class);
+    
+    public function inventories(){
+        return $this->hasMany(Inventory::class);
     }
     public function orders(){
         return $this->hasMany(Order::class);
     }
-    public function inventories(){
-        return $this->hasMany(Inventory::class);
-    }
     public function patients(){
         return $this->hasMany(Patient::class);
+    }
+    public function prescriptions(){
+        return $this->hasMany(Prescription::class);
+    }
+    public function assessments(){
+        return $this->hasMany(Assessment::class);
+    }
+    public function license(){
+        return $this->hasOne(License::class);
     }
 
 }

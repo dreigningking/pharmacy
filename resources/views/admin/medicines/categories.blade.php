@@ -15,7 +15,7 @@
                 <h3 class="page-title">Medicine</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Medicine</li>
+                    <li class="breadcrumb-item active">Categories</li>
                 </ul>
             </div>
         </div>
@@ -39,90 +39,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
-                                <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">Anti-biotics</td>
-                                    <td class="text-center">15</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="{{route('admin.drugs')}}"> <i class="fe fe-eye"></i> View More </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">Anti-Septic</td>
-                                    <td class="text-center">15</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="{{route('admin.drugs')}}"> <i class="fe fe-eye"></i> View More </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>                                  
-                                </tr>
-                                <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">Anti-malaria</td>
-                                    <td class="text-center">15</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="{{route('admin.drugs')}}"> <i class="fe fe-eye"></i> View More </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">Pain Killers</td>
-                                    <td class="text-center">15</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class=" text-center">
-                                        <input class="form-check-input medicine-check"
-                                            type="checkbox" name="remember" id="medicine-check"
-                                            value="ABC" required>
-                                    </td>
-                                    <td class="d-flex align-items-center">Anti-Burns</td>
-                                    <td class="text-center">15</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View More </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-
-                                </tr>
+                                @forelse ($categories as $category)
+                                    <tr>
+                                        <td class=" text-center">
+                                            <input class="form-check-input medicine-check" type="checkbox" name="remember" id="medicine-check" required>
+                                        </td>
+                                        <td class="d-flex align-items-center">{{$category->name}}</td>
+                                        <td class="text-center">{{$category->drugs->count()}}</td>
+                                        <td class=""> 
+                                            <div class="d-flex">
+                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit{{$category->id}}"> <i class="fe fe-pencil"></i> Edit </a>
+                                                <a class="btn btn-sm bg-primary-light mx-1"  href="{{route('admin.drugs')}}?search={{$category->name}}"> <i class="fe fe-eye"></i> View Drugs </a>
+                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4">No Category.. Create new</td>
+                                    </tr>
+                                @endforelse
+                                    
                             </tbody>
                         </table>
                     </div>
@@ -138,7 +75,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Drug</h5>
+                    <h5 class="modal-title">Add Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -146,22 +83,30 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <form action="#" class="needs-validation" novalidate>
+                            <form action="{{route('admin.categories.store')}}" method="POST" class="needs-validation" novalidate>@csrf
                                 <div class="row my-2">
                                     <div class="col-md-4">
                                         <label for="sel1">Name:</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" placeholder="Drug Name" >
+                                        <input type="text" class="form-control" name="name" placeholder="Category Name" >
                                     </div>
                                 </div>  
+                                <div class="row my-2">
+                                    <div class="col-md-4">
+                                        <label for="sel1">Description:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="description" placeholder="Category Description" ></textarea>
+                                    </div>
+                                </div> 
                                
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="">
-                                        <a href="#" class="btn btn-success">Save</a>
+                                        <button type="submit" class="btn btn-success">Save</button>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="btn btn-danger">Cancel</a>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
                                     </div>
                                 </div>
                                 
@@ -174,46 +119,58 @@
             </div>
         </div>
     </div>
-    <div class="modal fade custom-modal add-modal" id="edit">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Drug</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="#" class="needs-validation" novalidate>
-                                <div class="row my-2">
-                                    <div class="col-md-4">
-                                        <label for="sel1">Name:</label>
+    @foreach ($categories as $category)
+        <div class="modal fade custom-modal add-modal" id="edit{{$category->id}}">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Drug</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <form action="{{route('admin.categories.update')}}" method="POST" class="needs-validation" novalidate>@csrf
+                                    <input type="hidden" name="category_id" value="{{$category->id}}">
+                                    <div class="row my-2">
+                                        <div class="col-md-4">
+                                            <label for="sel1">Name:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="name" value="{{$category->name}}" placeholder="Category Name" >
+                                        </div>
+                                    </div>  
+                                    <div class="row my-2">
+                                        <div class="col-md-4">
+                                            <label for="sel1">Description:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" name="description" placeholder="Category Description" >{{$category->description}}</textarea>
+                                        </div>
+                                    </div> 
+                                    
+                                    <div class="d-flex my-2 justify-content-between">
+                                        <div class="">
+                                            <button type="submit" class="btn btn-success">Update</button>
+                                        </div>
+                                        <div class="">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="Paracetamol" >
-                                    </div>
-                                </div>
-                                
-                                <div class="d-flex my-2 justify-content-between">
-                                    <div class="">
-                                        <a href="#" class="btn btn-success">Update</a>
-                                    </div>
-                                    <div class="">
-                                        <a href="#" class="btn btn-danger">Cancel</a>
-                                    </div>
-                                </div>
-                                
-                                {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
-                            </form>
-                        </div>
+                                    
+                                    {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
+                                </form>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
+    
     <div class="modal fade custom-modal add-modal" id="delete">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

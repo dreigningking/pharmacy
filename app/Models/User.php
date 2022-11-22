@@ -68,12 +68,16 @@ class User extends Authenticatable
     }
 
     public function pharmacies(){
+        return $this->hasMany(Pharmacy::class,'owner_id');
+    }
+
+    public function company(){
         return $this->belongsToMany(Pharmacy::class,'pharmacy_users')->withPivot('role_id','status');
     }
     
     public function isAnyRole($value){
         $roles = Role::whereIn('name',$value)->get()->pluck('id')->toArray();
-        return $this->pharmacies->whereIn('pivot.role_id', $roles)->isNotEmpty()? true:false;
+        return $this->company->whereIn('pivot.role_id', $roles)->isNotEmpty()? true:false;
     }
 
     public function messages(){
@@ -87,20 +91,9 @@ class User extends Authenticatable
     public function payments(){
         return $this->hasMany(Payment::class);
     }
- 
-    public function posts(){
-        return $this->hasMany(Post::class);
-    }
-    public function wishlists(){
-        return $this->hasMany(Wishlist::class);
-    }
-
+    
     public function country(){
         return $this->belongsTo(Country::class);
-    }
-    
-    public function withdrawals(){
-        return $this->morphMany(Withdrawal::class, 'withdrawable');
     }
 
     public function subscriptions(){

@@ -4,28 +4,55 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], function () {
     Route::view('dashboard','admin.dashboard')->name('dashboard');
-    Route::view('pharmacies', 'admin.pharmacy.list')->name('pharmacies');
-    Route::view('pharmacy/details', 'admin.pharmacy.view')->name('pharmacy.details');
-    Route::view('medicines/apis', 'admin.medicines.api')->name('apis');
-    Route::view('medicines/apis/upload', 'admin.medicines.uploads.api')->name('apis.upload');
-    Route::view('medicines/drugs','admin.medicines.drugs')->name('drugs');
-    Route::view('medicines/drugs/upload','admin.medicines.uploads.drugs')->name('drugs.upload');
-    Route::view('medicines/drugs/apimatching','admin.medicines.apimatching')->name('drugs.apimatching');
-    Route::view('medicine/drugs/categories','admin.medicines.categories')->name('categories');
-    Route::view('medicines/api/interactions','admin.medicines.interactions')->name('interactions');
-    Route::view('medicines/api/interactions/upload','admin.medicines.uploads.interactions')->name('interactions.upload');
-    Route::view('medicines/advises/upload','admin.medicines.uploads.advises')->name('advises.upload');
 
-    Route::view('assessment/complaints','admin.assessments.complaints')->name('assessments.complaints');
-    Route::view('assessment/conditions','admin.assessments.conditions')->name('assessments.conditions');
-    Route::view('assessment/errors','admin.assessments.errors')->name('assessments.errors');
-    Route::view('assessment/family-social-questions','admin.assessments.family_social_questions')->name('assessments.family_social_questions');
-    Route::view('assessment/vitals','admin.assessments.vitals')->name('assessments.vitals');
-    Route::view('assessment/system-review-questions','admin.assessments.system_review_questions')->name('assessments.system_review_questions');
-    Route::view('assessment/diagnosis','admin.assessments.diagnosis')->name('assessments.diagnosis');
-    Route::view('assessment/laboratory','admin.assessments.laboratory')->name('assessments.laboratory');
-    Route::view('assessment/advises','admin.assessments.advises')->name('assessments.advises');
-    Route::view('assessment/uploads','admin.assessments.uploads')->name('assessments.uploads');
+    Route::get('pharmacies',[App\Http\Controllers\WebControllers\AdminControllers\PharmaciesController::class,'index'])->name('pharmacies');
+    Route::get('pharmacy/{pharmacy}/details',[App\Http\Controllers\WebControllers\AdminControllers\PharmaciesController::class,'show'])->name('pharmacy.details');
+    Route::post('pharmacy/{pharmacy}/status',[App\Http\Controllers\WebControllers\AdminControllers\PharmaciesController::class,'status'])->name('pharmacy.status');
+    Route::post('pharmacy/{pharmacy}/subscription',[App\Http\Controllers\WebControllers\AdminControllers\PharmaciesController::class,'subscription'])->name('pharmacy.subscription');
+    
+    Route::get('medicines/apis', [App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'api'])->name('apis');
+    Route::post('medicines/apis/store', [App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'api_store'])->name('apis.store');
+    Route::post('medicines/apis/update', [App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'api_update'])->name('apis.update');
+    Route::view('medicines/apis/upload_instructions', 'admin.medicines.uploads.api')->name('apis.upload_instructions');
+    Route::post('medicines/apis/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'api_upload'])->name('apis.upload');
+    
+
+    Route::get('medicines/api/interactions',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'api_interactions'])->name('api.interactions');
+    Route::post('medicines/api/interactions/store',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'api_interactions_store'])->name('api.interactions.store');
+    Route::post('medicines/api/interactions/update',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'api_interactions_update'])->name('api.interactions.update');
+    Route::get('medicines/api/interactions/upload_instructions',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'interactions_upload_instructions'])->name('api.interactions.upload_instructions');
+    Route::post('medicines/api/interaction/download', [App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'api_interactions_download'])->name('api.interactions.download');
+    Route::post('medicines/api/interaction/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'api_interactions_upload'])->name('api.interactions.upload');
+    
+    Route::get('medicine/drugs/categories',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'categories'])->name('categories');
+    Route::post('medicine/drugs/categories/store',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'categories_store'])->name('categories.store');
+    Route::post('medicine/drugs/categories/update',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'categories_update'])->name('categories.update');
+
+    Route::get('medicines/drugs',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'drugs'])->name('drugs');
+    Route::post('medicines/drugs/store',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'drugs_store'])->name('drugs.store');
+    Route::post('medicines/drugs/update',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'drugs_update'])->name('drugs.update');
+    Route::view('medicines/drugs/upload_instructions','admin.medicines.uploads.drugs')->name('drugs.upload_instructions');
+    Route::post('medicines/drugs/upload',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class, 'drugs_upload'])->name('drugs.upload');
+    Route::any('medicines/drugs/apimatching',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'drugs_api_matching'])->name('drugs.apimatching');
+    Route::post('medicines/drugs/api/match',[App\Http\Controllers\WebControllers\AdminControllers\MedicinesController::class,'drugs_match'])->name('drugs.match');
+    
+    Route::group(['as'=> 'assessments.','prefix'=> 'assessment'],function(){
+        Route::get('complaints',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'complaints'])->name('complaints');
+        Route::post('complaints/store',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'complaints_store'])->name('complaints.store');
+        Route::post('complaints/update',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'complaints_update'])->name('complaints.update');
+        Route::get('conditions',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'conditions'])->name('conditions');
+        Route::get('errors',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'errors'])->name('errors');
+        Route::get('family-social-questions',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'historyQuestions'])->name('family_social_questions');
+        Route::get('vitals',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'vitals'])->name('vitals');
+        Route::get('system-review-questions',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'reviewQuestions'])->name('system_review_questions');
+        // Route::get('diagnoses',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'diagnoses'])->name('diagnoses');
+        Route::get('laboratory_tests',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'labtests'])->name('labtests');
+        Route::get('advises',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'advices'])->name('advises');
+        Route::view('uploads','admin.assessments.uploads')->name('upload_instructions');
+    });
+    
+    Route::view('medicines/advises/upload','admin.medicines.uploads.advises')->name('advises.upload');
+    
 
     Route::view('subscriptions','admin.subscription.list')->name('subscriptions');
     Route::view('subscriptions/sms','admin.subscription.sms')->name('subscriptions.sms');
@@ -39,9 +66,6 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
     
     
     // Route::get('medicine/interactions', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'interactions'])->name('medicine.interactions');
-    
-    Route::post('medicines/relationship/download', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'downloadRelationship'])->name('medicines.downloadrelationship');
-    Route::post('medicines/relationship/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'uploadRelationship'])->name('medicines.uploadrelationship');
     
     
     // Route::get('drugs/upload', [App\Http\Controllers\WebControllers\AdminControllers\MedicineController::class, 'drugsUpload'])->name('drugs.upload');

@@ -36,9 +36,9 @@
                         <p class="col-sm-12 text-danger mb-0 mb-sm-3">Drugs with incorrect medicine names will not be uploaded</p>
                         <table class="table table-bordered">
                             <tr>
-                                <th>drug name</th>
+                                <th>name</th>
                                 <th>manufacturer</th>
-                                <th>dosage form</th>
+                                <th>dosage_form</th>
                             </tr>
                             <tr>
                                 <td>Lonart</td>
@@ -63,13 +63,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group" action="">
+                                    <button type="submit" class="btn btn-lg  btn-primary">Upload</button>
+                                </div>
+                            </div>
                         </form>
                         
-                        <div class="col-6">
-                            <div class="form-group" action="">
-                                <a href="{{route('admin.drugs.apimatching')}}" class="btn btn-lg  btn-primary">Upload</a>
-                            </div>
-                        </div>
+                        
                         
                     </div>
                 </div>

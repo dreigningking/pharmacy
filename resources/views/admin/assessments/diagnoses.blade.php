@@ -15,7 +15,7 @@
                 <h3 class="page-title">Assessments Settings</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Assessment</a></li>
-                    <li class="breadcrumb-item active">Diagnosis</li>
+                    <li class="breadcrumb-item active">Diagnoses</li>
                 </ul>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-header">
                     <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
-                    <a href="{{route('admin.assessments.uploads')}}" class="btn btn-info"> Upload</a>
+                    <a href="{{route('admin.assessments.upload_instructions')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -34,58 +34,37 @@
                             <thead>
                                 <tr>
                                     <th class="text-left"></th>
-                                    <th>DIAGNOSIS</th>
-                                    <th>Expected Outcome</th>
-                                    <th class="">Result/feedback</th>
-                                    <th>Outcome Achieved?</th>
-                                    <th>Date expected/Reported</th>
-                                    <th>Manage</th>
-
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th class=""> Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        High Blood sugar
-                                    </td>
-                                    <td class=""> Blood Glucose of 3.8mmol/L </td>
-                                    <td>I don't feel it anymore</td>
-                                    <td>YES</td>
-                                    <td>12/02/2022</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        High BP
-                                    </td>
-                                    <td class=""> BP of 135/95mmHg </td>
-                                    <td class=""> I still feel it </td>
-                                    <td>NO</td>
-                                    <td>12/03/2023</td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @forelse ($diagnoses as $diagnosis)
+                                    <tr>
+                                        <td class="text-center">
+                                            <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                                <label class="custom-control-label" for="customControlValidation1"></label>
+                                            </div>
+                                        </td>
+                                        <td class="d-flex align-items-center">
+                                            {{$diagnosis->description}}
+                                        </td>
+                                        
+                                        <td class=""> Active </td>
+                                        <td class=""> 
+                                            <div class="d-flex">
+                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                            </div>
+                                        </td>
+                                    </tr>    
+                                @empty
+                                    <tr>
+                                        <td colspan="4"> No diagnoses</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

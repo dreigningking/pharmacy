@@ -17,7 +17,7 @@
                             <div class="success-cont">
                                 <i class="fas fa-check"></i>
                                 <h3>Pharmacy Invitation!</h3>
-                                <p>Here is an invitation to join us to work at {{$pharmacy->name}} as a {{$pharmacy->staff->where('user_id',$user->id)->first()->role->name}} </p>
+                                <p>Here is an invitation to join us to work at {{$pharmacy->name}} as a {{$pharmacy->user->where('user_id',$user->id)->first()->role->name}} </p>
                                 
                                 <p>If you accept this invitation, you will be redirected to login with the following details</p>
                                 <ul class="list-unstyled">

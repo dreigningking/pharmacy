@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-header">
                     <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
-                    <a href="{{route('admin.assessments.uploads')}}" class="btn btn-info"> Upload</a>
+                    <a href="{{route('admin.assessments.upload_instructions')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -41,6 +41,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($conditions as $condition)
                                 <tr>
                                     <td class="text-center">
                                         <div class="custom-control custom-checkbox mb-3">
@@ -49,7 +50,7 @@
                                         </div>
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        Thyphod
+                                        {{$condition->description}}
                                     </td>
                                     
                                     <td class=""> Active </td>
@@ -59,8 +60,13 @@
                                             <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr>    
+                                @empty
                                 <tr>
+                                    <td colspan="4"> No Condition</td>
+                                </tr>
+                                @endforelse
+                                {{-- <tr>
                                     <td class="text-center">
                                         <div class="custom-control custom-checkbox mb-3">
                                             <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
@@ -97,7 +103,7 @@
                                             <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>

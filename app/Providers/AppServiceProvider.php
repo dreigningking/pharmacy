@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         Blade::if('usercan', function (Pharmacy $pharmacy,$action,$type = null ) {
             $user = Auth::user();
-            if($user->pharmacies->where('id',$pharmacy->id)->isNotEmpty() && $pharmacy->staff->where('user_id',$user->id)->first()->role->permissions->where('name',$action)->isNotEmpty())
+            if($user->pharmacies->where('id',$pharmacy->id)->isNotEmpty() && $pharmacy->users->where('user_id',$user->id)->first()->role->permissions->where('name',$action)->isNotEmpty())
             return true;
             else return false;
         });

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Plan;
 use App\Models\User;
-use App\Models\Pharmacy;
+use App\Models\License;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -22,7 +22,8 @@ class Subscription extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function pharmacy(){
-        return $this->belongsTo(Pharmacy::class);
+    public function licenses(){
+        return $this->hasMany(License::class);
     }
+
 }

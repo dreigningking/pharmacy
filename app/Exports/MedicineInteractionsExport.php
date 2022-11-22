@@ -5,18 +5,18 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class MedicineRelationshipsExport implements FromArray,WithHeadings
+class MedicineInteractionsExport implements FromArray,WithHeadings
 {
-    protected $relationship;
+    protected $interaction;
 
-    public function __construct(array $relationship)
+    public function __construct(array $interaction)
     {
-        $this->relationship = $relationship;
+        $this->interaction = $interaction;
     }
 
     public function array(): array
     {
-        return $this->relationship;
+        return $this->interaction;
     }
 
     public function headings(): array
@@ -26,7 +26,8 @@ class MedicineRelationshipsExport implements FromArray,WithHeadings
             'medicine_aName',
             'medicine_b',
             'medicine_bName',
-            'reaction'
+            'remark',
+            'mechanism'
         ];
     }
 }

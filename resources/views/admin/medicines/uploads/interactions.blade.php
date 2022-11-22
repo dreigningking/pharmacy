@@ -29,10 +29,10 @@
                                 <span>Upload Instructions</span> 
                                 {{-- <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a> --}}
                             </h5>
-                            <form action="{{route('admin.medicines.downloadrelationship')}}" method="post">@csrf
+                            <form action="{{route('admin.api.interactions.download')}}" method="post">@csrf
                                 <div class="row">
                                     <p class="col-sm-12 text-muted mb-0 mb-sm-3">Here you can upload the interactions (both positive and negative) between two medicines</p>
-                                    <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">medicine_relationship.xls</span> </p>
+                                    <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">interactions.xls</span> </p>
                                     <p class="col-sm-12 text-muted mb-0 mb-sm-3">Create the content in the format below. Take note of the table headers that they are written in small textcases </p>
                                     
                                     
@@ -40,31 +40,9 @@
                                             <div class="form-group">
                                                 <label>Select Medicine A</label>
                                                 <select class="form-control select" name="medicine_a">
-                                                    <option></option>
-                                                    <option>VITAMIN E</option>
-                                                    <option>VISCUM ALBUM</option>
-                                                    <option>Activated Dimethicone</option>
-                                                    <option>SODIUM HYDROXIDE</option>
-                                                    <option>VIT C</option>
-                                                    <option>VIT B2</option>
-                                                    <option>ASCORBIC ACID</option>
-                                                    <option> L-threonine</option>
-                                                    <option>Nicotinamide</option>
-                                                    <option>Vit B12</option>
-                                                    <option>EPO</option>
-                                                    <option>Vitamin B3</option>
-                                                    <option>METACRESOL</option>
-                                                    <option>PHENOL</option>
-                                                    <option>VITAMIN C</option>
-                                                    <option>ZINC</option>
-                                                    <option>KHAYA INVORENSIS</option>
-                                                    <option>POLYGNIUM BISTOTA</option>
-                                                    <option>GLYCEROL</option>
-                                                    <option>Dimethicone</option>
-                                                    <option>SIMETHICONE</option>
-                                                    <option>MAGNESIUM TRISILICATE</option>
-
-
+                                                    @foreach ($medicines as $medicine)
+                                                        <option value="{{$medicine->id}}">{{$medicine->name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -73,30 +51,9 @@
                                             <div class="form-group">
                                                 <label>Select All Medicine B</label>
                                                 <select class="form-control select" name="medicine_b[]" multiple>
-                                                    <option></option>
-                                                    <option>VITAMIN E</option>
-                                                    <option>VISCUM ALBUM</option>
-                                                    <option>Activated Dimethicone</option>
-                                                    <option>SODIUM HYDROXIDE</option>
-                                                    <option>VIT C</option>
-                                                    <option>VIT B2</option>
-                                                    <option>ASCORBIC ACID</option>
-                                                    <option> L-threonine</option>
-                                                    <option>Nicotinamide</option>
-                                                    <option>Vit B12</option>
-                                                    <option>EPO</option>
-                                                    <option>Vitamin B3</option>
-                                                    <option>METACRESOL</option>
-                                                    <option>PHENOL</option>
-                                                    <option>VITAMIN C</option>
-                                                    <option>ZINC</option>
-                                                    <option>KHAYA INVORENSIS</option>
-                                                    <option>POLYGNIUM BISTOTA</option>
-                                                    <option>GLYCEROL</option>
-                                                    <option>Dimethicone</option>
-                                                    <option>SIMETHICONE</option>
-                                                    <option>MAGNESIUM TRISILICATE</option>
-
+                                                    @foreach ($medicines as $medicin)
+                                                        <option value="{{$medicin->id}}">{{$medicin->name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -155,13 +112,13 @@
                                 </div>
                             </form>
                             
-                                <form action="{{route('admin.medicines.uploadrelationship')}}" method="POST" enctype="multipart/form-data">@csrf
+                                <form action="{{route('admin.api.interactions.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                     <div class="row my-3">
                                         <div class="col-6">
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label">Upload File</label>
                                                 <div class="col-lg-9">
-                                                    <input type="file" name="relationships" class="form-control" required accept=".xlsx,.xls">
+                                                    <input type="file" name="interactions" class="form-control" required accept=".xlsx,.xls">
                                                 </div>
                                             </div>
                                         </div>

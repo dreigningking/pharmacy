@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Batch;
 use App\Models\Medicine;
 use App\Models\Inventory;
+use App\Models\DrugCategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,11 +14,10 @@ class Drug extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','name','administation','manufacturer'];
-    protected $casts = ['contraindications'=> 'array','side_effects'=>'array'];
+    protected $fillable = ['id','name','dosage_form','manufacturer'];
             
     public function ingredients() {
-        return $this->belongsToMany(Medicine::class, 'ingredients');
+        return $this->belongsToMany(Medicine::class, 'ingredients')->withPivot(['size']);
     }
 
     public function inventories(){
@@ -30,6 +30,10 @@ class Drug extends Model
 
     public function pharmacyInventory($pharmacy_id){
         return $this->inventories->where('pharmacy_id',$pharmacy_id)->first();
+    }
+
+    public function category(){
+        return $this->belongsTo(DrugCategory::class,'category_id')->withDefault();
     }
 
 }

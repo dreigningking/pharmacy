@@ -64,6 +64,6 @@ Route::middleware('auth')->group(function(){
         Route::post('staff/destroy',[App\Http\Controllers\GeneralControllers\UserController::class, 'destroystaff'])->name("staff.destroy");
     });
 
-    include('pharmacy.php');
+    // include('pharmacy.php');
     include('admin.php');
 });

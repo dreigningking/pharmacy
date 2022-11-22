@@ -44,17 +44,20 @@ class MedicinesImport implements ToModel, WithUpserts, WithBatchInserts, WithChu
     //             ]);
     //     }
     // }
-    public function uniqueBy()
-    {
+    public function uniqueBy(){
         return 'name';
     }
     public function model(array $row)
     {
         return new Medicine([
             'name'     => $row['name'],
-            'curables'    => explode('|',$row['curables']),
-            'contraindications' => explode('|',$row['contraindications']),
             'side_effects' => explode('|',$row['side_effects']),
+            'contraindications' => explode('|',$row['contraindications']),
+            'pregnancy_status'    => $row['pregnancy_status'],
+            'lactation_status'    => $row['lactation_status'],
+            'alternatives'    => explode('|',$row['alternatives']),
+            'medication_counsel'    => explode('|',$row['medication_counsel']),
+            
         ]);
     }
     public function batchSize(): int
@@ -69,9 +72,13 @@ class MedicinesImport implements ToModel, WithUpserts, WithBatchInserts, WithChu
     {
         return [
              '*.name' => 'required',
-             '*.curables' => 'required',
+             '*.side_effect' => 'nullable',
              '*.contraindications' => 'nullable',
-             '*.side_effect' => 'nullable'
+             '*.pregnancy_status' => 'required',
+             '*.lactation_status' => 'required',
+             '*.alternatives' => 'nullable',
+             '*.medication_counsel' => 'nullable',
+
         ];
     }
 }

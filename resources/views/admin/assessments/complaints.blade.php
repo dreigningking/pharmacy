@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-header">
                     <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
-                    <a href="{{route('admin.assessments.uploads')}}" class="btn btn-info"> Upload</a>
+                    <a href="{{route('admin.assessments.upload_instructions')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -41,63 +41,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Headache
-                                    </td>
-                                    
-                                    <td class=""> Active </td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Stomach Upset
-                                    </td>
-                                    
-                                    <td class=""> Active </td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                            <label class="custom-control-label" for="customControlValidation1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="d-flex align-items-center">
-                                        Vomiting
-                                    </td>
-                                    
-                                    <td class=""> Active </td>
-                                    <td class=""> 
-                                        <div class="d-flex">
-                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @forelse ($complaints as $complaint)
+                                    <tr>
+                                        <td class="text-center">
+                                            <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                                <label class="custom-control-label" for="customControlValidation1"></label>
+                                            </div>
+                                        </td>
+                                        <td class="d-flex align-items-center">
+                                            {{$comlaint->description}}
+                                        </td>
+                                        
+                                        <td class=""> Active </td>
+                                        <td class=""> 
+                                            <div class="d-flex">
+                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                            </div>
+                                        </td>
+                                    </tr>    
+                                @empty
+                                    <tr>
+                                        <td colspan="4"> No Complaint</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -121,18 +89,24 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <form action="#" class="needs-validation" novalidate>
+                            <form action="{{route('admin.assessments.complaints.store')}}" method="POST">@csrf
                                 <div class="form-group my-3">
                                     <label for="sel1">Describe Complaints:</label>
-                                    <textarea class="form-control" rows="4" name="name" placeholder="" ></textarea>
+                                    <textarea class="form-control" rows="4" name="description" placeholder="" ></textarea>
                                 </div>
-                                
+                                <div class="form-group my-3">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" name="status">
+                                        <option value="1">ON</option>
+                                        <option value="0">OFF</option>
+                                    </select>
+                                </div>
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="">
-                                        <a href="#" class="btn btn-success">Save</a>
+                                        <button type="submit" class="btn btn-success">Save</button>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="btn btn-danger">Cancel</a>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
                                     </div>
                                 </div>
                                 

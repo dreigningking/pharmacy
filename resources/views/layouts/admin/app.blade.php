@@ -187,12 +187,13 @@
 								<a href="{{route('admin.pharmacies')}}"><i class="fe fe-building"></i> <span>Pharmacies</span></a>
 							</li>
 							<li @if(Route::is('admin.medicines')) class="submenu" @endif>
-								<a href="#"><i class="fe fe-pill"></i> <span> Drug Management</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fe fe-building"></i> <span> Drug Management</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{route('admin.apis')}}">APIs</a></li>
-									<li><a href="{{route('admin.interactions')}}">Interactions</a></li>
-									<li><a href="{{route('admin.drugs')}}">Drug Formulations</a></li>
+									<li><a href="{{route('admin.api.interactions')}}">Interactions</a></li>
 									<li><a href="{{route('admin.categories')}}">Drug Categories</a></li>
+									<li><a href="{{route('admin.drugs')}}">Drug Formulations</a></li>
+									
 								</ul>
 							</li>
 							<li class="submenu">
@@ -204,8 +205,8 @@
 									<li><a href="{{route('admin.assessments.family_social_questions')}}">Family & Social History Questions</a></li>
 									<li><a href="{{route('admin.assessments.vitals')}}">Vitals</a></li>
 									<li><a href="{{route('admin.assessments.system_review_questions')}}">System Review Questions</a></li>
-									<li><a href="{{route('admin.assessments.diagnosis')}}">Diagnosis</a></li>
-									<li><a href="{{route('admin.assessments.laboratory')}}">Laboratory Tests</a></li>
+									{{-- <li><a href="{{route('admin.assessments.diagnoses')}}">Diagnoses</a></li> --}}
+									<li><a href="{{route('admin.assessments.labtests')}}">Laboratory Tests</a></li>
 									<li><a href="{{route('admin.assessments.advises')}}">Advises</a></li>
 								</ul>
 							</li>
@@ -235,12 +236,12 @@
 							<li @if(Route::is('admin.support.inbox')) class="active" @endif> 
 								<a href="{{route('admin.support.inbox')}}"><i class="fe fe-comments"></i> <span>Support</span></a>
 							</li>
-							<li class="submenu">
+							{{-- <li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="#">Invoice Reports</a></li>
 								</ul>
-							</li>
+							</li> --}}
 						</ul>
 					</div>
                 </div>
