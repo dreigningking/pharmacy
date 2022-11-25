@@ -24,9 +24,10 @@ Route::post('invitation/submit', [App\Http\Controllers\WebControllers\HomeContro
 Route::get('pricing',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'] )->name('pricing');
 
 Auth::routes();
+Route::view('change_password','auth.forcepassword')->name('forcepassword');
+Route::post('change_password',[App\Http\Controllers\Auth\LoginController::class, 'forcepassword'] )->name('forcepassword');
 
-
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth','forcepassword'])->group(function(){
     //common to all users
     
     Route::get('setup',[App\Http\Controllers\GeneralControllers\PharmacyController::class, 'create'])->name('setup');
@@ -64,6 +65,6 @@ Route::middleware('auth')->group(function(){
         Route::post('staff/destroy',[App\Http\Controllers\GeneralControllers\UserController::class, 'destroystaff'])->name("staff.destroy");
     });
 
-    // include('pharmacy.php');
+    include('pharmacy.php');
     include('admin.php');
 });

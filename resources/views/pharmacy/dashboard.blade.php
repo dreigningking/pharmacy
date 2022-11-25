@@ -23,8 +23,78 @@
 
 <!-- Page Content -->
 <div class="content">
-
-    <div class="container-fluid cont">
+    <section class="section section-features">
+        <div class="container-fluid">
+           <div class="row">
+                <div class="col-md-5 features-img">
+                    <img src="{{asset('assets/img/pharmacies/1.jpg')}}" class="img-fluid" alt="Feature">
+                </div>
+                <div class="col-md-7">
+                    <div class="section-header">	
+                        <h2 class="mt-2">Availabe Modules</h2>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+                    </div>	
+                    <div class="row">
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center col-md-3 mb-2">
+                            <a href="#">
+                                <img src="{{asset('assets/img/features/feature-03.jpg')}}" class="img-fluid" alt="Feature">
+                                <p>Patients</p>
+                            </a>
+                        </div>
+                        <div class="feature-item text-center col-md-3 mb-2">
+                            <a href="#">
+                                <img src="{{asset('assets/img/features/feature-05.jpg')}}" class="img-fluid" alt="Feature">
+                                <p>Assessments</p>
+                            </a>
+                        </div>
+                        <div class="feature-item text-center col-md-3 mb-2">
+                            <a href="#">
+                                <img src="{{asset('assets/img/features/feature-01.jpg')}}" class="img-fluid" alt="Feature">
+                                <p>Sales</p>
+                            </a>
+                        </div>
+                        <!-- /Slider Item -->
+                        
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center col-md-3 mb-2">
+                            <a href="#">
+                                <img src="{{asset('assets/img/features/feature-02.jpg')}}" class="img-fluid" alt="Feature">
+                                <p>Analytics</p>
+                            </a>
+                            
+                        </div>
+                        <!-- /Slider Item -->
+                        
+                        <!-- Slider Item -->
+                        
+                        <!-- /Slider Item -->
+                        
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center col-md-3 mb-2">
+                            <a href="#">
+                                <img src="{{asset('assets/img/features/feature-04.jpg')}}" class="img-fluid" alt="Feature">
+                                <p>Prescriptions</p>
+                            </a>
+                        </div>
+                        <!-- /Slider Item -->
+                        
+                        <!-- Slider Item -->
+                        
+                        <!-- /Slider Item -->
+                        
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center col-md-3 mb-2">
+                            <img src="{{asset('assets/img/features/feature-06.jpg')}}" class="img-fluid" alt="Feature">
+                            <p>Inventory</p>
+                        </div>
+                        <!-- /Slider Item -->
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>	
+    {{-- <div class="container-fluid cont">
 
         <div class="row">
             @include('pharmacy.sidebar')
@@ -39,7 +109,7 @@
                                         <div class="dash-widget dct-border-rht">
                                             <div class="circle-bar circle-bar1">
                                                 <div class="circle-graph1" data-percent="75">
-                                                    <img src="{{asset('assets/img/icon-01.png')}}" class="img-fluid"
+                                                    <img src="{{asset('assets/img/icon-01.png')}}')}}" class="img-fluid"
                                                         alt="patient">
                                                 </div>
                                             </div>
@@ -55,7 +125,7 @@
                                         <div class="dash-widget dct-border-rht">
                                             <div class="circle-bar circle-bar2">
                                                 <div class="circle-graph2" data-percent="65">
-                                                    <img src="{{asset('assets/img/icon-02.png')}}" class="img-fluid"
+                                                    <img src="{{asset('assets/img/icon-02.png')}}')}}" class="img-fluid"
                                                         alt="Patient">
                                                 </div>
                                             </div>
@@ -71,7 +141,7 @@
                                         <div class="dash-widget">
                                             <div class="circle-bar circle-bar3">
                                                 <div class="circle-graph3" data-percent="50">
-                                                    <img src="{{asset('assets/img/icon-03.png')}}" class="img-fluid"
+                                                    <img src="{{asset('assets/img/icon-03.png')}}')}}" class="img-fluid"
                                                         alt="Patient">
                                                 </div>
                                             </div>
@@ -218,7 +288,7 @@
                                             <tr>
                                                 <td>
                                                     <!-- <h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg')}}" alt="User Image"></a>
 															<a href="profile.html">Carl Kelly</a>
 														</h2> -->
                                                     03-02-2022
@@ -348,7 +418,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Richard Wilson
                                                                         <span>#PT0016</span></a>
@@ -381,7 +451,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient1.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient1.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Charlene Reed
                                                                         <span>#PT0001</span></a>
@@ -414,7 +484,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient2.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient2.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Travis Trimble
                                                                         <span>#PT0002</span></a>
@@ -447,7 +517,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient3.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient3.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Carl Kelly
                                                                         <span>#PT0003</span></a>
@@ -480,7 +550,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient4.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient4.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Michelle Fairfax
                                                                         <span>#PT0004</span></a>
@@ -507,7 +577,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient5.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient5.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Gina Moore
                                                                         <span>#PT0005</span></a>
@@ -565,7 +635,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient6.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient6.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Elsie Gilley
                                                                         <span>#PT0006</span></a>
@@ -600,7 +670,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient7.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient7.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Joan Gardner
                                                                         <span>#PT0006</span></a>
@@ -635,7 +705,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient8.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient8.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Daniel Griffing
                                                                         <span>#PT0007</span></a>
@@ -670,7 +740,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient9.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient9.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Walter Roberson
                                                                         <span>#PT0008</span></a>
@@ -705,7 +775,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient10.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient10.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Robert Rhodes
                                                                         <span>#PT0010</span></a>
@@ -740,7 +810,7 @@
                                                                     <a href="patient-profile.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                                             class="avatar-img rounded-circle"
-                                                                            src="{{asset('assets/img/patients/patient11.jpg')}}"
+                                                                            src="{{asset('assets/img/patients/patient11.jpg')}}')}}"
                                                                             alt="User Image"></a>
                                                                     <a href="patient-profile.html">Harry Williams
                                                                         <span>#PT0011</span></a>
@@ -785,16 +855,16 @@
             </div>
         </div>
 
-    </div>
+    </div> --}}
 
 </div>
 
 <!-- /Page Content -->
 @endsection
 @push('scripts')
-<script src="{{asset('assets/js/jqueryy.js')}}"></script>
+{{-- <script src="{{asset('assets/js/jqueryy.js')}}"></script> --}}
 <script src="{{asset('assets/js/jqueryui.min.js')}}"></script>
-<script>
+{{-- <script>
 $(document).ready(function() {
 
     var $content, $modal, $apnData, $modalCon;
@@ -1059,9 +1129,9 @@ $(document).ready(function() {
 
 });
 </script>
-@endpush
+@endpush --}}
 
-@section('modals')
+{{-- @section('modals')
     <!-- Sales Modal -->
 <div class="modal fade custom-modal dash-modal" id="sales" role="dialog" data-backdrop="false">
     <div class="modal-dialog modal-dialog-centered ">
@@ -1163,4 +1233,4 @@ $(document).ready(function() {
 </div>
 
 <!-- Sales Modal -->
-@endsection
+@endsection --}}

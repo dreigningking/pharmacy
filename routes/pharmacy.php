@@ -1,10 +1,10 @@
 <?php
-
-Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/{pharmacy}'], function () {
+// 'middleware'=>['pharmacy'] ,
+Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
         
     Route::get('checkout/{plan}',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
     
-    Route::group(['middleware'=>['subscription']], function () {
+    // Route::group(['middleware'=>['subscription']], function () {
         Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
         Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
         Route::get('staff', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'staff'])->name('staff');
@@ -63,5 +63,5 @@ Route::group(['as'=>'pharmacy.','middleware'=>['pharmacy'] ,'prefix'=>'pharmacy/
         Route::post('transfer/save_to_inventory',[App\Http\Controllers\GeneralControllers\TransferController::class, 'save_to_inventory'])->name('transfer.save_to_inventory');
         Route::post('transfer/delete',[App\Http\Controllers\GeneralControllers\TransferController::class, 'delete'])->name('transfer.delete');
 
-    });
+    // });
 });

@@ -82,6 +82,7 @@ class RegisterController extends Controller
             'country_id' => $info['country_id'], 
             'state_id' => $info['state_id'], 
             'city_id' => $info['city_id'], 
+            'role_id' => 2, 
             'password' => Hash::make($data['password']),
         ]);
     }

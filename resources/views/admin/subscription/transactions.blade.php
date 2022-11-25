@@ -31,6 +31,7 @@
                                     <th>Date</th>
                                     <th>Amount</th>
                                     <th>User</th>
+                                    <th>Purpose</th>
                                     <th>Medium</th>
                                     <th>Action</th>
 
@@ -39,7 +40,7 @@
                             <tbody>
                                 <tr>
                                     
-                                    <td> 15/12/2022</td>
+                                    <td> 15/12/2022 06:38 PM</td>
                                     
                                     <td> $31.99  </td>
                                     <td>
@@ -48,6 +49,29 @@
                                             <a href="profile.html">Dr. Ruby Perrin</a>
                                         </h2>
                                     </td>
+                                    <td>Subscription</td>
+                                    <td>Card</td>
+                                    <td class="">
+                                        <div class="d-flex">
+                                            {{-- <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a> --}}
+                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View Receipt </a>
+                                            {{-- <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a> --}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    
+                                    <td> 15/12/2022 19:45 PM</td>
+                                    
+                                    <td> $31.99  </td>
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image"></a>
+                                            <a href="profile.html">Dr. Ruby Perrin</a>
+                                        </h2>
+                                    </td>
+                                    <td>SMS Units</td>
                                     <td>Card</td>
                                     <td class="">
                                         <div class="d-flex">
@@ -59,7 +83,7 @@
                                 </tr>
                                 <tr>
                                     
-                                    <td> 15/12/2022</td>
+                                    <td> 15/12/2022 18:02 PM</td>
                                     
                                     <td> $31.99  </td>
                                     <td>
@@ -68,46 +92,7 @@
                                             <a href="profile.html">Dr. Ruby Perrin</a>
                                         </h2>
                                     </td>
-                                    <td>Card</td>
-                                    <td class="">
-                                        <div class="d-flex">
-                                            {{-- <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a> --}}
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View Receipt </a>
-                                            {{-- <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a> --}}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    
-                                    <td> 15/12/2022</td>
-                                    
-                                    <td> $31.99  </td>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Ruby Perrin</a>
-                                        </h2>
-                                    </td>
-                                    <td>Card</td>
-                                    <td class="">
-                                        <div class="d-flex">
-                                            {{-- <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a> --}}
-                                            <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view"> <i class="fe fe-eye"></i> View Receipt </a>
-                                            {{-- <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a> --}}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    
-                                    <td> 15/12/2022</td>
-                                    
-                                    <td> $31.99  </td>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Ruby Perrin</a>
-                                        </h2>
-                                    </td>
+                                    <td> Subscription </td>
                                     <td> USSD </td>
                                     <td class="">
                                         <div class="d-flex">

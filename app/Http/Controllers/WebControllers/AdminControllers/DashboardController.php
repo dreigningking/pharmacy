@@ -15,6 +15,7 @@ class DashboardController extends Controller
 {
     public function index(){
         $user = Auth::user();
+        // dd($user);
         $pharmacies = Pharmacy::all();
         $patients = Patient::all();
         $drugs = Drug::all();

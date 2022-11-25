@@ -32,15 +32,15 @@
                             <span>Appointments</span>
                         </a>
                     </li> -->
-                    @usercan($pharmacy,'patient')
+                    {{-- @usercan($pharmacy,'patient') --}}
                     <li @if(Route::is('pharmacy.patient.list')) class="active" @endif>
                         <a href="{{route('pharmacy.patient.list',$pharmacy)}}">
                             <i class="fas fa-user-injured"></i>
                             <span>Patients</span>
                         </a>
                     </li>
-                    @endusercan
-                    @usercan($pharmacy,'assessment')
+                    {{-- @endusercan
+                    @usercan($pharmacy,'assessment') --}}
                     <li @if(Route::is('pharmacy.assessment.list')) class="active" @endif>
                         <a href="{{route('pharmacy.assessment.list',$pharmacy)}}">
 
@@ -48,14 +48,14 @@
                             <span>Assessments</span>
                         </a>
                     </li>
-                    @endusercan
+                    {{-- @endusercan --}}
                      {{-- <li @if(Route::is('medicine')) class="active" @endif>
                         <a href="{{route('medicine')}}">
                             <i class="fas fa-pills"></i>
                             <span>Medicine</span>
                         </a>
                     </li> --}}
-                    @usercan($pharmacy,'inventory')
+                    {{-- @usercan($pharmacy,'inventory') --}}
                     <li @if(Route::is('pharmacy.shelf')) class="active" @endif>
                         <a href="{{route('pharmacy.shelf',$pharmacy)}}">
                             <i class="fas fa-archive"></i>
@@ -68,37 +68,37 @@
                             <span>Supplies</span>
                         </a>
                     </li>
-                    @if(Auth::user()->pharmacies->count() > 1)
+                    {{-- @if(Auth::user()->pharmacies->count() > 1) --}}
                     <li @if(Route::is('pharmacy.transfer.list')) class="active" @endif>
                         <a href="{{route('pharmacy.transfer.list',$pharmacy)}}">
                             <i class="fas fa-share"></i>
                             <span>Transfers</span>
                         </a>
                     </li>
-                    @endif
+                    {{-- @endif --}}
                     <li @if(Route::is('pharmacy.inventory.list')) class="active" @endif>
                         <a href="{{route('pharmacy.inventory.list',$pharmacy)}}">
                             <i class="fas fa-boxes"></i>
                             <span>Inventory</span>
                         </a>
                     </li>
-                    @endusercan
-                    @usercan($pharmacy,'sales')
+                    {{-- @endusercan --}}
+                    {{-- @usercan($pharmacy,'sales') --}}
                     <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
                         <a href="{{route('pharmacy.transactions',$pharmacy)}}">
                             <i class="fas fa-chart-bar"></i>
                             <span>Sales</span>
                         </a>
                     </li>
-                    @endusercan
-                    @usercan($pharmacy,'pharmacy')
+                    {{-- @endusercan --}}
+                    {{-- @usercan($pharmacy,'pharmacy') --}}
                     <li>
                         <a href="{{route('pharmacy.settings',$pharmacy)}}">
                             <i class="fas fa-cog"></i>
                             <span>Settings</span>
                         </a>
                     </li>
-                    @endusercan
+                    {{-- @endusercan --}}
                 </ul>
             </nav>
         </div>

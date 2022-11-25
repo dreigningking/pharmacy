@@ -24,23 +24,23 @@
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#director">Admin</a>
+                        <a class="nav-link active" data-toggle="tab" href="#subadmin">Sub Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#manager_tab">Finance</a>
+                        <a class="nav-link" data-toggle="tab" href="#finance_tab">Finance</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#pharmacist_tab">Operations</a>
+                        <a class="nav-link" data-toggle="tab" href="#operations_tab">Operations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#sales_tab">Customer Care</a>
+                        <a class="nav-link" data-toggle="tab" href="#customer_tab">Customer Care</a>
                     </li>
 
                 </ul>
             </div>
             <div class="tab-content profile-tab-cont">
                 
-                <div class="tab-pane fade show active" id="director">
+                <div class="tab-pane fade show active" id="subadmin">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -56,27 +56,27 @@
                                                 <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
-                                            <input type="hidden" name="role" value="director">
+                                        <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
+                                            <input type="hidden" name="role" value="subadmin">
                                             @foreach($permissions as $permission)
                                                 <div class="col-md-12 d-flex">
 
                                                     <div class="form-group w-100 d-flex">
                                                         <label for="usr" class="col-5">{{$permission->description}}</label>
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
-                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
-                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
                                                         
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit"  
-                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new"  
-                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="delete"  
-                                                            @if($roles->where('name','director')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -93,7 +93,7 @@
 
                     </div>
                 </div>
-                <div class="tab-pane fade show" id="manager_tab">
+                <div class="tab-pane fade show" id="finance_tab">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -109,27 +109,28 @@
                                                 <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        {{-- manager --}}
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                        {{-- finance --}}
+                                        <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
+                                            <input type="hidden" name="role" value="finance">
                                             @foreach($permissions as $permission)
                                                 <div class="col-md-12 d-flex">
 
                                                     <div class="form-group w-100 d-flex">
                                                         <label for="usr" class="col-5">{{$permission->description}}</label>
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
-                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','finance')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
-                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','finance')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
                                                         
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit" 
-                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','finance')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new" 
-                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','finance')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="remove" 
-                                                            @if($roles->where('name','manager')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','finance')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -147,7 +148,7 @@
                     </div>
                 </div>
                 
-                <div class="tab-pane fade show" id="pharmacist_tab">
+                <div class="tab-pane fade show" id="operations_tab">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -163,27 +164,28 @@
                                                 <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        {{-- pharmacist --}}
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                        {{-- operations --}}
+                                        <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
+                                            <input type="hidden" name="role" value="operations">
                                             @foreach($permissions as $permission)
                                                 <div class="col-md-12 d-flex">
 
                                                     <div class="form-group w-100 d-flex">
                                                         <label for="usr" class="col-5">{{$permission->description}}</label>
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
-                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','operations')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
-                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','operations')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
                                                         
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit" 
-                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','operations')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new" 
-                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','operations')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="remove" 
-                                                            @if($roles->where('name','pharmacist')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','operations')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -201,7 +203,7 @@
                     </div>
 
                 </div>
-                <div class="tab-pane fade show" id="sales_tab">
+                <div class="tab-pane fade show" id="customer_tab">
 
                 
                     <div class="row">
@@ -219,27 +221,28 @@
                                                 <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        {{-- sales --}}
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                        {{-- customer --}}
+                                        <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
+                                            <input type="hidden" name="role" value="customer">
                                             @foreach($permissions as $permission)
                                                 <div class="col-md-12 d-flex">
 
                                                     <div class="form-group w-100 d-flex">
                                                         <label for="usr" class="col-5">{{$permission->description}}</label>
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
-                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','customer')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
-                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','customer')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
                                                         
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit" 
-                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','customer')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new" 
-                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','customer')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
 
                                                         <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="remove" 
-                                                            @if($roles->where('name','sales')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                            @if($roles->where('name','customer')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
                                                     </div>
                                                 </div>
                                             @endforeach

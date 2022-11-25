@@ -18,7 +18,7 @@ class PharmacyController extends Controller
 {
    
     public function index(Pharmacy $pharmacy){
-        $this->authorize('view', $pharmacy);
+        // $this->authorize('view', $pharmacy);
         $drugs= Drug::all();
         $patients= Patient::all();
         return view('pharmacy.dashboard',compact('pharmacy', 'drugs', 'patients'));

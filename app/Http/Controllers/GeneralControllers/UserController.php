@@ -36,7 +36,7 @@ class UserController extends Controller
         if($request->filled('state_id')) $user->state_id = $request->state_id;
         if($request->filled('city_id')) $user->city_id = $request->city_id;
         if ($request->hasfile('image')) {
-            Storage::delete($study->image);
+            Storage::delete($user->image);
             $image = time().'.jpg';
             $request->file('image')->storeAs('public/users/photo',$image);
             $user->image = $image;
@@ -126,20 +126,19 @@ class UserController extends Controller
     
 
     public function staff(){
-        $this->authorize('list', PharmacyUser::class);
         $user = Auth::user();
-        $roles = Role::where('name','!=','admin')->get();
+        $roles = Role::where('type','!=','admin')->get();
         // dd($roles->all());
         return view('user.staff',compact('user','roles'));
     }
 
     public function savestaff(Request $request){
-        $this->authorize('create', PharmacyUser::class);
         $pharmacy = Pharmacy::find($request->pharmacy_id);
-        $role = Role::where('id',$request->role_id)->first();
-        $user = User::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);
-        $pharmacy->users()->attach($user->id,['role_id'=> $role->id,'status'=> false]);
-        $user->notify(new InvitationNotification($pharmacy,$role->name));
+        $user = User::create(['email'=> $request->email,'name'=> $request->name,
+        'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,
+        'pharmacy_id'=> $pharmacy->id,'role_id'=> $request->role_id,'state_id'=> $pharmacy->state_id,
+        'city_id'=> $pharmacy->city_id,'require_password_change'=> true]);
+        $user->notify(new InvitationNotification($pharmacy));
         return redirect()->back();
     }
 
@@ -150,12 +149,7 @@ class UserController extends Controller
     public function destroystaff(Request $request)
     {
         // dd($request->all());
-        $pharmacyUser = PharmacyUser::where('pharmacy_id',$request->pharmacy_id)->where('user_id',$request->user_id)->first();
-        $this->authorize('delete', $pharmacyUser);
-        $pharmacy = Pharmacy::find($request->pharmacy_id);
-        if($pharmacy->users->count() > 1){
-            $pharmacy->users()->detach($user->id);
-        }
+        $pharmacyUser = User::where('pharmacy_id',$request->pharmacy_id)->where('user_id',$request->user_id)->delete();
         return redirect()->back();
     }
 

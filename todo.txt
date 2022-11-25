@@ -1,6 +1,13 @@
 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
 
-
+questions
+1. will admin be able to do manual subscription for PHARMACY
+2. turn on or off subscription
+3. turn on or off license
+4. which sms gateway to implement
+5. static permissions for admin roles
+6. static permissions for pharmacy roles
+7. static permissions for pharmacy roles
 
 
 USER DASHBOARD

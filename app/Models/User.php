@@ -20,7 +20,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes;
     
     protected $fillable = [
-        'name','email','password','country_id','state_id','city_id',
+        'name','email','password','pharmacy_id','role_id','admin','require_password_change','country_id','state_id','city_id',
     ];
 
     /**
@@ -72,12 +72,20 @@ class User extends Authenticatable
     }
 
     public function company(){
-        return $this->belongsToMany(Pharmacy::class,'pharmacy_users')->withPivot('role_id','status');
+        return $this->belongsTo(Pharmacy::class);
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function isRole($value){
+        return $this->role->name == $value;
     }
     
     public function isAnyRole($value){
         $roles = Role::whereIn('name',$value)->get()->pluck('id')->toArray();
-        return $this->company->whereIn('pivot.role_id', $roles)->isNotEmpty()? true:false;
+        return in_array($this->role_id,$roles);
     }
 
     public function messages(){

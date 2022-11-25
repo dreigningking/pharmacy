@@ -23,7 +23,7 @@ class CreatePermissionsTable extends Migration
         DB::table('permissions')->insert(array(
             array('id' => 1, 'name'=> 'role', 'description'=>'Role Management'),
             array('id' => 2, 'name'=> 'subscription', 'description'=>'Pharmacy Subscription'),
-            array('id' => 3, 'name'=> 'staff', 'description'=>'Staff Management'),
+            array('id' => 3, 'name'=> 'user', 'description'=>'User Management'),
             array('id' => 4, 'name'=> 'pharmacy', 'description'=>'Pharmacy Management'),
             array('id' => 5, 'name'=> 'supplier', 'description'=>'Pharmacy Suppliers'),
             array('id' => 6, 'name'=> 'inventory', 'description'=>'Pharmacy Inventory'),

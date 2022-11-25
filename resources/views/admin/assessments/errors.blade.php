@@ -51,8 +51,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Errors</h5>
-                                    <a class="btn btn-primary my-2" href="#">Add New</a>
-                                    <a class="btn btn-info my-2" href="#">Upload</a>
+                                    <a class="btn btn-primary my-2" href="#add_error" data-toggle="modal">Add New</a>
+                                    <a class="btn btn-info my-2" href="{{route('admin.assessments.upload_instructions')}}">Upload</a>
                                     <div class="table-responsive">
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>
@@ -74,14 +74,18 @@
                                                             <label class="custom-control-label" for="customControlValidation1"></label>
                                                         </div>
                                                     </td>
-                                                    <td> Wrong Dosage</td>
-                                                    <td> Prescription Error </td>
+                                                    <td> {{$eror->description}}</td>
+                                                    <td> {{$eror->type}} </td>
                                                     
-                                                    <td> Active </td>
+                                                    <td> @if($eror->status) Active  @else Inactive @endif  </td>
                                                     <td> 
                                                         <div class="d-flex">
-                                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit_error{{$eror->id}}"> <i class="fe fe-pencil"></i> Edit </a>
+                                                            <form id="delete_error{{$eror->id}}" action="{{route('admin.assessments.errors.manage')}}" method="POST">@csrf
+                                                                <input type="hidden" name="error_id" value="{{$eror->id}}">
+                                                                <input type="hidden" name="action" value="delete">
+                                                                <button type="button" class="btn btn-sm bg-danger-light mx-1 delete" id="{{$eror->id}}error"> <i class="fe fe-eye"></i> Delete </button>
+                                                            </form>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -102,8 +106,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- /Personal Details Tab -->
-                
                 <!-- Change Password Tab -->
                 <div id="password_tab" class="tab-pane fade">
                     <div class="row">
@@ -111,8 +113,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Interventions</h5>
-                                    <a class="btn btn-primary my-2" href="#">Add New</a>
-                                    <a class="btn btn-info my-2" href="#">Upload</a>
+                                    <a class="btn btn-primary my-2" href="#add_intervention" data-toggle="modal">Add New</a>
+                                    <a class="btn btn-info my-2" href="{{route('admin.assessments.upload_instructions')}}">Upload</a>
                                     <div class="table-responsive">
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>
@@ -137,11 +139,15 @@
                                                             {{$intervention->description}}
                                                         </td>
                                                         
-                                                        <td class=""> Active </td>
-                                                        <td class=""> 
+                                                        <td> @if($intervention->status) Active  @else Inactive @endif  </td>
+                                                        <td> 
                                                             <div class="d-flex">
-                                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit_intervention{{$intervention->id}}"> <i class="fe fe-pencil"></i> Edit </a>
+                                                                <form id="delete_intervention{{$intervention->id}}" action="{{route('admin.assessments.interventions.manage')}}" method="POST">@csrf
+                                                                    <input type="hidden" name="intervention_id" value="{{$intervention->id}}">
+                                                                    <input type="hidden" name="action" value="delete">
+                                                                    <button type="button" class="btn btn-sm bg-danger-light mx-1 delete" id="{{$intervention->id}}intervention"> <i class="fe fe-eye"></i> Delete </button>
+                                                                </form>
                                                             </div>
                                                         </td>
                                                     </tr>    
@@ -166,8 +172,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Intervention Outcomes</h5>
-                                    <a class="btn btn-primary my-2" href="#">Add New</a>
-                                    <a class="btn btn-info my-2" href="#">Upload</a>
+                                    <a class="btn btn-primary my-2" href="#add_outcome" data-toggle="modal" >Add New</a>
+                                    <a class="btn btn-info my-2" href="{{route('admin.assessments.upload_instructions')}}">Upload</a>
                                     <div class="table-responsive">
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>
@@ -195,8 +201,12 @@
                                                         <td class=""> Active </td>
                                                         <td class=""> 
                                                             <div class="d-flex">
-                                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit_outcome{{$outcome->id}}"> <i class="fe fe-pencil"></i> Edit </a>
+                                                                <form id="delete_outcome{{$outcome->id}}" action="{{route('admin.assessments.outcomes.manage')}}" method="POST">@csrf
+                                                                    <input type="hidden" name="outcome_id" value="{{$outcome->id}}">
+                                                                    <input type="hidden" name="action" value="delete">
+                                                                    <button type="button" class="btn btn-sm bg-danger-light mx-1 delete" id="{{$outcome->id}}outcome"> <i class="fe fe-eye"></i> Delete </button>
+                                                                </form>
                                                             </div>
                                                         </td>
                                                     </tr>    
@@ -221,8 +231,313 @@
 
 </div>
 @endsection
+@section('modals')
+
+    <div class="modal fade custom-modal add-modal" id="add_error">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="{{route('admin.assessments.errors.manage')}}" method="POST">@csrf
+                                <div class="form-group my-3">
+                                    <label for="sel1">Describe Error:</label>
+                                    <textarea class="form-control" rows="4" name="description" placeholder="" required></textarea>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Type:</label>
+                                    <select class="form-control" name="type" required>
+                                        <option value="prescription">PRESCRIPTION</option>
+                                        <option value="administration">ADMINISTRATION</option>
+                                    </select>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" name="status" required>
+                                        <option value="1">ON</option>
+                                        <option value="0">OFF</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <button type="submit" name="action" value="create" class="btn btn-success">Save</button>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade custom-modal add-modal" id="add_intervention">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Intervention</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="{{route('admin.assessments.interventions.manage')}}" method="POST">@csrf
+                                <div class="form-group my-3">
+                                    <label for="sel1">Describe Intervention:</label>
+                                    <textarea class="form-control" rows="4" name="description" required></textarea>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" name="status" required>
+                                        <option value="1">ON</option>
+                                        <option value="0">OFF</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <button type="submit" name="action" value="create" class="btn btn-success">Save</button>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade custom-modal add-modal" id="add_outcome">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Intervention Outcome</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="{{route('admin.assessments.outcomes.manage')}}" method="POST">@csrf
+                                <div class="form-group my-3">
+                                    <label for="sel1">Describe Outcome:</label>
+                                    <textarea class="form-control" rows="4" name="description" required></textarea>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" name="status" required>
+                                        <option value="1">ON</option>
+                                        <option value="0">OFF</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <button type="submit" name="action" value="create" class="btn btn-success">Save</button>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @foreach ($erors as $eror)
+    <div class="modal fade custom-modal add-modal" id="edit_error{{$eror->id}}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="{{route('admin.assessments.errors.manage')}}" method="POST">@csrf
+                                <input type="hidden" name="error_id" value="{{$eror->id}}">
+                                <div class="form-group my-3">
+                                    <label for="sel1">Describe Errors:</label>
+                                    <textarea class="form-control" rows="4" name="description" required>{{$eror->description}}</textarea>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Type:</label>
+                                    <select class="form-control" name="type" required>
+                                        <option value="prescription">PRESCRIPTION</option>
+                                        <option value="administration">ADMINISTRATION</option>
+                                    </select>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" name="status" required>
+                                        <option value="1" @if($eror->status) selected @endif>ON</option>
+                                        <option value="0" @if(!$eror->status) selected @endif>OFF</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <button type="submit" name="action" value="update" class="btn btn-success">Save</button>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                    </div>
+                                </div>
+                                
+                                {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    @foreach ($interventions as $intervention)
+    <div class="modal fade custom-modal add-modal" id="edit_intervention{{$intervention->id}}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Intervention</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="{{route('admin.assessments.interventions.manage')}}" method="POST">@csrf
+                                <input type="hidden" name="intervention_id" value="{{$intervention->id}}">
+                                <div class="form-group my-3">
+                                    <label for="sel1">Describe Intervention:</label>
+                                    <textarea class="form-control" rows="4" name="description" required>{{$intervention->description}}</textarea>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" name="status" required>
+                                        <option value="1" @if($intervention->status) selected @endif>ON</option>
+                                        <option value="0" @if(!$intervention->status) selected @endif>OFF</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <button type="submit" name="action" value="update" class="btn btn-success">Save</button>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    @foreach ($outcomes as $outcome)
+    <div class="modal fade custom-modal add-modal" id="edit_outcome{{$outcome->id}}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Intervention Outcome</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="{{route('admin.assessments.outcomes.manage')}}" method="POST">@csrf
+                                <input type="hidden" name="outcome_id" value="{{$outcome->id}}">
+                                <div class="form-group my-3">
+                                    <label for="sel1">Describe Errors:</label>
+                                    <textarea class="form-control" rows="4" name="description" required>{{$outcome->description}}</textarea>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" name="status" required>
+                                        <option value="1" @if($outcome->status) selected @endif>ON</option>
+                                        <option value="0" @if(!$outcome->status) selected @endif>OFF</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="d-flex my-2 justify-content-between">
+                                    <div class="">
+                                        <button type="submit" name="action" value="update" class="btn btn-success">Save</button>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    <div class="modal fade custom-modal add-modal" id="delete">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Are you sure you want to delete this item</p>
+                            <button class="btn btn-danger" id="confirmdelete">Yes, I'm Sure</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
 @push('scripts')
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
-
+<script>
+    let item,type;
+    $('.delete').click(function(){
+        $('#delete').modal();
+        item = parseInt($(this).attr('id'));
+        type = $(this).attr('id').replace(/[0-9]/g, '')
+    })
+    $('#confirmdelete').click(function(){
+        $('#delete_'+type+item).submit();
+    })
+</script>
 @endpush

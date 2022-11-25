@@ -143,7 +143,7 @@
 					<!-- User Menu -->
 					<li class="nav-item dropdown has-arrow">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-							<span class="user-img"><img class="rounded-circle" src="{{asset('adminassets/img/profiles/avatar-01.jpg')}}" width="31" alt="Ryan Taylor"></span>
+							<span class="user-img"><img class="rounded-circle" src="{{asset('adminassets/img/profiles/avatar-01.jpg')}}" width="31" alt="{{auth()->user()->name}}"></span>
 						</a>
 						<div class="dropdown-menu">
 							<div class="user-header">
@@ -151,8 +151,8 @@
 									<img src="{{asset('adminassets/img/profiles/avatar-01.jpg')}}" alt="User Image" class="avatar-img rounded-circle">
 								</div>
 								<div class="user-text">
-									<h6>Ryan Taylor</h6>
-									<p class="text-muted mb-0">Administrator</p>
+									<h6>{{auth()->user()->name}}</h6>
+									<p class="text-muted mb-0">{{auth()->user()->role->name}}</p>
 								</div>
 							</div>
 							<a class="dropdown-item" href="profile.html">My Profile</a>
@@ -183,9 +183,12 @@
 							<li @if(Route::is('admin.dashboard')) class="active" @endif> 
 								<a href="{{route('admin.dashboard')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
+							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('pharmacy'))
 							<li @if(Route::is('admin.pharmacies')) class="active" @endif> 
 								<a href="{{route('admin.pharmacies')}}"><i class="fe fe-building"></i> <span>Pharmacies</span></a>
 							</li>
+							@endif
+							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('medicine'))
 							<li @if(Route::is('admin.medicines')) class="submenu" @endif>
 								<a href="#"><i class="fe fe-building"></i> <span> Drug Management</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -193,9 +196,12 @@
 									<li><a href="{{route('admin.api.interactions')}}">Interactions</a></li>
 									<li><a href="{{route('admin.categories')}}">Drug Categories</a></li>
 									<li><a href="{{route('admin.drugs')}}">Drug Formulations</a></li>
+									<li><a href="{{route('admin.drugs.submissions')}}">Submissions</a></li>
 									
 								</ul>
 							</li>
+							@endif
+							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('assessment_settings'))
 							<li class="submenu">
 								<a href="#"><i class="fe fe-cloud"></i> <span> Assessment Settings</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -205,20 +211,24 @@
 									<li><a href="{{route('admin.assessments.family_social_questions')}}">Family & Social History Questions</a></li>
 									<li><a href="{{route('admin.assessments.vitals')}}">Vitals</a></li>
 									<li><a href="{{route('admin.assessments.system_review_questions')}}">System Review Questions</a></li>
-									{{-- <li><a href="{{route('admin.assessments.diagnoses')}}">Diagnoses</a></li> --}}
 									<li><a href="{{route('admin.assessments.labtests')}}">Laboratory Tests</a></li>
-									<li><a href="{{route('admin.assessments.advises')}}">Advises</a></li>
+									<li><a href="{{route('admin.assessments.advices')}}">Advices</a></li>
 								</ul>
 							</li>
+							@endif
+							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('subscription'))
 							<li class="submenu">
 								<a href="#"><i class="fe fe-tablet"></i> <span> Subscriptions </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{route('admin.subscriptions')}}">Licenses</a></li>
-									<li><a href="{{route('admin.subscriptions.sms')}}">SMS</a></li>
+									<li><a href="{{route('admin.subscriptions.subscribers')}}">Subscribers</a></li>
+									<li><a href="{{route('admin.subscriptions.licenses')}}">Licenses</a></li>
 									<li><a href="{{route('admin.subscriptions.transactions')}}">Transactions</a></li>
+									<li><a href="{{route('admin.subscriptions.sms')}}">SMS</a></li>
+									
 								</ul>
 							</li>
-							
+							@endif
+							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('role'))
 							<li class="submenu">
 								<a href="#"><i class="fe fe-vector"></i> <span> Roles </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -226,16 +236,22 @@
 									<li><a href="{{route('admin.roles.pharmacy')}}">Pharmacies</a></li>
 								</ul>
 							</li>
-							
+							@endif
+							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('system_settings'))
 							<li @if(Route::is('admin.settings')) class="active" @endif> 
 								<a href="{{route('admin.settings')}}"><i class="fe fe-gear"></i> <span>Settings</span></a>
 							</li>
+							@endif
+							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('user'))
 							<li @if(Route::is('admin.users')) class="active" @endif> 
-								<a href="{{route('admin.users')}}"><i class="fe fe-user-plus"></i> <span>Admin Users</span></a>
+								<a href="{{route('admin.users.list')}}"><i class="fe fe-user-plus"></i> <span>Admin Users</span></a>
 							</li>
+							@endif
+							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('support'))
 							<li @if(Route::is('admin.support.inbox')) class="active" @endif> 
 								<a href="{{route('admin.support.inbox')}}"><i class="fe fe-comments"></i> <span>Support</span></a>
 							</li>
+							@endif
 							{{-- <li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">

@@ -236,7 +236,7 @@ Version      : 1.0
 		$('.doctor-slider').slick({
 			dots: false,
 			autoplay:false,
-			infinite: true,
+			infinite: false,
 			variableWidth: true,
 		});
 	}

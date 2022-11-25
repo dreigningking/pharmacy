@@ -93,12 +93,12 @@
                                                         </tr>
                                                     </table>
                                                     <div class="my-3">
-                                                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                                                        <form class="row" action="{{route('admin.assessments.complaints.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="col-6">
                                                                 <div class="form-group row no-gutters">
                                                                     <label class="col-lg-3 col-form-label">Upload File</label>
                                                                     <div class="col-lg-9">
-                                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                                        <input type="file" name="complaints" class="form-control" required accept=".xlsx,.xls">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -148,12 +148,12 @@
                                                         </tr>
                                                     </table>
                                                     <div class="my-3">
-                                                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                                                        <form class="row" action="{{route('admin.assessments.conditions.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="col-6">
                                                                 <div class="form-group row no-gutters">
                                                                     <label class="col-lg-3 col-form-label">Upload File</label>
                                                                     <div class="col-lg-9">
-                                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                                        <input type="file" name="conditions" class="form-control" required accept=".xlsx,.xls">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -209,12 +209,12 @@
                                                         </tr>
                                                     </table>
                                                     <div class="my-3">
-                                                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                                                        <form class="row" action="{{route('admin.assessments.errors_intervention_outcome.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="col-6">
                                                                 <div class="form-group row no-gutters">
                                                                     <label class="col-lg-3 col-form-label">Upload File</label>
                                                                     <div class="col-lg-9">
-                                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                                        <input type="file" name="errors" class="form-control" required accept=".xlsx,.xls">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -270,12 +270,12 @@
                                                         </tr>
                                                     </table>
                                                     <div class="my-3">
-                                                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                                                        <form class="row" action="{{route('admin.assessments.errors_intervention_outcome.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="col-6">
                                                                 <div class="form-group row no-gutters">
                                                                     <label class="col-lg-3 col-form-label">Upload File</label>
                                                                     <div class="col-lg-9">
-                                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                                        <input type="file" name="interventions" class="form-control" required accept=".xlsx,.xls">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -331,12 +331,12 @@
                                                         </tr>
                                                     </table>
                                                     <div class="my-3">
-                                                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                                                        <form class="row" action="{{route('admin.assessments.errors_intervention_outcome.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="col-6">
                                                                 <div class="form-group row no-gutters">
                                                                     <label class="col-lg-3 col-form-label">Upload File</label>
                                                                     <div class="col-lg-9">
-                                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                                        <input type="file" name="outcomes" class="form-control" required accept=".xlsx,.xls">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -384,12 +384,12 @@
                                                         </tr>
                                                     </table>
                                                     <div class="my-3">
-                                                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                                                        <form class="row" action="{{route('admin.assessments.family_social_questions.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="col-6">
                                                                 <div class="form-group row no-gutters">
                                                                     <label class="col-lg-3 col-form-label">Upload File</label>
                                                                     <div class="col-lg-9">
-                                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                                        <input type="file" name="questions" class="form-control" required accept=".xlsx,.xls">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -453,12 +453,12 @@
                                                         </tr>
                                                     </table>
                                                     <div class="my-3">
-                                                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                                                        <form class="row" action="{{route('admin.assessments.system_review_questions.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="col-6">
                                                                 <div class="form-group row no-gutters">
                                                                     <label class="col-lg-3 col-form-label">Upload File</label>
                                                                     <div class="col-lg-9">
-                                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                                        <input type="file" name="questions" class="form-control" required accept=".xlsx,.xls">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -506,12 +506,12 @@
                                                         
                                                     </table>
                                                     <div class="my-3">
-                                                        <form class="row" action="{{route('admin.drugs.upload')}}" method="POST" enctype="multipart/form-data">@csrf
+                                                        <form class="row" action="{{route('admin.assessments.advices.upload')}}" method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="col-6">
                                                                 <div class="form-group row no-gutters">
                                                                     <label class="col-lg-3 col-form-label">Upload File</label>
                                                                     <div class="col-lg-9">
-                                                                        <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                                        <input type="file" name="advices" class="form-control" required accept=".xlsx,.xls">
                                                                     </div>
                                                                 </div>
                                                             </div>

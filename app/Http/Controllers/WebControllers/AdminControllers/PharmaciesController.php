@@ -14,7 +14,7 @@ class PharmaciesController extends Controller
 
     public function index(){
         $pharmacies = Pharmacy::all();
-        // dd($pharmacies-x >first()->owner);
+        //dd(auth()->user()->role->hasPermission('subscription'));
         return view('admin.pharmacy.list',compact('pharmacies'));
     }
 

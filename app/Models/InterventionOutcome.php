@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class InterventionOutcome extends Model
 {
     use HasFactory;
+    protected $fillable = ['description','status'];
 }

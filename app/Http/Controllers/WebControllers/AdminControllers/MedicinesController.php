@@ -229,6 +229,12 @@ class MedicinesController extends Controller
         return redirect()->route('admin.drugs');
     }
 
+    public function submissions(){
+        $categories = DrugCategory::all();
+        $medicines = Medicine::paginate(100);
+        return view('admin.medicines.submissions',compact('categories','medicines'));
+    }
+
     
 
     

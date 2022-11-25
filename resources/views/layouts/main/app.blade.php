@@ -46,6 +46,11 @@
         @include('layouts.main.header')
 
         @yield('main')
+
+
+
+
+        @guest
         <!-- Footer -->
         <footer class="footer">
 
@@ -195,6 +200,7 @@
 
         </footer>
         <!-- /Footer -->
+        @endguest
 
     </div>
         @yield('modals')

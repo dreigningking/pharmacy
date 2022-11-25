@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -36,7 +38,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout','forcepassword']);
     }
     public function showLoginForm()
     {
@@ -49,4 +51,21 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
     }
+    public function forcepassword(Request $request){
+        $validator = Validator::make($request->all(), [
+            'password' => 'required','string','confirmed'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        $user = auth()->user();
+        $user->password = Hash::make($request->password);
+        $user->require_password_change = false;
+        $user->save();
+        return redirect()->route('dashboard');
+    }       
+        
+    
 }

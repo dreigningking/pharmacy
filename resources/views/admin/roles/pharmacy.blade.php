@@ -56,7 +56,7 @@
                                                 <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                        <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
                                             <input type="hidden" name="role" value="director">
                                             @foreach($permissions as $permission)
                                                 <div class="col-md-12 d-flex">
@@ -110,7 +110,7 @@
                                             </div>
                                         </div>
                                         {{-- manager --}}
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                        <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
                                             @foreach($permissions as $permission)
                                                 <div class="col-md-12 d-flex">
 
@@ -164,7 +164,7 @@
                                             </div>
                                         </div>
                                         {{-- pharmacist --}}
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                        <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
                                             @foreach($permissions as $permission)
                                                 <div class="col-md-12 d-flex">
 
@@ -220,7 +220,7 @@
                                             </div>
                                         </div>
                                         {{-- sales --}}
-                                        <form action="{{route('admin.permissions')}}" class="row w-100" method="POST">@csrf
+                                        <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
                                             @foreach($permissions as $permission)
                                                 <div class="col-md-12 d-flex">
 

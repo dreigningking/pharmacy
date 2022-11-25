@@ -24,7 +24,7 @@
                     <li @if(Route::is('dashboard')) class="active" @endif>
                         <a href="{{route('dashboard')}}">
                             <i class="fas fa-columns"></i>
-                            <span>Dashboard</span>
+                            <span>Home</span>
                         </a>
                     </li>
                     @if(Auth::user()->isAnyRole(['director']))
@@ -69,7 +69,7 @@
                         @endrolecan
                     @endif
 
-                    <li @if(Route::is('workspaces')) class="active" @endif>
+                    {{-- <li @if(Route::is('workspaces')) class="active" @endif>
                         <a href="{{route('workspaces')}}">
                             <i class="fas fa-columns"></i>
                             <span>Workspaces</span>
@@ -92,7 +92,7 @@
                             <i class="fas fa-cog"></i>
                             <span>Settings</span>
                         </a>
-                    </li>
+                    </li> --}}
 
 
                 </ul>

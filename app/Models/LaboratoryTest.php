@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class LaboratoryTest extends Model
 {
     use HasFactory;
+    protected $fillable = ['name','category','status'];
 }

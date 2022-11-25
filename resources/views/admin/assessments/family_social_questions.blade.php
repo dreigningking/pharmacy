@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-header">
                     <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
-                    <a href="#" class="btn btn-info"> Upload</a>
+                    <a href="{{route('admin.assessments.upload_instructions')}}" class="btn btn-info"> Upload</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -50,14 +50,18 @@
                                             </div>
                                         </td>
                                         <td class="d-flex align-items-center">
-                                            {{$comlaint->description}}
+                                            {{$question->description}}
                                         </td>
                                         
-                                        <td class=""> Active </td>
+                                        <td class=""> @if($question->status) Active  @else Inactive @endif    </td>
                                         <td class=""> 
                                             <div class="d-flex">
-                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
-                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-eye"></i> Delete </a>
+                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit{{$question->id}}"> <i class="fe fe-pencil"></i> Edit </a>
+                                                    <form id="deleteform{{$question->id}}" action="{{route('admin.assessments.family_social_questions.manage')}}" method="POST">@csrf
+                                                        <input type="hidden" name="question_id" value="{{$question->id}}">
+                                                        <input type="hidden" name="action" value="delete">
+                                                        <button type="button" class="btn btn-sm bg-danger-light mx-1 delete" id="{{$question->id}}delete"> <i class="fe fe-eye"></i> Delete </button>
+                                                    </form>
                                             </div>
                                         </td>
                                     </tr>    
@@ -89,18 +93,25 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <form action="#" class="needs-validation" novalidate>
+                            <form action="{{route('admin.assessments.system_review_questions.manage')}}" method="POST">@csrf
                                 <div class="form-group my-3">
                                     <label for="sel1">Describe Question:</label>
-                                    <textarea class="form-control" rows="4" name="name" placeholder="" ></textarea>
+                                    <textarea class="form-control" rows="4" name="description" placeholder="" ></textarea>
                                 </div>
                                 
+                                <div class="form-group my-3">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" name="status" required>
+                                        <option value="1">ON</option>
+                                        <option value="0">OFF</option>
+                                    </select>
+                                </div>
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="">
-                                        <a href="#" class="btn btn-success">Save</a>
+                                        <button type="submit" name="action" value="create" class="btn btn-success">Save</button>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="btn btn-danger">Cancel</a>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
                                     </div>
                                 </div>
                                 
@@ -113,7 +124,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade custom-modal add-modal" id="edit">
+    @foreach ($questions as $question)
+    <div class="modal fade custom-modal add-modal" id="edit{{$question->id}}">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -125,31 +137,27 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <form action="#" class="needs-validation" novalidate>
+                            <form action="{{route('admin.assessments.family_social_questions.manage')}}" method="POST">@csrf
+                                <input type="hidden" name="question_id" value="{{$question->id}}">
                                 <div class="form-group my-3">
-                                    <label for="sel1">Describe Question:</label>
-                                    <input class="form-control" rows="4" name="name" value="do you take alcohol" placeholder="" >
-                                        
-                                    
+                                    <label for="sel1">Describe Conditions:</label>
+                                    <textarea class="form-control" rows="4" name="description" required>{{$question->description}}</textarea>
                                 </div>
                                 <div class="form-group my-3">
                                     <label for="sel1">Status:</label>
-                                    <select class="form-control" >
-                                        <option>ON</option>
-                                        <option>OFF</option>
+                                    <select class="form-control" name="status" required>
+                                        <option value="1" @if($question->status) selected @endif>ON</option>
+                                        <option value="0" @if(!$question->status) selected @endif>OFF</option>
                                     </select>
                                 </div>
-                                
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="">
-                                        <a href="#" class="btn btn-success">Save</a>
+                                        <button type="submit" name="action" value="update" class="btn btn-success">Save</button>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="btn btn-danger">Cancel</a>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
                                     </div>
                                 </div>
-                                
-                                {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
                             </form>
                         </div>
 
@@ -158,7 +166,7 @@
             </div>
         </div>
     </div>
-    
+    @endforeach
     <div class="modal fade custom-modal add-modal" id="delete">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -172,7 +180,7 @@
                     <div class="row">
                         <div class="col-12">
                             <p>Are you sure you want to delete Question</p>
-                            <button class="btn btn-danger">Yes, I'm Sure</button>
+                            <button class="btn btn-danger" id="confirmdelete">Yes, I'm Sure</button>
                         </div>
 
                     </div>
@@ -185,5 +193,15 @@
 @push('scripts')
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
+<script>
+    let item;
+    $('.delete').click(function(){
+        $('#delete').modal();
+        item = parseInt($(this).attr('id'));
+    })
+    $('#confirmdelete').click(function(){
+        $('#deleteform'+item).submit();
+    })
+</script>
 @endpush
 

@@ -34,10 +34,10 @@
                             <thead>
                                 <tr>
                                     <th>User</th>
-                                    <th>License Number</th>
+                                    <th>Licenses</th>
                                     <th>Type</th>
-                                    <th>Validity Period</th>
-                                    <th>Number of Pharmacies</th>
+                                    <th>Duration</th>
+                                    <th>Type</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -49,22 +49,22 @@
                                             <a href="profile.html">Dr. Ruby Perrin</a>
                                         </h2>
                                     </td>
-                                    <td>LBDKKL83948343</td>
+                                    
                                     <td>
-                                        <h2>
-                                            Care Modules
-                                        </h2>
+                                        2
                                     </td>
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td>Analytics</td>
+                                    <td>2weeks</td>
+                                    <td class="">
+                                        Trial
+                                    </td>
                                     <td>
                                         <div class="status-toggle">
                                             <input type="checkbox" id="status_1" class="check" checked>
                                             <label for="status_1" class="checktoggle">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="">
-                                        5
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -73,16 +73,14 @@
                                             <a href="profile.html">Dr. Darren Elder</a>
                                         </h2>
                                     </td>
-                                    <td>LBDKKL83948343</td>
-                                    <td>
-                                        <h2>
-                                            Care Modules
-                                        </h2>
-                                    </td>
                                     
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
+                                    <td>
+                                        2
+                                    </td>
+                                    <td>Pharmacy Management</td>
+                                    <td>12 months</td>
                                     <td class="">
-                                        1
+                                        Commercial
                                     </td>
                                     <td>
                                         <div class="status-toggle">
@@ -92,213 +90,7 @@
                                     </td>
                                     
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-03.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Deborah Angel</a>
-                                        </h2>
-                                    </td>
-                                    <td>LBDKKL83j45458343</td>
-                                    <td>
-                                        <h2>
-                                            Care Modules and Analytics
-                                        </h2>
-                                    </td>
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
-                                    <td class="">
-                                        3
-                                    </td>
-                                    <td>
-                                        <div class="status-toggle">
-                                            <input type="checkbox" id="status_3" class="check" checked>
-                                            <label for="status_3" class="checktoggle">checkbox</label>
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-04.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Sofia Brient</a>
-                                        </h2>
-                                    </td>
-                                    <td>LBDKKL4345458343</td>
-                                    <td>
-                                        <h2>
-                                            Care Modules and Analytics
-                                        </h2>
-                                    </td>
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
-                                    <td class="">
-                                        4
-                                    </td>
-                                    <td>
-                                        <div class="status-toggle">
-                                            <input type="checkbox" id="status_4" class="check" checked>
-                                            <label for="status_4" class="checktoggle">checkbox</label>
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-05.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Marvin Campbell</a>
-                                        </h2>
-                                    </td>
-                                    <td>LBDKKL4345458343</td>
-                                    <td>
-                                        <h2>
-                                            Care Modules and Analytics
-                                        </h2>
-                                    </td>
-                                    
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
-                                    <td class="">
-                                        2
-                                    </td>
-                                    <td>
-                                        <div class="status-toggle">
-                                            <input type="checkbox" id="status_5" class="check" checked>
-                                            <label for="status_5" class="checktoggle">checkbox</label>
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-06.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Katharine Berthold</a>
-                                        </h2>
-                                    </td>
-                                    <td>LBDKKL4345458343</td>
-                                    <td>
-                                        <h2>
-                                            Care Modules
-                                        </h2>
-                                    </td>
-                                    
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
-                                    <td class="">
-                                      7
-                                    </td>
-                                    <td>
-                                        <div class="status-toggle">
-                                            <input type="checkbox" id="status_5" class="check" checked>
-                                            <label for="status_5" class="checktoggle">checkbox</label>
-                                        </div>
-                                    </td>
-
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-07.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Linda Tobin</a>
-                                        </h2>
-                                    </td>
-                                    <td>NeLBDKKL4345458343</td>
-                                    <td>
-                                        <h2>
-                                            Care Modules
-                                        </h2>
-                                    </td>
-                                    
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
-                                    <td class="">
-                                        2
-                                    </td>
-                                    <td>
-                                        <div class="status-toggle">
-                                            <input type="checkbox" id="status_5" class="check" checked>
-                                            <label for="status_5" class="checktoggle">checkbox</label>
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-08.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Paul Richard</a>
-                                        </h2>
-                                    </td>
-                                    <td>LBDKKL4345458343</td>
-                                    <td>
-                                        <h2>
-                                            Analytics
-                                        </h2>
-                                    </td>
-                                    
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
-                                    <td class="">
-                                        6
-                                    </td>
-                                    <td>
-                                        <div class="status-toggle">
-                                            <input type="checkbox" id="status_5" class="check" checked>
-                                            <label for="status_5" class="checktoggle">checkbox</label>
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-09.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. John Gibbs</a>
-                                        </h2>
-                                    </td>
-                                    <td>LBDKKL83948343</td>
-                                    <td>
-                                        <h2>
-                                            Analytics
-                                        </h2>
-                                    </td>
-                                    
-                                    <td>23 Nov 2019 - 12 Dec 2022</span></td>
-                                    <td class="">
-                                        4
-                                    </td>
-                                    <td>
-                                        <div class="status-toggle">
-                                            <input type="checkbox" id="status_5" class="check" checked>
-                                            <label for="status_5" class="checktoggle">checkbox</label>
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-10.jpg')}}" alt="User Image"></a>
-                                            <a href="profile.html">Dr. Olga Barlow</a>
-                                        </h2>
-                                    </td>
-                                    <td>LBDKKL83948343</td>
-                                    <td>
-                                        <h2>
-                                           Care Modules
-                                        </h2>
-                                    </td>
-                                    
-                                    <td>23 Nov 2019 - 12 Dec 2022</td>
-                                    <td class="">
-                                        3
-                                    </td>
-                                    <td>
-                                        <div class="status-toggle">
-                                            <input type="checkbox" id="status_5" class="check" checked>
-                                            <label for="status_5" class="checktoggle">checkbox</label>
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>

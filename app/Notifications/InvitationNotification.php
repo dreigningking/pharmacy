@@ -12,17 +12,15 @@ class InvitationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $pharmacy;
-    public $role;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Pharmacy $pharmacy,$role)
+    public function __construct(Pharmacy $pharmacy)
     {
         $this->pharmacy = $pharmacy;
-        $this->role = $role;
     }
 
     /**
@@ -54,7 +52,7 @@ class InvitationNotification extends Notification implements ShouldQueue
         return (new MailMessage)
                     ->subject($this->pharmacy->name.' Invitation.')
                     ->greeting('Dear '.$notifiable->name)
-                    ->line('Here is an invitation to join us to work at '.$this->pharmacy->name.' as a '.$this->role.'.')
+                    ->line('Here is an invitation to join us to work at '.$this->pharmacy->name.' as a '.$notifiable->role->name.'.')
                     ->line('Click the button below to Accept Invitation')
                     ->action('Accept Invitation', route('invitations',[$this->pharmacy,$notifiable]));
     }
