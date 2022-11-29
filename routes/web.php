@@ -25,7 +25,14 @@ Route::get('/',function(){
 Route::get('drugs',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'drugs'] )->name('drugs');
 Route::get('medicine',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'medicines'] )->name('medicines');
 
-Route::view('agreement','main.agreement')->name('agreement');
+Route::view('agreement','agreement')->name('agreement');
+
+Route::get('donation/access',[App\Http\Controllers\TestController\HavronController::class, 'get_token'])->name('havron.token');
+Route::get('donation',[App\Http\Controllers\TestController\HavronController::class, 'index'])->name('havron');
+Route::post('donation',[App\Http\Controllers\TestController\HavronController::class, 'store'])->name('havron.donate');
+Route::get('donation/success',[App\Http\Controllers\TestController\HavronController::class, 'success'])->name('havron.success');
+Route::get('donation/error',[App\Http\Controllers\TestController\HavronController::class, 'error'])->name('havron.error');
+
 Route::get('pharmacy/{pharmacy}/{user}/invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
 Route::post('invitation/submit', [App\Http\Controllers\WebControllers\HomeController::class, 'invitation_submit'])->name('confirm_invitations');
 Route::get('pricing',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'pricing'] )->name('pricing');
