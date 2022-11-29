@@ -98,13 +98,10 @@
                                 </div>
                             </div>
                         </div>
-                   
                     @endforeach
                 </div>
             </div>
-
         </div>
-
     </div>		
     <!-- /Page Content -->
 @endsection

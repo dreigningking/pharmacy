@@ -33,6 +33,7 @@ class ConditionsImport implements ToModel, WithUpserts, WithBatchInserts, WithCh
     {
         return new Condition([
             'description'     => $row['description'],
+            'medical_counsel'     => explode('|',$row['medical_counsel']),
             'status' => true,
         ]);
     }
@@ -48,6 +49,7 @@ class ConditionsImport implements ToModel, WithUpserts, WithBatchInserts, WithCh
     {
         return [
              '*.description' => 'required',
+             '*.medical_counsel' => 'nullable',
         ];
     }
 }

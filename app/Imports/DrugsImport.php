@@ -26,7 +26,10 @@ class DrugsImport implements OnEachRow, WithChunkReading, ShouldQueue,SkipsEmpty
         // $rowIndex = $row->getIndex();
         $row = $row->toArray();
         $value = session('imported_drugs') ?? collect([]);
-        $drug = Drug::updateOrCreate(['name' => $row['name'],'manufacturer' => $row['manufacturer']],['dosage_form' => $row['dosage_form']]);
+        $drug = Drug::updateOrCreate(['name' => $row['name'],'manufacturer' => $row['manufacturer']],
+                                        [
+                                            'dosage_form' => $row['dosage_form']
+                                        ]);
         $value->push($drug);
         session(['imported_drugs' => $value]);
     }

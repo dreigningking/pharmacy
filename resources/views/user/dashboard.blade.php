@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="doctor-slider slider">
-                        
+                            @foreach ($user->pharmacies as $pharmacy)
                             <!-- Doctor Widget -->
                             <div class="profile-widget">
                                 <div class="doc-img">
@@ -79,16 +79,16 @@
                                     </ul>
                                     <div class="row row-sm">
                                         <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
+                                            <a href="{{route('pharmacy.settings',$pharmacy)}}" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{route('pharmacy.dashboard',$user->pharmacies[0])}}" class="btn book-btn">Dashboard</a>
+                                            <a href="{{route('pharmacy.dashboard',$pharmacy)}}" class="btn book-btn">Dashboard</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- /Doctor Widget -->
-                    
+                            @endforeach
                             <!-- Doctor Widget -->
                             <div class="profile-widget">
                                 <div class="doc-img">
@@ -444,12 +444,12 @@
                     </div></a>
                 </div>
                 <div class="col-xl-3 col-sm-6 col-12">
-                    <a href="{{route('transactions')}}">
+                    <a href="{{route('report')}}">
                     <div class="card">
                         <div class="card-body">
                             <div class="add-box">
-                                <i class="fe fe-money add"></i>
-                                <p>Transcaction</p>
+                                <i class="fe fe-book add"></i>
+                                <p>Report</p>
                                 <div>
                                     <p class="text-justify">
                                          pariatur incidunt sed dolor! Mollitia 
@@ -466,7 +466,7 @@
                         <div class="card-body">
                             <div class="add-box">
                                 <i class="fe fe-comments add"></i>
-                                <p>Buy SMS</p>
+                                <p>Support</p>
                                 <div>
                                     <p class="text-justify">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 

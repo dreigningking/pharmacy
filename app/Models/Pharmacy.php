@@ -14,7 +14,6 @@ use App\Models\Supplier;
 use App\Models\Inventory;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Assessment;
-use App\Models\PharmacyUser;
 use App\Models\Prescription;
 use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Model;
@@ -33,7 +32,7 @@ class Pharmacy extends Model
         parent::observe(new \App\Observers\PharmacyObserver);
     }
     public function users(){
-        return $this->belongsToMany(User::class,'pharmacy_users')->withPivot('role_id','status');
+        return $this->hasMany(User::class);
     }
     public function owner(){
         return $this->belongsTo(User::class,'owner_id');
@@ -68,7 +67,7 @@ class Pharmacy extends Model
         return $this->hasMany(Assessment::class);
     }
     public function license(){
-        return $this->hasOne(License::class);
+        return $this->hasMany(License::class);
     }
 
 }

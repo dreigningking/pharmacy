@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], function () {
-    // Route::get('loanapplication',[App\Http\Controllers\PagesController::class, 'rejected_applications'])->name("rejected_applications");
     Route::view('dashboard','admin.dashboard')->name('dashboard');
 
     Route::get('pharmacies',[App\Http\Controllers\WebControllers\AdminControllers\PharmaciesController::class,'index'])->name('pharmacies');
@@ -71,10 +70,7 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
         Route::get('laboratory_tests',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'labtests'])->name('labtests');
         Route::post('laboratory_tests/manage',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'labtests_manage'])->name('labtests.manage');
         
-        Route::get('advices',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'advices'])->name('advices');
-        Route::post('advices/manage',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'advices_manage'])->name('advices.manage');
-        Route::post('advices/upload',[App\Http\Controllers\WebControllers\AdminControllers\AssessmentSettingsController::class,'advices_upload'])->name('advices.upload');
-        
+           
     });
     
     Route::group(['as'=> 'subscriptions.','prefix'=> 'subscriptions'],function(){

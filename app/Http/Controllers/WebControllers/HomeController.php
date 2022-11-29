@@ -21,22 +21,25 @@ class HomeController extends Controller
 
     }
 
-    public function index()
-    {
+    public function index(){
         $user = Auth::user();
+       
         if($user->admin){
             return redirect()->route('admin.dashboard');
+        }else{
+            return redirect()->route('dashboard');
         }
+    }
+
+    public function dashboard(){
+        $user = Auth::user();
         return view('user.dashboard',compact('user'));
     }
     
-    public function workspaces(){
-        $user = Auth::user();
-        return view('user.workspaces',compact('user'));
-    }
     public function invitations(Pharmacy $pharmacy,User $user){
         return view('pharmacy.invitations',compact('user','pharmacy'));
     }
+    
     public function invitation_submit(Request $request){
         $user = User::find($request->user_id);
         $pharmacy = Pharmacy::find($request->pharmacy_id);

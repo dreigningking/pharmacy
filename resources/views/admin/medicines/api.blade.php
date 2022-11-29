@@ -30,19 +30,39 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="datatable table table-hover table-center mb-0">
+                        <table id="mydatatable" class=" table table-hover table-center mb-0">
                             <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Extn.</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Extn.</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                            </tfoot>
+                            {{--<thead>
                                 <tr>
                                     <th class="text-left"></th>
                                     <th>Name</th>
-                                    <th>Formulations</th>
+                                     <th>Formulations</th>
                                     <th>Interactions</th>
                                     <th>Status</th>
-                                    <th class=""> Action</th>
+                                    <th class=""> Action</th> 
 
                                 </tr>
-                            </thead>
-                            <tbody>
+                            </thead>--}}
+                            {{-- <tbody>
                                 @forelse ($medicines as $medicine)
                                     <tr>
                                         <td class="text-center">
@@ -73,9 +93,8 @@
                                     <tr>
                                         <td colspan="6"></td>
                                     </tr>
-                                @endforelse
-                                
-                            </tbody>
+                                @endforelse       
+                            </tbody> --}}
                         </table>
                     </div>
                 </div>
@@ -85,6 +104,7 @@
 </div>
 @endsection
 
+{{-- 
 @section('modals')
     <div class="modal fade custom-modal add-modal" id="add">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -157,7 +177,7 @@
                                 </div>
                                 <div class="row my-2">
                                     <div class="col-md-4">
-                                        <label for="sel1">Medical Counselling:</label>
+                                        <label for="sel1">Medication Counselling:</label>
                                     </div>
                                     <div class="col-md-8">
                                         <textarea class="form-control" name="medication_counsel"></textarea>
@@ -269,7 +289,7 @@
                                     </div>
                                     <div class="row my-2">
                                         <div class="col-md-4">
-                                            <label for="sel1">Medical Counselling:</label>
+                                            <label for="sel1">Medication Counselling:</label>
                                         </div>
                                         <div class="col-md-8">
                                             <textarea class="form-control" name="medication_counsel">@if(is_array($medicine->medication_counsel)){{implode('|',$medicine->medication_counsel)}}@endif</textarea>
@@ -377,7 +397,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-4">
-                                            <label for="sel1">Medical Counselling:</label>
+                                            <label for="sel1">Medication Counselling:</label>
                                         </div>
                                         <div class="col-md-8">
                                             @if(is_array($medicine->medication_counsel))
@@ -408,8 +428,6 @@
                                             <a href="{{route('admin.api.interactions')}}?search={{$medicine->name}}" class="btn btn-info">View Interactions</a>
                                         </div>
                                     </div>
-                                    
-                                    {{-- <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Submit</button> --}}
                                 </form>
                             </div>
 
@@ -445,12 +463,28 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection 
+--}}
 
 @push('scripts')
 <script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
+<script>
+    $(document).ready(function () {
+    
+        $('#mydatatable').DataTable( {
+            serverSide: true,
+            processing: true,
+            ajax: "{{route('medicines')}}",
+            // columns: [
+            //     { data: 'name' },
+                
+            // ],
+        })
+        
+    })
+</script>
 
 @endpush
 

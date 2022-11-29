@@ -35,6 +35,7 @@
                                 <tr>
                                     <th class="text-left"></th>
                                     <th>Description</th>
+                                    <th>Medical Counselling</th>
                                     <th>Status</th>
                                     <th class=""> Action</th>
 
@@ -53,6 +54,13 @@
                                         {{$condition->description}}
                                     </td>
                                     
+                                    <td class="">
+                                        @if(is_array($condition->medical_counsel))
+                                            @foreach ($condition->medical_counsel as $counsel)
+                                                {{$counsel}} <br>
+                                            @endforeach
+                                        @endif
+                                    </td>
                                     <td class=""> @if($condition->status) Active  @else Inactive @endif     </td>
                                     <td class=""> 
                                         <div class="d-flex">
@@ -100,6 +108,11 @@
                                     <textarea class="form-control" rows="4" name="description" placeholder="" required></textarea>
                                 </div>
                                 <div class="form-group my-3">
+                                    <label for="sel1">Medical Counselling:</label>
+                                    <textarea class="form-control" rows="4" name="medical_counsel" placeholder="" required></textarea>
+                                    <small>Seperate multiple options with a pipe character. ie |</small>
+                                </div>
+                                <div class="form-group my-3">
                                     <label for="sel1">Status:</label>
                                     <select class="form-control" name="status" required>
                                         <option value="1">ON</option>
@@ -142,6 +155,11 @@
                                 <div class="form-group my-3">
                                     <label for="sel1">Describe Conditions:</label>
                                     <textarea class="form-control" rows="4" name="description" required>{{$condition->description}}</textarea>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Medical Counselling:</label>
+                                    <textarea class="form-control" rows="4" name="medical_counsel" placeholder="" required>@if(is_array($condition->medical_counsel)){{implode('|',$condition->medical_counsel)}}@endif</textarea>
+                                    <small>Seperate multiple options with a pipe character. ie |</small>
                                 </div>
                                 <div class="form-group my-3">
                                     <label for="sel1">Status:</label>

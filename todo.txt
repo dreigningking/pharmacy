@@ -1,5 +1,6 @@
 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
 
+
 questions
 1. will admin be able to do manual subscription for PHARMACY
 2. turn on or off subscription
@@ -10,53 +11,41 @@ questions
 7. static permissions for pharmacy roles
 
 
-USER DASHBOARD
-what will be on everybody's dashboard
-1. activities
-2. notifications
-3. things to respond to..
-4. subscription info for directors
-5. subscription: renew subscriptions,
-6. save payment cards ?
-7. user transactions (director): View Prescriptions
-8. user security
-9. user activities
+Recent Notification{
+    subscription notifications
+    ticket notification
+}
 
-USER SETTINGS
+Pharmacy notification types:
+transfer of inventory, patients, assessment records, 
+expiring, expired drugs
+
+activities types:
+staff did this
+staff did that
+
 
 
 PHARMACY SETTINGS
 delete your account
-bank accounts - and initial balance
 markup amount, and type
 minimum stock quantity
 maximum stock quantity
+drugs: auto-delete expired, allow transfer of drugs
 
-
-data can be shared across pharmacies you own (drug, patient)
 
 
 add staff should send an email to the person
 delete staff should send an email to the person
 automatically delete expired batches of inventory
 
-add laboratory test
 
-DIAGNOSIS
-
-TREATMENT PLAN
-
-add non medication advice
-prescribe medicine
 
 SETTINGS
 general: name of application, currency, vat, 
-drugs: auto-delete expired, allow transfer of drugs
 
 notifications: 
 Send mail to subscribers 2weeks to subscription expiry	
 Send mail to patients on patient add	
 Send prescription to patient email	
 Send follow-up email to patient after treatment
-
-reports

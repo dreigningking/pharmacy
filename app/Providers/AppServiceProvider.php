@@ -29,27 +29,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        Blade::if('usercan', function (Pharmacy $pharmacy,$action,$type = null ) {
+        Blade::if('usercan', function ($action,$ability) {
             $user = Auth::user();
-            if($user->pharmacies->where('id',$pharmacy->id)->isNotEmpty() && $pharmacy->users->where('user_id',$user->id)->first()->role->permissions->where('name',$action)->isNotEmpty())
-            return true;
-            else return false;
-        });
-        Blade::if('rolecan', function ($action,$ability) {
-            $user = Auth::user();
-            $roles = $user->pharmacies->pluck('pivot.role_id')->toArray();
-            $permitted_roles = Permission::where('name',$action)->first()->roles->where("pivot.$ability",1)->pluck('id')->toArray();
-            $checker = false;
-            foreach($permitted_roles as $permitted){
-                if(in_array($permitted,$roles)){
-                    $checker = true;
-                }
-            }
-            if($checker){
-                return true;
+            if($user->permissions->isNotEmpty()){
+                return $user->hasPermability($action,$ability);
             }else{
-                return false;
+                return $user->role->hasPermability($action,$ability);
             }
+            
         });
     }
 }

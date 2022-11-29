@@ -1,9 +1,8 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
 // 'middleware'=>['pharmacy'] ,
 Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
-        
-    Route::get('checkout/{plan}',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
-    
     // Route::group(['middleware'=>['subscription']], function () {
         Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
         Route::get('transactions', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'transactions'])->name('transactions');
@@ -62,6 +61,15 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
         Route::post('transfer/save',[App\Http\Controllers\GeneralControllers\TransferController::class, 'store'])->name('transfer.store');
         Route::post('transfer/save_to_inventory',[App\Http\Controllers\GeneralControllers\TransferController::class, 'save_to_inventory'])->name('transfer.save_to_inventory');
         Route::post('transfer/delete',[App\Http\Controllers\GeneralControllers\TransferController::class, 'delete'])->name('transfer.delete');
+        Route::get('activities', [App\Http\Controllers\GeneralControllers\UserController::class, 'activities'])->name("activities");
 
+        Route::group(['middleware'=>'role:director,manager'], function () {
+            Route::get('suppliers', [App\Http\Controllers\GeneralControllers\UserController::class, 'suppliers'])->name('suppliers');
+            Route::post('supplier/save', [App\Http\Controllers\GeneralControllers\UserController::class, 'supplier_save'])->name('supplier.save');
+            Route::get('staff', [App\Http\Controllers\GeneralControllers\UserController::class, 'staff'])->name("staff");
+            Route::post('staff',[App\Http\Controllers\GeneralControllers\UserController::class, 'savestaff'])->name("staff");
+            Route::post('staff/destroy',[App\Http\Controllers\GeneralControllers\UserController::class, 'destroystaff'])->name("staff.destroy");
+        });
+    
     // });
 });

@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Order;
 use App\Models\Country;
 use App\Models\Pharmacy;
+use App\Models\Permission;
 use App\Models\PharmacyUser;
 use App\Models\Subscription;
 use Illuminate\Notifications\Notifiable;
@@ -88,6 +89,16 @@ class User extends Authenticatable
         return in_array($this->role_id,$roles);
     }
 
+    public function permissions(){
+        return $this->belongsToMany(Permission::class,'permission_users')->withPivot('list','view','edit','new','remove');
+    }
+    public function hasPermission($value){
+        return $this->permissions->where('name',$value)->isNotEmpty();
+    }
+    public function hasPermability($value,$ability){
+        return $this->permissions->where('name',$value)->where("pivot.$ability",1)->isNotEmpty();
+    }
+
     public function messages(){
         return $this->hasMany(Message::class);
     }
@@ -109,7 +120,7 @@ class User extends Authenticatable
     }
     
     public function orders(){
-        return $this->hasManyThrough(Order::class,PharmacyUser::class,'user_id','pharmacy_id');
+        return $this->hasMany(Order::class);
     }
 
 }

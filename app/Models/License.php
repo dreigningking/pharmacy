@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pharmacy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class License extends Model
 {
@@ -12,6 +13,10 @@ class License extends Model
 
     public function active(){
         return $this->start_at < now() && $this->expire_at > now();
+    }
+
+    public function pharmacy(){
+        return $this->belongsTo(Pharmacy::class);
     }
 
 }

@@ -60,9 +60,9 @@ class AssessmentSettingsController extends Controller
     public function conditions_manage(Request $request){
         // dd($request->all());
         if($request->action == 'create')
-        $complaint = Condition::create(['description'=> $request->description,'status'=> $request->status]);
+        $complaint = Condition::create(['description'=> $request->description,'medical_counsel'=> explode('|',$request->medical_counsel),'status'=> $request->status]);
         elseif($request->action == 'update')
-        $condition = Condition::where('id',$request->condition_id)->update(['description'=> $request->description,'status'=> $request->status]);
+        $condition = Condition::where('id',$request->condition_id)->update(['description'=> $request->description,'medical_counsel'=> explode('|',$request->medical_counsel),'status'=> $request->status]);
         else
         $condition = Condition::destroy($request->condition_id);
         return back();
@@ -217,30 +217,5 @@ class AssessmentSettingsController extends Controller
         $test = LaboratoryTest::destroy($request->test_id);
         return back();
     }
-
-    public function advices(){
-        $advices = Advice::all();
-        return view('admin.assessments.advices',compact('advices'));
-    }
-    public function advices_manage(Request $request){
-        if($request->action == 'create')
-        $advice = Advice::create(['description'=> $request->description,'type'=> $request->type,'status'=> $request->status]);
-        elseif($request->action == 'update')
-        $advice = Advice::where('id',$request->advice_id)->update(['description'=> $request->description,'type'=> $request->type,'status'=> $request->status]);
-        else
-        $advice = Advice::destroy($request->advice_id);
-        return back();
-    }
-
-    public function advices_upload(Request $request){
-        try {
-            Excel::import(new AdvicesImport, $request->file('advices'));
-        }
-        catch(\Maatwebsite\Excel\Validators\ValidationException $e){
-            $failures = $e->failures();
-        }
-        return redirect()->route('admin.assessments.advices');
-    }
-    
-    
+ 
 }

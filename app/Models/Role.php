@@ -22,4 +22,7 @@ class Role extends Model
     public function hasPermission($value){
         return $this->permissions->where('name',$value)->isNotEmpty();
     }
+    public function hasPermability($value,$ability){
+        return $this->permissions->where('name',$value)->where("pivot.$ability",1)->isNotEmpty();
+    }
 }

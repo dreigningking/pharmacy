@@ -110,18 +110,14 @@ class UserController extends Controller
         }
     }
 
-    public function subscription(){
-        $this->authorize('list', Subscription::class);
-        $user = Auth::user();
-        return view('user.subscription',compact('user'));
-    }
+    
 
-    public function transactions(){
+    public function report(){
         //all pharmacies transactions
-        $this->authorize('list', Order::class);
+        // $this->authorize('list', Order::class);
         $user = Auth::user();
         //get orders of all users pharmacies
-        return view('user.transactions',compact('user'));
+        return view('user.report',compact('user'));
     }
     
 

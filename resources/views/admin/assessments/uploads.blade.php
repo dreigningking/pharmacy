@@ -57,9 +57,6 @@
                                         <a class="nav-link" data-toggle="tab" href="#review">System Review</a>
                                     </li>
                                     
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#Advices">Advices</a>
-                                    </li>
                                 </ul>
                             </div>	
                             <div class="tab-content profile-tab-cont">
@@ -133,18 +130,19 @@
                                                     <table class="table table-stripped">
                                                         <tr>
                                                             <th>Description</th>
-                                                            <th></th>
+                                                            <th>medical_counsel</th>
                                                         </tr>
                                                         <tr>
                                                             <td>Diarrhea</td>
-                                                            <td></td>
+                                                            <td>Drink clean water | Don't eat cold food</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Diabetes</td>
-                                                            <td></td>
+                                                            <td>Reduce sugar intake | Drink lots of water | Excercise</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Hypertension</td>
+                                                            <td>Sleep at least 8 hours daily</td>
                                                         </tr>
                                                     </table>
                                                     <div class="my-3">
@@ -479,62 +477,7 @@
                                     <!-- /Personal Details -->
                                 </div>
                                 <!-- /Change Password Tab -->
-
-                                <!-- Change Password Tab -->
-                                <div id="Advices" class="tab-pane fade">
-                                    <!-- Personal Details -->
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title d-flex justify-content-between">
-                                                        <span>Advices</span> 
-                                                    </h5>
-                                                    <table class="table table-bordered">
-                                                        <tr>
-                                                            <th>Advise</th>
-                                                            <th>Type</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Eat before taking medicine</td>
-                                                            <td>Medication</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Take medicine with water</td>
-                                                            <td>Non_medication</td>
-                                                        </tr>
-                                                        
-                                                    </table>
-                                                    <div class="my-3">
-                                                        <form class="row" action="{{route('admin.assessments.advices.upload')}}" method="POST" enctype="multipart/form-data">@csrf
-                                                            <div class="col-6">
-                                                                <div class="form-group row no-gutters">
-                                                                    <label class="col-lg-3 col-form-label">Upload File</label>
-                                                                    <div class="col-lg-9">
-                                                                        <input type="file" name="advices" class="form-control" required accept=".xlsx,.xls">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <div class="form-group">
-                                                                    <button type="submit" class="btn btn-lg  btn-primary">Upload</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>       
-                                        </div>
-                
-                                    
-                                    </div>
-                                    <!-- /Personal Details -->
-                                </div>
-                                <!-- /Change Password Tab -->
-
-                                
-                                
+  
                             </div>
                         </div>
 

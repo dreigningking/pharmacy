@@ -22,7 +22,7 @@ class MedicinesController extends Controller
 {
 
     public function api(){
-        $medicines = Medicine::paginate(10);
+        $medicines = Medicine::orderBy('id','desc')->take(100)->get();
         // dd(is_array($medicines[1]->alternatives));
         return view('admin.medicines.api',compact('medicines'));
     }
@@ -195,7 +195,6 @@ class MedicinesController extends Controller
     }
 
     public function drugs_upload(Request $request){
-        // dd($request->all());
         $request->session()->forget('imported_drugs');
         try {
                 Excel::import(new DrugsImport, $request->file('drugs'));
@@ -208,7 +207,11 @@ class MedicinesController extends Controller
     }
 
     public function drugs_api_matching(){
-        $drugs = session('drugs') ?? Drug::whereIn('id',request()->drugs)->get();
+        if(request()->isMethod('get')){
+            $drugs = session('imported_drugs');
+        }else{
+            $drugs = Drug::whereIn('id',request()->drugs)->get();
+        }
         $categories = DrugCategory::all();
         $medicines = Medicine::all();
         return view('admin.medicines.apimatching',compact('drugs','categories','medicines'));

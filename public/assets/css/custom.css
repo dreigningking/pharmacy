@@ -636,3 +636,21 @@ input[type="number"] {
         width: 100% !important;
     }
 }
+
+.contact-item > a .badge {
+    background-color: #1b5a90;
+    display: block;
+    font-size: 10px;
+    font-weight: bold;
+    min-height: 15px;
+    min-width: 15px;
+    position: absolute;
+    right: 16px;
+    color: #fff;
+    top: 30px;
+}
+.badge-pill {
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+}

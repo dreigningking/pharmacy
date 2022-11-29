@@ -212,7 +212,6 @@
 									<li><a href="{{route('admin.assessments.vitals')}}">Vitals</a></li>
 									<li><a href="{{route('admin.assessments.system_review_questions')}}">System Review Questions</a></li>
 									<li><a href="{{route('admin.assessments.labtests')}}">Laboratory Tests</a></li>
-									<li><a href="{{route('admin.assessments.advices')}}">Advices</a></li>
 								</ul>
 							</li>
 							@endif

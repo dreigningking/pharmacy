@@ -9,7 +9,6 @@
                 </a>
                 <div class="profile-det-info">
                     <h2>{{$pharmacy->name}} </h2>
-
                     <div class="patient-details">
                         <span class="mb-0"><img src="{{$pharmacy->country->flag}}">
                             {{$pharmacy->state->name.','.$pharmacy->city->name}}</span>

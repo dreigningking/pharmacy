@@ -11,6 +11,6 @@ class DrugCategory extends Model
     use HasFactory;
 
     public function drugs(){
-        return $this->hasMany(Drug::class);
+        return $this->hasMany(Drug::class,'category_id');
     }
 }

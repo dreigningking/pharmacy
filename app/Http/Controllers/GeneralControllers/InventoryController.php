@@ -4,10 +4,12 @@ namespace App\Http\Controllers\GeneralControllers;
 
 use App\Models\Drug;
 use App\Models\Batch;
+use App\Models\Medicine;
 use App\Models\Pharmacy;
 use App\Models\Supplier;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
+use App\Exports\InventoriesExport;
 use App\Imports\InventoriesImport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +50,18 @@ class InventoryController extends Controller
             return response()->json(['drugs'=> $drugs],200);
         else 
             return view('drugs',compact('drugs'));    
+    }
+
+    public function medicines(){  
+        // if($search = request()->search)
+        // $medicines = Medicine::where('name','LIKE',"%$search%")->get();
+        // else
+        // $medicines = Drug::all();
+        // return response()->json(['medicine'=> $medicines],200);    
+        
+        
+        // return response()->json($data,200);
+          
     }
 
     public function start(Pharmacy $pharmacy){

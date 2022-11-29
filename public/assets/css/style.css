@@ -5172,9 +5172,9 @@ html.menu-opened body {
     border-radius: 50%;
 }
 .widget-profile .profile-info-widget .booking-doc-img img {
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
+    /* border-radius: 50%; */
+    height: 100%;
+    width: 100%;
 }
 .appointment-list .profile-info-widget {
 	display: -webkit-box;
