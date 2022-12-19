@@ -1,15 +1,14 @@
 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
+pharmacy initial, patient first and last initial, phone number last 4 digit, and patient id.
 
 
-questions
-1. will admin be able to do manual subscription for PHARMACY
-2. turn on or off subscription
-3. turn on or off license
-4. which sms gateway to implement
-5. static permissions for admin roles
-6. static permissions for pharmacy roles
-7. static permissions for pharmacy roles
+frequently asked questions
+manual/documentation0
 
+permission_id [id,name,abilities]
+pharmacy_role_permissions [id,pharmacy_role_id,permission_id,]
+
+permission_roles [id,role_id,permission_id]
 
 Recent Notification{
     subscription notifications
@@ -20,9 +19,6 @@ Pharmacy notification types:
 transfer of inventory, patients, assessment records, 
 expiring, expired drugs
 
-activities types:
-staff did this
-staff did that
 
 
 
@@ -40,7 +36,6 @@ delete staff should send an email to the person
 automatically delete expired batches of inventory
 
 
-
 SETTINGS
 general: name of application, currency, vat, 
 
@@ -49,3 +44,19 @@ Send mail to subscribers 2weeks to subscription expiry
 Send mail to patients on patient add	
 Send prescription to patient email	
 Send follow-up email to patient after treatment
+
+<li class="nav-item">
+                            <a class="nav-link active" id="inbox-tab" data-toggle="tab" aria-controls="inbox" href="#inbox" role="tab" aria-selected="true">
+                                <span class=""> PHARMACY MANAGEMENT PLAN</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="sent-tab" data-toggle="tab" aria-controls="sent" href="#sent" role="tab" aria-selected="false">
+                                <span class=""> ANALYTICS PLAN </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="spam-tab" data-toggle="tab" aria-controls="spam" href="#spam" role="tab" aria-selected="false">
+                                <span class=""> SMS PLAN </span>
+                            </a>
+                        </li>

@@ -12,12 +12,12 @@ class HavronController extends Controller
     {
         
         
-        $this->client_id = 'ARoWugx4mm-Jow8Z2WHZQfgSL3gqEBf9wyu2JxtIQb-uh10s2qaqtvoxwNkB-MWLCBlC1k4QOieo0-rL';
-        $this->client_secret = 'EE4peiCAYM4l1CbZKH7X4tMYFQxRUIzONXCGRa5tdLAVVLNzu0ZDd4YRBzhkTJkf0TJcynhybrv3liZb';
-        $this->paypal_url = 'https://api-m.paypal.com';
-        // $this->client_id_test = 'AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG';
-        // $this->client_secret_test = 'EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v';
-        // $this->paypal_url_test = 'https://api-m.sandbox.paypal.com';
+        // $this->client_id = 'ARoWugx4mm-Jow8Z2WHZQfgSL3gqEBf9wyu2JxtIQb-uh10s2qaqtvoxwNkB-MWLCBlC1k4QOieo0-rL';
+        // $this->client_secret = 'EE4peiCAYM4l1CbZKH7X4tMYFQxRUIzONXCGRa5tdLAVVLNzu0ZDd4YRBzhkTJkf0TJcynhybrv3liZb';
+        // $this->paypal_url = 'https://api-m.paypal.com';
+        $this->client_id_test = 'AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG';
+        $this->client_secret_test = 'EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v';
+        $this->paypal_url_test = 'https://api-m.sandbox.paypal.com';
 
     }
 
@@ -27,9 +27,9 @@ class HavronController extends Controller
     }
 
     public function get_token(){
-        $id = base64_encode($this->client_id);
-        $secret = base64_encode($this->client_secret);
-        $response = Curl::to($this->paypal_url.'/v1/oauth2/token')
+        $id = base64_encode($this->client_id_test);
+        $secret = base64_encode($this->client_secret_test);
+        $response = Curl::to($this->paypal_url_test.'/v1/oauth2/token')
             ->withHeader("Authorization: Basic ".$id.":".$secret)
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
             ->withData(["grant_type"=>"client_credentials"])
@@ -46,7 +46,7 @@ class HavronController extends Controller
         if(!$token){
             return "Something is wrong, please contact the admin";
         }
-        $response = Curl::to($this->paypal_url.'/v2/checkout/orders')
+        $response = Curl::to($this->paypal_url_test.'/v2/checkout/orders')
             ->withHeader('Authorization: Bearer '.$token)
             ->withHeader('PayPal-Request-Id: '.uniqid())
             ->withData([

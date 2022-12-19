@@ -41,381 +41,49 @@
                     <div class="col-lg-8">
                         <div class="doctor-slider slider">
                             @foreach ($user->pharmacies as $pharmacy)
-                            <!-- Doctor Widget -->
-                            <div class="profile-widget">
-                                <div class="doc-img">
-                                    <a href="doctor-profile.html">
-                                        <img class="img-fluid" alt="User Image" src="assets/img/pharmacies/1.jpg">
-                                    </a>
-                                    <a href="javascript:void(0)" class="fav-btn">
-                                        <i class="far fa-bookmark"></i>
-                                    </a>
-                                </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="doctor-profile.html">Green Pharmacy</a> 
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-                                    {{-- <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span class="d-inline-block average-rating">(17)</span>
-                                    </div> --}}
-                                    <ul class="available-info">
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> Florida, USA
-                                        </li>
-                                        <li>
-                                            <i class="far fa-clock"></i> 12 Patients, 16 Assessments
-                                        </li>
-                                        <li>
-                                            <i class="far fa-money-bill-alt"></i> $3000 in Revenue 
-                                            {{-- <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> --}}
-                                        </li>
-                                    </ul>
-                                    <div class="row row-sm">
-                                        <div class="col-6">
-                                            <a href="{{route('pharmacy.settings',$pharmacy)}}" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="{{route('pharmacy.dashboard',$pharmacy)}}" class="btn book-btn">Dashboard</a>
+                                <!-- Doctor Widget -->
+                                <div class="profile-widget">
+                                    <div class="doc-img">
+                                        <a href="doctor-profile.html">
+                                            <img class="img-fluid" alt="User Image" src="{{Storage::url('pharmacies/logos/'.$pharmacy->image)}}">
+                                        </a>
+                                        <a href="javascript:void(0)" class="fav-btn">
+                                            <i class="far fa-bookmark"></i>
+                                        </a>
+                                    </div>
+                                    <div class="pro-content">
+                                        <h3 class="title">
+                                            <a href="doctor-profile.html">{{$pharmacy->name}}</a> 
+                                            <i class="fas fa-check-circle verified"></i>
+                                        </h3>
+                                        <p class="speciality">
+                                            {{$pharmacy->description}}
+                                        </p>
+                                        
+                                        <ul class="available-info">
+                                            <li>
+                                                <i class="fas fa-map-marker-alt"></i> {{$pharmacy->state->name.' '.$pharmacy->country->name}}
+                                            </li>
+                                            <li>
+                                                <i class="far fa-clock"></i> {{$pharmacy->patients->count()}} Patients, {{$pharmacy->assessments->count()}} Assessments
+                                            </li>
+                                            <li>
+                                                <i class="far fa-money-bill-alt"></i> $3000 in Revenue 
+                                                {{-- <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> --}}
+                                            </li>
+                                        </ul>
+                                        <div class="row row-sm">
+                                            <div class="col-6">
+                                                <a href="{{route('pharmacy.settings',$pharmacy)}}" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="{{route('pharmacy.dashboard',$pharmacy)}}" class="btn book-btn">Dashboard</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /Doctor Widget -->
+                                <!-- /Doctor Widget -->
                             @endforeach
-                            <!-- Doctor Widget -->
-                            <div class="profile-widget">
-                                <div class="doc-img">
-                                    <a href="doctor-profile.html">
-                                        <img class="img-fluid" alt="User Image" src="assets/img/pharmacies/2.jpg">
-                                    </a>
-                                    <a href="javascript:void(0)" class="fav-btn">
-                                        <i class="far fa-bookmark"></i>
-                                    </a>
-                                </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="doctor-profile.html">Health Plus</a> 
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
-                                    {{-- <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="d-inline-block average-rating">(35)</span>
-                                    </div> --}}
-                                    <ul class="available-info">
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> Newyork, USA
-                                        </li>
-                                        <li>
-                                            <i class="far fa-clock"></i> 50 patients in revenue
-                                        </li>
-                                        <li>
-                                            <i class="far fa-money-bill-alt"></i> $5000 in revenue
-                                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                        </li>
-                                    </ul>
-                                    <div class="row row-sm">
-                                        <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="booking.html" class="btn book-btn">Dashboard</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Doctor Widget -->
-                    
-                            <!-- Doctor Widget -->
-                            <div class="profile-widget">
-                                <div class="doc-img">
-                                    <a href="doctor-profile.html">
-                                        <img class="img-fluid" alt="User Image" src="assets/img/pharmacies/3.jpg">
-                                    </a>
-                                    <a href="javascript:void(0)" class="fav-btn">
-                                        <i class="far fa-bookmark"></i>
-                                    </a>
-                                </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="doctor-profile.html">Greenvive Pharmacy</a> 
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
-                                    {{-- <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="d-inline-block average-rating">(27)</span>
-                                    </div> --}}
-                                    <ul class="available-info">
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> Florida, USA
-                                        </li>
-                                        <li>
-                                            <i class="far fa-clock"></i> 12 Patients, 16 Assessments
-                                        </li>
-                                        <li>
-                                            <i class="far fa-money-bill-alt"></i> $3000 in Revenue 
-                                            {{-- <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> --}}
-                                        </li>
-                                    </ul>
-                                    <div class="row row-sm">
-                                        <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="booking.html" class="btn book-btn">Dashboard</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Doctor Widget -->
-                    
-                            <!-- Doctor Widget -->
-                            <div class="profile-widget">
-                                <div class="doc-img">
-                                    <a href="doctor-profile.html">
-                                        <img class="img-fluid" alt="User Image" src="assets/img/pharmacies/4.jpg">
-                                    </a>
-                                    <a href="javascript:void(0)" class="fav-btn">
-                                        <i class="far fa-bookmark"></i>
-                                    </a>
-                                </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="doctor-profile.html">Medcare Pharmacy</a> 
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
-                                    <ul class="available-info">
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> Louisiana, USA
-                                        </li>
-                                        <li>
-                                            <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                        </li>
-                                        <li>
-                                            <i class="far fa-money-bill-alt"></i> $150 - $250 
-                                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                        </li>
-                                    </ul>
-                                    <div class="row row-sm">
-                                        <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn"> <i class="fas fa-cog"></i> Settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="booking.html" class="btn book-btn">Dashboard</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Doctor Widget -->
-                            
-                            {{-- <!-- Doctor Widget -->
-                            <div class="profile-widget">
-                                <div class="doc-img">
-                                    <a href="doctor-profile.html">
-                                        <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-05.jpg">
-                                    </a>
-                                    <a href="javascript:void(0)" class="fav-btn">
-                                        <i class="far fa-bookmark"></i>
-                                    </a>
-                                </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="doctor-profile.html">Marvin Campbell</a> 
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
-                                    <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="d-inline-block average-rating">(66)</span>
-                                    </div>
-                                    <ul class="available-info">
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> Michigan, USA
-                                        </li>
-                                        <li>
-                                            <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                        </li>
-                                        <li>
-                                            <i class="far fa-money-bill-alt"></i> $50 - $700 
-                                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                        </li>
-                                    </ul>
-                                    <div class="row row-sm">
-                                        <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="booking.html" class="btn book-btn">Dashboard</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Doctor Widget -->
-                            
-                            <!-- Doctor Widget -->
-                            <div class="profile-widget">
-                                <div class="doc-img">
-                                    <a href="doctor-profile.html">
-                                        <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-06.jpg">
-                                    </a>
-                                    <a href="javascript:void(0)" class="fav-btn">
-                                        <i class="far fa-bookmark"></i>
-                                    </a>
-                                </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="doctor-profile.html">Katharine Berthold</a> 
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
-                                    <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="d-inline-block average-rating">(52)</span>
-                                    </div>
-                                    <ul class="available-info">
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> Texas, USA
-                                        </li>
-                                        <li>
-                                            <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                        </li>
-                                        <li>
-                                            <i class="far fa-money-bill-alt"></i> $100 - $500 
-                                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                        </li>
-                                    </ul>
-                                    <div class="row row-sm">
-                                        <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="booking.html" class="btn book-btn">Dashboard</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Doctor Widget -->
-                            
-                            <!-- Doctor Widget -->
-                            <div class="profile-widget">
-                                <div class="doc-img">
-                                    <a href="doctor-profile.html">
-                                        <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-07.jpg">
-                                    </a>
-                                    <a href="javascript:void(0)" class="fav-btn">
-                                        <i class="far fa-bookmark"></i>
-                                    </a>
-                                </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="doctor-profile.html">Linda Tobin</a> 
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
-                                    <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="d-inline-block average-rating">(43)</span>
-                                    </div>
-                                    <ul class="available-info">
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> Kansas, USA
-                                        </li>
-                                        <li>
-                                            <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                        </li>
-                                        <li>
-                                            <i class="far fa-money-bill-alt"></i> $100 - $1000 
-                                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                        </li>
-                                    </ul>
-                                    <div class="row row-sm">
-                                        <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="booking.html" class="btn book-btn">Dashboard</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Doctor Widget -->
-                            
-                            <!-- Doctor Widget -->
-                            <div class="profile-widget">
-                                <div class="doc-img">
-                                    <a href="doctor-profile.html">
-                                        <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-08.jpg">
-                                    </a>
-                                    <a href="javascript:void(0)" class="fav-btn">
-                                        <i class="far fa-bookmark"></i>
-                                    </a>
-                                </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="doctor-profile.html">Paul Richard</a> 
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">MBBS, MD - Dermatology , Venereology & Lepros</p>
-                                    <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="d-inline-block average-rating">(49)</span>
-                                    </div>
-                                    <ul class="available-info">
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> California, USA
-                                        </li>
-                                        <li>
-                                            <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                        </li>
-                                        <li>
-                                            <i class="far fa-money-bill-alt"></i> $100 - $400 
-                                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                        </li>
-                                    </ul>
-                                    <div class="row row-sm">
-                                        <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn"><i class="fas fa-cog"></i> Settings</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="booking.html" class="btn book-btn">Dashboard</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Doctor Widget --> --}}
                             
                         </div>
                     </div>

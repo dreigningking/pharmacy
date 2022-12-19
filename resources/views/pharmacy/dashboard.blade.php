@@ -27,7 +27,7 @@
         <div class="container-fluid">
             <div class="row">
                     <div class="col-md-5 features-img">
-                        <img src="{{asset('assets/img/pharmacies/1.jpg')}}" class="img-fluid" alt="Feature" style="padding:50px;background:lightblue">
+                        <img src="{{Storage::url('pharmacies/logos/'.$pharmacy->image)}}" class="img-fluid" alt="Feature" style="padding:50px;background:lightblue">
                     </div>
                     <div class="col-md-7">
                         <div class="section-header mb-3">	
@@ -43,13 +43,13 @@
                                 </a>
                             </div>
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="#">
+                                <a href="{{route('pharmacy.assessment.list',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-05.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Assessments</p>
                                 </a>
                             </div>
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="#">
+                                <a href="{{route('pharmacy.patient.list',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-01.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Sales</p>
                                 </a>
@@ -72,21 +72,19 @@
                             
                             <!-- Slider Item -->
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="#">
+                                <a href="{{route('pharmacy.prescription.list',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-04.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Prescriptions</p>
                                 </a>
                             </div>
-                            <!-- /Slider Item -->
                             
-                            <!-- Slider Item -->
-                            
-                            <!-- /Slider Item -->
                             
                             <!-- Slider Item -->
                             <div class="feature-item text-center col-md-3 mb-2">
+                                <a href="{{route('pharmacy.inventory.list',$pharmacy)}}">
                                 <img src="{{asset('assets/img/features/feature-06.jpg')}}" class="img-fluid" alt="Feature">
                                 <p>Inventory</p>
+                                </a>
                             </div>
                             <!-- /Slider Item -->
                         </div>
@@ -134,7 +132,7 @@
                                                         <div class="dash-widget-info">
                                                             <h6>Total Patient</h6>
                                                             <h3>1500</h3>
-                                                            <p class="text-muted">Till Today</p>
+                                                            {{-- <p class="text-muted">Till Today</p> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -147,9 +145,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="dash-widget-info">
-                                                            <h6>Today Patient</h6>
+                                                            <h6>Total Sales</h6>
                                                             <h3>160</h3>
-                                                            <p class="text-muted">06, Nov 2019</p>
+                                                            {{-- <p class="text-muted">06, Nov 2019</p> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,24 +160,24 @@
                                                             </div>
                                                         </div>
                                                         <div class="dash-widget-info">
-                                                            <h6>Appoinments</h6>
+                                                            <h6>Total Assessments</h6>
                                                             <h3>85</h3>
-                                                            <p class="text-muted">06, Apr 2019</p>
+                                                            {{-- <p class="text-muted">06, Apr 2019</p> --}}
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-12 col-lg-3">
                                                     <div class="dash-widget">
-                                                        <div class="circle-bar circle-bar3">
+                                                        <div class="circle-bar circle-bar3 ">
                                                             <div class="circle-graph3" data-percent="20">
                                                                 <img src="{{asset('assets/img/icon-02.png')}}" class="img-fluid" alt="Patient">
                                                             </div>
                                                         </div>
                                                         <div class="dash-widget-info">
-                                                            <h6>Appoinments</h6>
+                                                            <h6>Inventory</h6>
                                                             <h3>85</h3>
-                                                            <p class="text-muted">06, Apr 2019</p>
+                                                            {{-- <p class="text-muted">06, Apr 2019</p> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -248,7 +246,7 @@
                                             
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <span class="comment-author">Richard Wilson</span>
+                                                    <span class="comment-author">Invitation Accepted</span>
                                                     <span class="comment-date"> <i class="fa fa-calendar-alt"></i> 24-Oct-2022 03:45PM</span>
                                                     <div class="review-count rating">
                                                         
@@ -256,185 +254,64 @@
                                                            <p class="recommend-btn">
                                                                 {{-- <span>Recommend?</span> --}}
                                                                 <a href="#" class="like-btn">
-                                                                    <i class="far fa-thumbs-up"></i> Read
+                                                                    <i class="far fa-eye"></i> Mark Seen
                                                                 </a>
-                                                                <a href="#" class="dislike-btn">
-                                                                    <i class="far fa-thumbs-down"></i> Unread
-                                                                </a>
+                                                                
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 {{-- <p class="recommended"><i class="far fa-thumbs-up"></i> I recommend the doctor</p> --}}
                                                 <p class="comment-content">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                    Ut enim ad minim veniam, quis nostrud exercitation.
-                                                    Curabitur non nulla sit amet nisl tempus
+                                                    Your new staff Richard Watson has accepted your invitation 
                                                 </p>
                                                 
                                             </div>
                                         </div>
-                                        
-                                        <!-- Comment Reply -->
-                                        <ul class="comments-reply">
-                                            <li>
-                                                <div class="comment">
-                                                    <img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{asset('assets/img/patients/patient1.jpg')}}" "="">
-                                                    <div class="comment-body">
-                                                        <div class="meta-data">
-                                                            <span class="comment-author">Charlene Reed</span>
-                                                            <span class="comment-date">Reviewed 3 Days ago</span>
-                                                            <div class="review-count rating">
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                        <p class="comment-content">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                            Ut enim ad minim veniam.
-                                                            Curabitur non nulla sit amet nisl tempus
-                                                        </p>
+                                    </li>
+                                    <!-- /Comment List -->
+                                    
+                                    <li>
+                                        <div class="comment">
+                                            
+                                            <div class="comment-body">
+                                                <div class="meta-data">
+                                                    <span class="comment-author">Product Expiration</span>
+                                                    <span class="comment-date"> <i class="fa fa-calendar-alt"></i> 24-Oct-2022 03:45PM</span>
+                                                    <div class="review-count rating">
+                                                        
                                                         <div class="comment-reply">
-                                                            <a class="comment-btn" href="#">
-                                                                <i class="fas fa-reply"></i> Reply
-                                                            </a>
-                                                            <p class="recommend-btn">
-                                                                <span>Recommend?</span>
+                                                           <p class="recommend-btn">
+                                                                {{-- <span>Recommend?</span> --}}
                                                                 <a href="#" class="like-btn">
-                                                                    <i class="far fa-thumbs-up"></i> Yes
+                                                                    <i class="far fa-eye"></i> Mark Seen
                                                                 </a>
-                                                                <a href="#" class="dislike-btn">
-                                                                    <i class="far fa-thumbs-down"></i> No
-                                                                </a>
+                                                                
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </li>
-                                        </ul>
-                                        <!-- /Comment Reply -->
-                                        
-                                    </li>
-                                    <!-- /Comment List -->
-                                    
-                                    <!-- Comment List -->
-                                    <li>
-                                        <div class="comment">
-                                            <img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{asset('assets/img/patients/patient2.jpg')}}" "="">
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <span class="comment-author">Travis Trimble</span>
-                                                    <span class="comment-date">Reviewed 4 Days ago</span>
-                                                    <div class="review-count rating">
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star"></i>
-                                                    </div>
-                                                </div>
+                                                {{-- <p class="recommended"><i class="far fa-thumbs-up"></i> I recommend the doctor</p> --}}
                                                 <p class="comment-content">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                    Ut enim ad minim veniam, quis nostrud exercitation.
-                                                    Curabitur non nulla sit amet nisl tempus
+                                                    Coartem with batch number 0043843943 has expired
                                                 </p>
-                                                <div class="comment-reply">
-                                                    <a class="comment-btn" href="#">
-                                                        <i class="fas fa-reply"></i> Reply
-                                                    </a>
-                                                    <p class="recommend-btn">
-                                                        <span>Recommend?</span>
-                                                        <a href="#" class="like-btn">
-                                                            <i class="far fa-thumbs-up"></i> Yes
-                                                        </a>
-                                                        <a href="#" class="dislike-btn">
-                                                            <i class="far fa-thumbs-down"></i> No
-                                                        </a>
-                                                    </p>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </li>
-                                    <!-- /Comment List -->
                                     
                                 </ul>
                                 
                                 <!-- Show All -->
                                 <div class="all-feedback text-center">
                                     <a href="#" class="btn btn-primary btn-sm">
-                                        Show all feedback <strong>(167)</strong>
+                                        Show all Notifications <strong>(167)</strong>
                                     </a>
                                 </div>
                                 <!-- /Show All -->
                                 
                             </div>
-                            <!-- /Review Listing -->
-                        
-                            <!-- Write Review -->
-                            <div class="write-review">
-                                <h4>Write a review for <strong>Dr. Darren Elder</strong></h4>
-                                
-                                <!-- Write Review Form -->
-                                <form>
-                                    <div class="form-group">
-                                        <label>Review</label>
-                                        <div class="star-rating">
-                                            <input id="star-5" type="radio" name="rating" value="star-5">
-                                            <label for="star-5" title="5 stars">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                            <input id="star-4" type="radio" name="rating" value="star-4">
-                                            <label for="star-4" title="4 stars">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                            <input id="star-3" type="radio" name="rating" value="star-3">
-                                            <label for="star-3" title="3 stars">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                            <input id="star-2" type="radio" name="rating" value="star-2">
-                                            <label for="star-2" title="2 stars">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                            <input id="star-1" type="radio" name="rating" value="star-1">
-                                            <label for="star-1" title="1 star">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Title of your review</label>
-                                        <input class="form-control" type="text" placeholder="If you could say it in one sentence, what would you say?">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Your review</label>
-                                        <textarea id="review_desc" maxlength="100" class="form-control"></textarea>
-                                      
-                                      <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
-                                    </div>
-                                    <hr>
-                                    <div class="form-group">
-                                        <div class="terms-accept">
-                                            <div class="custom-checkbox">
-                                               <input type="checkbox" id="terms_accept">
-                                               <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="submit-section">
-                                        <button type="submit" class="btn btn-primary submit-btn">Add Review</button>
-                                    </div>
-                                </form>
-                                <!-- /Write Review Form -->
-                                
-                            </div>
-                            <!-- /Write Review -->
-    
+                            
                         </div>
                         <!-- /Locations Content -->
                         

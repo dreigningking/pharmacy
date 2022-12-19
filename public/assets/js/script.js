@@ -85,7 +85,7 @@ Version      : 1.0
 		$('.clinic-gallery a').fancybox({
 			buttons: [
 				"thumbs",
-				"close"
+				"close"	
 			],
 		});	
 	}
@@ -94,8 +94,12 @@ Version      : 1.0
 
 	if($('.floating').length > 0 ){
 		$('.floating').on('focus blur', function (e) {
-		$(this).parents('.form-focus').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
+			$(this).parents('.form-focus').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
 		}).trigger('blur');
+		if($('.floating').val() != ''){
+			$(this).parents('.form-focus').addClass('focused');
+		}
+		
 	}
 	
 	// Mobile menu sidebar overlay

@@ -90,7 +90,8 @@ class PharmacyController extends Controller
     }
     
     public function settings(Pharmacy $pharmacy){
-        return view('pharmacy.settings',compact('pharmacy'));
+        $countries = Country::all();
+        return view('pharmacy.settings',compact('pharmacy','countries'));
     }
     public function saveSettings(Pharmacy $pharmacy){
         return redirect()->back();
