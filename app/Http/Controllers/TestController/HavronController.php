@@ -39,7 +39,8 @@ class HavronController extends Controller
         return $response->access_token;
         else return false;
     }
-    public function store(Request $request)
+
+    public function storePaypal(Request $request)
     {
         
         $token = $this->get_token();
@@ -90,14 +91,42 @@ class HavronController extends Controller
         
     }
 
+    public function store(Request $request){
+        // dd($request->all());
+        $response = Curl::to('https://api.paystack.co/transaction/initialize')
+        ->withHeader('Authorization: Bearer sk_live_d5e00e32507982cd85010f382d438f794ecd63f9')
+        ->withData( array('email' => $request->email,'currency'=> 'USD',
+        'amount'=> $request->amount *100,'callback_url'=> route('havron.verify'),'reference'=> uniqid(),'metadata' => ['product'=> 'Donation'] ) )
+        ->asJson()
+        ->post();
+        // dd($response);
+        if(!$response || !$response->status)
+        return redirect()->route('havron.error');
+        else return redirect()->to($response->data->authorization_url); 
+    }
+    
+    public function verify(){
+        \abort_if(!request()->query('trxref'),400);
+        $transactionRef = request()->query('trxref');
+        $response = Curl::to('https://api.paystack.co/transaction/verify/'.$transactionRef)
+         ->withHeader('Authorization: Bearer sk_live_d5e00e32507982cd85010f382d438f794ecd63f9')
+         ->get();
+        $paymentDetails = json_decode($response);
+        \abort_if(!$paymentDetails || !$paymentDetails->status ,400);
+        $payment_status = $paymentDetails->data->status;
+        if($payment_status != 'success'){
+            return redirect()->route('havron.error');
+        }else{
+            return redirect()->route('havron.success');
+        }
+    }
 
-    public function success()
-    {
+
+    public function success(){
         return view('havron.success');
     }
 
-    public function error()
-    {
+    public function error(){
         return view('havron.error');
     }
 

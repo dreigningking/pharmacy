@@ -24,7 +24,10 @@
                         <a class="nav-link active" data-toggle="tab" href="#general_tab">General</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " data-toggle="tab" href="#subscriptions_tab">Subscription Plans</a>
+                        <a class="nav-link " data-toggle="tab" href="#subscriptions_tab">Pharmacy Subscription Plans</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="tab" href="#analytics_tab">Analytics Subscription Plans</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " data-toggle="tab" href="#sms_tab">SMS Units</a>
@@ -51,19 +54,19 @@
                                         <div class="row my-3">
                                             <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Currency Name</p>
                                             <div class="col-sm-6">
-                                                <input type="text" name="currency_name" value="{{$settings->firstWhere('name','currency_name')->value}}" class="form-control" placeholder="e.g Dollars" >
+                                                <input type="text" name="currency_name" value="" class="form-control" placeholder="e.g Dollars" >
                                             </div>
                                         </div>
                                         <div class="row my-3">
                                             <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Currency Symbol</p>
                                             <div class="col-sm-6">
-                                                <input type="text" name="currency_symbol" value="{{$settings->firstWhere('name','currency_symbol')->value}}" class="form-control" placeholder="e.g $">
+                                                <input type="text" name="currency_symbol" value="" class="form-control" placeholder="e.g $">
                                             </div>
                                         </div>
                                         <div class="row my-3">
                                             <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Currency ISO</p>
                                             <div class="col-sm-6">
-                                                <input type="text" name="currency_iso" value="{{$settings->firstWhere('name','currency_iso')->value}}" class="form-control" placeholder="e.g USD">
+                                                <input type="text" name="currency_iso" value="" class="form-control" placeholder="e.g USD">
                                             </div>
                                         </div>
                                         <div class="row my-3">
@@ -87,285 +90,197 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Subscriptions</h5>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    
-                                    <div class="card">
-										{{-- <div class="card-header">
-											<h4 class="card-title">Basic justified tabs</h4>
-										</div> --}}
-										<div class="card-body">
-											<ul class="nav nav-tabs nav-justified">
-												<li class="nav-item"><a class="nav-link active" href="#basic-justified-tab1" data-toggle="tab">PHARMACY MANAGEMENT PLAN</a></li>
-												<li class="nav-item"><a class="nav-link " href="#basic-justified-tab2" data-toggle="tab">ANALYTICS PLAN</a></li>
-												<li class="nav-item"><a class="nav-link " href="#basic-justified-tab3" data-toggle="tab">SMS PLAN</a></li>
-											</ul>
-											<div class="tab-content">
-												<div class="tab-pane active" id="basic-justified-tab1">
-													<form action="#" method="POST">@csrf
-                                                        <div class="row my-4">
-                                                            <p class="col-sm-2 text-muted">Display Name</p>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" name="currency_name" value="Pharmacy Management" class="form-control" placeholder="e.g Dollars" >
-                                                            </div>
-                                                        </div>                                                       
-                                                        <div class="row my-4">
-                                                            <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Details</p>
-                                                            <div class="col-sm-6">
-                                                                <textarea class="form-control" rows="5"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Month</p>
-                                                            <div class="col-md-6">
-                                                                <div class="row no-gutters">
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">₦</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control rounded-0">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">$</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Year</p>
-                                                            <div class="col-md-6">
-                                                                <div class="row no-gutters">
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">₦</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">$</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control">
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted">Minimum Duration</p>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <input type="number" class="form-control">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text">Months</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted">Trial Duration</p>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <input type="number" class="form-control">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text">Days</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <div class="col-sm-6">
-                                                               <button type="submit" class="btn btn-primary">Save</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-												</div>
-												<div class="tab-pane" id="basic-justified-tab2">
-													<form action="#" method="POST">@csrf
-                                                        <div class="row my-4">
-                                                            <p class="col-sm-2 text-muted">Display Name</p>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" name="currency_name" value="Analytics Plans" class="form-control" placeholder="" >
-                                                            </div>
-                                                        </div>                                                       
-                                                        <div class="row my-4">
-                                                            <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Details</p>
-                                                            <div class="col-sm-6">
-                                                                <textarea class="form-control" rows="5"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Month</p>
-                                                            <div class="col-md-6">
-                                                                <div class="row no-gutters">
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">₦</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control rounded-0">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">$</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Year</p>
-                                                            <div class="col-md-6">
-                                                                <div class="row no-gutters">
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">₦</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">$</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control">
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted">Minimum Duration</p>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <input type="number" class="form-control">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text">Months</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted">Trial Duration</p>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <input type="number" class="form-control">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text">Days</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            
-                                                            <div class="col-sm-6">
-                                                               <button type="submit" class="btn btn-primary">Save</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-												</div>
-												<div class="tab-pane" id="basic-justified-tab3">
-													<form action="#" method="POST">@csrf
-                                                        <div class="row my-4">
-                                                            <p class="col-sm-2 text-muted">Display Name</p>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" name="currency_name" value="SMS Units" class="form-control" placeholder="e.g Dollars" >
-                                                            </div>
-                                                        </div>                                                       
-                                                        <div class="row my-4">
-                                                            <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Details</p>
-                                                            <div class="col-sm-6">
-                                                                <textarea class="form-control" rows="5"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Unit</p>
-                                                            <div class="col-md-6">
-                                                                <div class="row no-gutters">
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">₦</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control rounded-0">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">$</span>
-                                                                            </div>
-                                                                            <input type="number" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted">Minimum Units</p>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <input type="number" class="form-control">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text">Units</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <p class="col-sm-2 text-muted">Trial Units</p>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <input type="number" class="form-control">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text">Units</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            
-                                                            <div class="col-sm-6">
-                                                               <button type="submit" class="btn btn-primary">Save</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-												</div>
-												<div class="tab-pane" id="basic-justified-tab4">
-													Tab content 4
-												</div>
-											</div>
-										</div>
-									</div>
-
+                            <form action="#" method="POST">@csrf
+                                <div class="row my-4">
+                                    <p class="col-sm-2 text-muted">Display Name</p>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="currency_name" value="Pharmacy Management" class="form-control" placeholder="e.g Dollars" >
+                                    </div>
+                                </div>                                                       
+                                <div class="row my-4">
+                                    <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Details</p>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" rows="5"></textarea>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Month</p>
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">₦</span>
+                                                    </div>
+                                                    <input type="number" class="form-control rounded-0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Year</p>
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">₦</span>
+                                                    </div>
+                                                    <input type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input type="number" class="form-control">
+                                                    
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted">Minimum Duration</p>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Months</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted">Trial Duration</p>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Days</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="col-sm-6">
+                                       <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </form> 
                         </div>
                     </div>
+                </div>
+
+                <div id="analytics_tab" class="tab-pane fade">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Analytics Subscriptions</h5>
+                            <form action="#" method="POST">@csrf
+                                <div class="row my-4">
+                                    <p class="col-sm-2 text-muted">Display Name</p>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="currency_name" value="Analytics Plans" class="form-control" placeholder="" >
+                                    </div>
+                                </div>                                                       
+                                <div class="row my-4">
+                                    <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Details</p>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Month</p>
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">₦</span>
+                                                    </div>
+                                                    <input type="number" class="form-control rounded-0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Year</p>
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">₦</span>
+                                                    </div>
+                                                    <input type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input type="number" class="form-control">
+                                                    
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted">Minimum Duration</p>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Months</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted">Trial Duration</p>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Days</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    
+                                    <div class="col-sm-6">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div> 
                 </div>
 
                 <div id="sms_tab" class="tab-pane fade">
@@ -380,6 +295,79 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">SMS Units</h5>
+                            <form action="#" method="POST">@csrf
+                                <div class="row my-4">
+                                    <p class="col-sm-2 text-muted">Display Name</p>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="currency_name" value="SMS Units" class="form-control" placeholder="e.g Dollars" >
+                                    </div>
+                                </div>                                                       
+                                <div class="row my-4">
+                                    <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Details</p>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted  mb-0 mb-sm-3">Price Per Unit</p>
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">₦</span>
+                                                    </div>
+                                                    <input type="number" class="form-control rounded-0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted">Minimum Units</p>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Units</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <p class="col-sm-2 text-muted">Trial Units</p>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Units</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    
+                                    <div class="col-sm-6">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
                 </div>
 
                 <div id="notifications_tab" class="tab-pane fade">

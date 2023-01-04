@@ -21,7 +21,8 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
         Route::post('patient/delete', [App\Http\Controllers\GeneralControllers\PatientController::class, 'destroy'])->name("patient.destroy");
         
         Route::get('assessment', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'index'])->name("assessment.list");
-        Route::get('assessment/{patient}/new', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'create'])->name("assessment.create");
+        Route::get('assessment/new', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'create'])->name("assessment.create");
+        Route::get('assessment/{patient}/new', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'create'])->name("assessment.add");
         Route::get('assessment/{patient}/appointment', [App\Http\Controllers\GeneralControllers\PatientController::class, 'appointment'])->name("assessment.appointment");
         Route::get('assessment/show/{assessment}', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'view'])->name("assessment.view");
         Route::post('assessment/store', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'store'])->name("assessment.store");

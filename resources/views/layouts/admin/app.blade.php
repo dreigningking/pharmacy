@@ -246,11 +246,11 @@
 								<a href="{{route('admin.users.list')}}"><i class="fe fe-user-plus"></i> <span>Admin Users</span></a>
 							</li>
 							@endif
-							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('support'))
+							{{-- @if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('support'))
 							<li @if(Route::is('admin.support.inbox')) class="active" @endif> 
 								<a href="{{route('admin.support.inbox')}}"><i class="fe fe-comments"></i> <span>Support</span></a>
 							</li>
-							@endif
+							@endif --}}
 							{{-- <li class="submenu">
 								<a href="#"><i class="fe fe-bar-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">

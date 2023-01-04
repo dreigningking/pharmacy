@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 @push('styles')
 {{-- <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"> --}}
-<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+
 
 @endpush
 @section('main')

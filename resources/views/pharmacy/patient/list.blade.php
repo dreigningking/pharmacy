@@ -26,7 +26,59 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('pharmacy.sidebar')
+            <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+                <div class="card search-filter">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Search Filter</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="filter-widget">
+                            <div class="cal-icon">
+                                <input type="text" class="form-control datetimepicker" placeholder="Record Date">
+                            </div>			
+                        </div>
+                        <div class="filter-widget">
+                            <h4>Gender</h4>
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Male
+                                </label>
+                            </div>
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Female
+                                </label>
+                            </div> 
+                            
+                        </div>
+                        <div class="filter-widget">
+                            <h4>Assessment</h4>
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Undergoing Treatment
+                                </label>
+                            </div>
+                            
+                            
+                        </div>
+                    
+                        <div class="btn-search">
+                            <button type="button" class="btn btn-block">Search</button>
+                        </div>	
+                        
+                    </div>
+                    {{-- <div class="card-body">
+                        <div class="clinic-booking">
+                            <a class="apt-btn" href="booking.html">View Subscription Plans</a>
+                        </div>
+                    </div> --}}
+                    
+                </div>
+            </div>
+            {{-- @include('pharmacy.sidebar') --}}
 
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="row">
@@ -62,12 +114,16 @@
                                                             <div class="actions">
                                                                 <a data-toggle="modal" href="#view_modal{{$patient->id}}"
                                                                     class="btn btn-sm bg-primary-light">
-                                                                    <i class="fas fa-eye"></i> View
+                                                                    <i class="fas fa-stetoscope"></i> Assessment
+                                                                </a>
+                                                                <a data-toggle="modal" href="#view_modal{{$patient->id}}"
+                                                                    class="btn btn-sm bg-info-light">
+                                                                    <i class="fas fa-pill"></i> Prescription
                                                                 </a>
                                                                 <a  href="{{route('pharmacy.patient.edit',[$pharmacy,$patient])}}"
-                                                                    class="btn btn-sm bg-warning-light">
-                                                                    <i class="fas fa-pen"></i>
-                                                                    Edit
+                                                                    class="btn btn-sm bg-danger-light">
+                                                                    <i class="fas fa-eye"></i>
+                                                                    View
                                                                 </a>     
                                                             </div>
                                                         </td>

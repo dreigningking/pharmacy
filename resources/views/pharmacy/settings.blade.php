@@ -474,6 +474,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row my-3">
+                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Notify me</p>
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <input type="number" min="0" class="form-control" placeholder="2">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">Weeks Before Expiry</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </div> 
                                 <div class="col-md-6 ">
                                     <div class="row my-3">
@@ -485,8 +496,20 @@
                                         </div>
                                         <div class="col-12 text-muted mb-3">
                                             <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" id="price_custom" name="rating_option" value="custom_price" class="custom-control-input">
+                                                <label class="custom-control-label" for="price_custom">Notify on stock expiry</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-muted mb-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
                                                 <input type="checkbox" id="autodelete" name="rating_option" value="custom_price" class="custom-control-input">
                                                 <label class="custom-control-label" for="autodelete">Auto-Delete expired batch items</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-muted mb-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" id="autodelete" name="rating_option" value="custom_price" class="custom-control-input">
+                                                <label class="custom-control-label" for="autodelete">Allow Transfer of Items</label>
                                             </div>
                                         </div>
                                     </div>

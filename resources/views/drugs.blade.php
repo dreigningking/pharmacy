@@ -146,7 +146,7 @@
 			
 @endsection
 @push('scripts')
-<script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
+
 <script src="{{asset('adminassets/js/script.js')}}"></script>
 <script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
 @endpush

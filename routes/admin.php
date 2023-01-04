@@ -94,8 +94,8 @@ Route::group(['as'=>'admin.','middleware'=>['role:admin'] ,'prefix'=>'admin'], f
         Route::post('manage',[App\Http\Controllers\WebControllers\AdminControllers\SettingsController::class,'admin_manage'])->name('manage');
     });
 
-    Route::view('support/inbox','admin.support.inbox')->name('support.inbox');
-    Route::view('support/read','admin.support.read')->name('support.read');
+    // Route::view('support/inbox','admin.support.inbox')->name('support.inbox');
+    // Route::view('support/read','admin.support.read')->name('support.read');
 
     Route::post('user/save', [App\Http\Controllers\WebControllers\AdminControllers\DashboardController::class, 'saveuser'])->name('user.save');
     

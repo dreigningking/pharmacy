@@ -17,7 +17,7 @@ class PatientController extends Controller
     }
 
     public function view(Pharmacy $pharmacy,Patient $patient=null){
-        dd($patient);
+        // dd($patient);
         return view('pharmacy.patient.view', compact('pharmacy','patient'));
     }
 

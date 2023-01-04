@@ -1,6 +1,6 @@
 @extends('layouts.main.app')
 @push('styles')
-<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+
 <style>
     span.select2-selection.select2-selection--single{
         border:0px !important;

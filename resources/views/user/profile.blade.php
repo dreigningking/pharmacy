@@ -411,7 +411,7 @@
     <!-- /Page Content -->
     @endsection
     @push('scripts')
-    <script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
+    
     <script src="{{asset('assets/js/moment.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script>

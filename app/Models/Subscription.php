@@ -12,7 +12,7 @@ class Subscription extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['user_id','pharmacy_id','plan_id','trial','start','end','warn','status'];
+    protected $fillable = ['user_id','payment_id','type','trial','licenses','status'];
     protected $dates = ['start','end','warn'];
 
     public function plan(){

@@ -34,6 +34,7 @@
 
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{asset('adminassets/css/feathericon.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
     @stack('styles')
 
 </head>
@@ -223,11 +224,11 @@
     <script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
     <!-- Slick JS -->
     <script src="{{asset('assets/js/slick.js')}}"></script>
-
+    <script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
     <!-- Custom JS -->
     @stack('scripts')
     <script src="{{asset('assets/js/script.js')}}"></script>
-
+    
 </body>
 
 <!-- doccure/  30 Nov 2019 04:11:53 GMT -->

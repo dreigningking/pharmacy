@@ -1,7 +1,7 @@
 @extends('layouts.main.app')
 @push('styles')
 <link rel="stylesheet" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
-<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 @endpush
 @section('main')
@@ -194,7 +194,7 @@
     <!-- /Page Content -->
 @endsection
 @push('scripts')
-<script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
+
 <script src="{{asset('assets/js/moment.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script>

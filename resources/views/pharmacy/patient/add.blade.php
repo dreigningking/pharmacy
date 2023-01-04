@@ -25,7 +25,70 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            @include('pharmacy.sidebar')
+            <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+                <div class="card widget-profile pat-widget-profile">
+                    <div class="card-body">
+                        <div class="pro-widget-content">
+                            <div class="profile-info-widget">
+                                <a href="#" class="booking-doc-img">
+                                    <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="User Image">
+                                </a>
+                                <div class="profile-det-info">
+                                    <h3>Richard Wilson</h3>
+                                    
+                                    <div class="patient-details">
+                                        <h5><b>Patient ID :</b> PT0016</h5>
+                                        <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="patient-info">
+                            <ul>
+                                <li>Phone <span>+1 952 001 8563</span></li>
+                                <li>Age <span>38 Years, Male</span></li>
+                                <li>Blood Group <span>AB+</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dashboard-widget">
+                        <nav class="dashboard-menu">
+                            <ul>
+                                <li class="active">
+                                    <a href="#">
+                                        <i class="fas fa-columns"></i>
+                                        <span>Basic Information</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-user-injured"></i>
+                                        <span>Past Medical History</span>
+                                    </a>
+                                </li>
+                                
+                                <li @if(Route::is('pharmacy.assessment.list')) class="active" @endif>
+                                    <a href="{{route('pharmacy.assessment.list',$pharmacy)}}">
+            
+                                        <i class="fas fa-pen"></i>
+                                        <span>Current Medical History</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="{{route('pharmacy.settings',$pharmacy)}}">
+                                        <i class="fas fa-cog"></i>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                {{-- @endusercan --}}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="row">
                     <div class="col-sm-12">

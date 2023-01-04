@@ -19,10 +19,13 @@
                                     <h2>Donate </h2>
                                     <form action="{{route('havron.donate')}}" method="post">@csrf
                                         <div class="form-group">
-                                            <input type="text" name="" placeholder="Enter your name" id="" class="form-control">
+                                            <input type="text" name="name" placeholder="Enter your name" id="" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" name="amount" placeholder="Amount" id="" class="form-control">
+                                            <input type="email" name="email" placeholder="Enter your email" id="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" name="amount" placeholder="Amount in dollars" id="" class="form-control">
                                         </div>
                                         {{-- <div class="form-group">
                                             <label class="form-label">Environment</label>

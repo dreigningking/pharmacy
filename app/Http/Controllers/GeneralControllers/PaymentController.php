@@ -38,4 +38,8 @@ class PaymentController extends Controller
         
         return redirect()->intended('dashboard');
     }
+
+    public function transactions(){
+        return view('user.transactions');
+    }
 }

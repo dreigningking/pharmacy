@@ -112,12 +112,12 @@
                     </div></a>
                 </div>
                 <div class="col-xl-3 col-sm-6 col-12">
-                    <a href="{{route('report')}}">
+                    <a href="{{route('transactions')}}">
                     <div class="card">
                         <div class="card-body">
                             <div class="add-box">
-                                <i class="fe fe-book add"></i>
-                                <p>Report</p>
+                                <i class="fe fe-money add"></i>
+                                <p>Transactions</p>
                                 <div>
                                     <p class="text-justify">
                                          pariatur incidunt sed dolor! Mollitia 

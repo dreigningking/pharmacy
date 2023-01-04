@@ -32,7 +32,7 @@
                     <div class="col-md-7">
                         <div class="section-header mb-3">	
                             <h2 class="mt-2">{{$pharmacy->name}}</h2>
-                            <p>Modules available by the readable content of a page  </p>
+                            <p>{{$pharmacy->description}} </p>
                         </div>	
                         <div class="row">
                             <!-- Slider Item -->
@@ -84,6 +84,13 @@
                                 <a href="{{route('pharmacy.inventory.list',$pharmacy)}}">
                                 <img src="{{asset('assets/img/features/feature-06.jpg')}}" class="img-fluid" alt="Feature">
                                 <p>Inventory</p>
+                                </a>
+                            </div>
+
+                            <div class="feature-item text-center col-md-3 mb-2">
+                                <a href="{{route('pharmacy.settings',$pharmacy)}}">
+                                <img src="{{asset('assets/img/features/feature-06.jpg')}}" class="img-fluid" alt="Feature">
+                                <p>Settings</p>
                                 </a>
                             </div>
                             <!-- /Slider Item -->
@@ -185,49 +192,220 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-lg-9">
-                                    <div class="row">
-                                        
-                                    </div>
+                                <div class="col-md-12 col-lg-12">
+                                    
                                     <!-- About Details -->
                                     <div class="widget about-widget">
                                         <h4 class="widget-title">About </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <p>Pharmacy Type: Community Pharmacy</p>
+                                        <p>Establishment Type: Faith Based Pharmacy</p>
+                                        <p>Location: <i class="fas fa-map-marker-alt"></i> Lagos,Nigeria</p>
                                     </div>
                                     <!-- /About Details -->
-                                
-                                    
-                            
-                                    
-                                    
-                                    <!-- Services List -->
-                                    <div class="service-list">
-                                        <h4>Services</h4>
-                                        <ul class="clearfix">
-                                            <li>Tooth cleaning </li>
-                                            <li>Root Canal Therapy</li>
-                                            <li>Implants</li>
-                                            <li>Composite Bonding</li>
-                                            <li>Fissure Sealants</li>
-                                            <li>Surgical Extractions</li>
-                                        </ul>
+                                    <div class="row">
+                                        <div class="col-md-6 my-3">
+                                            <div class="service-list">
+                                                <h4>Patients</h4>
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Patients who are male:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Patients who are female:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Patients who have received assessment:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Patients who recovered:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 my-3">
+                                            <div class="service-list">
+                                                <h4>Sales</h4>
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Sales of drugs:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Amount acrued from Sales of drugs:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Sales of non-drugs:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Amount acrued from Sales of non-drugs:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Sales Amount:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
-                                    <!-- /Services List -->
-                                    
-                                    <!-- Specializations List -->
-                                    <div class="service-list">
-                                        <h4>Specializations</h4>
-                                        <ul class="clearfix">
-                                            <li>Children Care</li>
-                                            <li>Dental Care</li>	
-                                            <li>Oral and Maxillofacial Surgery </li>	
-                                            <li>Orthodontist</li>	
-                                            <li>Periodontist</li>	
-                                            <li>Prosthodontics</li>	
-                                        </ul>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="service-list">
+                                                <h4>Inventory</h4>
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            Most Purchased Drugs:
+                                                        </td>
+                                                        <td>
+                                                            Lonart
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Most Purchased NonDrug:
+                                                        </td>
+                                                        <td>
+                                                            Water
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Expired Drugs:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Most Profitable Item:
+                                                        </td>
+                                                        <td>
+                                                            Biscuit
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Antimalaria drugs:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Antibiotics:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Pain Relief:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Antiseptic:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="service-list">
+                                                <h4>Assessment</h4>
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            Most common Disease:
+                                                        </td>
+                                                        <td>
+                                                            Cholera
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Walk-in Prescription vs Patients:
+                                                        </td>
+                                                        <td>
+                                                            45/12
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Number of Prescription Errors:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Drug Administration Errors:
+                                                        </td>
+                                                        <td>
+                                                            45
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
-                                    <!-- /Specializations List -->
-    
+
                                 </div>
                             </div>
                         </div>

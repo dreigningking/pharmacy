@@ -32,7 +32,7 @@
                     
                 </li>
                 <li>
-                    <a href="{{route('plans')}}">Plans</a>
+                    <a href="{{route('pricing')}}">Pricing</a>
                     
                 </li>
                 <li>
@@ -47,104 +47,15 @@
                 </li>
             </ul>
             @else
+                
                 @if(request()->route('pharmacy'))
-                    <ul class="main-nav">
-                        <li class="active">
-                            <a href="{{route('pharmacy.dashboard',$pharmacy)}}">Dashboard</a>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="search.html">New Patient</a></li>
-                                <li><a href="doctor-profile.html">All Patient</a></li>
-                                <li><a href="booking.html">Transfer Patient</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#">Health Care <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li class="has-submenu">
-                                    <a href="invoices.html">Assessments</a>
-                                    <ul class="submenu">
-                                        <li><a href="invoices.html">New Assessment</a></li>
-                                        <li><a href="invoice-view.html">All Assessments</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="invoices.html">Prescriptions</a>
-                                    <ul class="submenu">
-                                        <li><a href="invoices.html">New Prescription</a></li>
-                                        <li><a href="invoice-view.html">All Prescriptions</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="search.html">Errors</a></li>
-                                <li><a href="doctor-profile.html">Messages</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#">Inventory <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="doctor-profile.html">Upload Items</a></li>
-                                <li class="has-submenu">
-                                    <a href="invoices.html">Items</a>
-                                    <ul class="submenu">
-                                        <li><a href="invoices.html">Drugs</a></li>
-                                        <li><a href="invoice-view.html">Non-Drugs</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="search.html">Shelves</a></li>
-                                <li><a href="search.html">Transfer Items</a></li>
-                                <li><a href="search.html">Suppliers</a></li>
-                                <li class="has-submenu">
-                                    <a href="doctor-profile.html">Sales</a>
-                                    <ul class="submenu">
-                                        <li><a href="invoices.html">New Sale</a></li>
-                                        <li><a href="invoice-view.html">All Sales</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Help </a>
-                            
-                        </li>
-                        <li>
-                            <a href="#abc">Contact</a>
-                        </li>
-                        <li class="login-link">
-                            <a href="{{route('login')}}">Login / Signup</a>
-                        </li>
-                    </ul>
+                    @include('layouts.main.pharmacy_menu')
                 @else
-                    <ul class="main-nav">
-                        <li class="active">
-                            <a href="{{route('dashboard')}}">Home</a>
-
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#">Pharmacies <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                @foreach (auth()->user()->pharmacies as $pharmacy)
-                                <li><a href="{{route('pharmacy.dashboard',$pharmacy)}}">{{$pharmacy->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{route('subscription')}}">Subscription</a>
-                        </li>
-                        <li>
-                            <a href="{{route('plans')}}">Plans</a>
-                        </li>
-                        <li>
-                            <a href="#">Help </a> 
-                        </li>
-                        <li>
-                            <a href="#abc">Contact</a>
-                        </li>
-                        <li class="login-link">
-                            <a href="{{route('login')}}">Login / Signup</a>
-                        </li>
-                    </ul>  
+                    @if(auth()->user()->pharmacy)
+                        @include('layouts.main.pharmacy_menu',['pharmacy' => auth()->user()->pharmacy])  
+                    @else
+                        @include('layouts.main.director_menu')
+                    @endif
                 @endif
             @endguest
 
@@ -172,7 +83,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <p class="py-2 px-3 mb-0 ">Notifications</p>
-                    <a class="dropdown-item " href="{{route('dashboard')}}">
+                    <a class="dropdown-item " href="#">
                         <div class="d-flex">
                             <span class="avatar avatar-sm">
                                 <img class="avatar-img rounded-circle" alt="User Image" src="http://localhost/reigntech/pharmacy/public/adminassets/img/doctors/doctor-thumb-01.jpg">
@@ -214,7 +125,9 @@
                             {{-- <p class="text-muted mb-0">Doctor</p> --}}
                         </div> 
                     </div>
+                    @if(auth()->user()->pharmacies->count())
                     <a class="dropdown-item" href="{{route('dashboard')}}">Home</a>
+                    @endif
                     <a class="dropdown-item" href="{{route('profile')}}">My Account</a>
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

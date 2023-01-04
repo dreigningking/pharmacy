@@ -6,10 +6,11 @@ use App\Models\Plan;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Setting;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
-use App\Http\Traits\PharmacyTrait;
 use App\Http\Traits\PaystackTrait;
+use App\Http\Traits\PharmacyTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,10 +28,12 @@ class SubscriptionController extends Controller
         return view('pricing',compact('plans'));
     }
     
-    public function plans(){
-        $plans = Plan::all();
-        return view('user.plans',compact('plans'));
-    } 
+    /*
+        $pharmacy_plan = ['name'=> 'Pharmacy Management Plan,'description'=> '','yearly_price_ngn'=> '','yearly_price_usd'=> '','monthly_price_ngn'=> ''
+        ,'monthly_price_usd'=> '','minimum_duration_months'=> '','trial_duration_days'=> ''];
+
+    */
+    
 
     public function checkout(Plan $plan){
         return view('user.checkout', compact('plan'));

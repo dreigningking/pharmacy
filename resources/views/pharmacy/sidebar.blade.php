@@ -1,5 +1,5 @@
 <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-
+    
     <!-- Profile Sidebar -->
     <div class="profile-sidebar">
         <div class="widget-profile pro-widget-content">

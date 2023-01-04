@@ -72,7 +72,7 @@ class User extends Authenticatable
         return $this->hasMany(Pharmacy::class,'owner_id');
     }
 
-    public function company(){
+    public function pharmacy(){
         return $this->belongsTo(Pharmacy::class);
     }
 

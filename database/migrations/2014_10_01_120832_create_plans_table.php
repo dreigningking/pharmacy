@@ -18,8 +18,9 @@ class CreatePlansTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->text('features')->nullable();
-            $table->double('amount')->default(0);
+            $table->text('price_ngn')->nullable();
+            $table->text('price_usd')->nullable();
+            $table->integer('minimum')->default(1);
             $table->integer('trial')->default(0);
             $table->timestamps();
         });

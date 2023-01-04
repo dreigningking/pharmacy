@@ -27,11 +27,12 @@ Route::get('medicine',[App\Http\Controllers\GeneralControllers\InventoryControll
 
 Route::view('agreement','agreement')->name('agreement');
 
-Route::get('donation/access',[App\Http\Controllers\TestController\HavronController::class, 'get_token'])->name('havron.token');
-Route::get('donation',[App\Http\Controllers\TestController\HavronController::class, 'index'])->name('havron');
-Route::post('donation',[App\Http\Controllers\TestController\HavronController::class, 'store'])->name('havron.donate');
-Route::get('donation/success',[App\Http\Controllers\TestController\HavronController::class, 'success'])->name('havron.success');
-Route::get('donation/error',[App\Http\Controllers\TestController\HavronController::class, 'error'])->name('havron.error');
+// Route::get('donation/access',[App\Http\Controllers\TestController\HavronController::class, 'get_token'])->name('havron.token');
+// Route::get('donation',[App\Http\Controllers\TestController\HavronController::class, 'index'])->name('havron');
+// Route::post('donation',[App\Http\Controllers\TestController\HavronController::class, 'store'])->name('havron.donate');
+// Route::get('donation/verification',[App\Http\Controllers\TestController\HavronController::class, 'verify'] )->name('havron.verify');
+// Route::get('donation/success',[App\Http\Controllers\TestController\HavronController::class, 'success'])->name('havron.success');
+// Route::get('donation/error',[App\Http\Controllers\TestController\HavronController::class, 'error'])->name('havron.error');
 
 Route::get('pharmacy/{pharmacy}/{user}/invitations', [App\Http\Controllers\WebControllers\HomeController::class, 'invitations'])->name('invitations');
 Route::post('invitation/submit', [App\Http\Controllers\WebControllers\HomeController::class, 'invitation_submit'])->name('confirm_invitations');
@@ -61,10 +62,9 @@ Route::middleware(['auth','forcepassword'])->group(function(){
     Route::group(['middleware'=>'role:director'], function () {
         Route::get('dashboard', [App\Http\Controllers\WebControllers\HomeController::class, 'dashboard'])->name('dashboard');
         Route::get('subscription', [App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'index'])->name("subscription");
-        Route::get('plans',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'plans'] )->name('plans');
         Route::get('subscription/checkout/{plan}',[App\Http\Controllers\GeneralControllers\SubscriptionController::class, 'checkout'] )->name('checkout');
         
-        Route::get('report',[App\Http\Controllers\GeneralControllers\UserController::class, 'report'])->name('report');
+        Route::get('transactions',[App\Http\Controllers\GeneralControllers\PaymentController::class, 'transactions'])->name('transactions');
         Route::view('support/inbox','user.support.inbox')->name('support.inbox');
         Route::view('support/read','user.support.read')->name('support.read');
     });

@@ -1,268 +1,286 @@
 @extends('layouts.main.app')
 @push('styles')
+
+
+<link rel="stylesheet" href="{{asset('plugins/fancybox/jquery.fancybox.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+
 @endpush
 @section('main')
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-8 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Pricing</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Pricing</h2>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
 <!-- Page Content -->
 <div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <img src="{{asset('assets/img/login-banner.png')}}" class="img-fluid" alt="Doccure Login">
-            </div>
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            
+            
+            <div class="col-md-12 col-lg-8 col-xl-9">
+
+                <!-- Doctor Widget -->
+                @foreach ($plans->where('slug','pharmacy_plan') as $plan)
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="doctor-widget">
+                                <div class="doc-info-left pr-3">
+                                    <div class="doc-info-cont">
+                                        <h4 class="doc-name"><a href="doctor-profile.html">{{$plan->name}}</a></h4>
+                                        <p class="doc-speciality">{{$plan->description}}</p>
+                                        <h6 class="m-1">Modules:</h6>
+                                        <div class="clinic-services">  
+                                            <span class="m-1"> Pharmacy Management</span>
+                                            <span class="m-1"> Patient Management</span>
+                                            <span class="m-1"> Assessment Management</span>
+                                            <span class="m-1"> Prescription Management</span>
+                                            <span class="m-1"> Inventory Management</span>
+                                            <span class="m-1"> Sales Management</span>
+                                        </div>
+                                        <h6 class="m-1">Features:</h6>
+                                        <div class="clinic-details">
+                                            <ul class="clinic-gallery">
+                                                <li>
+                                                    <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery">
+                                                        <img src="assets/img/features/feature-01.jpg" alt="Feature">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-02.jpg" data-fancybox="gallery">
+                                                        <img  src="assets/img/features/feature-02.jpg" alt="Feature">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-03.jpg" data-fancybox="gallery">
+                                                        <img src="assets/img/features/feature-03.jpg" alt="Feature">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-04.jpg" data-fancybox="gallery">
+                                                        <img src="assets/img/features/feature-04.jpg" alt="Feature">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="doc-info-right">
+                                    <div class="clini-infos">
+                                        <ul>
+                                            <li><i class="far fa-envelope"></i> Unlimited Emails</li>
+                                            <li><i class="far fa-comment"></i> 17 SMS Units</li>
+                                            <li>
+                                                <i class="far fa-money-bill-alt"></i> 
+                                                {{session('currency_symbol')}} {{$plan->price['monthly']}} Per License 
+                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="{{session('currency_symbol')}} {{$plan->price['yearly']}} per year"></i> 
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="clinic-booking">
+                                        
+                                        <a class="view-pro-btn" href="doctor-profile.html">Try for {{$plan->trial['days']}} days</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clinic-booking">
+                                @auth
+                                <form action="" method="post" class="d-md-flex justify-content-between ">
+                                    <input type="number" class="form-control" name="" placeholder="Number of Licenses">
+                                    <select class="form-control">
+                                        <option value="">1 Months</option>
+                                        <option value="">2 Months</option>
+                                        <option value="">3 Months</option>
+                                        <option value="">6 Months</option>
+                                        <option value="">12 Months (1 year)</option>
+                                        <option value="">24 Months (2 years)</option>
+                                        <option value="">36 Months (3 years)</option>
+                                    </select>
+                                    <a class="apt-btn" href="booking.html">Buy Subscription</a>
+                                </form>
+                                @else
+                                <a class="apt-btn" href="booking.html">Buy Subscription</a>
+                                @endauth
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <!-- /Doctor Widget -->
+
+                <!-- Doctor Widget -->
+                @foreach ($plans->where('slug','analytics_plan') as $plan)
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="doctor-widget">
+                                <div class="doc-info-left pr-3">
+                                    <div class="doc-info-cont">
+                                        <h4 class="doc-name"><a href="doctor-profile.html">{{$plan->name}}</a></h4>
+                                        <p class="doc-speciality">{{$plan->description}}</p>
+                                        <h6 class="m-1">Modules:</h6>
+                                        <div class="clinic-services">  
+                                            <span class="m-1"> Inventory Charts</span>
+                                            <span class="m-1"> Workers </span>
+                                            
+                                        </div>
+                                        <h6 class="m-1">Features:</h6>
+                                        <div class="clinic-details">
+                                            <ul class="clinic-gallery">
+                                                <li>
+                                                    <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery">
+                                                        <img src="assets/img/features/feature-01.jpg" alt="Feature">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-02.jpg" data-fancybox="gallery">
+                                                        <img  src="assets/img/features/feature-02.jpg" alt="Feature">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-03.jpg" data-fancybox="gallery">
+                                                        <img src="assets/img/features/feature-03.jpg" alt="Feature">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-04.jpg" data-fancybox="gallery">
+                                                        <img src="assets/img/features/feature-04.jpg" alt="Feature">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="doc-info-right">
+                                    <div class="clini-infos">
+                                        <ul>
+                                            <li><i class="far fa-envelope"></i> Unlimited Emails</li>
+                                            <li><i class="far fa-comment"></i> 17 SMS Units</li>
+                                            <li>
+                                                <i class="far fa-money-bill-alt"></i> 
+                                                {{session('currency_symbol')}} {{$plan->price['monthly']}} Per License 
+                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="{{session('currency_symbol')}} {{$plan->price['yearly']}} per year"></i> 
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="clinic-booking">
+                                        
+                                        <a class="view-pro-btn" href="doctor-profile.html">Try for {{$plan->trial['days']}} days</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clinic-booking">
+                                @auth
+                                <form action="" method="post" class="d-md-flex justify-content-between ">
+                                    <input type="number" class="form-control" name="" placeholder="Number of Licenses">
+                                    <select class="form-control">
+                                        <option value="">1 Months</option>
+                                        <option value="">2 Months</option>
+                                        <option value="">3 Months</option>
+                                        <option value="">6 Months</option>
+                                        <option value="">12 Months (1 year)</option>
+                                        <option value="">24 Months (2 years)</option>
+                                        <option value="">36 Months (3 years)</option>
+                                    </select>
+                                    <a class="apt-btn" href="booking.html">Buy Subscription</a>
+                                </form>
+                                @else
+                                <a class="apt-btn" href="booking.html">Buy Subscription</a>
+                                @endauth
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <!-- /Doctor Widget -->
+
+                <!-- Doctor Widget -->
+                @foreach ($plans->where('slug','sms_plan') as $plan)
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="doctor-widget">
+                                <div class="doc-info-left pr-3">
+                                    <div class="doc-info-cont">
+                                        <h4 class="doc-name"><a href="doctor-profile.html">{{$plan->name}}</a></h4>
+                                        <p class="doc-speciality">{{$plan->description}}</p>
+                                        @auth
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Pharmacy</th>
+                                                    <th>Remaining</th>
+                                                    <th>Purchase</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                                @foreach (auth()->user()->pharmacies as $pharmacy)
+                                                    <tr>
+                                                        <td><input type="checkbox" checked class="form-control" name=""></td>
+                                                        <td class="align-middle">{{$pharmacy->name}}</td>
+                                                        <td class="align-middle">{{$pharmacy->sms_credit}}</td>
+                                                        <td class="align-middle">
+                                                            <input type="number" class="form-control" name="" value="{{$plan->minimum['units']}}">    
+                                                        </td>      
+                                                        <td class="align-middle">
+                                                            {{session('currency_symbol')}} {{session('currency_code') == 'NGN' ? $plan->price['unit'] * $plan->minimum['units'] : $plan->price['unit'] * $plan->minimum['units']}}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </table>
+                                            
+                                        </div>
+                                        @endauth
+                                    </div>
+                                </div>
+                                <div class="doc-info-right">
+                                    <div class="clini-infos">
+                                        <ul>
+                                            <li><i class="far fa-money-bill-alt"></i> {{session('currency_symbol')}} {{$plan->price['unit']}} Per SMS  </li>
+                                        </ul>
+                                    </div>
+                                    <div class=" clinic-booking">
+                                        @auth
+                                        <p>Total Units: <span class="font-weight-bold">{{auth()->user()->pharmacies->count() * $plan->minimum['units']}}</span></p>
+                                        @php $amount =  (session('currency_code') == 'NGN') ? $plan->price['unit'] : $plan->price['unit'] @endphp
+                                        <p>Total Cost: <span class="font-weight-bold">{{session('currency_symbol')}}{{auth()->user()->pharmacies->count() * $plan->minimum['units'] * $amount}}</span></p>
+                                        <a class="apt-btn" href="booking.html">Buy SMS</a>
+                                        @else
+                                        <a class="apt-btn" href="booking.html">Buy SMS</a>
+                                        @endauth
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                @endforeach
+                <!-- /Doctor Widget -->
+
                 
-            <div class="col-md-4 d-flex">
-                <div class="card flex-fill">
-                    <div class="card-header">
-                        <h4 class="card-title">Pharmacy Management</h4>
-                    </div>
-                    <div class="card-body">
-                        <p>You can use the mark tag to <mark>highlight</mark> text.</p>
-                        <p><del>This line of text is meant to be treated as deleted text.</del></p>
-                        <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
-                        <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
-                        <p><u>This line of text will render as underlined</u></p>
-                        <p><small>This line of text is meant to be treated as fine print.</small></p>
-                        <p><strong>This line rendered as bold text.</strong></p>
-                        <p><em>This line rendered as italicized text.</em></p>
-                        <p class="text-monospace mb-0">This is in monospace</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex">
-                <div class="card flex-fill">
-                    <div class="card-header">
-                        <h4 class="card-title">Analytics</h4>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-primary">.text-primary</p>
-                        <p class="text-secondary">.text-secondary</p>
-                        <p class="text-success">.text-success</p>
-                        <p class="text-danger">.text-danger</p>
-                        <p class="text-warning">.text-warning</p>
-                        <p class="text-info">.text-info</p>
-                        <p class="text-light bg-dark">.text-light</p>
-                        <p class="text-dark">.text-dark</p>
-                        <p class="text-muted">.text-muted</p>
-                        <p class="text-white bg-dark mb-0">.text-white</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex">
-                <div class="card flex-fill">
-                    <div class="card-header">
-                        <h4 class="card-title">SMS</h4>
-                    </div>
-                    <div class="card-body">
-                        <ul class="mb-0">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit
-                                <ul>
-                                    <li>Phasellus iaculis neque</li>
-                                    <li>Purus sodales ultricies</li>
-                                    <li>Vestibulum laoreet porttitor sem</li>
-                                    <li>Ac tristique libero volutpat at</li>
-                                </ul>
-                            </li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
-        {{-- <div class="row">
-            <div class="col-md-10 offset-md-1">
 
-                <!-- Login Tab Content -->
-                <div class="account-content">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-7 col-lg-6 login-left">
-                                <img src="{{asset('assets/img/login-banner.png')}}" class="img-fluid" alt="Doccure
-                        Login">
-                    </div>
-                    <div class="col-12 ">
-
-                        <div class="row justify-content-center mb-4">
-
-                            <ul class="nav nav-pills text-align-center" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="pill" href="#monthly">Monthly</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#quarterly">Quarterly</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#annually">Annually</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-content">
-                            <div id="monthly" class="container tab-pane active container-fluid">
-                                <div class="row">
-                                    
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card ">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        {{$plans[0]->name}}
-                                                    </h4>
-                                                    <h1>₦{{$plans[0]->amount}}
-                                                    </h1>
-                                                </div>
-                                                   
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <a class="btn btn-dark btn-lg" @guest href="{{route('register')}}" @else href="{{route('setup')}}" @endif>
-                                                        Get started
-                                                    </a>
-                                                </div>
-                                                  
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Duration: {{$plans[0]->duration}} Month</p>
-                                                </div>
-                                                @if($plans[0]->trial)
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$plans[0]->trial}} days Free trial</p>
-                                                </div>
-                                                @endif
-                                                @foreach($plans[0]->features as $feature)
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$feature}}</p>
-                                                </div>
-                                                @endforeach
-                                                @if($plans[0]->trial)
-                                                     @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty())) 
-                                                    <div class="text-center">
-                                                         <a href="{{route('pharmacy.checkout', [$pharmacy, $plans[0]])}}?type=plan&id={{$plans[0]->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
-                                                        <a href="#" class="btn btn-sm btn-primary">Start Trial</a>
-                                                    </div>
-                                                     @endif
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div id="quarterly" class="container tab-pane fade">
-                                <div class="row">
-                                    
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        {{$plans[0]->name}}
-                                                    </h4>
-                                                    <h1>₦{{$plans[0]->amount}}
-                                                    </h1>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                    <a class="btn btn-dark btn-lg" href="{{route('pharmacy.checkout', [$pharmacy, $plans[0]])}}?type=plan&id={{$plans[0]->id}}">                                                   <a class="btn btn-dark btn-lg" href="#">
-                                                        Get started
-                                                    </a>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Duration: {{$plans[0]->duration}} Months</p>
-                                                </div>
-                                                @if($plans[0]->trial)
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$plans[0]->trial}} days Free trial</p>
-                                                </div>
-                                                @endif
-                                                @foreach($plans[0]->features as $feature)
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$feature}}</p>
-                                                </div>
-                                                @endforeach
-                                                @if($plans[0]->trial)
-                                                     @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty()))
-                                                    <div class="text-center">
-                                                         <a href="{{route('pharmacy.checkout', [$pharmacy, $plans[0]])}}?type=plan&id={{$plans[0]->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
-                                                        <a href="#" class="btn btn-sm btn-primary">Start Trial</a>
-                                                    </div>
-                                                     @endif
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div id="annually" class="container tab-pane fade">
-                                <div class="row">
-                                    
-                                    <div class="col-12 col-sm-6 col-md-4">
-                                        <div class="card">
-                                            <div class="card-body sub-card">
-                                                <div class="text-center">
-                                                    <h4 class="text-muted">
-                                                        {{$plans[0]->name}}
-                                                    </h4>
-                                                    <h1>₦{{$plans[0]->amount}}
-                                                    </h1>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-4">
-                                                     <a class="btn btn-dark btn-lg" href="{{route('pharmacy.checkout', [$pharmacy, $plans[0]])}}?type=plan&id={{$plans[0]->id}}">
-                                                    <a class="btn btn-dark btn-lg" href="#">
-                                                        Get started
-                                                    </a>
-                                                </div>
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>Duration: {{$plans[0]->duration}} Months</p>
-                                                </div>
-                                                @if($plans[0]->trial)
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$plans[0]->trial}} days Free trial</p>
-                                                </div>
-                                                @endif
-                                                @foreach($plans[0]->features as $feature)
-                                                <div class="sub-info">
-                                                    <i class="fas fa-check mt-1 mr-1"></i>
-                                                    <p>{{$feature}}</p>
-                                                </div>
-                                                @endforeach
-                                                @if($plans[0]->trial)
-                                                     @if(!Auth::check() || (Auth::check() && Auth::user()->subscriptions->isEmpty()))
-                                                    <div class="text-center">
-                                                         <a href="{{route('pharmacy.checkout', [$pharmacy, $plans[0]])}}?type=plan&id={{$plans[0]->id}}&trial=true" class="btn btn-sm btn-primary">Start Trial</a>
-                                                        <a href="#" class="btn btn-sm btn-primary">Start Trial</a>
-                                                    </div>
-                                                     @endif 
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <!-- /Login Tab Content -->
-
-        </div> --}}
     </div>
 
-</div>
-
-</div>
+</div>		
 <!-- /Page Content -->
 @endsection
+@push('scripts')
+<script src="{{asset('plugins/fancybox/jquery.fancybox.min.js')}}"></script>
+    
+@endpush

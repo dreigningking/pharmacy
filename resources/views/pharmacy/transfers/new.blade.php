@@ -1,6 +1,6 @@
 @extends('layouts.main.app')
 @push('styles')
-<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <style>
     .no_select_border span.select2-selection.select2-selection--single{
@@ -298,7 +298,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
+    
     <script> 
         //table area
             $('.select-remote').select2({

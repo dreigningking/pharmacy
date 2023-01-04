@@ -1,6 +1,6 @@
 @extends('layouts.main.app')
 @push('styles')
-<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+
 <style>
     .select2-container .select2-selection--single{
         height:40px;
@@ -168,7 +168,7 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
+
 <script>
     $('.select2').select2({
             placeholder: 'Select Test',

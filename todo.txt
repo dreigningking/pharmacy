@@ -15,48 +15,47 @@ Recent Notification{
     ticket notification
 }
 
-Pharmacy notification types:
-transfer of inventory, patients, assessment records, 
-expiring, expired drugs
-
-
-
-
-PHARMACY SETTINGS
-delete your account
-markup amount, and type
-minimum stock quantity
-maximum stock quantity
-drugs: auto-delete expired, allow transfer of drugs
-
 
 
 add staff should send an email to the person
 delete staff should send an email to the person
-automatically delete expired batches of inventory
 
 
-SETTINGS
-general: name of application, currency, vat, 
+checkout
+item1{
+    pharmacy subscription
+    licenses: 3
+    amount: price * 3
+}
 
-notifications: 
-Send mail to subscribers 2weeks to subscription expiry	
-Send mail to patients on patient add	
-Send prescription to patient email	
-Send follow-up email to patient after treatment
+item1{
+    analytics subscription
+    licenses: 3
+    amount: price * 3
+}
 
-<li class="nav-item">
-                            <a class="nav-link active" id="inbox-tab" data-toggle="tab" aria-controls="inbox" href="#inbox" role="tab" aria-selected="true">
-                                <span class=""> PHARMACY MANAGEMENT PLAN</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="sent-tab" data-toggle="tab" aria-controls="sent" href="#sent" role="tab" aria-selected="false">
-                                <span class=""> ANALYTICS PLAN </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="spam-tab" data-toggle="tab" aria-controls="spam" href="#spam" role="tab" aria-selected="false">
-                                <span class=""> SMS PLAN </span>
-                            </a>
-                        </li>
+item1{
+    sms unit
+    for: xyz pharmacy
+    quantity: 100
+    amount: price * quantity
+}
+
+
+Assessment Advanced Search
+Walkin
+Patient
+Conditions[]
+
+
+Prescription Advanced Search
+Walkin
+Patient
+
+Anti-malaria
+Anti-septic
+Anti-ronaldo
+Anti-messi
+
+patient:
+view, assessment, prescription

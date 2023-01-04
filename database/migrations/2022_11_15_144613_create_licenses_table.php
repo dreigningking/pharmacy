@@ -16,9 +16,13 @@ class CreateLicensesTable extends Migration
         Schema::create('licenses', function (Blueprint $table) {
             $table->id();
             $table->text('number');
+            $table->unsignedBigInteger('subscription_id');
+            $table->unsignedBigInteger('duration_days');
             $table->unsignedBigInteger('pharmacy_id')->nullable();
             $table->timestamp('start_at');
+            $table->timestamp('warn_at');
             $table->timestamp('expire_at');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

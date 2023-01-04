@@ -31,6 +31,7 @@
                                 <tr>
                                     <th>Purchase Date</th>
                                     <th>Customer</th>
+                                    <th>Pharmacy</th>
                                     <th>Units Purchased</th>
                                     <th>Amount</th>
                                     <th>Action</th>
@@ -41,6 +42,7 @@
                                 <tr>
                                     
                                     <td> 2/4/20</td>
+                                    <td> Christopher</td>
                                     <td> Christopher</td>
                                     <td>50 </td>
                                     <td>$50 </td>
