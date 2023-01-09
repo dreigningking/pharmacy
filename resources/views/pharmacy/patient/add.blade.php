@@ -200,9 +200,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group mt-2">
                                                 <br>
-                                                <button type="submit" class="btn btn-md btn-info" name="action" value="save">Save & Close</button>
-                                                <button type="submit" class="btn btn-md btn-primary" name="action" value="assessment">Save & Assessment</button>
                                                 <button type="reset" class="btn btn-md btn-danger">Reset</button>
+                                                <button type="submit" class="btn btn-md btn-info" name="action" value="save">Save & Record Medical History</button>
+                                                <button type="submit" class="btn btn-md btn-primary" name="action" value="assessment">Save & Begin Assessment</button>
+                                                <button type="submit" class="btn btn-md btn-dark" name="action" value="prescription">Save & Begin Prescription</button>
+                                                
                                             </div>
                                         </div> 
 

@@ -103,19 +103,34 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-12">
+                                            
+                                            <div class="col-md-7">
                                                 <p>Begin assessment by finding the patient for whom accessment will be done</p>
-                                            </div>
-                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="h4">Patient</label>
+                                                    <label class="h6">Search Patient</label>
                                                     <select name="patient_id" class="selectpatient form-control">
                                                         <option></option>
                                                         @foreach ($patients as $patient)
-                                                            <option value="{{$patient->id}}" @if($pateint && $pateint->id == $patient->id) selected @endif>{{$patient->emr}}{{$patient->name}}</option>
+                                                            <option value="{{$patient->id}}" @if($pateint && $pateint->id == $patient->id) selected @endif>{{$patient->emr}}-{{$patient->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                    
+                                                    <div class="text-center" id="new_patient">
+                                                        <div class="my-4">OR</div>
+                                                        <a href="{{route('pharmacy.patients.create',$pharmacy)}}" class="btn btn-primary btn-block mb-2">New Patient</a>   
+                                                    </div>
+                                                    <div class="text-center py-3 existing_patient" style="display: none">
+                                                        <span class="username">Dr. Darren Elder</span>
+                                                        <span class="call-timing-count">00:59</span>
+                                                    </div>   
                                                 </div>
+                                                {{-- <div class="call-footer existing_patient" style="display: none">
+                                                    <div class="d-flex justify-content-around">
+                                                        <a href="" id="view_patient" title="View Patient" class="btn btn-dark"> <i class="fas fa-eye"></i> View Patient </a>
+                                                        <a href="#" id="schedule_assessment" class="btn btn-primary"> <i class="fas fa-calendar-alt"></i> Schedule Assessment </a>
+                                                        <a href="#complaint" data-toggle="tab" class="btn btn-info"> <i class="fa fa-medkit"></i> Begin Assessment </a>   
+                                                    </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -244,7 +259,17 @@
 <script>
     $('.selectpatient').select2({
             placeholder: 'Select Patient',
-        });
+    });
+    $('.selectpatient').on('select2:select',function(){
+        
+        // let data = e.params.data;
+        // $('#view_patient').attr('href',data.element.dataset.patient)
+        // $('#begin_assessment').attr('href',data.element.dataset.assessment)
+        $('#new_patient').hide()
+        $('.existing_patient').show()
+        // console.log(data.element.dataset.patient)
+        
+    });
     // $('.collapse-button').click(function(){
     //     if($(this).hasClass('collapsed')){
     //         $(this).find('.shows').html('')
