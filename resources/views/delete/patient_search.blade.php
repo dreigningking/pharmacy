@@ -64,19 +64,17 @@
                                         <!-- Call Contents -->
                                         <div class="call-contents">
                                             <div class="call-content-wrap d-flex justify-content-center">
-                                                
                                                 <div class="w-50 py-3">
                                                     <select name="patient_id" class="select2 form-control">
                                                         <option></option>
                                                         @foreach ($patients as $patient)
-                                                            <option value="{{$patient->id}}" data-patient="{{route('pharmacy.patient.view',[$pharmacy,$patient])}}" data-assessment="{{route('pharmacy.assessment.create',[$pharmacy,$patient])}}">{{$patient->name}}</option>
+                                                            <option value="{{$patient->id}}" data-patient="{{route('pharmacy.patients.view',[$pharmacy,$patient])}}" data-assessment="{{route('pharmacy.assessment.create',[$pharmacy,$patient])}}">{{$patient->name}}</option>
                                                         @endforeach
                                                     </select>
                                                     <div class="text-center py-4" id="new_patient">
-                                                        <a href="{{route('pharmacy.patient.create',$pharmacy)}}" class="btn btn-primary btn-block mb-2">New Patient</a>   
+                                                        <a href="{{route('pharmacy.patients.create',$pharmacy)}}" class="btn btn-primary btn-block mb-2">New Patient</a>   
                                                     </div>
                                                     <div class="text-center py-3 existing_patient" style="display: none">
-                                                    
                                                         <span class="username">Dr. Darren Elder</span>
                                                         <span class="call-timing-count">00:59</span>
                                                     </div>                                                

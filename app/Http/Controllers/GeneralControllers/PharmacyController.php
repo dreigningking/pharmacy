@@ -24,10 +24,6 @@ class PharmacyController extends Controller
         return view('pharmacy.dashboard',compact('pharmacy', 'drugs', 'patients'));
     }
 
-    public function subscription(Pharmacy $pharmacy){
-        $this->authorize('list', Subscription::class);
-        return view('pharmacy.subscription',compact('pharmacy'));
-    }
 
     public function create(){
         
@@ -70,25 +66,14 @@ class PharmacyController extends Controller
         return redirect()->route('pharmacy.checkout',[$pharmacy,$plan]);
     }
 
-    public function permission(Pharmacy $pharmacy){
-        $roles = Role::all();
-        // dd($roles);
-        return view ('pharmacy.permissions', compact('pharmacy','roles'));
-    }
-    
-    public function transactions(Pharmacy $pharmacy){
+    public function update(Request $request){
 
-        return view('pharmacy.transactions',compact('pharmacy'));
     }
 
-    public function staff(Pharmacy $pharmacy){
-        return view('pharmacy.staff.list',compact('pharmacy'));
+    public function destroy(Request $request){
+        
     }
 
-    public function newstaff(Pharmacy $pharmacy){
-        return view('pharmacy.staff.create',compact('pharmacy'));
-    }
-    
     public function settings(Pharmacy $pharmacy){
         $countries = Country::all();
         return view('pharmacy.settings',compact('pharmacy','countries'));
@@ -96,5 +81,14 @@ class PharmacyController extends Controller
     public function saveSettings(Pharmacy $pharmacy){
         return redirect()->back();
     }
+
+    public function notifications(Pharmacy $pharmacy){
+
+    }
+
+    
+    
+    
+    
     
 }

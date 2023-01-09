@@ -1,5 +1,5 @@
 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
-pharmacy initial, patient first and last initial, phone number last 4 digit, and patient id.
+
 
 
 frequently asked questions
@@ -47,6 +47,11 @@ Walkin
 Patient
 Conditions[]
 
+Awaiting Diagnosis
+Ongoing Treatment
+Awaiting Followup
+Completed
+
 
 Prescription Advanced Search
 Walkin
@@ -59,3 +64,21 @@ Anti-messi
 
 patient:
 view, assessment, prescription
+
+sales{
+    date|name|type|qty|price|amount|sold by|invoice
+
+    sidebar[drugs, non-drug,]
+}
+
+fa user-md
+medkit
+heartbeat
+plus-square
+ambulance
+wheelchair-alt
+wheelchair
+thermometer-full
+syringe
+microscope
+hospital

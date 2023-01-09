@@ -1,6 +1,8 @@
 @extends('layouts.main.app')
 @push('styles')
-
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<!-- Datatables CSS -->
+<link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -60,34 +62,43 @@
                 <!-- Last Booking -->
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Last Booking</h4>
+                        <h4 class="card-title">Other Menus</h4>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="media align-items-center">
-                                <div class="mr-3">
-                                    <img alt="Image placeholder" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" class="avatar  rounded-circle">
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="d-block mb-0">Dr. Darren Elder </h5>
-                                    <span class="d-block text-sm text-muted">Dentist</span>
-                                    <span class="d-block text-sm text-muted">14 Nov 2019 5.00 PM</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="media align-items-center">
-                                <div class="mr-3">
-                                    <img alt="Image placeholder" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" class="avatar  rounded-circle">
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="d-block mb-0">Dr. Darren Elder </h5>
-                                    <span class="d-block text-sm text-muted">Dentist</span>
-                                    <span class="d-block text-sm text-muted">Headache 11.00 AM</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="dashboard-widget">
+                        <nav class="dashboard-menu">
+                            <ul>
+                                <li>
+                                    <a href="#transfer_patient" data-toggle="modal">
+                                        <i class="fas fa-share"></i>
+                                        <span>Transfer Patient</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="#send_record" data-toggle="modal">
+                                        <i class="fas fa-share-alt"></i>
+                                        <span>Share Patient Records</span>
+                                    </a>
+                                </li>
+                                {{-- @endusercan
+                                @usercan($pharmacy,'assessment') --}}
+                                <li>
+                                    <a href="#message_patient" data-toggle="modal">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Message Patient</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="#delete_patient" data-toggle="modal" class="text-danger">
+                                        <i class="fas fa-trash"></i>
+                                        <span>Delete Patient</span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <!-- /Last Booking -->
                 
@@ -99,14 +110,10 @@
                         <div class="user-tabs">
                             <ul class="nav nav-tabs nav-tabs-bottom nav-justified flex-wrap">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#billing" data-toggle="tab">
-                                        <span>Basic Details</span>
-                                    </a>
+                                    <a class="nav-link active" href="#billing" data-toggle="tab"> <span>Basic Details</span> </a>
                                 </li> 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#medical" data-toggle="tab">
-                                        <span class="med-records">Medical Records</span>
-                                    </a>
+                                    <a class="nav-link" href="#medical" data-toggle="tab"> <span class="med-records">Medical Records</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#assessments" data-toggle="tab">Assessments</a>
@@ -114,8 +121,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#prescription" data-toggle="tab"><span>Prescription</span></a>
                                 </li>
-                                
-                                
                             </ul>
                         </div>
                         <div class="tab-content">
@@ -125,7 +130,7 @@
                                 
                                 <div class="card mb-0">
                                     <div class="card-body">
-                                        <form action="{{route('pharmacy.patient.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                        <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
                                             <div class="row w-100">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -192,7 +197,7 @@
                             <div class="tab-pane fade" id="medical">
                                 <div class="card mb-0">
                                     <div class="card-body">
-                                        <form action="{{route('pharmacy.patient.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                        <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
                                             <div class="row w-100">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -258,13 +263,14 @@
 
                             <!-- Appointment Tab -->
                             <div class="tab-pane fade" id="assessments">
-                                <div class="text-right">
-                                    <a class="add-new-btn" href="add-billing.html">Add Assessment</a>
+                                <div class="">
+                                    <a href="add-prescription.html" class="add-new-btn">New Assessment</a>
+                                    <a href="add-prescription.html" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Assessments</a>
                                 </div>
                                 <div class="card card-table mb-0">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-hover table-center mb-0">
+                                            <table class="table datatable table-hover table-center mb-0">
                                                 <thead>
                                                     <tr>
                                                         <th>Pharmacist</th>
@@ -510,13 +516,14 @@
 
                             <!-- Prescription Tab -->
                             <div class="tab-pane fade" id="prescription">
-                                <div class="text-right">
-                                    <a href="add-prescription.html" class="add-new-btn">Add Prescription</a>
+                                <div class="">
+                                    <a href="add-prescription.html" class="add-new-btn">New Prescription</a>
+                                    <a href="add-prescription.html" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Prescriptions</a>
                                 </div>
                                 <div class="card card-table mb-0">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-hover table-center mb-0">
+                                            <table class="table datatable table-hover table-center mb-0">
                                                 <thead>
                                                     <tr>
                                                         <th>Date </th>
@@ -608,3 +615,268 @@
 <!-- /Page Content -->
 
 @endsection
+@section('modals')
+    <!-- Medicine Info Modal -->
+    
+    <div class="modal fade custom-modal add-modal" id="transfer_patient">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Transfer Patient</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex">
+                            <div class="card flex-fill">
+                                
+                                <div class="card-body">
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Name:
+                                        </div>
+                                        <div class="col-sm-8 pl-0 pr-0"></div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Brands:
+                                        </div>
+                                        <div class="col-sm-8 pl-0 pr-0">Emzor, M&B</div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Contraindications:
+                                        </div>
+                                        <div class="col-sm-8 pl-0 pr-0"></div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Treats:
+                                        </div>
+                                    
+                                        <div class="col-sm-8 pl-0 pr-0">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 pl-0 pr-0">
+                                            Treats:
+                                        </div>
+                                        <div class="col-sm-8 pl-0 pr-0">Headache et al.,</div>
+                                    </div> 
+                                </div>
+                            
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Medicine Info Modal -->
+    <!-- Reaction Modal -->
+    <div class="modal fade custom-modal add-modal" id="send_record">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Share Patient Records</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="" class="needs-validation" novalidate>
+                                <p>You are sharing Patient's information with a third party</p>
+                                <div class="col-12 text-muted mb-3">
+                                    <p>What to Share</p>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="share_basics" name="share_basics" checked value="custom_price" class="custom-control-input">
+                                        <label class="custom-control-label" for="autodelete">Basic Details</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="share_meds" name="share_meds" value="custom_price" class="custom-control-input">
+                                        <label class="custom-control-label" for="autodelete">Medical Records</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="share_assess" name="share_assess" value="custom_price" class="custom-control-input">
+                                        <label class="custom-control-label" for="autodelete">Assessments</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="share_pres" name="share_pres" value="custom_price" class="custom-control-input">
+                                        <label class="custom-control-label" for="autodelete">Prescriptions</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mt-2">
+                                    <label for="d-block">Share by:</label>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="pdftoemail" name="share" value="custom_price" class="custom-control-input">
+                                        <label class="custom-control-label" for="share">PDF to Email</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="secure" name="share" value="custom_price" class="custom-control-input">
+                                        <label class="custom-control-label" for="share">Secure Public Link</label>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label>Share to </label>
+                                    <input type="email" class="form-control" placeholder="Email">
+                                </div>
+                                <small class="d-block">By Clicking the Share Button, you agree that you know what you are doing and you know the consequences</small>
+                                <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Share</button>
+                                <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade custom-modal add-modal" id="message_patient">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Send Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="#" class="needs-validation" novalidate>
+                                
+                                <div class="form-group mt-2">
+                                    <label for="pwd">Message:</label>
+                                    <textarea class="form-control" rows="3" id="description" name="body" required></textarea> 
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label for="pwd">Attachment:</label>
+                                    <input type="file" class="form-control" name="file" multiple> 
+                                    <small>Can attach multiple files</small>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Send</button>
+                                <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade custom-modal add-modal" id="delete_patient">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Delete Patient</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="" class="needs-validation" novalidate>
+                                <p>You are about to delete the records of Olamuyiwa Orepoms. Please note that this action is non-reversible.<br> The following will be deleted: </p>
+                                <ul class="mt-2">
+                                    
+                                        <li>
+                                            Basic Details
+                                        </li>
+                                        <li>
+                                            Medical Records
+                                        </li>
+                                        <li>
+                                            Assessment Records
+                                        </li>
+                                        <li>
+                                            Prescription Records
+                                        </li>
+                                    
+                                </ul>
+                                <small class="d-block">By Clicking the Delete Button, you agree that you know what you are doing and you know the consequences</small>
+                                <button type="submit" class="btn btn-danger pl-4 pr-4 mt-2">Delete</button>
+                                <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Reaction Modal -->
+@endsection
+@push('scripts')
+    <script>
+        $(document).on('click',".add_condition", function() {
+            console.log("condition")
+            var condition = ` 
+                                <div class="row my-4 condition">
+                                    <div class="col-md-7">
+                                        <div class="form-group">  
+                                            <label class="text-muted text-center">Previous Medical Condition</label>                                        
+                                            <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                            <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                                            <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
+                                            <button type="button" class="btn btn-danger remove_condition" title="add more"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                    <div class="col-md-12 medications">
+                                        <div class="med mb-1">
+                                            <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
+                                            <label class="form-check-label mx-3">Effective? </label>
+                                            <label class="form-check-label mx-3">
+                                                <input type="radio" class="form-check-input" name="optradio">Yes
+                                            </label>
+                                            <label class="form-check-label mx-3">
+                                                <input type="radio" class="form-check-input" name="optradio">No
+                                            </label>
+                                            <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                        
+                                    </div>     
+                                </div>
+                            `;
+
+            $("#medical_conditions").append(condition);
+        });
+        $(document).on('click',".add_medication", function() {
+            var medication = ` 
+                                <div class="med mb-1">
+                                    <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
+                                    <label class="form-check-label mx-3">Effective? </label>
+                                    <label class="form-check-label mx-3">
+                                        <input type="radio" class="form-check-input" name="optradio">Yes
+                                    </label>
+                                    <label class="form-check-label mx-3">
+                                        <input type="radio" class="form-check-input" name="optradio">No
+                                    </label>
+                                    <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
+                                    <button type="button" class="btn btn-sm btn-danger remove_medication" title="remove"><i class="far fa-trash-alt"></i></button>
+                                </div> 
+                            `;
+
+            $(this).closest(".medications").append(medication);
+        });
+        $(document).on('click', '.remove_condition', function() {
+            $(this).closest('.condition').remove();
+        });
+        $(document).on('click', '.remove_medication', function() {
+            $(this).closest('.med').remove();
+        });                                           
+    </script> 
+    
+@endpush

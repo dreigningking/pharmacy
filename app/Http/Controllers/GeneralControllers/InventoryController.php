@@ -82,6 +82,34 @@ class InventoryController extends Controller
     public function shelf(Pharmacy $pharmacy){
         return view('pharmacy.inventory.shelf',compact('pharmacy'));
     }
+
+    public function suppliers(){
+        $user = Auth::user();
+        $countries = Country::all();
+        $banks = Bank::all();
+        $suppliers = collect([]);
+        // dd($user->pharmacies->first()->suppliers);
+        foreach($user->pharmacies as $pharmacy){
+            $suppliers = $suppliers->merge($pharmacy->suppliers);
+        }
+        return view('user.suppliers',compact('user','countries','suppliers','banks'));
+    }
+
+    public function supplier_save(Request $request){
+        // dd($request->all());
+        $user = User::find($request->user_id);
+        // dd($request->all());
+        $supplier = Supplier::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'mobile'=> $request->mobile,
+            'country_id'=> $request->country_id,'state_id'=> $request->state_id,'city_id'=> $request->city_id,
+            'bank_id'=> $request->bank_id ?? null,'bank_account'=> $request->account_number ?? null]);
+        
+        $supplier->pharmacies()->sync($user->pharmacies->pluck('id')->toArray());
+        if($request->ajax){
+            return response()->json(['supplier'=> $supplier],200);
+        }else{
+            return redirect()->back();
+        }
+    }
     
     
 

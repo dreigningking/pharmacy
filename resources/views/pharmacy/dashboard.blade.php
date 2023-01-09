@@ -37,19 +37,19 @@
                         <div class="row">
                             <!-- Slider Item -->
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="{{route('pharmacy.patient.list',$pharmacy)}}">
+                                <a href="{{route('pharmacy.patients.index',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-03.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Patients</p>
                                 </a>
                             </div>
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="{{route('pharmacy.assessment.list',$pharmacy)}}">
+                                <a href="{{route('pharmacy.assessments.index',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-05.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Assessments</p>
                                 </a>
                             </div>
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="{{route('pharmacy.patient.list',$pharmacy)}}">
+                                <a href="{{route('pharmacy.sales.index',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-01.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Sales</p>
                                 </a>

@@ -68,8 +68,8 @@
                                     </a>
                                 </li>
                                 
-                                <li @if(Route::is('pharmacy.assessment.list')) class="active" @endif>
-                                    <a href="{{route('pharmacy.assessment.list',$pharmacy)}}">
+                                <li @if(Route::is('pharmacy.assessments.index')) class="active" @endif>
+                                    <a href="{{route('pharmacy.assessments.index',$pharmacy)}}">
             
                                         <i class="fas fa-pen"></i>
                                         <span>Current Medical History</span>
@@ -101,7 +101,7 @@
                                     <li class="breadcrumb-item active">Prescription</li>
                                     <li class="breadcrumb-item active">Non-medication plan</li>
                                 </ul>             
-                                <form action="{{route('pharmacy.patient.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
                                     <div class="row w-100">
                                         <div class="col-md-6">
                                             <div class="form-group">

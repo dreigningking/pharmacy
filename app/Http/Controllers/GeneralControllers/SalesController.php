@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\GeneralControllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SalesController extends Controller
 {
     
-    public function index()
-    {
-        //
+    public function index(Pharmacy $pharmacy){
+        return view('pharmacy.sales',compact('pharmacy'));
     }
 
     public function create()

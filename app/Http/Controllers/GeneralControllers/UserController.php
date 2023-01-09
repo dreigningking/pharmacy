@@ -76,41 +76,6 @@ class UserController extends Controller
         $user = Auth::user();
         return view('user.setting',compact('user'));
     }
-    
-    public function activities(){
-        $user = Auth::user();
-        return view('user.activities',compact('user'));
-    }
-
-    public function suppliers(){
-        $user = Auth::user();
-        $countries = Country::all();
-        $banks = Bank::all();
-        $suppliers = collect([]);
-        // dd($user->pharmacies->first()->suppliers);
-        foreach($user->pharmacies as $pharmacy){
-            $suppliers = $suppliers->merge($pharmacy->suppliers);
-        }
-        return view('user.suppliers',compact('user','countries','suppliers','banks'));
-    }
-
-    public function supplier_save(Request $request){
-        // dd($request->all());
-        $user = User::find($request->user_id);
-        // dd($request->all());
-        $supplier = Supplier::updateOrCreate(['email'=> $request->email],['name'=> $request->name,'mobile'=> $request->mobile,
-            'country_id'=> $request->country_id,'state_id'=> $request->state_id,'city_id'=> $request->city_id,
-            'bank_id'=> $request->bank_id ?? null,'bank_account'=> $request->account_number ?? null]);
-        
-        $supplier->pharmacies()->sync($user->pharmacies->pluck('id')->toArray());
-        if($request->ajax){
-            return response()->json(['supplier'=> $supplier],200);
-        }else{
-            return redirect()->back();
-        }
-    }
-
-    
 
     public function report(){
         //all pharmacies transactions
@@ -119,35 +84,5 @@ class UserController extends Controller
         //get orders of all users pharmacies
         return view('user.report',compact('user'));
     }
-    
 
-    public function staff(){
-        $user = Auth::user();
-        $roles = Role::where('type','!=','admin')->get();
-        // dd($roles->all());
-        return view('user.staff',compact('user','roles'));
-    }
-
-    public function savestaff(Request $request){
-        $pharmacy = Pharmacy::find($request->pharmacy_id);
-        $user = User::create(['email'=> $request->email,'name'=> $request->name,
-        'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,
-        'pharmacy_id'=> $pharmacy->id,'role_id'=> $request->role_id,'state_id'=> $pharmacy->state_id,
-        'city_id'=> $pharmacy->city_id,'require_password_change'=> true]);
-        $user->notify(new InvitationNotification($pharmacy));
-        return redirect()->back();
-    }
-
-   
-
-    
-
-    public function destroystaff(Request $request)
-    {
-        // dd($request->all());
-        $pharmacyUser = User::where('pharmacy_id',$request->pharmacy_id)->where('user_id',$request->user_id)->delete();
-        return redirect()->back();
-    }
-
- 
 }

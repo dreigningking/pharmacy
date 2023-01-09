@@ -5,9 +5,10 @@
     <li class="has-submenu">
         <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
         <ul class="submenu">
-            <li><a href="{{route('pharmacy.patient.create',$pharmacy)}}">New Patient</a></li>
-            <li><a href="{{route('pharmacy.patient.list',$pharmacy)}}">All Patient</a></li>
-            <li><a href="booking.html">Transfer Patient</a></li>
+            <li><a href="{{route('pharmacy.patients.index',$pharmacy)}}">All Patient</a></li>
+            <li><a href="{{route('pharmacy.patients.create',$pharmacy)}}">New Patient</a></li>
+            
+            {{-- <li><a href="booking.html">Transfer Patient</a></li> --}}
         </ul>
     </li>
     <li class="has-submenu">
@@ -16,8 +17,10 @@
             <li class="has-submenu">
                 <a href="#">Assessments</a>
                 <ul class="submenu">
-                    <li><a href="{{route('pharmacy.assessment.create',$pharmacy)}}">New Assessment</a></li>
-                    <li><a href="invoice-view.html">All Assessments</a></li>
+                    <li><a href="{{route('pharmacy.assessments.index',$pharmacy)}}">All Assessments</a></li>
+                    <li><a href="{{route('pharmacy.assessments.create',$pharmacy)}}">New Assessment</a></li>
+                    <li><a href="{{route('pharmacy.assessments.create',$pharmacy)}}">Appointments</a></li>
+                    
                 </ul>
             </li>
             <li class="has-submenu">

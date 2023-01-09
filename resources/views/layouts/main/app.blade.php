@@ -35,6 +35,9 @@
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{asset('adminassets/css/feathericon.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
     @stack('styles')
 
 </head>
@@ -222,9 +225,15 @@
     <!-- Datatables -->
     <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
+
+    <!-- Datetimepicker JS -->
+    <script src="{{asset('assets/js/moment.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
+
     <!-- Slick JS -->
     <script src="{{asset('assets/js/slick.js')}}"></script>
     <script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
+
     <!-- Custom JS -->
     @stack('scripts')
     <script src="{{asset('assets/js/script.js')}}"></script>

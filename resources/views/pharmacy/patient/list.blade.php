@@ -1,6 +1,6 @@
 @extends('layouts.main.app')
 @push('styles')
-<link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
+
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -88,50 +88,45 @@
                                 <div class="d-flex justify-content-between mb-4">
                                     <h3>Patients</h3>
                                     <a class="btn btn-primary btn-lg"
-                                        href="{{route('pharmacy.patient.create',$pharmacy)}}">New
+                                        href="{{route('pharmacy.patients.create',$pharmacy)}}">New
                                         Patient</a>
                                 </div>
                                 <div class="table-responsive">
-                                    <div class="table-responsive">
-                                        <table class="datatable table table-hover table-center mb-0">
-                                            <thead>
+                                    <table class="datatable table table-hover table-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>EMR</th>
+                                                <th>Patient Name</th>
+                                                <th class="">Phone Number</th>
+                                                <th>Email</th>                                                 
+                                                <th>Assessments</th>                                                 
+                                                <th>Prescriptions</th>                                                 
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($patients as $patient)
                                                 <tr>
-                                                    <th>EMR</th>
-                                                    <th>Patient Name</th>
-                                                    <th class="">Phone Number</th>
-                                                    <th>Email</th>                                                 
-                                                    <th class="text-center">Action</th>
+                                                    <td>{{$patient->EMR}}</td>
+                                                    <td>{{$patient->name}}</td>
+                                                    <td>{{$patient->mobile}}</td>
+                                                    <td>{{$patient->email}}</td>
+                                                    <td>{{$patient->assessments->count()}}</td>
+                                                    <td>{{$patient->prescriptions->count()}}</td>
+                                                    <td class="text-center">
+                                                        <div class="actions">
+                                                            
+                                                            <a  href="{{route('pharmacy.patients.view',[$pharmacy,$patient])}}"
+                                                                class="btn btn-sm bg-primary-light">
+                                                                <i class="fas fa-eye"></i>
+                                                                View
+                                                            </a>     
+                                                        </div>
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($patients as $patient)
-                                                    <tr>
-                                                        <td>{{$patient->EMR}}</td>
-                                                        <td>{{$patient->name}}</td>
-                                                        <td>{{$patient->mobile}}</td>
-                                                        <td>{{$patient->email}}</td>
-                                                        <td class="text-center">
-                                                            <div class="actions">
-                                                                <a data-toggle="modal" href="#view_modal{{$patient->id}}"
-                                                                    class="btn btn-sm bg-primary-light">
-                                                                    <i class="fas fa-stetoscope"></i> Assessment
-                                                                </a>
-                                                                <a data-toggle="modal" href="#view_modal{{$patient->id}}"
-                                                                    class="btn btn-sm bg-info-light">
-                                                                    <i class="fas fa-pill"></i> Prescription
-                                                                </a>
-                                                                <a  href="{{route('pharmacy.patient.edit',[$pharmacy,$patient])}}"
-                                                                    class="btn btn-sm bg-danger-light">
-                                                                    <i class="fas fa-eye"></i>
-                                                                    View
-                                                                </a>     
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -148,5 +143,5 @@
 
 @endsection
 @push('scripts')
-<script src="{{asset('adminassets/js/script.js')}}"></script>
+{{-- <script src="{{asset('adminassets/js/script.js')}}"></script> --}}
 @endpush

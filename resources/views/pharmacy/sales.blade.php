@@ -13,10 +13,10 @@
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+                        <li class="breadcrumb-item active" aria-current="page">Sales</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">Transactions</h2>
+                <h2 class="breadcrumb-title">Sales</h2>
             </div>
         </div>
     </div>
@@ -32,20 +32,6 @@
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="page-wrapper">
                     <div class="content container-fluid">
-
-                        <!-- Page Header -->
-                        <div class="page-header">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h3 class="page-title">Transactions</h3>
-                                    <ul class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                                        <li class="breadcrumb-item active">Transactions</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Page Header -->
 
                         <div class="row">
                             <div class="col-sm-12">
@@ -189,8 +175,3 @@
 </div>
 <!-- /Page Content -->
 @endsection
-
-
-@push('scripts')
-<script src="{{asset('adminassets/js/script.js')}}"></script>
-@endpush

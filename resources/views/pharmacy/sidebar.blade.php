@@ -33,15 +33,15 @@
                     </li> -->
                     {{-- @usercan($pharmacy,'patient') --}}
                     <li @if(Route::is('pharmacy.patient.list')) class="active" @endif>
-                        <a href="{{route('pharmacy.patient.list',$pharmacy)}}">
+                        <a href="{{route('pharmacy.patients.index',$pharmacy)}}">
                             <i class="fas fa-user-injured"></i>
                             <span>Patients</span>
                         </a>
                     </li>
                     {{-- @endusercan
                     @usercan($pharmacy,'assessment') --}}
-                    <li @if(Route::is('pharmacy.assessment.list')) class="active" @endif>
-                        <a href="{{route('pharmacy.assessment.list',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.assessments.index')) class="active" @endif>
+                        <a href="{{route('pharmacy.assessments.index',$pharmacy)}}">
 
                             <i class="fas fa-pen"></i>
                             <span>Assessments</span>
@@ -83,8 +83,8 @@
                     </li>
                     {{-- @endusercan --}}
                     {{-- @usercan($pharmacy,'sales') --}}
-                    <li @if(Route::is('pharmacy.transactions')) class="active" @endif>
-                        <a href="{{route('pharmacy.transactions',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.sales')) class="active" @endif>
+                        <a href="{{route('pharmacy.sales.index',$pharmacy)}}">
                             <i class="fas fa-chart-bar"></i>
                             <span>Sales</span>
                         </a>

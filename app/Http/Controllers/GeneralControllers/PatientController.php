@@ -20,11 +20,6 @@ class PatientController extends Controller
         // dd($patient);
         return view('pharmacy.patient.view', compact('pharmacy','patient'));
     }
-
-    public function search(Pharmacy $pharmacy){
-        $patients = Patient::where('pharmacy_id',$pharmacy->id)->get();
-        return view('pharmacy.patient.search', compact('pharmacy','patients'));
-    }
     
     public function create(Pharmacy $pharmacy){
         return view('pharmacy.patient.add', compact('pharmacy'));
@@ -33,6 +28,7 @@ class PatientController extends Controller
     
     public function store(Pharmacy $pharmacy, Request $request){
         // dd($request->all());
+        //EMR: pharmacy initial, patient first and last initial, phone number last 4 digit, and patient id.
         $patient = Patient::updateOrCreate(['email' => $request->email,'pharmacy_id'=> $pharmacy->id],['name' => $request->first_name." ".$request->last_name,
         'mobile'=> $request->mobile,'dob'=> $request->dob, 'address'=> $request->address,
         'gender' => $request->gender,'emr'=> $pharmacy->id.$request->first_name.now()->format("Y")]);
@@ -41,18 +37,14 @@ class PatientController extends Controller
         else
             return redirect()->route("pharmacy.assessment.create",[$pharmacy,$patient]);
     }
-    
-    public function edit(Pharmacy $pharmacy,Patient $patient){
-        return view('pharmacy.patient.edit',compact('pharmacy','patient'));
-    }
 
     
     public function update(Request $request, $id){
-        return redirect()->route('pharmacy.patient.list',$pharmacy);
+        return redirect()->route('pharmacy.patients.index',$pharmacy);
     }
 
     public function destroy(Request $request)
     {
-        return redirect()->route('pharmacy.patient.list',$pharmacy);
+        return redirect()->route('pharmacy.patients.index',$pharmacy);
     }
 }

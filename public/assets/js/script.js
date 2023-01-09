@@ -64,6 +64,14 @@ Version      : 1.0
 			width: '100%'
 		});
 	}
+
+	// Datatable
+
+    if ($('.datatable').length > 0) {
+        $('.datatable').DataTable({
+            "bFilter": true,
+        });
+    }
 	
 	// Date Time Picker
 	

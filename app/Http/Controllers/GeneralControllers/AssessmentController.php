@@ -18,15 +18,20 @@ class AssessmentController extends Controller
     }
 
     
-    public function create(Pharmacy $pharmacy,Patient $patient){
-        return view('pharmacy.assessment.add', compact('pharmacy','patient'));
+    public function create(Pharmacy $pharmacy){
+        $pateint = null;
+        if(request()->patient_id){
+            $pateint = Patient::find(request()->patient_id);
+        }
+        $patients = Patient::where('pharmacy_id',$pharmacy->id)->get();
+        return view('pharmacy.assessment.add', compact('pharmacy','pateint','patients'));
     }
 
     public function store(Pharmacy $pharmacy,Request $request){
         dd($request->all());
     }
 
-    public function view(Pharmacy $pharmacy,Accessment $assessment){
+    public function view(Pharmacy $pharmacy,Assessment $assessment){
         return view('pharmacy.assessment.view', compact('pharmacy','assessment'));
     }
 
