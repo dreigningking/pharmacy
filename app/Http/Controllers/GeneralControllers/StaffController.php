@@ -18,6 +18,8 @@ class StaffController extends Controller
     }
     
     public function store(Request $request){
+        // add staff should send an email to the person
+
         $pharmacy = Pharmacy::find($request->pharmacy_id);
         $user = User::create(['email'=> $request->email,'name'=> $request->name,
         'password'=> Hash::make($request->email),'country_id'=> $pharmacy->country_id,
@@ -29,6 +31,7 @@ class StaffController extends Controller
 
     public function destroy(Request $request)
     {
+        // delete staff should send an email to the person
         // dd($request->all());
         $pharmacyUser = User::where('pharmacy_id',$request->pharmacy_id)->where('user_id',$request->user_id)->delete();
         return redirect()->back();

@@ -15,12 +15,31 @@
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">
                                 <div class="login-header">
-                                    <h3>Director's Details <a href="#">Add new Pharmacy</a></h3>
+                                    <h3>Owners's Details <a href="#">Add new Pharmacy</a></h3>
                                 </div>
                                 
                                 <!-- Register Form -->
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
+                                    @error('user_type')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                    <div class="form-group form-focus">
+                                        <select name="user_type" class="form-control floating @error('user_type') is-invalid @enderror">
+                                            <option >Private Hospital</option>
+                                            <option > Private Owned Community Pharmacy </option>
+                                            <option > Corporate Hospital </option>
+                                            <option >Teaching Hospital</option>
+                                            <option > Primary Health Care </option>
+                                            <option > General Hospital </option>
+                                            <option > Public Owned Community Pharmacy </option>
+                                            <option > Faith Based Organization Hospital </option>
+                                            <option > Faith Based Organization Owned Community Pharmacy </option> 
+                                        </select>
+                                        <label class="focus-label">Owner Type</label>
+                                    </div>
                                     @error('name')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\GeneralControllers;
 
 use App\Models\Patient;
+use App\Models\Medicine;
 use App\Models\Pharmacy;
+use App\Models\Condition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,16 +24,16 @@ class PatientController extends Controller
     }
     
     public function create(Pharmacy $pharmacy){
-        return view('pharmacy.patient.add', compact('pharmacy'));
+        $conditions = Condition::all();
+        $medicines = Medicine::all();
+        return view('pharmacy.patient.add', compact('pharmacy','conditions','medicines'));
     }
 
     
     public function store(Pharmacy $pharmacy, Request $request){
         // dd($request->all());
-        //EMR: pharmacy initial, patient first and last initial, phone number last 4 digit, and patient id.
-        $patient = Patient::updateOrCreate(['email' => $request->email,'pharmacy_id'=> $pharmacy->id],['name' => $request->first_name." ".$request->last_name,
-        'mobile'=> $request->mobile,'dob'=> $request->dob, 'address'=> $request->address,
-        'gender' => $request->gender,'emr'=> $pharmacy->id.$request->first_name.now()->format("Y")]);
+        $patient = Patient::create(['pharmacy_id'=> $pharmacy->id,'name'=> $request->patient_name,'mobile'=> $request->patient_mobile,'email'=> $request->patient_email,'age_today'=> $request->patient_age_today,'gender'=> $request->patient_gender,'address'=> $request->patient_address,'bloodgroup'=> $request->patient_bloodgroup,'genotype'=> $request->patient_genotype]);
+        
         if($request->action == "save")
             return redirect()->route("pharmacy.patient.list",$pharmacy);
         else

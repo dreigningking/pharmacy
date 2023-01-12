@@ -158,8 +158,8 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="form-label">Date of birth</label>
-                                                        <input type="date" class="form-control" name="dob" value="{{$patient->dob->format('Y-m-d')}}">
+                                                        <label class="form-label">Age</label>
+                                                        <input type="text" class="form-control" name="dob" value="{{$patient->age}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\Models\State;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Observers\CityObserver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class City extends Model
 {
@@ -13,7 +14,7 @@ class City extends Model
 
     public static function boot(){
         parent::boot();
-        parent::observe(new \App\Observers\CityObserver);
+        parent::observe(new CityObserver);
     }
     public function state(){
         return $this->belongsTo(State::class);

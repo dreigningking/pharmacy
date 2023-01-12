@@ -17,7 +17,7 @@ class PharmacyObserver
     public function created(Pharmacy $pharmacy)
     {
         // $pharmacy->notify(new WelcomeNotification())
-        Patient::create(['pharmacy_id'=> $pharmacy->id,'name'=> 'Walkin Customer','mobile'=> $pharmacy->id.'000000','email'=> $pharmacy->email,'dob'=> $pharmacy->created_at,'gender'=> 'Male','emr'=> 'WALKIN000','address'=> $pharmacy->address,'country_id'=> $pharmacy->country_id,'state_id'=> $pharmacy->state_id,'city_id'=> $pharmacy->city_id]);
+       
     }
 
     /**
