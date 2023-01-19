@@ -41,10 +41,6 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
                 Route::post('update', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'appointment_update'])->name("update");
                 Route::post('delete', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'appointment_delete'])->name("delete");
             });
-            
-            
-            
-            
         });
 
         Route::get('prescriptions', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'index'])->name("prescription.list");

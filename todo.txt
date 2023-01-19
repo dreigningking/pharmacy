@@ -71,19 +71,11 @@ PATIENT[
     -
 ]
 ASSESSMENT[
-    -Patient
-    -Complaint
-    -Past Medical History [show previous assessment diagnosis if treatment is completed]
-        - if error, record
-    -Current Medical History [ongoing assessment diagnosis or ongoing treatment elsewhere]
-        - if error, record
-    -Family & Social History
-    -Vitals
-    -System Review
+    
     -Summary
-    -Provisional Diagnosis
-    -Laboratory
-    -Final Diagnosis
+    -Provisional Diagnosis [conditions,]
+    -Laboratory [list tests]
+    -Final Diagnosis [schedule to another date,conditions]
         - Save & Prescribe Medicine | - Save & Schedule Next Visit
     -Feedback
 ]
@@ -100,6 +92,3 @@ diagnosis will be recorded into medical_history.. if the assessment is closed, t
 prescription will be recorded into medication_history, once order for the prescription is made
 
 to get medical History
-
-813 111 5276
-opay

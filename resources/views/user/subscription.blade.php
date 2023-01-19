@@ -95,6 +95,7 @@
                                     <div class="table-responsive">
                                         <table class="table">
                                             <tr>
+                                                <th></th>
                                                 <th>Licenses</th>
                                                 <th>Assigned To</th>
                                                 <th>Start Date</th>
@@ -102,6 +103,12 @@
                                                 <th>Status</th>
                                             </tr>
                                             <tr>
+                                                <td class="align-middle">
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" id="autodelete" name="rating_option" value="custom_price" class="custom-control-input">
+                                                    <label class="custom-control-label" for="autodelete"></label>
+                                                    </div>
+                                                </td>
                                                 <td class="align-middle">TUJH98394934380</td>
                                                 <td class="align-middle">Hycent Pharmacy</td>
                                                 <td class="align-middle">24/Oct/2019</td>
@@ -109,6 +116,12 @@
                                                 <td class="align-middle">Running</td>
                                             </tr>
                                             <tr>
+                                                <td class="align-middle">
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" id="autodelete" name="rating_option" value="custom_price" class="custom-control-input">
+                                                    <label class="custom-control-label" for="autodelete"></label>
+                                                    </div>
+                                                </td>
                                                 <td class="align-middle">TUJH983435434380</td>
                                                 <td class="align-middle">
                                                     <select class="form-control">
@@ -121,6 +134,12 @@
                                                 <td>Unassigned</td>
                                             </tr>
                                             <tr>
+                                                <td class="align-middle">
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" id="autodelete" name="rating_option" value="custom_price" class="custom-control-input">
+                                                    <label class="custom-control-label" for="autodelete"></label>
+                                                    </div>
+                                                </td>
                                                 <td class="align-middle">TUJH983435434380</td>
                                                 <td class="align-middle">
                                                     <select class="form-control">

@@ -757,6 +757,7 @@
                                     <label for="pwd">Message:</label>
                                     <textarea class="form-control" rows="3" id="description" name="body" required></textarea> 
                                 </div>
+                                <p>Send as sms or Send as Email</p>
                                 <div class="form-group mt-2">
                                     <label for="pwd">Attachment:</label>
                                     <input type="file" class="form-control" name="file" multiple> 

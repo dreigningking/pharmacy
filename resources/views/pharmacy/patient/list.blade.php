@@ -33,6 +33,11 @@
                     </div>
                     <div class="card-body">
                         <div class="filter-widget">
+                            <div class="">
+                                <input type="text" class="form-control" placeholder="Name or EMR or Email or Phone">
+                            </div>			
+                        </div>
+                        <div class="filter-widget">
                             <div class="cal-icon">
                                 <input type="text" class="form-control datetimepicker" placeholder="Record Date">
                             </div>			

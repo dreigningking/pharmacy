@@ -15,7 +15,7 @@
                             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                         </ol>
                     </nav>
-                    <h2 class="breadcrumb-title">Dashboard</h2>
+                    <h2 class="breadcrumb-title">Subscriber Dashboard</h2>
                 </div>
             </div>
         </div>

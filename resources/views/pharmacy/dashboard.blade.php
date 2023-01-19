@@ -51,7 +51,8 @@
                             <div class="feature-item text-center col-md-3 mb-2">
                                 <a href="{{route('pharmacy.sales.index',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-01.jpg')}}" class="img-fluid" alt="Feature">
-                                    <p>Sales</p>
+                                    <p>Sales </p>
+                                    
                                 </a>
                             </div>
                             <!-- /Slider Item -->
@@ -139,7 +140,7 @@
                                                         <div class="dash-widget-info">
                                                             <h6>Total Patient</h6>
                                                             <h3>1500</h3>
-                                                            {{-- <p class="text-muted">Till Today</p> --}}
+                                                            <p class="text-muted">All time</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -154,7 +155,7 @@
                                                         <div class="dash-widget-info">
                                                             <h6>Total Sales</h6>
                                                             <h3>160</h3>
-                                                            {{-- <p class="text-muted">06, Nov 2019</p> --}}
+                                                            <p class="text-muted">This month</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -169,7 +170,7 @@
                                                         <div class="dash-widget-info">
                                                             <h6>Total Assessments</h6>
                                                             <h3>85</h3>
-                                                            {{-- <p class="text-muted">06, Apr 2019</p> --}}
+                                                            <p class="text-muted">This month</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -184,7 +185,7 @@
                                                         <div class="dash-widget-info">
                                                             <h6>Inventory</h6>
                                                             <h3>85</h3>
-                                                            {{-- <p class="text-muted">06, Apr 2019</p> --}}
+                                                            <p class="text-muted">All time</p>
                                                         </div>
                                                     </div>
                                                 </div>

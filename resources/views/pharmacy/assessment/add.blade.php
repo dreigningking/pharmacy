@@ -287,7 +287,7 @@
                                         </div>
                                     </div>
                                 </div> 
-                                {{-- <div class="pane " id="complaint">
+                                 <div class="pane " id="complaint">
                                     <div class="card">
                                         <div class="card-header">
                                             <h4>Compliants</h4>
@@ -312,8 +312,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
-                                {{-- <div class="pane " id="past_medical_history">
+                                </div> 
+                                <div class="pane " id="past_medical_history">
                                     <div class="card">
                                         <div class="card-header">
                                             <h4>Past Medical History</h4>
@@ -577,7 +577,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="pane " id="provisional_diagnosis">
                                     <div class="card">
                                         <div class="card-header">
@@ -599,7 +599,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>{{--
+                                </div>
                                 <div class="pane " id="laboratory">
                                     <div class="card">
                                         <div class="card-header">
@@ -643,7 +643,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="pane " id="final_diagnosis">
                                     <div class="card">
                                         <div class="card-header">
