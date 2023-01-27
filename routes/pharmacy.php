@@ -8,6 +8,7 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
         Route::get('notifications', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'notifications'])->name('notifications');
         Route::get('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
         Route::post('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
+        
         Route::group(['middleware'=>'role:director,manager','as'=> 'staff.'], function () {
             Route::post('staff',[App\Http\Controllers\GeneralControllers\StaffController::class, 'store'])->name("store");
             Route::post('staff/destroy',[App\Http\Controllers\GeneralControllers\StaffController::class, 'destroy'])->name("destroy");
@@ -43,10 +44,19 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
             });
         });
 
-        Route::get('prescriptions', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'index'])->name("prescription.list");
+        Route::group(['prefix'=>'prescriptions','as'=> 'prescriptions.'], function () {
+            Route::get('/', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'index'])->name("index");
+            Route::get('create', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'create'])->name("create");
+            Route::post('store', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'store'])->name("store");
+            Route::get('show', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'show'])->name("show");
+            Route::get('edit/{prescription}', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'edit'])->name("edit");
+            Route::post('update', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'update'])->name("update");
+            Route::post('delete', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'destroy'])->name("destroy");
+        });
+
+      
         
-        
-        Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'list'])->name("inventory.list");
+        Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'list'])->name("inventory.index");
         Route::get('inventory/batches', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'batches'])->name("inventory.batches");
         Route::get('inventory/setup', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'start'])->name("inventory.start");
         Route::post('inventory/start/export', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'export'])->name("inventory.start.export");

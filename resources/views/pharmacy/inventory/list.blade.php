@@ -27,7 +27,77 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('pharmacy.sidebar')
+            <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+                <div class="card search-filter">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">Search Filter</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="filter-widget">
+                            <h4>Item Name</h4>			
+                        </div>
+                        <div class="filter-widget">
+                            <input type="text" class="form-control" placeholder="">		
+                        </div>
+                        <div class="filter-widget">
+                            <h4>Batch no:</h4>			
+                        </div>
+                        <div class="filter-widget">
+                            <input type="text" class="form-control" placeholder="">		
+                        </div>
+                        <div class="filter-widget">
+                            <h4>Type</h4>
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Drugs
+                                </label>
+                            </div>
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Non-drugs
+                                </label>
+                            </div> 
+                        </div>
+                        
+                        
+                        <div class="filter-widget">
+                            <h4>Show</h4>
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Expired
+                                </label>
+                            </div>
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Out of Stock
+                                </label>
+                            </div> 
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Over Stocked
+                                </label>
+                            </div>
+  
+                        </div>
+                        
+                        <div class="btn-search">
+                            <button type="button" class="btn btn-block">Search</button>
+                        </div>	
+                        
+                    </div>
+                    {{-- <div class="card-body">
+                        <div class="clinic-booking">
+                            <a class="apt-btn" href="booking.html">View Subscription Plans</a>
+                        </div>
+                    </div> --}}
+                    
+                </div>
+            </div>
 
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="row">
@@ -50,18 +120,17 @@
                                 <form id="submitInventory" action="#" method="POST">@csrf
                                     <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                     <div class="table-responsive">
-                                        <table class="datatable table table-hover table-bordered table-center mb-0">
+                                        <table class="table table-hover table-bordered table-center mb-0">
                                             <thead>
                                                 <tr>
                                                     <th><input type="checkbox" id="header_input"></th>
                                                     <th>Name</th>
-                                                    <th>Category</th>
+                                                    <th>Category</th>                                          
+                                                    <th>Batches</th>
+                                                    <th>Available</th>
                                                     <th>Shelf</th>
-                                                    <th>Batch</th>
-                                                    <th>Qty</th>
-                                                    <th>Cost</th>
-                                                    <th>Price</th>
-                                                    <th>Status</th>
+                                                    <th>Unit Cost </th>
+                                                    <th>Unit Price</th>
                                                     <th>Details</th>   
                                                 </tr>
                                             </thead>
@@ -72,23 +141,15 @@
                                                         <td><input type="checkbox" class="checkboxes" name="inventories[]" value="{{$item->id}}"></td>
                                                         <td>{{$item->name}}</td>
                                                         <td>@if($item->drug_id) Drug @else Others @endif</td>   
-                                                        <td>{{$item->shelf->name}}</td>   
-                                                        <td>{{$batch->number}}</td>   
+                                                        <td><a data-toggle="modal" href="#batches{{$item->id}}" class="btn btn-sm btn-info">view batches</a></td>   
                                                         <td>{{$batch->quantity}}</td>   
+                                                        <td>{{$item->shelf->name}}</td>   
                                                         <td>{{$item->unit_cost}}</td>   
-                                                        <td>{{$item->unit_price}}</td>   
+                                                        <td>{{$item->unit_price}}</td> 
                                                         <td>
-                                                            @if($batch->expire_at && $batch->expire_at < now())
-                                                                <span class="badge badge-danger">Expired</span>
-                                                            @elseif($batch->quantity <= $pharmacy->minimum_stocklevel)
-                                                                <span class="badge badge-danger">Stock Level Too Low</span>
-                                                            @elseif($batch->quantity <= $pharmacy->maximum_stocklevel)
-                                                                <span class="badge badge-danger">Stock Level Too High</span>
-                                                            @else 
-                                                            <span class="badge badge-primary">Available</span>
-                                                            @endif
+                                                            <a data-toggle="modal" href="#item{{$item->id}}" class="btn btn-sm btn-primary">More Details</a>
+                                                            <button type="button" href="#" class="btn btn-sm btn-danger">Delete</button>
                                                         </td>
-                                                        <td><button data-toggle="modal" data-target="#item{{$item->id}}" class="btn btn-sm btn-primary">view</button></td>
                                                     </tr>
                                                     @endforeach
                                                 @empty
@@ -136,7 +197,71 @@
                                         <tr><td>Batch:</td><td>{{$item->batch}}</td></tr>
                                         <tr><td>Shelf:</td><td>{{$item->shelf->name}}</td></tr>
                                         <tr><td>Remaining:</td><td>{{$item->quantity}}</td></tr>
-                                        <tr><td>Expired:</td><td>{{$item->expired->count()}}</td></tr>
+                                        <tr><td>Expired:</td><td>{{$item->count()}}</td></tr>
+                                        <tr><td>Cost: </td><td>{{$item->unit_cost}}</td></tr>
+                                        <tr><td>Price: </td><td>{{$item->unit_price}}</td></tr>
+                                        <tr><td>Status:</td> 
+                                            <td>
+                                            @if($batch->expire_at && $batch->expire_at < now())
+                                                <span class="badge badge-danger">Expired</span>
+                                            @elseif($batch->quantity <= $pharmacy->minimum_stocklevel)
+                                                <span class="badge badge-danger">Stock Level Too Low</span>
+                                            @elseif($batch->quantity <= $pharmacy->maximum_stocklevel)
+                                                <span class="badge badge-danger">Stock Level Too High</span>
+                                            @else 
+                                            <span class="badge badge-primary">Available</span>
+                                            @endif
+                                            </td> 
+                                        </tr>               
+                                                        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+@foreach ($items as $item)
+    <div class=" modal fade custom-modal add-modal" id="batches{{$item->id}}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Batches
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex">
+                            <div class="card flex-fill">
+
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td>Batch ID</td>
+                                            <td>Quantity</td>
+                                            <td>Expiry Date</td>
+                                            <td>Shelf</td>
+                                            <td>Action</td>
+                                        </tr>
+                                        @forelse ($item->batches as $batch)
+                                        <tr>
+                                            <td>{{$batch->number}}</td>
+                                            <td>{{$batch->quantity}}</td>
+                                            <td>{{$batch->expire_at->format('M-d,Y')}}</td>
+                                            <td></td>
+                                            <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                        </tr>
+                                        @endforeach
+                                        
+                                               
+                                                        
                                     </table>
                                 </div>
                             </div>

@@ -24,25 +24,25 @@
                 </ul>
             </li>
             <li class="has-submenu">
-                <a href="invoices.html">Prescriptions</a>
+                <a href="#">Prescriptions</a>
                 <ul class="submenu">
-                    <li><a href="invoices.html">New Prescription</a></li>
-                    <li><a href="invoice-view.html">All Prescriptions</a></li>
+                    <li><a href="{{route('pharmacy.prescriptions.create',$pharmacy)}}">New Prescription</a></li>
+                    <li><a href="{{route('pharmacy.prescriptions.index',$pharmacy)}}">All Prescriptions</a></li>
                 </ul>
             </li>
-            <li><a href="search.html">Errors</a></li>
-            <li><a href="doctor-profile.html">Messages</a></li>
+            {{-- <li><a href="search.html">Errors</a></li> --}}
+            {{-- <li><a href="doctor-profile.html">Messages</a></li> --}}
         </ul>
     </li>
     <li class="has-submenu">
         <a href="#">Inventory <i class="fas fa-chevron-down"></i></a>
         <ul class="submenu">
-            <li><a href="doctor-profile.html">Upload Items</a></li>
+            <li><a href="{{route('pharmacy.inventory.start',$pharmacy)}}">Upload Items</a></li>
             <li class="has-submenu">
-                <a href="invoices.html">Items</a>
+                <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Items</a>
                 <ul class="submenu">
-                    <li><a href="invoices.html">Drugs</a></li>
-                    <li><a href="invoice-view.html">Non-Drugs</a></li>
+                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Drugs</a></li>
+                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Non-Drugs</a></li>
                 </ul>
             </li>
             <li><a href="search.html">Shelves</a></li>

@@ -519,7 +519,7 @@
             $('.select-remote').select2({
                 width: 'resolve',
                 ajax: {
-                    url: "{{route('pharmacy.inventory.list',$pharmacy)}}",
+                    url: "{{route('pharmacy.inventory.index',$pharmacy)}}",
                     dataType: 'json', 
                     cache: true, 
                     data: function (params) {
@@ -610,7 +610,7 @@
             $('.select-remote:last').select2({
                 width: 'resolve',
                 ajax: {
-                    url: "{{route('pharmacy.inventory.list',$pharmacy)}}",
+                    url: "{{route('pharmacy.inventory.index',$pharmacy)}}",
                     dataType: 'json', 
                     cache: true, 
                     data: function (params) {

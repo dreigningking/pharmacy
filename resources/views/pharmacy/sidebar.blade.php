@@ -75,8 +75,8 @@
                         </a>
                     </li>
                     {{-- @endif --}}
-                    <li @if(Route::is('pharmacy.inventory.list')) class="active" @endif>
-                        <a href="{{route('pharmacy.inventory.list',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.inventory.index')) class="active" @endif>
+                        <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">
                             <i class="fas fa-boxes"></i>
                             <span>Inventory</span>
                         </a>

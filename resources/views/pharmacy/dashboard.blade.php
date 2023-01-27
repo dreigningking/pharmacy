@@ -73,7 +73,7 @@
                             
                             <!-- Slider Item -->
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="{{route('pharmacy.prescription.list',$pharmacy)}}">
+                                <a href="{{route('pharmacy.prescriptions.index',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-04.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Prescriptions</p>
                                 </a>
@@ -82,7 +82,7 @@
                             
                             <!-- Slider Item -->
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="{{route('pharmacy.inventory.list',$pharmacy)}}">
+                                <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">
                                 <img src="{{asset('assets/img/features/feature-06.jpg')}}" class="img-fluid" alt="Feature">
                                 <p>Inventory</p>
                                 </a>

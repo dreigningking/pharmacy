@@ -8,6 +8,7 @@ use App\Models\Medicine;
 use App\Models\Pharmacy;
 use App\Models\Complaint;
 use App\Models\Condition;
+use App\Models\Inventory;
 use App\Models\Assessment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,7 +30,7 @@ class AssessmentController extends Controller
         if(request()->patient_id){
             $pateint = Patient::find(request()->patient_id);
         }
-        $medicines = Medicine::all();
+        $medicines = Inventory::whereNotNull('drug_id')->get();
         $complaints = Complaint::all();
         $conditions = Condition::all();
         $familySocialQuestions = FamilySocialQuestion::all();

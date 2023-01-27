@@ -16,7 +16,7 @@ class PrescriptionController extends Controller
 
     public function index(Pharmacy $pharmacy)
     {
-        return view('pharmacy.assessment.prescription', compact('pharmacy'));
+        return view('pharmacy.prescription.list', compact('pharmacy'));
     }
 
     /**
@@ -26,7 +26,8 @@ class PrescriptionController extends Controller
      */
     public function create(Pharmacy $pharmacy)
     {
-        //
+        $inventories = $pharmacy->inventories;
+        return view('pharmacy.prescription.create', compact('pharmacy','inventories'));
     }
 
     /**
@@ -48,7 +49,8 @@ class PrescriptionController extends Controller
      */
     public function show(Pharmacy $pharmacy)
     {
-        //
+        $inventories = $pharmacy->inventories;
+        return view('pharmacy.prescription.view', compact('pharmacy','inventories'));
     }
 
     /**
