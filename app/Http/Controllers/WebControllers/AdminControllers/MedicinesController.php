@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use App\Imports\MedicinesImport;
 use App\Models\MedicineInteraction;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MedicineInteractionsExport;
 use App\Imports\MedicineInteractionsImport;
@@ -22,9 +21,15 @@ class MedicinesController extends Controller
 {
 
     public function api(){
-        $medicines = Medicine::orderBy('id','desc')->take(100)->get();
+        $medicines = Medicine::orderBy('id','desc');
         // dd(is_array($medicines[1]->alternatives));
-        return view('admin.medicines.api',compact('medicines'));
+        $search = null;
+        if(request()->query() && request()->query('search')){
+            $search = request()->query('search');
+            $medicines = $medicines->where('name','like',"%".$search."%");
+        }
+        $medicines = $medicines->paginate(100);
+        return view('admin.medicines.api',compact('medicines','search'));
     }
 
     public function api_upload(Request $request){

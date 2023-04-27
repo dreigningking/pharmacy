@@ -6,9 +6,9 @@
     .no_select_border span.select2-selection.select2-selection--single{
         border:0px !important;
     }
-    #select2-supplier_select-container{
+    /* #select2-supplier_select-container{
         text-align: right;
-    }
+    } */
     span.select2-selection.select2-selection--single{
         height:46px;
         padding-top:10px;
@@ -81,7 +81,7 @@
                         <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">Inventory</h2>
+                <h2 class="breadcrumb-title">Prescription</h2>
             </div>
         </div>
     </div>
@@ -93,13 +93,12 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('pharmacy.sidebar')
-            <div class="col-md-7 col-lg-8 col-xl-9">
+            {{-- @include('pharmacy.sidebar') --}}
+            <div class="col-md-12">
                 <!-- Page Wrapper -->
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pharmacy.transfer.store',$pharmacy)}}" method="POST">@csrf
-                            <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                        <form action="{{route('pharmacy.inventory.purchases.store',$pharmacy)}}" method="POST">@csrf
                             <div class="invoice-content">
                                 <div class="invoice-item">
                                     <div class="row">
@@ -108,61 +107,11 @@
                                                 <img src="{{asset('assets/img/logo.png')}}" alt="logo">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <p class="invoice-details ">
-                                                <strong>Transfer no:</strong> #
-                                                </p>
-                                                <p class="invoice-details">
-                                                <strong>Issued:</strong> 
-                                                <input type="date" name="" id="" value="{{now()->format('Y-m-d')}}" class="date">
-                                            </p>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 
-                                <!-- Invoice Drug -->
-                                <div class="invoice-item">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="invoice-info">
-                                                <strong class="customer-text">Sending Pharmacy</strong>
-                                                <p class="invoice-details invoice-details-two">
-                                                    {{$pharmacy->name}}, <br>
-                                                    {{$pharmacy->city->name}}, {{$pharmacy->state->name}} <br>
-                                                   {{$pharmacy->country->name}}.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="invoice-info invoice-info2">
-                                                {{-- <a href="#add_supplier" data-toggle="modal" class="text-info"><u>Add new</u></a> --}}
-                                                <div class="customer-text d-inline mx-2"><bold>Receiving Pharmacy</bold></div>
-                                                <div class="invoice-details no_select_border">
-                                                    <select name="to_pharmacy" id="supplier_select" class="select form-control supplier-select" required>
-                                                        <option value ="" selected>Select Pharmacy</option>
-                                                        @forelse ($pharmacies as $receiver)                                                
-                                                            <option value="{{$receiver->id}}"
-                                                                data-city="{{$receiver->city->name}}"
-                                                                data-state="{{$receiver->state->name}}"
-                                                                data-country="{{$receiver->country->name}}">
-                                                                {{$receiver->name}}
-                                                            </option>
-                                                        @empty
-                                                            <option disabled>No Receiving Pharmacy</option>
-                                                        @endforelse
-
-                                                    </select>
-                                                    {{-- <br> --}}
-                                                    <p class="city"></p>
-                                                    <p class="state"></p>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Invoice Drug -->
-                                
+                               
                                 
                                 
                                 <!-- Invoice Drug -->
@@ -176,6 +125,7 @@
                                                             <th style="min-width: 180px;">
                                                                 <span>Description</span> 
                                                             </th>
+                                                            <th class="text-left">Batch</th>
                                                             <th class="text-center">Qty</th>
                                                             <th class="text-center">Cost</th>
                                                             <th class="text-right ">Worth</th>
@@ -216,6 +166,14 @@
                                                             <td class="first-column">
                                                                 <select name="batches[]" class="select-remote form-control w-100">
                                                                     
+                                                                </select>
+                                                            </td>
+                                                            <td class="text-center extra-column"> 
+                                                                <select name="batches[]" class="form-control w-100">
+                                                                    <option value="">Select Batch</option>
+                                                                    <option value="">Not Applicable</option>
+                                                                    <option value="">BA92334- 8 left</option>
+                                                                    <option value="">BA92334- 2 left</option>
                                                                 </select>
                                                             </td>
                                                             <td class="text-center extra-column"> 
@@ -269,16 +227,17 @@
                                 <div class="other-info">
                                     <h6>Additional information</h6>
                                     <div class="d-flex justify-content-between">
-                                        <input type="text" name="info" class="col-md-5">
+                                        <input type="text" name="info" class="w-100">
                                         
                                         <div class="col-md-4 text-right">
-                                            <button type="submit" name="action" value="save" class="btn btn-light btn-sm supplies_submit disabled" disabled>Save as Draft</button>
-                                            <button type="submit" name="action" value="execute" class="btn btn-dark btn-sm supplies_submit disabled" disabled>Execute</button>
+                                            <button type="submit" name="action" value="save" class="btn btn-dark btn-sm supplies_submit">Execute</button>
+                                            <button type="submit" name="action" value="execute" class="btn btn-info btn-sm supplies_submit">Execute & New Sale</button>
                                         </div>
                                         
                                     </div>
                                 </div>
                                 <!-- /Invoice Information -->
+                                
                                 
                             </div>
                         </form>
@@ -294,7 +253,114 @@
 <!-- /Page Content -->
 @endsection
 @section('modals')
+<div class=" modal fade custom-modal add-modal" id="add_supplier">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Prescription Error
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 d-flex">
+                        <div class="card flex-fill">
 
+                            <div class="card-body">
+                                <form id="add_supplier_form" method="GET">@csrf
+                                   
+                                    <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
+                                    <div class="form-group ">
+                                        <label class="form-label">Select Error</label>
+                                        <select name="email" id="supplier_email" class="form-control">
+                                            <option value="">ABCDEFGH</option>
+                                            <option value="">YXAALLWEKLKLWE</option>
+                                            <option value="">YXAALLWEklwewejkw</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="form-label">Select Intervention</label>
+                                        <select name="email" id="supplier_email" class="form-control">
+                                            <option value="">ABCDEFGH</option>
+                                            <option value="">YXAALLWEKLKLWE</option>
+                                            <option value="">YXAALLWEklwewejkw</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="form-label">Select Outcome</label>
+                                        <select name="email" id="supplier_email" class="form-control">
+                                            <option value="">ABCDEFGH</option>
+                                            <option value="">YXAALLWEKLKLWE</option>
+                                            <option value="">YXAALLWEklwewejkw</option>
+                                        </select>
+                                    </div>
+                                    
+
+                                    <div class="text-right">
+                                        <button type="submit" id="save_supplier" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=" modal fade custom-modal add-modal" id="add_drug">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Item
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 d-flex">
+                        <div class="card flex-fill">
+
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group ">
+                                        <label class="form-label">Name</label>
+                                        <input type="email" class="form-control">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="form-label">Manufacturer</label>
+                                        <input type="email" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label d-flex justify-content-between"><span>Content</span> <small class="text-right">Can select multiple</small></label>
+                                        <select name="" id="" class="select form-control" multiple>
+                                            <option>Lumefantrine</option> 
+                                            <option>Ampicilin</option> 
+                                            <option>Flagyl</option> 
+                                            <option>Septrin</option> 
+                                        </select>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <button type="button" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')
@@ -304,7 +370,7 @@
             $('.select-remote').select2({
                 width: 'resolve',
                 ajax: {
-                    url: "{{route('pharmacy.inventory.batches',$pharmacy)}}",
+                    url: "{{route('pharmacy.inventory.index',$pharmacy)}}",
                     dataType: 'json', 
                     cache: true, 
                     data: function (params) {
@@ -317,7 +383,7 @@
                     },
                     processResults: function (data) {
                         var data = $.map(data.items, function (obj) {
-                            obj.text = obj.text || obj.inventory.name+' | '+obj.number; // replace name with the property used for the text
+                            obj.text = obj.text || obj.name; // replace name with the property used for the text
                             return obj;
                         });
                         return {
@@ -332,10 +398,10 @@
             });            
             $(document).on('select2:select','.select-remote',function(e){
                 var data = e.params.data;
-                $(this).closest('tr').find('.unit_quantity').val(data.quantity)   
-                $(this).closest('tr').find('.unit_quantity').attr('max',data.quantity)   
-                $(this).closest('tr').find('.unit_cost').val(data.inventory.unit_cost)               
-                $(this).closest('tr').find('.amount').val(data.inventory.unit_cost * data.quantity)                                
+                console.log(data)
+                $(this).closest('tr').find('.unit_quantity').val(1)   
+                $(this).closest('tr').find('.unit_cost').val(data.cost)               
+                $(this).closest('tr').find('.amount').val(data.cost)                                
                 recalculateTotal()
                 addNewRow()
             })
@@ -373,6 +439,14 @@
                         <select name="batches[]" class="select-remote form-control w-100">
                                                                                                 
                         </select>
+                    </td>
+                    <td class="text-center extra-column">
+                        <select name="batches[]" class="form-control w-100">
+                            <option value="">Select Batch</option>
+                            <option value="">Not Applicable</option>
+                            <option value="">BA92334- 8 left</option>
+                            <option value="">BA92334- 2 left</option>
+                        </select>    
                     </td>
                     <td class="text-center extra-column"> 
                         <input type="number" name="quantities[]" value="1" min="1" max="" id="" class="table-input unit_quantity">
@@ -421,3 +495,4 @@
             
     </script>
 @endpush
+

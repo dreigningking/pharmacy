@@ -81,7 +81,7 @@ class HavronController extends Controller
                     "return_url" => route('havron.success'),
                     "cancel_url" => route('havron.error'),
                 ],
-            ]
+              ]
             )
             ->asJson()
             ->post();

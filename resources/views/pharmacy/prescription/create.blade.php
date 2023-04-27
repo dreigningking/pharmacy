@@ -1,71 +1,17 @@
 @extends('layouts.main.app')
 @push('styles')
-
-<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <style>
-    .no_select_border span.select2-selection.select2-selection--single{
-        border:0px !important;
-    }
-    #select2-supplier_select-container{
-        text-align: right;
-    }
     span.select2-selection.select2-selection--single{
-        height:46px;
-        padding-top:10px;
-        padding-bottom:10px;
+        height:36px;
+        /* padding-top:10px;
+        padding-bottom:10px; */
         /* width:200px; */
     }
-    span.select2.select2-container select2-container--default{
-        width:200px!important;
+    .select2-container--default .select2-selection--single .select2-selection__arrow{
+        top: 4px !important;
     }
-    .select2-container--default .select2-selection--single {
-        height: 50px;
-        border: 1px solid #dcdcdc;
-        border-radius: 3px;
-    }
-    /* .select2-container--default.select2-selection--single.select2-selection__arrow {
-        top: 10px !important;
-    } */
-    .select2-container--default.select2-selection--single.select2-selection__arrow{
-        top: 8px !important;
-    }
-    /* .select2-container--default .select2-selection--single .select2-selection__arrow{
-        top: 8px !important;
-    } */
-    .select2-container--default.select2-selection--single.select2-selection__rendered {
-        line-height: 42px;
-    }
-    
-    .table-trash {
-        width: 29px !important;
-        height: 29px !important;
-    }
-    .date {
-        width: 150px;
-    }
-    .table-input{
-        width: 90px;
-        height: 50px;
-        border: none;
-    }
-    .table-input:focus{
-        border: none;
-        outline: none;
-    }
-    .table tr td{
-        vertical-align: middle;
-        
-    }
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    input[type="number"] {
-        /* -moz-appearance: textfield; */
-    }
-    .select-remote {
-        /* width: 450px !important; */
+    .select2-container--default .select2-selection--single .select2-selection__rendered{
+        line-height:36px;
     }
 </style>
 @endpush
@@ -93,171 +39,219 @@
     <div class="container-fluid">
 
         <div class="row">
-            {{-- @include('pharmacy.sidebar') --}}
-            <div class="col-md-12">
-                <!-- Page Wrapper -->
+            <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Add Prescription</h4>
+                    </div>
                     <div class="card-body">
-                        <form action="{{route('pharmacy.purchase.store',$pharmacy)}}" method="POST">@csrf
-                            <div class="invoice-content">
-                                <div class="invoice-item">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="invoice-logo">
-                                                <img src="{{asset('assets/img/logo.png')}}" alt="logo">
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                                <!-- Invoice Drug -->
-                                <div class="invoice-item">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="invoice-info">
-                                                <strong class="customer-text">Patient</strong>
-                                                <p class="invoice-details invoice-details-two">
-                                                    <select name="supplier_id" id="supplier_select" class="select form-control " required>
-                                                        <option value ="" selected>Select Patient</option>
-                                                        <option value ="">Olwuadamilola Smauel</option>
-                                                    </select>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="invoice-info invoice-info2">
-                                                {{-- <a href="#add_supplier" data-toggle="modal" class="text-info"><u>Add new</u></a> --}}
-                                                <div class="customer-text d-inline mx-2"><strong>Select Assessment</strong></div>
-                                                <div class="invoice-details no_select_border">
-                                                    <select name="supplier_id" id="supplier_select" class="select form-control supplier-select" required>
-                                                        <option value ="" selected>Select Assessment</option>
-                                                        <option value ="" >Assessment #12132</option>
-                                                        <option value ="" >Assessment #344545</option>
-                                                        {{-- @forelse ($suppliers as $supplier)                                                
-                                                            <option value="{{$supplier->id}}"
-                                                                data-city="{{$supplier->city->name}}"
-                                                                data-state="{{$supplier->state->name}}"
-                                                                data-country="{{$supplier->country->name}}">
-                                                                {{$supplier->name}}
-                                                            </option>
-                                                        @empty
-                                                            <option disabled>No Supplier</option>
-                                                        @endforelse --}}
-
-                                                    </select>
-                                                    {{-- <br> --}}
-                                                    <p class="city"></p>
-                                                    <p class="state"></p>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                
-                                <!-- Invoice Drug -->
-                                <div class="invoice-item invoice-table-wrap">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="table-responsive no_select_border">
-                                                <table class="invoice-table table table-bordered" id="table" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="d-flex flex-wrap justify-content-between" style="min-width: 180px;">
-                                                                <span>Drug</span> 
-                                                            </th>
-                                                            <th class="text-center">Qty Per Dose</th>
-                                                            <th class="text-center">Frequency</th>
-                                                            <th class="text-center">Duration</th>
-                                                            <th class="text-left ">Medication Advise</th>
-                                                            <th class="extra-column">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody  class="select-body">
-                                                        @if(isset($inventories))
-                                                            @forelse($inventories as $inventory)
-                                                                <tr class="select-row">
-                                                                    <td class="first-column">
-                                                                        <select name="inventories[]" class="select-remote form-control w-100">
-                                                                            <option id="{{$inventory->id}}">{{$inventory->name}}</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="text-center extra-column">
-                                                                        <input type="number" class="table-input unit_quantity">
-                                                                    </td>
-                                                                    <td class="text-center extra-column">
-                                                                        <input type="number" name="frq"  class="table-input unit_cost">
-                                                                    </td>
-                                                                    <td class="text-center extra-column"> 
-                                                                        <input type="number" name="duration[]" value="1" placeholder="days" class="table-input unit_quantity">
-                                                                    </td>
-                                                                    <td class="text-left unit_amount">
-                                                                        <input type="text" name="advise[]" class="table-input">
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="#" class="btn btn-danger trash table-trash no-column">
-                                                                            <i class="far fa-trash-alt"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr> 
-                                                            @endforeach
-                                                        @endif
-                                                        <tr class="select-row">
-                                                            <td class="first-column">
-                                                                <select name="inventories[]" class="select-remote form-control w-100">
-                                                                    
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center extra-column">
-                                                                <input type="number" class="table-input unit_quantity">
-                                                            </td>
-                                                            <td class="text-center extra-column">
-                                                                <input type="number" name="frq"  class="table-input unit_cost">
-                                                            </td>
-                                                            <td class="text-center extra-column"> 
-                                                                <input type="number" name="duration[]" value="1" placeholder="days" class="table-input unit_quantity">
-                                                            </td>
-                                                            <td class="text-left unit_amount">
-                                                                <input type="text" name="advise[]" class="table-input">
-                                                            </td>
-                                                            <td>
-                                                                <a href="#" class="btn btn-danger trash table-trash no-column">
-                                                                    <i class="far fa-trash-alt"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>  
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <!-- /Invoice Drug -->
-                                
-                                <!-- Invoice Information -->
-                                <div class="other-info">
-                                    <h6>Non Medication Advise</h6>
-                                    <div class="d-flex justify-content-between">
-                                        <textarea name="info" class="form-control col-md-5"></textarea>
-                                        <div class="col-md-2"><a href="#add_supplier" data-toggle="modal">Add Prescription Error</a></div>
-                                        <div class="col-md-4 text-right">
-                                            <button type="submit" name="action" value="save" class="btn btn-light btn-sm supplies_submit " >Save as Draft</button>
-                                            <button type="submit" name="action" value="execute" class="btn btn-dark btn-sm supplies_submit " >Save & Dispense</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Invoice Information -->
-                                
+                        <div class="row mb-5">
+                            <div class="col-sm-4">
+                                <h4 class="d-block">Patient</h4>
+                                <select name="supplier_id" id="supplier_select" class=" form-control " required>
+                                    <option value="" selected>Walk-in Patient</option>
+                                    <option value="">Olwuadamilola Smauel</option>
+                                </select>
                             </div>
-                        </form>
+                            <div class="col-sm-4">
+                                <h4 class="d-block">Assessment</h4>
+                                <select name="supplier_id" id="supplier_select" class="form-control " required>
+                                    <option value="" selected>Walk-in Patient</option>
+                                    <option value="">Olwuadamilola Smauel</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4 class="d-block">Source</h4>
+                                <select name="supplier_id" id="supplier_select" class="form-control " required>
+                                    <option value="" selected>Hospital</option>
+                                    <option value="">Pharmacist</option>
+                                    <option value="">Sales Rep</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        
+                        <!-- Add Item -->
+                        <div class="add-more-item text-right">
+                            <a href="javascript:void(0);"><i class="fas fa-plus-circle"></i> Add Item</a>
+                        </div>
+                        <!-- /Add Item -->
+                        
+                        <!-- Prescription Item -->
+                        <div class="card card-table">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-center">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 200px">Name</th>
+                                                <th style="min-width: 100px">Quantity</th>
+                                                <th style="min-width: 100px">Days</th>
+                                                <th style="min-width: 100px;">Time</th>
+                                                <th style="min-width: 80px;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <select class="form-control select">
+                                                        <option>ABC</option>
+                                                        <option>ABC</option>
+                                                        <option>ABC</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" type="text">
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"> Morning
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"> Afternoon
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"> Evening
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"> Night
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <select class="form-control select">
+                                                        <option>ABC</option>
+                                                        <option>ABC</option>
+                                                        <option>ABC</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" type="text">
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"> Morning
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"> Afternoon
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"> Evening
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"> Night
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Prescription Item -->
+                        
+                        <!-- Signature -->
+                        {{-- <div class="row">
+                            <div class="col-md-12 text-right">
+                                <div class="signature-wrap">
+                                    <div class="signature">
+                                        Click here to sign
+                                    </div>
+                                    <div class="sign-name">
+                                        <p class="mb-0">( Dr. Darren Elder )</p>
+                                        <span class="text-muted">Signature</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <!-- /Signature -->
+                        
+                        <!-- Submit Section -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Save</button>
+                                    <button type="reset" class="btn btn-secondary submit-btn">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Submit Section -->
+                        
                     </div>
                 </div>
-                <!-- /Page Wrapper -->
+            </div>
 
-
+            <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+            
+                <!-- Profile Widget -->
+                <div class="card widget-profile pat-widget-profile">
+                    <div class="card-body">
+                        <ul class="nav nav-tabs nav-justified">
+                            <li class="nav-item"><a class="nav-link active" href="#basic-justified-tab1" data-toggle="tab">Medication Planning</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#basic-justified-tab2" data-toggle="tab">Interaction Chamber</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane show active" id="basic-justified-tab1">
+                                <div class="pro-widget-content">
+                                    <div class="profile-info-widget">
+                                        <a href="#" class="booking-doc-img">
+                                            <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="User Image">
+                                        </a>
+                                        <div class="profile-det-info">
+                                            <h3><a href="patient-profile.html">Richard Wilson</a></h3>
+                                            <div class="patient-details">
+                                                <h5><b>Patient ID :</b> PT0016</h5>
+                                                <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="basic-justified-tab2">
+                                <div class="patient-info">
+                                    <ul>
+                                        <li>Phone <span>+1 952 001 8563</span></li>
+                                        <li>Age <span>38 Years, Male</span></li>
+                                        <li>Blood Group <span>AB+</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <!-- /Profile Widget -->
+                
             </div>
         </div>
     </div>

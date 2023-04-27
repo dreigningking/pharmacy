@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\GeneralControllers;
 
+use App\Models\Drug;
 use App\Models\Vital;
 use App\Models\Patient;
 use App\Models\Medicine;
@@ -13,6 +14,7 @@ use App\Models\Assessment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\FamilySocialQuestion;
+use App\Models\LaboratoryTest;
 use App\Models\SystemReviewQuestion;
 
 class AssessmentController extends Controller
@@ -25,22 +27,18 @@ class AssessmentController extends Controller
     }
 
     
-    public function create(Pharmacy $pharmacy){
-        $pateint = null;
-        if(request()->patient_id){
-            $pateint = Patient::find(request()->patient_id);
-        }
-        $medicines = Inventory::whereNotNull('drug_id')->get();
+    public function create(Pharmacy $pharmacy,Patient $patient = null){
+        $medicines = Drug::all();
         $complaints = Complaint::all();
         $conditions = Condition::all();
         $familySocialQuestions = FamilySocialQuestion::all();
         $vitals = Vital::all();
         $reviews = SystemReviewQuestion::all();
-        return view('pharmacy.assessment.add', compact('pharmacy','pateint','complaints','medicines','conditions','familySocialQuestions','vitals','reviews'));
+        $labtests = LaboratoryTest::all();
+        return view('pharmacy.assessment.add', compact('pharmacy','patient','complaints','medicines','conditions','familySocialQuestions','vitals','reviews','labtests'));
     }
 
     public function store(Pharmacy $pharmacy,Request $request){
-        dd($request->all());
         // Patient
         if($request->patient_id){
             $patient = Patient::find($request->patient_id);
@@ -61,10 +59,19 @@ class AssessmentController extends Controller
         // -Final Diagnosis
         //     - Save & Prescribe Medicine | - Save & Schedule Next Visit
         // -Feedback
+        if($request->action == "draft"){
+            return redirect()->route('pharmacy.assessments.index',$pharmacy);
+        }else{
+            return redirect()->route('pharmacy.prescription.create',[$pharmacy,]);
+        }
     }
 
-    public function view(Pharmacy $pharmacy,Assessment $assessment){
-        return view('pharmacy.assessment.view', compact('pharmacy','assessment'));
+    public function update(Request $request, $id){
+            //
+    }
+    
+    public function show(Pharmacy $pharmacy){
+        return view('pharmacy.assessment.view', compact('pharmacy'));
     }
 
     public function appointment(Pharmacy $pharmacy,Patient $patient){
@@ -75,9 +82,7 @@ class AssessmentController extends Controller
         
     }
 
-    public function update(Request $request, $id){
-        //
-    }
+    
 
     public function destroy($id){
         //

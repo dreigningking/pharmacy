@@ -34,7 +34,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="d-flex justify-content-between">Supplies <a href="{{route('pharmacy.purchase.create',$pharmacy)}}" class="btn btn-primary">New Supplies</a></h3>
+                                <h3 class="d-flex justify-content-between">Purchases <a href="{{route('pharmacy.inventory.purchases.create',$pharmacy)}}" class="btn btn-primary">New Supplies</a></h3>
                                 <div class="table-responsivee">
                                     <table class="datatable table table-hover table-bordered table-center mb-0">
                                         <thead>
@@ -60,7 +60,7 @@
                                                             <span class="badge badge-success">Completed</span>
                                                         @else
                                                        
-                                                        <a class="btn btn-sm bg-success-light" href="{{route('pharmacy.purchase.add_to_inventory',[$pharmacy,$purchase])}}">
+                                                        <a class="btn btn-sm bg-success-light" href="{{route('pharmacy.inventory.purchases.add_to_inventory',[$pharmacy,$purchase])}}">
                                                             <i class="fa fa-plus-circle"></i> Add to Inventory
                                                         </a>
                                                         <a class="btn btn-sm bg-primary-light" href="#">
@@ -78,7 +78,7 @@
                                                 </td>
                                             </tr>
                                             @empty
-                                            <tr><td colspan="5" class="text-center">No Supplies <a href="{{route('pharmacy.purchase.create',$pharmacy)}}">Add Supplies</a></td></tr>
+                                            <tr><td colspan="5" class="text-center">No Supplies <a href="{{route('pharmacy.inventory.purchases.create',$pharmacy)}}">Add Supplies</a></td></tr>
                                             @endforelse
                                             
                                         </tbody>

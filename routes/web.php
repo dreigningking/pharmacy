@@ -23,7 +23,7 @@ Route::get('/',function(){
         return view('welcome');
     })->name('index');
 
-Route::get('drugs',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'drugs'] )->name('drugs');
+
 Route::get('medicine',[App\Http\Controllers\GeneralControllers\InventoryController::class, 'medicines'] )->name('medicines');
 
 Route::view('agreement','agreement')->name('agreement');

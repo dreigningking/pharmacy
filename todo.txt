@@ -1,9 +1,17 @@
-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
+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
+
+
+family_and_social_history as multiple select options.
+provisional_diagnosis + require Laboratory Test. - enter and save
+lab results 
+final diagnosis + display outcome expected. 
+Feedback
+Save | Save & Prescribe Medicine
+
+expected_outcome units should be in labtests or vitals
 
 
 
-frequently asked questions
-manual/documentation0
 
 permission_id [id,name,abilities]
 pharmacy_role_permissions [id,pharmacy_role_id,permission_id,]
@@ -34,61 +42,44 @@ item1{
     amount: price * quantity
 }
 
-
-
-Prescription Advanced Search
-Walkin
-Patient
-
-Anti-malaria
-Anti-septic
-Anti-ronaldo
-Anti-messi
-
 sales{
     date|name|type|qty|price|amount|sold by|invoice
-
     sidebar[drugs, non-drug,]
 }
 
-fa user-md
-medkit
-heartbeat
-plus-square
-ambulance
-wheelchair-alt
-wheelchair
-thermometer-full
-syringe
-microscope
-hospital
+fa user-md, fa medkit,fa heartbeat,fa plus-square,fa ambulance,fa wheelchair-alt,fa wheelchair,fa thermometer-full,fa syringe,fa microscope,fa hospital
 
-PATIENT[
-    -Basic
-    -Past Medical History
-    -Current Medical History
-    -Family & Social History
-    -
-]
-ASSESSMENT[
-    
-    -Summary
-    -Provisional Diagnosis [conditions,]
-    -Laboratory [list tests]
-    -Final Diagnosis [schedule to another date,conditions]
-        - Save & Prescribe Medicine | - Save & Schedule Next Visit
-    -Feedback
-]
-
-
+DATABASE TABLES
 patient
 assessment [id|patient_id|complaint|staff|status]
-appointment [id|assessment_id|purpose|staff|datetime|created_at]
 
-patient_medical_history [patient_id|assessment_id|condition|when_start|how_long|when_end|created_at]
-patient_medication_history [patient_id|assessment_id|medical_history_id|name|value|is_effective|created_at]
+patient_comp
+patient_medical_history [assessment_id|condition|start|end|created_at]
+patient_medication_history [assessment_id|medical_history_id|drug_id|start|end|is_effective|created_at]
 
-diagnosis will be recorded into medical_history.. if the assessment is closed, then the medical_history is past
-prescription will be recorded into medication_history, once order for the prescription is made
 
-to get medical History
+Non Medication advise is a drop down
+
+
+09023986401
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+God wants 
+1. your heart (your attention) 
+2. your presence, 
+Your presence is more than your words
+david proved his love for God by his presence
+3. your love
+Your love for God is what goes beyond the law of moses

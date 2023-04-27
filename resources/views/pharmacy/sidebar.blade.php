@@ -55,21 +55,16 @@
                         </a>
                     </li> --}}
                     {{-- @usercan($pharmacy,'inventory') --}}
-                    <li @if(Route::is('pharmacy.shelf')) class="active" @endif>
-                        <a href="{{route('pharmacy.shelf',$pharmacy)}}">
-                            <i class="fas fa-archive"></i>
-                            <span>Shelf</span>
-                        </a>
-                    </li>
-                    <li @if(Route::is('pharmacy.purchase.list')) class="active" @endif>
-                        <a href="{{route('pharmacy.purchase.list',$pharmacy)}}">
+                    
+                    <li @if(Route::is('pharmacy.inventory.purchases.list')) class="active" @endif>
+                        <a href="{{route('pharmacy.inventory.purchases.list',$pharmacy)}}">
                             <i class="fas fa-file-invoice"></i>
                             <span>Supplies</span>
                         </a>
                     </li>
                     {{-- @if(Auth::user()->pharmacies->count() > 1) --}}
-                    <li @if(Route::is('pharmacy.transfer.list')) class="active" @endif>
-                        <a href="{{route('pharmacy.transfer.list',$pharmacy)}}">
+                    <li @if(Route::is('pharmacy.inventory.transfers.list')) class="active" @endif>
+                        <a href="{{route('pharmacy.inventory.transfers.list',$pharmacy)}}">
                             <i class="fas fa-share"></i>
                             <span>Transfers</span>
                         </a>

@@ -12,7 +12,7 @@ class Medicine extends Model
    
     use HasFactory;
     protected $fillable = ['name','side_effects','contraindications',	'pregnancy_status',	'lactation_status',	'alternatives',	'medication_counsel'];
-    protected $casts = ['alternatives'=> 'array','contraindications'=>'array','side_effects'=>'array','medication_counsel' => 'array'];
+    protected $casts = ['alternatives'=> 'array','contraindications'=>'array','side_effects'=>'array','medication_counsel' => 'array','pregnancy_status'=> 'array','lactation_status'=> 'array'];
 
     public function drugs () {
         return $this->belongsToMany(Drug::class, 'ingredients');

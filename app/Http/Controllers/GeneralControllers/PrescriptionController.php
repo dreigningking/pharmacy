@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\GeneralControllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Assessment;
 use Illuminate\Http\Request;
 use App\Models\Pharmacy;
 
@@ -24,7 +25,7 @@ class PrescriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Pharmacy $pharmacy)
+    public function create(Pharmacy $pharmacy,Assessment $assessment = null)
     {
         $inventories = $pharmacy->inventories;
         return view('pharmacy.prescription.create', compact('pharmacy','inventories'));

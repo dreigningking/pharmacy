@@ -10,12 +10,12 @@ class SalesController extends Controller
 {
     
     public function index(Pharmacy $pharmacy){
-        return view('pharmacy.sales',compact('pharmacy'));
+        return view('pharmacy.sales.list',compact('pharmacy'));
     }
 
-    public function create()
+    public function create(Pharmacy $pharmacy)
     {
-        //
+        return view('pharmacy.sales.create',compact('pharmacy'));
     }
 
     public function store(Request $request)

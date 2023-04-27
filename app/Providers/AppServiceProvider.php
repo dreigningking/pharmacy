@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Blade::if('usercan', function ($action,$ability) {
+            /** @var \App\Models\User $user **/
             $user = Auth::user();
             if($user->permissions->isNotEmpty()){
                 return $user->hasPermability($action,$ability);

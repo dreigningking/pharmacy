@@ -23,13 +23,15 @@
         input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
+            border: none;
+            outline: none;
         }
         input[type="text"]::-webkit-outer-spin-button,
         input[type="text"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
-        input[type="text"] {
+        input[type="text"]:not(#additional) {
             border: none;
             outline: none;
         }
@@ -64,7 +66,7 @@
                 <!-- Page Wrapper -->
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pharmacy.purchase.save_to_inventory',$pharmacy)}}" method="POST">@csrf
+                        <form action="{{route('pharmacy.inventory.purchases.save_to_inventory',$pharmacy)}}" method="POST">@csrf
                             <input type="hidden" name="purchase_id" value="{{$purchase->id}}">
                             <div class="invoice-content">
                                 <div class="invoice-item invoice-table-wrap">
@@ -124,26 +126,35 @@
                                                 </table>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <h6>Additional information</h6>
+                                                <input type="text" name="info" id="additional" class="w-100">
+                                            </div>
+                                            <div class="mt-3">
+                                                <input type="checkbox" name="" id=""> Email Supplier
+                                            </div>
+                                        </div>
                                         <div class="col-md-6 col-xl-4 ml-auto">
                                             <div class="table-responsive">
                                                 <table class="invoice-table-two table">
                                                     <tbody>
-                                                    <tr>
-                                                        <th>Total Cost:</th>
-                                                        <td>
-                                                            <span>{{$pharmacy->country->currency_symbol}}<span id="subtotal">{{number_format($purchase->total)}}</span>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                    
-                                                    <tr>
-                                                        <th>Total Expected Sales:</th>
-                                                        <td><span>{{$pharmacy->country->currency_symbol}}<span id="subprice">0</span></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Total Expected Profit:</th>
-                                                        <td><span>{{$pharmacy->country->currency_symbol}}<span id="subprofit">0</span></span></td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td>Total Cost:</td>
+                                                            <td>
+                                                                <span>{{$pharmacy->country->currency_symbol}}<span id="subtotal">{{number_format($purchase->total)}}</span>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td>Total Expected Sales:</td>
+                                                            <td><span>{{$pharmacy->country->currency_symbol}}<span id="subprice">0</span></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Expected Profit:</td>
+                                                            <td><span>{{$pharmacy->country->currency_symbol}}<span id="subprofit">0</span></span></td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -154,13 +165,8 @@
                                 
                                 <!-- Invoice Information -->
                                 <div class="other-info">
-                                    <h6>Additional information</h6>
-                                    <div class="d-flex">
-                                        <p class="text-muted text-justify col-md-8">Lorem ipsum dolor sit amet, 
-                                            consectetur adipiscing elit.  Nullam finibus pellentesque libero.</p>
-                                        <div class="col-md-4">
-                                            <button type="submit" class="btn btn-dark">Execute</button>                              
-                                        </div>
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit" class="btn btn-dark">Execute</button>                              
                                     </div>
                                 </div>
                                 <!-- /Invoice Information -->

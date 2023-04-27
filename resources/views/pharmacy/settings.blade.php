@@ -418,7 +418,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row my-4">
+                                    {{-- <div class="row my-4">
                                         <p class="col-sm-3 text-muted">Package Type</p>
                                         <div class="col-sm-7">
                                             <select name="" id="" class="form-control">
@@ -429,7 +429,7 @@
                                                 <option value="">Pills & Bottles</option>
                                             </select>
                                         </div>
-                                    </div>   
+                                    </div>    --}}
                                     <div class="row my-3">
                                         <p class="col-md-3 text-muted  mb-0 mb-sm-3">Markup</p>
                                         <div class="col-md-7">
@@ -466,16 +466,19 @@
                                         </div>
                                     </div>
                                     <div class="row my-3">
-                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Shelf</p>
-                                        <div class="col-md-9">
-                                            <div class="form-group">
-                                                <input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Enter Shelf" name="services" value="No-Shelf " id="services">
-                                                <small class="form-text text-muted">Note : Removal of shelf will dump all items to No-Shelf </small>
-                                            </div>
+                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Restock</p>
+                                        <div class="col-md-8 form-group mb-0">
+                                            <select name="" id="" class="form-control">
+                                                <option value="">Manual Upload</option>
+                                                <option value="">Via Supplier Purchase</option>
+                                                
+                                            </select>
+    
                                         </div>
+                                        
                                     </div>
                                     <div class="row my-3">
-                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Notify me</p>
+                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Expiry Alert</p>
                                         <div class="col-md-8">
                                             <div class="input-group">
                                                 <input type="number" min="0" class="form-control" placeholder="2">

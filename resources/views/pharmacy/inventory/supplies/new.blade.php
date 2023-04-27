@@ -98,7 +98,7 @@
                 <!-- Page Wrapper -->
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pharmacy.purchase.store',$pharmacy)}}" method="POST">@csrf
+                        <form action="{{route('pharmacy.inventory.purchases.store',$pharmacy)}}" method="POST">@csrf
                             <div class="invoice-content">
                                 <div class="invoice-item">
                                     <div class="row">
@@ -162,39 +162,7 @@
                                 </div>
                                 <!-- /Invoice Drug -->
                                 
-                                <!-- Invoice Drug -->
-                                <div class="invoice-item">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="invoice-info ">
-                                                <strong class="customer-text">Delivery</strong>
-                                                <p class="invoice-details invoice-details-two ">
-                                                {{$pharmacy->city->name}}, <br>
-                                                    {{$pharmacy->state->name}}, {{$pharmacy->country->name}}.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="invoice-info invoice-info2">
-                                                <strong class="customer-text">Payment Method</strong>
-                                                <select name="account" id="account" required>
-                                                    @forelse ($pharmacy->accounts as $account)
-                                                        <option value="{{$account->id}}">{{$account->bank->name}} - {{$account->number}}</option>
-                                                    @empty
-                                                        <option value="0">Cash</option>
-                                                    @endforelse
-                                                </select>
-                                                @if($pharmacy->accounts->isNotEmpty())
-                                                <p class="invoice-details" id="bank_balance">
-                                                    Balance: {{$pharmacy->country->currency_symbol}} <span id="bank_balance_amount">0</span>
-                                                </p>
-                                                @endif
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Invoice Drug -->
+                                
                                 
                                 <!-- Invoice Drug -->
                                 <div class="invoice-item invoice-table-wrap">
@@ -286,6 +254,15 @@
                                                 </table>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <h6>Additional information</h6>
+                                                <input type="text" name="info" class="w-100">
+                                            </div>
+                                            <div class="mt-3">
+                                                <input type="checkbox" name="" id=""> Email Supplier
+                                            </div>
+                                        </div>
                                         <div class="col-md-6 col-xl-4 ml-auto">
                                             <div class="table-responsive">
                                                 <table class="invoice-table-two table">
@@ -316,17 +293,9 @@
                                 
                                 <!-- Invoice Information -->
                                 <div class="other-info">
-                                    <h6>Additional information</h6>
-                                    <div class="d-flex justify-content-between">
-                                        <input type="text" name="info" class="col-md-5">
-                                        <div class="col-md-3">
-                                            <input type="checkbox" id="email_supplier" name="email_supplier" value="1">
-                                            <label class="form-label mx-1 font-weight-bold" for="email_supplier">Email Supplier</label></div>
-                                        <div class="col-md-4 text-right">
-                                            <button type="submit" name="action" value="save" class="btn btn-light btn-sm supplies_submit disabled" disabled>Save as Draft</button>
-                                            <button type="submit" name="action" value="execute" class="btn btn-dark btn-sm supplies_submit disabled" disabled>Execute</button>
-                                        </div>
-                                        
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit" name="action" value="save" class="btn btn-light btn-sm supplies_submit disabled" disabled>Save as Draft</button>
+                                        <button type="submit" name="action" value="execute" class="btn btn-dark btn-sm supplies_submit disabled" disabled>Execute</button>
                                     </div>
                                 </div>
                                 <!-- /Invoice Information -->
@@ -483,10 +452,11 @@
         $('#add_supplier_form').on('submit',function(e){
             e.preventDefault();
             // console.log($('#add_supplier_form').serialize())
+            // url: "route('supplier.save')",
             $.ajax({
                 type:'POST',
                 dataType: 'json',
-                url: "{{route('supplier.save')}}",
+                
                 data: $('#add_supplier_form').serialize(),
                 success:function(data) {
                     //close the modal

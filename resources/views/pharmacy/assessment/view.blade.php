@@ -1,6 +1,73 @@
 @extends('layouts.main.app')
 @push('styles')
 
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<style>
+    .no_select_border span.select2-selection.select2-selection--single{
+        border:0px !important;
+    }
+    /* #select2-supplier_select-container{
+        text-align: right;
+    } */
+    span.select2-selection.select2-selection--single{
+        height:46px;
+        padding-top:10px;
+        padding-bottom:10px;
+        /* width:200px; */
+    }
+    span.select2.select2-container select2-container--default{
+        width:200px!important;
+    }
+    .select2-container--default .select2-selection--single {
+        height: 50px;
+        border: 1px solid #dcdcdc;
+        border-radius: 3px;
+    }
+    /* .select2-container--default.select2-selection--single.select2-selection__arrow {
+        top: 10px !important;
+    } */
+    .select2-container--default.select2-selection--single.select2-selection__arrow{
+        top: 8px !important;
+    }
+    /* .select2-container--default .select2-selection--single .select2-selection__arrow{
+        top: 8px !important;
+    } */
+    .select2-container--default.select2-selection--single.select2-selection__rendered {
+        line-height: 42px;
+    }
+    
+    .table-trash {
+        width: 29px !important;
+        height: 29px !important;
+    }
+    .date {
+        width: 150px;
+    }
+    .table-input{
+        width: 90px;
+        height: 50px;
+        border: none;
+    }
+    .table-input:focus{
+        border: none;
+        outline: none;
+    }
+    .table tr td{
+        vertical-align: middle;
+        
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        /* -moz-appearance: textfield; */
+    }
+    .select-remote {
+        /* width: 450px !important; */
+    }
+</style>
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -14,7 +81,7 @@
                         <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">Dashboard</h2>
+                <h2 class="breadcrumb-title">Assessment</h2>
             </div>
         </div>
     </div>
@@ -26,309 +93,266 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('pharmacy.sidebar')
-
-            <div class="col-md-7 col-lg-8 col-xl-9">
-                <!-- Basic Information -->
+            {{-- @include('pharmacy.sidebar') --}}
+            <div class="col-md-12">
+                <!-- Page Wrapper -->
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title assessment-title">SHOW ASSESSMENT</h4>
-                        {{-- <div class="row justify-content-center">
-                            <form class="search-form d-flex">
-                                <input class="search" type="text"
-                                    placeholder="Search by EMR, patient name, phone number or email">
-                                <button class="btn btn-primary search-btn">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </form>
-                        </div> --}}
-                        <div class="row">
-                            <form action="" class="w-100">
-                                <div class="row justify-content-start mt-4 w-100">
-
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#personal_info">Patient's Personal Information</button>
-
-                                    <div class="row mt-4 pl-4 pr-2 collapse show w-100 justify-content-center"
-                                        id="personal_info">
-
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">EMR</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Patient Name</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
+                        <form action="{{route('pharmacy.inventory.purchases.store',$pharmacy)}}" method="POST">@csrf
+                            <div class="invoice-content">
+                                {{-- <div class="invoice-item">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="invoice-logo">
+                                                <img src="{{asset('assets/img/logo.png')}}" alt="logo">
                                             </div>
                                         </div>
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Phone Number</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="number" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Email</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row w-100">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-3 col-form-label pr-0">Date of
-                                                        birth</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
+                                        
                                     </div>
-                                </div>
-                                <div class="row justify-content-start mt-4 w-100 ">
-
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#physical_assessment">Patient's Physical Assessment</button>
-
-                                    <div class="row w-100 collapse show" id="physical_assessment">
-                                        <div
-                                            class="row mt-4 pl-4 pr-2  w-100 justify-content-center physical-assessment">
-
-                                            <div class="col-11 physical d-flex">
-                                                <div class="col-md-6 pl-0 pr-0">
-                                                    <div class="form-group row">
-
-                                                        <div class="col-lg-11">
-                                                            <select class="form-control" id="sel1">
-                                                                <option value="Temp (&deg;c)">Temp (&deg;c)</option>
-                                                                <option value="BP (mmHg)">BP (mmHg)</option>
-                                                                <option value="PR (Beats/min)">PR (Beats/min)</option>
-                                                                <option value="Wt (Kg)">Wt (Kg)</option>
-                                                                <option value="Ht (m)">Ht (m)</option>
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 pr-0 pl-0">
-                                                    <div class="form-group row">
-
-                                                        <div class="col-lg-11">
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
+                                </div> --}}
+                                
+                                <!-- Invoice Drug -->
+                                <div class="invoice-item">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <td> Name: </td>
+                                                    <td> Olwuadamilola Samuel </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Phone Number: </td>
+                                                    <td> 08053483984 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Assessment Date: </td>
+                                                    <td> 12th May 2023 </td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                        <div class="plus-more add-more">
-                                            <a href="javascript:void(0);" class="add-physical"><i
-                                                    class="fa fa-plus-circle"></i> Add More</a>
+                                        <div class="col-md-6">
+                                            <table class="table table-borderless">
+                                                <tr>
+                                                    <td> <a href="{{route('pharmacy.assessments.create',$pharmacy)}}" class="btn btn-light btn-sm supplies_submit">Edit Assessment</a>  </td>
+                                                    <td> <a href="{{route('pharmacy.prescriptions.create',$pharmacy)}}" class="btn btn-dark btn-sm supplies_submit " >View Prescription</a> </td>
+                                                </tr>
+                                                
+                                            </table>
                                         </div>
-                                    </div>
+                                        {{-- <div class="col-md-6">
+                                            <div class="">
+                                                <strong class="customer-text">Patient</strong>
+                                                <p class="invoice-details invoice-details-two">
+                                                    <select name="supplier_id" id="supplier_select" class="select form-control " required>
+                                                        <option value ="" selected>Select Patient</option>
+                                                        <option value ="">Olwuadamilola Smauel</option>
+                                                    </select>
+                                                </p>
+                                            </div>
+                                        </div> --}}
+                                        <div class="col-md-6">
+                                            {{-- <div class="invoice-info invoice-info2">
+                                                <a href="#add_supplier" data-toggle="modal" class="text-info"><u>Add new</u></a>
+                                                <div class="customer-text d-inline mx-2"><strong>Select Assessment</strong></div>
+                                                <div class="invoice-details no_select_border">
+                                                    <select name="supplier_id" id="supplier_select" class="select form-control supplier-select" required>
+                                                        <option value ="" selected>Select Assessment</option>
+                                                        <option value ="" >Assessment #12132</option>
+                                                        <option value ="" >Assessment #344545</option>
+                                                        @forelse ($suppliers as $supplier)                                                
+                                                            <option value="{{$supplier->id}}"
+                                                                data-city="{{$supplier->city->name}}"
+                                                                data-state="{{$supplier->state->name}}"
+                                                                data-country="{{$supplier->country->name}}">
+                                                                {{$supplier->name}}
+                                                            </option>
+                                                        @empty
+                                                            <option disabled>No Supplier</option>
+                                                        @endforelse
 
-                                </div>
-                                <div class="row justify-content-start mt-4 w-100 ">
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#medical_history">Medical History</button>
-                                    <div class="row collapse show w-100" id="medical_history">
-
-                                        <div class="row w-100 mt-4">
-                                            <div class="row mt-4 pl-4 pr-2  w-100 justify-content-center past-med">
-                                                <h4 class="text-muted align-text-start mb-2">Medications for Past
-                                                    Medical
-                                                    Contdition</h4>
-                                                <div class="col-11 physical d-flex align-items-center mt-2 mb-2 past">
-                                                    <div class="col-md-7 pl-0 pr-0">
-                                                        <div class="form-group row">
-
-                                                            <div class="col-lg-11">
-                                                                <div class="form-group d-flex align-items-center">
-                                                                    <label for="usr">Medication:</label>
-                                                                    <input type="text" name="" id=""
-                                                                        class="ml-2 form-control">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 pr-0 pl-0">
-                                                        <div class="form-group row">
-                                                            <div class="col-lg-4">
-                                                                <p>Effective?</p>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="form-check-inline">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input"
-                                                                            name="optradio">Yes
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check-inline">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input"
-                                                                            name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    </select>
+                                                   
+                                                    <p class="city"></p>
+                                                    <p class="state"></p>
+                                                    
                                                 </div>
-
-
-                                            </div>
-
-                                            <div class="plus-more add-more">
-                                                <a href="javascript:void(0);" class="add-past"><i
-                                                        class="fa fa-plus-circle"></i> Add More</a>
-                                            </div>
-
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-start mt-4 w-100">
-
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#lab">Laboratory Findings</button>
-
-                                    <div class="row mt-4 pl-4 pr-2 collapse show w-100 justify-content-center" id="lab">
-
-                                        <div class="row w-100">
-                                            <div class="col-md-12">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label pr-0">Laboratory
-                                                        Result</label>
-                                                    <div class="col-lg-10">
-                                                        <textarea class="form-control" rows="4"
-                                                            id="laboratory_result"></textarea>
-                                                    </div>
-                                                </div>
+                                
+                                
+                                <!-- Invoice Drug -->
+                                <div class="invoice-item invoice-table-wrap">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive no_select_border">
+                                                <table class="invoice-table table table-bordered" id="table" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Assessment
+                                                                
+                                                            </th>
+                                                            <th class="text-left">Details</th>
+                                                            <th class="text-left">Remark</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody  class="">
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                                Complaints
+                                                            </td>
+                                                            <td class="">
+                                                                Cough, Cattarh, Pain in the neck
+                                                            </td>
+                                                            <td></td>
+                                                        </tr> 
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                                Past Medical Record
+                                                            </td>
+                                                            <td class="">
+                                                                <ul>
+                                                                    <li>Malaria and Thyphod - 2008
+                                                                        <ul class="list-unstyled font-italic">
+                                                                            <li class="list-style-none">Medication Used</li>
+                                                                            <ul class="text-muted small">
+                                                                                <li >Lonart</li>
+                                                                                <li >Paracetamol    </li>
+                                                                            </ul>
+                                                                        </ul>
+                                                                        
+                                                                    </li>
+                                                                    <li>Malaria and Thyphod - 2008</li>
+                                                                </ul>
+                                                                
+                                                            </td>
+                                                            <td></td>
+                                                        </tr> 
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                                Current Medical Record
+                                                            </td>
+                                                            <td class="">
+                                                                <ul>
+                                                                    <li>Malaria and Thyphod - 2008
+                                                                        <ul class="list-unstyled font-italic">
+                                                                            <li class="list-style-none">Medication Used</li>
+                                                                            <ul class="text-muted small">
+                                                                                <li >Lonart</li>
+                                                                            </ul>
+                                                                        </ul>
+                                                                        
+                                                                    </li>
+                                                                    <li>Malaria and Thyphod - 2008</li>
+                                                                </ul>
+                                                                
+                                                            </td>
+                                                            <td></td>
+                                                        </tr> 
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                                Family & Social History
+                                                            </td>
+                                                            <td class="">
+                                                                <ul>
+                                                                    <li>Smoking </li>
+                                                                    <li>Multiple Sexual Partners</li>
+                                                                </ul>
+                                                                
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>  
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                                Vitals
+                                                            </td>
+                                                            <td class="">
+                                                                <ul>
+                                                                    <li>Temperature : 150 degrees celcius </li>
+                                                                    <li>Heart Beat Rate: 150BP/BM</li>
+                                                                </ul>
+                                                                
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>  
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                                System Review
+                                                            </td>
+                                                            <td class="">
+                                                                <ul>
+                                                                    <li>Digestive System
+                                                                        <ul class="font-italic">
+                                                                            <li class="">Painful tooth</li>
+                                                                            <li class="">Painful Head</li>
+                                                                        </ul>
+                                                                        
+                                                                    </li>
+                                                                    <li>Skeletal System
+                                                                        <ul class="font-italic">
+                                                                            <li class="">Painful tooth</li>
+                                                                            <li class="">Painful Head</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>  
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                                Provisional Diagnosis
+                                                            </td>
+                                                            <td class="">
+                                                                Patient is sick of old naira notes
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>  
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                               Laboratory
+                                                            </td>
+                                                            <td class="">
+                                                                <ul>
+                                                                    <li>Pregnancy Test : </li>
+                                                                    <li>Endocrine Test:</li>
+                                                                </ul>
+                                                                
+                                                            </td>
+                                                            <td></td>
+                                                        </tr> 
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                               Final Diagnosis
+                                                            </td>
+                                                            <td class="">
+                                                                Confirmed Presence of CBN intervention
+                                                            </td>
+                                                            <td></td>
+                                                        </tr> 
+                                                    </tbody>
+                                                </table>
                                             </div>
-
                                         </div>
-
-
+                                        
                                     </div>
                                 </div>
-                                <div class="row justify-content-start mt-4 w-100">
-
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#diagnosis">Diagnosis</button>
-
-                                    <div class="row mt-4 pl-4 pr-2 collapse show w-100 justify-content-center"
-                                        id="diagnosis">
-
-                                        <div class="row w-100">
-                                            <div class="col-md-12">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label pr-0">Diagnosis</label>
-                                                    <div class="col-lg-10">
-                                                        <textarea class="form-control" rows="2"
-                                                            id="laboratory_result"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                                <div class="row justify-content-start mt-4 w-100">
-
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#prescriptions">Prescription</button>
-
-                                    <div class="row mt-4  pr-2 collapse show w-100 justify-content-center"
-                                        id="prescriptions">
-
-                                        <div class="row w-100 pl-4">
-                                            <div class="col-md-12 w-100 prescriptions">
-                                                <div class="prescription">
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-2 col-form-label pr-0">Prescription</label>
-                                                        <div class="col-lg-10">
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                            </div>
-                                            <div class="plus-more add-more">
-                                                <a href="javascript:void(0);" class="add-prescription"><i
-                                                        class="fa fa-plus-circle"></i> Add More</a>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                                <div class="row justify-content-start mt-4 w-100">
-
-                                    <button type="button" class="btn btn-text open" data-toggle="collapse"
-                                        data-target="#plan">Non-Medication Plan</button>
-
-                                    <div class="row mt-4  pr-2 collapse show w-100 justify-content-center" id="plan">
-
-                                        <div class="row w-100 pl-4">
-                                            <div class="col-md-12 w-100 plans">
-                                                <div class="plann">
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-2 col-form-label pr-0">Plan</label>
-                                                        <div class="col-lg-10">
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                            </div>
-                                            <div class="plus-more add-more">
-                                                <a href="javascript:void(0);" class="add-plan"><i
-                                                        class="fa fa-plus-circle"></i> Add More</a>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                                <div class="row pr-4 mt-4 justify-content-end">
-                                    <button type="submit" class="btn btn-primary pl-2 pr-2">Save</button>
-                                </div>
-                            </form>
-                        </div>
+                                <!-- /Invoice Drug -->
+                                
+                            </div>
+                        </form>
                     </div>
-
                 </div>
+                <!-- /Page Wrapper -->
 
 
             </div>
         </div>
-
     </div>
-
 </div>
 <!-- /Page Content -->
-
 @endsection
+
+
+

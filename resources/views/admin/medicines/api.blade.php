@@ -2,8 +2,6 @@
 @push('styles')
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
-<!-- Datatables CSS -->
-<link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
 @endpush
 @section('main')
 <div class="content container-fluid">
@@ -24,79 +22,154 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">
-                    <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
-                    <a href="{{route('admin.apis.upload_instructions')}}" class="btn btn-info"> Upload</a>
+                <div class="card-header d-flex justify-content-between">
+                    <div>
+                        <a href="#add" data-toggle="modal" class="btn btn-primary"> Add New</a>
+                        <a href="{{route('admin.apis.upload_instructions')}}" class="btn btn-info"> Upload</a>
+                    </div>
+                    <div>
+                        <form action="#" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" value="{{$search ?? old('search')}}" placeholder="Search">
+                                <div class="input-group-append ">
+                                    <button type="submit" class="btn btn-white">Search</button>
+                                    <a href="" class="btn btn-light">Reset</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="mydatatable" class=" table table-hover table-center mb-0">
+                    <div class="">
+                        <table class="table table-hover table-stripped">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Extn.</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>S/N</th>
+                                    <th class="w-75">Details </th>
+                                    <th>More </th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Extn.</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </tfoot>
-                            {{--<thead>
-                                <tr>
-                                    <th class="text-left"></th>
-                                    <th>Name</th>
-                                     <th>Formulations</th>
-                                    <th>Interactions</th>
-                                    <th>Status</th>
-                                    <th class=""> Action</th> 
-
-                                </tr>
-                            </thead>--}}
-                            {{-- <tbody>
+                            <tbody>
                                 @forelse ($medicines as $medicine)
-                                    <tr>
-                                        <td class="text-center">
-                                            <div class="custom-control custom-checkbox mb-3">
-                                                <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
-                                                <label class="custom-control-label" for="customControlValidation1"></label>
+                                <tr>
+                                    <td>{{$loop->iteration}}
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input type="checkbox" class="custom-control-input medicine-check" id="customControlValidation1">
+                                            <label class="custom-control-label" for="customControlValidation1"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="row font-weight-bold">
+                                            <div class="col-md-3">
+                                                Name:
                                             </div>
-                                        </td>
-                                        <td class="d-flex align-items-center"> {{$medicine->name}}</td>
-                                        <td class=""> {{$medicine->drugs->count()}} </td>
-                                        <td class=""> {{$medicine->medicine_a->count() + $medicine->medicine_b->count()}} </td>
-                                        <td class=""> 
-                                            @if($medicine->status)
-                                                Active
+                                            <div class="col-md-9">
+                                                {{$medicine->name}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Side-Effects:
+                                            </div>
+                                            <div class="col-md-9">
+                                                @if($medicine->side_effects && count($medicine->side_effects)) {{implode('|',$medicine->side_effects)}} @endif
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Contraindications:
+                                            </div>
+                                            <div class="col-md-9">
+                                                @if($medicine->contraindications && count($medicine->contraindications)) {{implode('|',$medicine->contraindications) }}@endif
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Pregnancy Status:
+                                            </div>
+                                            <div class="col-md-9">
+                                                @if($medicine->pregnancy_status && count($medicine->pregnancy_status)){{implode('|',$medicine->pregnancy_status)}}@endif
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Lactation Status:
+                                            </div>
+                                            <div class="col-md-9">
+                                                @if($medicine->lactation_status && count($medicine->lactation_status)){{implode('|',$medicine->lactation_status)}}@endif
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Alternative:
+                                            </div>
+                                            <div class="col-md-9">
+                                                @if($medicine->alternatives && count($medicine->alternatives)){{implode('|',$medicine->alternatives)}}@endif
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Medication Counsel:
+                                            </div>
+                                            <div class="col-md-9">
+                                                @if($medicine->medication_counsel && count($medicine->medication_counsel)){{implode('|',$medicine->medication_counsel)}}@endif
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="">
+                                            @if($medicine->drugs->count())
+                                            <a href="{{route('admin.drugs')}}?search={{$medicine->name}}">{{$medicine->drugs->count()}} Formulations</a>
                                             @else
-                                                Inactive
-                                            @endif    
-                                        </td>
-                                        <td class=""> 
-                                            <div class="d-flex">
-                                                <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit{{$medicine->id}}"> <i class="fe fe-pencil"></i> Edit </a>
-                                                <a class="btn btn-sm bg-primary-light mx-1" data-toggle="modal" href="#view{{$medicine->id}}"> <i class="fe fe-eye"></i> View More </a>
-                                                <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            <span class="d-block">0 Formulations</span>
+                                            @endif
+                                        </div>
+                                        <div class="">
+                                            @if($medicine->medicine_a->count() || $medicine->medicine_b->count())
+                                            <a href="{{route('admin.api.interactions')}}?search={{$medicine->name}}">{{$medicine->medicine_a->count() + $medicine->medicine_b->count()}} Interactions</a>
+                                            @else
+                                            <span class="d-block">0 Interactions</span>
+                                            @endif
+                                        </div>
+                                        <div class="">
+                                            <span class="d-block">Status:  {{$medicine->status ? 'Active': 'Inactive'}}</span>
+                                        </div>
+                                        
+                                        <div class="d-flex mt-2">
+                                            <a class="btn btn-sm bg-info-light mx-1" data-toggle="modal" href="#edit"> <i class="fe fe-pencil"></i> Edit </a>
+                                            <a class="btn btn-sm bg-danger-light mx-1" data-toggle="modal" href="#delete"> <i class="fe fe-trash"></i> Delete </a>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6"></td>
+                                        <td colspan="3">No API added yet</td>
                                     </tr>
-                                @endforelse       
-                            </tbody> --}}
+                                @endforelse  
+                            </tbody>
                         </table>
+
                     </div>
+                    <div class="mt-3">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item @if($medicines->onFirstPage()) disabled @endif">
+                                <a class="page-link " href="{{$medicines->previousPageUrl()}}" tabindex="-1">Previous</a>
+                            </li>
+                            @for ($i = 1; $i <= $medicines->lastPage(); $i++)
+                            <li class="page-item">
+                                <a class="page-link @if($medicines->currentPage() == $i) active @endif" href="{{$medicines->url($i)}}">{{$i}} 
+                                    @if($medicines->currentPage() == $i) <span class="sr-only">(current)</span> @endif
+                                </a>
+                            </li>
+                            @endfor
+                            
+                            <li class="page-item @if($medicines->currentPage() == $medicines->lastPage()) disabled @endif">
+                                <a class="page-link" href="{{$medicines->nextPageUrl()}}">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -104,7 +177,7 @@
 </div>
 @endsection
 
-{{-- 
+
 @section('modals')
     <div class="modal fade custom-modal add-modal" id="add">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -124,7 +197,7 @@
                                     <div class="col-md-4">
                                         <label for="sel1">Name:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <input type="text" class="form-control" name="name" >
                                     </div>
                                 </div>
@@ -132,7 +205,7 @@
                                     <div class="col-md-4">
                                         <label for="sel1">Side Effect:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <textarea class="form-control" name="side_effects"></textarea>
                                         <small>Seperate multiple options with a pipe character. ie |</small>
                                     </div>
@@ -141,7 +214,7 @@
                                     <div class="col-md-4">
                                         <label for="sel1">Contraindications:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <textarea class="form-control" name="contraindications"></textarea>
                                         <small>Seperate multiple options with a pipe character. ie |</small>
                                     </div>
@@ -150,28 +223,30 @@
                                     <div class="col-md-4">
                                         <label for="sel1">Pregnancy Status:</label>
                                     </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="pregnancy_status" >
+                                    <div class="col-md-7">
+                                        <textarea class="form-control" name="side_effects"></textarea>
+                                        <small>Seperate multiple options with a pipe character. ie |</small>
                                     </div>
                                 </div> 
                                 <div class="row my-2">
                                     <div class="col-md-4">
                                         <label for="sel1">Lactation Status:</label>
                                     </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="lactation_status">
+                                    <div class="col-md-7">
+                                        <textarea class="form-control" name="side_effects"></textarea>
+                                        <small>Seperate multiple options with a pipe character. ie |</small>
                                     </div>
                                 </div>   
                                 <div class="row my-2">
                                     <div class="col-md-4">
                                         <label for="sel1">Drug Alternatives:</label>
                                     </div>
-                                    <div class="col-md-8">
-                                        <select class="form-control select" name="alternatives[]" multiple>
+                                    <div class="col-md-7">
+                                        {{-- <select class="form-control select" name="alternatives[]" multiple>
                                             @foreach ($medicines as $medicin)
                                                 <option value="{{$medicin->name}}">{{$medicin->name}}</option>
                                             @endforeach
-                                        </select>
+                                        </select> --}}
                                         <small>You can select multiple options </small>
                                     </div>
                                 </div>
@@ -179,7 +254,7 @@
                                     <div class="col-md-4">
                                         <label for="sel1">Medication Counselling:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <textarea class="form-control" name="medication_counsel"></textarea>
                                         <small>Seperate multiple options with a pipe character. ie |</small>
                                     </div>
@@ -188,7 +263,7 @@
                                     <div class="col-md-4">
                                         <label for="sel1">Status:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <select class="form-control" name="status">
                                             <option value="1">ON</option>
                                             <option value="0">OFF</option>
@@ -212,7 +287,7 @@
             </div>
         </div>
     </div>
-    @foreach ($medicines as $medicine)
+    {{-- @foreach ($medicines as $medicine)
         <div class="modal fade custom-modal add-modal" id="edit{{$medicine->id}}">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -231,7 +306,7 @@
                                         <div class="col-md-4">
                                             <label for="sel1">Name:</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <input type="text" class="form-control" name="name" value="{{$medicine->name}}" >
                                         </div>
                                     </div>
@@ -239,7 +314,7 @@
                                         <div class="col-md-4">
                                             <label for="sel1">Side Effect:</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <textarea class="form-control" name="side_effects">@if(is_array($medicine->side_effects)){{implode('|',$medicine->side_effects)}}@endif</textarea>
                                             <small>Seperate multiple options with a pipe character. ie |</small>
                                         </div>
@@ -248,7 +323,7 @@
                                         <div class="col-md-4">
                                             <label for="sel1">Contraindications:</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <textarea class="form-control" name="contraindications">@if(is_array($medicine->contraindications)){{implode('|',$medicine->contraindications)}}@endif</textarea>
                                             <small>Seperate multiple options with a pipe character. ie |</small>
                                         </div>
@@ -257,7 +332,7 @@
                                         <div class="col-md-4">
                                             <label for="sel1">Pregnancy Status:</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <input type="text" class="form-control" name="pregnancy_status" value="{{$medicine->pregnancy_status}}" >
                                         </div>
                                     </div> 
@@ -265,7 +340,7 @@
                                         <div class="col-md-4">
                                             <label for="sel1">Lactation Status:</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <input type="text" class="form-control" name="lactation_status" value="{{$medicine->lactation_status}}"    >
                                         </div>
                                     </div>   
@@ -273,7 +348,7 @@
                                         <div class="col-md-4">
                                             <label for="sel1">Drug Alternatives:</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <select class="form-control select" name="alternatives[]" multiple>
                                                 @if(is_array($medicine->alternatives))
                                                     @foreach ($medicine->alternatives as $alternative)
@@ -291,7 +366,7 @@
                                         <div class="col-md-4">
                                             <label for="sel1">Medication Counselling:</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <textarea class="form-control" name="medication_counsel">@if(is_array($medicine->medication_counsel)){{implode('|',$medicine->medication_counsel)}}@endif</textarea>
                                             <small>Seperate multiple options with a pipe character. ie |</small>
                                         </div>
@@ -300,7 +375,7 @@
                                         <div class="col-md-4">
                                             <label for="sel1">Status:</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <select class="form-control" name="status">
                                                 <option value="1" @if($medicine->status) selected @endif>ON</option>
                                                 <option value="0" @if(!$medicine->status) selected @endif>OFF</option>
@@ -324,119 +399,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade custom-modal add-modal" id="view{{$medicine->id}}">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">View API</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <form action="#" class="needs-validation" novalidate>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="sel1">Name:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" name="name" value="{{$medicine->name}}" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="sel1">Side Effect:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <textarea class="form-control" name="side_effects" readonly>@if(is_array($medicine->side_effects)){{implode('|',$medicine->side_effects)}}@endif</textarea>
-                                            <small>Seperate multiple options with a pipe character. ie |</small>
-                                        </div>
-                                    </div>        
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="sel1">Contraindications:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            @if(is_array($medicine->contraindications))
-                                                @foreach ($medicine->contraindications as $item)
-                                                    <input type="text" class="form-control" value="{{$item}}" readonly> 
-                                                @endforeach
-                                            @endif
-                                            
-                                        </div>
-                                    </div>    
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="sel1">Pregnancy Status:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" name="pregnancy_status" value="{{$medicine->pregnancy_status}}" readonly>
-                                        </div>
-                                    </div> 
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="sel1">Lactation Status:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" name="lactation_status" value="{{$medicine->lactation_status}}" readonly>
-                                        </div>
-                                    </div>   
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="sel1">Drug Alternatives:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                                @if(is_array($medicine->alternatives))
-                                                    @foreach ($medicine->alternatives as $alternate)
-                                                    <input type="text" value="{{$alternate}}" class="form-control" readonly>
-                                                    @endforeach
-                                                @endif     
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="sel1">Medication Counselling:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            @if(is_array($medicine->medication_counsel))
-                                                @foreach ($medicine->medication_counsel as $counsel)
-                                                <input type="text" value="{{$counsel}}" class="form-control" readonly>
-                                                @endforeach
-                                            @endif 
-                                        </div>
-                                    </div>  
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="sel1">Status:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <select class="form-control" name="status" disabled>
-                                                <option value="1" @if($medicine->status) selected @endif>ON</option>
-                                                <option value="0" @if(!$medicine->status) selected @endif>OFF</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row my-2 justify-content-center">
-                                        <div class="col-md-6">
-                                            <a href="{{route('admin.drugs')}}?search={{$medicine->name}}" class="btn btn-primary">View Drug Formulations</a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <a href="{{route('admin.api.interactions')}}?search={{$medicine->name}}" class="btn btn-info">View Interactions</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
+        
+    @endforeach --}}
     <div class="modal fade custom-modal add-modal" id="delete">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -464,26 +428,12 @@
         </div>
     </div>
 @endsection 
---}}
+
 
 @push('scripts')
 <script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
-<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
 <script>
-    $(document).ready(function () {
-    
-        $('#mydatatable').DataTable( {
-            serverSide: true,
-            processing: true,
-            ajax: "{{route('medicines')}}",
-            // columns: [
-            //     { data: 'name' },
-                
-            // ],
-        })
-        
-    })
+
 </script>
 
 @endpush

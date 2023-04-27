@@ -1,98 +1,116 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GeneralControllers\SalesController;
+use App\Http\Controllers\GeneralControllers\StaffController;
+use App\Http\Controllers\GeneralControllers\SupplyController;
+use App\Http\Controllers\GeneralControllers\PatientController;
+use App\Http\Controllers\GeneralControllers\PharmacyController;
+use App\Http\Controllers\GeneralControllers\TransferController;
+use App\Http\Controllers\GeneralControllers\InventoryController;
+use App\Http\Controllers\GeneralControllers\AssessmentController;
+use App\Http\Controllers\GeneralControllers\PrescriptionController;
 // 'middleware'=>['pharmacy'] ,
 Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
-    // Route::group(['middleware'=>['subscription']], function () {
-        Route::get('dashboard', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'index'])->name('dashboard');
-        Route::get('notifications', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'notifications'])->name('notifications');
-        Route::get('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
-        Route::post('settings', [App\Http\Controllers\GeneralControllers\PharmacyController::class, 'settings'])->name("settings");
+
+    //  Route::group(['middleware'=>['subscription']], function () {
+        Route::get('dashboard', [PharmacyController::class, 'index'])->name('dashboard');
+        Route::get('notifications', [PharmacyController::class, 'notifications'])->name('notifications');
+        Route::get('settings', [PharmacyController::class, 'settings'])->name("settings");
+        Route::post('settings', [PharmacyController::class, 'settings'])->name("settings");
         
         Route::group(['middleware'=>'role:director,manager','as'=> 'staff.'], function () {
-            Route::post('staff',[App\Http\Controllers\GeneralControllers\StaffController::class, 'store'])->name("store");
-            Route::post('staff/destroy',[App\Http\Controllers\GeneralControllers\StaffController::class, 'destroy'])->name("destroy");
-            Route::get('activities', [App\Http\Controllers\GeneralControllers\StaffController::class, 'activities'])->name("activities");
+            Route::post('staff',[StaffController::class, 'store'])->name("store");
+            Route::post('staff/destroy',[StaffController::class, 'destroy'])->name("destroy");
+            Route::get('activities', [StaffController::class, 'activities'])->name("activities");
         });
         
         Route::group(['prefix'=>'patients','as'=> 'patients.'], function () {
-            Route::get('/', [App\Http\Controllers\GeneralControllers\PatientController::class, 'index'])->name("index");
-            Route::get('view/{patient}', [App\Http\Controllers\GeneralControllers\PatientController::class, 'view'])->name("view");        
-            Route::get('new', [App\Http\Controllers\GeneralControllers\PatientController::class, 'create'])->name("create");
-            Route::post('store', [App\Http\Controllers\GeneralControllers\PatientController::class, 'store'])->name("store");
-            Route::post('update', [App\Http\Controllers\GeneralControllers\PatientController::class, 'update'])->name("update");
-            Route::post('delete', [App\Http\Controllers\GeneralControllers\PatientController::class, 'destroy'])->name("destroy");
-            Route::post('transfer', [App\Http\Controllers\GeneralControllers\PatientController::class, 'transfer'])->name("transfer");
-            Route::post('send/records', [App\Http\Controllers\GeneralControllers\PatientController::class, 'send_records'])->name("send_records");
-            Route::post('message', [App\Http\Controllers\GeneralControllers\PatientController::class, 'message'])->name("message");
+            Route::get('/', [PatientController::class, 'index'])->name("index");
+            Route::get('view/{patient}', [PatientController::class, 'view'])->name("view");        
+            // Route::get('new', [PatientController::class, 'create'])->name("create");
+            Route::post('store', [PatientController::class, 'store'])->name("store");
+            Route::post('update', [PatientController::class, 'update'])->name("update");
+            Route::post('delete', [PatientController::class, 'destroy'])->name("destroy");
+            Route::post('transfer', [PatientController::class, 'transfer'])->name("transfer");
+            Route::post('send/records', [PatientController::class, 'send_records'])->name("send_records");
+            Route::post('message', [PatientController::class, 'message'])->name("message");
             
         });
 
         Route::group(['prefix'=>'assessments','as'=> 'assessments.'], function () {
-            Route::get('/', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'index'])->name("index");
-            Route::any('new', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'create'])->name("create");
-            Route::post('store', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'store'])->name("store");
-            Route::get('show/{assessment}', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'show'])->name("show");
-            Route::get('edit/{assessment}', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'edit'])->name("edit");
-            Route::post('update', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'update'])->name("update");
-            Route::post('delete', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'destroy'])->name("destroy");
-            Route::group(['prefix'=>'appointments','as'=> 'appointments.'], function () {
-                Route::post('/', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'appointments'])->name("index");
-                Route::post('store', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'appointment_store'])->name("store");
-                Route::post('update', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'appointment_update'])->name("update");
-                Route::post('delete', [App\Http\Controllers\GeneralControllers\AssessmentController::class, 'appointment_delete'])->name("delete");
-            });
+            Route::get('/', [AssessmentController::class, 'index'])->name("index");
+            Route::get('new/{patient?}', [AssessmentController::class, 'create'])->name("create");
+            Route::post('store', [AssessmentController::class, 'store'])->name("store");
+            Route::get('show/{assessment?}', [AssessmentController::class, 'show'])->name("show");
+            Route::get('edit/{assessment?}', [AssessmentController::class, 'edit'])->name("edit");
+            Route::post('update', [AssessmentController::class, 'update'])->name("update");
+            Route::post('delete', [AssessmentController::class, 'destroy'])->name("destroy");
+            
         });
 
         Route::group(['prefix'=>'prescriptions','as'=> 'prescriptions.'], function () {
-            Route::get('/', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'index'])->name("index");
-            Route::get('create', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'create'])->name("create");
-            Route::post('store', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'store'])->name("store");
-            Route::get('show', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'show'])->name("show");
-            Route::get('edit/{prescription}', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'edit'])->name("edit");
-            Route::post('update', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'update'])->name("update");
-            Route::post('delete', [App\Http\Controllers\GeneralControllers\PrescriptionController::class, 'destroy'])->name("destroy");
+            Route::get('/', [PrescriptionController::class, 'index'])->name("index");
+            Route::get('create/{assessment?}', [PrescriptionController::class, 'create'])->name("create");
+            Route::post('store', [PrescriptionController::class, 'store'])->name("store");
+            Route::get('show', [PrescriptionController::class, 'show'])->name("show");
+            Route::get('edit/{prescription}', [PrescriptionController::class, 'edit'])->name("edit");
+            Route::post('update', [PrescriptionController::class, 'update'])->name("update");
+            Route::post('delete', [PrescriptionController::class, 'destroy'])->name("destroy");
         });
 
-      
-        
-        Route::get('inventory', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'list'])->name("inventory.index");
-        Route::get('inventory/batches', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'batches'])->name("inventory.batches");
-        Route::get('inventory/setup', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'start'])->name("inventory.start");
-        Route::post('inventory/start/export', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'export'])->name("inventory.start.export");
-        Route::post('inventory/start/import', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'import'])->name("inventory.start.import");
-        Route::post('inventory/start/sample', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'sample'])->name("inventory.start.sample");
-        Route::get('shelf', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'shelf'])->name("shelf");
-        
-        Route::group(['middleware'=>'role:director,manager'], function () {
-            Route::get('suppliers', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'suppliers'])->name('suppliers');
-            Route::post('supplier/save', [App\Http\Controllers\GeneralControllers\InventoryController::class, 'supplier_save'])->name('supplier.save');
-        });
-
-        Route::get('purchases',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'list'])->name('purchase.list');
-        Route::get('purchase/new',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'create'])->name('purchase.create');
-        Route::post('purchase/inventory/new',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'create_from_inventory'])->name('purchase.inventory.create');
-        Route::get('purchase/{purchase}/edit',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'edit'])->name('purchase.edit');
-        Route::post('purchase/{purchase}/update',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'update'])->name('purchase.update');
-        Route::post('purchase/save',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'store'])->name('purchase.store');
-        Route::get('purchase/{purchase}/add_to_inventory',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'add_to_inventory'])->name('purchase.add_to_inventory');
-        Route::post('purchase/inventory/save_to_inventory',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'save_to_inventory'])->name('purchase.save_to_inventory');
-        Route::post('purchase/delete',[App\Http\Controllers\GeneralControllers\SupplyController::class, 'delete'])->name('purchase.delete');
-
-        Route::get('transfers',[App\Http\Controllers\GeneralControllers\TransferController::class, 'list'])->name('transfer.list');
-        Route::get('transfer/new',[App\Http\Controllers\GeneralControllers\TransferController::class, 'create'])->name('transfer.create');
-        Route::post('transfer/inventory/new',[App\Http\Controllers\GeneralControllers\TransferController::class, 'create_from_inventory'])->name('transfer.inventory.create');
-        Route::get('transfer/{transfer}/edit',[App\Http\Controllers\GeneralControllers\TransferController::class, 'edit'])->name('transfer.edit');
-        Route::post('transfer/{transfer}/update',[App\Http\Controllers\GeneralControllers\TransferController::class, 'update'])->name('transfer.update');
-        Route::post('transfer/save',[App\Http\Controllers\GeneralControllers\TransferController::class, 'store'])->name('transfer.store');
-        Route::post('transfer/save_to_inventory',[App\Http\Controllers\GeneralControllers\TransferController::class, 'save_to_inventory'])->name('transfer.save_to_inventory');
-        Route::post('transfer/delete',[App\Http\Controllers\GeneralControllers\TransferController::class, 'delete'])->name('transfer.delete');
-        
         Route::group(['prefix'=>'sales','as'=> 'sales.'], function () {
-            Route::get('/', [App\Http\Controllers\GeneralControllers\SalesController::class, 'index'])->name('index');
-            Route::get('/new', [App\Http\Controllers\GeneralControllers\SalesController::class, 'create'])->name('create');
-            Route::post('/store', [App\Http\Controllers\GeneralControllers\SalesController::class, 'store'])->name('store');
+            Route::get('/', [SalesController::class, 'index'])->name('index');
+            Route::get('/new', [SalesController::class, 'create'])->name('create');
+            Route::post('/store', [SalesController::class, 'store'])->name('store');
         });
-    
+      
+        Route::group(['prefix'=>'inventory','as'=> 'inventory.'], function () {
+            Route::get('/', [InventoryController::class,'list'])->name("index");
+            Route::get('add/drugs',[InventoryController::class,'drugs'] )->name('drugs');
+            Route::get('view/{item}', [InventoryController::class,'show'])->name("show");
+            Route::post('store', [InventoryController::class, 'store'])->name("store");
+            
+            Route::post('storemany', [InventoryController::class, 'storemany'])->name("store");
+            Route::get('settings', [InventoryController::class, 'settings'])->name("settings");
+
+            Route::get('getBatches',[TransferController::class, 'batches'])->name('batches');
+            Route::get('setup', [InventoryController::class, 'start'])->name("start");
+            Route::post('start/export', [InventoryController::class, 'export'])->name("start.export");
+            Route::post('start/import', [InventoryController::class, 'import'])->name("start.import");
+            Route::post('start/sample', [InventoryController::class, 'sample'])->name("start.sample");
+
+       
+            Route::group(['prefix'=>'transfers','as'=> 'transfers.'], function () {
+                Route::get('/',[TransferController::class, 'list'])->name('list');
+                Route::get('new',[TransferController::class, 'create'])->name('create');
+                Route::post('new',[TransferController::class, 'create_from_inventory'])->name('create');
+                Route::get('{transfer}/edit',[TransferController::class, 'edit'])->name('edit');
+                Route::post('{transfer}/update',[TransferController::class, 'update'])->name('update');
+                Route::post('save',[TransferController::class, 'store'])->name('store');
+                Route::post('save_to_inventory',[TransferController::class, 'save_to_inventory'])->name('save_to_inventory');
+                Route::post('delete',[TransferController::class, 'delete'])->name('delete');
+            });
+
+            Route::group(['prefix'=>'purchases','as'=> 'purchases.'], function () {
+                Route::get('/',[SupplyController::class, 'list'])->name('list');
+                Route::get('new',[SupplyController::class, 'create'])->name('create');
+                Route::post('new',[SupplyController::class, 'create_from_inventory'])->name('create');
+                Route::get('{purchase}/edit',[SupplyController::class, 'edit'])->name('edit');
+                Route::post('{purchase}/update',[SupplyController::class, 'update'])->name('update');
+                Route::post('save',[SupplyController::class, 'store'])->name('store');
+                Route::get('{purchase}/add_to_inventory',[SupplyController::class, 'add_to_inventory'])->name('add_to_inventory');
+                Route::post('save_to_inventory',[SupplyController::class, 'save_to_inventory'])->name('save_to_inventory');
+                Route::post('delete',[SupplyController::class, 'delete'])->name('delete');
+            });
+
+        });
+
+        Route::group(['middleware'=>'role:director,manager'], function () {
+            Route::get('suppliers', [InventoryController::class, 'suppliers'])->name('suppliers');
+            Route::post('supplier/save', [InventoryController::class, 'supplier_save'])->name('supplier.save');
+        });
+ 
     // });
+
 });

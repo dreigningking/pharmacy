@@ -32,6 +32,10 @@
                     <div class="col-md-7">
                         <div class="section-header mb-3">	
                             <h2 class="mt-2">{{$pharmacy->name}}</h2>
+                            <p class="mt-0">
+                                <small class="d-block">Community Pharmacy, <i class="fas fa-map-marker-alt"></i> Lagos,Nigeria</small></small> 
+                                
+                            </p>
                             <p>{{$pharmacy->description}} </p>
                         </div>	
                         <div class="row">
@@ -126,11 +130,11 @@
                         <!-- Overview Content -->
                         <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
                             <div class="row">
-                                <div class="col-md-12">
+                                {{-- <div class="col-md-12">
                                     <div class="card dash-card">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-md-12 col-lg-3">
+                                                <div class="col-md-12 col-lg-4">
                                                     <div class="dash-widget dct-border-rht">
                                                         <div class="circle-bar circle-bar1">
                                                             <div class="circle-graph1" data-percent="75">
@@ -145,7 +149,7 @@
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-md-12 col-lg-3">
+                                                <div class="col-md-12 col-lg-4">
                                                     <div class="dash-widget dct-border-rht">
                                                         <div class="circle-bar circle-bar2">
                                                             <div class="circle-graph2" data-percent="65">
@@ -158,28 +162,13 @@
                                                             <p class="text-muted">This month</p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                
-                                                <div class="col-md-12 col-lg-3">
+                                                </div> 
+
+                                                <div class="col-md-12 col-lg-4">
                                                     <div class="dash-widget">
                                                         <div class="circle-bar circle-bar3">
                                                             <div class="circle-graph3" data-percent="50">
                                                                 <img src="{{asset('assets/img/icon-03.png')}}" class="img-fluid" alt="Patient">
-                                                            </div>
-                                                        </div>
-                                                        <div class="dash-widget-info">
-                                                            <h6>Total Assessments</h6>
-                                                            <h3>85</h3>
-                                                            <p class="text-muted">This month</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12 col-lg-3">
-                                                    <div class="dash-widget">
-                                                        <div class="circle-bar circle-bar3 ">
-                                                            <div class="circle-graph3" data-percent="20">
-                                                                <img src="{{asset('assets/img/icon-02.png')}}" class="img-fluid" alt="Patient">
                                                             </div>
                                                         </div>
                                                         <div class="dash-widget-info">
@@ -192,172 +181,43 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12 col-lg-12">
                                     
-                                    <!-- About Details -->
-                                    <div class="widget about-widget">
-                                        <h4 class="widget-title">About </h4>
-                                        <p>Pharmacy Type: Community Pharmacy</p>
-                                        <p>Establishment Type: Faith Based Pharmacy</p>
-                                        <p>Location: <i class="fas fa-map-marker-alt"></i> Lagos,Nigeria</p>
-                                    </div>
-                                    <!-- /About Details -->
                                     <div class="row">
                                         <div class="col-md-6 my-3">
                                             <div class="service-list">
-                                                <h4>Patients</h4>
+                                                <h4>Last Week Sales</h4>
                                                 <table class="table">
                                                     <tr>
                                                         <td>
-                                                            Total Number of Patients who are male:
+                                                            Most Bought Drug:
                                                         </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Number of Patients who are female:
-                                                        </td>
-                                                        <td>
-                                                            45
+                                                        <td class="text-right">
+                                                            Paracetamol
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            Total Number of Patients who have received assessment:
+                                                            Most Bought Non-Drug:
                                                         </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Number of Patients who recovered:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 my-3">
-                                            <div class="service-list">
-                                                <h4>Sales</h4>
-                                                <table class="table">
-                                                    <tr>
-                                                        <td>
-                                                            Total Number of Sales of drugs:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Amount acrued from Sales of drugs:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Number of Sales of non-drugs:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Amount acrued from Sales of non-drugs:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Sales Amount:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="service-list">
-                                                <h4>Inventory</h4>
-                                                <table class="table">
-                                                    <tr>
-                                                        <td>
-                                                            Most Purchased Drugs:
-                                                        </td>
-                                                        <td>
-                                                            Lonart
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Most Purchased NonDrug:
-                                                        </td>
-                                                        <td>
+                                                        <td class="text-right">
                                                             Water
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            Total Expired Drugs:
+                                                            Total Sales (Drugs):
                                                         </td>
-                                                        <td>
+                                                        <td class="text-right">
                                                             45
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            Most Profitable Item:
+                                                            Total Sales (Non Drugs):
                                                         </td>
-                                                        <td>
-                                                            Biscuit
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Number of Antimalaria drugs:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Number of Antibiotics:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Number of Pain Relief:
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Total Number of Antiseptic:
-                                                        </td>
-                                                        <td>
+                                                        <td class="text-right">
                                                             45
                                                         </td>
                                                     </tr>
@@ -365,44 +225,85 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
+                                            <canvas id="salesChart" style="width:100%;max-width:700px"></canvas>
+                                        </div> 
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-md-6 my-3">
                                             <div class="service-list">
-                                                <h4>Assessment</h4>
+                                                <h4>Last Week Volume Sales</h4>
                                                 <table class="table">
                                                     <tr>
                                                         <td>
-                                                            Most common Disease:
+                                                            Most Bought Drug:
                                                         </td>
-                                                        <td>
-                                                            Cholera
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Walk-in Prescription vs Patients:
-                                                        </td>
-                                                        <td>
-                                                            45/12
+                                                        <td class="text-right">
+                                                            Paracetamol
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            Total Number of Prescription Errors:
+                                                            Most Bought Non-Drug:
                                                         </td>
+                                                        <td class="text-right">
+                                                            Water
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>
+                                                            Total Volume (Drugs):
+                                                        </td>
+                                                        <td class="text-right">
                                                             45
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            Total Drug Administration Errors:
+                                                            Total Volume (Non Drugs):
                                                         </td>
-                                                        <td>
+                                                        <td class="text-right">
                                                             45
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <canvas id="volumeChart" style="width:100%;max-width:700px"></canvas>
+                                        </div> 
+                                    </div>
+
+                                    
+                                    
+                                    <div class="row mt-5">
+                                        <div class="col-md-6">
+                                            <div class="service-list">
+                                                <h4>Inventory</h4>
+                                                <table class="table">
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            Expired Drugs:
+                                                        </td>
+                                                        <td class="text-right">
+                                                            45 <a href="#"> <u>(view)</u> </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Expiring in 6weeks:
+                                                        </td>
+                                                        <td class="text-right">
+                                                            45 <a href="#"> <u>(view)</u> </a>
                                                         </td>
                                                     </tr>
                                                     
+                                                    
                                                 </table>
                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
+
                                         </div>
                                         
                                     </div>
@@ -537,8 +438,6 @@
                         </div>
                         <!-- /Reviews Content -->
                         
-                        
-                        
                     </div>
                 </div>
             </div>
@@ -553,4 +452,74 @@
 {{-- <script src="{{asset('assets/js/jqueryy.js')}}"></script> --}}
 <script src="{{asset('assets/js/jqueryui.min.js')}}"></script>
 <script src="{{asset('assets/js/circle-progress.min.js')}}"></script>
+<script src="{{asset('plugins/chart/chart.min.js')}}"></script>
+<script src="{{asset('plugins/chart/chartjs-plugin-datalabels.min.js')}}"></script>
+<script>
+    const xSales = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const ySales = [100,1100,400,700,900,100,120,1500];
+    new Chart("salesChart", {
+        plugins: [ChartDataLabels],
+        type: "bar",
+        data: {
+            labels: xSales,
+            datasets: [{
+                label: "Last Weeks Sales Chart",
+                backgroundColor: "rgba(0,0,255,1.0)",
+                // borderColor: "rgba(0,0,255,0.1)",
+                data: ySales
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "Last Weeks Sales Chart"
+                },
+                datalabels: {
+                    color: 'white',
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+            }
+        }
+    });
+</script>
+<script>
+    const xVolume = ['Paracetamol','Lonart','Amoxil','Penicylin','Ampiclux','Panadol','Vitamin C','Fansidar','Tetracyclin','Ibuprofin'];
+    const yVolume = [70,80,101,140,90,100,110,150,200,180];
+    new Chart("volumeChart", {
+        type: "bar",
+        data: {
+            labels: xVolume,
+            datasets: [{
+                label: "Last Weeks Sales Chart",
+                backgroundColor: "rgba(0,0,255,1.0)",
+                // borderColor: "rgba(0,0,255,0.1)",
+                data: yVolume
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "Last Weeks Volume Chart"
+                },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+        }
+    });
+</script>
 @endpush

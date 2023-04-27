@@ -86,6 +86,15 @@
                             
                         </div>
                         <div class="filter-widget">
+                            <h4>Drug Administered</h4>
+                            <div>
+                                <select class="form-control">
+                                    <option>Anti-Malaria</option>
+                                    <option>Anti-Bacteria</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-widget">
                             <h4>Staff</h4>
                             <div>
                                 <select class="form-control">

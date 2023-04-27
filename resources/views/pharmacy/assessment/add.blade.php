@@ -3,10 +3,10 @@
 
 <style>
     .select2-container .select2-selection--single{
-        height:40px;
+        height:46px;
     }
     .select2-container--default .select2-selection--single .select2-selection__rendered{
-        line-height: 35px;
+        line-height: 42px;
     }
     .select2-container--default .select2-selection--single .select2-selection__arrow{
         position:absolute;
@@ -17,6 +17,21 @@
     }
     .showit{
         display:block;
+    }
+
+    .past_medication{
+        font-size:12px !important;
+    }
+    .past_medication label{
+        margin-bottom:0px;
+    }
+    .past_medication .select2-container .select2-selection--single,.past_medication input{
+        height:36px !important;    
+    }
+    .past_medication .form-control{
+        height:36px !important;
+        min-height:36px !important;
+        font-size:12px !important;
     }
     
 </style>
@@ -71,15 +86,10 @@
                                 <li class="past_medical_history">
                                     <a href="javascript:void(0)" >
                                         <i class="fas fa-book-medical"></i>
-                                        <span>Past Medical History</span>
+                                        <span>Medical & Medication History</span>
                                     </a>
                                 </li>
-                                <li class="current_medical_history">
-                                    <a href="javascript:void(0)" >
-                                        <i class="fas fa-file-medical-alt"></i>
-                                        <span>Current Medical History</span>
-                                    </a>
-                                </li>
+                                
                                 <li class="family_social_history"> 
                                     <a href="javascript:void(0)" >
                                         <i class="fas fa-users"></i>
@@ -144,17 +154,17 @@
                                                         <label class="h6">Search Patient</label>
                                                         <select name="patient_id" id="selectpatient" class="form-control">
                                                             <option></option>
-                                                            @foreach ($pharmacy->patients as $patient)
-                                                                <option value="{{$patient->id}}" 
-                                                                    @if($pateint && $pateint->id == $patient->id) selected @endif 
-                                                                    data-name="{{$patient->name}}" 
-                                                                    data-emr="{{$patient->emr}}" 
-                                                                    data-phone="{{$patient->mobile}}" 
-                                                                    data-email="{{$patient->email}}" 
-                                                                    data-age="{{$patient->age}}" 
-                                                                    data-gender="{{$patient->gender}}" 
-                                                                    data-bloodgroup="{{$patient->bloodgroup}}" 
-                                                                    data-genotype="{{$patient->genotype}}">{{$patient->emr}}-{{$patient->name}}</option>
+                                                            @foreach ($pharmacy->patients as $patientz)
+                                                                <option value="{{$patientz->id}}" 
+                                                                    @if($patient && $patient->id == $patientz->id) selected @endif 
+                                                                    data-name="{{$patientz->name}}" 
+                                                                    data-emr="{{$patientz->emr}}" 
+                                                                    data-phone="{{$patientz->mobile}}" 
+                                                                    data-email="{{$patientz->email}}" 
+                                                                    data-age="{{$patientz->age}}" 
+                                                                    data-gender="{{$patientz->gender}}" 
+                                                                    data-bloodgroup="{{$patientz->bloodgroup}}" 
+                                                                    data-genotype="{{$patientz->genotype}}">{{$patientz->emr}}-{{$patientz->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -304,7 +314,8 @@
                                                     </div>
                                                     <div class="call-foot">
                                                         <div class="d-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
+                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>
+                                                            <a href="javascript:void(0)" class="btn btn-dark">  Save & Continue Later</a>   
                                                             <a href="javascript:void(0)" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Next  </a>   
                                                         </div>
                                                     </div>
@@ -316,13 +327,13 @@
                                 <div class="pane " id="past_medical_history">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4>Past Medical History</h4>
+                                            <h4>Medical & Medication History</h4>
                                         </div>
                                         <div class="card-body">
                                             <div id="past_histories">
-                                                <div class="row my-4 past_history">
-                                                    <div class="col-md-5">
-                                                        <label class="text-muted text-center">Previous Medical Condition</label>                                        
+                                                <div class="row py-4 past_history border-bottom">
+                                                    <div class="col-md-4">
+                                                        <label class="text-muted text-center">Medical Condition</label>                                        
                                                         <select name="past_history[condition][]" placeholder="Condition name" class="selectcondition form-control">
                                                             <option value=""></option>
                                                             @foreach ($conditions as $condition)
@@ -330,20 +341,26 @@
                                                             @endforeach
                                                         </select> 
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <label class="text-muted text-center">When did it happen</label>    
+                                                    <div class="col-md-3">
+                                                        <label class="text-muted text-center">Start</label>    
                                                         <div class="input-group">
-                                                            <input type="month" name="past_history[date][]" placeholder="Year. e.g 2023" class="form-control">
+                                                            <input type="month" name="history[start][]" placeholder="Year. e.g 2023" class="form-control">
                                                         </div>                                    
                                                     </div>
                                                     <div class="col-md-3">
+                                                        <label class="text-muted text-center">End</label>    
+                                                        <div class="input-group">
+                                                            <input type="month" name="history[end][]" placeholder="Year. e.g 2023" class="form-control">
+                                                        </div>                                    
+                                                    </div>
+                                                    <div class="col-md-2">
                                                         <label class="d-md-block d-sm-none d-none">&nbsp;</label>
                                                             <button type="button" class="btn btn-primary add_past_history" title="add more"><i class="fa fa-plus"></i></button>
                                                             <button type="button" class="btn btn-danger remove_past_history" title="remove"><i class="fa fa-trash"></i></button>
                                                     </div>
-                                                    <div class="col-md-12" id="past_medications">
+                                                    <div class="col-md-12 mt-3" id="past_medications">
                                                         <div class="row past_medication mb-1">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-3 pr-0">
                                                                 <label class="text-muted text-center">Medication Used</label> 
                                                                 <select name="past_history[medication][][]" placeholder="Medication used" class="selectmedication form-control-sm"> 
                                                                     <option value=""></option>
@@ -352,16 +369,19 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-                                                            <div class="col-md-3 pt-2">
-                                                                <label class="d-block pt-3"></label> 
-                                                                <label for="d-block">Effective?</label>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" id="abc" name="past_history[effectiveness][][]" value="1" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="abc">Yes</label>
-                                                                </div>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" id="xyz" name="past_history[effectiveness][][]" value="0" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="xyz">No</label>
+                                                            <div class="col-md-2 pr-0">
+                                                                <label class="text-muted ">Start</label>    
+                                                                <input type="month" name="history[start][]" placeholder="Year. e.g 2023" class="form-control">                                  
+                                                            </div>
+                                                            <div class="col-md-2 pr-0">
+                                                                <label class="text-muted text-center">End</label>    
+                                                                <input type="month" name="history[end][]" placeholder="Year. e.g 2023" class="form-control">                                   
+                                                            </div>
+                                                            <div class="col-md-1 pr-0">
+                                                                <label class="d-block">Effective?</label> 
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="abc" name="past_history[effectiveness][][]" value="1" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="abc">yes</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2">
@@ -374,12 +394,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row mt-3">
                                                 <div class="col-md-7">
                                                     
                                                     <div class="call-foot">
                                                         <div class="d-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
+                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>
+                                                            <a href="javascript:void(0)" class="btn btn-dark">  Save & Continue Later</a>   
                                                             <a href="javascript:void(0)" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Next  </a>   
                                                         </div>
                                                     </div>
@@ -388,81 +409,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pane " id="current_medical_history">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4>Current Medical History</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <div id="current_histories">
-                                                <div class="row my-4 current_history">
-                                                    <div class="col-md-5">
-                                                        <label class="text-muted text-center">Previous Medical Condition</label>                                        
-                                                        <select name="current_history[condition][]" placeholder="Condition name" class="selectcondition form-control">
-                                                            <option value=""></option>
-                                                            @foreach ($conditions as $condition)
-                                                                <option value="{{$condition->id}}">{{$condition->description}}</option>
-                                                            @endforeach
-                                                        </select> 
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label class="text-muted text-center">When did it happen</label>    
-                                                        <div class="input-group">
-                                                            <input type="month" name="current_history[date][]" placeholder="Year. e.g 2023" class="form-control">
-                                                        </div>                                    
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                                                            <button type="button" class="btn btn-primary add_current_history" title="add more"><i class="fa fa-plus"></i></button>
-                                                            <button type="button" class="btn btn-danger remove_current_history" title="remove"><i class="fa fa-trash"></i></button>
-                                                    </div>
-                                                    <div class="col-md-12" id="current_medications">
-                                                        <div class="row current_medication mb-1">
-                                                            <div class="col-md-4">
-                                                                <label class="text-muted text-center">Medication Used</label> 
-                                                                <select name="current_history[medication][][]" placeholder="Medication used" class="selectmedication form-control-sm"> 
-                                                                    <option value=""></option>
-                                                                    @foreach ($medicines as $medicine)
-                                                                        <option value="{{$medicine->id}}">{{$medicine->name}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-3 pt-2">
-                                                                <label class="d-block pt-3"></label> 
-                                                                <label for="d-block">Effective?</label>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" id="abc" name="current_history[effectiveness][][]" value="1" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="abc">Yes</label>
-                                                                </div>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" id="xyz" name="current_history[effectiveness][][]" value="0" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="xyz">No</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label class="d-block pt-3"></label>
-                                                                <button type="button" class="btn btn-sm btn-info add_current_medication" title="add more"><i class="fa fa-plus"></i></button>
-                                                                <button type="button" class="btn btn-sm btn-danger remove_current_medication" title="add more"><i class="fa fa-trash"></i></button>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-7">
-                                                    
-                                                    <div class="call-foot">
-                                                        <div class="d-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
-                                                            <a href="javascript:void(0)" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Next  </a>   
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
+                                 
                                 <div class="pane " id="family_social_history">
                                     <div class="card">
                                         <div class="card-header">
@@ -480,7 +427,18 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-5">
-                                                        <input type="text" value="Yes" readonly class="form-control" name="familyhistory[answers][]">
+                                                        <div class="col-md-3 pt-2">
+                                                            <div class="d-flex">
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" id="abcfamilyhistory" name="familyhistory[answers][]" value="1" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="abc">Yes</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" id="xyzfamilyhistory" name="familyhistory[answers][]" value="0" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="xyz">No</label>
+                                                                </div> 
+                                                            </div>     
+                                                        </div>                                                        
                                                     </div>
                                                     <div class="col-md-2">
                                                         <a href="javascript:void(0);" class="btn btn-primary add_family_questions ml-2"> <i class="fa fa-plus-circle"></i></a>
@@ -492,7 +450,8 @@
                                                 <div class="col-md-7">
                                                     <div class="call-foot">
                                                         <div class="d-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
+                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>
+                                                            <a href="javascript:void(0)" class="btn btn-dark">  Save & Continue Later</a>   
                                                             <a href="javascript:void(0)" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Next  </a>   
                                                         </div>
                                                     </div>
@@ -530,7 +489,8 @@
                                                 <div class="col-md-7">
                                                     <div class="call-foot">
                                                         <div class="d-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
+                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>
+                                                            <a href="javascript:void(0)" class="btn btn-dark">  Save & Continue Later</a>   
                                                             <a href="javascript:void(0)" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Next  </a>   
                                                         </div>
                                                     </div>
@@ -549,15 +509,20 @@
                                             <div id="system_review">
                                                 <div class="row systemreviewrows mb-4">
                                                     <div class="col-md-5">
-                                                        <select class="form-control reviewquestions" name="review[questions][]">
+                                                        <select class="form-control reviewcategories" name="review[questions][]">
+                                                            <option value=""></option>
+                                                            @foreach ($reviews->unique('system')->pluck('system')->toArray() as $system)
+                                                                <option>{{$system}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <select class="form-control reviewoptions" name="review[options][]">
                                                             <option value=""></option>
                                                             @foreach ($reviews as $review)
                                                                 <option>{{$review->description}}</option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
-                                                    <div class="col-md-5">
-                                                        <input type="text" value="Yes" readonly class="form-control" name="review[answers][]">
                                                     </div>
                                                     <div class="col-md-2">
                                                         <a href="javascript:void(0);" class="btn btn-primary add_reviews ml-2"> <i class="fa fa-plus-circle"></i></a>
@@ -569,7 +534,8 @@
                                                 <div class="col-md-7">
                                                     <div class="call-foot">
                                                         <div class="d-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
+                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>
+                                                            <a href="javascript:void(0)" class="btn btn-dark">  Save & Continue Later</a>     
                                                             <a href="javascript:void(0)" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Next  </a>   
                                                         </div>
                                                     </div>
@@ -584,14 +550,39 @@
                                             <h4>Provisional Diagnosis</h4>
                                         </div>
                                         <div class="card-body">
+                                            <div id="provision_assessments">
+                                                <div class="row provisionrows mb-4">
+                                                    <div class="col-md-5">
+                                                        <label>Condition</label>
+                                                        <select class="form-control provisions" name="provisional[assessments][]">
+                                                            <option value=""></option>
+                                                            @foreach ($conditions as $condition)
+                                                                <option>{{$condition->description}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <label>Require Test</label>
+                                                        <select class="form-control required_test" name="require_test[assessments][]">
+                                                            <option value=""></option>
+                                                            @foreach ($labtests as $labtest)
+                                                                <option value="{{$labtest->id}}">{{$labtest->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                                                        <a href="javascript:void(0);" class="btn btn-primary add_provisions ml-2"> <i class="fa fa-plus-circle"></i></a>
+                                                        <a href="javascript:void(0);" class="btn btn-danger remove_provisions ml-2"> <i class="fa fa-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" name="provisional_diagnosis" rows="2"  placeholder="What is the patient's complaints"></textarea>
-                                                    </div>
                                                     <div class="call-foot">
                                                         <div class="d-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
+                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>
+                                                            <a href="javascript:void(0)" class="btn btn-dark">  Save & Continue Later</a>   
                                                             <a href="javascript:void(0)" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Next  </a>   
                                                         </div>
                                                     </div>
@@ -610,9 +601,9 @@
                                                 <div class="col-md-5">
                                                     <div class="form-group">
                                                         <select name="tests[]" class="form-control select w-100"> 
-                                                            <option value="pregnancy">Pregnancy Test</option>
-                                                            <option value="brain_scan">Brain Scan</option>
-                                                            <option value="tommy_scan">Tommy Scan</option>
+                                                            @foreach ($labtests as $labtest)
+                                                                <option value="{{$labtest->id}}">{{$labtest->name}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -635,7 +626,8 @@
                                                 <div class="col-md-7">
                                                     <div class="call-foot">
                                                         <div class="d-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
+                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>
+                                                            <a href="javascript:void(0)" class="btn btn-dark">  Save & Continue Later</a>   
                                                             <a href="javascript:void(0)" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Next  </a>   
                                                         </div>
                                                     </div>
@@ -651,14 +643,35 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" name="final_diagnosis" rows="2" placeholder="What is the patient's complaints"></textarea>
-                                                    </div>
+                                                <div class="col-md-5">
+                                                    <label>Condition</label>
+                                                    <select class="form-control final_diagnosis" name="final_diagnosis[assessments][]">
+                                                        <option value=""></option>
+                                                        @foreach ($conditions as $condition)
+                                                            <option>{{$condition->description}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label>Expected Outcome</label>
+                                                    <select class="form-control expected_outcome" name="expected_outcome[assessments][]">
+                                                        <option value=""></option>
+                                                        @foreach ($labtests as $labtest)
+                                                            <option value="{{$labtest->id}}">{{$labtest->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-10">
                                                     <div class="call-foot">
                                                         <div class="d-md-flex justify-content-between">
-                                                            <a href="javascript:void(0)" class="btn btn-primary previous col-md-3"> <i class="fa fa-arrow-left"></i> Previous  </a>   
-                                                            <button type="submit" class="btn btn-info col-md-8"> Submit Assessment </button>   
+                                                            <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
+                                                            <button type="submit" name="action" value="draft" class="btn btn-dark"> Save Assessment </button>   
+                                                            <button type="submit" name="action" value="complete" class="btn btn-info"> Conclude & Prescribe Medicine <i class="fa fa-arrow-right"></i></button>   
                                                         </div>
                                                     </div>
                                                 </div>
@@ -684,16 +697,15 @@
 
 @push('scripts')
 <script>
-    var past_medical_history,current_medical_history,family_history,vitals,reviews;
+    var past_medical_history,family_history,vitals,provisional,reviews;
     $(document).ready(function(){
         past_medical_history = $('.past_history').last().prop("outerHTML");
         past_medication = $('.past_medication').last().prop("outerHTML");
-        current_medical_history = $('.current_history').last().prop("outerHTML");
-        current_medication = $('.current_medication').last().prop("outerHTML");
         family_history = $('.familyhistoryrows').last().prop("outerHTML");
         vitals = $('.vitalrows').last().prop("outerHTML");
+        provisional = $('.provisionrows').last().prop("outerHTML");
         reviews = $('.systemreviewrows').last().prop("outerHTML");
-        $('.selectcondition,.selectmedication,.familyquestions,.vitalquestions,.reviewquestions').select2({width:'100%',placeholder:'Select'});
+        $('.selectcondition,.selectmedication,.familyquestions,.vitalquestions,.provisions,.required_test,.reviewcategories,.reviewoptions').select2({width:'100%',placeholder:'Select'});
     })
 
     //patients
@@ -733,7 +745,7 @@
         tags:true,
         width:'100%'
     })
-    //past medical history
+    //medical and medication history
     $(document).on('click','.add_past_history',function(){
         $('#past_histories').append(past_medical_history);
         resetPastMedicationAttributes()
@@ -775,11 +787,7 @@
             })
         })
     }
-    //current medical history
-    $(document).on('click','.add_current_history',function(){
-        $('#current_histories').append(current_medical_history);
-        resetCurrentMedicationAttributes()
-    })
+    
     $(document).on('click','.add_current_medication',function(){
         $(this).closest('#current_medications').append(current_medication);
         resetCurrentMedicationAttributes()
@@ -839,10 +847,21 @@
             $(this).closest('.vitalrows').remove();
         }
     })
+    //provisional diagnosis
+    $(document).on('click','.add_provisions',function(){
+        $('#provision_assessments').append(provisional);
+        $('.provisions,.required_test').select2({width:'100%',placeholder:'Select'})
+    })
+
+    $(document).on('click','.remove_provisions',function(){
+        if($('.provisions').length > 1){
+            $(this).closest('.provisionrows').remove();
+        }
+    })
     //system review
     $(document).on('click','.add_reviews',function(){
         $('#system_review').append(reviews);
-        $('.reviewquestions').select2({width:'100%',placeholder:'Select'})
+        $('.reviewcategories,.reviewoptions').select2({width:'100%',placeholder:'Select'})
     })
 
     $(document).on('click','.remove_reviews',function(){

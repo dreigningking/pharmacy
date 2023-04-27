@@ -34,7 +34,12 @@
                     <div class="card-body">
                         <div class="filter-widget">
                             <div class="">
-                                <input type="text" class="form-control" placeholder="Name or EMR or Email or Phone">
+                                <input type="text" class="form-control" placeholder="First or Last Name">
+                            </div>			
+                        </div>
+                        <div class="filter-widget">
+                            <div class="">
+                                <input type="text" class="form-control" placeholder="EMR or Last 4 digits of phone number">
                             </div>			
                         </div>
                         <div class="filter-widget">
@@ -92,9 +97,9 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-4">
                                     <h3>Patients</h3>
-                                    <a class="btn btn-primary btn-lg"
+                                    {{-- <a class="btn btn-primary btn-lg"
                                         href="{{route('pharmacy.patients.create',$pharmacy)}}">New
-                                        Patient</a>
+                                        Patient</a> --}}
                                 </div>
                                 <div class="table-responsive">
                                     <table class="datatable table table-hover table-center mb-0">
@@ -102,8 +107,8 @@
                                             <tr>
                                                 <th>EMR</th>
                                                 <th>Patient Name</th>
-                                                <th class="">Phone Number</th>
-                                                <th>Email</th>                                                 
+                                                {{-- <th class="">Phone Number</th>
+                                                <th>Email</th>                                                  --}}
                                                 <th>Assessments</th>                                                 
                                                 <th>Prescriptions</th>                                                 
                                                 <th class="text-center">Action</th>
@@ -112,10 +117,10 @@
                                         <tbody>
                                             @foreach($patients as $patient)
                                                 <tr>
-                                                    <td>{{$patient->EMR}}</td>
+                                                    <td>{{$patient->EMR}}HYC6574</td>
                                                     <td>{{$patient->name}}</td>
-                                                    <td>{{$patient->mobile}}</td>
-                                                    <td>{{$patient->email}}</td>
+                                                    {{-- <td>{{$patient->mobile}}</td>
+                                                    <td>{{$patient->email}}</td> --}}
                                                     <td>{{$patient->assessments->count()}}</td>
                                                     <td>{{$patient->prescriptions->count()}}</td>
                                                     <td class="text-center">

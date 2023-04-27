@@ -20,14 +20,14 @@ class SupplyController extends Controller
 
     public function list(Pharmacy $pharmacy){
         $purchases = Purchase::where('pharmacy_id',$pharmacy->id)->get();
-        return view('pharmacy.supplies.list',compact('pharmacy','purchases'));
+        return view('pharmacy.inventory.supplies.list',compact('pharmacy','purchases'));
     }
 
     public function create(Pharmacy $pharmacy){
         $user = Auth::user();
         $suppliers = $pharmacy->suppliers;
         $countries = Country::all();
-        return view('pharmacy.supplies.new',compact('user','pharmacy','suppliers','countries'));
+        return view('pharmacy.inventory.supplies.new',compact('user','pharmacy','suppliers','countries'));
     }
 
     public function create_from_inventory(Pharmacy $pharmacy,Request $request){
@@ -35,7 +35,7 @@ class SupplyController extends Controller
         $suppliers = $pharmacy->suppliers;
         $countries = Country::all();
         $inventories = Inventory::whereIn('id',$request->inventories)->get();
-        return view('pharmacy.supplies.new',compact('user','pharmacy','suppliers','countries','inventories'));
+        return view('pharmacy.inventory.supplies.new',compact('user','pharmacy','suppliers','countries','inventories'));
     }
 
     public function store(Pharmacy $pharmacy,Request $request){
@@ -52,18 +52,18 @@ class SupplyController extends Controller
         if($request->action == "execute"){
             //$this->restock($purchase);
         }
-        return redirect()->route('pharmacy.purchase.list',$pharmacy);
+        return redirect()->route('pharmacy.inventory.purchases.list',$pharmacy);
     }
 
     public function edit(Pharmacy $pharmacy,Purchase $purchase){
         $suppliers = $pharmacy->suppliers;
         $countries = Country::all();
         $inventories = $purchase->details;
-        return view('pharmacy.supplies.edit',compact('user','pharmacy','suppliers','countries','inventories'));
+        return view('pharmacy.inventory.supplies.edit',compact('user','pharmacy','suppliers','countries','inventories'));
     }
 
     public function add_to_inventory(Pharmacy $pharmacy,Purchase $purchase){
-        return view('pharmacy.supplies.inventory',compact('pharmacy','purchase'));
+        return view('pharmacy.inventory.supplies.inventory',compact('pharmacy','purchase'));
     }
     public function save_to_inventory(Pharmacy $pharmacy,Request $request){
         // dd($request->all());
@@ -84,7 +84,7 @@ class SupplyController extends Controller
     public function delete(Pharmacy $pharmacy,Request $request){
         $purchase = Purchase::find($request->purchase_id);
         $purchase->delete();
-        return redirect()->route('pharmacy.purchase.list',$pharmacy);
+        return redirect()->route('pharmacy.inventory.purchases.list',$pharmacy);
     }
 
 }

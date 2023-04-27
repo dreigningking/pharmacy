@@ -73,7 +73,6 @@
 
 </div>
 <!-- /Page Content -->
-
 @endsection
 
 <!-- Add Staff Modal -->

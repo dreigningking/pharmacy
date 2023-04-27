@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\GeneralControllers;
 
+use App\Models\Bank;
 use App\Models\Drug;
+use App\Models\User;
 use App\Models\Batch;
+use App\Models\Country;
 use App\Models\Medicine;
 use App\Models\Pharmacy;
 use App\Models\Supplier;
@@ -12,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Exports\InventoriesExport;
 use App\Imports\InventoriesImport;
 use App\Http\Controllers\Controller;
+use App\Models\DrugCategory;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -19,10 +23,10 @@ class InventoryController extends Controller
 {
 
     public function list(Pharmacy $pharmacy){
-        if($search = request()->search)
-        $items =  Inventory::where('pharmacy_id',$pharmacy->id)->where('name','LIKE',"%$search%")->get();
-        else
-        $items = Inventory::where('pharmacy_id',$pharmacy->id)->get();
+        $items = Inventory::where('pharmacy_id',$pharmacy->id);
+        if($name = request()->name)
+        $items =  $items->where('name','LIKE',"%$name%");
+        $items =  $items->get();
         // dd($items);
         if(request()->type == 'ajax')
             return response()->json(['items'=> $items],200);
@@ -41,15 +45,44 @@ class InventoryController extends Controller
         return response()->json(['items'=> $items],200);
     }
 
-    public function drugs(){  
-        if($search = request()->search)
-        $drugs = Drug::where('name','LIKE',"%$search%")->get();
-        else
-        $drugs = Drug::all();
+    public function store(Request $request,Pharmacy $pharmacy){
+        return redirect()->back();
+    }
+
+    public function show(Pharmacy $pharmacy,Inventory $item){
+        // if($search = request()->search){
+        //     $items =  Batch::with(['inventory'=> function($query) use($pharmacy,$search){
+        //         $query->where('pharmacy_id',$pharmacy->id)->where('name','LIKE',"%$search%");}])->get();
+        // }else{
+        // $items = Batch::with(['inventory'=> function($query) use($pharmacy){
+        //     $query->where('pharmacy_id',$pharmacy->id); }])->get();
+        // }
+        // return response()->json(['items'=> $items],200);
+        return view('pharmacy.inventory.view',compact('pharmacy','item'));
+    }
+
+    public function settings(Pharmacy $pharmacy){
+        return view('pharmacy.inventory.settings',compact('pharmacy'));
+    }
+
+    // public function getDrugs(Pharmacy $pharmacy){
+
+    // }
+
+    public function drugs(Pharmacy $pharmacy){  
+        // $drugs = Drug::whereDoesntHave('inventories',function($query) use($pharmacy){$query->where('pharmacy_id',$pharmacy->id);})->get();
+        $categories = DrugCategory::all();
+        $drugs = Drug::where('status',true);
+        if($name = request()->name)
+        $drugs = $drugs->where('name','LIKE',"%$name%");
+        if($manufacturer = request()->manufacturer)
+        $drugs = $drugs->where('manufacturer','LIKE',"%$name%");
+        if($categoriz = request()->categories)
+        $drugs = $drugs->whereIn('category_id',$categoriz);
+        $drugs = $drugs->paginate(100);
         if( request()->type == 'ajax')
-            return response()->json(['drugs'=> $drugs],200);
-        else 
-            return view('drugs',compact('drugs'));    
+        return response()->json(['drugs'=> $drugs],200);
+        return view('pharmacy.inventory.drugs',compact('drugs','categories','pharmacy'));    
     }
 
     public function medicines(){  
@@ -79,9 +112,6 @@ class InventoryController extends Controller
         return redirect()->back()->with('success', 'All good!');
     }
    
-    public function shelf(Pharmacy $pharmacy){
-        return view('pharmacy.inventory.shelf',compact('pharmacy'));
-    }
 
     public function suppliers(){
         $user = Auth::user();

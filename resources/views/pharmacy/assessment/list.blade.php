@@ -36,7 +36,7 @@
                             <h4>Patient</h4>			
                         </div>
                         <div class="filter-widget">
-                            <input type="text" class="form-control" placeholder="Name, EMR, Phone, Email">		
+                            <input type="text" class="form-control" placeholder="Name or EMR">		
                         </div>
                         <div class="filter-widget">
                             <h4>Complaint/Diagnosis</h4>			
@@ -153,7 +153,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                             <i class="far fa-edit"></i> View
                                                         </a>
                                                     </div>
@@ -178,7 +178,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                             <i class="far fa-edit"></i> View
                                                         </a>
                                                     </div>
@@ -201,7 +201,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                             <i class="far fa-edit"></i> View
                                                         </a>
                                                     </div>
@@ -250,7 +250,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                             <i class="far fa-edit"></i> View
                                                         </a>
                                                     </div>
@@ -274,7 +274,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                             <i class="far fa-edit"></i> View
                                                         </a>
                                                     </div>
@@ -298,7 +298,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                             <i class="far fa-edit"></i> View
                                                         </a>
                                                     </div>
@@ -322,7 +322,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                             <i class="far fa-edit"></i> View
                                                         </a>
                                                     </div>
@@ -336,7 +336,7 @@
                                                 <td>Fever</td>
                                                 {{-- <td>
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-primary-light">
                                                             <i class="far fa-clock"></i> Reschedule
                                                         </a>
                                                     </div>
@@ -352,7 +352,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                             <i class="far fa-edit"></i> View
                                                         </a>
                                                     </div>
@@ -376,7 +376,7 @@
                                                     </h2>
                                                 </td>
                                                 <td class="text-right">
-                                                    <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                    <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
                                                         <i class="far fa-edit"></i> Views
                                                     </a>
                                                 </td>

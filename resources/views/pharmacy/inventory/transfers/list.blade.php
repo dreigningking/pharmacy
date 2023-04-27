@@ -34,7 +34,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="d-flex justify-content-between">Transfers <a href="{{route('pharmacy.transfer.create',$pharmacy)}}" class="btn btn-primary">New Transfers</a></h3>
+                                <h3 class="d-flex justify-content-between">Transfers <a href="{{route('pharmacy.inventory.transfers.create',$pharmacy)}}" class="btn btn-primary">New Transfers</a></h3>
                                 <div class="table-responsive">
                                     <table class="datatable table table-hover table-bordered table-center mb-0">
                                         <thead>
@@ -61,7 +61,7 @@
                                                                 {{-- <a class="btn btn-sm bg-success-light" href="">
                                                                     <i class="fa fa-plus-circle"></i> Add to Inventory
                                                                 </a> --}}
-                                                                <form class="d-inline-block" action="{{route('pharmacy.transfer.save_to_inventory',$pharmacy)}}" method="POST">@csrf
+                                                                <form class="d-inline-block" action="{{route('pharmacy.inventory.transfers.save_to_inventory',$pharmacy)}}" method="POST">@csrf
                                                                     <input type="hidden" name="transfer_id" value="{{$transfer->id}}">
                                                                     <button class="btn btn-sm bg-success-light" type="submit">
                                                                         <i class="fa fa-plus-circle"></i> Add to Inventory

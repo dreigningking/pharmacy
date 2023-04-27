@@ -3,11 +3,6 @@
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <!-- Datatables CSS -->
 <link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
-<style>
-    .select2-container .select2-selection--multiple{
-        min-height:42px;
-    }
-</style>
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -36,7 +31,7 @@
             <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar dct-dashbd-lft">
             
                 <!-- Profile Widget -->
-                <div class="card widget-profile pat-widget-profile">
+                <div class="card widget-profile pat-widget-profile mb-0">
                     <div class="card-body">
                         <div class="pro-widget-content">
                             <div class="profile-info-widget">
@@ -44,20 +39,20 @@
                                     <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="User Image">
                                 </a>
                                 <div class="profile-det-info">
-                                    <h3>Richard Wilson</h3>
+                                    <h3>{{$item->name}}</h3>
                                     
                                     <div class="patient-details">
-                                        <h5><b>Patient ID :</b> PT0016</h5>
-                                        <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5>
+                                        <h5><b>Item ID :</b> PT0016</h5>
+                                        <h5 class="mb-0"><i class="fas fa-cog"></i>Non Drug</h5>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="patient-info">
                             <ul>
-                                <li>Phone <span>+1 952 001 8563</span></li>
-                                <li>Age <span>38 Years, Male</span></li>
-                                <li>Blood Group <span>AB+</span></li>
+                                <li>Stock <span>256</span></li>
+                                <li>Shelf <span>XLB</span></li>
+                                {{-- <li>Blood Group <span>AB+</span></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -67,37 +62,28 @@
                 <!-- Last Booking -->
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Other Menus</h4>
+                        <h4 class="card-title">Menus</h4>
                     </div>
                     <div class="dashboard-widget">
                         <nav class="dashboard-menu">
                             <ul>
                                 <li>
-                                    <a href="#transfer_patient" data-toggle="modal">
+                                    <a href="#transfer_patient">
                                         <i class="fas fa-share"></i>
-                                        <span>Transfer Patient</span>
+                                        <span>Transfer Item</span>
                                     </a>
                                 </li>
-                                
                                 <li>
-                                    <a href="#send_record" data-toggle="modal">
-                                        <i class="fas fa-share-alt"></i>
-                                        <span>Share Patient Records</span>
-                                    </a>
-                                </li>
-                                {{-- @endusercan
-                                @usercan($pharmacy,'assessment') --}}
-                                <li>
-                                    <a href="#message_patient" data-toggle="modal">
-                                        <i class="fas fa-envelope"></i>
-                                        <span>Message Patient</span>
+                                    <a href="#purchase_patient">
+                                        <i class="fas fa-star"></i>
+                                        <span>Purchase Item</span>
                                     </a>
                                 </li>
                                 
                                 <li>
                                     <a href="#delete_patient" data-toggle="modal" class="text-danger">
                                         <i class="fas fa-trash"></i>
-                                        <span>Delete Patient</span>
+                                        <span>Delete Item</span>
                                     </a>
                                 </li>
                                 
@@ -115,16 +101,13 @@
                         <div class="user-tabs">
                             <ul class="nav nav-tabs nav-tabs-bottom nav-justified flex-wrap">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#billing" data-toggle="tab"> <span>Basic Details</span> </a>
+                                    <a class="nav-link active" href="#billing" data-toggle="tab"> <span>Details</span> </a>
                                 </li> 
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="#medical" data-toggle="tab"> <span class="med-records">Medical Records</span></a>
-                                </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#assessments" data-toggle="tab">Assessments</a>
+                                    <a class="nav-link" href="#medical" data-toggle="tab"> <span class="med-records">Batches</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#prescription" data-toggle="tab"><span>Prescription</span></a>
+                                    <a class="nav-link" href="#assessments" data-toggle="tab">Sales Report</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,80 +122,74 @@
                                             <div class="row w-100">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="form-label">First Name</label>
-                                                        <input type="text" class="form-control" value="{{explode(' ',$patient->name)[0]}}" name="first_name">
+                                                        <label class="form-label">Name</label>
+                                                        <input type="text" class="form-control" value="" name="">
                                                     </div>
-                                                </div>                         
+                                                </div>   
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
-                                                        <label class="form-label">Last Name</label>
-                                                        <input type="text" class="form-control" name="last_name" value="{{array_key_exists(1,explode(':',$patient->name))? explode(':',$patient->name)[1]:''}}">
+                                                        <label class="form-label">Category</label>
+                                                        <select class="form-control" id="gender" name="gender">
+                                                            <option value="female">Antibacteria</option>
+                                                            <option value="male">Antiseptic</option>
+                                                        </select>
+                                                    </div>
+                                                </div>    
+                                                <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label class="form-label">Shelf</label>
+                                                        <select class="form-control" id="gender" name="gender">
+                                                            <option value="female" >Shelf A</option>
+                                                            <option value="male" >Shelf B</option>
+                                                        </select>
+                                                    </div>
+                                                </div>     
+                                                <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label class="form-label">Supplier</label>
+                                                        <select class="form-control" id="gender" name="gender">
+                                                            <option value="female" >ABC LTD</option>
+                                                            <option value="male" >XYZ LTD</option>
+                                                        </select>
+                                                    </div>
+                                                </div>             
+                                                <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label class="form-label">Unit Cost</label>
+                                                        <input type="number" class="form-control" name="cost" value="">
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="form-label">Email</label>
-                                                        <input type="email" class="form-control" name="email" value="{{$patient->email}}">
+                                                        <label class="form-label">Unit Price</label>
+                                                        <input type="number" class="form-control" name="price" value="">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                
+                                                {{-- <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Phone Number</label>
-                                                        <input type="text" class="form-control" name="mobile" value="{{$patient->email}}">
+                                                        <input type="number" class="form-control" name="mobile" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="form-label">Age <small>(today)</small> </label>
-                                                        <input type="text" class="form-control" name="dob" value="{{$patient->age}}">
+                                                        <label class="form-label">Age</label>
+                                                        <input type="text" class="form-control" name="dob" value="">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="form-label">Gender</label>
-                                                        <select class="form-control" id="gender" name="gender">
-                                                            <option value="female" @if($patient->gender=='female') selected @endif>Female</option>
-                                                            <option value="male" @if($patient->gender=='male') selected @endif>Male</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Address <small>(optional)</small></label>
-                                                        <input type="text" class="form-control" name="address" value="{{$patient->address}}">
+                                                        <input type="text" class="form-control" name="address" value="">
                                                     </div>
-                                                </div> 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Genotype</label>
-                                                        <input type="text" class="form-control" name="first_name">
-                                                    </div>
-                                                </div>                         
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="form-label">Blood Group</label>
-                                                        <input type="text" class="form-control" name="last_name">
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-12 mb-0">
-                                                    <div class="form-group">
-                                                        <label>Family & Social History </label>
-                                                        <select class="select form-control" multiple>
-                                                            <option value="">Smiles too much</option>
-                                                            <option value="">Takes weed</option>
-                                                            <option value="">Drinks Igbo</option>
-                                                            <option value="">Sniffs Cocaine</option>
-                                                        </select>
-                                                        <small class="form-text text-muted">Note : Type & Press  enter to add new specialization</small>
-                                                    </div>
-                                                </div>
+                                                </div>  --}}
+                                                
                                                 <div class="col-md-12">
                                                     <div class="form-group mt-2">
                                                         <br>
-                                                        
-                                                        <button type="reset" class="btn btn-md btn-danger">Reset</button>
                                                         <button type="submit" class="btn btn-md btn-info" name="action" value="save">Update</button>
-                                                        
                                                     </div>
                                                 </div> 
         
@@ -223,56 +200,41 @@
                             </div>
                             
                             <!-- Medical Records Tab -->
-                            {{-- <div class="tab-pane fade" id="medical">
+                            <div class="tab-pane fade" id="medical">
                                 <div class="card mb-0">
                                     <div class="card-body">
                                         <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
                                             <div class="row w-100">
                                                 <div class="col-md-12" id="medical_conditions">
-                                                    <h4>Medical History</h4>
-                                                    <div class="row my-4 condition">
-                                                        <div class="col-md-5">
+                                                    <div class="row condition">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">  
-                                                                <label class="text-muted text-center">Previous Medical Condition</label>                                        
-                                                                <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
+                                                                <label class="text-muted text-center">Batch Name</label>                                        
+                                                                <input type="text" name="" placeholder="" class=" form-control">
                                                             </div>
                                                         </div>
-                                                        
-                                                        <div class="col-md-4">
-                                                            <label class="text-muted text-center">When did it happen</label>    
-                                                            <div class="input-group">
-                                                                <input type="month" name="past_history[date][]" placeholder="Year. e.g 2023" class="form-control">
-                                                            </div>                                    
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label class="text-muted text-center">Quantity</label>
+                                                                <input type="number" name="quantity" placeholder="Quantity" class="form-control"> 
+                                                            </div> 
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label class="text-muted text-center">Expiry</label>
+                                                                <input type="date" name="past_history[date][]" placeholder="Year. e.g 2023" class="form-control">
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label class="d-md-block d-sm-none d-none">&nbsp;</label>
                                                                 <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
                                                         </div>
-                                                        <div class="col-md-12 medications">
-                                                            <div class="med mb-1">
-                                                                <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
-                                                                <label class="form-check-label mx-3">Effective? </label>
-                                                                <label class="form-check-label mx-3">
-                                                                    <input type="radio" class="form-check-input" name="effection">Yes
-                                                                </label>
-                                                                <label class="form-check-label mx-3">
-                                                                    <input type="radio" class="form-check-input" name="optradio">No
-                                                                </label>
-                                                                <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        
-                                                        
+
                                                     </div>
-                                                    
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <div class="form-group mt-2">
-                                                        <br>
-                                                        <button type="submit" class="btn btn-md btn-info" name="action" value="save">Save & Close</button>
-                                                        
-                                                        <button type="reset" class="btn btn-md btn-danger">Reset</button>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-md btn-info" name="action" value="save">Update</button>
                                                     </div>
                                                 </div> 
         
@@ -281,7 +243,7 @@
                                     </div>
                                 </div>
                                 
-                            </div> --}}
+                            </div>
                             <!-- /Medical Records Tab -->
 
                             <!-- Appointment Tab -->
@@ -639,141 +601,11 @@
 
 @endsection
 @section('modals')
-    <!-- Medicine Info Modal -->
-    
-    <div class="modal fade custom-modal add-modal" id="transfer_patient">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Transfer Patient</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="">
-                        <div class="form-group mt-2">
-                            <label>Select Pharmacy </label>
-                            <select class="form-control">
-                                <option value="">Lagos Branch</option>
-                                <option value="">Abuja Branch</option>
-                                <option value="">Port Harcourt Branch</option>
-                            </select>
-                        </div>
-                        <p>All the patient's records will be transfered to selected pharmacy. <span class="text-danger">This means the patient's records will no longer be available on {{$pharmacy->name}}</span> </p>
-                        <button type="submit" class="btn btn-warning pl-4 pr-4 mt-2">Transfer</button>
-                        <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
-                    
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Medicine Info Modal -->
-    <!-- Reaction Modal -->
-    <div class="modal fade custom-modal add-modal" id="send_record">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Share Patient Records</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="" class="needs-validation" novalidate>
-                                <p>You are sharing Patient's information with a third party</p>
-                                <div class="col-12 text-muted mb-3">
-                                    <p>What to Share</p>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_basics" name="share_basics" checked value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Basic Details</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_meds" name="share_meds" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Medical Records</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_assess" name="share_assess" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Assessments</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_pres" name="share_pres" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Prescriptions</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group mt-2">
-                                    <label for="d-block">Share by:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="pdftoemail" name="share" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="share">PDF to Email</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="secure" name="share" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="share">Secure Public Link</label>
-                                    </div>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <label>Share to </label>
-                                    <input type="email" class="form-control" placeholder="Email">
-                                </div>
-                                <small class="d-block">By Clicking the Share Button, you agree that you know what you are doing and you know the consequences</small>
-                                <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Share</button>
-                                <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade custom-modal add-modal" id="message_patient">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Send Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="#" class="needs-validation" novalidate>
-                                
-                                <div class="form-group mt-2">
-                                    <label for="pwd">Message:</label>
-                                    <textarea class="form-control" rows="3" id="description" name="body" required></textarea> 
-                                </div>
-                                <p>Send as sms or Send as Email</p>
-                                <div class="form-group mt-2">
-                                    <label for="pwd">Attachment:</label>
-                                    <input type="file" class="form-control" name="file" multiple> 
-                                    <small>Can attach multiple files</small>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Send</button>
-                                <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade custom-modal add-modal" id="delete_patient">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger">Delete Patient</h5>
+                    <h5 class="modal-title text-danger">Delete Item</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -814,64 +646,6 @@
 @endsection
 @push('scripts')
     <script>
-        $(document).on('click',".add_condition", function() {
-            console.log("condition")
-            var condition = ` 
-                                <div class="row my-4 condition">
-                                    <div class="col-md-7">
-                                        <div class="form-group">  
-                                            <label class="text-muted text-center">Previous Medical Condition</label>                                        
-                                            <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                            <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                                            <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
-                                            <button type="button" class="btn btn-danger remove_condition" title="add more"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                    <div class="col-md-12 medications">
-                                        <div class="med mb-1">
-                                            <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
-                                            <label class="form-check-label mx-3">Effective? </label>
-                                            <label class="form-check-label mx-3">
-                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                            </label>
-                                            <label class="form-check-label mx-3">
-                                                <input type="radio" class="form-check-input" name="optradio">No
-                                            </label>
-                                            <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                        
-                                    </div>     
-                                </div>
-                            `;
-
-            $("#medical_conditions").append(condition);
-        });
-        $(document).on('click',".add_medication", function() {
-            var medication = ` 
-                                <div class="med mb-1">
-                                    <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
-                                    <label class="form-check-label mx-3">Effective? </label>
-                                    <label class="form-check-label mx-3">
-                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                    </label>
-                                    <label class="form-check-label mx-3">
-                                        <input type="radio" class="form-check-input" name="optradio">No
-                                    </label>
-                                    <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
-                                    <button type="button" class="btn btn-sm btn-danger remove_medication" title="remove"><i class="far fa-trash-alt"></i></button>
-                                </div> 
-                            `;
-
-            $(this).closest(".medications").append(medication);
-        });
-        $(document).on('click', '.remove_condition', function() {
-            $(this).closest('.condition').remove();
-        });
-        $(document).on('click', '.remove_medication', function() {
-            $(this).closest('.med').remove();
-        });                                           
+                                                  
     </script> 
-    
 @endpush
