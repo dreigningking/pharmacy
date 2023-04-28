@@ -223,16 +223,17 @@
                             <div class="tab-pane show active" id="basic-justified-tab1">
                                 <div class="pro-widget-content">
                                     <div class="profile-info-widget">
-                                        <a href="#" class="booking-doc-img">
+                                        {{-- <a href="#" class="booking-doc-img">
                                             <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="User Image">
-                                        </a>
-                                        <div class="profile-det-info">
+                                        </a> --}}
+                                         {{-- <div class="profile-det-info">
                                             <h3><a href="patient-profile.html">Richard Wilson</a></h3>
                                             <div class="patient-details">
                                                 <h5><b>Patient ID :</b> PT0016</h5>
                                                 <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</h5>
                                             </div>
-                                        </div>
+                                        </div>  --}}
+                                        <p>Information on the medicines added to the prescription</p>
                                     </div>
                                 </div>
                             </div>

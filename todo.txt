@@ -12,7 +12,7 @@ expected_outcome units should be in labtests or vitals
 
 
 
-
+vg
 permission_id [id,name,abilities]
 pharmacy_role_permissions [id,pharmacy_role_id,permission_id,]
 

@@ -86,7 +86,7 @@
                     <a class="dropdown-item " href="#">
                         <div class="d-flex">
                             <span class="avatar avatar-sm">
-                                <img class="avatar-img rounded-circle" alt="User Image" src="http://localhost/reigntech/pharmacy/public/adminassets/img/doctors/doctor-thumb-01.jpg">
+                                <img class="avatar-img rounded-circle" alt="User Image" src="{{asset('adminassets/img/doctors/doctor-thumb-01.jpg')}}>
                             </span>
                             <div class="media-body pl-3">
                                 <p class="mb-0"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
