@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\GeneralControllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Patient;
+use App\Models\Pharmacy;
 use App\Models\Assessment;
 use Illuminate\Http\Request;
-use App\Models\Pharmacy;
+use App\Http\Controllers\Controller;
 
 class PrescriptionController extends Controller
 {
@@ -25,10 +26,13 @@ class PrescriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Pharmacy $pharmacy,Assessment $assessment = null)
+    public function create(Pharmacy $pharmacy,Assessment $assessment = null,Patient $patient = null)
     {
-        $inventories = $pharmacy->inventories;
-        return view('pharmacy.prescription.create', compact('pharmacy','inventories'));
+        $inventories = $pharmacy->inventories->where('drug_id','!=',null);
+        $patients = $pharmacy->patients;
+        $patient = $patient ? $patient : ($assessment ? $assessment->patient : null);
+        $assessments = $patient ? $pharmacy->patient->assessments : $pharmacy->assessments;
+        return view('pharmacy.prescription.create', compact('pharmacy','patient','patients','inventories','assessment','assessments'));
     }
 
     /**

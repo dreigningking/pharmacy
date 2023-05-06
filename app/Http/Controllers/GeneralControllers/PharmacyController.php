@@ -58,8 +58,9 @@ class PharmacyController extends Controller
         $image = time().'.jpg';
         $request->file('image')->storeAs('public/pharmacies/logos',$image);
         $pharmacy = Pharmacy::create(['name'=> $request->name,'description'=> $request->description,
-                        'email'=> $request->email,'mobile'=> $request->mobile,'image'=> $image,
-                        'type'=> $request->type,'country_id'=> $request->country_id,'state_id'=>$request->state_id,'city_id'=> $request->city_id]);
+                        'email'=> $request->email,'mobile'=> $request->mobile,'image'=> $image, 
+                        'type'=> $request->type,'country_id'=> $request->country_id,'state_id'=>$request->state_id,
+                        'city_id'=> $request->city_id,'address'=> $request->address]);
         $role_id = $role_id = Role::where('name','director')->first()->id;
         $pharmacy->users()->attach($user->id,['role_id'=> $role_id,'status'=> true]);
         $plan = Plan::where('name','pharmacy_subscription')->first();

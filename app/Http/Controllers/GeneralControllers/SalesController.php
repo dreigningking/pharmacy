@@ -5,6 +5,7 @@ namespace App\Http\Controllers\GeneralControllers;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Prescription;
 
 class SalesController extends Controller
 {
@@ -13,9 +14,10 @@ class SalesController extends Controller
         return view('pharmacy.sales.list',compact('pharmacy'));
     }
 
-    public function create(Pharmacy $pharmacy)
+    public function create(Pharmacy $pharmacy,Prescription $prescription = null)
     {
-        return view('pharmacy.sales.create',compact('pharmacy'));
+        $inventories = $pharmacy->inventories;
+        return view('pharmacy.sales.create',compact('pharmacy','inventories','prescription'));
     }
 
     public function store(Request $request)
@@ -29,9 +31,9 @@ class SalesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pharmacy $pharmacy)
     {
-        //
+        return view('pharmacy.sales.view',compact('pharmacy'));
     }
 
     /**

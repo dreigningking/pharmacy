@@ -61,8 +61,9 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
 
         Route::group(['prefix'=>'sales','as'=> 'sales.'], function () {
             Route::get('/', [SalesController::class, 'index'])->name('index');
-            Route::get('/new', [SalesController::class, 'create'])->name('create');
-            Route::post('/store', [SalesController::class, 'store'])->name('store');
+            Route::get('new', [SalesController::class, 'create'])->name('create');
+            Route::get('show', [SalesController::class, 'show'])->name('show');
+            Route::post('store', [SalesController::class, 'store'])->name('store');
         });
       
         Route::group(['prefix'=>'inventory','as'=> 'inventory.'], function () {

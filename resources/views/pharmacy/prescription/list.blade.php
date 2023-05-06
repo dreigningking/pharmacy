@@ -39,10 +39,19 @@
                             <input type="text" class="form-control" placeholder="Name, EMR, Phone, Email">		
                         </div>
                         <div class="filter-widget">
-                            <h4>Complaint/Diagnosis</h4>			
+                            <h4>Containing</h4>			
                         </div>
                         <div class="filter-widget">
-                            <input type="text" class="form-control" placeholder="e.g Headache, High Blood Pressure">		
+                            <input type="text" class="form-control" placeholder="e.g Drug Name">		
+                        </div>
+                        <div class="filter-widget">
+                            <h4>Drug Category</h4>
+                            <div>
+                                <select class="form-control">
+                                    <option>Anti-Malaria</option>
+                                    <option>Anti-Bacteria</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="filter-widget">
                             <h4>Date Range</h4>			
@@ -59,22 +68,17 @@
                         </div>
                         <div class="filter-widget">
                             <h4>Status</h4>
+                            
                             <div>
                                 <label class="custom_check">
                                     <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Awaiting Diagnosis
-                                </label>
-                            </div>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Ongoing Treatment
+                                    <span class="checkmark"></span> Draft
                                 </label>
                             </div> 
                             <div>
                                 <label class="custom_check">
                                     <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Awaiting Followup
+                                    <span class="checkmark"></span> Ongoing Treatment 
                                 </label>
                             </div>
                             <div>
@@ -85,15 +89,7 @@
                             </div> 
                             
                         </div>
-                        <div class="filter-widget">
-                            <h4>Drug Administered</h4>
-                            <div>
-                                <select class="form-control">
-                                    <option>Anti-Malaria</option>
-                                    <option>Anti-Bacteria</option>
-                                </select>
-                            </div>
-                        </div>
+                        
                         <div class="filter-widget">
                             <h4>Staff</h4>
                             <div>
@@ -136,7 +132,7 @@
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Patient</th>
-                                                <th>Diagnosis</th>
+                                                <th>Source</th>
                                                 <th>Items</th>  
                                                 <th>Status</th>
                                                 <th></th>
@@ -144,29 +140,45 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="text-nowrap">14-Nov-2019 <span class="d-block text-info">10.00 AM</span></td>
+                                                <td class="text-nowrap">14-Nov-2019 </td>
                                                 <td>
                                                     USK3834
                                                 </td>
                                                 
-                                                <td>Fever</td>
+                                                <td>Hospital</td>
                                                 <td>Paracetamol,Amoxil + 3more</td>
                                                 <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
                                                 
                                                 <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
+                                                            <i class="far fa-eye"></i> View
                                                         </a>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>14 Nov 2019 <span class="d-block text-info">8.00 PM</span></td>
+                                                <td>14 Nov 2019 </td>
                                                 <td>
                                                     KJSK8232
                                                 </td>
-                                                <td>Headache</td>
+                                                <td>Pharmacist</td>
+                                                <td>Paracetamol,Amoxil + 3more</td>
+                                                
+                                                <td><span class="badge badge-pill bg-dark-light">Draft</span></td>
+                                                
+                                                <td class="text-right">
+                                                    <div class="table-action">
+                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm btn-secondary">
+                                                            <i class="far fa-edit"></i> Edit
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>10 Nov 2019 </td>
+                                                <td>USK3834</td>
+                                                <td>Sales Rep </td>
                                                 <td>Paracetamol,Amoxil + 3more</td>
                                                 
                                                 <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
@@ -174,131 +186,47 @@
                                                 <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
+                                                            <i class="far fa-eye"></i> View
                                                         </a>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>10 Nov 2019 <span class="d-block text-info">11.00 AM</span></td>
-                                                <td>USK3834</td>
-                                                <td>Running Nose </td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                
-                                                <td><span class="badge badge-pill bg-danger-light">Cancelled</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>10 Nov 2019<span class="d-block text-info">3.00 PM</span></td>
+                                                <td>10 Nov 2019</td>
                                                 <td>USK3834</td>
                                                 
-                                                <td>Headache</td>
+                                                <td>Pharmacist</td>
                                                 <td>Paracetamol,Amoxil + 3more</td>
                                                 
-                                                <td><span class="badge badge-pill bg-warning-light">Awaiting Followup</span></td>
+                                                <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
                                                 
                                                 <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="edit-prescription.html" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
+                                                            <i class="far fa-eye"></i> View
                                                         </a>
                                                         
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>9 Nov 2019 <span class="d-block text-info">7.00 PM</span></td>
+                                                <td>9 Nov 2019 </td>
                                                 <td>USK3834</td>
                                                 
                                                 
-                                                <td>Fever</td>
+                                                <td>Hospital</td>
                                                 <td>Paracetamol,Amoxil + 3more</td>
                                                 <td><span class="badge badge-pill bg-success-light">Completed</span></td>
                                                 
                                                 <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
+                                                            <i class="far fa-eye"></i> View
                                                         </a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>8 Nov 2019 <span class="d-block text-info">9.00 AM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                <td>Pain in the knee</td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
                                             
-                                                <td><span class="badge badge-pill bg-danger-light">Cancelled</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>8 Nov 2019 <span class="d-block text-info">6.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                <td>Injury to the head</td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                
-                                                <td><span class="badge badge-pill bg-success-light">Completed</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7 Nov 2019 <span class="d-block text-info">9.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                
-                                                <td>Fever</td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                <td><span class="badge badge-pill bg-info-light">Completed</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6 Nov 2019 <span class="d-block text-info">8.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                
-                                                <td>Fever</td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                <td><span class="badge badge-pill bg-info-light">Completed</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                    
-                                                </td>
-                                            </tr>
                                             
                                         </tbody>
                                     </table>

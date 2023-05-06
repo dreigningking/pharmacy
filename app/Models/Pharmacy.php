@@ -25,7 +25,7 @@ class Pharmacy extends Model
     use HasFactory,Notifiable;
     
     protected $fillable = [
-        'name','description','email','mobile','image','license','type','country_id','state_id','city_id'
+        'name','description','email','mobile','image','license','type','country_id','state_id','city_id','address'
     ];
     public static function boot(){
         parent::boot();
