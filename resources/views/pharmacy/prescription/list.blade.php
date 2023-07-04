@@ -91,7 +91,7 @@
                         </div>
                         
                         <div class="filter-widget">
-                            <h4>Staff</h4>
+                            <h4>Service Provider</h4>
                             <div>
                                 <select class="form-control">
                                     <option>Dr Lewis</option>

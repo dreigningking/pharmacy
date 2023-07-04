@@ -49,7 +49,7 @@
                                         <th style="min-width: 300px">Item</th>
                                         <th style="min-width: 100px">Cost</th>
                                         <th style="min-width: 300px">Batch</th>
-                                        <th style="min-width: 100px;">Quantity</th>
+                                        <th style="min-width: 100px;">#Sales Unit</th>
                                         <th style="min-width: 100px;">Worth</th>
                                         <th style="min-width: 80px;">
                                             <div class="add-more-item text-right">
@@ -131,7 +131,14 @@
                                             </span>
                                         </td>
                                     </tr>
-                                    
+                                    <tr>
+                                        <th>Tax (7.5%):</th>
+                                        <td>
+                                            <span>₦
+                                                <span id="subtotal">0</span>
+                                            </span>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <th>Total Amount:</th>
                                         <td><span>₦<span id="total">0</span></span></td>

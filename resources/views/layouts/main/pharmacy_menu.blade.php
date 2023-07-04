@@ -4,7 +4,7 @@
     </li>
     
     <li class="has-submenu">
-        <a href="#">Patient Electronic Record<i class="fas fa-chevron-down"></i></a>
+        <a href="#">PEMR<i class="fas fa-chevron-down"></i></a>
        <ul class="submenu">
             <li><a href="{{route('pharmacy.assessments.create',$pharmacy)}}">New Assessment</a></li>
             <li><a href="{{route('pharmacy.assessments.index',$pharmacy)}}">All Assessments</a></li>
@@ -22,18 +22,23 @@
     <li class="has-submenu">
         <a href="#">Inventory <i class="fas fa-chevron-down"></i></a>
         <ul class="submenu">
-            <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Items</a> </li>
-            <li><a href="{{route('pharmacy.inventory.purchases.list',$pharmacy)}}">Purchases</a></li>
-            <li><a href="{{route('pharmacy.inventory.transfers.list',$pharmacy)}}">Transfers</a></li>
-            <li><a href="{{route('pharmacy.inventory.settings',$pharmacy)}}">Settings</a></li>
-
             <li class="has-submenu">
-                <a href="{{route('pharmacy.sales.index',$pharmacy)}}">Sales</a>
+                <a href="">Items</a> 
                 <ul class="submenu">
-                    <li><a href="{{route('pharmacy.sales.create',$pharmacy)}}">New Sale</a></li>
-                    <li><a href="{{route('pharmacy.sales.index',$pharmacy)}}">All Sales</a></li>
+                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Drugs</a></li>
+                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Non Drugs</a></li>
                 </ul>
             </li>
+            <li><a href="{{route('pharmacy.inventory.purchases.list',$pharmacy)}}">Purchases</a></li>
+            <li><a href="{{route('pharmacy.inventory.transfers.list',$pharmacy)}}">Transfers</a></li>
+            {{-- <li><a href="{{route('pharmacy.inventory.settings',$pharmacy)}}">Settings</a></li> --}}
+        </ul>
+    </li>
+    <li class="has-submenu">
+        <a href="{{route('pharmacy.sales.index',$pharmacy)}}">Sales <i class="fas fa-chevron-down"></i></a>
+        <ul class="submenu">
+            <li><a href="{{route('pharmacy.sales.create',$pharmacy)}}">New Sale</a></li>
+            <li><a href="{{route('pharmacy.sales.index',$pharmacy)}}">All Sales</a></li>
         </ul>
     </li>
     <li class="has-submenu">

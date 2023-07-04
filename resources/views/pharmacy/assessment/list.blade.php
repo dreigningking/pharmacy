@@ -39,7 +39,7 @@
                             <input type="text" class="form-control" placeholder="Name or EMR">		
                         </div>
                         <div class="filter-widget">
-                            <h4>Complaint/Diagnosis</h4>			
+                            <h4>Diagnosis</h4>			
                         </div>
                         <div class="filter-widget">
                             <input type="text" class="form-control" placeholder="e.g Headache, High Blood Pressure">		
@@ -62,7 +62,7 @@
                             <div>
                                 <label class="custom_check">
                                     <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Awaiting Diagnosis
+                                    <span class="checkmark"></span> Awaiting Final Diagnosis
                                 </label>
                             </div>
                             <div>
@@ -74,7 +74,7 @@
                             <div>
                                 <label class="custom_check">
                                     <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Awaiting Followup
+                                    <span class="checkmark"></span> Undergoing Followup
                                 </label>
                             </div>
                             <div>
@@ -86,7 +86,7 @@
                             
                         </div>
                         <div class="filter-widget">
-                            <h4>Staff</h4>
+                            <h4>Service Provider</h4>
                             <div>
                                 <select class="form-control">
                                     <option>Dr Lewis</option>
@@ -127,7 +127,7 @@
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Patient</th>
-                                                <th>Complaint/Diagnosis</th>
+                                                <th>Diagnosis</th>
                                                 <th>Status</th>
                                                 <th>Staff</th>
                                                 <th></th>

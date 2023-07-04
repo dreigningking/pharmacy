@@ -61,78 +61,7 @@
 
         <div class="row">
             <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-    
-                <!-- Profile Sidebar -->
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Assessment</h4>
-                    </div>
-                    <div class="dashboard-widget">
-                    
-                        <nav class="dashboard-menu">
-                            <ul class="assessment_menus">
-                                <li class="active patient">
-                                    <a href="javascript:void(0)">
-                                        <i class="fas fa-user-injured"></i> <span>Patient</span>
-                                    </a>
-                                </li>
-                                <li class="vitals">
-                                    <a href="javascript:void(0)" >
-                                        <i class="fas fa-thermometer-half"></i>
-                                        <span>Vitals</span>
-                                    </a>
-                                </li>
-                                <li class="complaint">
-                                    <a href="javascript:void(0)">
-                                        <i class="fas fa-sad-cry"></i>
-                                        <span>Complaint</span>
-                                    </a>
-                                </li>
-                                <li class="past_medical_history">
-                                    <a href="javascript:void(0)" >
-                                        <i class="fas fa-book-medical"></i>
-                                        <span>Medical & Medication History</span>
-                                    </a>
-                                </li>
-                                
-                                <li class="family_social_history"> 
-                                    <a href="javascript:void(0)" >
-                                        <i class="fas fa-users"></i>
-                                        <span>Family & Social History</span>
-                                    </a>
-                                </li>
-                                
-                                <li class="review">
-                                    <a href="javascript:void(0)" >
-                                        <i class="fas fa-diagnoses"></i>
-                                        <span>System Review</span>
-                                    </a>
-                                </li>
-                                <li class="provisional_diagnosis">
-                                    <a href="javascript:void(0)" >
-                                        <i class="fas fa-stethoscope"></i>
-                                        <span>Provisional Diagnosis</span>
-                                    </a>
-                                </li>
-                                <li class="laboratory">
-                                    <a href="javascript:void(0)" >
-                                        <i class="fas fa-microscope"></i>
-                                        <span>Laboratory</span>
-                                    </a>
-                                </li>
-                                <li class="final_diagnosis">
-                                    <a href="javascript:void(0)" >
-                                        <i class="fas fa-plus-square"></i>
-                                        <span>Final Diagnosis</span>
-                                    </a>
-                                </li>
-                                
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <!-- /Profile Sidebar -->
-            
+                @include('pharmacy.pemr.menu')
             </div>
 
             <div class="col-md-7 col-lg-8 col-xl-9">
@@ -306,7 +235,7 @@
                                         <div class="card-body">
                                             <div id="vital_assessments">
                                                 <div class="row vitalrows mb-4">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-5">
                                                         <select class="form-control vitalquestions" name="vitals[assessments][]">
                                                             <option value=""></option>
                                                             @foreach ($vitals as $vital)
@@ -314,11 +243,11 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <input type="text" class="form-control" name="vitals[answers][]" placeholder="Result">
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" name="vitals[answers][]">
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <input type="text" class="form-control" name="vitals[answers][]" placeholder="Comment">
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" name="vitals[answers][]">
                                                     </div>
                                                     <div class="col-md-2">
                                                         <a href="javascript:void(0);" class="btn btn-primary add_vitals ml-2"> <i class="fa fa-plus-circle"></i></a>
@@ -577,8 +506,8 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-5">
-                                                        <label>Required Investigation</label>
-                                                        <select class="form-control required_test" multiple name="require_test[assessments][]">
+                                                        <label>Require Test</label>
+                                                        <select class="form-control required_test" name="require_test[assessments][]">
                                                             <option value=""></option>
                                                             @foreach ($labtests as $labtest)
                                                                 <option value="{{$labtest->id}}">{{$labtest->name}}</option>
@@ -609,11 +538,11 @@
                                 <div class="pane " id="laboratory">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4>Requested Investigation</h4>
+                                            <h4>Lab Test</h4>
                                         </div>
                                         <div class="card-body labtest">
                                             <div class="row ">
-                                                <div class="col-md-3">
+                                                <div class="col-md-5">
                                                     <div class="form-group">
                                                         <select name="tests[]" class="form-control select w-100"> 
                                                             @foreach ($labtests as $labtest)
@@ -622,16 +551,12 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-5">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="physical_assessment_value[]" placeholder="Result">
+                                                        <input type="text" class="form-control" name="physical_assessment_value[]">
                                                     </div>    
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" name="physical_assessment_value[]" placeholder="Comment">
-                                                    </div>    
-                                                </div>
+                                                
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <button type="button" class="btn btn-sm btn-info add_test " title="add more"><i class="fa fa-plus"></i></button>
@@ -662,7 +587,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <label>Condition</label>
                                                     <select class="form-control final_diagnosis" name="final_diagnosis[assessments][]">
                                                         <option value=""></option>
@@ -671,7 +596,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <label>Expected Outcome</label>
                                                     <select class="form-control expected_outcome" name="expected_outcome[assessments][]">
                                                         <option value=""></option>
@@ -679,14 +604,6 @@
                                                             <option value="{{$labtest->id}}">{{$labtest->name}}</option>
                                                         @endforeach
                                                     </select>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    
-                                                    <div class="form-group">
-                                                        <label class="mt-5"></label>
-                                                        <button type="button" class="btn btn-sm btn-info add_final " title="add more"><i class="fa fa-plus"></i></button>
-                                                        <button type="button" class="btn btn-sm btn-danger remove_final " title="remove more"><i class="fa fa-trash"></i></button>
-                                                    </div>
                                                 </div>
                                             </div>
                                             
@@ -697,8 +614,8 @@
                                                     <div class="call-foot">
                                                         <div class="d-md-flex justify-content-between">
                                                             <a href="javascript:void(0)" class="btn btn-primary previous"> <i class="fa fa-arrow-left"></i> Previous  </a>   
-                                                            <button type="submit" name="action" value="draft" class="btn btn-dark"> Save & move to prescription </button>   
-                                                            {{-- <button type="submit" name="action" value="complete" class="btn btn-info"> Conclude & Prescribe Medicine <i class="fa fa-arrow-right"></i></button>    --}}
+                                                            <button type="submit" name="action" value="draft" class="btn btn-dark"> Save Assessment </button>   
+                                                            <button type="submit" name="action" value="complete" class="btn btn-info"> Conclude & Prescribe Medicine <i class="fa fa-arrow-right"></i></button>   
                                                         </div>
                                                     </div>
                                                 </div>

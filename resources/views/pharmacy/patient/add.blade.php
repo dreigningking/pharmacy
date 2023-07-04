@@ -125,19 +125,25 @@
                                                         <input type="email" class="form-control" name="email">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="form-label">Phone Number</label>
                                                         <input type="text" class="form-control" name="mobile">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Address <small>(optional)</small></label>
+                                                        <input type="text" class="form-control" name="address">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label class="form-label">Age</label>
                                                         <input type="number" min="1" class="form-control" name="age_today">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group ">
                                                         <label class="form-label">Gender</label>
                                                         <select class="form-control" id="gender" name="gender">
@@ -146,13 +152,8 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Address <small>(optional)</small></label>
-                                                        <input type="text" class="form-control" name="address">
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-6">
+                                                 
+                                                <div class="col-md-2">
                                                     <div class="form-group ">
                                                         <label class="form-label">Genotype</label>
                                                         <select class="form-control" id="genotype" name="genotype">
@@ -163,7 +164,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-2">
                                                     <div class="form-group ">
                                                         <label class="form-label">Blood Type</label>
                                                         <select class="form-control" id="bloodtype" name="bloodtype">

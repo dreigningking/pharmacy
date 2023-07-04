@@ -28,7 +28,7 @@ Route::group(['as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
         Route::group(['prefix'=>'patients','as'=> 'patients.'], function () {
             Route::get('/', [PatientController::class, 'index'])->name("index");
             Route::get('view/{patient}', [PatientController::class, 'view'])->name("view");        
-            // Route::get('new', [PatientController::class, 'create'])->name("create");
+            Route::get('new', [PatientController::class, 'create'])->name("create");
             Route::post('store', [PatientController::class, 'store'])->name("store");
             Route::post('update', [PatientController::class, 'update'])->name("update");
             Route::post('delete', [PatientController::class, 'destroy'])->name("destroy");

@@ -51,17 +51,25 @@ fa user-md, fa medkit,fa heartbeat,fa plus-square,fa ambulance,fa wheelchair-alt
 
 DATABASE TABLES
 patient
-assessment [id|patient_id|complaint|staff|status]
+patient_family_history [patient_id|family_history_id|result]
 
-patient_comp
-patient_medical_history [assessment_id|condition|start|end|created_at]
-patient_medication_history [assessment_id|medical_history_id|drug_id|start|end|is_effective|created_at]
+assessment [id|patient_id||status]
+patient_complaint [assessment_id|patient_id|complaint_id]
+patient_vitals [assessment_id, vital_id, result]
+
+patient_medical_history [assessment_id (nullable)|patient_id|condition_id|start|end|created_at]
+patient_medication_history [assessment_id (nullable)|patient_id|medical_history_id|drug_id|start|end|is_effective|created_at]
+patient_system_review [assessment_id|patient_id|system_review_id|result]
+patient_laboratory [assessment_id|patient_id|laboratory_id|result]
+patient_diagnosis [assessment_id|patient_id|condition_id|laboratory_test_id]
 
 
 Non Medication advise is a drop down
 
 
 09023986401
+
+break assessment into separate pages
 
 
 
@@ -83,3 +91,13 @@ Your presence is more than your words
 david proved his love for God by his presence
 3. your love
 Your love for God is what goes beyond the law of moses
+
+
+one assessment, multiple appointment
+use appointment to determine ongoing follow-up
+
+medication advise is for each drug in a prescription -- can be multiple
+
+non medication advise is for the disease/diagnosis -- can be multiple
+
+add purchase history to an item

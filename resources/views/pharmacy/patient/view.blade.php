@@ -97,7 +97,7 @@
                                 <li>
                                     <a href="#delete_patient" data-toggle="modal" class="text-danger">
                                         <i class="fas fa-trash"></i>
-                                        <span>Delete Patient</span>
+                                        <span>Archive Patient</span>
                                     </a>
                                 </li>
                                 
@@ -125,6 +125,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#prescription" data-toggle="tab"><span>Prescription</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sales" data-toggle="tab"><span>Sales</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -203,7 +206,7 @@
                                                             <option value="">Drinks Igbo</option>
                                                             <option value="">Sniffs Cocaine</option>
                                                         </select>
-                                                        <small class="form-text text-muted">Note : Type & Press  enter to add new specialization</small>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
@@ -296,7 +299,7 @@
                                             <table class="table datatable table-hover table-center mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Pharmacist</th>
+                                                        <th>Service Provider</th>
                                                         <th>Date</th>
                                                         <th>Complaint</th>
                                                         <th>Diagnosis</th>
@@ -551,8 +554,8 @@
                                                     <tr>
                                                         <th>Date </th>
                                                         <th>Created by </th>
-                                                        <th>Condition</th>									
-                                                        <th>Contents</th>									
+                                                        <th>Diagnosis</th>									
+                                                        <th>Drugs</th>									
                                                         <th></th>
                                                     </tr>     
                                                 </thead>
@@ -605,6 +608,90 @@
                                                             </h2>
                                                         </td>
                                                         <td>Fever</td>
+                                                        <td>Paracetamol, Amozil, Lonart </td>
+                                                        <td class="text-right">
+                                                            <div class="table-action">
+                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                                                                    <i class="far fa-eye"></i> View
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>	
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Prescription Tab -->
+
+                            <!-- Prescription Tab -->
+                            <div class="tab-pane fade" id="sales">
+                                <div class="">
+                                    <a href="add-prescription.html" class="add-new-btn">New Sales</a>
+                                    <a href="add-prescription.html" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Sales</a>
+                                </div>
+                                <div class="card card-table mb-0">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table datatable table-hover table-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date </th>
+                                                        <th>Sold by </th>
+                                                        <th>Items</th>																	
+                                                        <th></th>
+                                                    </tr>     
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>14 Nov 2013</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
+                                                                </a>
+                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>Dental</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        
+                                                        <td>Paracetamol, Amozil, Lonart </td>
+                                                        <td class="text-right">
+                                                            <div class="table-action">
+                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                                                                    <i class="far fa-eye"></i> View
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14 Nov 2013</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
+                                                                </a>
+                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>Hycent Pharmacy</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        
+                                                        <td>Paracetamol, Amozil, Lonart </td>
+                                                        <td class="text-right">
+                                                            <div class="table-action">
+                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                                                                    <i class="far fa-eye"></i> View
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14 Nov 2013</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>ABC Hospital</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        
                                                         <td>Paracetamol, Amozil, Lonart </td>
                                                         <td class="text-right">
                                                             <div class="table-action">
@@ -773,7 +860,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger">Delete Patient</h5>
+                    <h5 class="modal-title text-danger">Archive Patient</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -782,7 +869,7 @@
                     <div class="row">
                         <div class="col-12">
                             <form action="" class="needs-validation" novalidate>
-                                <p>You are about to delete the records of Olamuyiwa Orepoms. Please note that this action is non-reversible.<br> The following will be deleted: </p>
+                                <p>You are about to archive the records of Olamuyiwa Orepoms. Please note that this action is non-reversible.<br> The following will be archived: </p>
                                 <ul class="mt-2">
                                     
                                         <li>
@@ -799,8 +886,8 @@
                                         </li>
                                     
                                 </ul>
-                                <small class="d-block">By Clicking the Delete Button, you agree that you know what you are doing and you know the consequences</small>
-                                <button type="submit" class="btn btn-danger pl-4 pr-4 mt-2">Delete</button>
+                                <small class="d-block">By Clicking the Archive Button, you agree that you know what you are doing and you know the consequences</small>
+                                <button type="submit" class="btn btn-danger pl-4 pr-4 mt-2">Archive</button>
                                 <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
                             </form>
                         </div>

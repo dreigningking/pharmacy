@@ -43,7 +43,7 @@
                             <div class="feature-item text-center col-md-3 mb-2">
                                 <a href="{{route('pharmacy.patients.index',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-03.jpg')}}" class="img-fluid" alt="Feature">
-                                    <p>Patients</p>
+                                    <p>PEMR</p>
                                 </a>
                             </div>
                             <div class="feature-item text-center col-md-3 mb-2">

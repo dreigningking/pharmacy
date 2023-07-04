@@ -57,45 +57,10 @@
                                 <input type="text" class="form-control datetimepicker" placeholder="To Date">
                             </div>			
                         </div>
+                        
+                        
                         <div class="filter-widget">
-                            <h4>Status</h4>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Awaiting Diagnosis
-                                </label>
-                            </div>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Ongoing Treatment
-                                </label>
-                            </div> 
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Awaiting Followup
-                                </label>
-                            </div>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Completed
-                                </label>
-                            </div> 
-                            
-                        </div>
-                        <div class="filter-widget">
-                            <h4>Drug Administered</h4>
-                            <div>
-                                <select class="form-control">
-                                    <option>Anti-Malaria</option>
-                                    <option>Anti-Bacteria</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="filter-widget">
-                            <h4>Staff</h4>
+                            <h4>Service Provider</h4>
                             <div>
                                 <select class="form-control">
                                     <option>Dr Lewis</option>

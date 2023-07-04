@@ -81,6 +81,12 @@
                             <div>
                                 <label class="custom_check">
                                     <input type="checkbox" name="gender_type" checked>
+                                    <span class="checkmark"></span> Expiring (within 6months)
+                                </label>
+                            </div>
+                            <div>
+                                <label class="custom_check">
+                                    <input type="checkbox" name="gender_type" checked>
                                     <span class="checkmark"></span> Out of Stock
                                 </label>
                             </div> 
@@ -115,7 +121,7 @@
                                 <div class="d-flex justify-content-between mb-4">
                                     <h3>Inventory</h3>
                                     <div>
-                                        <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Reupload Inventory <i class="fa fa-upload"></i></a>
+                                        <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Upload Inventory <i class="fa fa-upload"></i></a>
                                         <a class="btn btn-dark" data-toggle="modal" href="#items">New Item</a>
                                     </div>
                                     

@@ -97,9 +97,9 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-4">
                                     <h3>Patients</h3>
-                                    {{-- <a class="btn btn-primary btn-lg"
+                                    <a class="btn btn-primary btn-lg"
                                         href="{{route('pharmacy.patients.create',$pharmacy)}}">New
-                                        Patient</a> --}}
+                                        Patient</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="datatable table table-hover table-center mb-0">

@@ -55,7 +55,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-4">
-                                <h4 class="d-block">Assessment</h4>
+                                <h4 class="d-block">Previous Assessment Record</h4>
                                 <select name="supplier_id" id="supplier_select" class="form-control " required>
                                     @foreach($assessments as $assess)
                                         <option value="">{{$assess->slug}}</option>
@@ -75,13 +75,15 @@
                         <div class="user-tabs mb-3">
                             <ul class="nav nav-tabs nav-tabs-bottom nav-justified flex-wrap">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#billing" data-toggle="tab"> <span>Add Prescription</span> </a>
+                                    <a class="nav-link active" href="#billing" data-toggle="tab"> <span>Medication planning</span> </a>
                                 </li> 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#assessments" data-toggle="tab">Medical Planning</a>
+                                    <a class="nav-link" href="#assessments" data-toggle="tab">Check the profile of the patient’s
+                                        medications</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#prescription" data-toggle="tab"><span>Interaction Chamber</span></a>
+                                    <a class="nav-link" href="#prescription" data-toggle="tab"><span>Check the
+                                        interaction profile of the patient’s medications</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -98,10 +100,10 @@
                                             <table class="table table-hover table-center">
                                                 <thead>
                                                     <tr>
-                                                        <th style="min-width: 300px">Name</th>
+                                                        <th style="min-width: 300px">Select patient’s medications</th>
                                                         <th style="min-width: 100px">Quantity Per dose</th>
                                                         <th style="min-width: 100px">Duration</th>
-                                                        <th style="min-width: 100px;">Time</th>
+                                                        <th style="min-width: 100px;">Frequency</th>
                                                         <th style="min-width: 80px;">
                                                             <div class="add-more-item text-right">
                                                                 <a href="javascript:void(0);" id="add_prescription_item"><i class="fas fa-plus-circle"></i> Add Item</a>
@@ -126,26 +128,15 @@
                                                             <input class="form-control" type="number" placeholder="Number of days">
                                                         </td>
                                                         <td>
-                                                            <div class="form-check form-check-inline">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"> Morning
-                                                                </label>
+                                                            <div class="">
+                                                                <select class="form-control">
+                                                                    <option>1</option>
+                                                                    <option>2</option>
+                                                                    <option>3</option>
+                                                                    <option>4</option>
+                                                                </select>
                                                             </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"> Afternoon
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"> Evening
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"> Night
-                                                                </label>
-                                                            </div>
+                                                            
                                                         </td>
                                                         <td>
                                                             <a href="javascript:void(0);" class="btn bg-danger-light trash remove_prescription_item"><i class="far fa-trash-alt"></i></a>
@@ -193,6 +184,28 @@
                                                     </tr> --}}
                                                 </tbody>
                                             </table>
+                                        </div>
+                                        <div class="row p-5">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Medication Advise</label>
+                                                    <select name="" id="" class="form-control select2" multiple>
+                                                        <option value="">Take your drugs with food</option>
+                                                        <option value="">Complete all the antibiotics</option>
+                                                        <option value="">Stop the pain reliever when pain and fever are gone</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Non-Medication Advise</label>
+                                                    <select name="" id="" class="form-control select2" multiple>
+                                                        <option value="">Avoid Smoke-filled environment</option>
+                                                        <option value="">Sleep early</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -460,6 +473,8 @@
     
 <script>
     var prescription
+    $('.select2').select2()
+
     $(document).ready(function(){
         prescription = $('.prescription_row').last().prop("outerHTML");
         $('.prescription_inventory').select2({width:'100%',placeholder:'Select'});

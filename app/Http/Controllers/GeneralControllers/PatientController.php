@@ -23,11 +23,11 @@ class PatientController extends Controller
         return view('pharmacy.patient.view', compact('pharmacy','patient'));
     }
     
-    // public function create(Pharmacy $pharmacy){
-    //     $conditions = Condition::all();
-    //     $medicines = Medicine::all();
-    //     return view('pharmacy.patient.add', compact('pharmacy','conditions','medicines'));
-    // }
+    public function create(Pharmacy $pharmacy){
+        $conditions = Condition::all();
+        $medicines = Medicine::all();
+        return view('pharmacy.patient.add', compact('pharmacy','conditions','medicines'));
+    }
 
     
     public function store(Pharmacy $pharmacy, Request $request){
