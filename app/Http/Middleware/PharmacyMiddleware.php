@@ -18,7 +18,7 @@ class PharmacyMiddleware
     {
         // dd($request->route('pharmacy'));
         if($request->user()->pharmacies->isEmpty())
-        return redirect()->route('setup');
+        return redirect()->route('pharmacy.setup');
         // if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->isEmpty())
         // return redirect()->route('workspaces');
         // if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->where('pivot.status',false)->isNotEmpty())

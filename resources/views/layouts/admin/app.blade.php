@@ -227,15 +227,12 @@
 								</ul>
 							</li>
 							@endif
-							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('role'))
-							<li class="submenu">
-								<a href="#"><i class="fe fe-vector"></i> <span> Roles </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="{{route('admin.roles.staff')}}">Admin</a></li>
-									<li><a href="{{route('admin.roles.pharmacy')}}">Pharmacies</a></li>
-								</ul>
+							@if(auth()->user()->isRole('admin'))
+							<li @if(Route::is('admin.roles.staff')) class="active" @endif> 
+								<a href="{{route('admin.roles.staff')}}"><i class="fe fe-building"></i> <span>Role Permissions</span></a>
 							</li>
 							@endif
+							
 							@if(auth()->user()->isRole('admin') || auth()->user()->role->hasPermission('system_settings'))
 							<li @if(Route::is('admin.settings')) class="active" @endif> 
 								<a href="{{route('admin.settings')}}"><i class="fe fe-gear"></i> <span>Settings</span></a>

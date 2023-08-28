@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
 class SubscriptionMiddleware
@@ -11,13 +12,17 @@ class SubscriptionMiddleware
     
     public function handle(Request $request, Closure $next)
     {
+        // dd($request->route('pharmacy'));
         if($request->route('pharmacy')){
-            if(!$request->route('pharmacy')->license || !$request->route('pharmacy')->license->active()){
-                return redirect()->route('pricing'); //user subscription page
+            if(!$request->route('pharmacy')->activeLicense){
+                if($request->user()->id == $request->route('pharmacy')->owner_id){
+                    return redirect()->route('subscription.show');
+                }else{
+                    Auth::logout();
+                }
             }
-        }elseif($request->user()->subscriptions->isEmpty() || $request->user()->subscriptions->where('status',true)->isEmpty()){
-            return redirect()->route('pricing');
         }
         return $next($request);
+        
     }
 }

@@ -31,36 +31,53 @@
 
             <div class="offset-1 col-10">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h3>Inventory Start</h4>
-                                <div class="d-flex justify-content-between my-2">
-                                    <button class="btn btn-dark">View Instructions</button>
-                                    <button class="btn btn-primary">Download 0 Drugs</button>
-                                    <button class="btn btn-success">Upload Inventory</button>
-                                    <button class="btn btn-info">Download Sample Data</button>   
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="datatable table table-hover table-bordered table-center mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th><input type="checkbox"></th>
-                                                <th>Drug Name</th>
-                                                <th>Contents</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($drugs->sortBy('name') as $drug)
-                                            <tr>
-                                                <td><input type="checkbox"></td>
-                                                <td><a href="invoice.html">{{$drug->name}}</td>
-                                                <td>{{implode(',',$drug->ingredients->pluck('name')->toArray())}}</td>   
-                                            </tr>
-                                            @endforeach
-                                            
-                                        </tbody>
-                                    </table>
+                                <h3 class="card-title d-flex justify-content-between">
+                                    <span>Non Drug Upload Instructions</span> 
+                                    {{-- <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a> --}}
+                                </h3>
+                                <p class="text-muted mb-0 mb-sm-3">Uploading from excel is simple. Prepare the document in the following format:</p>
+                                <p class="text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">inventory.xls</span> (i.e with excel extension) </p>
+                                <p class="text-muted mb-0 mb-sm-3">Create the content in the format below. Take note of the table headers that they are written in small textcases </p>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Type</th>
+                                        <th>Type</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Eat well before taking medicine</td>
+                                        <td>medical</td>
+                                        <td>medical</td>
+                                        <td>medical</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sleep atleast 6 hours daily</td>
+                                        <td>non-medical</td>
+                                        <td>non-medical</td>
+                                        <td>non-medical</td>
+                                    </tr>
+                                </table>
+                                <div class="my-3">
+                                    <form class="row" action="" method="POST" enctype="multipart/form-data">@csrf
+                                        <div class="col-6">
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label">Upload File</label>
+                                                <div class="col-lg-9">
+                                                    <input type="file" name="drugs" class="form-control" required accept=".xlsx,.xls">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                    <div class="col-6">
+                                        <div class="form-group" action="">
+                                            <a href="#" class="btn btn-lg  btn-primary">Upload</a>
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>

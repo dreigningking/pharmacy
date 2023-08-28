@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\City;
 use App\Models\Role;
 use App\Models\Order;
+use App\Models\State;
 use App\Models\Country;
+use App\Models\License;
+use App\Models\SmsUnit;
 use App\Models\Pharmacy;
 use App\Models\Permission;
-use App\Models\PharmacyUser;
-use App\Models\Subscription;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -21,7 +23,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes;
     
     protected $fillable = [
-        'name','email','password','pharmacy_id','role_id','admin','require_password_change','country_id','state_id','city_id',
+        'name','type','email','password','pharmacy_id','role_id','require_password_change','country_id','state_id','city_id',
     ];
 
     /**
@@ -60,10 +62,14 @@ class User extends Authenticatable
     public function routeNotificationForNexmo($notification){
         return $this->mobile;
     }
-    // public function getNameAttribute()
-    // {
-    //     return ucwords($this->firstname.' '.$this->surname);
-    // }
+    public function getCurrencyAttribute()
+    {
+        return strtolower($this->country->currency_iso);
+    }
+    public function getCurrencySymbolAttribute()
+    {
+        return $this->country->currency_symbol;
+    }
     public function receivesBroadcastNotificationsOn(){
         return 'users.'.$this->id;
     }
@@ -90,7 +96,7 @@ class User extends Authenticatable
     }
 
     public function permissions(){
-        return $this->belongsToMany(Permission::class,'permission_users')->withPivot('list','view','edit','new','remove');
+        return $this->belongsToMany(Permission::class,'permission_users');
     }
     public function hasPermission($value){
         return $this->permissions->where('name',$value)->isNotEmpty();
@@ -114,13 +120,30 @@ class User extends Authenticatable
     public function country(){
         return $this->belongsTo(Country::class);
     }
-
-    public function subscriptions(){
-        return $this->hasMany(Subscription::class);
+    public function state(){
+        return $this->belongsTo(State::class);
     }
-    
-    public function orders(){
-        return $this->hasMany(Order::class);
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
+
+    public function licenses(){
+        return $this->hasMany(License::class);
+    }
+    public function availableLicenses(){
+        // return $this->hasOne(License::class)->ofMany([],function ($query) { $query->where('start_at', '<', now())->where('expire_at','>',now()); });
+        return $this->hasMany(License::class)->where('pharmacy_id',null);
+    }
+    public function activeLicenses(){
+        return $this->hasMany(License::class)->where('pharmacy_id','!=',null)->where('start_at', '<', now())->where('expire_at','>',now());
+    }
+
+    public function smsUnits(){
+        return $this->hasMany(SmsUnit::class);
+    }
+
+    public function availableSmsUnits(){
+        return $this->hasMany(SmsUnit::class)->where('available','>',0);
     }
 
 }

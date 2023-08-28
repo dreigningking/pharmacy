@@ -1,0 +1,44 @@
+REGISTRATION
+SUBSCRIPTION
+TEAM: hard code admin roles and permissions, input pharmacy staff permissions using database
+deleting pharmacy should delete the staff
+expire all trial licenses of a user at the same time
+
+INVENTORY 
+add drugs to pharmacy.
+add single inventory to pharmacy 
+ 
+
+PURCHASE 
+
+TRANSFER
+
+PATIENT 
+
+ASSESSMENT 
+
+PRESCRIPTION 
+
+SALES 
+
+FEEDBACK 
+
+REPORT 
+
+ANALYTICS 
+
+
+Dashboard
+Pharmacies
+Users
+Drug Management 
+Assessment Settings
+Licenses
+Transactions 
+Admins
+Settings: 
+
+
+
+
+

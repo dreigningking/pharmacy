@@ -15,9 +15,9 @@ class PatientObserver
     public function created(Patient $patient)
     {
         //EMR: pharmacy initial, patient first and last initial, phone number last 4 digit, and patient id.
-        $emr = $patient->pharmacy->name[0].$patient->name[0].$patient->name[-1].substr($patient->mobile,-4);
-        $patient->emr = $emr;
-        $patient->save();
+        // $emr = $patient->pharmacy->name[0].$patient->name[0].$patient->name[-1].substr($patient->mobile,-4);
+        // $patient->emr = $emr;
+        // $patient->save();
     }
 
     /**

@@ -118,78 +118,53 @@
                                 
                                 <div class="card mb-0">
                                     <div class="card-body">
-                                        <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                        <form action="{{route('pharmacy.inventory.store', $pharmacy)}}" class="w-100" method="POST">@csrf
                                             <div class="row w-100">
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="form-label">Name</label>
-                                                        <input type="text" class="form-control" value="" name="">
+                                                        <input type="text" class="form-control" value="{{$item->name}}" name="name">
                                                     </div>
                                                 </div>   
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label class="form-label">Category</label>
-                                                        <select class="form-control" id="gender" name="gender">
-                                                            <option value="female">Antibacteria</option>
-                                                            <option value="male">Antiseptic</option>
+                                                        <select class="form-control" id="gender" name="category" @if($item->drug_id) disabled @endif>
+                                                            @if($item->drug_id) <option value="{{$item->drug->category->name}}" selected>{{$item->drug->category->name}}</option> @endif
+                                                            @foreach (explode(',',$pharmacy->categories) as $category)
+                                                                <option value="{{$category}}" @if($item->category == $category) selected @endif>{{$category}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>    
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group ">
                                                         <label class="form-label">Shelf</label>
-                                                        <select class="form-control" id="gender" name="gender">
-                                                            <option value="female" >Shelf A</option>
-                                                            <option value="male" >Shelf B</option>
+                                                        <select class="form-control" id="gendeq" name="shelf">
+                                                            @foreach (explode(',',$pharmacy->shelves) as $shelf)
+                                                                <option value="{{$shelf}}" @if($item->shelf == $shelf) @endif>{{$shelf}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>     
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="form-label">Supplier</label>
-                                                        <select class="form-control" id="gender" name="gender">
-                                                            <option value="female" >ABC LTD</option>
-                                                            <option value="male" >XYZ LTD</option>
-                                                        </select>
-                                                    </div>
-                                                </div>             
+                                                            
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="form-label">Unit Cost</label>
-                                                        <input type="number" class="form-control" name="cost" value="">
+                                                        <input type="number" class="form-control" name="unit_cost" value="{{$item->unit_cost}}">
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Unit Price</label>
-                                                        <input type="number" class="form-control" name="price" value="">
+                                                        <input type="number" class="form-control" name="unit_price" value="{{$item->unit_cost}}">
                                                     </div>
                                                 </div>
-                                                
-                                                {{-- <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Phone Number</label>
-                                                        <input type="number" class="form-control" name="mobile" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Age</label>
-                                                        <input type="text" class="form-control" name="dob" value="">
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Address <small>(optional)</small></label>
-                                                        <input type="text" class="form-control" name="address" value="">
-                                                    </div>
-                                                </div>  --}}
-                                                
+                                                 
                                                 <div class="col-md-12">
                                                     <div class="form-group mt-2">
                                                         <br>
-                                                        <button type="submit" class="btn btn-md btn-info" name="action" value="save">Update</button>
+                                                        <button type="submit" class="btn btn-md btn-info" >Update</button>
                                                     </div>
                                                 </div> 
         
@@ -203,38 +178,74 @@
                             <div class="tab-pane fade" id="medical">
                                 <div class="card mb-0">
                                     <div class="card-body">
-                                        <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                        <form action="{{route('pharmacy.inventory.batches', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                            <input type="hidden" name="inventory_id" value="{{$item->id}}">
                                             <div class="row w-100">
-                                                <div class="col-md-12" id="medical_conditions">
-                                                    <div class="row condition">
+                                                <div class="col-md-12 registrations-info">
+                                                    @foreach ($item->batches as $batch)
+                                                    <div class="row reg-cont">
                                                         <div class="col-md-3">
                                                             <div class="form-group">  
                                                                 <label class="text-muted text-center">Batch Name</label>                                        
-                                                                <input type="text" name="" placeholder="" class=" form-control">
+                                                                <input type="text" name="batch[]" value="{{$batch->number}}" placeholder="Batch Name/Number" class=" form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label class="text-muted text-center">Quantity</label>
-                                                                <input type="number" name="quantity" placeholder="Quantity" class="form-control"> 
+                                                                <input type="number" name="quantity[]" value="{{$batch->quantity}}" placeholder="Quantity" class="form-control"> 
                                                             </div> 
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label class="text-muted text-center">Expiry</label>
-                                                                <input type="date" name="past_history[date][]" placeholder="Year. e.g 2023" class="form-control">
+                                                                <input type="date" name="expire_at[]" value="{{$batch->expire_at->format('Y-m-d')}}" placeholder="Year. e.g 2023" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                                                                <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
+                                                            <label class="d-md-block">&nbsp;</label>
+                                                            <a href="#" class="btn btn-danger btn-block trash">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </a>
                                                         </div>
 
                                                     </div>
+                                                    @endforeach
+                                                    <div class="row reg-cont">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">  
+                                                                <label class="text-muted text-center">Batch Name</label>                                        
+                                                                <input type="text" name="batch[]" placeholder="Batch Name/Number" class=" form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label class="text-muted text-center">Quantity</label>
+                                                                <input type="number" name="quantity[]" placeholder="Quantity" class="form-control"> 
+                                                            </div> 
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label class="text-muted text-center">Expiry</label>
+                                                                <input type="date" name="expire_at[]" placeholder="Year. e.g 2023" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="d-md-block">&nbsp;</label>
+                                                            <a href="#" class="btn btn-danger btn-block trash">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </a>
+                                                        </div>
+                                                        
+
+                                                    </div>
+                                                </div>
+                                                <div class="add-more m-4">
+                                                    <a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Add New</a>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-md btn-info" name="action" value="save">Update</button>
+                                                        <button type="submit" class="btn btn-md btn-info">Update</button>
                                                     </div>
                                                 </div> 
         
@@ -582,12 +593,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /Prescription Tab -->
-
-                            
-                            
-                            
-                                    
+         
                         </div>
                     </div>
                 </div>
@@ -646,6 +652,31 @@
 @endsection
 @push('scripts')
     <script>
-                                                  
+        $(document).ready(function(){
+            regcontent = $('.reg-cont').last().prop("outerHTML");
+        })
+        $(".registrations-info").on('click','.trash', function () {
+            $(this).closest('.reg-cont').remove();
+            return false;
+        });
+            // reg-cont
+        $(document).on('click',".add-reg", function () {
+            $(".registrations-info").append(regcontent);
+            $('.permission').each(function(index,val){
+                $(this).find('.custom-control-input').attr('id','id'+index);  
+                $(this).find('.custom-control-label').attr('for','id'+index); 
+            })
+            $('.reg-cont').each(function(index,val){
+                $(this).find('.custom-control-input').each(function(abc,valu){
+                    let name = $(this).attr('name');
+                    let new_name = name.replace("[]","["+index+"]") 
+                    $(this).attr('name',new_name);
+                    // console.log('index:'+index+',inner:'+abc+',item:'+$(this).attr('name'))
+                })
+                
+            })
+            
+            return false;
+        });                                        
     </script> 
 @endpush

@@ -15,7 +15,11 @@ class Drug extends Model
     use HasFactory;
 
     protected $fillable = ['id','name','dosage_form','manufacturer'];
-            
+    protected $appends = ['category_name'];
+    
+    public function getCategoryNameAttribute(){
+        return $this->category->name;
+    }
     public function ingredients() {
         return $this->belongsToMany(Medicine::class, 'ingredients')->withPivot(['size']);
     }
@@ -35,6 +39,8 @@ class Drug extends Model
     public function category(){
         return $this->belongsTo(DrugCategory::class,'category_id')->withDefault();
     }
+
+    
 
 }
 

@@ -8,10 +8,10 @@
                     <img src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
-                    <h3>{{$user->name}}</h3>
+                    <h3>Bob</h3>
 
                     <div class="patient-details">
-                        <h5 class="mb-0">@if($user->work) {{$user->work}} @endif</h5>
+                        <h5 class="mb-0">Workaholic</h5>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     @if(Auth::user()->isAnyRole(['director']))
                         @usercan('pharmacy','new')
                         <li @if(Route::is('setup')) class="active" @endif>
-                            <a href="{{route('setup')}}">
+                            <a href="{{route('pharmacy.setup')}}">
                                 <i class="fas fa-prescription"></i>
                                 <span>Add Pharmacy</span>
                             </a>

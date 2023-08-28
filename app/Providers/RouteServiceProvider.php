@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/home';
-    public const SETUP = '/setup';
+    public const SETUP = '/pharmacy/setup';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -27,6 +27,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::bind('pharmacy_id', function ($value) {
+            return \App\Models\Pharmacy::where('id', $value)->first();
+        });
+        
         $this->configureRateLimiting();
 
         $this->routes(function () {

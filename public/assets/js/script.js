@@ -369,4 +369,10 @@ Version      : 1.0
 	}
 	$(window).scroll(animateElements);
 	
+	// check all
+	$('#checkbox_master').change(function() {
+	if($(this).is(':checked')){
+		$(this).closest('table').find('tbody .checkboxes').prop('checked',true)
+	}else $(this).closest('table').find('tbody .checkboxes').prop('checked',false)
+	})
 })(jQuery);

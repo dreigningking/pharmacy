@@ -41,10 +41,10 @@
                             <h4 class="card-title mb-0">Search Filter</h4>
                         </div>
                         <div class="card-body">
-                            <form action="#">
+                            <form action="#" method="GET">
                                 <div class="filter-widget">
                                     <div class="">
-                                        <input type="text" name="name" class="form-control" placeholder="Drug Name">
+                                        <input type="text" name="search" class="form-control" placeholder="Drug Name">
                                     </div>		
                                 </div>
                                 <div class="filter-widget">
@@ -64,6 +64,15 @@
                                         </div>
                                     @endforeach
                                 </div>
+                                <div class="filter-widget">
+                                    <h4>Show Drugs in Inventory</h4> 
+                                    <div>
+                                        <label class="custom_check">
+                                            <input type="checkbox" name="show_inventory_drugs" value="1" @if($show_inventory_drugs) checked @endif>
+                                            <span class="checkmark"></span> Show
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="btn-search">
                                     <button type="submit" class="btn btn-block">Search</button>
                                 </div>	
@@ -80,45 +89,54 @@
                             <h4>Add Drugs to Inventory</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
-                                    <div class="dropdown-menu" style="">
-                                        <a class="dropdown-item" href="#">Select All</a>
-                                        <a class="dropdown-item" href="#">Deselect All</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Add to Inventory</a>
-                                    </div>
+                            <form  action="{{route('pharmacy.inventory.store', $pharmacy)}}" method="POST">@csrf
+                                <input type="hidden" name="many" value="1">
+                                <button type="submit"  class="btn btn-secondary mb-3">Add to Inventory </button>
+                            
+                                <div class="table-responsive">
+                                    
+                                    <table class="table table-hover table-bordered table-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th> 
+                                                    <label class="custom_check">
+                                                        <input type="checkbox" id="checkbox_master" value="" >
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </th>
+                                                <th>Drug Name</th>
+                                                <th>Category</th>
+                                                <th>Manufacturer</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($drugs->sortBy('name') as $drug)
+                                            <tr>
+                                                <td> 
+                                                    <label class="custom_check">
+                                                        <input type="checkbox" class="checkboxes" name="drug_id[]" value="{{$drug->id}}">
+                                                        <input type="hidden" name="category[]" value="{{$drug->category->name}}">
+                                                        <input type="hidden" name="name[]" value="{{$drug->name}}">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                <td>{{$drug->name}}</td>
+                                                <td>{{$drug->category->name}}</td>
+                                                <td>{{$drug->manufacturer}}</td>  
+                                                <td>
+                                                    @if($drug->pharmacyInventory($pharmacy->id))
+                                                        <span class="">Added</span>
+                                                    @else
+                                                        <button class="btn btn-sm btn-primary">Add</button>
+                                                    @endif
+                                                </td>  
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <table class="table table-hover table-bordered table-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th> </th>
-                                            <th>Drug Name</th>
-                                            <th>Category</th>
-                                            <th>Manufacturer</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($drugs->sortBy('name') as $drug)
-                                        <tr>
-                                            <td> <input type="checkbox" name="" id=""></td>
-                                            <td>{{$drug->name}}</td>
-                                            <td>{{$drug->name}}</td>
-                                            <td>{{$drug->manufacturer}}</td>  
-                                            <td>
-                                                @if($drug->pharmacyInventory($pharmacy->id))
-                                                    <span class="">Added</span>
-                                                @else
-                                                    <button class="btn btn-sm btn-primary">Add</button>
-                                                @endif
-                                            </td>  
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                            </form>
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-center">

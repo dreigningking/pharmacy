@@ -29,9 +29,9 @@
                     <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Non Drugs</a></li>
                 </ul>
             </li>
-            <li><a href="{{route('pharmacy.inventory.purchases.list',$pharmacy)}}">Purchases</a></li>
-            <li><a href="{{route('pharmacy.inventory.transfers.list',$pharmacy)}}">Transfers</a></li>
-            {{-- <li><a href="{{route('pharmacy.inventory.settings',$pharmacy)}}">Settings</a></li> --}}
+            <li><a href="{{route('pharmacy.purchases.list',$pharmacy)}}">Purchases</a></li>
+            <li><a href="{{route('pharmacy.transfer.list',$pharmacy)}}">Transfers</a></li>
+            <li><a href="{{route('pharmacy.inventory.settings',$pharmacy)}}">Settings</a></li>
         </ul>
     </li>
     <li class="has-submenu">

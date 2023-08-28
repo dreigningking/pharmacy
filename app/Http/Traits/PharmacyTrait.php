@@ -25,6 +25,10 @@ trait PharmacyTrait
             
     }
 
+    protected function getLicense(){
+        return str_shuffle(str_replace('.','',strtoupper(uniqid('',true).time())));
+    }
+
 
     
 }

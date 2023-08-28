@@ -1,5 +1,6 @@
 @extends('layouts.main.app')
 @push('styles')
+<link rel="stylesheet" href="{{asset('plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css')}}">
 <style>
     .select2-container .select2-selection--single{
         height:46px;
@@ -49,7 +50,7 @@
                                     <h3>{{$pharmacy->name}}</h3>
                                     
                                     <div class="patient-details">
-                                        <h5>Inventory</h5>
+                                        <h5>Inventory Settings</h5>
                                         {{-- <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5> --}}
                                     </div>
                                 </div>
@@ -59,32 +60,23 @@
                     <div class="dashboard-widget">
                         <nav class="dashboard-menu">
                             <ul class="nav nav-tabs d-block">
-                                <li>
-                                    <a href="#basic" class="active" data-toggle="tab">
-                                        <i class="fas fa-columns"></i>
+                                <li class="nav-item">
+                                    <a href="#basic" class="nav-link active" data-toggle="tab">
+                                        <i class="fas fa-cog"></i>
                                         <span>Basic</span>
                                     </a>
                                 </li>
                                 
-                                <li>
-                                    <a href="#past_med_history" data-toggle="tab">
-                                        <i class="fas fa-user-injured"></i>
-                                        <span>Shelves</span>
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="#current_med_history" data-toggle="tab">
-            
-                                        <i class="fas fa-pen"></i>
-                                        <span>Categories</span>
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="#family_social_history" data-toggle="tab">
-                                        <i class="fas fa-user"></i>
+                                <li class="nav-item">
+                                    <a href="#suppliers" class="nav-link" data-toggle="tab">
+                                        <i class="fas fa-users"></i>
                                         <span>Suppliers</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#upload" class="nav-link" data-toggle="tab">
+                                        <i class="fas fa-upload"></i>
+                                        <span>Upload</span>
                                     </a>
                                 </li>
                             </ul>
@@ -94,6 +86,9 @@
             </div>
 
             <div class="col-md-7 col-lg-8 col-xl-9">
+                @if(session('flash_message'))
+                    @include('layouts.main.flash')
+                @endif
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="tab-content pt-0">
@@ -103,118 +98,61 @@
                                         <h4>Basic Settings</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form action="#" method="POST">  
+                                        <form action="{{route('pharmacy.settings.others',$pharmacy)}}" method="POST">@csrf  
+                                            <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="row my-4">
-                                                        <p class="col-sm-3 text-muted">Currency</p>
-                                                        <div class="col-sm-7">
-                                                            <select name="" id="" class="form-control">
-                                                                <option value="">Naira</option>
-                                                                <option value="">Dollars</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    {{-- <div class="row my-4">
-                                                        <p class="col-sm-3 text-muted">Package Type</p>
-                                                        <div class="col-sm-7">
-                                                            <select name="" id="" class="form-control">
-                                                                <option value="">Cartons</option>
-                                                                <option value="">Sachets</option>
-                                                                <option value="">Packs</option>
-                                                                <option value="">Cards</option>
-                                                                <option value="">Pills & Bottles</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>    --}}
-                                                    <div class="row my-3">
-                                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Markup</p>
-                                                        <div class="col-md-7">
-                                                            <div class="input-group">
-                                                                <input type="number" class="form-control">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">%</span>
-                                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="" class="text-muted">Markup</label>
+                                                        <div class="input-group">
+                                                            <input type="number" name="mark_up" value="{{$pharmacy->mark_up}}" class="form-control">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">%</span>
                                                             </div>
-                                                        </div>
-                                                    </div>                                                    
-                                                    <div class="row my-3">
-                                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Stock Level</p>
-                                                        <div class="col-md-7">
-                                                            <div class="row no-gutters">
-                                                                <div class="col-md-6">
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text">Min</span>
-                                                                        </div>
-                                                                        <input type="number" class="form-control rounded-0">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text">Max</span>
-                                                                        </div>
-                                                                        <input type="number" class="form-control">
-                                                                    </div>
-                                                                </div>
                                                             
-                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row my-3">
-                                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Restock</p>
-                                                        <div class="col-md-8 form-group mb-0">
-                                                            <select name="" id="" class="form-control">
-                                                                <option value="">Manual Upload</option>
-                                                                <option value="">Via Supplier Purchase</option>
-                                                                
-                                                            </select>
-                    
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <div class="row my-3">
-                                                        <p class="col-md-3 text-muted  mb-0 mb-sm-3">Expiry Alert</p>
-                                                        <div class="col-md-8">
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" class="form-control" placeholder="2">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">Weeks Before Expiry</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <small>This will be applied when product markup is not set</small>
                                                     </div> 
-                                                </div> 
-                                                <div class="col-md-6 ">
-                                                    <div class="row my-3">
-                                                        <div class="col-12 text-muted mb-3">
-                                                            <div class="custom-control custom-checkbox custom-control-inline">
-                                                                <input type="checkbox" id="price_custom" name="rating_option" value="custom_price" class="custom-control-input">
-                                                                <label class="custom-control-label" for="price_custom">Notify on stock level limits</label>
+                                                    <div class="form-group">
+                                                        <label class="text-muted">Stock Levels</label>
+                                                        <div class="d-flex">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">Min</span>
+                                                                </div>
+                                                                <input type="number" name="minimum_stocklevel" value="{{$pharmacy->minimum_stocklevel}}" class="form-control rounded-0">
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">Max</span>
+                                                                </div>
+                                                                <input type="number" name="maximum_stocklevel" value="{{$pharmacy->maximum_stocklevel}}" class="form-control">
                                                             </div>
                                                         </div>
-                                                        <div class="col-12 text-muted mb-3">
-                                                            <div class="custom-control custom-checkbox custom-control-inline">
-                                                                <input type="checkbox" id="price_custom" name="rating_option" value="custom_price" class="custom-control-input">
-                                                                <label class="custom-control-label" for="price_custom">Notify on stock expiry</label>
+                                                        <small>This will be applied when product stock limit is not set</small>
+                                                    </div>                                                  
+                                                    <div class="form-group">
+                                                        <label class="text-muted">Expiry Alert</label>
+                                                        <div class="input-group">
+                                                            <input type="number" min="1" name="expiry_alert_weeks" value="{{$pharmacy->expiry_alert_weeks}}" class="form-control" placeholder="2">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">Weeks Before Expiry</span>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12 text-muted mb-3">
-                                                            <div class="custom-control custom-checkbox custom-control-inline">
-                                                                <input type="checkbox" id="autodelete" name="rating_option" value="custom_price" class="custom-control-input">
-                                                                <label class="custom-control-label" for="autodelete">Auto-Delete expired batch items</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 text-muted mb-3">
-                                                            <div class="custom-control custom-checkbox custom-control-inline">
-                                                                <input type="checkbox" id="autodelete" name="rating_option" value="custom_price" class="custom-control-input">
-                                                                <label class="custom-control-label" for="autodelete">Allow Transfer of Items</label>
-                                                            </div>
-                                                        </div>
+                                                        <small>This will be applied when product expiry alert is not set</small>
                                                     </div>
-                                                    
-                                                    
+                                                </div> 
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label>Shelves</label>
+                                                        <input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="e.g ABC,PQR," name="shelves" value="{{$pharmacy->shelves}}" id="services">
+                                                        <small class="form-text text-muted">Note : Deleting a shelf will not delete items on the shelf, but items will not be shelved</small>
+                                                    </div> 
+                                                    <div class="form-group mb-0">
+                                                        <label>Non Drug Categories </label>
+                                                        <input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="e.g Baby Things,Drinks," name="categories" value="{{$pharmacy->categories}}" id="specialist">
+                                                        <small class="form-text text-muted">Note : Deleting a category will not delete items in the category, but items will not be categorized</small>
+                                                    </div>
                                                     
                                                 </div>
                                                 <div class="col-md-12">
@@ -222,125 +160,72 @@
                                                         <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
                                                     </div>    
                                                 </div>   
-                                            </div>                                             
+                                            </div>                                              
                                             
                                         </form>
                                     </div>
                                 </div>
                             </div> 
-                            <div class="tab-pane fade" id="past_med_history">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Shelves</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <form action="#" class="w-100" method="POST">@csrf
-                                            <div class="row w-100">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">  
-                                                        <label class="text-muted text-center">Name</label>                                        
-                                                        <input type="text" name="medical_history" placeholder="e.g A1" class=" form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-md btn-info btn-block" name="action" value="save">Save</button>  
-                                                    </div> 
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped">
-                                                            <thead>
-                                                                <tr> <th>Name</th> <th>Items</th> <th>Actions</th> </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr> <td> ABC </td><td>20</td> <td>Edit | Delete</td> </tr>
-                                                                <tr> <td> XYZ </td><td>20</td> <td>Edit | Delete</td> </tr>
-                                                                <tr> <td> PQR </td><td>20</td> <td>Edit | Delete</td> </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div> 
-                                                </div>
-                                                
-                                               
-        
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="current_med_history">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Categories</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <form action="#" class="w-100" method="POST">@csrf
-                                            <div class="row w-100">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">  
-                                                        <label class="text-muted text-center">Name</label>                                        
-                                                        <input type="text" name="medical_history" placeholder="e.g First Aid" class=" form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-md btn-info btn-block" name="action" value="save">Save</button>  
-                                                    </div> 
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped">
-                                                            <thead>
-                                                                <tr> <th>Name</th> <th>Items</th> <th>Actions</th> </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr> <td> First Aid </td><td>20</td> <td>Edit | Delete</td> </tr>
-                                                                <tr> <td> First Aid </td><td>20</td> <td>Edit | Delete</td> </tr>
-                                                                <tr> <td> First Aid </td><td>20</td> <td>Edit | Delete</td> </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div> 
-                                                </div>
-                                                
-                                               
-        
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="family_social_history">
+                            <div class="tab-pane fade" id="suppliers">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Suppliers</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form action="#" class="w-100" method="POST">@csrf
+                                        
+                                            <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
                                             <div class="row w-100">
+                                                
                                                 <div class="col-md-4">
-                                                    <div class="form-group">  
-                                                        <label class="text-muted text-center">Name</label>                                        
-                                                        <input type="text" name="medical_history" placeholder="e.g A1" class=" form-control">
-                                                    </div>
-                                                    <div class="form-group">  
-                                                        <label class="text-muted text-center">Email</label>                                        
-                                                        <input type="email" name="medical_history" placeholder="Email Address" class=" form-control">
-                                                    </div>
-                                                    <div class="form-group">  
-                                                        <label class="text-muted text-center">Phone</label>                                        
-                                                        <input type="text" name="medical_history" class=" form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-md btn-info btn-block" name="action" value="save">Save</button>  
-                                                    </div> 
+                                                    <form action="{{route('pharmacy.inventory.suppliers',$pharmacy)}}" class="w-100" method="POST">@csrf
+                                                        <div class="form-group">  
+                                                            <label class="text-muted text-center">Name</label>                                        
+                                                            <input type="text" id="supplier_name" name="name" placeholder="First and Last Name" class=" form-control">
+                                                        </div>
+                                                        <div class="form-group">  
+                                                            <label class="text-muted text-center">Email</label>                                        
+                                                            <input type="email" id="supplier_email" name="email" placeholder="Email Address" class=" form-control">
+                                                        </div>
+                                                        <div class="form-group">  
+                                                            <label class="text-muted text-center">Phone</label>                                        
+                                                            <input type="text" id="supplier_mobile" name="mobile" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-md btn-info btn-block" id="supplier_button">Save</button>  
+                                                        </div> 
+                                                    </form>
                                                 </div>
+                                                
                                                 <div class="col-md-8">
                                                     <div class="table-responsive">
-                                                        <table class="table table-striped">
+                                                        <table class="table table-bordered">
                                                             <thead>
-                                                                <tr> <th>Name</th> <th>Items</th> <th>Actions</th> </tr>
+                                                                <tr> 
+                                                                    <th>#</th> 
+                                                                    <th>Name</th> 
+                                                                    <th>Email</th> 
+                                                                    <th>Phone</th> 
+                                                                    <th>Actions</th> 
+                                                                </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr> <td> ABC </td><td>20</td> <td>Edit | Delete</td> </tr>
-                                                                <tr> <td> XYZ </td><td>20</td> <td>Edit | Delete</td> </tr>
-                                                                <tr> <td> PQR </td><td>20</td> <td>Edit | Delete</td> </tr>
+                                                                @foreach ($pharmacy->suppliers as $supplier)
+                                                                    <tr> 
+                                                                        <td> {{$loop->iteration}} </td>
+                                                                        <td> {{$supplier->name}} </td>
+                                                                        <td> {{$supplier->email}} </td>
+                                                                        <td> {{$supplier->mobile}} </td>
+                                                                        <td> 
+                                                                            <div class="d-flex">
+                                                                            <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary edit-supplier" data-supplier_email="{{$supplier->email}}" data-supplier_mobile="{{$supplier->mobile}}" data-supplier_name="{{$supplier->name}}"> <i class="fa fa-pen"></i></a>  
+                                                                            <form action="{{route('pharmacy.inventory.suppliers',$pharmacy)}}" class="d-inline" method="POST" onsubmit="return confirm('Are you want you want to delete supplier')">@csrf
+                                                                                <input type="hidden" name="supplier_id" value="{{$supplier->id}}">
+                                                                                <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
+                                                                            </form>
+                                                                            </div>
+                                                                        </td> 
+                                                                    </tr>
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div> 
@@ -349,10 +234,78 @@
                                                
         
                                             </div>
-                                        </form>
+                                        
                                     </div>
                                 </div>
                             </div> 
+                            <div class="tab-pane fade" id="upload">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Upload</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title d-flex justify-content-between">
+                                                            <span>Non Drug Upload Instructions</span> 
+                                                            {{-- <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a> --}}
+                                                        </h3>
+                                                        <p class="text-muted mb-0 mb-sm-3">Uploading from excel is simple. Prepare the document in the following format:</p>
+                                                        <p class="text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">inventory.xls</span> (i.e with excel extension) </p>
+                                                        <p class="text-muted mb-0 mb-sm-3">Create the content in the format below. Take note of the table headers that they are written in small textcases </p>
+                                                        <table class="table table-bordered">
+                                                            <tr>
+                                                                <th>name</th>
+                                                                <th>category</th>
+                                                                <th>shelf</th>
+                                                                <th>unit_cost</th>
+                                                                <th>unit_price</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Pampas</td>
+                                                                <td>Baby Things</td>
+                                                                <td>XYZ</td>
+                                                                <td>20</td>
+                                                                <td>30</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Coca Cola</td>
+                                                                <td>Drinks</td>
+                                                                <td>Consumables</td>
+                                                                <td>10</td>
+                                                                <td>15</td>
+                                                            </tr>
+                                                        </table>
+                                                        <div class="my-3">
+                                                            <form class="row" action="{{route('pharmacy.inventory.import',$pharmacy)}}" method="POST" enctype="multipart/form-data">@csrf
+                                                                <div class="col-md-6">
+                                                                    <a href="#"><u>Download example file format</u> </a>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
+                                                                    <div class="input-group">
+                                                                        <label class="p-2 input-group-prepend">Upload File</label>
+                                                                        <input type="file" name="inventories" class="form-control" required accept=".xlsx,.xls">
+                                                                        <div class="input-group-append">
+                                                                            <button type="submit" class="btn btn-primary">Upload</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                            </form>
+                                                            
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             
                         </div>
                     </div>
@@ -366,104 +319,23 @@
 <!-- /Page Content -->
 
 @endsection
+
+
 @push('scripts')
+<script src="{{asset('plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js')}}"></script>
     <script>
-        $(document).on('click',".add_condition", function() {
-            
-            var condition = ` 
-                                <div class="row my-4 condition">
-                                    <div class="col-md-5">
-                                        <div class="form-group">  
-                                            <label class="text-muted text-center">Previous Medical Condition</label>                                        
-                                            <select name="previous_history['condition']" placeholder="Condition name" class="select form-control">
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">  
-                                            <label class="text-muted text-center">When did it happen</label>    
-                                            <div class="input-group">
-                                                <input type="month" name="previous_history['year']" placeholder="Year. e.g 2023" class="form-control">
-                                            </div>                                    
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                                            <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
-                                    </div>
-                                    <div class="col-md-12 medications">
-                                        <div class="row med mb-1">
-                                            <div class="col-md-4">
-                                                <select name="previous_history['medicine']" placeholder="Medication used" class="select form-control-sm"> 
-                                                    
-                                                </select>
-                                            </div>
-                                            <div class="col-md-3 pt-2">
-                                                <label for="d-block">Effective?</label>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="yes" name="previous_history['medicine_effectiveness']" value="custom_price" class="custom-control-input">
-                                                    <label class="custom-control-label" for="yes">Yes</label>
-                                                </div>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="no" name="previous_history['medicine_effectiveness']" value="custom_price" class="custom-control-input">
-                                                    <label class="custom-control-label" for="no">No</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
-                                                <button type="button" class="btn btn-sm btn-danger remove_medication" title="remove"><i class="far fa-trash-alt"></i></button>
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            `;
+        $(document).ready(function ($) {
+            let selectedTab = window.location.hash;
+            $('.nav-link[href="' + selectedTab + '"]' ).trigger('click');
+            $('.nav-link[href="' + selectedTab + '"]' ).addClass('active');
+        })
 
-            $("#medical_conditions").append(condition);
-        });
-        $(document).on('click',".add_medication", function() {
-            var medication = ` 
-                                <div class="col-md-12 medications">
-                                    <div class="row med mb-1">
-                                        <div class="col-md-4">
-                                            <select name="previous_history['medicine']" placeholder="Medication used" class="select form-control-sm"> 
-                                                
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3 pt-2">
-                                            <label for="d-block">Effective?</label>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="yes" name="previous_history['medicine_effectiveness']" value="custom_price" class="custom-control-input">
-                                                <label class="custom-control-label" for="yes">Yes</label>
-                                            </div>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="no" name="previous_history['medicine_effectiveness']" value="custom_price" class="custom-control-input">
-                                                <label class="custom-control-label" for="no">No</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
-                                            <button type="button" class="btn btn-sm btn-danger remove_medication" title="remove"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            `;
-
-            $(this).closest(".medications").append(medication);
-        });
-        $(document).on('click', '.remove_condition', function() {
-            $(this).closest('.condition').remove();
-        });
-        $(document).on('click', '.remove_medication', function() {
-            $(this).closest('.med').remove();
-        });
-
-    
+        $('.edit-supplier').on('click',function(){
+            $('#supplier_name').val($(this).attr('data-supplier_name'))
+            $('#supplier_email').val($(this).attr('data-supplier_email'))
+            $('#supplier_mobile').val($(this).attr('data-supplier_mobile'))
+            $('#supplier_button').text('Update');
+        })
 
                                                     
     </script>

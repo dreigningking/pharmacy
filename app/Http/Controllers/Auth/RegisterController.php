@@ -53,7 +53,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         if(Auth::check())
-        return redirect()->route('setup');
+        return redirect()->route('pharmacy.setup');
         else return view('auth.register');
     }
 
@@ -64,7 +64,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
-            'user_type' => ['required', 'string'],
+            'type' => ['required', 'string'],
         ]);
     }
 
@@ -79,12 +79,12 @@ class RegisterController extends Controller
         $info = $this->getLocation();
         return User::create([
             'name' => $data['name'],
-            'user_type' => $data['user_type'],
+            'type' => $data['type'],
             'email' => $data['email'],
             'country_id' => $info['country_id'], 
             'state_id' => $info['state_id'], 
             'city_id' => $info['city_id'], 
-            'role_id' => 2, 
+            'role_id' => 7, 
             'password' => Hash::make($data['password']),
         ]);
     }

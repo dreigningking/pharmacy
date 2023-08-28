@@ -37,7 +37,9 @@
 <!-- Page Content -->
 <div class="content">
     <div class="container-fluid">
-
+        @if(session('flash_message'))
+            @include('layouts.main.flash')
+        @endif
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <div class="card">

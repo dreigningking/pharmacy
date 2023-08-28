@@ -10,12 +10,13 @@ use App\Models\Pharmacy;
 use App\Models\PurchaseDetail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventory extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $appends = ['cost'];
-    protected $fillable = ['drug_id','pharmacy_id','name','shelf_id','profit','unit_price','unit_cost'];
+    protected $fillable = ['drug_id','pharmacy_id','name','shelf','category','unit_price','unit_cost'];
     
 
     public function pharmacy(){
@@ -24,12 +25,6 @@ class Inventory extends Model
 
     public function Drug(){
         return $this->belongsTo(Drug::class);
-    }
-
-    public function shelf(){
-        return $this->belongsTo(Shelf::class)->withDefault([
-            'name' => '',
-        ]);
     }
     
     public function expired(){

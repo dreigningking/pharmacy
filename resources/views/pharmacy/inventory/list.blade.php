@@ -121,7 +121,7 @@
                                 <div class="d-flex justify-content-between mb-4">
                                     <h3>Inventory</h3>
                                     <div>
-                                        <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Upload Inventory <i class="fa fa-upload"></i></a>
+                                        {{-- <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Upload Inventory <i class="fa fa-upload"></i></a> --}}
                                         <a class="btn btn-dark" data-toggle="modal" href="#items">New Item</a>
                                     </div>
                                     
@@ -134,7 +134,7 @@
                                         <tr>
                                             <td> <button class="btn btn-outline-dark actionbuttons disabled" id="purchase" disabled>Purchase <i class="fa fa-shopping-cart"></i></button></td>
                                             <td> <button class="btn btn-secondary actionbuttons disabled" id="transfer" disabled>Transfer <i class="fa fa-arrow-right"></i> </button></td>
-                                            <td> <button class="btn btn-outline-dark actionbuttons disabled" id="download" disabled>Download <i class="fa fa-download"></i></button></td>
+                                            {{-- <td> <button class="btn btn-outline-dark actionbuttons disabled" id="download" disabled>Download <i class="fa fa-download"></i></button></td> --}}
                                             
                                             
                                         </tr>
@@ -146,7 +146,15 @@
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th><input type="checkbox" id="header_input"></th>
+                                                    <th>
+                                                        
+                                                        <div>
+                                                            <label class="custom_check">
+                                                                <input type="checkbox" id="header_input" name="gender_type">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                    </th>
                                                     <th>Item</th>
                                                     <th>Type</th>                                          
                                                     <th>Available</th>
@@ -159,11 +167,19 @@
                                             <tbody>                                              
                                                 @forelse ($items->sortBy('name') as $item)
                                                     <tr>
-                                                        <td><input type="checkbox" class="checkboxes" name="inventories[]" value="{{$item->id}}"></td>
+                                                        <td>
+                                                            
+                                                            <div>
+                                                                <label class="custom_check">
+                                                                    <input type="checkbox" class="checkboxes" name="inventories[]" value="{{$item->id}}">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </td>
                                                         <td>{{$item->name}}</td>
                                                         <td>@if($item->drug_id) Drug @else Others @endif</td>      
                                                         <td>{{$item->quantity}}</td>   
-                                                        <td>{{$item->shelf->name}}</td>   
+                                                        <td>{{$item->shelf}}</td>   
                                                         <td>{{$item->unit_cost}}</td>   
                                                         <td>{{$item->unit_price}}</td> 
                                                         <td class="text-right">
@@ -177,7 +193,11 @@
                                                         
                                                     </tr>
                                                 @empty
-                                                    <tr><td colspan="5" class="text-center">No Item <a href="{{route('pharmacy.inventory.setup',$pharmacy)}}">Start Inventory</a></td></tr>
+                                                    <tr>
+                                                        <td colspan="7" class="text-center">
+                                                            No Item in Inventory
+                                                        </td>
+                                                    </tr>
                                                 @endforelse
                                             </tbody>
                                         </table>
@@ -199,7 +219,7 @@
 <!-- Add Staff Modal -->
 @section('modals')
 
-<div class=" modal fade custom-modal add-modal" id="upload">
+{{-- <div class=" modal fade custom-modal add-modal" id="upload">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -237,7 +257,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class=" modal fade custom-modal add-modal" id="items">
     <div class="modal-dialog modal-dialog-centered modal-md">
@@ -269,47 +289,48 @@
                         <div class="tab-pane active" id="upcoming-appointments">
                             <div class="card mb-0">
                                 <div class="card-body">
-                                    <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                    <form action="{{route('pharmacy.inventory.store', $pharmacy)}}" class="w-100" method="POST">@csrf
                                         <div class="row w-100">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label d-flex justify-content-between"><span>Drug</span><a href="{{route('pharmacy.inventory.drugs', $pharmacy)}}"> <u>Click here to add many at once</u> </a></label>
-                                                    <select type="text" class="select" name="">
-                                                        <option>Lonart</option>
-                                                        <option>Amoxil</option>
-                                                        <option>Acmetized</option>
+                                                    <label class="form-label d-flex justify-content-between"><span>Drug</span>
+                                                        <a href="{{route('pharmacy.inventory.drugs', $pharmacy)}}"> 
+                                                            <u>Click here to add many at once</u> 
+                                                        </a>
+                                                    </label>
+                                                    <select type="text" class="select-remote w-100" style="width:100%" name="drug_id">
+
                                                     </select>
+                                                    <input type="hidden" id="drug_name" name="name">
                                                 </div>
                                             </div>   
-                                               
+                                            <div class="col-md-6">
+                                                <div class="form-group ">
+                                                    <label class="form-label">Category</label>
+                                                    <input type="text" class="form-control" readonly id="drug_category" name="category">
+                                                </div>
+                                            </div>  
                                             <div class="col-md-6">
                                                 <div class="form-group ">
                                                     <label class="form-label">Shelf</label>
-                                                    <select class="form-control" id="gender" name="gender">
-                                                        <option value="female" >Shelf A</option>
-                                                        <option value="male" >Shelf B</option>
+                                                    <select class="form-control" id="gender" name="shelf">
+                                                        @foreach (explode(',',$pharmacy->shelves) as $shelf)
+                                                                <option value="{{$shelf}}">{{$shelf}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>     
-                                            <div class="col-md-6">
-                                                <div class="form-group ">
-                                                    <label class="form-label">Supplier</label>
-                                                    <select class="form-control" id="gender" name="gender">
-                                                        <option value="female" >ABC LTD</option>
-                                                        <option value="male" >XYZ LTD</option>
-                                                    </select>
-                                                </div>
-                                            </div>             
+                                                       
                                             <div class="col-md-6">
                                                 <div class="form-group ">
                                                     <label class="form-label">Unit Cost</label>
-                                                    <input type="number" class="form-control" name="cost" value="">
+                                                    <input type="number" class="form-control" name="unit_cost" value="">
                                                 </div>
                                             </div> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label">Unit Price</label>
-                                                    <input type="number" class="form-control" name="price" value="">
+                                                    <input type="number" class="form-control" name="unit_price" value="">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -330,51 +351,50 @@
                         <div class="tab-pane show" id="today-appointments">
                             <div class="card mb-0">
                                 <div class="card-body">
-                                <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                <form action="{{route('pharmacy.inventory.store', $pharmacy)}}" class="w-100" method="POST">@csrf
                                         <div class="row w-100">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12 d-flex justify-content-end">
+                                                <a href="{{route('pharmacy.inventory.settings',$pharmacy)}}#upload"> 
+                                                    <u>Upload many at once</u> 
+                                                </a>
+                                            </div>
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label">Name</label>
-                                                    <input type="text" class="form-control" value="" name="">
+                                                    <input type="text" class="form-control" name="name">
                                                 </div>
                                             </div>   
                                             <div class="col-md-6">
                                                 <div class="form-group ">
                                                     <label class="form-label">Category</label>
-                                                    <select class="form-control" id="gender" name="gender">
-                                                        <option value="female">Food</option>
-                                                        <option value="male">Baby Things</option>
+                                                    <select class="form-control" id="genders" name="category">
+                                                        @foreach (explode(',',$pharmacy->categories) as $category)
+                                                                <option value="{{$category}}">{{$category}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>    
                                             <div class="col-md-6">
                                                 <div class="form-group ">
                                                     <label class="form-label">Shelf</label>
-                                                    <select class="form-control" id="gender" name="gender">
-                                                        <option value="female" >Shelf A</option>
-                                                        <option value="male" >Shelf B</option>
+                                                    <select class="form-control" id="gender" name="shelf">
+                                                        @foreach (explode(',',$pharmacy->shelves) as $shelf)
+                                                                <option value="{{$shelf}}">{{$shelf}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>     
-                                            <div class="col-md-6">
-                                                <div class="form-group ">
-                                                    <label class="form-label">Supplier</label>
-                                                    <select class="form-control" id="gender" name="gender">
-                                                        <option value="female" >ABC LTD</option>
-                                                        <option value="male" >XYZ LTD</option>
-                                                    </select>
-                                                </div>
-                                            </div>             
+                                                       
                                             <div class="col-md-6">
                                                 <div class="form-group ">
                                                     <label class="form-label">Unit Cost</label>
-                                                    <input type="number" class="form-control" name="cost" value="">
+                                                    <input type="number" class="form-control" name="unit_cost" value="">
                                                 </div>
                                             </div> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label">Unit Price</label>
-                                                    <input type="number" class="form-control" name="price" value="">
+                                                    <input type="number" class="form-control" name="unit_price" value="">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -403,6 +423,7 @@
 @push('scripts')
 <script src="{{asset('adminassets/js/script.js')}}"></script>
 <script>
+
     $('#header_input').on('click',function(){
         if($(this).is(':checked')){
             $('.checkboxes').prop('checked', this.checked);
@@ -441,5 +462,37 @@
         
     })
 
+</script>
+<script>
+    $('.select-remote').select2({
+        width: 'resolve',
+        ajax: {
+            url: "{{route('pharmacy.inventory.drugs',$pharmacy)}}",
+            dataType: 'json', 
+            cache: true, 
+            data: function (params) {
+                var query = {
+                    search: params.term,
+                    pharmacy_id: @json($pharmacy->id),
+                }
+                return query;
+            },
+            processResults: function (data) {
+                var data = $.map(data.drugs, function (obj) {
+                    obj.text = obj.text || obj.name; // replace name with the property used for the text
+                    return obj;
+                });
+                return {
+                    results: data
+                };
+            }
+        }
+    })
+    $(document).on('select2:select','.select-remote',function(e){
+        var data = e.params.data;
+        console.log(data)
+        $('#drug_name').val(data.name)   
+        $('#drug_category').val(data.category_name)   
+    })
 </script>
 @endpush

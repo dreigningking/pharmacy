@@ -1,5 +1,8 @@
-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
+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
 
+assessment reports for a singular patient to comprises all dates on a single page ( use secure link)
+
+medication history
 
 family_and_social_history as multiple select options.
 provisional_diagnosis + require Laboratory Test. - enter and save

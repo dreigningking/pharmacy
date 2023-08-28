@@ -6,7 +6,9 @@
             
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    
+                    @if(session('flash_message'))
+                        @include('layouts.main.flash')
+                    @endif
                     <!-- Login Tab Content -->
                     <div class="account-content">
                         <div class="row align-items-center justify-content-center">

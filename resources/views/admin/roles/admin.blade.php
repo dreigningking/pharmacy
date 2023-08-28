@@ -23,24 +23,18 @@
         <div class="col-md-12">
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
+                    @foreach ($roles->where('name','!=','admin') as $role)
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#subadmin">Sub Admin</a>
+                        <a class="nav-link @if($loop->first) active @endif" data-toggle="tab" href="#{{$role->name}}">{{ucwords($role->name)}}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#finance_tab">Finance</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#operations_tab">Operations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#customer_tab">Customer Care</a>
-                    </li>
+                    @endforeach
+                    
 
                 </ul>
             </div>
             <div class="tab-content profile-tab-cont">
-                
-                <div class="tab-pane fade show active" id="subadmin">
+                @foreach ($roles->where('name','!=','admin') as $role)
+                <div class="tab-pane fade show @if($loop->first) active @endif" id="{{$role->name}}">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -63,20 +57,15 @@
 
                                                     <div class="form-group w-100 d-flex">
                                                         <label for="usr" class="col-5">{{$permission->description}}</label>
-                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" 
-                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.list',1)->isNotEmpty()) checked @endif>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="list" @if($role->permissions->firstWhere('id',$permission->id) && $role->permissions->firstWhere('id',$permission->id)->pivot->list) checked @endif>
 
-                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" 
-                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.view',1)->isNotEmpty()) checked @endif>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="view" @if($role->permissions->firstWhere('id',$permission->id) && $role->permissions->firstWhere('id',$permission->id)->pivot->view) checked @endif>
                                                         
-                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit"  
-                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.edit',1)->isNotEmpty()) checked @endif>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="edit" @if($role->permissions->firstWhere('id',$permission->id) && $role->permissions->firstWhere('id',$permission->id)->pivot->edit) checked @endif>
 
-                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new"  
-                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.new',1)->isNotEmpty()) checked @endif>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="new" @if($role->permissions->firstWhere('id',$permission->id) && $role->permissions->firstWhere('id',$permission->id)->pivot->new) checked @endif>
 
-                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="delete"  
-                                                            @if($roles->where('name','subadmin')->first()->permissions->where('id',$permission->id)->where('pivot.remove',1)->isNotEmpty()) checked @endif>
+                                                        <input type="checkbox" class="form-control col-1" name="permissions[{{$permission->id}}][]" value="delete" @if($role->permissions->firstWhere('id',$permission->id) && $role->permissions->firstWhere('id',$permission->id)->pivot->remove) checked @endif>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -93,7 +82,8 @@
 
                     </div>
                 </div>
-                <div class="tab-pane fade show" id="finance_tab">
+                @endforeach
+                {{-- <div class="tab-pane fade show" id="finance_tab">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -109,7 +99,7 @@
                                                 <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        {{-- finance --}}
+                                       
                                         <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
                                             <input type="hidden" name="role" value="finance">
                                             @foreach($permissions as $permission)
@@ -164,7 +154,7 @@
                                                 <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        {{-- operations --}}
+                                        
                                         <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
                                             <input type="hidden" name="role" value="operations">
                                             @foreach($permissions as $permission)
@@ -203,9 +193,8 @@
                     </div>
 
                 </div>
-                <div class="tab-pane fade show" id="customer_tab">
 
-                
+                <div class="tab-pane fade show" id="customer_tab">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -221,7 +210,7 @@
                                                 <div  class="col-sm-2 col-md-1">Delete</div>
                                             </div>
                                         </div>
-                                        {{-- customer --}}
+                                        
                                         <form action="{{route('admin.roles.permissions')}}" class="row w-100" method="POST">@csrf
                                             <input type="hidden" name="role" value="customer">
                                             @foreach($permissions as $permission)
@@ -258,9 +247,7 @@
 
 
                     </div>
-
-
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

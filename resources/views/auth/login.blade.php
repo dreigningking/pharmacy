@@ -14,6 +14,9 @@
                                 <img src="{{asset('assets/img/login-banner.png')}}" class="img-fluid" alt="Doccure Login">	
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">
+                                @if(session('flash_message'))
+                                    @include('layouts.main.flash')
+                                @endif
                                 <div class="login-header">
                                     <h3>Login <span>Doccure</span></h3>
                                 </div>

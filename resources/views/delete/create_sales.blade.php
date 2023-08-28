@@ -91,7 +91,9 @@
 <!-- Page Content -->
 <div class="content">
     <div class="container-fluid">
-
+        @if(session('flash_message'))
+            @include('layouts.main.flash')
+        @endif
         <div class="row">
             {{-- @include('pharmacy.sidebar') --}}
             <div class="col-md-12">

@@ -15,7 +15,8 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next,...$roles)
     {
-        if($request->user()->isAnyRole($roles)){
+        return $next($request);
+        if($request->user()->pharmacies->isNotEmpty()){
             return $next($request);
         }else{
             abort(404,'You do not have permission to view this page');

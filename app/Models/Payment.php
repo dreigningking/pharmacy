@@ -2,13 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\License;
+use App\Models\SmsUnit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Payment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'reference','user_id','order_id','currency','amount','method','status'
+        'reference','user_id','purpose','currency','amount','method','status'
     ];
+
+    public function getRouteKeyName(){
+        return 'reference';
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function licenses(){
+        return $this->hasMany(License::class);
+    }
+
+    public function sms(){
+        return $this->hasOne(SmsUnit::class);
+    }
 }

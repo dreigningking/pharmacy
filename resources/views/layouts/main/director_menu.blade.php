@@ -12,7 +12,7 @@
         </ul>
     </li>
     <li>
-        <a href="{{route('subscription')}}">Subscription</a>
+        <a href="{{route('subscription.show')}}">Subscription</a>
     </li>
     <li>
         <a href="{{route('pricing')}}">Plans</a>

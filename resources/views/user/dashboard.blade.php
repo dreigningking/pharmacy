@@ -35,7 +35,7 @@
                         <div class="about-content">
                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
                             <p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>					
-                            <a href="{{route('setup')}}">Add New Pharmacy</a>
+                            <a href="{{route('pharmacy.setup')}}">Add New Pharmacy</a>
                         </div>
                     </div>
                     <div class="col-lg-8">
@@ -95,7 +95,7 @@
             <div class="row">
                 {{-- @include('user.sidebar') --}}
                 <div class="col-xl-3 col-sm-6 col-12">
-                    <a href="{{route('subscription')}}">
+                    <a href="{{route('subscription.show')}}">
                     <div class="card">
                         <div class="card-body">
                             <div class="add-box">

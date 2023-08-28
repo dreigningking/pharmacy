@@ -1,15 +1,16 @@
 <?php
 namespace App\Http\Traits;
+use App\Models\Payment;
 use Ixudra\Curl\Facades\Curl;
 
 trait PaystackTrait
 {
 
-    protected function initializePayment($amount,$drug_id,$name,$email){
+    protected function initializePayment(Payment $payment){
         $response = Curl::to('https://api.paystack.co/transaction/initialize')
         ->withHeader('Authorization: Bearer '.config('services.paystack_secret_key'))
-        ->withData( array('email' => $email,'currency'=> 'NGN',
-        'amount'=> $amount *100,'callback_url'=> '','reference'=> '','metadata' => ['order_id'=> $drug_id,'name'=> $name ] ) )
+        ->withData( array('email' => $payment->user->email,'currency'=> $payment->currency,
+        'amount'=> $payment->amount * 100,'callback_url'=> route('subscription.show'),'reference'=> $payment->reference) )
         ->asJson()
         ->post();
         // dd($response);

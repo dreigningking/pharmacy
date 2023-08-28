@@ -47,10 +47,11 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if($user->admin){
+        if($user->type == 'admin'){
             return redirect()->route('admin.dashboard');
         }
     }
+
     public function forcepassword(Request $request){
         $validator = Validator::make($request->all(), [
             'password' => 'required','string','confirmed'

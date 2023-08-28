@@ -14,7 +14,7 @@
                     
                     <!-- Login Tab Content -->
                     <div class="account-content mb-6">
-                        <form action="{{route('setup')}}" method="POST" enctype="multipart/form-data">@csrf
+                        <form action="{{route('pharmacy.setup')}}" method="POST" enctype="multipart/form-data">@csrf
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-12 col-md-12">
                                     <div class="login-header">
@@ -26,10 +26,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
-                                        @error('license')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        
                                         @enderror
                                         <div class="change-avatar">
                                             <div class="profile-img">
@@ -54,7 +51,7 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group form-focus ">
-                                        <input type="text" name="name" class="form-control floating" required>
+                                        <input type="text" name="name" class="form-control floating" value="{{old('name')}}" required>
                                         <label class="focus-label">Pharmacy Name</label>
                                         @error('name')
                                         <span class="invalid-feedback d-block" role="alert">
@@ -79,7 +76,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group form-focus">  
-                                        <input type="text" name="description" class="form-control floating" required>
+                                        <input type="text" name="description" value="{{old('description')}}" class="form-control floating" required>
                                         <label class="focus-label">About Pharmacy</label>
                                         @error('description')
                                         <span class="invalid-feedback d-block" role="alert">
@@ -104,7 +101,7 @@
                                 
                                 <div class="col-12 col-md-6">
                                     <div class="form-group form-focus">
-                                        <input type="text" name="mobile" value="+1 202-555-0125" class="form-control floating" required>
+                                        <input type="text" name="mobile" value="{{old('mobile')}}" place="+1 202-555-0125" class="form-control floating" required>
                                         <label class="focus-label">Business Phone</label>
                                         @error('mobile')
                                         <span class="invalid-feedback d-block" role="alert">
@@ -164,7 +161,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group form-focus">
-                                        <input type="text" name="address" class="form-control floating" value="{{old('address')}}" placeholder="Physical location of the pharmacy" required>
+                                        <input type="text" name="address" value="{{old('address')}}" class="form-control floating" value="{{old('address')}}" placeholder="Physical location of the pharmacy" required>
                                         <label class="focus-label">Address</label>
                                     </div>
                                 </div>                      
@@ -244,22 +241,22 @@
         $("#image").change(function() {
             readURL(this,'logo');
         });
-        $("#license").change(function() {
-            $('#license_text').text('1 file Attached')
-        });
+        // $("#license").change(function() {
+        //     $('#license_text').text('1 file Attached')
+        // });
         function readURL(input,output) {
-        console.log(input.id);
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-            $('#'+output).attr('src', e.target.result);
+            console.log(input.id);
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                $('#'+output).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
-    $('#agreement_check').on('change',function(){
-        $(this).is(':checked') ? $('#create').removeClass('disabled') : $('#create').addClass('disabled')
-    })
+        $('#agreement_check').on('change',function(){
+            $(this).is(':checked') ? $('#create').removeClass('disabled') : $('#create').addClass('disabled')
+        })
     </script>
 @endpush
 
