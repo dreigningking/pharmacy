@@ -27,7 +27,7 @@
                                         </span>
                                         @enderror
                                         
-                                        @enderror
+                                        
                                         <div class="change-avatar">
                                             <div class="profile-img">
                                                 <img id="logo" src="{{asset('assets/img/patients/patient.jpg')}}" alt="Pharmacy Image">
@@ -241,9 +241,7 @@
         $("#image").change(function() {
             readURL(this,'logo');
         });
-        // $("#license").change(function() {
-        //     $('#license_text').text('1 file Attached')
-        // });
+        
         function readURL(input,output) {
             console.log(input.id);
             if (input.files && input.files[0]) {

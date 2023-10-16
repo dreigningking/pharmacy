@@ -118,7 +118,8 @@
                                 
                                 <div class="card mb-0">
                                     <div class="card-body">
-                                        <form action="{{route('pharmacy.inventory.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                        <form action="{{route('pharmacy.inventory.update', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                            <input type="hidden" name="inventory_id" value="{{$item->id}}">
                                             <div class="row w-100">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
@@ -130,7 +131,11 @@
                                                     <div class="form-group">
                                                         <label class="form-label">Category</label>
                                                         <select class="form-control" id="gender" name="category" @if($item->drug_id) disabled @endif>
-                                                            @if($item->drug_id) <option value="{{$item->drug->category->name}}" selected>{{$item->drug->category->name}}</option> @endif
+                                                            @if($item->drug_id) 
+                                                                <option value="{{$item->drug->category->name}}" selected>{{$item->drug->category->name}}</option> 
+                                                            @else 
+                                                                <option value="">Select Category</option>
+                                                            @endif
                                                             @foreach (explode(',',$pharmacy->categories) as $category)
                                                                 <option value="{{$category}}" @if($item->category == $category) selected @endif>{{$category}}</option>
                                                             @endforeach
@@ -141,26 +146,63 @@
                                                     <div class="form-group ">
                                                         <label class="form-label">Shelf</label>
                                                         <select class="form-control" id="gendeq" name="shelf">
+                                                            <option value="">Select Shelf</option>
                                                             @foreach (explode(',',$pharmacy->shelves) as $shelf)
-                                                                <option value="{{$shelf}}" @if($item->shelf == $shelf) @endif>{{$shelf}}</option>
+                                                                <option value="{{$shelf}}" @if($item->shelf == $shelf) selected @endif>{{$shelf}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                 </div>     
                                                             
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     <div class="form-group ">
                                                         <label class="form-label">Unit Cost</label>
                                                         <input type="number" class="form-control" name="unit_cost" value="{{$item->unit_cost}}">
                                                     </div>
                                                 </div> 
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="form-label">Unit Price</label>
-                                                        <input type="number" class="form-control" name="unit_price" value="{{$item->unit_cost}}">
+                                                        <input type="number" class="form-control" name="unit_price" value="{{$item->unit_price}}">
                                                     </div>
                                                 </div>
-                                                 
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <label class="form-label">Minimum Stock Level</label>
+                                                        <input type="number" class="form-control" name="minimum_stocklevel" value="{{$item->minimum_stocklevel}}">
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Maximum Stock Level</label>
+                                                        <input type="number" class="form-control" name="maximum_stocklevel" value="{{$item->maximum_stocklevel}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Alert Weeks Before Expiry</label>
+                                                        <input type="number" class="form-control" name="expiry_alert_weeks" value="{{$item->expiry_alert_weeks}}" placeholder="Number of weeks">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Unit of Sales</label>
+                                                        <select name="unit_of_sales" class="form-control">
+                                                            <option value="">Select Unit</option>
+                                                            <option value="pill" @if($item->unit_of_sales == 'pill') selected @endif>Pill</option>
+                                                            <option value="bottle" @if($item->unit_of_sales == 'bottle') selected @endif>Bottle</option>
+                                                            <option value="sachet" @if($item->unit_of_sales == 'sachet') selected @endif>Sachet</option>
+                                                            <option value="packet" @if($item->unit_of_sales == 'packet') selected @endif>Packet</option>
+                                                            <option value="carton" @if($item->unit_of_sales == 'carton') selected @endif>Carton</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Quantity <span class="small">(Leave Empty to use Batch Quantity)</span> </label>
+                                                        <input type="number" class="form-control" name="quantity" value="{{$item->available}}" @if($item->batches->count()) readonly @endif placeholder="Leave Empty to use Batch">
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group mt-2">
                                                         <br>
@@ -199,7 +241,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label class="text-muted text-center">Expiry</label>
-                                                                <input type="date" name="expire_at[]" value="{{$batch->expire_at->format('Y-m-d')}}" placeholder="Year. e.g 2023" class="form-control">
+                                                                <input type="date" name="expire_at[]" value="{{$batch->expire_at ? $batch->expire_at->format('Y-m-d'): ''}}" placeholder="Year. e.g 2023" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">

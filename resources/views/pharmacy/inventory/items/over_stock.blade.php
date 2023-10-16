@@ -46,63 +46,64 @@
                         <h3 class="card-title mb-0">Search Filter</h3>
                     </div>
                     <div class="card-body">
-                        <div class="filter-widget">
-                            <h4>Item Name</h4>			
-                        </div>
-                        <div class="filter-widget">
-                            <input type="text" class="form-control" placeholder="">		
-                        </div>
-                        
-                        <div class="filter-widget">
-                            <h4>Type</h4>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Drugs
-                                </label>
+                        <form action="#" method="get">
+                            <div class="filter-widget">
+                                <h4>Item Name</h4>			
                             </div>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Non-drugs
-                                </label>
-                            </div> 
-                        </div>
-                        
-                        
-                        <div class="filter-widget">
-                            <h4>Show</h4>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Expired
-                                </label>
+                            <div class="filter-widget">
+                                <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="">		
                             </div>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Expiring (within 6months)
-                                </label>
+                            
+                            <div class="filter-widget">
+                                <h4>Type</h4>
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="type[]" @if(in_array('drug',$type)) checked @endif value="drug">
+                                        <span class="checkmark"></span> Drugs
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="type[]" @if(in_array('non_drug',$type)) checked @endif value="non_drug">
+                                        <span class="checkmark"></span> Non-drugs
+                                    </label>
+                                </div> 
                             </div>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Out of Stock
-                                </label>
-                            </div> 
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Over Stocked
-                                </label>
-                            </div>
-  
-                        </div>
-                        
-                        <div class="btn-search">
-                            <button type="button" class="btn btn-block">Search</button>
-                        </div>	
-                        
+                            
+                            {{--                             
+                            <div class="filter-widget">
+                                <h4>Show</h4>
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="show[]" value="expired" @if(in_array('expired',$show)) checked @endif>
+                                        <span class="checkmark"></span> Expired
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="show[]" value="expiring" @if(in_array('expiring',$show)) checked @endif >
+                                        <span class="checkmark"></span> Expiring (within 6months)
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="show[]" value="out_of_stock" @if(in_array('out_of_stock',$show)) checked @endif>
+                                        <span class="checkmark"></span> Out of Stock
+                                    </label>
+                                </div> 
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="show[]" value="over_stocked" disabled @if(in_array('over_stocked',$show)) checked @endif>
+                                        <span class="checkmark"></span> Over Stocked <span class="text-danger">(pending)</span>
+                                    </label>
+                                </div>
+    
+                            </div> --}}
+                            
+                            <div class="btn-search">
+                                <button type="submit" class="btn btn-block">Search</button>
+                            </div>	
+                        </form>
                     </div>
                     {{-- <div class="card-body">
                         <div class="clinic-booking">
@@ -119,7 +120,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-4">
-                                    <h3>Inventory</h3>
+                                    <h3>Over Stocked Inventory</h3>
                                     <div>
                                         {{-- <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Upload Inventory <i class="fa fa-upload"></i></a> --}}
                                         <a class="btn btn-dark" data-toggle="modal" href="#items">New Item</a>
@@ -156,16 +157,15 @@
                                                         </div>
                                                     </th>
                                                     <th>Item</th>
+                                                    <th>Batch</th>
                                                     <th>Type</th>                                          
                                                     <th>Available</th>
                                                     <th>Shelf</th>
-                                                    <th>Unit Cost </th>
-                                                    <th>Unit Price</th>
                                                     <th></th>   
                                                 </tr>
                                             </thead>
                                             <tbody>                                              
-                                                @forelse ($items->sortBy('name') as $item)
+                                                @forelse ($items->sortBy('expiry_at') as $item)
                                                     <tr>
                                                         <td>
                                                             
@@ -176,15 +176,15 @@
                                                                 </label>
                                                             </div>
                                                         </td>
-                                                        <td>{{$item->name}}</td>
-                                                        <td>@if($item->drug_id) Drug @else Others @endif</td>      
+                                                        <td>{{$item->inventory->name}}</td>
+                                                        <td>{{$item->number}}</td>
+                                                        <td>@if($item->inventory->drug_id) Drug @else Others @endif</td>      
                                                         <td>{{$item->quantity}}</td>   
-                                                        <td>{{$item->shelf}}</td>   
-                                                        <td>{{$item->unit_cost}}</td>   
-                                                        <td>{{$item->unit_price}}</td> 
+                                                        <td>{{$item->inventory->shelf}}</td>   
+                                                        
                                                         <td class="text-right">
                                                             <div class="table-action">
-                                                                <a href="{{route('pharmacy.inventory.show',[$pharmacy,$item])}}" class="btn btn-sm bg-primary-light">
+                                                                <a href="{{route('pharmacy.inventory.show',[$pharmacy,$item->inventory])}}" class="btn btn-sm bg-primary-light">
                                                                     <i class="far fa-eye"></i> View
                                                                 </a>
                                                                 
@@ -202,6 +202,7 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    @include('layouts.pagination',['data'=> $items])
                                 </form>
                             </div>
                         </div>
@@ -313,7 +314,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group ">
                                                     <label class="form-label">Shelf</label>
-                                                    <select class="form-control" id="gender" name="shelf">
+                                                    <select class="form-control" name="shelf">
+                                                        <option value="">Select Shelf</option>
                                                         @foreach (explode(',',$pharmacy->shelves) as $shelf)
                                                                 <option value="{{$shelf}}">{{$shelf}}</option>
                                                         @endforeach
@@ -321,18 +323,50 @@
                                                 </div>
                                             </div>     
                                                        
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group ">
                                                     <label class="form-label">Unit Cost</label>
                                                     <input type="number" class="form-control" name="unit_cost" value="">
                                                 </div>
                                             </div> 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-label">Unit Price</label>
                                                     <input type="number" class="form-control" name="unit_price" value="">
                                                 </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Unit of Sales</label>
+                                                    <select name="unit_of_sales" class="form-control">
+                                                        <option value="">Select Unit</option>
+                                                        <option value="pill">Pill</option>
+                                                        <option value="bottle">Bottle</option>
+                                                        <option value="sachet">Sachet</option>
+                                                        <option value="packet">Packet</option>
+                                                        <option value="carton">Carton</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group ">
+                                                    <label class="form-label">Minimum Stock</label>
+                                                    <input type="number" class="form-control" name="minimum_stocklevel">
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Maximum Stock</label>
+                                                    <input type="number" class="form-control" name="maximum_stocklevel">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Alert Expiry</label>
+                                                    <input type="number" class="form-control" name="expiry_alert_weeks" placeholder="Weeks before expiry">
+                                                </div>
+                                            </div>
+                                            
                                             <div class="col-md-12">
                                                 <div class="form-group mt-2">
                                                     <br>
@@ -352,7 +386,7 @@
                             <div class="card mb-0">
                                 <div class="card-body">
                                 <form action="{{route('pharmacy.inventory.store', $pharmacy)}}" class="w-100" method="POST">@csrf
-                                        <div class="row w-100">
+                                        <div class="row w-100 mr-0">
                                             <div class="col-md-12 d-flex justify-content-end">
                                                 <a href="{{route('pharmacy.inventory.settings',$pharmacy)}}#upload"> 
                                                     <u>Upload many at once</u> 
@@ -367,9 +401,10 @@
                                             <div class="col-md-6">
                                                 <div class="form-group ">
                                                     <label class="form-label">Category</label>
-                                                    <select class="form-control" id="genders" name="category">
+                                                    <select class="form-control" name="category">
+                                                        <option value="">Select Category</option>
                                                         @foreach (explode(',',$pharmacy->categories) as $category)
-                                                                <option value="{{$category}}">{{$category}}</option>
+                                                            <option value="{{$category}}">{{$category}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -378,23 +413,55 @@
                                                 <div class="form-group ">
                                                     <label class="form-label">Shelf</label>
                                                     <select class="form-control" id="gender" name="shelf">
+                                                        <option value="">Select Shelf</option>
                                                         @foreach (explode(',',$pharmacy->shelves) as $shelf)
-                                                                <option value="{{$shelf}}">{{$shelf}}</option>
+                                                            <option value="{{$shelf}}">{{$shelf}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>     
                                                        
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group ">
                                                     <label class="form-label">Unit Cost</label>
                                                     <input type="number" class="form-control" name="unit_cost" value="">
                                                 </div>
                                             </div> 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-label">Unit Price</label>
                                                     <input type="number" class="form-control" name="unit_price" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Unit of Sales</label>
+                                                    <select name="unit_of_sales" class="form-control">
+                                                        <option value="">Select Unit</option>
+                                                        <option value="pill">Pill</option>
+                                                        <option value="bottle">Bottle</option>
+                                                        <option value="sachet">Sachet</option>
+                                                        <option value="packet">Packet</option>
+                                                        <option value="carton">Carton</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group ">
+                                                    <label class="form-label">Minimum Stock</label>
+                                                    <input type="number" class="form-control" name="minimum_stocklevel">
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Maximum Stock</label>
+                                                    <input type="number" class="form-control" name="maximum_stocklevel">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Alert Expiry</label>
+                                                    <input type="number" class="form-control" name="expiry_alert_weeks" placeholder="Weeks before expiry">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -450,7 +517,7 @@
         $('.checkboxes:checked').each(function(){
             clicked.push($(this).val());
         });
-        $('#submitInventory').attr('action',"{{route('pharmacy.inventory.transfers.create',$pharmacy)}}").submit();
+        $('#submitInventory').attr('action',"{{route('pharmacy.transfer.create',$pharmacy)}}").submit();
         
     })
     $('#purchase').on('click',function(){
@@ -458,7 +525,7 @@
         $('.checkboxes:checked').each(function(){
             clicked.push($(this).val());
         });
-        $('#submitInventory').attr('action',"{{route('pharmacy.inventory.purchases.create',$pharmacy)}}").submit();
+        $('#submitInventory').attr('action',"{{route('pharmacy.purchases.create',$pharmacy)}}").submit();
         
     })
 

@@ -16,23 +16,25 @@ class PaymentController extends Controller
     use PaystackTrait,PharmacyTrait;
 
     public function verify() {
-        \abort_if(!request()->query('trxref'),400);
-        $paymentDetails = json_decode($this->verifyPayment(request()->query('trxref')));
-        \abort_if(!$paymentDetails || !$paymentDetails->status ,400);
-        // dd($paymentDetails);
-        $order_id = $paymentDetails->data->metadata->order_id;
-        $customer_name = $paymentDetails->data->metadata->name;
-        $payment_status = $paymentDetails->data->status;
-        $payment_amount = $paymentDetails->data->amount;
-        $payment_method = $paymentDetails->data->channel;
-        $customer_email = $paymentDetails->data->customer->email;
-        // if($)
-
-        $payment = Payment::firstOrCreate(['reference'=> request()->query('trxref')],
-            ['pharmacy_id'=> 1,'status'=> 'success']);
-        // $subscription = $this->createSubscription($order->orderable,$pharmacy,$order->quantity);
-        
-        return redirect()->intended('dashboard');
+        $user = auth()->user();
+        // if(!request()->query('trxref'))
+        if(!request()->query('reference')) \abort(404);
+        $reference = request()->query('reference');
+        $payment = Payment::where('reference',$reference)->first();
+        //if payment was already successful before now
+        if(!$payment || $payment->status == 'success' || $payment->user_id != $user->id){
+            \abort(503);
+        }
+        $details = $this->verifyPayment($payment);
+        if(!$details || !$details->status || $details->status != 'success' || !$details->data || $details->data->reference != $payment->reference || ($details->data->amount/100) < $payment->amount){
+            $payment->status = 'failed';
+            $payment->save();
+            return redirect()->route('subscription.create')->with(['flash_message'=> 'Payment was not successful. Please try again','flash_type'=> 'danger']);
+        }
+        $payment->status = 'success';
+        $payment->method = $details->data->channel;
+        $payment->save();
+        return redirect()->route('subscription.show')->with(['flash_message'=> 'Payment Successful, Now Assign the License to Pharmacy','flash_type'=> 'success']);
     }
 
     public function transactions(){

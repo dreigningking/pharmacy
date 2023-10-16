@@ -36,7 +36,7 @@ class PurchaseObserver
      */
     public function deleting(Purchase $purchase)
     {
-        $purchase->details->delete();
+        $purchase->details()->delete();
     }
 
     /**

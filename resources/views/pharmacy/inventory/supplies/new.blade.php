@@ -93,12 +93,12 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('pharmacy.sidebar')
-            <div class="col-md-7 col-lg-8 col-xl-9">
+            {{-- @include('pharmacy.sidebar') --}}
+            <div class="col-md-10 offset-md-1">
                 <!-- Page Wrapper -->
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pharmacy.inventory.purchases.store',$pharmacy)}}" method="POST">@csrf
+                        <form action="{{route('pharmacy.purchases.store',$pharmacy)}}" method="POST">@csrf
                             <div class="invoice-content">
                                 <div class="invoice-item">
                                     <div class="row">
@@ -107,7 +107,7 @@
                                                 <img src="{{asset('assets/img/logo.png')}}" alt="logo">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <p class="invoice-details ">
                                                 <strong>Order:</strong> #
                                                 </p>
@@ -115,7 +115,7 @@
                                                 <strong>Issued:</strong> 
                                                 <input type="date" name="" id="" value="{{now()->format('Y-m-d')}}" class="date">
                                             </p>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 
@@ -139,21 +139,23 @@
                                                 <div class="invoice-details no_select_border">
                                                     <select name="supplier_id" id="supplier_select" class="select form-control supplier-select" required>
                                                         <option value ="" selected>Select Supplier</option>
-                                                        @forelse ($suppliers as $supplier)                                                
+                                                        @forelse ($pharmacy->suppliers as $supplier)   
                                                             <option value="{{$supplier->id}}"
-                                                                data-city="{{$supplier->city->name}}"
-                                                                data-state="{{$supplier->state->name}}"
-                                                                data-country="{{$supplier->country->name}}">
+                                                                data-email="{{$supplier->email}}"
+                                                                data-mobile="{{$supplier->mobile}}"
+                                                                data-location="{{$supplier->location}}">
                                                                 {{$supplier->name}}
-                                                            </option>
+                                                            </option>                                             
+                                                            
                                                         @empty
                                                             <option disabled>No Supplier</option>
                                                         @endforelse
 
                                                     </select>
                                                     {{-- <br> --}}
-                                                    <p class="city"></p>
-                                                    <p class="state"></p>
+                                                    <p id="supplier_email"></p>
+                                                    <p id="supplier_mobile"></p>
+                                                    <p id="supplier_location"></p>
                                                     
                                                 </div>
                                             </div>
@@ -174,9 +176,9 @@
                                                         <tr>
                                                             <th class="d-flex flex-wrap justify-content-between" style="min-width: 180px;">
                                                                 <span>Description</span> 
-                                                                <a data-toggle="modal" href="#add_drug" class="font-weight-normal text-info">
+                                                                {{-- <a data-toggle="modal" href="#add_drug" class="font-weight-normal text-info">
                                                                     <u>Add New Drug</u>
-                                                                </a>
+                                                                </a> --}}
                                                             </th>
                                                             <th class="text-center">Packaging</th>
                                                             <th class="text-center">Cost</th>
@@ -191,7 +193,7 @@
                                                                 <tr class="select-row">
                                                                     <td class="first-column">
                                                                         <select name="inventories[]" class="select-remote form-control w-100">
-                                                                            <option id="{{$inventory->id}}">{{$inventory->name}}</option>
+                                                                            <option value="{{$inventory->id}}">{{$inventory->name}}</option>
                                                                         </select>
                                                                     </td>
                                                                     <td class="text-center extra-column">
@@ -204,7 +206,7 @@
                                                                         </select>
                                                                     </td>
                                                                     <td class="text-center extra-column">
-                                                                        <input type="number" name="costs[]" value="{{$inventory->purchases->isNotEmpty() ? $inventory->purchases->first()->cost : ''}}" class="table-input unit_cost">
+                                                                        <input type="number" name="costs[]" value="{{$inventory->purchases->isNotEmpty() ? $inventory->purchases->first()->cost : $inventory->unit_cost}}" class="table-input unit_cost">
                                                                     </td>
                                                                     <td class="text-center extra-column"> 
                                                                         <input type="number" name="quantities[]" value="1" class="table-input unit_quantity">
@@ -259,9 +261,9 @@
                                                 <h6>Additional information</h6>
                                                 <input type="text" name="info" class="w-100">
                                             </div>
-                                            <div class="mt-3">
-                                                <input type="checkbox" name="" id=""> Email Supplier
-                                            </div>
+                                            {{-- <div class="mt-3">
+                                                <input type="checkbox" name="email_supplier" value="1"> Email Supplier
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-6 col-xl-4 ml-auto">
                                             <div class="table-responsive">
@@ -294,8 +296,8 @@
                                 <!-- Invoice Information -->
                                 <div class="other-info">
                                     <div class="col-md-12 text-right">
-                                        <button type="submit" name="action" value="save" class="btn btn-light btn-sm supplies_submit disabled" disabled>Save as Draft</button>
-                                        <button type="submit" name="action" value="execute" class="btn btn-dark btn-sm supplies_submit disabled" disabled>Execute</button>
+                                        <button type="submit" class="btn btn-light btn-sm supplies_submit disabled" disabled>Save as Draft</button>
+                                        <button type="submit" name="email_supplier" value="1" class="btn btn-dark btn-sm supplies_submit disabled" disabled>Save & Email Supplier</button>
                                     </div>
                                 </div>
                                 <!-- /Invoice Information -->
@@ -330,55 +332,24 @@
                         <div class="card flex-fill">
 
                             <div class="card-body">
-                                <form id="add_supplier_form" method="POST">@csrf
-                                    <input type="hidden" name="ajax" value="1">
+                                <form id="add_supplier_form" method="POST" action="{{route('pharmacy.inventory.suppliers',$pharmacy)}}">@csrf
+                                    
                                     <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
                                     <div class="form-group ">
                                         <label class="form-label">Name</label>
-                                        <input type="text" name="name" id="supplier_name" class="form-control" required>
+                                        <input type="text" name="name"  class="form-control" required>
                                     </div>
                                     <div class="form-group ">
                                         <label class="form-label">Email</label>
-                                        <input type="email" name="email" id="supplier_email" class="form-control" required>
+                                        <input type="email" name="email"  class="form-control" required>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group ">
-                                                <label class="form-label">Mobile Number</label>
-                                                <input type="text" name="mobile" id="supplier_mobile" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Country</label>
-                                                <select name="country_id" id="supplier_country" class="select form-control" required>
-                                                    @foreach ($countries as $country)
-                                                        <option value="{{$country->id}}" @if($pharmacy->country_id == $country->id) selected @endif>{{$country->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">State</label>
-                                                <select name="state_id" id="supplier_state" class="select form-control" required>
-                                                    @foreach ($pharmacy->country->states as $state)
-                                                        <option value="{{$state->id}}" @if($pharmacy->state_id == $state->id) selected @endif>{{$state->name}}</option>
-                                                    @endforeach 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">City</label>
-                                                <select name="city_id" id="supplier_city" class="select form-control" required>
-                                                    @foreach ($pharmacy->country->cities as $city)
-                                                        <option value="{{$city->id}}" @if($pharmacy->city_id == $city->id) selected @endif>{{$city->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
+                                    <div class="form-group ">
+                                        <label class="form-label">Mobile Number</label>
+                                        <input type="text" name="mobile" class="form-control" required>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="form-label">Location</label>
+                                        <input type="text" name="location" placeholder="e.g Address, City, State" class="form-control" required>
                                     </div>
 
                                     <div class="text-right">
@@ -449,40 +420,13 @@
 @push('scripts')
     
     <script>
-        $('#add_supplier_form').on('submit',function(e){
-            e.preventDefault();
-            // console.log($('#add_supplier_form').serialize())
-            // url: "route('supplier.save')",
-            $.ajax({
-                type:'POST',
-                dataType: 'json',
-                
-                data: $('#add_supplier_form').serialize(),
-                success:function(data) {
-                    //close the modal
-                    var newOption = new Option(data.supplier.name,data.supplier.id,true,true);
-                    $('#supplier_select').append(newOption).trigger('change');
-                    $('#add_supplier').modal('hide');
-                console.log(data.supplier)
-                },
-                error: function (data, textStatus, errorThrown) {
-                    //show error on modal
-                    console.log(data);
-                },
-            });
+        $(document).on('select2:select','#supplier_select',function(e){
+            let data = e.params.data;
+            $('#supplier_email').text(data.element.dataset.email)                         
+            $('#supplier_mobile').text(data.element.dataset.mobile)                         
+            $('#supplier_location').text(data.element.dataset.location)                         
+            
         })
-        //supplier
-        let supplySelect = document.getElementById('supplier_select')
-        let cityBox = document.querySelector(".city")
-        let stateBox = document.querySelector(".state")
-        supplySelect.onchange = function(event) {
-            let rc = event?.target.options[event.target.selectedIndex].dataset.city;
-            let clnc = event?.target.options[event.target.selectedIndex].dataset.state;
-            let cln = event?.target.options[event.target.selectedIndex].dataset.country;
-            cityBox.innerHTML = rc + ",";
-            stateBox.innerHTML = clnc + "," + " " + cln + "."
-        }
-        
     </script>
     <script> 
         //table area
@@ -495,8 +439,7 @@
                     data: function (params) {
                         var query = {
                             search: params.term,
-                            pharmacy_id: @json($pharmacy->id),
-                            type: 'ajax'
+                            pharmacy_id: @json($pharmacy->id)
                         }
                         return query;
                     },
@@ -519,8 +462,8 @@
                 var data = e.params.data;
                 console.log(data)
                 $(this).closest('tr').find('.unit_quantity').val(1)   
-                $(this).closest('tr').find('.unit_cost').val(data.cost)               
-                $(this).closest('tr').find('.amount').val(data.cost)                                
+                $(this).closest('tr').find('.unit_cost').val(data.unit_cost)               
+                $(this).closest('tr').find('.amount').val(data.unit_cost)                                
                 recalculateTotal()
                 addNewRow()
             })
@@ -529,7 +472,14 @@
                 let qty = $(this).val() > 0 ? $(this).val():1
                 $(this).closest('tr').find('.amount').val(thiscost * qty)
                 recalculateTotal()
-            })  
+            })
+            $(document).on('keyup keypress blur change','.unit_cost',function(){
+                let thiscost = $(this).val()
+                let qty = $(this).closest('tr').find('.unit_quantity').val() > 0 ? $(this).closest('tr').find('.unit_quantity').val() : 1
+                $(this).closest('tr').find('.amount').val(thiscost * qty)
+                recalculateTotal()
+            })
+
     </script>
     <script>
         function recalculateTotal(){
@@ -586,8 +536,7 @@
                     data: function (params) {
                         var query = {
                             search: params.term,
-                            pharmacy_id: @json($pharmacy->id),
-                            type: 'ajax'
+                            pharmacy_id: @json($pharmacy->id)    
                         }
                         return query;
                     },
@@ -603,8 +552,6 @@
                 }
             });
         }
-        
-        // console.log(total)
             
     </script>
 @endpush

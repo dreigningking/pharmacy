@@ -134,253 +134,50 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @forelse ($assessments as $assessment)
                                             <tr>
-                                                <td class="text-nowrap">14-Nov-2019 <span class="d-block text-info">10.00 AM</span></td>
+                                                <td class="text-nowrap">{{$assessment->created_at->format('d-M-Y')}} <span class="d-block text-info">{{$assessment->created_at->format('h.i A')}}</span></td>
                                                 <td>
-                                                    USK3834
+                                                    <a href="{{route('pharmacy.patients.view',[$pharmacy,$assessment->patient])}}" target="_blank">{{$assessment->patient->emr}}</a> 
                                                 </td>
                                                 
-                                                <td>Fever</td>
+                                                <td>
+                                                    @if($assessment->finalDiagnosis->count())
+                                                        {{$assessment->finalDiagnosis-first()->condition->name}}
+                                                    @else 
+                                                        Inconclusive
+                                                    @endif
+                                                </td>
                                                 
-                                                <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
+                                                <td>
+                                                    <span class="badge badge-pill bg-warning-light">Ongoing</span>
+                                                </td>
                                                 <td>
                                                     <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>14 Nov 2019 <span class="d-block text-info">8.00 PM</span></td>
-                                                <td>
-                                                    KJSK8232
-                                                </td>
-                                                <td>Headache</td>
-                                                
-                                                
-                                                <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>10 Nov 2019 <span class="d-block text-info">11.00 AM</span></td>
-                                                <td>USK3834</td>
-                                                <td>Running Nose </td>
-                                                
-                                                
-                                                <td><span class="badge badge-pill bg-danger-light">Cancelled</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>10 Nov 2019<span class="d-block text-info">3.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                <td>Headache</td>
-                                                
-                                                
-                                                <td><span class="badge badge-pill bg-warning-light">Awaiting Followup</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="edit-prescription.html" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                        
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>9 Nov 2019 <span class="d-block text-info">7.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                
-                                                <td>Fever</td>
-                                            
-                                                <td><span class="badge badge-pill bg-success-light">Completed</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>8 Nov 2019 <span class="d-block text-info">9.00 AM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                <td>Pain in the knee</td>
-                                                
-                                            
-                                                <td><span class="badge badge-pill bg-danger-light">Cancelled</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>8 Nov 2019 <span class="d-block text-info">6.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                <td>Injury to the head</td>
-                                                
-                                                
-                                                <td><span class="badge badge-pill bg-success-light">Completed</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7 Nov 2019 <span class="d-block text-info">9.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                
-                                                <td>Fever</td>
-                                                
-                                                <td><span class="badge badge-pill bg-info-light">Completed</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6 Nov 2019 <span class="d-block text-info">8.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                
-                                                <td>Fever</td>
-                                                {{-- <td>
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-primary-light">
-                                                            <i class="far fa-clock"></i> Reschedule
-                                                        </a>
-                                                    </div>
-                                                </td> --}}
-                                                <td><span class="badge badge-pill bg-info-light">Completed</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-edit"></i> View
-                                                        </a>
-                                                    </div>
                                                     
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5 Nov 2019 <span class="d-block text-info">5.00 PM</span></td>
-                                                <td>USK3834</td>
-                                                
-                                                <td>Running Nose</td>
-                                                
-                                                
-                                                <td><span class="badge badge-pill bg-info-light">Completed</span></td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
+                                                        @if($assessment->user->image)
+                                                        <a href="#" class="avatar avatar-sm mr-2">
+                                                            <img class="avatar-img rounded-circle" src="{{asset('storage/user/photo/'.$user->image)}}" alt="User Image">
                                                         </a>
-                                                        <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
+                                                        @endif 
+                                                        <a href="#">{{$assessment->user->name}}</a>
                                                     </h2>
                                                 </td>
                                                 <td class="text-right">
-                                                    <a href="{{route('pharmacy.assessments.show',[$pharmacy])}}" class="btn btn-sm bg-success-light">
-                                                        <i class="far fa-edit"></i> Views
-                                                    </a>
+                                                    <div class="table-action">
+                                                        <a href="{{route('pharmacy.assessments.show',[$pharmacy,$assessment])}}" class="btn btn-sm bg-success-light">
+                                                            <i class="far fa-edit"></i> View
+                                                        </a>
+                                                    </div>
                                                 </td>
                                             </tr>
+                                                
+                                            @empty
+                                                <tr>
+                                                    <td></td>
+                                                </tr>
+                                            @endforelse
+                                            
                                         </tbody>
                                     </table>
                                 </div>

@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Inventory;
+use App\Observers\BatchObserver;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Batch extends Model
 {
@@ -12,6 +13,12 @@ class Batch extends Model
     protected $fillable = ['expire_at','number','quantity','inventory_id'];
     protected $dates = ['expire_at'];
 
+    public static function boot()
+    {
+        parent::boot();
+        parent::observe(new BatchObserver);
+    }
+    
     public function inventory(){
         return $this->belongsTo(Inventory::class);
     }

@@ -23,10 +23,14 @@
         <a href="#">Inventory <i class="fas fa-chevron-down"></i></a>
         <ul class="submenu">
             <li class="has-submenu">
-                <a href="">Items</a> 
+                <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Items</a> 
                 <ul class="submenu">
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Drugs</a></li>
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Non Drugs</a></li>
+                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">All Items</a></li>
+                    <li><a href="{{route('pharmacy.inventory.expired',$pharmacy)}}">Expired</a></li>
+                    <li><a href="{{route('pharmacy.inventory.expiring_soon',$pharmacy)}}">Expiring Soon</a></li>
+                    <li><a href="{{route('pharmacy.inventory.out_of_stock',$pharmacy)}}">Out of Stock</a></li>
+                    <li><a href="{{route('pharmacy.inventory.over_stocked',$pharmacy)}}">Over Stocked</a></li>
+                    <li><a href="{{route('pharmacy.inventory.under_stocked',$pharmacy)}}">Under Stocked</a></li>
                 </ul>
             </li>
             <li><a href="{{route('pharmacy.purchases.list',$pharmacy)}}">Purchases</a></li>

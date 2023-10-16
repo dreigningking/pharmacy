@@ -61,12 +61,12 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('pharmacy.sidebar')
-            <div class="col-md-7 col-lg-8 col-xl-9">
+            {{-- @include('pharmacy.sidebar') --}}
+            <div class="col-md-12">
                 <!-- Page Wrapper -->
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pharmacy.inventory.purchases.save_to_inventory',$pharmacy)}}" method="POST">@csrf
+                        <form action="{{route('pharmacy.purchases.save_to_inventory',$pharmacy)}}" method="POST">@csrf
                             <input type="hidden" name="purchase_id" value="{{$purchase->id}}">
                             <div class="invoice-content">
                                 <div class="invoice-item invoice-table-wrap">
@@ -79,11 +79,11 @@
                                                             <th class="text-center">
                                                                 <span>Product</span> 
                                                             </th>
-                                                            <th class="text-center">Cost</th>
+                                                            <th class="text-center">Total Cost</th>
                                                             <th class="text-center">Batch No</th>
                                                             <th class="text-center">Expiry</th>
-                                                            <th class="text-center">Total Unit in Package</th>
-                                                            <th class="text-center ">Total Markup</th>
+                                                            <th class="text-center">Total Sales Unit</th>
+                                                            <th class="text-center">Total Markup</th>
                                                             <th class="text-right">Unit Price</th>
                                                         </tr>
                                                     </thead>
@@ -94,16 +94,21 @@
                                                                     <input type="hidden" name="inventories[]" value="{{$detail->inventory_id}}">{{$detail->inventory->name}}
                                                                 </td>
                                                                 <td class="text-center extra-column">
-                                                                    <input type="hidden" name="cost[]" class="cost" value="{{$detail->cost}}">
-                                                                    {{$detail->cost}}
+                                                                    <input type="hidden" name="cost[]" class="cost" value="{{$detail->amount}}">
+                                                                    {{$detail->amount}}
                                                                 </td>
-                                                                <td class="text-center extra-column"> <input type="text" name="batch[]" style="width:90px;" class="" autofocus></td>
-                                                                <td class="text-center extra-column"> <input type="date" name="expiry[]" class="date table-input" style="width:130px;"></td>
                                                                 <td class="text-center extra-column"> 
-                                                                    <input type="number" name="units[]" min="1" value="1" class="table-input units" style="width:30px;" autofocus required></td>
+                                                                    <input type="text" name="batch[]" required style="width:90px;" class="" autofocus>
+                                                                </td>
+                                                                <td class="text-center extra-column"> 
+                                                                    <input type="date" name="expiry[]" required class="date table-input" style="width:130px;">
+                                                                </td>
+                                                                <td class="text-center extra-column"> 
+                                                                    <input type="number" name="units[]" min="1" value="1" class="table-input units" style="width:30px;" autofocus required>
+                                                                </td>
                                                                 <td class="">
                                                                     <div class="input-group input-group-sm" style="width:100px;">
-                                                                        <input type="number" class="form-control markup" min="0.1" step="0.1" aria-label="Text input with dropdown button" autofocus required>
+                                                                        <input type="number" class="form-control markup" value="0" min="0.1" step="0.1" aria-label="Text input with dropdown button" autofocus required>
                                                                         <input type="hidden" name="markup_type[]" class="markup_type" value=".00">
                                                                         <div class="input-group-append">
                                                                           <button class="btn btn-outline-secondary dropdown-toggle markup_button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">.00</button>
@@ -129,11 +134,11 @@
                                         <div class="col-md-6">
                                             <div class="mt-3">
                                                 <h6>Additional information</h6>
-                                                <input type="text" name="info" id="additional" class="w-100">
+                                                <input type="text" name="info" value="{{$purchase->info}}" id="additional" class="w-100">
                                             </div>
-                                            <div class="mt-3">
+                                            {{-- <div class="mt-3">
                                                 <input type="checkbox" name="" id=""> Email Supplier
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-6 col-xl-4 ml-auto">
                                             <div class="table-responsive">
@@ -142,7 +147,7 @@
                                                         <tr>
                                                             <td>Total Cost:</td>
                                                             <td>
-                                                                <span>{{$pharmacy->country->currency_symbol}}<span id="subtotal">{{number_format($purchase->total)}}</span>
+                                                                <span>{{$pharmacy->country->currency_symbol}}<span id="subtotal" data-cost="{{$purchase->total}}">{{number_format($purchase->total)}}</span>
                                                                 </span>
                                                             </td>
                                                         </tr>
@@ -228,44 +233,34 @@
             if(markup == ''){
                 markup = 0
             }
-            
+            unit_price = cost/units
             if(markup_type == '%'){
-                add = ((markup * cost) / 100) + cost
+                selling_price = ((markup * unit_price) / 100) + unit_price
             }else{
-                add = markup + cost
+                selling_price = markup + unit_price
             }
-            selling_price = add/units
+            
             console.log('markup:'+markup)
             console.log('cost:'+cost)
             console.log('units:'+units)
-            console.log('add:'+add)
             console.log('selling_price:'+selling_price)
             calculateRevenues()
             return selling_price
                 
               
         }
-    </script>
-    <script>
         function calculateRevenues(){
             let total = 0
+            let cost =  parseInt($('#subtotal').attr('data-cost'));
             $('.price').each(function(){
                 if($(this).val()){
                     total = parseInt(total) + parseInt($(this).val())
                 }
             })
-            // $('#subprice').text(total * )
-        }
-        function calculateProfits(){
-            let total = 0
-            $('.cost').each(function(){
-                if($(this).val()){
-                    total = parseInt(total) + parseInt($(this).val())
-                }
-            })        
-        }
-        
-        // console.log(total)
+            $('#subprice').text(total)
+            let profit = cost - total
+            $('#subprofit').text(profit.toLocaleString());
             
+        }      
     </script>
 @endpush

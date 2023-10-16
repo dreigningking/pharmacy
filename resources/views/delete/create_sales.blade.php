@@ -100,7 +100,7 @@
                 <!-- Page Wrapper -->
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pharmacy.inventory.purchases.store',$pharmacy)}}" method="POST">@csrf
+                        <form action="{{route('pharmacy.purchases.store',$pharmacy)}}" method="POST">@csrf
                             <div class="invoice-content">
                                 <div class="invoice-item">
                                     <div class="row">

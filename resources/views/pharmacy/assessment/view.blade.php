@@ -98,86 +98,38 @@
                 <!-- Page Wrapper -->
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pharmacy.inventory.purchases.store',$pharmacy)}}" method="POST">@csrf
+                        <form action="{{route('pharmacy.purchases.store',$pharmacy)}}" method="POST">@csrf
                             <div class="invoice-content">
-                                {{-- <div class="invoice-item">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="invoice-logo">
-                                                <img src="{{asset('assets/img/logo.png')}}" alt="logo">
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div> --}}
                                 
-                                <!-- Invoice Drug -->
                                 <div class="invoice-item">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td> Name: </td>
-                                                    <td> Olwuadamilola Samuel </td>
+                                                    <td> {{$assessment->patient->name}} </td>
                                                 </tr>
                                                 <tr>
                                                     <td> Phone Number: </td>
-                                                    <td> 08053483984 </td>
+                                                    <td> {{$assessment->patient->mobile}} </td>
                                                 </tr>
                                                 <tr>
                                                     <td> Assessment Date: </td>
-                                                    <td> 12th May 2023 </td>
+                                                    <td> {{$assessment->created_at->format('jS M Y')}} </td>
                                                 </tr>
                                             </table>
                                         </div>
                                         <div class="col-md-6">
                                             <table class="table table-borderless">
                                                 <tr>
-                                                    <td> <a href="{{route('pharmacy.assessments.create',$pharmacy)}}" class="btn btn-light btn-sm supplies_submit">Edit Assessment</a>  </td>
+                                                    {{-- <td> <a href="{{route('pharmacy.assessments.create',$pharmacy)}}" class="btn btn-light btn-sm supplies_submit">Edit Assessment</a>  </td> --}}
                                                     <td> <a href="{{route('pharmacy.prescriptions.create',$pharmacy)}}" class="btn btn-dark btn-sm supplies_submit " >View Prescription</a> </td>
                                                 </tr>
                                                 
                                             </table>
                                         </div>
-                                        {{-- <div class="col-md-6">
-                                            <div class="">
-                                                <strong class="customer-text">Patient</strong>
-                                                <p class="invoice-details invoice-details-two">
-                                                    <select name="supplier_id" id="supplier_select" class="select form-control " required>
-                                                        <option value ="" selected>Select Patient</option>
-                                                        <option value ="">Olwuadamilola Smauel</option>
-                                                    </select>
-                                                </p>
-                                            </div>
-                                        </div> --}}
-                                        <div class="col-md-6">
-                                            {{-- <div class="invoice-info invoice-info2">
-                                                <a href="#add_supplier" data-toggle="modal" class="text-info"><u>Add new</u></a>
-                                                <div class="customer-text d-inline mx-2"><strong>Select Assessment</strong></div>
-                                                <div class="invoice-details no_select_border">
-                                                    <select name="supplier_id" id="supplier_select" class="select form-control supplier-select" required>
-                                                        <option value ="" selected>Select Assessment</option>
-                                                        <option value ="" >Assessment #12132</option>
-                                                        <option value ="" >Assessment #344545</option>
-                                                        @forelse ($suppliers as $supplier)                                                
-                                                            <option value="{{$supplier->id}}"
-                                                                data-city="{{$supplier->city->name}}"
-                                                                data-state="{{$supplier->state->name}}"
-                                                                data-country="{{$supplier->country->name}}">
-                                                                {{$supplier->name}}
-                                                            </option>
-                                                        @empty
-                                                            <option disabled>No Supplier</option>
-                                                        @endforelse
-
-                                                    </select>
-                                                   
-                                                    <p class="city"></p>
-                                                    <p class="state"></p>
-                                                    
-                                                </div>
-                                            </div> --}}
-                                        </div>
+                                        
+                                        
                                     </div>
                                 </div>
                                 
@@ -194,7 +146,7 @@
                                                                 
                                                             </th>
                                                             <th class="text-left">Details</th>
-                                                            <th class="text-left">Remark</th>
+                                                            <th class="text-left">Action</th>
                                                             
                                                         </tr>
                                                     </thead>
@@ -204,9 +156,32 @@
                                                                 Complaints
                                                             </td>
                                                             <td class="">
-                                                                Cough, Cattarh, Pain in the neck
+                                                                {{implode(',',$assessment->complaints)}}
                                                             </td>
                                                             <td></td>
+                                                        </tr> 
+                                                        <tr class="">
+                                                            <td class="extra-column">
+                                                                Vitals
+                                                            </td>
+                                                            <td class="">
+                                                                <ul>
+                                                                    @forelse ($assessment->vitals as $patientVital)
+                                                                    <li>{{$patientVital->vital->type}} : {{$patientVital->value}} {{$patientVital->vital->unit}} ({{$patientVital->comment}}) </li>
+                                                                    @empty
+
+                                                                    @endforelse
+                                                                    
+                                                                </ul>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <div class="table-action">
+                                                                    <a href="{{route('pharmacy.assessments.vitals',[$pharmacy,$assessment])}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-edit"></i> Edit
+                                                                    </a>
+                                                                </div>
+                                                            </td>
                                                         </tr> 
                                                         <tr class="">
                                                             <td class="extra-column">
@@ -214,100 +189,103 @@
                                                             </td>
                                                             <td class="">
                                                                 <ul>
-                                                                    <li>Malaria and Thyphod - 2008
-                                                                        <ul class="list-unstyled font-italic">
-                                                                            <li class="list-style-none">Medication Used</li>
-                                                                            <ul class="text-muted small">
-                                                                                <li >Lonart</li>
-                                                                                <li >Paracetamol    </li>
+                                                                    @forelse ($assessment->patientMedicalHistory as $medicalHistory)
+                                                                        <li>{{$medicalHistory->condition->description}} - {{$medicalHistory->start->format('M Y')}}
+                                                                            <ul class="list-unstyled font-italic">
+                                                                                <li class="list-style-none">Medication Used</li>
+                                                                                    <ul class="text-muted small">
+                                                                                        @forelse($medicalHistory->medications as $medication)
+                                                                                            <li>{{$medication->drug->name}}</li>
+                                                                                        @empty
+
+                                                                                        @endforelse
+                                                                                    </ul>
                                                                             </ul>
-                                                                        </ul>
+                                                                        </li>
+                                                                    @empty
                                                                         
-                                                                    </li>
-                                                                    <li>Malaria and Thyphod - 2008</li>
+                                                                    @endforelse
                                                                 </ul>
                                                                 
                                                             </td>
-                                                            <td></td>
-                                                        </tr> 
-                                                        <tr class="">
-                                                            <td class="extra-column">
-                                                                Current Medical Record
+                                                            <td>
+                                                                <div class="table-action">
+                                                                    <a href="{{route('pharmacy.assessments.medical_medication',[$pharmacy,$assessment])}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-edit"></i> Edit
+                                                                    </a>
+                                                                </div>
                                                             </td>
-                                                            <td class="">
-                                                                <ul>
-                                                                    <li>Malaria and Thyphod - 2008
-                                                                        <ul class="list-unstyled font-italic">
-                                                                            <li class="list-style-none">Medication Used</li>
-                                                                            <ul class="text-muted small">
-                                                                                <li >Lonart</li>
-                                                                            </ul>
-                                                                        </ul>
-                                                                        
-                                                                    </li>
-                                                                    <li>Malaria and Thyphod - 2008</li>
-                                                                </ul>
-                                                                
-                                                            </td>
-                                                            <td></td>
                                                         </tr> 
+                                                        
                                                         <tr class="">
                                                             <td class="extra-column">
                                                                 Family & Social History
                                                             </td>
                                                             <td class="">
                                                                 <ul>
-                                                                    <li>Smoking </li>
-                                                                    <li>Multiple Sexual Partners</li>
+                                                                    @forelse ($assessment->familySocialHistory as $familySocialHistory)
+                                                                    <li>{{$familySocialHistory->question->description}} - {{$familySocialHistory->value}} ({{$familySocialHistory->comment}}) </li>
+                                                                    @empty
+
+                                                                    @endforelse
                                                                 </ul>
                                                                 
                                                             </td>
-                                                            <td></td>
-                                                        </tr>  
-                                                        <tr class="">
-                                                            <td class="extra-column">
-                                                                Vitals
+                                                            <td>
+                                                                <div class="table-action">
+                                                                    <a href="{{route('pharmacy.assessments.family_history',[$pharmacy,$assessment])}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-edit"></i> Edit
+                                                                    </a>
+                                                                </div>
                                                             </td>
-                                                            <td class="">
-                                                                <ul>
-                                                                    <li>Temperature : 150 degrees celcius </li>
-                                                                    <li>Heart Beat Rate: 150BP/BM</li>
-                                                                </ul>
-                                                                
-                                                            </td>
-                                                            <td></td>
                                                         </tr>  
+                                                         
                                                         <tr class="">
                                                             <td class="extra-column">
                                                                 System Review
                                                             </td>
                                                             <td class="">
                                                                 <ul>
-                                                                    <li>Digestive System
-                                                                        <ul class="font-italic">
-                                                                            <li class="">Painful tooth</li>
-                                                                            <li class="">Painful Head</li>
-                                                                        </ul>
+                                                                    @forelse ($assessment->systemReview as $patientReview)
+                                                                        <li>{{$patientReview->review->system}} : <span class="text-muted small font-italic">{{$patientReview->review->description}}</span>
+                                                                            
+                                                                        </li>
+                                                                    @empty
                                                                         
-                                                                    </li>
-                                                                    <li>Skeletal System
-                                                                        <ul class="font-italic">
-                                                                            <li class="">Painful tooth</li>
-                                                                            <li class="">Painful Head</li>
-                                                                        </ul>
-                                                                    </li>
+                                                                    @endforelse
                                                                 </ul>
+                                                                
                                                             </td>
-                                                            <td></td>
+                                                            <td>
+                                                                <div class="table-action">
+                                                                    <a href="{{route('pharmacy.assessments.system_review',[$pharmacy,$assessment])}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-edit"></i> Edit
+                                                                    </a>
+                                                                </div>
+                                                            </td>
                                                         </tr>  
                                                         <tr class="">
                                                             <td class="extra-column">
                                                                 Provisional Diagnosis
                                                             </td>
                                                             <td class="">
-                                                                Patient is sick of old naira notes
+                                                                <ul>
+                                                                    @forelse ($assessment->provisionalDiagnosis as $diagnosis)
+                                                                        <li>{{$diagnosis->condition->description}} </span>
+                                                                            
+                                                                        </li>
+                                                                    @empty
+                                                                        
+                                                                    @endforelse
+                                                                </ul>
                                                             </td>
-                                                            <td></td>
+                                                            <td>
+                                                                <div class="table-action">
+                                                                    <a href="{{route('pharmacy.assessments.provisional_diagnosis',[$pharmacy,$assessment])}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-edit"></i> Edit
+                                                                    </a>
+                                                                </div>
+                                                            </td>
                                                         </tr>  
                                                         <tr class="">
                                                             <td class="extra-column">
@@ -315,12 +293,23 @@
                                                             </td>
                                                             <td class="">
                                                                 <ul>
-                                                                    <li>Pregnancy Test : </li>
-                                                                    <li>Endocrine Test:</li>
+                                                                    @forelse ($assessment->provisionalDiagnosis as $diagnosis)
+                                                                        <li>{{$diagnosis->condition->description}} </span>
+                                                                            
+                                                                        </li>
+                                                                    @empty
+                                                                        
+                                                                    @endforelse
                                                                 </ul>
                                                                 
                                                             </td>
-                                                            <td></td>
+                                                            <td>
+                                                                <div class="table-action">
+                                                                    <a href="{{route('pharmacy.assessments.laboratory_test',[$pharmacy,$assessment])}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-edit"></i> Edit
+                                                                    </a>
+                                                                </div>
+                                                            </td>
                                                         </tr> 
                                                         <tr class="">
                                                             <td class="extra-column">
@@ -329,7 +318,13 @@
                                                             <td class="">
                                                                 Confirmed Presence of CBN intervention
                                                             </td>
-                                                            <td></td>
+                                                            <td>
+                                                                <div class="table-action">
+                                                                    <a href="{{route('pharmacy.assessments.final_diagnosis',[$pharmacy,$assessment])}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-edit"></i> Edit
+                                                                    </a>
+                                                                </div>
+                                                            </td>
                                                         </tr> 
                                                     </tbody>
                                                 </table>

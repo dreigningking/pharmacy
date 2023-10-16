@@ -9,19 +9,20 @@ trait PaystackTrait
     protected function initializePayment(Payment $payment){
         $response = Curl::to('https://api.paystack.co/transaction/initialize')
         ->withHeader('Authorization: Bearer '.config('services.paystack_secret_key'))
-        ->withData( array('email' => $payment->user->email,'currency'=> $payment->currency,
-        'amount'=> $payment->amount * 100,'callback_url'=> route('subscription.show'),'reference'=> $payment->reference) )
+        ->withData( array('email' => $payment->user->email,'currency'=> strtoupper($payment->currency),
+        'amount'=> $payment->amount * 100,'callback_url'=> route('paymentverify'),'reference'=> $payment->reference) )
         ->asJson()
         ->post();
         // dd($response);
         return $response;
     }
     
-    protected function verifyPayment($value){
-        $transactionRef = $value;
+    protected function verifyPayment(Payment $payment){
+        $transactionRef = $payment->reference;
         $paymentDetails = Curl::to('https://api.paystack.co/transaction/verify/'.$transactionRef)
-         ->withHeader('Authorization: Bearer '.config('services.paystack_secret_key'))
-         ->get();
+            ->withHeader('Authorization: Bearer '.config('services.paystack_secret_key'))
+            ->asJson()
+            ->get();
         return $paymentDetails;
     }
     // {

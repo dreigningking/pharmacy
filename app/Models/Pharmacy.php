@@ -31,8 +31,9 @@ class Pharmacy extends Model
     ];
 
     protected $casts = ['notify_stock_limit'=> 'array','notify_expired_items'=> 'array','notify_purchase_order'=> 'array',
-    'notify_sales_record'=> 'array','notify_patients_welcome'=> 'array','notify_patient_diagnosis'=> 'array',
-    'notify_patient_prescription'=> 'array','notify_patient_feedback'=> 'array'];
+        'notify_sales_record'=> 'array','notify_patients_welcome'=> 'array','notify_patient_diagnosis'=> 'array',
+        'notify_patient_prescription'=> 'array','notify_patient_feedback'=> 'array'
+    ];
 
     public static function boot(){
         parent::boot();

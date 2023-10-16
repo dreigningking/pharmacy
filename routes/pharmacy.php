@@ -30,7 +30,7 @@ Route::group(['middleware'=> ['auth','subscription'],'as'=>'pharmacy.','prefix'=
     
     Route::group(['as'=> 'staff.','prefix' => 'staff'], function () {
         Route::post('store',[StaffController::class, 'store'])->name("store");
-        Route::post('destroy',[StaffController::class, 'destroy'])->name("destroy");
+        // Route::post('destroy',[StaffController::class, 'destroy'])->name("destroy");
         Route::get('activities', [StaffController::class, 'activities'])->name("activities");
     });
     
@@ -51,11 +51,30 @@ Route::group(['middleware'=> ['auth','subscription'],'as'=>'pharmacy.','prefix'=
         Route::get('/', [AssessmentController::class, 'index'])->name("index");
         Route::get('new/{patient?}', [AssessmentController::class, 'create'])->name("create");
         Route::post('store', [AssessmentController::class, 'store'])->name("store");
-        Route::get('show/{assessment?}', [AssessmentController::class, 'show'])->name("show");
-        Route::get('edit/{assessment?}', [AssessmentController::class, 'edit'])->name("edit");
-        Route::post('update', [AssessmentController::class, 'update'])->name("update");
+        Route::get('show/{assessment}', [AssessmentController::class, 'show'])->name("show");
+        // Route::get('edit/{assessment}', [AssessmentController::class, 'edit'])->name("edit");
         Route::post('delete', [AssessmentController::class, 'destroy'])->name("destroy");
-        
+        Route::get('{assessment}/vitals', [AssessmentController::class, 'vitals'])->name("vitals");
+        Route::post('vitals', [AssessmentController::class, 'vitals_store'])->name("vitals_store");
+
+        Route::get('{assessment}/medical_medication', [AssessmentController::class, 'medical_medication'])->name("medical_medication");
+        Route::post('medical_medication', [AssessmentController::class, 'medical_medication_store'])->name("medical_medication_store");
+
+        Route::get('{assessment}/family_history', [AssessmentController::class, 'family_history'])->name("family_history");
+        Route::post('family_history', [AssessmentController::class, 'family_history_store'])->name("family_history_store");
+
+        Route::get('{assessment}/system_review', [AssessmentController::class, 'system_review'])->name("system_review");
+        Route::post('system_review', [AssessmentController::class, 'system_review_store'])->name("system_review_store");
+
+        Route::get('{assessment}/provisional_diagnosis', [AssessmentController::class, 'provisional_diagnosis'])->name("provisional_diagnosis");
+        Route::post('provisional_diagnosis', [AssessmentController::class, 'provisional_diagnosis_store'])->name("provisional_diagnosis_store");
+
+        Route::get('{assessment}/laboratory_test', [AssessmentController::class, 'laboratory_test'])->name("laboratory_test");
+        Route::post('laboratory_test', [AssessmentController::class, 'laboratory_test_store'])->name("laboratory_test_store");
+
+        Route::get('{assessment}/final_diagnosis', [AssessmentController::class, 'final_diagnosis'])->name("final_diagnosis");
+        Route::post('final_diagnosis', [AssessmentController::class, 'final_diagnosis_store'])->name("final_diagnosis_store");
+
     });
 
     Route::group(['prefix'=>'prescriptions','as'=> 'prescriptions.'], function () {
@@ -77,9 +96,15 @@ Route::group(['middleware'=> ['auth','subscription'],'as'=>'pharmacy.','prefix'=
     
     Route::group(['prefix'=>'inventory','as'=> 'inventory.'], function () {
         Route::get('/', [InventoryController::class,'list'])->name("index");
+        Route::get('expired', [InventoryController::class,'expired'])->name("expired");
+        Route::get('expiring-soon', [InventoryController::class,'expiringSoon'])->name("expiring_soon");
+        Route::get('out-of-stock', [InventoryController::class,'outOfStock'])->name("out_of_stock");
+        Route::get('over-stocked', [InventoryController::class,'overStocked'])->name("over_stocked");
+        Route::get('under-stocked', [InventoryController::class,'underStocked'])->name("under_stocked");
         Route::get('add/drugs',[InventoryController::class,'drugs'] )->name('drugs');
         Route::get('view/{item}', [InventoryController::class,'show'])->name("show");
         Route::post('store', [InventoryController::class,'store'])->name("store");
+        Route::post('update', [InventoryController::class,'update'])->name("update");
         Route::post('batches', [InventoryController::class,'batches'])->name("batches");
         Route::get('settings', [InventoryController::class,'settings'])->name("settings");
         Route::post('supplier/save', [InventoryController::class, 'suppliers'])->name('suppliers');
@@ -94,10 +119,11 @@ Route::group(['middleware'=> ['auth','subscription'],'as'=>'pharmacy.','prefix'=
         Route::get('new',[TransferController::class, 'create'])->name('create');
         Route::post('new',[TransferController::class, 'create_from_inventory'])->name('create');
         Route::get('{transfer}/edit',[TransferController::class, 'edit'])->name('edit');
-        Route::post('{transfer}/update',[TransferController::class, 'update'])->name('update');
+        Route::post('update',[TransferController::class, 'update'])->name('update');
         Route::post('save',[TransferController::class, 'store'])->name('store');
         Route::post('save_to_inventory',[TransferController::class, 'save_to_inventory'])->name('save_to_inventory');
         Route::post('delete',[TransferController::class, 'delete'])->name('delete');
+        Route::get('view/{transfer}',[TransferController::class, 'show'])->name('show');
     });
 
     Route::group(['prefix'=>'purchases','as'=> 'purchases.'], function () {
@@ -105,11 +131,12 @@ Route::group(['middleware'=> ['auth','subscription'],'as'=>'pharmacy.','prefix'=
         Route::get('new',[SupplyController::class, 'create'])->name('create');
         Route::post('new',[SupplyController::class, 'create_from_inventory'])->name('create');
         Route::get('{purchase}/edit',[SupplyController::class, 'edit'])->name('edit');
-        Route::post('{purchase}/update',[SupplyController::class, 'update'])->name('update');
+        Route::post('update',[SupplyController::class, 'update'])->name('update');
         Route::post('save',[SupplyController::class, 'store'])->name('store');
         Route::get('{purchase}/add_to_inventory',[SupplyController::class, 'add_to_inventory'])->name('add_to_inventory');
         Route::post('save_to_inventory',[SupplyController::class, 'save_to_inventory'])->name('save_to_inventory');
         Route::post('delete',[SupplyController::class, 'delete'])->name('delete');
+        Route::get('view/{purchase}',[SupplyController::class, 'show'])->name('show');
     });
 
 });

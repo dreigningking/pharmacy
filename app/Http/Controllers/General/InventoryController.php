@@ -22,15 +22,179 @@ class InventoryController extends Controller
 {
 
     public function list(Pharmacy $pharmacy){
+        $search = '';
+        $type = ['drug','non_drug'];
+        $show = '';
         $items = Inventory::where('pharmacy_id',$pharmacy->id);
-        if($name = request()->name)
-        $items =  $items->where('name','LIKE',"%$name%");
-        $items =  $items->get();
-        // dd($items);
+        if($search = request()->search){
+            $items =  $items->where('name','LIKE',"%$search%");
+        }
+        if(request()->type && is_array(request()->type) && count(request()->type) < 2){
+            if(in_array('drug',request()->type)){
+                $items =  $items->whereNotNull('drug_id');
+            }else{
+                $items =  $items->whereNull('drug_id');   
+            }
+            $type = request()->type;
+        }
+        if($show = request()->show){
+            switch($show){
+                case 'expired': $items = $items->whereHas('batches',function($query){ $query->where('expire_at','<',today());});
+                    break;
+                case 'expiring': $items = $items->whereHas('batches',function($query){ $query->where('expire_at','<',today()->addMonths(6));});
+                    break;
+                case 'out_of_stock': $items = $items->where('quantity',0);
+                    break;
+                case 'over_stock': $items = $items->whereColumn('quantity','>','maximum_stocklevel');
+                    break;
+                case 'under_stock': $items = $items->whereColumn('quantity','<','minimum_stocklevel');
+                    break;
+            }
+        }
+
         if(request()->expectsJson())
-            return response()->json(['items'=> $items],200);
+            return response()->json(['items'=> $items->get()],200);
         else 
-            return view('pharmacy.inventory.list',compact('pharmacy','items'));
+        $items =  $items->paginate(15);
+        return view('pharmacy.inventory.items.all',compact('pharmacy','items','search','type','show'));
+    }
+
+    public function expired(Pharmacy $pharmacy){
+        $name = '';
+        $type = ['drug','non_drug'];
+        $items = Batch::where('expire_at','<',today());
+        $items = $items->whereHas('inventory',function($query) use($pharmacy){
+            $query->where('pharmacy_id',$pharmacy->id);
+        });
+
+        if($name = request()->name){
+            $items =  $items->whereHas('inventory',function($query) use($name){
+                $query->where('name','LIKE',"%$name%");
+            });
+        }
+        
+        if(request()->type && is_array(request()->type) && count(request()->type) < 2){
+            if(in_array('drug',request()->type)){
+                $items =  $items->whereHas('inventory',function($query) use($name){
+                    $query->whereNotNull('drug_id');
+                });
+            }else{
+                $items =  $items->whereHas('inventory',function($query) use($name){
+                    $query->whereNull('drug_id');
+                }); 
+            }
+            $type = request()->type;
+        }
+
+        if(request()->expectsJson())
+            return response()->json(['items'=> $items->get()],200);
+        else 
+        $items =  $items->paginate(15);
+        return view('pharmacy.inventory.items.expired',compact('pharmacy','items','name','type'));
+    }
+
+    public function expiringsoon(Pharmacy $pharmacy){
+        $name = '';
+        $type = ['drug','non_drug'];
+        $items = Batch::where('expire_at','<',today()->addMonths(6));
+        $items = $items->whereHas('inventory',function($query) use($pharmacy){
+            $query->where('pharmacy_id',$pharmacy->id);
+        });
+
+        if($name = request()->name){
+            $items =  $items->whereHas('inventory',function($query) use($name){
+                $query->where('name','LIKE',"%$name%");
+            });
+        }
+        
+        if(request()->type && is_array(request()->type) && count(request()->type) < 2){
+            if(in_array('drug',request()->type)){
+                $items =  $items->whereHas('inventory',function($query) use($name){
+                    $query->whereNotNull('drug_id');
+                });
+            }else{
+                $items =  $items->whereHas('inventory',function($query) use($name){
+                    $query->whereNull('drug_id');
+                }); 
+            }
+            $type = request()->type;
+        }
+        if(request()->expectsJson())
+            return response()->json(['items'=> $items->get()],200);
+        else 
+        $items =  $items->paginate(15);
+        return view('pharmacy.inventory.items.expiring_soon',compact('pharmacy','items','name','type'));
+    }
+
+    public function outOfStock(Pharmacy $pharmacy){
+        $name = '';
+        $type = ['drug','non_drug'];
+        $items = Inventory::where('pharmacy_id',$pharmacy->id)->where('quantity',0);
+        if($name = request()->name){
+            $items =  $items->where('name','LIKE',"%$name%");
+        }
+        if(request()->type && is_array(request()->type) && count(request()->type) < 2){
+            if(in_array('drug',request()->type)){
+                $items =  $items->whereNotNull('drug_id');
+            }else{
+                $items =  $items->whereNull('drug_id');   
+            }
+            $type = request()->type;
+        }
+
+        if(request()->expectsJson())
+            return response()->json(['items'=> $items->get()],200);
+        else 
+        $items =  $items->paginate(15);
+        return view('pharmacy.inventory.items.out_of_stock',compact('pharmacy','items','name','type'));
+    }
+
+    public function overStocked(Pharmacy $pharmacy){
+        $name = '';
+        $type = ['drug','non_drug'];
+        $items = Inventory::where('pharmacy_id',$pharmacy->id)->whereColumn('quantity','>','maximum_stocklevel');
+        if($name = request()->name){
+            $items =  $items->where('name','LIKE',"%$name%");
+        }
+        if(request()->type && is_array(request()->type) && count(request()->type) < 2){
+            if(in_array('drug',request()->type)){
+                $items =  $items->whereNotNull('drug_id');
+            }else{
+                $items =  $items->whereNull('drug_id');   
+            }
+            $type = request()->type;
+        }
+
+
+        if(request()->expectsJson())
+            return response()->json(['items'=> $items->get()],200);
+        else 
+        $items =  $items->paginate(15);
+        return view('pharmacy.inventory.items.over_stock',compact('pharmacy','items','name','type'));
+    }
+
+    public function underStocked(Pharmacy $pharmacy){
+        $name = '';
+        $type = ['drug','non_drug'];
+        $items = Inventory::where('pharmacy_id',$pharmacy->id)->whereColumn('quantity','<','minimum_stocklevel');
+        if($name = request()->name){
+            $items =  $items->where('name','LIKE',"%$name%");
+        }
+        if(request()->type && is_array(request()->type) && count(request()->type) < 2){
+            if(in_array('drug',request()->type)){
+                $items =  $items->whereNotNull('drug_id');
+            }else{
+                $items =  $items->whereNull('drug_id');   
+            }
+            $type = request()->type;
+        }
+
+
+        if(request()->expectsJson())
+            return response()->json(['items'=> $items->get()],200);
+        else 
+        $items =  $items->paginate(15);
+        return view('pharmacy.inventory.items.under_stock',compact('pharmacy','items','name','type'));
     }
 
     public function batches(Pharmacy $pharmacy,Request $request){
@@ -45,7 +209,7 @@ class InventoryController extends Controller
     }
 
     public function store(Request $request,Pharmacy $pharmacy){
-        //dd($request->all());
+        // dd($request->all());
         
             if($request->many){
                 for($i = 0;$i < count($request->drug_id) ;$i++){
@@ -61,14 +225,26 @@ class InventoryController extends Controller
                 }
             }
             else{
-                Inventory::updateOrCreate(['drug_id'=> $request->input('drug_id'),'pharmacy_id'=> $pharmacy->id],['category'=> $request->input('category'),
-            'name'=> $request->input('name'),'shelf'=> $request->input('shelf'),'unit_cost'=> $request->input('unit_cost'),'unit_price'=> $request->input('unit_price')]);
+                Inventory::create(['drug_id'=> $request->input('drug_id'),'pharmacy_id'=> $pharmacy->id,'category'=> $request->input('category'),
+                    'name'=> $request->input('name'),'shelf'=> $request->input('shelf'),'unit_cost'=> $request->input('unit_cost'),
+                    'unit_price'=> $request->input('unit_price'),'minimum_stocklevel'=> $request->input('minimum_stocklevel'),
+                    'maximum_stocklevel' => $request->input('maximum_stocklevel') ]);
             }
         return redirect()->back();
     }
 
+    public function update(Pharmacy $pharmacy,Request $request){
+        // dd($request->input('unit_of_sales'));
+        Inventory::where('id',$request->inventory_id)->update(['category'=> $request->input('category'),
+            'name'=> $request->input('name'),'shelf'=> $request->input('shelf'),'unit_cost'=> $request->input('unit_cost'),
+            'unit_price'=> $request->input('unit_price'),'minimum_stocklevel'=> $request->input('minimum_stocklevel'),
+            'maximum_stocklevel' => $request->input('maximum_stocklevel'),'unit_of_sales'=> $request->input('unit_of_sales'),
+            'expiry_alert_weeks'=> $request->input('expiry_alert_weeks'),'quantity'=> $request->quantity ]);
+        return redirect()->back();
+    }
+
     public function show(Pharmacy $pharmacy,Inventory $item){ 
-        return view('pharmacy.inventory.view',compact('pharmacy','item'));
+        return view('pharmacy.inventory.items.view',compact('pharmacy','item'));
     }
 
     public function settings(Pharmacy $pharmacy){
@@ -130,7 +306,7 @@ class InventoryController extends Controller
                 return redirect()->back();
             }
         }else{
-            $supplier = Supplier::updateOrCreate(['email'=> $request->email,'pharmacy_id'=> $pharmacy->id],['name'=> $request->name,'mobile'=> $request->mobile]);
+            $supplier = Supplier::updateOrCreate(['email'=> $request->email,'pharmacy_id'=> $pharmacy->id],['name'=> $request->name,'mobile'=> $request->mobile,'location'=> $request->location]);
             if($request->ajax){
                 return response()->json(['supplier'=> $supplier],200);
             }else{

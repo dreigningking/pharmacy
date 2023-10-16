@@ -172,69 +172,79 @@
                                         <h4>Suppliers</h4>
                                     </div>
                                     <div class="card-body">
-                                        
-                                            <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">
-                                            <div class="row w-100">
-                                                
+                                        {{-- <input type="hidden" name="pharmacy_id" value="{{$pharmacy->id}}">    --}}
+                                        <form action="{{route('pharmacy.inventory.suppliers',$pharmacy)}}" class="w-100" method="POST">@csrf
+                                            <div class="row">
                                                 <div class="col-md-4">
-                                                    <form action="{{route('pharmacy.inventory.suppliers',$pharmacy)}}" class="w-100" method="POST">@csrf
-                                                        <div class="form-group">  
-                                                            <label class="text-muted text-center">Name</label>                                        
-                                                            <input type="text" id="supplier_name" name="name" placeholder="First and Last Name" class=" form-control">
-                                                        </div>
-                                                        <div class="form-group">  
-                                                            <label class="text-muted text-center">Email</label>                                        
-                                                            <input type="email" id="supplier_email" name="email" placeholder="Email Address" class=" form-control">
-                                                        </div>
-                                                        <div class="form-group">  
-                                                            <label class="text-muted text-center">Phone</label>                                        
-                                                            <input type="text" id="supplier_mobile" name="mobile" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="btn btn-md btn-info btn-block" id="supplier_button">Save</button>  
-                                                        </div> 
-                                                    </form>
+                                                    <div class="form-group">  
+                                                        <label class="text-muted text-center">Name</label>                                        
+                                                        <input type="text" id="supplier_name" name="name" placeholder="First and Last Name" class=" form-control">
+                                                    </div>
                                                 </div>
-                                                
+                                                <div class="col-md-4">
+                                                    <div class="form-group">  
+                                                        <label class="text-muted text-center">Email</label>                                        
+                                                        <input type="email" id="supplier_email" name="email" placeholder="Email Address" class=" form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">  
+                                                        <label class="text-muted text-center">Phone</label>                                        
+                                                        <input type="text" id="supplier_mobile" name="mobile" class="form-control">
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-8">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-bordered">
-                                                            <thead>
-                                                                <tr> 
-                                                                    <th>#</th> 
-                                                                    <th>Name</th> 
-                                                                    <th>Email</th> 
-                                                                    <th>Phone</th> 
-                                                                    <th>Actions</th> 
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @foreach ($pharmacy->suppliers as $supplier)
-                                                                    <tr> 
-                                                                        <td> {{$loop->iteration}} </td>
-                                                                        <td> {{$supplier->name}} </td>
-                                                                        <td> {{$supplier->email}} </td>
-                                                                        <td> {{$supplier->mobile}} </td>
-                                                                        <td> 
-                                                                            <div class="d-flex">
-                                                                            <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary edit-supplier" data-supplier_email="{{$supplier->email}}" data-supplier_mobile="{{$supplier->mobile}}" data-supplier_name="{{$supplier->name}}"> <i class="fa fa-pen"></i></a>  
-                                                                            <form action="{{route('pharmacy.inventory.suppliers',$pharmacy)}}" class="d-inline" method="POST" onsubmit="return confirm('Are you want you want to delete supplier')">@csrf
-                                                                                <input type="hidden" name="supplier_id" value="{{$supplier->id}}">
-                                                                                <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                                                            </form>
-                                                                            </div>
-                                                                        </td> 
-                                                                    </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table>
+                                                    <div class="form-group">  
+                                                        <label class="text-muted text-center">Location</label>                                        
+                                                        <input type="text" id="supplier_location" name="location" placeholder="e.g Address, City, State " class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group mt-4">
+                                                        <button type="submit" class="btn btn-lg btn-info btn-block" id="supplier_button">Save Supplier</button>  
                                                     </div> 
                                                 </div>
-                                                
-                                               
-        
                                             </div>
-                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        </form>    
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr> 
+                                                        <th>#</th> 
+                                                        <th>Name</th> 
+                                                        <th>Email</th> 
+                                                        <th>Phone</th> 
+                                                        <th>Location</th> 
+                                                        <th>Actions</th> 
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($pharmacy->suppliers as $supplier)
+                                                        <tr> 
+                                                            <td> {{$loop->iteration}} </td>
+                                                            <td> {{$supplier->name}} </td>
+                                                            <td> {{$supplier->email}} </td>
+                                                            <td> {{$supplier->mobile}} </td>
+                                                            <td> {{$supplier->location}} </td>
+                                                            <td> 
+                                                                <div class="d-flex">
+                                                                    <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary edit-supplier" data-supplier_email="{{$supplier->email}}" data-supplier_mobile="{{$supplier->mobile}}" data-supplier_name="{{$supplier->name}}" data-supplier_location="{{$supplier->location}}"> <i class="fa fa-pen"></i></a>  
+                                                                    <form action="{{route('pharmacy.inventory.suppliers',$pharmacy)}}" class="d-inline" method="POST" onsubmit="return confirm('Are you want you want to delete supplier')">@csrf
+                                                                        <input type="hidden" name="supplier_id" value="{{$supplier->id}}">
+                                                                        <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
+                                                                    </form>
+                                                                </div>
+                                                            </td> 
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div> 
                                     </div>
                                 </div>
                             </div> 
@@ -334,6 +344,7 @@
             $('#supplier_name').val($(this).attr('data-supplier_name'))
             $('#supplier_email').val($(this).attr('data-supplier_email'))
             $('#supplier_mobile').val($(this).attr('data-supplier_mobile'))
+            $('#supplier_location').val($(this).attr('data-supplier_location'))
             $('#supplier_button').text('Update');
         })
 

@@ -132,10 +132,10 @@ class User extends Authenticatable
     }
     public function availableLicenses(){
         // return $this->hasOne(License::class)->ofMany([],function ($query) { $query->where('start_at', '<', now())->where('expire_at','>',now()); });
-        return $this->hasMany(License::class)->where('pharmacy_id',null);
+        return $this->hasMany(License::class)->where('pharmacy_id',null)->whereNotNull('start_at');
     }
     public function activeLicenses(){
-        return $this->hasMany(License::class)->where('pharmacy_id','!=',null)->where('start_at', '<', now())->where('expire_at','>',now());
+        return $this->hasMany(License::class)->where('pharmacy_id','!=',null)->whereNotNull('start_at')->where('start_at', '<', now())->where('expire_at','>',now());
     }
 
     public function smsUnits(){

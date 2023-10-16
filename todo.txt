@@ -1,106 +1,61 @@
 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
 
+INVENTORY
+
+allow duplicate drugs in inventory
+available = quantity - expired - damaged ()
+
+Move expired, expiring,  out of stock and overstocked in to separate pages
+- expired : {name, batch, quantity}
+- expiring : {name, batch, shelf life, quantity}
+- over stock : {name, over stocked quantity}
+- under stock : {name, under stocked quantity}
+- out of stock : {name}
+
+
+
+
+PURCHASE 
+
+TRANSFER
+you cannot transfer items with zero quantity
+transfer should reduce quantity of the sending pharmacy inventory
+
+PATIENT 
+
+patient
+
+
+ASSESSMENT 
+
 assessment reports for a singular patient to comprises all dates on a single page ( use secure link)
 
-medication history
-
-family_and_social_history as multiple select options.
-provisional_diagnosis + require Laboratory Test. - enter and save
-lab results 
-final diagnosis + display outcome expected. 
-Feedback
-Save | Save & Prescribe Medicine
+Final Diagnosis Feedback
 
 expected_outcome units should be in labtests or vitals
 
 
+PRESCRIPTION 
+Non Medication advise is a drop down
 
-vg
-permission_id [id,name,abilities]
-pharmacy_role_permissions [id,pharmacy_role_id,permission_id,]
 
-permission_roles [id,role_id,permission_id]
-
-Recent Notification{
-    subscription notifications
-}
-
-checkout
-item1{
-    pharmacy subscription
-    licenses: 3
-    amount: price * 3
-}
-
-item1{
-    analytics subscription
-    licenses: 3
-    amount: price * 3
-}
-
-item1{
-    sms unit
-    for: xyz pharmacy
-    quantity: 100
-    amount: price * quantity
-}
-
+SALES 
 sales{
     date|name|type|qty|price|amount|sold by|invoice
     sidebar[drugs, non-drug,]
 }
 
+FEEDBACK 
+
+REPORT 
+
+ANALYTICS 
+
+Settings: 
+
 fa user-md, fa medkit,fa heartbeat,fa plus-square,fa ambulance,fa wheelchair-alt,fa wheelchair,fa thermometer-full,fa syringe,fa microscope,fa hospital
 
-DATABASE TABLES
-patient
-patient_family_history [patient_id|family_history_id|result]
 
-assessment [id|patient_id||status]
-patient_complaint [assessment_id|patient_id|complaint_id]
-patient_vitals [assessment_id, vital_id, result]
-
-patient_medical_history [assessment_id (nullable)|patient_id|condition_id|start|end|created_at]
-patient_medication_history [assessment_id (nullable)|patient_id|medical_history_id|drug_id|start|end|is_effective|created_at]
-patient_system_review [assessment_id|patient_id|system_review_id|result]
-patient_laboratory [assessment_id|patient_id|laboratory_id|result]
-patient_diagnosis [assessment_id|patient_id|condition_id|laboratory_test_id]
-
-
-Non Medication advise is a drop down
-
-
-09023986401
-
-break assessment into separate pages
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-God wants 
-1. your heart (your attention) 
-2. your presence, 
-Your presence is more than your words
-david proved his love for God by his presence
-3. your love
-Your love for God is what goes beyond the law of moses
-
-
-one assessment, multiple appointment
-use appointment to determine ongoing follow-up
-
-medication advise is for each drug in a prescription -- can be multiple
-
-non medication advise is for the disease/diagnosis -- can be multiple
-
-add purchase history to an item
+Recent Notification{
+    subscription notifications
+}

@@ -15,8 +15,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Inventory extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $appends = ['cost'];
-    protected $fillable = ['drug_id','pharmacy_id','name','shelf','category','unit_price','unit_cost'];
+    
+    // protected $appends = ['quantity'];
+
+    protected $fillable = ['drug_id','pharmacy_id','name','shelf','category','unit_price','unit_cost','minimum_stocklevel','maximum_stocklevel','quantity','unit_of_sales','expiry_alert_weeks'];
     
 
     public function pharmacy(){
@@ -33,11 +35,15 @@ class Inventory extends Model
     public function purchases(){
         return $this->hasMany(PurchaseDetail::class);
     }
-    public function getCostAttribute(){
-        return $this->purchases->avg('cost');
+    public function getAvailableAttribute(){
+        return $this->batches->count() ? $this->batches->where('expire_at','>',today())->sum('quantity') : $this->quantity;
     }
     public function batches(){
         return $this->hasMany(Batch::class);
     }
+
+    // public function scopeQuantities($query){
+    //     return $query->where('quantity','>', 0);
+    // }
     
 }

@@ -43,7 +43,7 @@ Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::post('getstates',[HomeController::class, 'states'])->name('getStates');
 Route::post('getcities',[HomeController::class, 'cities'])->name('getCities');
 
-Route::get('payment/verification',[PaymentController::class, 'verify'] )->name('verify');
+Route::get('payment/verification',[PaymentController::class, 'verify'] )->name('paymentverify');
 
 //accessible on director dashboard and inside pharmacies
 Route::get('profile', [UserController::class, 'profile'])->name('profile');
@@ -71,4 +71,4 @@ Route::view('support/read','user.support.read')->name('support.read');
 
 include('pharmacy.php');
 include('admin.php');
-// });
+

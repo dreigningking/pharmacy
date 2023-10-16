@@ -13,14 +13,18 @@ use App\Notifications\InvitationNotification;
 
 class StaffController extends Controller
 {
-    public function activities(){
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+    public function activities(Pharmacy $pharmacy){
         $user = Auth::user();
         return view('user.activities',compact('user'));
     }
     
-    public function store(Request $request){
+    public function store(Pharmacy $pharmacy,Request $request){
         // add staff should send an email to the person
-        // dd($request->all());
+        dd('here');
         $pharmacy = Pharmacy::find($request->pharmacy_id);
         foreach($request->email as $key => $email){
             // dd($request->input("name.$key"));
@@ -36,13 +40,13 @@ class StaffController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request)
-    {
-        // delete staff should send an email to the person
-        // dd($request->all());
-        $pharmacyUser = User::where('pharmacy_id',$request->pharmacy_id)->where('user_id',$request->user_id)->delete();
-        return redirect()->back();
-    }
+    // public function destroy(Request $request)
+    // {
+    //     // delete staff should send an email to the person
+    //     dd($request->all());
+    //     $pharmacyUser = User::where('pharmacy_id',$request->pharmacy_id)->where('user_id',$request->user_id)->delete();
+    //     return redirect()->back();
+    // }
 
 
     public function update(Request $request, $id)

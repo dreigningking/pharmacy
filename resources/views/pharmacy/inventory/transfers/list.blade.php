@@ -27,14 +27,80 @@
     <div class="container-fluid">
 
         <div class="row">
-            @include('pharmacy.sidebar')
+            <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+                <div class="card search-filter">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">Search Transfers</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="get">
+                            <div class="filter-widget">
+                                <h4>Filter Pharmacy</h4>			
+                            </div>
+                            <div class="filter-widget">
+                                <input type="text" name="name" value="" class="form-control" placeholder="">		
+                            </div>
+                            
+                            <div class="filter-widget">
+                                <h4>Filter Type</h4>
+                                <div class="d-flex">
+                                    <div class="mr-3">
+                                        <label class="custom_check">
+                                            <input type="checkbox" name="type[]"  value="drug">
+                                            <span class="checkmark"></span> Drugs
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="custom_check">
+                                            <input type="checkbox" name="type[]"  value="non_drug">
+                                            <span class="checkmark"></span> Non-drugs
+                                        </label>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="filter-widget">
+                                <h4>Date Created</h4>			
+                            </div>
+                            <div class="filter-widget">
+                                <div class="cal-icon">
+                                    <input type="text" class="form-control datetimepicker" placeholder="From Date">
+                                </div>			
+                            </div>
+                                                        
+                            <div class="filter-widget">
+                                <h4>Status</h4>
+                                <div>
+                                    <select name="show" class="form-control">
+                                        <option value="all" >All </option>
+                                        <option value="out_of_stock"> Completed</option>
+                                        <option value="over_stock"> Processing</option>
+                                        
+                                    </select>
+                                </div>
+                                
+    
+                            </div>
+                            
+                            <div class="btn-search">
+                                <button type="submit" class="btn btn-block">Search</button>
+                            </div>	
+                        </form>
+                    </div>
+                    {{-- <div class="card-body">
+                        <div class="clinic-booking">
+                            <a class="apt-btn" href="booking.html">View Subscription Plans</a>
+                        </div>
+                    </div> --}}
+                    
+                </div>
+            </div>
 
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="d-flex justify-content-between">Transfers <a href="{{route('pharmacy.inventory.transfers.create',$pharmacy)}}" class="btn btn-primary">New Transfers</a></h3>
+                                <h3 class="d-flex justify-content-between">Transfers <a href="{{route('pharmacy.transfer.create',$pharmacy)}}" class="btn btn-primary">New Transfers</a></h3>
                                 <div class="table-responsive">
                                     <table class="datatable table table-hover table-bordered table-center mb-0">
                                         <thead>
@@ -43,6 +109,7 @@
                                                 <th>From</th>
                                                 <th>To</th>
                                                 <th>Worth</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -53,31 +120,43 @@
                                                 <td>{{$transfer->sending_pharmacy->name}}</td>   
                                                 <td>{{$transfer->receiving_pharmacy->name}}</td>   
                                                 <td>{{$pharmacy->country->currency_symbol}} {{number_format($transfer->total)}}</td>   
+                                                <td>
+                                                    @if($transfer->status)
+                                                        @if($transfer->accepted_at)
+                                                            <span class="badge badge-success">Completed</span>
+                                                        @else 
+                                                            <span class="badge badge-danger">Rejected</span>
+                                                        @endif
+                                                    @elseif($transfer->sent_at)
+                                                        <span class="badge badge-primary">
+                                                            @if($transfer->to_pharmacy == $pharmacy->id) New @else Sent @endif
+                                                        </span>
+                                                    @else
+                                                    <span class="badge badge-dark">Draft</span>
+                                                    @endif
+
+                                                </td>   
                                                   
                                                 <td class="text-center">
                                                     <div class="actions">
-                                                        @if(!$transfer->status)
+                                                        @if($transfer->status || $transfer->sent_at)
+                                                            <a class="btn btn-sm btn-info " href="{{route('pharmacy.transfer.show',[$pharmacy,$transfer])}}">
+                                                                <i class="fe fe-eye"></i> View
+                                                            </a>
+                                                        @else
                                                             @if($transfer->to_pharmacy == $pharmacy->id)
-                                                                {{-- <a class="btn btn-sm bg-success-light" href="">
-                                                                    <i class="fa fa-plus-circle"></i> Add to Inventory
-                                                                </a> --}}
-                                                                <form class="d-inline-block" action="{{route('pharmacy.inventory.transfers.save_to_inventory',$pharmacy)}}" method="POST">@csrf
-                                                                    <input type="hidden" name="transfer_id" value="{{$transfer->id}}">
-                                                                    <button class="btn btn-sm bg-success-light" type="submit">
-                                                                        <i class="fa fa-plus-circle"></i> Add to Inventory
-                                                                    </button>
-                                                                </form>
+                                                                <a class="btn btn-sm bg-success-light" href="">
+                                                                    <i class="fa fa-plus-circle"></i> Open
+                                                                </a>
+                                                                
                                                             @else 
-                                                                <a class="btn btn-sm bg-primary-light" href="#">
+                                                                <a class="btn btn-sm bg-primary-light" href="{{route('pharmacy.transfer.edit',[$pharmacy,$transfer])}}">
                                                                     <i class="fe fe-pencil"></i> Edit
                                                                 </a>
                                                                 <a data-toggle="modal" href="#delete_modal{{$transfer->id}}" class="btn btn-sm bg-danger-light">
                                                                     <i class="fe fe-trash"></i> Delete
                                                                 </a>
-                                                            @endif
-                                                            
-                                                        @else
-                                                            <span class="badge badge-success">Completed</span>
+                                                            @endif  
                                                         @endif
                                                     </div>
                                                 </td>
@@ -142,5 +221,5 @@
 
 <!-- Add Staff Modal -->
 @push('scripts')
-<script src="{{asset('adminassets/js/script.js')}}"></script>
+
 @endpush

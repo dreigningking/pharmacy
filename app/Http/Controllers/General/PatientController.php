@@ -49,4 +49,13 @@ class PatientController extends Controller
     {
         return redirect()->route('pharmacy.patients.index',$pharmacy);
     }
+
+    public function family_history(Pharmacy $pharmacy,Request $request){
+        //
+    }
+    
+    public function medical_medication(Pharmacy $pharmacy,Request $request){
+        //
+    }
+    
 }

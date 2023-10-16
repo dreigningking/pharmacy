@@ -7,36 +7,16 @@ expire all trial licenses of a user at the same time
 INVENTORY 
 add drugs to pharmacy.
 add single inventory to pharmacy 
- 
+=====================================
+inventory search should retain search phrase
+inventory search feedback on search widget is not correct
 
-PURCHASE 
-
-TRANSFER
-
-PATIENT 
-
-ASSESSMENT 
-
-PRESCRIPTION 
-
-SALES 
-
-FEEDBACK 
-
-REPORT 
-
-ANALYTICS 
+add unit of sales to inventory edit
+add unit of procurement to supplies
 
 
-Dashboard
-Pharmacies
-Users
-Drug Management 
-Assessment Settings
-Licenses
-Transactions 
-Admins
-Settings: 
+inventory markup percentage should autocalculate the product unit price
+
 
 
 

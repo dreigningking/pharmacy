@@ -6,7 +6,10 @@ use App\Models\Pharmacy;
 use App\Models\Assessment;
 use App\Models\Prescription;
 use App\Observers\PatientObserver;
+use App\Models\PatientMedicalHistory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PatientMedicationHistory;
+use App\Models\PatientFamilySocialHistory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -53,5 +56,15 @@ class Patient extends Model
 
     public function assessments(){
         return $this->hasMany(Assessment::class);
+    }
+
+    public function medicalHistory(){
+        return $this->hasMany(PatientMedicalHistory::class);
+    }
+    public function medicationHistory(){
+        return $this->hasMany(PatientMedicationHistory::class);
+    }
+    public function familySocialHistory(){
+        return $this->hasMany(PatientFamilySocialHistory::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Batch;
 use App\Models\Transfer;
 use App\Models\Inventory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,9 @@ class TransferDetail extends Model
 
     public function inventory(){
         return $this->belongsTo(Inventory::class);
+    }
+    public function batch(){
+        return $this->belongsTo(Batch::class);
     }
     public function transfer(){
         return $this->belongsTo(Transfer::class);

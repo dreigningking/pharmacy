@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Traits\PaystackTrait;
 use App\Http\Traits\PharmacyTrait;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class SubscriptionController extends Controller
@@ -102,7 +103,7 @@ class SubscriptionController extends Controller
         $pharmacy = Pharmacy::find($request->pharmacy_id);
         $pharmacy->sms_credit += $license->free_sms;
         $pharmacy->save();
-        if($license->number == trim($request->license_number)){
+        if(Hash::check($request->password, $user->password)){
             $license->pharmacy_id = $request->pharmacy_id;
             $license->start_at = now();
             $license->warn_at = $license->duration_days < 30 ? now()->addDays($license->duration_days)->subDays(2) : now()->addDays($license->duration_days)->subWeek();
@@ -111,7 +112,7 @@ class SubscriptionController extends Controller
             $license->save();
             return redirect()->route('subscription.show')->with(['flash_message'=> 'License Assigned To Pharmacy','flash_type'=> 'success']);
         }
-        return redirect()->back()->with(['flash_message'=> 'Service Unavailable, Please Try Again Shortly','flash_type'=> 'danger']);
+        return redirect()->back()->with(['flash_message'=> 'Password Incorrect','flash_type'=> 'danger']);
     }
 
     public function sms_allocation(Request $request){

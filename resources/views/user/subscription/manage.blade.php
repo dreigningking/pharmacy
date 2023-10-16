@@ -152,7 +152,7 @@
                                                             </td>
                                                             
                                                             <td class="align-middle">
-                                                                <button class="btn btn-primary btn-sm assign_license">Complete</button>
+                                                                <button class="btn btn-primary btn-sm assign_license">Assign</button>
                                                             </td>
                                                         </tr>
 
@@ -344,12 +344,12 @@
                                             <input type="hidden" name="pharmacy_id" id="pharmacy_id">
                                             <input type="hidden" name="license_id" id="license_id">
                                             <div class="input-group">
-                                                <input type="text" name="license_number" placeholder="License Number" class="form-control">
+                                                <input type="password" name="password" placeholder="Enter your Password" class="form-control">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary">Continue</button>
                                                 </div>
                                             </div>
-                                            <small class="form-text text-muted">Enter the license number to continue</small>
+                                            
                                             
                                         </form>
                                         
