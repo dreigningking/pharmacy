@@ -56,7 +56,7 @@
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pharmacy.assessments.system_review_store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                        <form action="{{route('pharmacy.assessments.final_diagnosis_store', $pharmacy)}}" class="w-100" method="POST">@csrf
                             <input type="hidden" name="assessment_id" value="{{$assessment->id}}">
                             <input type="hidden" name="patient_id" value="{{$assessment->patient_id}}">
                             <div class="card">
@@ -64,70 +64,94 @@
                                     <h4>Final Diagnosis</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="row">
-                                                <div class="col-md-6 form-group">
+                                    <div id="diagnosis_area">
+                                        @foreach ($assessment->finalDiagnosis as $finalDiagnosis)
+                                            <div class="row diagnosisrows">
+                                                <div class="col-md-3 form-group">
                                                     <label>Condition</label>
-                                                    <select class="form-control final_diagnosis" name="condition[]">
+                                                    <select class="form-control diagnosis_condition" name="conditions[]">
                                                         <option value=""></option>
                                                         @foreach ($conditions as $condition)
-                                                            <option>{{$condition->description}}</option>
+                                                        <option value="{{$condition->id}}" data-outcomes="{{str_replace('[','',str_replace(']','',$condition->treatment_outcome))}}"
+                                                            @if($condition->id == $finalDiagnosis->condition_id) selected @endif>{{$condition->description}}</option> 
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="col-md-6 form-group">
+                                                <div class="col-md-5 form-group">
                                                     <label>Expected Outcome</label>
-                                                    <select class="form-control expected_outcome" name="expected_outcome[]">
-                                                        <option value=""></option>
-                                                        @foreach ($labtests as $labtest)
-                                                            <option value="{{$labtest->id}}">{{$labtest->name}}</option>
-                                                        @endforeach
+                                                    <select class="form-control expected_outcome" name="expected_outcome[]" >
+                                                        <option>{{$finalDiagnosis->expected_outcome}}</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-10">
-                                                    
-                                                    <div class="form-group">
-                                                        <label>Achieved Outcome</label>
-                                                        <input type="text" class="form-control" name="comments[]" placeholder="">
-                                                    </div>    
-                                                </div>
-                                                <div class="col-md-2 pr-0">
+                                                
+                                                <div class="col-md-2">
                                                     <label class="d-block">Achieved?</label> 
-                                                    <div class="d-flex">
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio"  name="medication_effectiveness[][]" value="1" id="effectivea" class="custom-control-input">
-                                                            <label class="custom-control-label" for="effectivea">yes</label>
-                                                        </div>
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="medication_effectiveness[][]" value="0" id="effectiveb" class="custom-control-input">
-                                                            <label class="custom-control-label" for="effectiveb">no</label>
+                                                    <select class="form-control" name="achieved[{{$loop->index}}]">
+                                                        <option value=""></option>
+                                                        <option value="yes" @if($finalDiagnosis->achieved == 'yes') selected @endif>Yes</option>
+                                                        <option value="no" @if($finalDiagnosis->achieved == 'no') selected @endif>No</option>
+                                                    </select>
+                                                    
+                                                </div>
+                                                <div class="col-md-1">
+                                            
+                                                    <div class="form-group">
+                                                        <label class="mt-3"></label>
+                                                        <div class="d-flex">
+                                                            <button type="button" class="btn btn-sm btn-info add_final mx-1" title="add more"><i class="fa fa-plus"></i></button>
+                                                            <button type="button" class="btn btn-sm btn-danger remove_final " title="remove more"><i class="fa fa-trash"></i></button>
                                                         </div>
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        
-                                        <div class="col-md-2 px-0">
+                                        @endforeach
+                                            <div class="row diagnosisrows">
+                                                <div class="col-md-3 form-group">
+                                                    <label>Condition</label>
+                                                    <select class="form-control diagnosis_condition" name="conditions[]">
+                                                        <option value=""></option>
+                                                        @foreach ($conditions as $condition)
+                                                            <option value="{{$condition->id}}" data-outcomes="{{str_replace("'",'',str_replace('[','',str_replace(']','',$condition->treatment_outcome)))}}">{{$condition->description}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5 form-group">
+                                                    <label>Expected Outcome</label>
+                                                    <select class="form-control expected_outcome" name="expected_outcome[]" >
+                                                        
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="col-md-2">
+                                                    <label class="d-block">Achieved?</label> 
+                                                    <select class="form-control" name="achieved[]">
+                                                        <option value=""></option>
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                    </select>
+                                                    
+                                                </div>
+                                                <div class="col-md-1">
                                             
-                                            <div class="form-group">
-                                                <label class="mt-5"></label>
-                                                <button type="button" class="btn btn-sm btn-info add_final " title="add more"><i class="fa fa-plus"></i></button>
-                                                <button type="button" class="btn btn-sm btn-danger remove_final " title="remove more"><i class="fa fa-trash"></i></button>
+                                                    <div class="form-group">
+                                                        <label class="mt-3"></label>
+                                                        <div class="d-flex">
+                                                            <button type="button" class="btn btn-sm btn-info add_final mx-1" title="add more"><i class="fa fa-plus"></i></button>
+                                                            <button type="button" class="btn btn-sm btn-danger remove_final " title="remove more"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
-                                    
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <div class="call-foot">
                                                 <div class="d-flex justify-content-between">
-                                                    <button type="submit" class="btn btn-dark"> Save</button>   
-                                                    <a href="#" class="btn btn-info next"> <i class="fa fa-arrow-right"></i> Give Prescriptions  </a>   
+                                                    <button type="submit" name="prescription" value="0" class="btn btn-dark"> Save and Exit</button>   
+                                                    <button type="submit" name="prescription" value="1" class="btn btn-info next"><i class="fa fa-arrow-right"></i> Save & Give Prescription</button>   
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -151,45 +175,48 @@
 
 @push('scripts')
 <script>
-    var past_medical_history,family_history,vitals,provisional,reviews;
+    var diagnosis;
     $(document).ready(function(){
-        past_medical_history = $('.past_history').last().prop("outerHTML");
-        past_medication = $('.past_medication').last().prop("outerHTML");
-        family_history = $('.familyhistoryrows').last().prop("outerHTML");
-        vitals = $('.vitalrows').last().prop("outerHTML");
-        provisional = $('.provisionrows').last().prop("outerHTML");
-        reviews = $('.systemreviewrows').last().prop("outerHTML");
-        $('.selectcondition,.selectmedication,.familyquestions,.vitalquestions,.provisions,.required_test,.reviewcategories,.reviewoptions').select2({width:'100%',placeholder:'Select'});
+        diagnosis = $('.diagnosisrows').last().prop("outerHTML");
+        $('.diagnosis_condition').select2({width:'100%',placeholder:'Select'});
+    })
+    //family and social history
+    $(document).on('click','.add_final',function(){
+        $('#diagnosis_area').append(diagnosis);
+        $('.diagnosis_condition').select2({width:'100%',placeholder:'Select'})
+        //resetFamilyHistory()
     })
 
+    $(document).on('click','.remove_final',function(){
+        if($('.remove_final').length > 1){
+            $(this).closest('.diagnosisrows').remove();
+        }
+        //resetFamilyHistory()
+    })
+    /*
+    function resetFamilyHistory(){
+        $('.diagnosisrows').each(function(outer){
+            $(this).find('.custom-control-input').each(function(inde,val){
+                $(this).attr('id',outer+'past'+inde)
+                $(this).attr('name','achieved['+outer+']')
+            })
+            $(this).find('.custom-control-label').each(function(ind,va){
+                $(this).attr('for',outer+'past'+ind)
+            })
+        })
+    }*/
 
-   
+    $(document).on('select2:select','.diagnosis_condition',function(e){
+        var data = e.params.data;
+        let outcomes = data.element.dataset.outcomes;
+        console.log(outcomes)
+        let options = '';
+        outcomes.split(",").forEach(function(value){
+            options += `<option value="${value}">${value}</option>`
+        })
+        $(this).closest('.diagnosisrows').find('.expected_outcome').append(options)
+    })
     
-
-   
-    //provisional diagnosis
-    $(document).on('click','.add_provisions',function(){
-        $('#provision_assessments').append(provisional);
-        $('.provisions,.required_test').select2({width:'100%',placeholder:'Select'})
-    })
-
-    $(document).on('click','.remove_provisions',function(){
-        if($('.provisions').length > 1){
-            $(this).closest('.provisionrows').remove();
-        }
-    })
-    //system review
-    $(document).on('click','.add_reviews',function(){
-        $('#system_review').append(reviews);
-        $('.reviewcategories,.reviewoptions').select2({width:'100%',placeholder:'Select'})
-    })
-
-    $(document).on('click','.remove_reviews',function(){
-        if($('.remove_reviews').length > 1){
-            $(this).closest('.systemreviewrows').remove();
-        }
-    })
-     
 </script>
 
 

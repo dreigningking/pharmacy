@@ -369,55 +369,91 @@
     
     <script> 
         //table area
-            $('.select-remote').select2({
-                width: 'resolve',
-                ajax: {
-                    url: "{{route('pharmacy.inventory.index',$pharmacy)}}",
-                    dataType: 'json', 
-                    cache: true, 
-                    data: function (params) {
-                        var query = {
-                            search: params.term,
-                            pharmacy_id: @json($pharmacy->id),
-                            type: 'ajax'
-                        }
-                        return query;
-                    },
-                    processResults: function (data) {
-                        var data = $.map(data.items, function (obj) {
-                            obj.text = obj.text || obj.name; // replace name with the property used for the text
-                            return obj;
-                        });
-                        return {
-                            results: data
-                        };
+        $('.select-remote').select2({
+            width: 'resolve',
+            ajax: {
+                url: "{{route('pharmacy.inventory.index',$pharmacy)}}",
+                dataType: 'json', 
+                cache: true, 
+                data: function (params) {
+                    var query = {
+                        search: params.term,
+                        pharmacy_id: @json($pharmacy->id),
+                        type: 'ajax'
                     }
+                    return query;
+                },
+                processResults: function (data) {
+                    var data = $.map(data.items, function (obj) {
+                        obj.text = obj.text || obj.name; // replace name with the property used for the text
+                        return obj;
+                    });
+                    return {
+                        results: data
+                    };
                 }
-            })
-            $(".select-body").on('click', '.trash', function() {
-                $(this).closest('.new-row').remove();
-                return false;
-            });            
-            $(document).on('select2:select','.select-remote',function(e){
-                var data = e.params.data;
-                console.log(data)
-                $(this).closest('tr').find('.unit_quantity').val(1)   
-                $(this).closest('tr').find('.unit_cost').val(data.cost)               
-                $(this).closest('tr').find('.amount').val(data.cost)                                
-                recalculateTotal()
-                addNewRow()
-            })
-            $(document).on('input change','.unit_quantity',function(){
-                let thiscost = $(this).closest('tr').find('.unit_cost').val()
-                if($(this).val() < 0) {
-                    $(this).val(1)
+            }
+        })
+        
+        $(".select-body").on('click', '.trash', function() {
+            $(this).closest('.new-row').remove();
+            return false;
+        });            
+        $(document).on('select2:select','.select-remote',function(e){
+            var data = e.params.data;
+            console.log(data)
+            $(this).closest('tr').find('.unit_quantity').val(1)   
+            $(this).closest('tr').find('.unit_cost').val(data.cost)               
+            $(this).closest('tr').find('.amount').val(data.cost)                                
+            recalculateTotal()
+            addNewRow()
+        })
+        $('.select-remote').select2({
+            width: 'resolve',
+            ajax: {
+                url: "{{route('pharmacy.inventory.index',$pharmacy)}}",
+                dataType: 'json', 
+                cache: true, 
+                data: function (params) {
+                    var query = {
+                        search: params.term,
+                        pharmacy_id: @json($pharmacy->id),
+                        type: 'ajax'
+                    }
+                    return query;
+                },
+                processResults: function (data) {
+                    var data = $.map(data.items, function (obj) {
+                        obj.text = obj.text || obj.name; // replace name with the property used for the text
+                        return obj;
+                    });
+                    return {
+                        results: data
+                    };
                 }
-                if($(this).val() > $(this).attr('max')){
-                    $(this).val($(this).attr('max'))
-                } 
-                $(this).closest('tr').find('.amount').val(thiscost * $(this).val())
-                recalculateTotal()
-            })  
+            }
+        })
+                    
+        $(document).on('select2:select','.select-remote',function(e){
+            var data = e.params.data;
+            console.log(data)
+            $(this).closest('tr').find('.unit_quantity').val(1)   
+            $(this).closest('tr').find('.unit_cost').val(data.cost)               
+            $(this).closest('tr').find('.amount').val(data.cost)                                
+            recalculateTotal()
+            addNewRow()
+        })
+        $(document).on('input change','.unit_quantity',function(){
+            let thiscost = $(this).closest('tr').find('.unit_cost').val()
+            if($(this).val() < 0) {
+                $(this).val(1)
+            }
+            if($(this).val() > $(this).attr('max')){
+                $(this).val($(this).attr('max'))
+            } 
+            $(this).closest('tr').find('.amount').val(thiscost * $(this).val())
+            recalculateTotal()
+        })  
     </script>
     <script>
         function recalculateTotal(){

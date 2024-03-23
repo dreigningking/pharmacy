@@ -18,10 +18,11 @@ use App\Models\PatientSystemReview;
 use App\Http\Controllers\Controller;
 use App\Models\FamilySocialQuestion;
 use App\Models\SystemReviewQuestion;
+use App\Models\PatientFinalDiagnosis;
 use App\Models\PatientMedicalHistory;
+use App\Models\PatientLaboratoryResult;
 use App\Models\PatientMedicationHistory;
 use App\Models\PatientFamilySocialHistory;
-use App\Models\PatientLaboratoryResult;
 use App\Models\PatientProvisionalDiagnosis;
 
 class AssessmentController extends Controller
@@ -52,9 +53,9 @@ class AssessmentController extends Controller
             $patient = Patient::create(['pharmacy_id'=> $pharmacy->id,'name'=> $request->name,'mobile'=> $request->mobile,'email'=> $request->email,'age_today'=> $request->age_today,'gender'=> $request->gender,'address'=> $request->address,'bloodgroup'=> $request->bloodtype,'genotype'=> $request->genotype]);
         }
         $assessment = Assessment::create(['pharmacy_id'=> $pharmacy->id,'patient_id'=> $patient->id,'user_id'=> auth()->id(),'slug'=> uniqid(),'complaints'=> $request->complaints]);
-        return redirect()->route('pharmacy.assessments.vitals',[$pharmacy,$assessment]);
-        
+        return redirect()->route('pharmacy.assessments.vitals',[$pharmacy,$assessment]);  
     }
+
 
     public function vitals(Pharmacy $pharmacy,Assessment $assessment){
         $vitals = Vital::all();
@@ -70,17 +71,17 @@ class AssessmentController extends Controller
     }
 
     public function medical_medication(Pharmacy $pharmacy,Assessment $assessment){
-        $medicines = Drug::all();
+        $drugs = Drug::all();
         $conditions = Condition::all();
-        return view('pharmacy.assessment.medical_medication', compact('pharmacy','assessment','medicines','conditions'));
+        return view('pharmacy.assessment.medical_medication', compact('pharmacy','assessment','drugs','conditions'));
     }
 
     public function medical_medication_store(Pharmacy $pharmacy,Request $request){
         // dd($request->all());
         foreach(array_filter($request->conditions ) as $key => $condition){
-            $medical_history = PatientMedicalHistory::updateOrCreate(['condition_id'=> $condition,'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id],['start'=> $request->condition_start[$key],'end'=> $request->condition_end[$key]]);
+            $medical_history = PatientMedicalHistory::updateOrCreate(['condition_id'=> $condition,'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id],['start'=> $request->condition_start[$key].'-01','end'=> $request->condition_end[$key].'-30']);
             foreach(array_filter($request->medications[$key] ) as $key2 => $medication){
-                $medications = PatientMedicationHistory::updateOrCreate(['drug_id'=> $medication,'assessment_id'=> $request->assessment_id,'condition_id'=> $condition,'patient_id'=> $request->patient_id],['start'=> $request->medication_start[$key][$key2],'end'=> $request->medication_end[$key][$key2],'effective'=> $request->medication_effectiveness[$key][$key2]]);
+                $medications = PatientMedicationHistory::updateOrCreate(['drug_id'=> $medication,'assessment_id'=> $request->assessment_id,'condition_id'=> $condition,'patient_id'=> $request->patient_id],['start'=> $request->medication_start[$key][$key2].'-01','end'=> $request->medication_end[$key][$key2].'-30','effective'=> $request->medication_effectiveness[$key][$key2]]);
             }
         }
         return redirect()->back();
@@ -149,17 +150,16 @@ class AssessmentController extends Controller
     }
 
     public function final_diagnosis_store(Pharmacy $pharmacy,Request $request){
-        foreach(array_filter($request->conditions ) as $key => $condition){
-            $history = PatientProvisionalDiagnosis::updateOrCreate(['assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id,'condition_id'=> $condition],['laboratory_tests'=> $request->laboratory_tests[$key] ]);
+        foreach(array_filter($request->conditions) as $key => $condition){
+            $diagnosis = PatientFinalDiagnosis::updateOrCreate(['assessment_id'=> $request->assessment_id,
+            'patient_id'=> $request->patient_id,'condition_id'=> $condition],
+            ['expected_outcome'=> $request->expected_outcome[$key],'achieved' => array_key_exists($key,$request->achieved) ? $request->achieved[$key] : null ]);
         }
+        if($request->prescription){
+            return redirect()->route('pharmacy.prescriptions.create',['pharmacy'=> $pharmacy,'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id]);
+        }else return redirect()->route('pharmacy.assessments.index');
         return redirect()->back();
     }
 
-    public function appointment(Pharmacy $pharmacy,Patient $patient){
-        return 'ok';
-    }    
-
-    public function destroy($id){
-        //
-    }
+    
 }

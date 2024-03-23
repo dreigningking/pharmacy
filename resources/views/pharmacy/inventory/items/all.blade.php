@@ -48,15 +48,22 @@
                     <div class="card-body">
                         <form action="#" method="get">
                             <div class="filter-widget">
-                                <h4>Filter Name</h4>			
+                                <h4>Filter Name</h4>	
+                                <input type="text" name="name" value="{{$search}}" class="form-control" placeholder="">	
                             </div>
-                            <div class="filter-widget">
-                                <input type="text" name="search" value="{{$search}}" class="form-control" placeholder="">		
-                            </div>
+                            
                             
                             <div class="filter-widget">
                                 <h4>Filter Type</h4>
-                                <div class="d-flex">
+                                <div>
+                                    <select name="type" class="form-control">
+                                        <option value="both" @if($type == 'both') selected @endif>Both</option>
+                                        <option value="drugs" @if($type == 'drugs') selected @endif> Drugs</option>
+                                        <option value="non-drugs" @if($type == 'non-drugs') selected @endif> Non-Drugs</option>
+                                       
+                                    </select>
+                                </div>
+                                {{-- <div class="d-flex">
                                     <div class="mr-3">
                                         <label class="custom_check">
                                             <input type="checkbox" name="type[]" @if(in_array('drug',$type)) checked @endif value="drug">
@@ -69,7 +76,7 @@
                                             <span class="checkmark"></span> Non-drugs
                                         </label>
                                     </div> 
-                                </div>
+                                </div> --}}
                             </div>
                             
                                                         
@@ -77,7 +84,7 @@
                                 <h4>Status</h4>
                                 <div>
                                     <select name="show" class="form-control">
-                                        <option value="all" @if(!$show) selected @endif>All Items</option>
+                                        <option value="all" @if($show == 'all') selected @endif>All Items</option>
                                         <option value="out_of_stock" @if($show == 'out_of_stock') selected @endif> Out of Stock</option>
                                         <option value="over_stock" @if($show == 'over_stock') selected @endif> Over Stocked</option>
                                         <option value="under_stock" @if($show == 'under_stock') selected @endif> Under Stocked</option>
@@ -109,7 +116,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-4">
-                                    <h3>Inventory ({{$items->total()}})</h3>
+                                    {{-- <h3>Inventory ({{$items->total()}})</h3> --}}
                                     <div>
                                         {{-- <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Upload Inventory <i class="fa fa-upload"></i></a> --}}
                                         <a class="btn btn-dark" data-toggle="modal" href="#items">New Item</a>
@@ -189,12 +196,12 @@
                                                                 </span>
                                                             @endif
                                                             @if($item->maximum_stocklevel && $item->minimum_stocklevel)
-                                                                @if($item->available > $item->maximum_stocklevel)
+                                                                @if(!$item->available)
+                                                                    <span class="badge badge-pill bg-danger-light">Out of Stock</span>
+                                                                @elseif($item->available > $item->maximum_stocklevel)
                                                                     <span class="badge badge-pill bg-danger-light">{{$item->maximum_stocklevel}} Over Stocked</span>
                                                                 @elseif($item->available < $item->minimum_stocklevel)
                                                                     <span class="badge badge-pill bg-danger-light">Under Stocked</span>
-                                                                @elseif(!$item->available)
-                                                                    <span class="badge badge-pill bg-danger-light">Out of Stock</span>
                                                                 @else
                                                                     <span class="badge badge-pill bg-success-light">Active Stock</span>
                                                                 @endif
@@ -223,7 +230,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    @include('layouts.pagination',['data'=> $items])
+                                    {{-- @include('layouts.pagination',['data'=> $items]) --}}
                                 </form>
                             </div>
                         </div>

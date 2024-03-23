@@ -106,8 +106,6 @@
         <div class="container">
             <div class="card mt-5">
                 <div class="card-body pt-0">
-                
-                    <!-- Tab Menu -->
                     <nav class="user-tabs mb-4">
                         <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                             <li class="nav-item">
@@ -122,55 +120,144 @@
                             
                         </ul>
                     </nav>
-                    <!-- /Tab Menu -->
                     
-                    <!-- Tab Content -->
                     <div class="tab-content pt-0">
-                    
                         <!-- Overview Content -->
                         <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
                             <div class="row">
                                 
                                 <div class="col-md-12 col-lg-12">
-                                    
                                     <div class="row">
-                                        <div class="col-md-6 my-3">
+                                        <div class="col-md-12 my-3">
                                             <div class="service-list">
-                                                <h4>Last Week Sales</h4>
+                                                <h4>Volume Analysis</h4>
                                                 <table class="table">
                                                     <tr>
-                                                        <td>
-                                                            Most Bought Drug:
-                                                        </td>
-                                                        <td class="text-right">
-                                                            Paracetamol
-                                                        </td>
+                                                        <th>Item</th>
+                                                        <th>This Week</th>
+                                                        <th>Last Week</th>
+                                                        <th>This Month</th>
+                                                        <th>Last Month</th>
+                                                        <th>This Year</th>
+                                                        <th>Last Year</th>
                                                     </tr>
                                                     <tr>
-                                                        <td>
-                                                            Most Bought Non-Drug:
-                                                        </td>
-                                                        <td class="text-right">
-                                                            Water
-                                                        </td>
+                                                        
+                                                        <td class=""># Patients </td>
+                                                        <td class=""> 50</td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 56 </td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 354 </td>
+                                                        <td class=""> 34 </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
-                                                            Total Sales (Drugs):
-                                                        </td>
-                                                        <td class="text-right">
-                                                            45
-                                                        </td>
+                                                        <td class=""># Assessments </td>
+                                                        <td class=""> 50</td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 56 </td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 354 </td>
+                                                        <td class=""> 34 </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
-                                                            Total Sales (Non Drugs):
-                                                        </td>
-                                                        <td class="text-right">
-                                                            45
-                                                        </td>
+                                                        <td class=""># Prescriptions </td>
+                                                        <td class=""> 50</td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 56 </td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 354 </td>
+                                                        <td class=""> 34 </td>
                                                     </tr>
+                                                    <tr> 
+                                                        <td class="">Purchase Worth</td>
+                                                        <td class="">  50</td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 56 </td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 354 </td>
+                                                        <td class=""> 34 </td>
+                                                    </tr>
+                                                    <tr> 
+                                                        <td class="">Transfer Worth</td>
+                                                        <td class="">  50</td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 56 </td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 354 </td>
+                                                        <td class=""> 34 </td>
+                                                    </tr>
+                                                    <tr> 
+                                                        <td class="">Sales Worth</td>
+                                                        <td class="">  50</td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 56 </td>
+                                                        <td class=""> 34 </td>
+                                                        <td class=""> 354 </td>
+                                                        <td class=""> 34 </td>
+                                                    </tr>
+                                                    
                                                 </table>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-md-12 my-3">
+                                            <div class="service-list">
+                                                <h4>Frequency Analysis</h4>
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>Item</th>
+                                                        <th>This Week</th>
+                                                        <th>Last Week</th>
+                                                        <th>This Month</th>
+                                                        <th>Last Month</th>
+                                                        <th>This Year</th>
+                                                        <th>Last Year</th>
+                                                    </tr>
+                                                    <tr>
+                                                        
+                                                        <td class="">Most Assessed Patient: </td>
+                                                        <td class=""> Walk-in </td>
+                                                        <td class=""> EMR101 </td>
+                                                        <td class=""> EMR102 </td>
+                                                        <td class=""> EMR34 </td>
+                                                        <td class=""> EMR35 </td>
+                                                        <td class=""> EMR36 </td>
+                                                    </tr>
+                                                    <tr>
+                                                        
+                                                        <td class=""># Most Frequent Diagnosis </td>
+                                                        <td class=""> Fever</td>
+                                                        <td class=""> Diabetes </td>
+                                                        <td class=""> Malaria </td>
+                                                        <td class=""> Malaria </td>
+                                                        <td class=""> Diabetes </td>
+                                                        <td class=""> Diabetes </td>
+                                                    </tr>
+                                                    <tr>
+                                                        
+                                                        <td class="">Most Prescribed Drug: </td>
+                                                        <td class=""> Paracetamol </td>
+                                                        <td class=""> Lonart </td>
+                                                        <td class=""> Lonart </td>
+                                                        <td class=""> Lonart </td>
+                                                        <td class=""> Lonart </td>
+                                                        <td class=""> Lonart </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="">Most Bought Non-Drug:</td>
+                                                        <td class=""> Water</td>
+                                                        <td class=""> Water </td>
+                                                        <td class=""> Water </td>
+                                                        <td class=""> Water </td>
+                                                        <td class=""> Water </td>
+                                                        <td class=""> Water </td>
+                                                    </tr>
+                                                    
+                                                    
+                                                </table>
+                                               
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -200,7 +287,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            Total Volume (Drugs):
+                                                            Most Common :
                                                         </td>
                                                         <td class="text-right">
                                                             45
@@ -260,9 +347,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /Overview Content -->
-                        
-                        <!-- Locations Content -->
+
                         <div role="tabpanel" id="doc_locations" class="tab-pane fade">
                         
                             <!-- Review Listing -->

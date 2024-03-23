@@ -19,7 +19,7 @@ Route::group(['prefix'=> 'pharmacy','as'=> 'pharmacy.'],function(){
 });
 
 
-Route::group(['middleware'=> ['auth','subscription'],'as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
+Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.','prefix'=>'pharmacy/{pharmacy}'], function () {
 
     //  Route::group(['middleware'=>['subscription']], function () {
     Route::get('dashboard', [PharmacyController::class,'index'])->name('dashboard');
@@ -79,7 +79,8 @@ Route::group(['middleware'=> ['auth','subscription'],'as'=>'pharmacy.','prefix'=
 
     Route::group(['prefix'=>'prescriptions','as'=> 'prescriptions.'], function () {
         Route::get('/', [PrescriptionController::class, 'index'])->name("index");
-        Route::get('create/{assessment?}', [PrescriptionController::class, 'create'])->name("create");
+        Route::get('create-new', [PrescriptionController::class, 'create_new'])->name("create.new");
+        Route::get('create', [PrescriptionController::class, 'create_with_data'])->name("create");
         Route::post('store', [PrescriptionController::class, 'store'])->name("store");
         Route::get('show', [PrescriptionController::class, 'show'])->name("show");
         Route::get('edit/{prescription}', [PrescriptionController::class, 'edit'])->name("edit");
@@ -89,9 +90,11 @@ Route::group(['middleware'=> ['auth','subscription'],'as'=>'pharmacy.','prefix'=
 
     Route::group(['prefix'=>'sales','as'=> 'sales.'], function () {
         Route::get('/', [SalesController::class, 'index'])->name('index');
-        Route::get('new', [SalesController::class, 'create'])->name('create');
+        Route::get('new/{prescription?}', [SalesController::class, 'create'])->name('create');
+        Route::get('edit/{sale}', [SalesController::class, 'edit'])->name('edit');
         Route::get('show', [SalesController::class, 'show'])->name('show');
         Route::post('store', [SalesController::class, 'store'])->name('store');
+        Route::post('update', [SalesController::class, 'update'])->name('update');
     });
     
     Route::group(['prefix'=>'inventory','as'=> 'inventory.'], function () {

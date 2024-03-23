@@ -22,22 +22,14 @@ class InventoryController extends Controller
 {
 
     public function list(Pharmacy $pharmacy){
-        $search = '';
-        $type = ['drug','non_drug'];
-        $show = '';
+        $search = request()->search ?? null;
+        $type = request()->type ?? 'both';
+        $show = request()->show ?? 'all';
         $items = Inventory::where('pharmacy_id',$pharmacy->id);
-        if($search = request()->search){
-            $items =  $items->where('name','LIKE',"%$search%");
-        }
-        if(request()->type && is_array(request()->type) && count(request()->type) < 2){
-            if(in_array('drug',request()->type)){
-                $items =  $items->whereNotNull('drug_id');
-            }else{
-                $items =  $items->whereNull('drug_id');   
-            }
-            $type = request()->type;
-        }
-        if($show = request()->show){
+        if($search) $items =  $items->where('name','LIKE',"%$search%");
+        if($type == 'drugs') $items =  $items->whereNotNull('drug_id');
+        if($type == 'non-drugs') $items =  $items->whereNull('drug_id');
+        if($show != 'all'){
             switch($show){
                 case 'expired': $items = $items->whereHas('batches',function($query){ $query->where('expire_at','<',today());});
                     break;
@@ -47,7 +39,7 @@ class InventoryController extends Controller
                     break;
                 case 'over_stock': $items = $items->whereColumn('quantity','>','maximum_stocklevel');
                     break;
-                case 'under_stock': $items = $items->whereColumn('quantity','<','minimum_stocklevel');
+                case 'under_stock': $items = $items->where('quantity','!=',0)->whereColumn('quantity','<','minimum_stocklevel');
                     break;
             }
         }

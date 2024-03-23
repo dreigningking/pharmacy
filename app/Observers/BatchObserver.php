@@ -14,15 +14,9 @@ class BatchObserver
      */
     public function created(Batch $batch)
     {
-        if($batch->inventory->batches->count() > 1){
-            $inventory = $batch->inventory;
-            $inventory->quantity += $batch->quantity;
-            $inventory->save();
-        }else{
-            $inventory = $batch->inventory;
-            $inventory->quantity = $batch->quantity;
-            $inventory->save();
-        }
+        $inventory = $batch->inventory;
+        $inventory->quantity = $inventory->available;
+        $inventory->save();
     }
 
     /**
@@ -33,21 +27,15 @@ class BatchObserver
      */
     public function updated(Batch $batch)
     {
-        if($batch->isDirty('quantity')){
-            $inventory = $batch->inventory;
-            if($batch->getOriginal('quantity') > $batch->quantity){
-                $inventory->quantity -= ($batch->getOriginal('quantity') - $batch->quantity);
-            }else{
-                $inventory->quantity += ($batch->quantity - $batch->getOriginal('quantity'));               
-            }
-            $inventory->save();
-        }
+        $inventory = $batch->inventory;
+        $inventory->quantity = $inventory->available;
+        $inventory->save();
     }
 
     public function deleting(Batch $batch)
     {
         $inventory = $batch->inventory;
-        $inventory->quantity -= $batch->quantity;
+        $inventory->quantity = $inventory->available;
         $inventory->save();
     }
 

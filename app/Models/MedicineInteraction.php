@@ -10,7 +10,9 @@ class MedicineInteraction extends Model
 {
     use HasFactory;
     protected $fillable = ['medicine_a','medicine_b','remark','mechanism'];
-    
+
+    protected $with = ['base:id,name','target:id,name'];
+
     public function base(){
         return $this->belongsTo(Medicine::class,'medicine_a');
     }

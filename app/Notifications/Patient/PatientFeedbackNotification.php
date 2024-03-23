@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Notifications;
-
+namespace App\Notifications\Patient;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\NexmoMessage;
+use Illuminate\Notifications\Notification;
 
-class SettlementNotification extends Notification implements ShouldQueue
+class PatientFeedbackNotification extends Notification
 {
     use Queueable;
 
@@ -20,7 +18,7 @@ class SettlementNotification extends Notification implements ShouldQueue
      */
     public function __construct()
     {
-       
+        //
     }
 
     /**
@@ -34,9 +32,12 @@ class SettlementNotification extends Notification implements ShouldQueue
         return ['mail'];
     }
 
-    public function word($type){
-        
-    }
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
     public function toMail($notifiable)
     {
         return (new MailMessage)
@@ -56,9 +57,5 @@ class SettlementNotification extends Notification implements ShouldQueue
         return [
             //
         ];
-    }
-    public function toNexmo($notifiable)
-    {
-        return (new NexmoMessage)->content('');
     }
 }

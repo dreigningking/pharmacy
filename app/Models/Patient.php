@@ -46,6 +46,23 @@ class Patient extends Model
         return $this->age_today + $this->created_at->diffInYears(now());
     }
 
+    public function getAssessmentSummaryAttribute(){
+        $summary = [];
+        $assess = '';
+        $extra = '';
+        foreach($this->assessments as $assessment){
+            if($assessment->finalDiagnosis->isNotEmpty()){
+                $assess .= $assessment->finalDiagnosis->sortByDesc('created_at')->first()->condition->description;
+                if($assessment->finalDiagnosis->count() > 1) {
+                    $assess .= ' + '.$assessment->finalDiagnosis->count().' more'; 
+                }
+                $assess .= ' @ '.$assessment->finalDiagnosis->sortByDesc('created_at')->first()->created_at->format('l jS M h:i A');
+                $summary[]= $assess;
+            }
+        }
+        return $summary; 
+    }
+
     public function pharmacies(){
         return $this->hasMany(Pharmacy::class);
     }
@@ -61,9 +78,18 @@ class Patient extends Model
     public function medicalHistory(){
         return $this->hasMany(PatientMedicalHistory::class);
     }
+    public function activemedicalHistory(){
+        return $this->hasMany(PatientMedicalHistory::class)->where('start','>',today())->where('end','<',today());
+    }
+
     public function medicationHistory(){
         return $this->hasMany(PatientMedicationHistory::class);
     }
+
+    public function activeMedicationHistory(){
+        return $this->hasMany(PatientMedicationHistory::class)->where('start','<',today())->where('end','>',today());
+    }
+
     public function familySocialHistory(){
         return $this->hasMany(PatientFamilySocialHistory::class);
     }

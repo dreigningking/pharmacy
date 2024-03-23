@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="past_histories">
-                                        @forelse ($assessment->patient->medicalHistory as $key => $medHistory)
+                                        @forelse ($assessment->patient->medicalHistory->sortBy('start') as $key => $medHistory)
                                         <div class="row py-4 past_history border-bottom">
                                             <div class="col-md-4">
                                                 <label class="text-muted text-center">Medical Condition</label>                                        
@@ -95,13 +95,13 @@
                                             <div class="col-md-3">
                                                 <label class="text-muted text-center">Start</label>    
                                                 <div class="input-group">
-                                                    <input type="month" value="{{$medHistory->start}}" name="condition_start[]" placeholder="Year. e.g 2023" class="form-control">
+                                                    <input type="month" value="{{$medHistory->start->isoFormat('YYYY-MM')}}" name="condition_start[]" placeholder="Year. e.g 2023" class="form-control">
                                                 </div>                                    
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="text-muted text-center">End</label>    
                                                 <div class="input-group">
-                                                    <input type="month" value="{{$medHistory->end}}" name="condition_end[]" placeholder="Year. e.g 2023" class="form-control">
+                                                    <input type="month" value="{{$medHistory->end->isoFormat('YYYY-MM')}}" name="condition_end[]" placeholder="Year. e.g 2023" class="form-control">
                                                 </div>                                    
                                             </div>
                                             <div class="col-md-2">
@@ -117,18 +117,18 @@
                                                             <label class="text-muted text-center">Medication Used</label> 
                                                             <select name="medications[{{$key}}][]" placeholder="Medication used" class="selectmedication form-control-sm"> 
                                                                 <option value=""></option>
-                                                                @foreach ($medicines as $medicine)
-                                                                    <option value="{{$medicine->id}}" @if($medic->drug_id == $medicine->id) selected @endif>{{$medicine->name}}</option>
+                                                                @foreach ($drugs as $drug)
+                                                                    <option value="{{$drug->id}}" @if($medic->drug_id == $drug->id) selected @endif>{{$drug->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                         <div class="col-md-2 pr-0">
                                                             <label class="text-muted ">Start</label>    
-                                                            <input type="month" value="{{$medic->start}}" name="medication_start[{{$key}}][]" placeholder="Year. e.g 2023" class="medication_start form-control">                                  
+                                                            <input type="month" value="{{$medic->start->isoFormat('YYYY-MM')}}" name="medication_start[{{$key}}][]" placeholder="Year. e.g 2023" class="medication_start form-control">                                  
                                                         </div>
                                                         <div class="col-md-2 pr-0">
                                                             <label class="text-muted text-center">End</label>    
-                                                            <input type="month" value="{{$medic->end}}" name="medication_end[{{$key}}][]" placeholder="Year. e.g 2023" class="medication_end form-control">                                   
+                                                            <input type="month" value="{{$medic->end->isoFormat('YYYY-MM')}}" name="medication_end[{{$key}}][]" placeholder="Year. e.g 2023" class="medication_end form-control">                                   
                                                         </div>
                                                         <div class="col-md-2 pr-0">
                                                             <label class="d-block">Effective?</label> 
@@ -154,8 +154,8 @@
                                                         <label class="text-muted text-center">Medication Used</label> 
                                                         <select name="medications[{{$key}}][]" placeholder="Medication used" class="selectmedication form-control-sm"> 
                                                             <option value=""></option>
-                                                            @foreach ($medicines as $medicine)
-                                                                <option value="{{$medicine->id}}">{{$medicine->name}}</option>
+                                                            @foreach ($drugs as $drug)
+                                                                <option value="{{$drug->id}}">{{$drug->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -223,8 +223,8 @@
                                                         <label class="text-muted text-center">Medication Used</label> 
                                                         <select name="medications[][]" placeholder="Medication used" class="selectmedication form-control-sm"> 
                                                             <option value=""></option>
-                                                            @foreach ($medicines as $medicine)
-                                                                <option value="{{$medicine->id}}">{{$medicine->name}}</option>
+                                                            @foreach ($drugs as $drug)
+                                                                <option value="{{$drug->id}}">{{$drug->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

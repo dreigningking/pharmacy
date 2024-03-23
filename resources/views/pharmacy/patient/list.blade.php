@@ -32,53 +32,49 @@
                         <h4 class="card-title mb-0">Search Filter</h4>
                     </div>
                     <div class="card-body">
-                        <div class="filter-widget">
-                            <div class="">
-                                <input type="text" class="form-control" placeholder="First or Last Name">
-                            </div>			
-                        </div>
-                        <div class="filter-widget">
-                            <div class="">
-                                <input type="text" class="form-control" placeholder="EMR or Last 4 digits of phone number">
-                            </div>			
-                        </div>
-                        <div class="filter-widget">
-                            <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker" placeholder="Record Date">
-                            </div>			
-                        </div>
-                        <div class="filter-widget">
-                            <h4>Gender</h4>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Male
-                                </label>
+                        <form action="#" method="get">
+                            <div class="filter-widget">
+                                <div class="">
+                                    <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="First or Last Name">
+                                </div>			
                             </div>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Female
-                                </label>
-                            </div> 
-                            
-                        </div>
-                        <div class="filter-widget">
-                            <h4>Assessment</h4>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Undergoing Treatment
-                                </label>
+                            <div class="filter-widget">
+                                <div class="">
+                                    <input type="text" name="search" value="{{$search}}" class="form-control" placeholder="EMR or Last 4 digits of phone number">
+                                </div>			
                             </div>
-                            
-                            
-                        </div>
-                    
-                        <div class="btn-search">
-                            <button type="button" class="btn btn-block">Search</button>
-                        </div>	
+                            <div class="filter-widget">
+                                <div class="cal-icon">
+                                    <input type="text" name="created_at" value="{{$created_at}}" class="form-control datetimepicker" placeholder="Record Date">
+                                </div>			
+                            </div>
+                            <div class="filter-widget">
+                                <h4>Gender</h4>
+                                <div>
+                                    <select class="form-control">
+                                        <option value="both" @if($gender == 'both') selected @endif>Both</option>
+                                        <option value="male" @if($gender == 'male') selected @endif>Male</option>
+                                        <option value="female" @if($gender == 'female') selected @endif>Female</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            <div class="filter-widget">
+                                <h4>Assessment</h4>
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="treatment" @if($treatment) checked @endif  value="1">
+                                        <span class="checkmark"></span> Undergoing Treatment
+                                    </label>
+                                </div>
+                                
+                                
+                            </div>
                         
+                            <div class="btn-search">
+                                <button type="submit" class="btn btn-block">Search</button>
+                            </div>	
+                        </form>
                     </div>
                     {{-- <div class="card-body">
                         <div class="clinic-booking">

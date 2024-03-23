@@ -25,8 +25,8 @@ class PharmacyController extends Controller
     
     public function index(Pharmacy $pharmacy){
         // $this->authorize('view', $pharmacy);
-        $drugs= Drug::all();
-        $patients= Patient::all();
+        $drugs= '';
+        $patients= '';
         return view('pharmacy.dashboard',compact('pharmacy', 'drugs', 'patients'));
     }
 
@@ -141,15 +141,6 @@ class PharmacyController extends Controller
         if($pharmacy->owner_id != $user->id || !Hash::check(trim($request->password),$user->password)){
             return redirect()->back()->with(['flash_message'=> 'Something is Wrong! Could Not Delete Pharmacy','flash_type'=> 'danger']);
         }
-        $pharmacy->inventories()->delete();
-        $pharmacy->purchases()->delete();
-        $pharmacy->patients()->delete();
-        $pharmacy->assessments()->delete();
-        $pharmacy->prescriptions()->delete();
-        $pharmacy->sales()->delete();
-        $pharmacy->users()->delete();
-        $pharmacy->activeLicense->update(['pharmacy_id'=> null]);
-        Storage::delete('public/pharmacies/logos',$pharmacy->image);
         $pharmacy->delete();
         return redirect()->route('dashboard');
     }

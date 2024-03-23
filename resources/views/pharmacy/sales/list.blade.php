@@ -101,7 +101,6 @@
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Invoice No</th>
-                                                
                                                 <th>Items</th>  
                                                 <th>Total Amount</th>
                                                 <th>Status</th>
@@ -109,44 +108,45 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="text-nowrap">14-Nov-2019 </td>
-                                                <td>
-                                                    USK3834
-                                                </td>
-                                                
-                                                
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                <td>₦ 2,300</td>
-                                                <td><span class="badge badge-pill bg-dark-light">Draft</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.sales.show',$pharmacy)}}" class="btn btn-sm bg-dark text-white">
-                                                            <i class="far fa-edit"></i> Edit
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-nowrap">14-Nov-2019 </td>
-                                                <td>
-                                                    USK3834
-                                                </td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                <td>₦ 2,300</td>
-                                                <td><span class="badge badge-pill bg-success-light">Completed</span></td>
-
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.sales.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-eye"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            
-                                           
+                                            @forelse ($sales as $sale)
+                                                <tr>
+                                                    <td class="text-nowrap">{{$sale->created_at->format('d-M-Y')}} </td>
+                                                    <td>
+                                                        USK3834
+                                                    </td>
+                                                    
+                                                    
+                                                    <td>{{$sale->summary}}</td>
+                                                    <td>₦ {{number_format($sale->total)}}</td>
+                                                    <td>
+                                                        @if($sale->status)
+                                                        <span class="badge badge-pill bg-success-light">Completed</span>
+                                                        @else
+                                                        <span class="badge badge-pill bg-dark-light">Draft</span>
+                                                        @endif
+                                                    </td>
+                                                    
+                                                    <td class="text-right">
+                                                        <div class="table-action">
+                                                            @if($sale->status)
+                                                            <a href="{{route('pharmacy.sales.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
+                                                                <i class="far fa-eye"></i> View
+                                                            </a>
+                                                            @else
+                                                            <a href="{{route('pharmacy.sales.show',$pharmacy)}}" class="btn btn-sm bg-dark text-white">
+                                                                <i class="far fa-edit"></i> Edit
+                                                            </a>
+                                                            @endif
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>  
+                                                    <td colspan="6" class="text-center">
+                                                        No Sales Yet
+                                                    </td>
+                                                </tr> 
+                                            @endforelse
                                             
                                         </tbody>
                                     </table>

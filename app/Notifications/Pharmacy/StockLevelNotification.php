@@ -1,24 +1,27 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Pharmacy;
 
+use App\Models\Inventory;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\NexmoMessage;
 
-class StockOrderNotification extends Notification
+class StockLevelNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+    public $inventory;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Inventory $inventory)
     {
-        //
+        $this->inventory = $inventory;
     }
 
     /**
@@ -41,9 +44,8 @@ class StockOrderNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('New Support Request Message.')
+                    ->action('View Message', route('admin.ticketdetails'));
     }
 
     /**
@@ -57,5 +59,10 @@ class StockOrderNotification extends Notification
         return [
             //
         ];
+    }
+    
+    public function toNexmo($notifiable)
+    {
+        return (new NexmoMessage)->content('New support message. Login to attend to message');
     }
 }

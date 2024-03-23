@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\General;
 
+use Carbon\Carbon;
 use App\Models\Patient;
 use App\Models\Medicine;
 use App\Models\Pharmacy;
@@ -14,8 +15,33 @@ class PatientController extends Controller
     
     public function index(Pharmacy $pharmacy)
     {
-        $patients = Patient::where('pharmacy_id',$pharmacy->id)->get();
-        return view('pharmacy.patient.list', compact('pharmacy', 'patients'));
+        //dd(request()->query());
+        $name = request()->name ?? null;
+        $search = request()->search ?? null;
+        $created_at = request()->created_at ?? null;
+        $gender = request()->gender ?? 'both';
+        $treatment = request()->treatment ?? null;
+        $patients = Patient::where('pharmacy_id',$pharmacy->id);
+        if($name)
+        $patients = $patients->where('name','LIKE',"%$name%");
+        if($search)
+        $patients = $patients->where('name','LIKE',"%$name%");
+        if($gender != 'both')
+        $patients = $patients->where('gender',$gender);
+        if($created_at){
+            $created = Carbon::createFromFormat('d/m/Y',$created_at);
+            $patients = $patients->whereDate('created_at',$created->format('Y-m-d'));
+        }
+        
+        if($treatment)
+        $patients = $patients->whereHas('prescriptions',function($query){
+                        $query->whereHas('sales',function($qury){
+                            $qury->whereBetween('created_at',[today()->subMonth(),today()]);
+                        });
+                    });
+
+        $patients = $patients->paginate(20);
+        return view('pharmacy.patient.list', compact('pharmacy', 'patients','name','search','created_at','gender','treatment'));
     }
 
     public function view(Pharmacy $pharmacy,Patient $patient=null){

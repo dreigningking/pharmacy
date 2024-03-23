@@ -15,9 +15,8 @@ add unit of sales to inventory edit
 add unit of procurement to supplies
 
 
-inventory markup percentage should autocalculate the product unit price
-
-
+QUESTION
+if you don't pay for analytics, what should happen
 
 
 

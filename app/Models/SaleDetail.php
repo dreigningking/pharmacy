@@ -2,28 +2,24 @@
 
 namespace App\Models;
 
-use App\Models\Plan;
-use App\Models\User;
-use App\Models\License;
+use App\Models\Sale;
+use App\Models\Inventory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Subscription extends Model
+class SaleDetail extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['user_id','payment_id','type','trial','licenses','status'];
-    protected $dates = ['start','end','warn'];
+    protected $fillable = ['sale_id','inventory_id','batch','quantity','price','amount'];
 
-    public function plan(){
-        return $this->belongsTo(Plan::class);
+    public function sale(){
+        return $this->belongsTo(Sale::class);
     }
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function inventory(){
+        return $this->belongsTo(Inventory::class);
     }
-    public function licenses(){
-        return $this->hasMany(License::class);
-    }
+
 
 }

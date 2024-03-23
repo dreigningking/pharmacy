@@ -26,6 +26,13 @@ class TransferController extends Controller
         return view('pharmacy.inventory.transfers.new',compact('pharmacy','pharmacies'));
     }
 
+    public function create_from_inventory(Pharmacy $pharmacy,Request $request){
+        $user = User::find($request->user_id);
+        $pharmacies = $user->pharmacies;
+        $inventories = Inventory::whereIn('id',$request->inventories)->get();
+        return view('pharmacy.inventory.transfers.new',compact('pharmacy','pharmacies','inventories'));
+    }
+
     public function batches(Pharmacy $pharmacy){
         if($search = request()->search){
             $items =  Batch::with('inventory')->whereHas('inventory',function($query) use($pharmacy,$search){
@@ -46,13 +53,6 @@ class TransferController extends Controller
 
     public function show(Pharmacy $pharmacy,Transfer $transfer){
         return view('pharmacy.inventory.transfers.view',compact('pharmacy','transfer'));
-    }
-
-    public function create_from_inventory(Pharmacy $pharmacy,Request $request){
-        $user = User::find($request->user_id);
-        $pharmacies = $user->pharmacies;
-        $inventories = Inventory::whereIn('id',$request->inventories)->get();
-        return view('pharmacy.inventory.transfers.new',compact('pharmacy','pharmacies','inventories'));
     }
 
     public function store(Pharmacy $pharmacy,Request $request){
@@ -113,7 +113,6 @@ class TransferController extends Controller
                     ['category'=> $detail->inventory->category,
                     'unit_cost'=> $detail->unit_cost,
                     'unit_price'=> $detail->inventory->unit_price,
-                    'profit'=> $detail->inventory->unit_price,
                     'minimum_stocklevel'=> $detail->inventory->minimum_stocklevel,
                     'maximum_stocklevel'=> $detail->inventory->maximum_stocklevel,
                 ]);

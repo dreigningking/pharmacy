@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\WebControllers\HomeController;
 use App\Http\Controllers\General\UserController;
 use App\Http\Controllers\General\PaymentController;
-use App\Http\Controllers\General\ResourcesController;
+use App\Http\Controllers\General\HelpController;
 use App\Http\Controllers\General\SubscriptionController;
 
 /*
@@ -21,6 +21,19 @@ use App\Http\Controllers\General\SubscriptionController;
 */
 
 
+
+Route::get('test',function(){
+    // $condition = \App\Models\Condition::find(16);
+    // $prescriptions = $condition->diagnoses->pluck('assessment.prescriptions');
+    // dd($prescriptions->flatten()->pluck('details')->flatten()->pluck('drug'));
+
+
+    // $drugs = \App\Models\Drug::Has('prescribes')->with('prescribes')->get();
+    // dd($drugs);
+
+    $inventories = \App\Models\Inventory::whereHas('batches',function($query){ $query->where('expire_at','<',today()->addMonths(6));})->get();
+    dd($inventories);
+});
 
 Route::get('/',function(){
     if(auth()->check())
@@ -40,8 +53,14 @@ Route::view('change_password','auth.forcepassword')->name('forcepassword');
 Route::post('change_password',[LoginController::class, 'forcepassword'] )->name('forcepassword');
     //common to all users
 Route::get('home', [HomeController::class, 'index'])->name('home');
-Route::post('getstates',[HomeController::class, 'states'])->name('getStates');
-Route::post('getcities',[HomeController::class, 'cities'])->name('getCities');
+
+
+Route::post('getstates',[HelpController::class, 'states'])->name('getStates');
+Route::post('getcities',[HelpController::class, 'cities'])->name('getCities');
+Route::post('getPatientAssessments',[HelpController::class, 'patientAssessments'])->name('getPatientAssessments');
+Route::post('getMedicationApis',[HelpController::class, 'medicationApis'])->name('getMedicationApis');
+Route::post('getMedicationInteractions',[HelpController::class, 'medicationInteractions'])->name('getMedicationInteractions');
+Route::post('getInventoryDetails',[HelpController::class, 'inventory'])->name('getInventoryDetails');
 
 Route::get('payment/verification',[PaymentController::class, 'verify'] )->name('paymentverify');
 

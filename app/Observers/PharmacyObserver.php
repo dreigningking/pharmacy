@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Models\Patient;
 use App\Models\Pharmacy;
+use App\Models\Inventory;
+use Illuminate\Support\Facades\Storage;
 use App\Notifications\WelcomeNotification;
 
 class PharmacyObserver
@@ -20,6 +22,7 @@ class PharmacyObserver
         'mobile'=> $pharmacy->mobile,'gender'=> 'male']);
         $pharmacy->walkin_patient_id = $patient->id;
         $pharmacy->save();
+
     }
 
     /**
@@ -30,18 +33,31 @@ class PharmacyObserver
      */
     public function updated(Pharmacy $pharmacy)
     {
-        //
+        if($pharmacy->isDirty('shelves')){
+            $shelves = explode(',',$pharmacy->shelves);
+            Inventory::whereNotIn('shelf',$shelves)->update(['shelf'=> null]);
+        }
+        if($pharmacy->isDirty('categories')){
+            $categories = explode(',',$pharmacy->categories);
+            Inventory::whereNull('drug_id')->whereNotIn('category',$categories)->update(['category'=> null]);
+        }
     }
 
-    /**
-     * Handle the Pharmacy "deleted" event.
-     *
-     * @param  \App\Models\Pharmacy  $pharmacy
-     * @return void
-     */
+    public function deleting(Pharmacy $pharmacy){
+        $pharmacy->inventories()->delete();
+        $pharmacy->purchases()->delete();
+        $pharmacy->patients()->delete();
+        $pharmacy->assessments()->delete();
+        $pharmacy->prescriptions()->delete();
+        $pharmacy->sales()->delete();
+        $pharmacy->users()->delete();
+        $pharmacy->activeLicense->update(['pharmacy_id'=> null]);
+        Storage::delete('public/pharmacies/logos',$pharmacy->image);
+    }
+
     public function deleted(Pharmacy $pharmacy)
     {
-        //
+        //send an email that the pharmacy has been deleted
     }
 
     /**

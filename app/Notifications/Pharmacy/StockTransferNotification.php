@@ -1,27 +1,30 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Pharmacy;
 
+use App\Models\Transfer;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\NexmoMessage;
 
-class PrescriptionNotification extends Notification
+class StockTransferNotification extends Notification implements ShouldQueue 
 {
     use Queueable;
+    public $transfer;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Transfer $transfer)
     {
-        //
+        $this->transfer = $transfer;
     }
 
-    /**
+    /**;z
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
@@ -55,7 +58,11 @@ class PrescriptionNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            
         ];
+    }
+    public function toNexmo($notifiable)
+    {
+        return (new NexmoMessage)->content('');
     }
 }

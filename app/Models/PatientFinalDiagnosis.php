@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class PatientFinalDiagnosis extends Model
 {
     use HasFactory;
+    protected $fillable = ['assessment_id','patient_id','condition_id','expected_outcome','achieved'];
 
     public function condition(){
         return $this->belongsTo(Condition::class);

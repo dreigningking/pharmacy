@@ -17,12 +17,15 @@ class Transfer extends Model
         parent::boot();
         parent::observe(new \App\Observers\TransferObserver);
     }
+
     public function sending_pharmacy(){
         return $this->belongsTo(Pharmacy::class,'from_pharmacy');
     }
+
     public function receiving_pharmacy(){
         return $this->belongsTo(Pharmacy::class,'to_pharmacy');
     }
+    
     public function details(){
         return $this->hasMany(TransferDetail::class);
     }

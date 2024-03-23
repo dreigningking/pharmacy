@@ -16,6 +16,7 @@ class Drug extends Model
 
     protected $fillable = ['id','name','dosage_form','manufacturer'];
     protected $appends = ['category_name'];
+    protected $with = ['ingredients'];
     
     public function getCategoryNameAttribute(){
         return $this->category->name;
@@ -28,9 +29,9 @@ class Drug extends Model
         return $this->hasMany(Inventory::class);
     }
 
-    public function batches(){
-        return $this->hasManyThrough(Batch::class,Inventory::class);
-    }
+    // public function batches(){
+    //     return $this->hasManyThrough(Batch::class,Inventory::class);
+    // }
 
     public function pharmacyInventory($pharmacy_id){
         return $this->inventories->where('pharmacy_id',$pharmacy_id)->first();
@@ -38,6 +39,10 @@ class Drug extends Model
 
     public function category(){
         return $this->belongsTo(DrugCategory::class,'category_id')->withDefault();
+    }
+
+    public function prescribes(){
+        return $this->hasMany(PrescriptionDetail::class)->with('prescription');
     }
 
     

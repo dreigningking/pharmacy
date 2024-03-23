@@ -117,9 +117,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-4">
                                     <h3>Assessment</h3>
-                                    <a class="btn btn-primary btn-lg"
-                                        href="{{route('pharmacy.assessments.create',$pharmacy)}}">New
-                                        Assessment</a>
+                                    <a class="btn btn-primary btn-lg" href="{{route('pharmacy.assessments.create',$pharmacy)}}">New Assessment</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-center">
@@ -142,8 +140,9 @@
                                                 </td>
                                                 
                                                 <td>
-                                                    @if($assessment->finalDiagnosis->count())
-                                                        {{$assessment->finalDiagnosis-first()->condition->name}}
+                                                    
+                                                    @if($assessment->summary)
+                                                        {{$assessment->summary}} 
                                                     @else 
                                                         Inconclusive
                                                     @endif
@@ -152,6 +151,7 @@
                                                 <td>
                                                     <span class="badge badge-pill bg-warning-light">Ongoing</span>
                                                 </td>
+
                                                 <td>
                                                     <h2 class="table-avatar">
                                                     

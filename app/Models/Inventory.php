@@ -19,7 +19,7 @@ class Inventory extends Model
     // protected $appends = ['quantity'];
 
     protected $fillable = ['drug_id','pharmacy_id','name','shelf','category','unit_price','unit_cost','minimum_stocklevel','maximum_stocklevel','quantity','unit_of_sales','expiry_alert_weeks'];
-    
+    protected $with = ['batches'];
 
     public function pharmacy(){
         return $this->belongsTo(Pharmacy::class);
@@ -29,21 +29,22 @@ class Inventory extends Model
         return $this->belongsTo(Drug::class);
     }
     
-    public function expired(){
-        return $this->hasMany(Expired::class);
-    }
+    // public function expired(){
+    //     return $this->hasMany(Expired::class);
+    // }
     public function purchases(){
         return $this->hasMany(PurchaseDetail::class);
     }
     public function getAvailableAttribute(){
-        return $this->batches->count() ? $this->batches->where('expire_at','>',today())->sum('quantity') : $this->quantity;
+        return $this->batches->where('expire_at','>',today())->sum('quantity');
     }
     public function batches(){
         return $this->hasMany(Batch::class);
     }
 
-    // public function scopeQuantities($query){
-    //     return $query->where('quantity','>', 0);
-    // }
+    public function scopeQuantities($query){
+        return $query->where('quantity','>', 0);
+    }
+  
     
 }

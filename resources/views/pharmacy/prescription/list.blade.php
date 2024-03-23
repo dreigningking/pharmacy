@@ -139,95 +139,51 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="text-nowrap">14-Nov-2019 </td>
-                                                <td>
-                                                    USK3834
-                                                </td>
-                                                
-                                                <td>Hospital</td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-eye"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>14 Nov 2019 </td>
-                                                <td>
-                                                    KJSK8232
-                                                </td>
-                                                <td>Pharmacist</td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                
-                                                <td><span class="badge badge-pill bg-dark-light">Draft</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm btn-secondary">
-                                                            <i class="far fa-edit"></i> Edit
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>10 Nov 2019 </td>
-                                                <td>USK3834</td>
-                                                <td>Sales Rep </td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                
-                                                <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-eye"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>10 Nov 2019</td>
-                                                <td>USK3834</td>
-                                                
-                                                <td>Pharmacist</td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                
-                                                <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="edit-prescription.html" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-eye"></i> View
-                                                        </a>
-                                                        
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>9 Nov 2019 </td>
-                                                <td>USK3834</td>
-                                                
-                                                
-                                                <td>Hospital</td>
-                                                <td>Paracetamol,Amoxil + 3more</td>
-                                                <td><span class="badge badge-pill bg-success-light">Completed</span></td>
-                                                
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
-                                                            <i class="far fa-eye"></i> View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            
-                                            
+                                            @forelse ($prescriptions as $prescription)
+                                                <tr>
+                                                    <td class="text-nowrap">{{$prescription->created_at->format('d-M-Y')}} </td>
+                                                    <td> {{$prescription->patient->emr}} </td>
+                                                    <td>{{$prescription->origin}}</td>
+                                                    <td>{{$prescription->summary}}</td>
+                                                    <td>
+                                                        @switch($prescription->status)
+                                                            @case('draft') <span class="badge badge-pill bg-dark-light">Draft</span>
+                                                            @break
+                                                            @case('ongoing') <span class="badge badge-pill bg-warning-light">Ongoing</span>
+                                                            @break
+                                                            @case('completed') <span class="badge badge-pill bg-success-light">Completed</span>
+                                                            @break
+                                                        @endswitch
+                                                    </td>
+                                                    
+                                                    <td class="text-right">
+                                                        <div class="table-action">
+                                                            @if($prescription->status == 'draft')
+                                                            <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-primary-light">
+                                                                <i class="far fa-eye"></i> Edit
+                                                            </a>
+                                                            <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm btn-danger">
+                                                                <i class="far fa-trash"></i> Delete
+                                                            </a>
+
+                                                            @else
+                                                            <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-primary-light">
+                                                                <i class="far fa-eye"></i> View
+                                                            </a>
+                                                            <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
+                                                                <i class="far fa-edit"></i> Re-prescribe
+                                                            </a>
+                                                            
+                                                            @endif
+                                                            
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td class="text-center" colspan="6">No Prescriptions Yet </td> 
+                                                </tr> 
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>

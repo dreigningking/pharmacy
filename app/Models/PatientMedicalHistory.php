@@ -14,7 +14,7 @@ class PatientMedicalHistory extends Model
     use HasFactory;
 
     protected $fillable = ['condition_id','assessment_id','patient_id','start','end'];
-    protected $dates = ['start'];
+    protected $dates = ['start','end'];
     
     public function medications(){
         return $this->hasMany(PatientMedicationHistory::class,'condition_id','condition_id');

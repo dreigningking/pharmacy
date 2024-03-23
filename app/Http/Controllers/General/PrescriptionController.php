@@ -7,6 +7,8 @@ use App\Models\Pharmacy;
 use App\Models\Assessment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Prescription;
+use App\Models\PrescriptionDetail;
 
 class PrescriptionController extends Controller
 {
@@ -18,7 +20,9 @@ class PrescriptionController extends Controller
 
     public function index(Pharmacy $pharmacy)
     {
-        return view('pharmacy.prescription.list', compact('pharmacy'));
+        $prescriptions = Prescription::where('pharmacy_id',$pharmacy->id)->paginate(50);
+        // dd($prescriptions->first()->summary);
+        return view('pharmacy.prescription.list', compact('pharmacy','prescriptions'));
     }
 
     /**
@@ -26,24 +30,36 @@ class PrescriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Pharmacy $pharmacy,Assessment $assessment = null,Patient $patient = null)
+    public function create_new(Pharmacy $pharmacy)
     {
         $inventories = $pharmacy->inventories->where('drug_id','!=',null);
         $patients = $pharmacy->patients;
-        $patient = $patient ? $patient : ($assessment ? $assessment->patient : null);
-        $assessments = $patient ? $pharmacy->patient->assessments : $pharmacy->assessments;
+        $patient = null;
+        $assessments = null;
+        return view('pharmacy.prescription.create', compact('pharmacy','patient','patients','inventories','assessment','assessments'));
+    }
+    
+    public function create_with_data(Pharmacy $pharmacy,Request $request)
+    {
+        $inventories = $pharmacy->inventories->where('drug_id','!=',null);
+        $patients = $pharmacy->patients;
+        $assessment = $request->assessment_id ? Assessment::find($request->assessment_id) : null;
+        $patient = $request->patient_id ? Patient::find($request->patient_id) : ($assessment ? $assessment->patient : null);
+        $assessments = $patient ? $patient->assessments : null;
         return view('pharmacy.prescription.create', compact('pharmacy','patient','patients','inventories','assessment','assessments'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Pharmacy $pharmacy,Request $request)
     {
-        //
+        // dd($request->all());
+        $prescription = Prescription::create(['pharmacy_id'=> $pharmacy->id,'user_id'=> auth()->id(),
+        'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id,'origin'=> $request->origin]);
+        foreach($request->drugs as $key => $drug_id){
+            PrescriptionDetail::create(['prescription_id'=> $prescription->id,'drug_id' => $drug_id,'quantity_per_dose'=> $request->quantity[$key],'frequency'=> $request->frequency[$key],'duration'=> $request->duration[$key]]);
+        }
+        if($request->dispense){
+            return redirect()->route('pharmacy.sales.create',['pharmacy'=> $pharmacy,'prescription'=> $prescription]);
+        }else return redirect()->route('pharmacy.sales.create',$pharmacy);
     }
 
     /**

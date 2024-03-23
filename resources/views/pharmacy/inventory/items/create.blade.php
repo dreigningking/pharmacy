@@ -3,11 +3,6 @@
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <!-- Datatables CSS -->
 <link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
-<style>
-    .select2-container .select2-selection--multiple{
-        min-height:42px;
-    }
-</style>
 @endpush
 @section('main')
 <!-- Breadcrumb -->
@@ -32,103 +27,22 @@
 <div class="content">
     <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar dct-dashbd-lft">
+        <div class="row justify-content-center">
             
-                <!-- Profile Widget -->
-                <div class="card widget-profile pat-widget-profile">
-                    <div class="card-body">
-                        <div class="pro-widget-content">
-                            <div class="profile-info-widget">
-                                <a href="#" class="booking-doc-img">
-                                    <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="User Image">
-                                </a>
-                                <div class="profile-det-info">
-                                    <h3>{{$patient->name}}</h3>
-                                    
-                                    <div class="patient-details">
-                                        <h5><b>Patient ID :</b>{{strtoupper($patient->emr)}}</h5>
-                                        <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="patient-info">
-                            <ul>
-                                <li>Phone <span>{{$patient->mobile}}</span></li>
-                                <li>Age <span>{{$patient->age}} Years, {{ucwords($patient->gender)}}</span></li>
-                                <li>Blood Group <span>{{$patient->bloodgroup}}</span></li>
-                                <li>Genotype <span>{{$patient->genotype}}</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Profile Widget -->
-                
-                <!-- Last Booking -->
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Other Menus</h4>
-                    </div>
-                    <div class="dashboard-widget">
-                        <nav class="dashboard-menu">
-                            <ul>
-                                <li>
-                                    <a href="#transfer_patient" data-toggle="modal">
-                                        <i class="fas fa-share"></i>
-                                        <span>Transfer Patient</span>
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="#send_record" data-toggle="modal">
-                                        <i class="fas fa-share-alt"></i>
-                                        <span>Share Patient Records</span>
-                                    </a>
-                                </li>
-                                {{-- @endusercan
-                                @usercan($pharmacy,'assessment') --}}
-                                <li>
-                                    <a href="#message_patient" data-toggle="modal">
-                                        <i class="fas fa-envelope"></i>
-                                        <span>Message Patient</span>
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="#delete_patient" data-toggle="modal" class="text-danger">
-                                        <i class="fas fa-trash"></i>
-                                        <span>Archive Patient</span>
-                                    </a>
-                                </li>
-                                
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <!-- /Last Booking -->
-                
-            </div>
 
-            <div class="col-md-7 col-lg-8 col-xl-9 dct-appoinment">
+            <div class="col-md-7 col-lg-8 col-xl-9 ">
                 <div class="card">
                     <div class="card-body pt-0">
                         <div class="user-tabs">
                             <ul class="nav nav-tabs nav-tabs-bottom nav-justified flex-wrap">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#billing" data-toggle="tab"> <span>Basic Details</span> </a>
+                                    <a class="nav-link active" href="#billing" data-toggle="tab"> <span>Details</span> </a>
                                 </li> 
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="#medical" data-toggle="tab"> <span class="med-records">Medical Records</span></a>
-                                </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#assessments" data-toggle="tab">Assessments</a>
+                                    <a class="nav-link" href="#medical" data-toggle="tab"> <span class="med-records">Batches</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#prescription" data-toggle="tab"><span>Prescription</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#sales" data-toggle="tab"><span>Analytics</span></a>
+                                    <a class="nav-link" href="#assessments" data-toggle="tab">Sales Report</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,84 +53,95 @@
                                 
                                 <div class="card mb-0">
                                     <div class="card-body">
-                                        <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                        <form action="{{route('pharmacy.inventory.update', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                            <input type="hidden" name="inventory_id" value="{{$item->id}}">
                                             <div class="row w-100">
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="form-label">First Name</label>
-                                                        <input type="text" class="form-control" value="{{explode(' ',$patient->name)[0]}}" name="first_name">
+                                                        <label class="form-label">Name</label>
+                                                        <input type="text" class="form-control" value="{{$item->name}}" name="name">
                                                     </div>
-                                                </div>                         
-                                                <div class="col-md-6">
+                                                </div>   
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Category</label>
+                                                        <select class="form-control" id="gender" name="category" @if($item->drug_id) disabled @endif>
+                                                            @if($item->drug_id) 
+                                                                <option value="{{$item->drug->category->name}}" selected>{{$item->drug->category->name}}</option> 
+                                                            @else 
+                                                                <option value="">Select Category</option>
+                                                            @endif
+                                                            @foreach (explode(',',$pharmacy->categories) as $category)
+                                                                <option value="{{$category}}" @if($item->category == $category) selected @endif>{{$category}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>    
+                                                <div class="col-md-4">
                                                     <div class="form-group ">
-                                                        <label class="form-label">Last Name</label>
-                                                        <input type="text" class="form-control" name="last_name" value="{{array_key_exists(1,explode(':',$patient->name))? explode(':',$patient->name)[1]:''}}">
+                                                        <label class="form-label">Shelf</label>
+                                                        <select class="form-control" id="gendeq" name="shelf">
+                                                            <option value="">Select Shelf</option>
+                                                            @foreach (explode(',',$pharmacy->shelves) as $shelf)
+                                                                <option value="{{$shelf}}" @if($item->shelf == $shelf) selected @endif>{{$shelf}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>     
+                                                            
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <label class="form-label">Unit Cost</label>
+                                                        <input type="number" class="form-control" name="unit_cost" value="{{$item->unit_cost}}">
                                                     </div>
                                                 </div> 
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label class="form-label">Email</label>
-                                                        <input type="email" class="form-control" name="email" value="{{$patient->email}}">
+                                                        <label class="form-label">Unit Price</label>
+                                                        <input type="number" class="form-control" name="unit_price" value="{{$item->unit_price}}">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Phone Number</label>
-                                                        <input type="text" class="form-control" name="mobile" value="{{$patient->mobile}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Age <small>(today)</small> </label>
-                                                        <input type="text" class="form-control" name="dob" value="{{$patient->age}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     <div class="form-group ">
-                                                        <label class="form-label">Gender</label>
-                                                        <select class="form-control" id="gender" name="gender">
-                                                            <option value="female" @if($patient->gender=='female') selected @endif>Female</option>
-                                                            <option value="male" @if($patient->gender=='male') selected @endif>Male</option>
+                                                        <label class="form-label">Minimum Stock Level</label>
+                                                        <input type="number" class="form-control" name="minimum_stocklevel" value="{{$item->minimum_stocklevel}}">
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Maximum Stock Level</label>
+                                                        <input type="number" class="form-control" name="maximum_stocklevel" value="{{$item->maximum_stocklevel}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Alert Weeks Before Expiry</label>
+                                                        <input type="number" class="form-control" name="expiry_alert_weeks" value="{{$item->expiry_alert_weeks}}" placeholder="Number of weeks">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Unit of Sales</label>
+                                                        <select name="unit_of_sales" class="form-control">
+                                                            <option value="">Select Unit</option>
+                                                            <option value="pill" @if($item->unit_of_sales == 'pill') selected @endif>Pill</option>
+                                                            <option value="bottle" @if($item->unit_of_sales == 'bottle') selected @endif>Bottle</option>
+                                                            <option value="sachet" @if($item->unit_of_sales == 'sachet') selected @endif>Sachet</option>
+                                                            <option value="packet" @if($item->unit_of_sales == 'packet') selected @endif>Packet</option>
+                                                            <option value="carton" @if($item->unit_of_sales == 'carton') selected @endif>Carton</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="form-label">Address <small>(optional)</small></label>
-                                                        <input type="text" class="form-control" name="address" value="{{$patient->address}}">
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Genotype</label>
-                                                        <input type="text" class="form-control" name="first_name">
-                                                    </div>
-                                                </div>                         
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="form-label">Blood Group</label>
-                                                        <input type="text" class="form-control" name="last_name">
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-12 mb-0">
-                                                    <div class="form-group">
-                                                        <label>Family & Social History </label>
-                                                        <select class="select form-control" multiple>
-                                                            <option value="">Smiles too much</option>
-                                                            <option value="">Takes weed</option>
-                                                            <option value="">Drinks Igbo</option>
-                                                            <option value="">Sniffs Cocaine</option>
-                                                        </select>
-                                                        
+                                                        <label class="form-label">Quantity <span class="small">(Leave Empty to use Batch Quantity)</span> </label>
+                                                        <input type="number" class="form-control" name="quantity" value="{{$item->available}}" @if($item->batches->count()) readonly @endif placeholder="Leave Empty to use Batch">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group mt-2">
                                                         <br>
-                                                        
-                                                        <button type="reset" class="btn btn-md btn-danger">Reset</button>
-                                                        <button type="submit" class="btn btn-md btn-info" name="action" value="save">Update</button>
-                                                        
+                                                        <button type="submit" class="btn btn-md btn-info" >Update</button>
                                                     </div>
                                                 </div> 
         
@@ -227,56 +152,77 @@
                             </div>
                             
                             <!-- Medical Records Tab -->
-                            {{-- <div class="tab-pane fade" id="medical">
+                            <div class="tab-pane fade" id="medical">
                                 <div class="card mb-0">
                                     <div class="card-body">
-                                        <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                        <form action="{{route('pharmacy.inventory.batches', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                            <input type="hidden" name="inventory_id" value="{{$item->id}}">
                                             <div class="row w-100">
-                                                <div class="col-md-12" id="medical_conditions">
-                                                    <h4>Medical History</h4>
-                                                    <div class="row my-4 condition">
-                                                        <div class="col-md-5">
+                                                <div class="col-md-12 registrations-info">
+                                                    @foreach ($item->batches as $batch)
+                                                    <div class="row reg-cont">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">  
-                                                                <label class="text-muted text-center">Previous Medical Condition</label>                                        
-                                                                <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
+                                                                <label class="text-muted text-center">Batch Name</label>                                        
+                                                                <input type="text" name="batch[]" value="{{$batch->number}}" placeholder="Batch Name/Number" class=" form-control">
                                                             </div>
                                                         </div>
-                                                        
-                                                        <div class="col-md-4">
-                                                            <label class="text-muted text-center">When did it happen</label>    
-                                                            <div class="input-group">
-                                                                <input type="month" name="past_history[date][]" placeholder="Year. e.g 2023" class="form-control">
-                                                            </div>                                    
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label class="text-muted text-center">Quantity</label>
+                                                                <input type="number" name="quantity[]" value="{{$batch->quantity}}" placeholder="Quantity" class="form-control"> 
+                                                            </div> 
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                                                                <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                        <div class="col-md-12 medications">
-                                                            <div class="med mb-1">
-                                                                <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
-                                                                <label class="form-check-label mx-3">Effective? </label>
-                                                                <label class="form-check-label mx-3">
-                                                                    <input type="radio" class="form-check-input" name="effection">Yes
-                                                                </label>
-                                                                <label class="form-check-label mx-3">
-                                                                    <input type="radio" class="form-check-input" name="optradio">No
-                                                                </label>
-                                                                <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
+                                                            <div class="form-group">
+                                                                <label class="text-muted text-center">Expiry</label>
+                                                                <input type="date" name="expire_at[]" value="{{$batch->expire_at ? $batch->expire_at->format('Y-m-d'): ''}}" placeholder="Year. e.g 2023" class="form-control">
                                                             </div>
-                                                            
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="d-md-block">&nbsp;</label>
+                                                            <a href="#" class="btn btn-danger btn-block trash">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                    @endforeach
+                                                    <div class="row reg-cont">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">  
+                                                                <label class="text-muted text-center">Batch Name</label>                                        
+                                                                <input type="text" name="batch[]" placeholder="Batch Name/Number" class=" form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label class="text-muted text-center">Quantity</label>
+                                                                <input type="number" name="quantity[]" placeholder="Quantity" class="form-control"> 
+                                                            </div> 
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label class="text-muted text-center">Expiry</label>
+                                                                <input type="date" name="expire_at[]" placeholder="Year. e.g 2023" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="d-md-block">&nbsp;</label>
+                                                            <a href="#" class="btn btn-danger btn-block trash">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </a>
                                                         </div>
                                                         
-                                                        
+
                                                     </div>
-                                                    
+                                                </div>
+                                                <div class="add-more m-4">
+                                                    <a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Add New</a>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <div class="form-group mt-2">
-                                                        <br>
-                                                        <button type="submit" class="btn btn-md btn-info" name="action" value="save">Save & Close</button>
-                                                        
-                                                        <button type="reset" class="btn btn-md btn-danger">Reset</button>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-md btn-info">Update</button>
                                                     </div>
                                                 </div> 
         
@@ -285,7 +231,7 @@
                                     </div>
                                 </div>
                                 
-                            </div> --}}
+                            </div>
                             <!-- /Medical Records Tab -->
 
                             <!-- Appointment Tab -->
@@ -300,7 +246,7 @@
                                             <table class="table datatable table-hover table-center mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Service Provider</th>
+                                                        <th>Pharmacist</th>
                                                         <th>Date</th>
                                                         <th>Complaint</th>
                                                         <th>Diagnosis</th>
@@ -555,8 +501,8 @@
                                                     <tr>
                                                         <th>Date </th>
                                                         <th>Created by </th>
-                                                        <th>Diagnosis</th>									
-                                                        <th>Drugs</th>									
+                                                        <th>Condition</th>									
+                                                        <th>Contents</th>									
                                                         <th></th>
                                                     </tr>     
                                                 </thead>
@@ -624,96 +570,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /Prescription Tab -->
-
-                            <!-- Prescription Tab -->
-                            <div class="tab-pane fade" id="sales">
-                                <div class="">
-                                    <a href="add-prescription.html" class="add-new-btn">Analytics</a>
-                                    <a href="add-prescription.html" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Sales</a>
-                                </div>
-                                <div class="card card-table mb-0">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table datatable table-hover table-center mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Date </th>
-                                                        <th>Sold by </th>
-                                                        <th>Items</th>																	
-                                                        <th></th>
-                                                    </tr>     
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>Hycent Pharmacy</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>ABC Hospital</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>	
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Prescription Tab -->
-
-                            
-                            
-                            
-                                    
+         
                         </div>
                     </div>
                 </div>
@@ -727,141 +584,11 @@
 
 @endsection
 @section('modals')
-    <!-- Medicine Info Modal -->
-    
-    <div class="modal fade custom-modal add-modal" id="transfer_patient">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Transfer Patient</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="">
-                        <div class="form-group mt-2">
-                            <label>Select Pharmacy </label>
-                            <select class="form-control">
-                                <option value="">Lagos Branch</option>
-                                <option value="">Abuja Branch</option>
-                                <option value="">Port Harcourt Branch</option>
-                            </select>
-                        </div>
-                        <p>All the patient's records will be transfered to selected pharmacy. <span class="text-danger">This means the patient's records will no longer be available on {{$pharmacy->name}}</span> </p>
-                        <button type="submit" class="btn btn-warning pl-4 pr-4 mt-2">Transfer</button>
-                        <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
-                    
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Medicine Info Modal -->
-    <!-- Reaction Modal -->
-    <div class="modal fade custom-modal add-modal" id="send_record">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Share Patient Records</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="" class="needs-validation" novalidate>
-                                <p>You are sharing Patient's information with a third party</p>
-                                <div class="col-12 text-muted mb-3">
-                                    <p>What to Share</p>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_basics" name="share_basics" checked value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Basic Details</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_meds" name="share_meds" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Medical Records</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_assess" name="share_assess" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Assessments</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_pres" name="share_pres" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Prescriptions</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group mt-2">
-                                    <label for="d-block">Share by:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="pdftoemail" name="share" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="share">PDF to Email</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="secure" name="share" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="share">Secure Public Link</label>
-                                    </div>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <label>Share to </label>
-                                    <input type="email" class="form-control" placeholder="Email">
-                                </div>
-                                <small class="d-block">By Clicking the Share Button, you agree that you know what you are doing and you know the consequences</small>
-                                <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Share</button>
-                                <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade custom-modal add-modal" id="message_patient">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Send Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="#" class="needs-validation" novalidate>
-                                
-                                <div class="form-group mt-2">
-                                    <label for="pwd">Message:</label>
-                                    <textarea class="form-control" rows="3" id="description" name="body" required></textarea> 
-                                </div>
-                                <p>Send as sms or Send as Email</p>
-                                <div class="form-group mt-2">
-                                    <label for="pwd">Attachment:</label>
-                                    <input type="file" class="form-control" name="file" multiple> 
-                                    <small>Can attach multiple files</small>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary pl-4 pr-4 mt-2">Send</button>
-                                <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade custom-modal add-modal" id="delete_patient">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger">Archive Patient</h5>
+                    <h5 class="modal-title text-danger">Delete Item</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -870,7 +597,7 @@
                     <div class="row">
                         <div class="col-12">
                             <form action="" class="needs-validation" novalidate>
-                                <p>You are about to archive the records of Olamuyiwa Orepoms. Please note that this action is non-reversible.<br> The following will be archived: </p>
+                                <p>You are about to delete the records of Olamuyiwa Orepoms. Please note that this action is non-reversible.<br> The following will be deleted: </p>
                                 <ul class="mt-2">
                                     
                                         <li>
@@ -887,8 +614,8 @@
                                         </li>
                                     
                                 </ul>
-                                <small class="d-block">By Clicking the Archive Button, you agree that you know what you are doing and you know the consequences</small>
-                                <button type="submit" class="btn btn-danger pl-4 pr-4 mt-2">Archive</button>
+                                <small class="d-block">By Clicking the Delete Button, you agree that you know what you are doing and you know the consequences</small>
+                                <button type="submit" class="btn btn-danger pl-4 pr-4 mt-2">Delete</button>
                                 <button type="button" class="btn btn-dark pl-4 pr-4 mt-2" data-dismiss="modal" aria-label="Close">Cancel</button>
                             </form>
                         </div>
@@ -902,64 +629,31 @@
 @endsection
 @push('scripts')
     <script>
-        $(document).on('click',".add_condition", function() {
-            console.log("condition")
-            var condition = ` 
-                                <div class="row my-4 condition">
-                                    <div class="col-md-7">
-                                        <div class="form-group">  
-                                            <label class="text-muted text-center">Previous Medical Condition</label>                                        
-                                            <input type="text" name="medical_history" placeholder="Condition name" class=" form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                            <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                                            <button type="button" class="btn btn-primary add_condition" title="add more"><i class="fa fa-plus"></i></button>
-                                            <button type="button" class="btn btn-danger remove_condition" title="add more"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                    <div class="col-md-12 medications">
-                                        <div class="med mb-1">
-                                            <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
-                                            <label class="form-check-label mx-3">Effective? </label>
-                                            <label class="form-check-label mx-3">
-                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                            </label>
-                                            <label class="form-check-label mx-3">
-                                                <input type="radio" class="form-check-input" name="optradio">No
-                                            </label>
-                                            <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                        
-                                    </div>     
-                                </div>
-                            `;
-
-            $("#medical_conditions").append(condition);
+        $(document).ready(function(){
+            regcontent = $('.reg-cont').last().prop("outerHTML");
+        })
+        $(".registrations-info").on('click','.trash', function () {
+            $(this).closest('.reg-cont').remove();
+            return false;
         });
-        $(document).on('click',".add_medication", function() {
-            var medication = ` 
-                                <div class="med mb-1">
-                                    <input type="text" name="medical_history" placeholder="Medication used" class="form-control-sm"> 
-                                    <label class="form-check-label mx-3">Effective? </label>
-                                    <label class="form-check-label mx-3">
-                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                    </label>
-                                    <label class="form-check-label mx-3">
-                                        <input type="radio" class="form-check-input" name="optradio">No
-                                    </label>
-                                    <button type="button" class="btn btn-sm btn-info add_medication" title="add more"><i class="fa fa-plus"></i></button>
-                                    <button type="button" class="btn btn-sm btn-danger remove_medication" title="remove"><i class="far fa-trash-alt"></i></button>
-                                </div> 
-                            `;
-
-            $(this).closest(".medications").append(medication);
-        });
-        $(document).on('click', '.remove_condition', function() {
-            $(this).closest('.condition').remove();
-        });
-        $(document).on('click', '.remove_medication', function() {
-            $(this).closest('.med').remove();
-        });                                           
+            // reg-cont
+        $(document).on('click',".add-reg", function () {
+            $(".registrations-info").append(regcontent);
+            $('.permission').each(function(index,val){
+                $(this).find('.custom-control-input').attr('id','id'+index);  
+                $(this).find('.custom-control-label').attr('for','id'+index); 
+            })
+            $('.reg-cont').each(function(index,val){
+                $(this).find('.custom-control-input').each(function(abc,valu){
+                    let name = $(this).attr('name');
+                    let new_name = name.replace("[]","["+index+"]") 
+                    $(this).attr('name',new_name);
+                    // console.log('index:'+index+',inner:'+abc+',item:'+$(this).attr('name'))
+                })
+                
+            })
+            
+            return false;
+        });                                        
     </script> 
-    
 @endpush

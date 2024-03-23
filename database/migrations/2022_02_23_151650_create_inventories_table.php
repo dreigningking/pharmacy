@@ -21,7 +21,7 @@ class CreateInventoriesTable extends Migration
             $table->string('name');
             $table->double('unit_cost')->default(0); //cost price of one tablet
             $table->double('unit_price')->default(0); //price of one tablet
-            $table->double('profit')->default(0);
+            $table->string('quantity')->default(0); //this will be computed by batches
             $table->timestamps();
             $table->foreign('drug_id')->references('id')->on('drugs')->onDelete('cascade');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');

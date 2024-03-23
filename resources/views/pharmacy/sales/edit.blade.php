@@ -40,7 +40,8 @@
 
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-12">
-                <form action="{{route('pharmacy.sales.store',$pharmacy)}}" method="post">@csrf
+                <form action="{{route('pharmacy.sales.update',$pharmacy)}}" method="post">@csrf
+                    <input type="hidden" name="sale_id" value="{{$sale->id}}">
                     <div class="card card-table">
                         <div class="card-body">
                             <div class="table-responsive">
@@ -60,47 +61,40 @@
                                         </tr>
                                     </thead>
                                     <tbody id="sales_body">
-                                        @if(isset($prescription))
-                                            <input type="hidden" name="prescription_id" value="{{$prescription->id}}">
-                                            @foreach($prescription->details as $detail)
-                                                <tr class="sales_row">
-                                                    <td>
-                                                        <select class="form-control sales_inventory" name="inventories[]" required>
-                                                            <option></option>
-                                                            @foreach($inventories as $inventory)
-                                                                <option value="{{$inventory->id}}" @if($inventory->drug_id == $detail->drug_id) selected @endif>{{$inventory->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <select class="form-control batches" name="batches[]" required>
-                                                            <option value=""</option>
-                                                            @foreach($detail->inventory->batches as $batch)
-                                                                <option value="{{$batch->number}}">{{$batch->number}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control prices" type="number" name="prices[]" value="{{$detail->inventory->unit_price}}" readonly>
-                                                    </td>
-                                                    
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <small class="px-1">Total Dosage: {{$detail->quantity}}</small>
-                                                            <input class="form-control quantities" type="number" value="1" name="quantities[]" placeholder="Quantity">
-                                                        </div>
-                                                        
-                                                        
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control amounts" min="1" type="number" name="amounts[]" value="{{$detail->inventory->unit_price}}" placeholder="Total" readonly>
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:void(0);" class="btn bg-danger-light trash remove_sales_item"><i class="far fa-trash-alt"></i></a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
+                                        @foreach($sale->details as $detail)
+                                            <tr class="sales_row">
+                                                <td>
+                                                    <select class="form-control sales_inventory" name="inventories[]" required>
+                                                        <option></option>
+                                                        @foreach($inventories as $inventory)
+                                                            <option value="{{$inventory->id}}" @if($inventory->id == $detail->inventory_id) selected @endif>{{$inventory->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control batches" name="batches[]" required>
+                                                        <option value=""</option>
+                                                        @foreach($detail->inventory->batches as $batch)
+                                                            <option value="{{$batch->number}}" @if($batch->number == $detail->batch) selected @endif>{{$batch->number}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control prices" type="number" name="prices[]" value="{{$detail->price}}" readonly>
+                                                </td>
+                                                
+                                                <td>
+                                                    <input class="form-control quantities" type="number" value="{{$detail->quantity}}" name="quantities[]" placeholder="Quantity">
+                                                </td>
+                                                <td>
+                                                    <input class="form-control amounts" min="1" type="number" name="amounts[]" value="{{$detail->price * $detail->quantity}}" placeholder="Total" readonly>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="btn bg-danger-light trash remove_sales_item"><i class="far fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        
                                         <tr class="sales_row">
                                             <td>
                                                 <select class="form-control sales_inventory" name="inventories[]" required>
@@ -139,7 +133,7 @@
                                     <select name="patient_id" id="patient_id" class="form-control patient_id" required>
                                         <option value=""></option>
                                         @foreach($patients as $pateint)
-                                            <option value="{{$pateint->id}}" @if($prescription && $prescription->patient_id == $pateint->id) selected @endif>{{$pateint->name}}</option>
+                                            <option value="{{$pateint->id}}" @if($sale && $sale->patient_id == $pateint->id) selected @endif>{{$pateint->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -151,7 +145,7 @@
                                                 <th>Subtotal:</th>
                                                 <td>
                                                     <span>₦
-                                                        <span id="subtotal">0</span>
+                                                        <span id="subtotal">{{number_format($sale->total)}}</span>
                                                     </span>
                                                 </td>
                                             </tr>
@@ -165,7 +159,7 @@
                                             </tr> --}}
                                             <tr>
                                                 <th>Total Amount:</th>
-                                                <td><span>₦<span id="total">0</span></span></td>
+                                                <td><span>₦<span id="total">{{number_format($sale->total)}}</span></span></td>
                                             </tr>
                                             </tbody>
                                         </table>

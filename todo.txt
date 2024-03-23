@@ -1,4 +1,4 @@
-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
+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
 
 INVENTORY
 
@@ -11,7 +11,6 @@ Move expired, expiring,  out of stock and overstocked in to separate pages
 - over stock : {name, over stocked quantity}
 - under stock : {name, under stocked quantity}
 - out of stock : {name}
-
 
 
 
@@ -35,7 +34,7 @@ Final Diagnosis Feedback
 expected_outcome units should be in labtests or vitals
 
 
-PRESCRIPTION 
+PRESCRIPTION
 Non Medication advise is a drop down
 
 
@@ -59,3 +58,46 @@ fa user-md, fa medkit,fa heartbeat,fa plus-square,fa ambulance,fa wheelchair-alt
 Recent Notification{
     subscription notifications
 }
+
+
+? how do you know an assessment is closed?
+use it when you get a patient's assessment in helpercontroller
+
+
+prescription show
+prescription re-prescribe
+
+sales edit
+
+redo inventory store.. every item must have a batch, even if it is unbatched
+add currency to settings
+
+show batches in inventory
+inventory create should be a separate page, and batches should be there on the list
+bulk adding of drugs should add them to unshelved
+bulk adding of non-drugs should add them to unshelved and uncategorized
+ 
+
+chart dependants{
+    x_data, y_data, chart_type, label, 
+}
+
+expiring /expired items
+by default, show expired
+filter{
+    expired, expire in one month, 2 months, 3 months, 4 months, 6 months, 1 year
+}
+sort expiry by asc or desc
+
+EXPIRED
+
+
+
+
+
+
+
+
+
+EMAIL
+Welcome Email after director register

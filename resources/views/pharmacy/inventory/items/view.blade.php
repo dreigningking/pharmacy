@@ -52,7 +52,7 @@
                             <ul>
                                 <li>Stock <span>256</span></li>
                                 <li>Shelf <span>XLB</span></li>
-                                {{-- <li>Blood Group <span>AB+</span></li> --}}
+                                
                             </ul>
                         </div>
                     </div>

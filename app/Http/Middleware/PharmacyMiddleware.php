@@ -16,14 +16,13 @@ class PharmacyMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // dd($request->route('pharmacy'));
-        if($request->user()->pharmacies->isEmpty())
+        if($request->user()->pharmacies->isEmpty() && !$request->user()->pharmacy)
         return redirect()->route('pharmacy.setup');
-        // if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->isEmpty())
-        // return redirect()->route('workspaces');
-        // if($request->user()->pharmacies->where('id',$request->route('pharmacy')->id)->where('pivot.status',false)->isNotEmpty())
-        // return redirect()->route('invitations');
-        
+        if(in_array($request->route('pharmacy')->id,$request->user()->pharmacies->pluck('id')->toArray()))
+        return $next($request);
+        elseif($request->user()->pharmacy_id == $request->route('pharmacy')->id)
+        return $next($request);
+        else abort(404,'Page not found');
         return $next($request);
     }
 }
