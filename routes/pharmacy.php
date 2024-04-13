@@ -146,14 +146,14 @@ Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.
     Route::group(['prefix'=>'analytics','as'=> 'analytics.'], function () {
         Route::get('/patient-individual',[AnalyticsController::class, 'patient_individual'])->name('patient_individual');
         Route::get('/medication-outcome-monitor',[AnalyticsController::class, 'medications_monitor'])->name('medications_monitor');
-        Route::post('diagnosis-monitor',[AnalyticsController::class, 'diagnosis_monitor'])->name('diagnosis_monitor');
+        Route::get('diagnosis-monitor',[AnalyticsController::class, 'diagnosis_monitor'])->name('diagnosis_monitor');
         Route::get('/sales-modality',[AnalyticsController::class, 'sales_modality'])->name('sales_modality');
         Route::get('periodic-sales-monitor',[AnalyticsController::class, 'periodic_sales_monitor'])->name('periodic_sales_monitor');
         Route::get('sales-volume-monitor',[AnalyticsController::class, 'sales_volume_monitor'])->name('sales_volume_monitor');
         Route::get('earnings-per-product',[AnalyticsController::class, 'earnings_per_product'])->name('earnings_per_product');
-        Route::post('business-capitalization',[AnalyticsController::class, 'business_capitalization'])->name('business_capitalization');
-        Route::post('expiring-products',[AnalyticsController::class, 'expiring_products'])->name('expiring_products');
-        Route::post('expired-products',[AnalyticsController::class, 'expired_products'])->name('expired_products');
+        Route::get('business-capitalization',[AnalyticsController::class, 'business_capitalization'])->name('business_capitalization');
+        Route::get('expiring-products',[AnalyticsController::class, 'expiring_products'])->name('expiring_products');
+        Route::get('expired-products',[AnalyticsController::class, 'expired_products'])->name('expired_products');
 
         
     });
