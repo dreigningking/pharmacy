@@ -9,12 +9,7 @@
             <li><a href="{{route('pharmacy.assessments.create',$pharmacy)}}">New Assessment</a></li>
             <li><a href="{{route('pharmacy.assessments.index',$pharmacy)}}">All Assessments</a></li>
             <li><a href="{{route('pharmacy.patients.index',$pharmacy)}}">All Patient</a></li>
-            <li class="has-submenu">
-                <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Analytics</a>
-                <ul class="submenu">
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Group Outcome Monitor</a></li> 
-                </ul>
-            </li>
+            
         </ul>
     </li>
     <li class="has-submenu">
@@ -22,6 +17,12 @@
         <ul class="submenu">
             <li><a href="{{route('pharmacy.prescriptions.create',$pharmacy)}}">New Prescription</a></li>
             <li><a href="{{route('pharmacy.prescriptions.index',$pharmacy)}}">All Prescriptions</a></li>
+            <li class="has-submenu">
+                <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Analytics</a>
+                <ul class="submenu">
+                    <li><a href="{{route('pharmacy.analytics.medications_monitor',$pharmacy)}}">Medication Outcome Monitor</a></li> 
+                </ul>
+            </li>
         </ul>
     </li>
     <li class="has-submenu">

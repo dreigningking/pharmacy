@@ -60,7 +60,7 @@
                                 <li>Blood Group <span>{{$patient->bloodgroup}}</span></li>
                                 <li>Genotype <span>{{$patient->genotype}}</span></li>
                             </ul>
-                        </div>
+                        </div> 
                     </div>
                 </div>
                 <!-- /Profile Widget -->
@@ -628,92 +628,55 @@
 
                             <!-- Prescription Tab -->
                             <div class="tab-pane fade" id="sales">
-                                <div class="">
-                                    <a href="add-prescription.html" class="add-new-btn">Analytics</a>
-                                    <a href="add-prescription.html" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Sales</a>
-                                </div>
+                                
                                 <div class="card card-table mb-0">
                                     <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table datatable table-hover table-center mb-0">
-                                                <thead>
+                                        <h4>Individual Patient Outcome Monitor</h4>
+                                        <div class="row mt-5">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Select Diagnosis</label>
+                                                    <select class="form-control" name="first_name">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Vitals</label>
+                                                    <select class="form-control" name="first_name">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Vitals</label>
+                                                    <select class="form-control" name="first_name">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <button class=" btn btn-primary">Generate Chart</button>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row mt-5">
+                                            <div class="col-md-12">
+                                                <table>
                                                     <tr>
-                                                        <th>Date </th>
-                                                        <th>Sold by </th>
-                                                        <th>Items</th>																	
-                                                        <th></th>
-                                                    </tr>     
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
+                                                        <th>
+
+                                                        </th>
                                                     </tr>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>Hycent Pharmacy</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>ABC Hospital</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>	
-                                            </table>
+                                                </table>
+                                            </div> 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /Prescription Tab -->
-
-                            
-                            
-                            
-                                    
+                                 
                         </div>
                     </div>
                 </div>
