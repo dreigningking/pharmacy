@@ -57,13 +57,29 @@
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Expired Products Monitor</h4>
+                        <h4>Expiring Products Monitor</h4>
                         <h6>Less than 6-months shelf-life monitor</h6>
                         
-                        
+                        <div class="row mt-5">
+                            
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="form-label">Select Category</label>
+                                    <select class="form-control" name="first_name">
+                                        <option value="">Drugs</option>
+                                        <option value="">Non Drugs</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12 text-center">
+                                <button class=" btn btn-primary">Filter</button>
+                            </div>
+                            
+                        </div>
                         <div class="row mt-5">
                             <div class="col-md-12">
-                                <table>
+                                <table class="table">
                                     <tr>
                                         <th>
                                             Item

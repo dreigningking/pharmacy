@@ -57,7 +57,7 @@
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Sales Volume Monitor</h4>
+                        <h4>Earnings Per Product</h4>
                         <h6>Top-10 Highest Earning Products Sold</h6>
                         <div class="row mt-5">
                             
