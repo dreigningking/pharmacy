@@ -25,10 +25,6 @@ class AnalyticsController extends Controller
             $query->where('pharmacy_id',$pharmacy->id);
         })->get();
         $condition_id = $from = $to = $drug_ids = $results = null;
-        $medications = Drug::whereIn('id',request()->medications)
-            ->whereHas('prescriptions.prescription.assessment.finalDiagnosis',function($query) use($condition_id){
-                $query->where('condition_id',$condition_id);
-            })->get();
         
         if(request()->query()){
             $condition_id = request()->condition_id;
@@ -43,8 +39,9 @@ class AnalyticsController extends Controller
             foreach($medications as $medication){
                 $diagnosis_count = $medication->prescriptions->whereBetween('created_at',[$from,$to])->pluck('prescription.assessment.finalDiagnosis')->flatten()->where('condition_id',$condition_id)->count();
                 $cures = $medication->prescriptions->whereBetween('created_at',[$from,$to])->pluck('prescription.assessment.finalDiagnosis')->flatten()->where('condition_id',$condition_id)->where('achieved','yes')->count();
-                $results[] = [ 'name'=> $medication->name, 'achieved' => $diagnosis_count/$cures * 100];
+                $results[] = [ 'name'=> $medication->name, 'achieved' => $cures && $diagnosis_count ? $diagnosis_count/$cures * 100 : 0];
             }
+            
         }
         return view('user.analytics.medications_monitor',compact('pharmacy','diagnoses','drugs','condition_id','drug_ids','from','to','results'));
     }

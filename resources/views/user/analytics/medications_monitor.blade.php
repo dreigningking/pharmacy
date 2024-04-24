@@ -133,6 +133,9 @@
                                     @endforeach
                                 </table>
                             </div> 
+                            <div class="col-md-7">
+                                <canvas id="volumeChart" style="width:100%;max-width:700px"></canvas>
+                            </div>
                         </div>
                         @endif
                     </div>
@@ -153,5 +156,44 @@
 <script>
     $('.select2').select2();
 </script>
-
+<script src="{{asset('plugins/chart/chart.min.js')}}"></script>
+<script src="{{asset('plugins/chart/chartjs-plugin-datalabels.min.js')}}"></script>
+<script>
+    var results = @json($results);
+    if(results){
+        const xVolume = results.map(a => a.name);
+        const yVolume = results.map(b => b.achieved);
+        console.log(xVolume)
+        new Chart("volumeChart", {
+            type: "bar",
+            data: {
+                labels: xVolume,
+                datasets: [{
+                    label: "Medication Outcome Monitor",
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    // borderColor: "rgba(0,0,255,0.1)",
+                    data: yVolume
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: "Medication Outcome Monitor"
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+            }
+        });
+    }
+    
+   
+</script>
 @endpush
