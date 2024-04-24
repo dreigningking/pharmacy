@@ -12,6 +12,14 @@
         position:absolute;
         top: 6px!important;
     }
+    .select2-container .select2-selection--multiple{
+        min-height:46px;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__rendered{
+        line-height: 30px;
+    }
+    
+</style>
     
 </style>
 @endpush
@@ -57,48 +65,76 @@
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Group Patient Outcome Monitor</h4>
+                        <h4>Medications Outcome Monitor</h4>
+                        <form action="">
+                            <div class="row mt-5">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Select Diagnosis</label>
+                                        <select class="form-control select2" data-placeholder="Select Diagnosis" name="condition_id">
+                                            <option value=""></option>
+                                            @foreach ($diagnoses as $diagnosis)
+                                                <option value="{{$diagnosis->id}}" @if($condition_id == $diagnosis->id) selected @endif>{{$diagnosis->description}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div> 
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label class="form-label">Select Medication</label>
+                                        <select class="form-control select2" data-placeholder="Select Medications" name="medications[]" multiple>
+                                            @foreach ($drugs as $drug)
+                                                <option value="{{$drug->id}}" @if($drug_ids && in_array($drug->id,$drug_ids)) selected @endif>{{$drug->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label class="form-label">Date Range</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="">From</label>
+                                                <div class="cal-icon">
+                                                    <input name="from" value="{{$from? $from->format('d/m/Y') : ''}}" type="text" class="form-control datetimepicker" placeholder="Select Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">To</label>
+                                                <div class="cal-icon">
+                                                    <input name="to" value="{{$to? $to->format('d/m/Y') : ''}}" type="text" class="form-control datetimepicker" placeholder="Select Date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button class=" btn btn-primary">Generate Chart</button>
+                                </div>
+                            </div>
+                        </form>
+                        @if($results)
                         <div class="row mt-5">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="form-label">Select Diagnosis</label>
-                                    <select class="form-control" name="first_name">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div> 
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <label class="form-label">Select Medication</label>
-                                    <select class="form-control" name="first_name">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <label class="form-label">Date Range</label>
-                                    <select class="form-control" name="first_name">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12 text-center">
-                                <button class=" btn btn-primary">Generate Chart</button>
-                            </div>
-                            
-                        </div>
-                        <div class="row mt-5">
-                            <div class="col-md-12">
-                                <table>
+                            <div class="col-md-5">
+                                <table class="table table-stripped">
                                     <tr>
                                         <th>
-
+                                            Brand
+                                        </th>
+                                        <th>
+                                            % outcome Achieved
                                         </th>
                                     </tr>
+                                    @foreach($results as $result)
+                                    <tr>
+                                        <td>{{$result['name']}}</td>
+                                        <td>{{$result['achieved']}}%</td>
+                                    </tr>
+                                    @endforeach
                                 </table>
                             </div> 
                         </div>
+                        @endif
                     </div>
 
                 </div>
@@ -114,6 +150,8 @@
 @endsection
 
 @push('scripts')
-
+<script>
+    $('.select2').select2();
+</script>
 
 @endpush

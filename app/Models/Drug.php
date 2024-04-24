@@ -41,9 +41,11 @@ class Drug extends Model
         return $this->belongsTo(DrugCategory::class,'category_id')->withDefault();
     }
 
-    public function prescribes(){
-        return $this->hasMany(PrescriptionDetail::class)->with('prescription');
+    public function prescriptions(){
+        return $this->hasMany(PrescriptionDetail::class)->with('prescription.assessment.finalDiagnosis');
     }
+
+    
 
     
 

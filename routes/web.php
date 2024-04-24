@@ -28,7 +28,7 @@ Route::get('test',function(){
     // dd($prescriptions->flatten()->pluck('details')->flatten()->pluck('drug'));
 
 
-    // $drugs = \App\Models\Drug::Has('prescribes')->with('prescribes')->get();
+    // $drugs = \App\Models\Drug::Has('prescriptions')->get();
     // dd($drugs);
 
     $inventories = \App\Models\Inventory::whereHas('batches',function($query){ $query->where('expire_at','<',today()->addMonths(6));})->get();
