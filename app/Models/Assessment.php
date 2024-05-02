@@ -28,20 +28,30 @@ class Assessment extends Model
 
     public function getSummaryAttribute(){
         $assess = '';
-        if($this->finalDiagnosis->isNotEmpty()){
-            $assess .= $this->finalDiagnosis->sortByDesc('created_at')->first()->condition->description;
-            if($this->finalDiagnosis->count() > 1) {
-                $assess .= ' + '.$this->finalDiagnosis->count().' more'; 
+        if($this->finalDiagnoses->isNotEmpty()){
+            $assess .= $this->finalDiagnoses->sortByDesc('created_at')->first()->condition->description;
+            if($this->finalDiagnoses->count() > 1) {
+                $assess .= ' + '.$this->finalDiagnoses->count().' more'; 
             }
-            $assess .= ' @ '.$this->finalDiagnosis->sortByDesc('created_at')->first()->created_at->format('l jS M h:i A');
+            $assess .= ' @ '.$this->finalDiagnoses->sortByDesc('created_at')->first()->created_at->format('l jS M h:i A');
         }
         
         return $assess; 
     }
 
+    public function getStatusAttribute(){
+        if($this->finalDiagnoses->isEmpty()){
+            return 'Inconclusive';
+        }elseif($this->finalDiagnoses->where('achieved','yes')->count() == $this->finalDiagnoses->count()){
+            return 'Completed';
+        }else{
+            return 'Ongoing';
+        }
+    }
+
     public function getMedicalCounselAttribute(){
         $counsel = collect([]);
-        foreach($this->finalDiagnosis as $diagnosis){
+        foreach($this->finalDiagnoses as $diagnosis){
             if($diagnosis->medical_counsel)
             $counsel->push($diagnosis->condition->medical_counsel);
         }
@@ -76,7 +86,7 @@ class Assessment extends Model
         return $this->hasMany(PatientProvisionalDiagnosis::class);
     }
 
-    public function finalDiagnosis(){
+    public function finalDiagnoses(){
         return $this->hasMany(PatientFinalDiagnosis::class);
     }
 

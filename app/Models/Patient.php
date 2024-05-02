@@ -6,6 +6,7 @@ use App\Models\Pharmacy;
 use App\Models\Assessment;
 use App\Models\Prescription;
 use App\Observers\PatientObserver;
+use App\Models\PatientFinalDiagnosis;
 use App\Models\PatientMedicalHistory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PatientMedicationHistory;
@@ -51,12 +52,12 @@ class Patient extends Model
         $assess = '';
         $extra = '';
         foreach($this->assessments as $assessment){
-            if($assessment->finalDiagnosis->isNotEmpty()){
-                $assess .= $assessment->finalDiagnosis->sortByDesc('created_at')->first()->condition->description;
-                if($assessment->finalDiagnosis->count() > 1) {
-                    $assess .= ' + '.$assessment->finalDiagnosis->count().' more'; 
+            if($assessment->finalDiagnoses->isNotEmpty()){
+                $assess .= $assessment->finalDiagnoses->sortByDesc('created_at')->first()->condition->description;
+                if($assessment->finalDiagnoses->count() > 1) {
+                    $assess .= ' + '.$assessment->finalDiagnoses->count().' more'; 
                 }
-                $assess .= ' @ '.$assessment->finalDiagnosis->sortByDesc('created_at')->first()->created_at->format('l jS M h:i A');
+                $assess .= ' @ '.$assessment->finalDiagnoses->sortByDesc('created_at')->first()->created_at->format('l jS M h:i A');
                 $summary[]= $assess;
             }
         }
@@ -78,6 +79,7 @@ class Patient extends Model
     public function medicalHistory(){
         return $this->hasMany(PatientMedicalHistory::class);
     }
+
     public function activemedicalHistory(){
         return $this->hasMany(PatientMedicalHistory::class)->where('start','>',today())->where('end','<',today());
     }
@@ -92,5 +94,9 @@ class Patient extends Model
 
     public function familySocialHistory(){
         return $this->hasMany(PatientFamilySocialHistory::class);
+    }
+
+    public function diagnoses(){
+        return $this->hasMany(PatientFinalDiagnosis::class);
     }
 }

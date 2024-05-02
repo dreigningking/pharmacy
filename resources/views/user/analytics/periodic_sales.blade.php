@@ -58,52 +58,80 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Periodic Sales Monitor</h4>
+                        <form action="">
+                            <div class="row mt-5">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Select Type</label>
+                                        <select class="form-control" name="type">
+                                            <option value="Annually" @if($type == 'Annual') selected @endif>Annual</option>
+                                            <option value="Quarterly" @if($type == 'Quarterly') selected @endif>Quarterly</option>
+                                            <option value="Monthly" @if($type == 'Monthly') selected @endif>Monthly</option>
+                                            <option value="Weekly" @if($type == 'Weekly') selected @endif>Weekly</option>
+                                            <option value="Daily" @if($type == 'Daily') selected @endif>Daily</option>
+                                        </select>
+                                    </div>
+                                </div> 
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Select Category</label>
+                                        <select class="form-control" name="category">
+                                            <option value="" @if(!$category) selected @endif>All</option>
+                                            <option value="drugs" @if($category == 'drugs') selected @endif>Drugs</option>
+                                            <option value="nondrugs" @if($category == 'nondrugs') selected @endif>Non Drugs</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Date Range (From | To)</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="cal-icon">
+                                                    <input name="from" value="{{$from? $from->format('d/m/Y') : ''}}" type="text" class="form-control datetimepicker" placeholder="From Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                
+                                                <div class="cal-icon">
+                                                    <input name="to" value="{{$to? $to->format('d/m/Y') : ''}}" type="text" class="form-control datetimepicker" placeholder="To  Date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button class=" btn btn-primary">Generate Chart</button>
+                                </div>
+                                
+                            </div>
+                        </form>
+                        @if($results)
                         <div class="row mt-5">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="form-label">Select Type</label>
-                                    <select class="form-control" name="first_name">
-                                        <option value="">Annual</option>
-                                        <option value="">Quaterly</option>
-                                        <option value="">Monthly</option>
-                                        <option value="">Weekly</option>
-                                        <option value="">Daily</option>
-                                    </select>
-                                </div>
-                            </div> 
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <label class="form-label">Select Category</label>
-                                    <select class="form-control" name="first_name">
-                                        <option value="">Drugs</option>
-                                        <option value="">Non Drugs</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <label class="form-label">Date Range</label>
-                                    <select class="form-control" name="first_name">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12 text-center">
-                                <button class=" btn btn-primary">Generate Chart</button>
-                            </div>
-                            
-                        </div>
-                        <div class="row mt-5">
-                            <div class="col-md-12">
-                                <table>
+                            <div class="col-md-5">
+                                <table class="table table-striped">
                                     <tr>
                                         <th>
-
+                                            Period
+                                        </th>
+                                        <th>
+                                            Sales
                                         </th>
                                     </tr>
+                                    @foreach($results as $result)
+                                    <tr>
+                                        <td>{{$result['name']}}</td>
+                                        <td>{{$result['sales']}}</td>
+                                        
+                                    </tr>
+                                    @endforeach
                                 </table>
                             </div> 
+                            <div class="col-md-7">
+                                <canvas id="volumeChart" style="width:100%;max-width:700px"></canvas>
+                            </div>
                         </div>
+                        @endif
                     </div>
 
                 </div>
@@ -119,6 +147,45 @@
 @endsection
 
 @push('scripts')
-
+<script src="{{asset('plugins/chart/chart.min.js')}}"></script>
+<script src="{{asset('plugins/chart/chartjs-plugin-datalabels.min.js')}}"></script>
+<script>
+    var results = @json($results);
+    if(results){
+        const xVolume = results.map(a => a.name);
+        const yVolume = results.map(b => b.sales);
+        console.log(xVolume)
+        new Chart("volumeChart", {
+            type: "bar",
+            data: {
+                labels: xVolume,
+                datasets: [{
+                    label: "Periodic Sales",
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    // borderColor: "rgba(0,0,255,0.1)",
+                    data: yVolume
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: "Periodic Sales"
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+            }
+        });
+    }
+    
+   
+</script>
 
 @endpush

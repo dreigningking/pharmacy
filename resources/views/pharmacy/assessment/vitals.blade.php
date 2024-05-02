@@ -69,17 +69,22 @@
                                     <div id="vital_assessments">
                                         @foreach ($assessment->vitals as $eVital)
                                             <div class="row vitalrows mb-4">
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <select class="form-control vitalquestions" name="vitals[]">
                                                         <option value=""></option>
                                                         @foreach ($vitals as $vital)
-                                                            <option value="{{$vital->id}}" @if($eVital->vital_id == $vital->id) selected @endif>{{$vital->type}} ({{$vital->unit}})</option>
+                                                            <option value="{{$vital->id}}" data-inputs="{{$vital->inputs}}" @if($eVital->vital_id == $vital->id) selected @endif>{{$vital->type}} ({{$vital->unit}})</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <input type="text" class="form-control" name="answers[]" value="{{$eVital->value}}" placeholder="Result">
+                                                <div class="col-md-2 answer_a">
+                                                    <input type="text" class="form-control" name="answers_a[]" value="{{$eVital->value_a}}" placeholder="Result 1">
                                                 </div>
+                                                @if($eVital->value_b)
+                                                <div class="col-md-2 answer_b">
+                                                    <input type="text" class="form-control" name="answers_b[]" value="{{$eVital->value_b}}" placeholder="Result 2">
+                                                </div>
+                                                @endif
                                                 <div class="col-md-3">
                                                     <input type="text" class="form-control" name="comments[]" value="{{$eVital->comment}}" placeholder="Comment">
                                                 </div>
@@ -90,16 +95,19 @@
                                             </div>
                                         @endforeach
                                         <div class="row vitalrows mb-4">
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <select class="form-control vitalquestions" name="vitals[]">
                                                     <option value=""></option>
                                                     @foreach ($vitals as $vital)
-                                                        <option value="{{$vital->id}}">{{$vital->type}} ({{$vital->unit}})</option>
+                                                        <option value="{{$vital->id}}" data-inputs="{{$vital->inputs}}">{{$vital->type}} ({{$vital->unit}})</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" name="answers[]" placeholder="Result">
+                                            <div class="col-md-2 answer_a">
+                                                <input type="text" class="form-control" name="answers_a[]" placeholder="Result">
+                                            </div>
+                                            <div class="col-md-2 answer_b" style="display: none">
+                                                <input type="text" class="form-control" name="answers_b[]" placeholder="Result 2">
                                             </div>
                                             <div class="col-md-3">
                                                 <input type="text" class="form-control" name="comments[]" placeholder="Comment">
@@ -154,6 +162,17 @@
     $(document).on('click','.remove_vitals',function(){
         if($('.vitalquestions').length > 1){
             $(this).closest('.vitalrows').remove();
+        }
+    })
+    $(document).on('select2:select','.vitalquestions',function(e){
+        var data = e.params.data;
+        let inputs = data.element.dataset.inputs;
+        if(inputs > 1){
+            $(this).closest('.vitalrows').find('.answer_a input').attr('placeholder','Result 1');
+            $(this).closest('.vitalrows').find('.answer_b').show();
+        }else {
+            $(this).closest('.vitalrows').find('.answer_a input').attr('placeholder','Result');
+            $(this).closest('.vitalrows').find('.answer_b').hide();
         }
     })
     

@@ -144,7 +144,7 @@ Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.
     });
 
     Route::group(['prefix'=>'analytics','as'=> 'analytics.'], function () {
-        Route::get('/patient-individual',[AnalyticsController::class, 'patient_individual'])->name('patient_individual');
+        Route::post('/patient-individual',[AnalyticsController::class, 'patient_individual'])->name('patient_individual');
         Route::get('/medication-outcome-monitor',[AnalyticsController::class, 'medications_monitor'])->name('medications_monitor');
         Route::get('diagnosis-monitor',[AnalyticsController::class, 'diagnosis_monitor'])->name('diagnosis_monitor');
         Route::get('/sales-modality',[AnalyticsController::class, 'sales_modality'])->name('sales_modality');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\General;
 
 use Carbon\Carbon;
+use App\Models\Vital;
 use App\Models\Patient;
 use App\Models\Medicine;
 use App\Models\Pharmacy;
@@ -45,8 +46,8 @@ class PatientController extends Controller
     }
 
     public function view(Pharmacy $pharmacy,Patient $patient=null){
-        // dd($patient);
-        return view('pharmacy.patient.view', compact('pharmacy','patient'));
+        $vitals = Vital::all();
+        return view('pharmacy.patient.view', compact('pharmacy','patient','vitals'));
     }
     
     public function create(Pharmacy $pharmacy){

@@ -65,7 +65,7 @@ class AssessmentController extends Controller
     public function vitals_store(Pharmacy $pharmacy,Request $request){
         //dd($request->all());
         foreach(array_filter($request->vitals ) as $key => $vital){
-            $vitals = PatientVitals::updateOrCreate(['vital_id'=> $vital,'assessment_id'=> $request->assessment_id],['value'=> $request->answers[$key],'comment'=> $request->comments[$key] ,'patient_id'=> $request->patient_id]);
+            $vitals = PatientVitals::updateOrCreate(['vital_id'=> $vital,'assessment_id'=> $request->assessment_id],['value_a'=> $request->answers_a[$key],'value_b'=> $request->answers_b[$key],'comment'=> $request->comments[$key] ,'patient_id'=> $request->patient_id]);
         }
         return redirect()->back();
     }

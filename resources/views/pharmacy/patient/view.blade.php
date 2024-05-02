@@ -4,9 +4,17 @@
 <!-- Datatables CSS -->
 <link rel="stylesheet" href="{{asset('plugins/datatables/datatables.min.css')}}">
 <style>
-    .select2-container .select2-selection--multiple{
-        min-height:42px;
+    .select2-container .select2-selection--single{
+        height:46px;
     }
+    .select2-container--default .select2-selection--single .select2-selection__rendered{
+        line-height: 42px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow{
+        position:absolute;
+        top: 6px!important;
+    }
+    
 </style>
 @endpush
 @section('main')
@@ -291,8 +299,8 @@
                             <!-- Appointment Tab -->
                             <div class="tab-pane fade" id="assessments">
                                 <div class="">
-                                    <a href="add-prescription.html" class="add-new-btn">New Assessment</a>
-                                    <a href="add-prescription.html" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Assessments</a>
+                                    <a href="#" class="add-new-btn">New Assessment</a>
+                                    <a href="#" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Assessments</a>
                                 </div>
                                 <div class="card card-table mb-0">
                                     <div class="card-body">
@@ -304,26 +312,43 @@
                                                         <th>Date</th>
                                                         <th>Complaint</th>
                                                         <th>Diagnosis</th>
-                                                        <th>Follow Up</th>
                                                         <th>Status</th>
-                                                        <th></th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @forelse ($patient->assessments as $assessment)
                                                     <tr>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
+                                                                @if($assessment->user->image)
+                                                                <a href="#" class="avatar avatar-sm mr-2">
+                                                                    <img class="avatar-img rounded-circle" src="{{asset('storage/user/photo/'.$assessment->user->image)}}" alt="User Image">
                                                                 </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
+                                                                @endif 
+                                                                <a href="#">{{$assessment->user->name}}</a>
                                                             </h2>
                                                         </td>
-                                                        <td>14 Nov 2019 <span class="d-block text-info">10.00 AM</span></td>
-                                                        <td>Headache</td>
-                                                        <td>Fever</td>
-                                                        <td>16 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
+                                                        <td>{{$assessment->created_at->format('d M Y')}} <span class="d-block text-info">{{$assessment->created_at->format('h:i A')}}</span></td>
+                                                        <td>{{Str::limit(implode(',',$assessment->complaints), 20, '...')}}</td>
+                                                        
+                                                        <td>
+                                                            @if($assessment->summary)
+                                                                {{Str::before($assessment->summary, '@')}} 
+                                                            @else 
+                                                                Inconclusive
+                                                            @endif
+                                                        </td>
+                                                        
+                                                        <td>
+                                                            @if($assessment->status == 'Inconclusive')
+                                                                <span class="badge badge-pill bg-secondary-light">{{$assessment->status}}</span>
+                                                            @elseif($assessment->status == 'Ongoing')
+                                                                <span class="badge badge-pill bg-warning-light">{{$assessment->status}}</span>
+                                                            @else
+                                                                <span class="badge badge-pill bg-success-light">{{$assessment->status}}</span>
+                                                            @endif
+                                                        </td>
                                                         <td class="text-right">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
@@ -331,208 +356,15 @@
                                                                 </a>
                                                             </div>
                                                         </td>
-                                                    </tr>
+                                                    </tr>    
+                                                    @empty
                                                     <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>14 Nov 2019 <span class="d-block text-info">8.00 PM</span></td>
-                                                        <td>Headache</td>
-                                                        <td>Fever</td>
-                                                        <td>14 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-warning-light">Ongoing</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                                                    <i class="far fa-edit"></i> View
-                                                                </a>
-                                                            </div>
+                                                        <td colspan="6" class="text-center">
+                                                            No Assessment
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>10 Nov 2019 <span class="d-block text-info">11.00 AM</span></td>
-                                                        <td>Running Nose </td>
-                                                        <td>Fever</td>
-                                                        <td>13 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-danger-light">Cancelled</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                                                    <i class="far fa-edit"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>10 Nov 2019<span class="d-block text-info">3.00 PM</span></td>
-                                                        <td>Headache</td>
-                                                        <td>Fever</td>
-                                                        <td>10 Nov 2019 </td>
-                                                        <td><span class="badge badge-pill bg-warning-light">Awaiting Followup</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="edit-prescription.html" class="btn btn-sm bg-success-light">
-                                                                    <i class="far fa-edit"></i> View
-                                                                </a>
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                                                    <i class="far fa-trash-alt"></i> Cancel
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>9 Nov 2019 <span class="d-block text-info">7.00 PM</span></td>
-                                                        <td>Running Nose</td>
-                                                        <td>Fever</td>
-                                                        <td>18 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-success-light">Completed</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                                                    <i class="far fa-edit"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>8 Nov 2019 <span class="d-block text-info">9.00 AM</span></td>
-                                                        <td>Pain in the knee</td>
-                                                        <td>Sprained Ankle</td>
-                                                        <td>10 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-danger-light">Cancelled</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                                                    <i class="far fa-edit"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>8 Nov 2019 <span class="d-block text-info">6.00 PM</span></td>
-                                                        <td>Injury to the head</td>
-                                                        <td>Fatal Injury</td>
-                                                        <td>10 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-success-light">Completed</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                                                    <i class="far fa-edit"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>7 Nov 2019 <span class="d-block text-info">9.00 PM</span></td>
-                                                        <td>Headache</td>
-                                                        <td>Fever</td>
-                                                        <td>9 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-info-light">Completed</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                                                                    <i class="far fa-clock"></i> Reschedule
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>6 Nov 2019 <span class="d-block text-info">8.00 PM</span></td>
-                                                        <td>Headache</td>
-                                                        <td>Fever</td>
-                                                        <td>8 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-info-light">Completed</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                                                                    <i class="far fa-clock"></i> Reschedule
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>5 Nov 2019 <span class="d-block text-info">5.00 PM</span></td>
-                                                        <td>Running Nose</td>
-                                                        <td>Fever</td>
-                                                        <td>7 Nov 2019</td>
-                                                        <td><span class="badge badge-pill bg-info-light">Completed</span></td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                                                                    <i class="far fa-clock"></i> Reschedule
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                    @endforelse
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -544,8 +376,8 @@
                             <!-- Prescription Tab -->
                             <div class="tab-pane fade" id="prescription">
                                 <div class="">
-                                    <a href="add-prescription.html" class="add-new-btn">New Prescription</a>
-                                    <a href="add-prescription.html" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Prescriptions</a>
+                                    <a href="#" class="add-new-btn">New Prescription</a>
+                                    <a href="#" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Prescriptions</a>
                                 </div>
                                 <div class="card card-table mb-0">
                                     <div class="card-body">
@@ -555,69 +387,67 @@
                                                     <tr>
                                                         <th>Date </th>
                                                         <th>Created by </th>
-                                                        <th>Diagnosis</th>									
+                                                        <th>Origin</th>									
                                                         <th>Drugs</th>									
+                                                        <th>Status</th>
                                                         <th></th>
                                                     </tr>     
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>Dental</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>Fever</td>
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-                                                                    <img class="avatar-img rounded-circle" src="{{asset('assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
-                                                                </a>
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>Hycent Pharmacy</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>Fever</td>
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>14 Nov 2013</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="doctor-profile.html">Dr. Ruby Perrin <span>ABC Hospital</span></a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>Fever</td>
-                                                        <td>Paracetamol, Amozil, Lonart </td>
-                                                        <td class="text-right">
-                                                            <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                    <i class="far fa-eye"></i> View
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                    @forelse ($patient->prescriptions as $prescription)
+                                                        <tr>
+                                                            <td class="text-nowrap">{{$prescription->created_at->format('d-M-Y')}} </td>
+                                                            <td>
+                                                                <h2 class="table-avatar">
+                                                                    @if($prescription->user->image)
+                                                                    <a href="#" class="avatar avatar-sm mr-2">
+                                                                        <img class="avatar-img rounded-circle" src="{{asset('storage/user/photo/'.$prescription->user->image)}}" alt="User Image">
+                                                                    </a>
+                                                                    @endif 
+                                                                    <a href="#">{{$prescription->user->name}}</a>
+                                                                </h2>
+                                                            </td>
+                                                            <td>{{$prescription->origin}}</td>
+                                                            <td>{{$prescription->summary}}</td>
+                                                            <td>
+                                                                @switch($prescription->status)
+                                                                    @case('draft') <span class="badge badge-pill bg-dark-light">Draft</span>
+                                                                    @break
+                                                                    @case('ongoing') <span class="badge badge-pill bg-warning-light">Ongoing</span>
+                                                                    @break
+                                                                    @case('completed') <span class="badge badge-pill bg-success-light">Completed</span>
+                                                                    @break
+                                                                @endswitch
+                                                            </td>
+                                                            
+                                                            <td class="text-right">
+                                                                <div class="table-action">
+                                                                    @if($prescription->status == 'draft')
+                                                                    <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-eye"></i> Edit
+                                                                    </a>
+                                                                    <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm btn-danger">
+                                                                        <i class="far fa-trash"></i> Delete
+                                                                    </a>
+
+                                                                    @else
+                                                                    <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-primary-light">
+                                                                        <i class="far fa-eye"></i> View
+                                                                    </a>
+                                                                    <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
+                                                                        <i class="far fa-edit"></i> Re-prescribe
+                                                                    </a>
+                                                                    
+                                                                    @endif
+                                                                    
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td class="text-center" colspan="6">No Prescriptions Yet </td> 
+                                                        </tr> 
+                                                    @endforelse
                                                 </tbody>	
                                             </table>
                                         </div>
@@ -636,42 +466,60 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-label">Select Diagnosis</label>
-                                                    <select class="form-control" name="first_name">
+                                                    <select class="form-control select2 w-100" id="diagnosis_id" name="diagnosis_id" style="width:100%">
                                                         <option value=""></option>
+                                                        @foreach ($patient->diagnoses as $diagnosis)
+                                                        <option value="{{$diagnosis->id}}">{{$diagnosis->condition->description}}</option>
+                                                        @endforeach
+                                                        
                                                     </select>
                                                 </div>
                                             </div> 
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-label">Vitals</label>
-                                                    <select class="form-control" name="first_name">
+                                                    <select class="form-control select2 w-100" id="vital_id" name="vital_id" style="width:100%">
                                                         <option value=""></option>
+                                                        @foreach ($vitals as $vital)
+                                                            <option value="{{$vital->id}}" data-inputs="{{$vital->inputs}}">{{$vital->type}}</option>
+                                                        @endforeach
                                                     </select>
+                                                    <input type="hidden" id="analytics_url" value="{{route('pharmacy.analytics.patient_individual',$pharmacy)}}">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">Vitals</label>
-                                                    <select class="form-control" name="first_name">
-                                                        <option value=""></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 text-center">
-                                                <button class=" btn btn-primary">Generate Chart</button>
+                                            
+                                            <div class="col-md-8 text-center">
+                                                <button id="generate_chart" class="btn btn-primary">Generate Chart</button>
                                             </div>
                                             
                                         </div>
                                         <div class="row mt-5">
                                             <div class="col-md-12">
-                                                <table>
-                                                    <tr>
+                                                <table class="table result">
+                                                    <tr class="top">
                                                         <th>
+                                                            Prescription
+                                                        </th>
+                                                        <th>
+                                                            Prescription Date
+                                                        </th>
+                                                        <th>
+                                                            Review Date
+                                                        </th>
+                                                        <th>
+                                                            Result 
+                                                        </th>
 
+                                                        <th class="hide" style="display:none">
+                                                            Result
                                                         </th>
                                                     </tr>
+                                                    
                                                 </table>
                                             </div> 
+                                            <div class="col-md-12">
+                                                <canvas id="volumeChart" style="width:100%;"></canvas>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -864,7 +712,9 @@
 <!-- Reaction Modal -->
 @endsection
 @push('scripts')
+
     <script>
+        $('.select2').select2();
         $(document).on('click',".add_condition", function() {
             console.log("condition")
             var condition = ` 
@@ -922,7 +772,98 @@
         });
         $(document).on('click', '.remove_medication', function() {
             $(this).closest('.med').remove();
-        });                                           
+        });
+        $(document).on('select2:select','#vital_id',function(e){
+            var data = e.params.data;
+            let inputs = data.element.dataset.inputs;
+            if(inputs > 1){
+                $(this).closest('.vitalrows').find('.answer_a input').attr('placeholder','Result 1');
+                $(this).closest('.vitalrows').find('.answer_b').show();
+            }else {
+                $(this).closest('.vitalrows').find('.answer_a input').attr('placeholder','Result');
+                $(this).closest('.vitalrows').find('.answer_b').hide();
+            }
+        })                                   
     </script> 
-    
+    <script src="{{asset('plugins/chart/chart.min.js')}}"></script>
+    <script src="{{asset('plugins/chart/chartjs-plugin-datalabels.min.js')}}"></script>
+    <script>
+        var chart = new Chart("volumeChart", { 
+                                data: {},
+                                options: {
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: false,
+                                        text: "Individual Patient Monitor"
+                                    },
+                                },
+                            }
+                        });
+        $('#generate_chart').click(function(){
+            let diagnosis_id = $('#diagnosis_id').val();
+            let vital_id = $('#vital_id').val();
+            let inputs = $('#vital_id').find(":selected").attr('data-inputs')
+            let url = $('#analytics_url').val();
+            $('.bottom').remove()
+            
+            if(diagnosis_id && vital_id){
+                $.ajax({
+                    type:'POST',
+                    dataType: 'json',
+                    url: url,
+                    data:{
+                        '_token' : $('meta[name="csrf-token"]').attr('content'),
+                        'diagnosis_id': diagnosis_id,
+                        'vital_id': vital_id,
+                    },
+                    success:function(data) {
+                        $.each(data, function( index, value ) {
+                            if(value.review_date){
+                                $('.result').append(`<tr class="bottom">
+                                    <td> ${value.prescription} </td> 
+                                    <td> ${value.prescription_date} </td> 
+                                    <td> ${value.review_date} </td> 
+                                    <td> ${value.value_a} </td> 
+                                    <td class="hide">${value.value_b} </td>
+                                    </tr>`)
+                            }
+                            
+                        });
+                        if(inputs > 1) $('.hide').show();
+                        else $('.hide').hide();
+                        if(data.length){
+                            const xVolume = data.map(a => a.review_date);
+                            const yVolume = data.map(b => b.value_a);
+                            const zVolume = data.map(c => c.value_b);
+                            const dataset = [];
+                            dataset.push({ type: "line", label: "Single Input", backgroundColor: "rgba(0,0,255,1.0)", data: yVolume})
+                            if(zVolume[0]){
+                                dataset.push({ type: "line", label: "Double Input", backgroundColor: "rgba(0,255,0,1.0)", data: zVolume})
+                            }
+                            updateChart(chart,xVolume,dataset)
+                            $('#volumeChart').show()
+                        }else{
+                            $('#volumeChart').hide()
+                        }
+                    
+                    },
+                    error: function (data, textStatus, errorThrown) {
+                        
+                        console.log(data);
+                    },
+                });
+            }
+        })
+        function updateChart(chart, label, newData) {
+            chart.data.labels = label;
+            chart.data.datasets= newData;
+            chart.update();
+        }
+        
+        
+       
+    </script>
 @endpush

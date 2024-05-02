@@ -12,7 +12,7 @@ class PatientVitals extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['patient_id','assessment_id','vital_id','value','comment'];
+    protected $fillable = ['patient_id','assessment_id','vital_id','value_a','value_b','comment'];
 
     public function vital(){
         return $this->belongsTo(Vital::class);

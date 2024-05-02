@@ -22,4 +22,28 @@ class Batch extends Model
     public function inventory(){
         return $this->belongsTo(Inventory::class);
     }
+
+    public function getWorthAttribute(){
+        return $this->inventory->unit_cost * $this->quantity;
+    }
+
+    public function getDayAttribute(){
+        return $this->expire_at->format('l');
+    }
+
+    public function getWeekAttribute(){
+        return $this->expire_at->weekOfYear;
+    }
+
+    public function getMonthAttribute(){
+        return $this->expire_at->monthName;
+    }
+
+    public function getQuarterAttribute(){
+        return $this->expire_at->quarter;
+    }
+    
+    public function getYearAttribute(){
+        return $this->expire_at->format('Y');
+    }
 }

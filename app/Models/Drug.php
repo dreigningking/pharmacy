@@ -42,7 +42,7 @@ class Drug extends Model
     }
 
     public function prescriptions(){
-        return $this->hasMany(PrescriptionDetail::class)->with('prescription.assessment.finalDiagnosis');
+        return $this->hasMany(PrescriptionDetail::class)->with('prescription.assessment.finalDiagnoses');
     }
 
     

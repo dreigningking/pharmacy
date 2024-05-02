@@ -76,9 +76,6 @@ bulk adding of drugs should add them to unshelved
 bulk adding of non-drugs should add them to unshelved and uncategorized
  
 
-chart dependants{
-    x_data, y_data, chart_type, label, 
-}
 
 expiring /expired items
 by default, show expired
@@ -89,6 +86,9 @@ sort expiry by asc or desc
 
 EXPIRED
 
+final diagnosis becomes medical history when :
+    new assessment is created for patient
+    treatment feedback is recorded
 
 
 

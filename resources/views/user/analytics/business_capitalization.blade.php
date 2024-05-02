@@ -59,7 +59,55 @@
                     <div class="card-body">
                         <h4>Business Capitalization</h4>
                         
-                        
+                        <form action="">
+                            <div class="row mt-5">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="form-label">Select Type</label>
+                                        <select class="form-control" name="type">
+                                            <option value="Annually" @if($type == 'Annual') selected @endif>Annual</option>
+                                            <option value="Quarterly" @if($type == 'Quarterly') selected @endif>Quarterly</option>
+                                            <option value="Monthly" @if($type == 'Monthly') selected @endif>Monthly</option>
+                                            <option value="Weekly" @if($type == 'Weekly') selected @endif>Weekly</option>
+                                            <option value="Daily" @if($type == 'Daily') selected @endif>Daily</option>
+                                        </select>
+                                    </div>
+                                </div> 
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="form-label">Select Category</label>
+                                        <select class="form-control" name="category">
+                                            <option value="" @if(!$category) selected @endif>All</option>
+                                            <option value="drugs" @if($category == 'drugs') selected @endif>Drugs</option>
+                                            <option value="nondrugs" @if($category == 'nondrugs') selected @endif>Non Drugs</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Date Range (From | To)</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="cal-icon">
+                                                    <input name="from" value="{{$from? $from->format('d/m/Y') : ''}}" type="text" class="form-control datetimepicker" placeholder="From Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                
+                                                <div class="cal-icon">
+                                                    <input name="to" value="{{$to? $to->format('d/m/Y') : ''}}" type="text" class="form-control datetimepicker" placeholder="To  Date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button class=" btn btn-primary">Generate Result</button>
+                                </div>
+                                
+                            </div>
+                        </form>
+                        @if($results)
                         <div class="row mt-5">
                             <div class="col-md-12">
                                 <table class="table table-bordered">
@@ -86,12 +134,13 @@
                                             Total
                                         </th>
                                     </tr>
-                                    <tr>
+                                    @foreach($results as $key => $result)
+                                    <tr class="row_{{$Key}}">
                                         <td>
-                                            <input type="text" class="form-control">
+                                            <input type="text" value="{{$result['name']}}" class="form-control">
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control">
+                                            <input type="number" value="{{$result['value']}}" class="form-control">
                                         </td>
                                         <td>
                                             <input type="number" class="form-control">
@@ -109,13 +158,11 @@
                                             
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </table>
-                                <button class="btn btn-dark">Add Row</button>
-                            </div> 
-                            <div class="col-md-12 text-center">
-                                <button class=" btn btn-primary">Generate Chart</button>
-                            </div>
+                            </div>                         
                         </div>
+                        @endif
                     </div>
 
                 </div>

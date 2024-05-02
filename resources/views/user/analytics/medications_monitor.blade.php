@@ -83,8 +83,8 @@
                                     <div class="form-group">
                                         <label class="form-label">Select Medication</label>
                                         <select class="form-control select2" data-placeholder="Select Medications" name="medications[]" multiple>
-                                            @foreach ($drugs as $drug)
-                                                <option value="{{$drug->id}}" @if($drug_ids && in_array($drug->id,$drug_ids)) selected @endif>{{$drug->name}}</option>
+                                            @foreach ($inventories as $inventory)
+                                                <option value="{{$inventory->id}}" @if($inventory_ids && in_array($inventory->id,$inventory_ids)) selected @endif>{{$inventory->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

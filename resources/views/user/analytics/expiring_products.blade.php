@@ -60,29 +60,16 @@
                         <h4>Expiring Products Monitor</h4>
                         <h6>Less than 6-months shelf-life monitor</h6>
                         
-                        <div class="row mt-5">
-                            
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <label class="form-label">Select Category</label>
-                                    <select class="form-control" name="first_name">
-                                        <option value="">Drugs</option>
-                                        <option value="">Non Drugs</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-12 text-center">
-                                <button class=" btn btn-primary">Filter</button>
-                            </div>
-                            
-                        </div>
+                        
                         <div class="row mt-5">
                             <div class="col-md-12">
                                 <table class="table">
                                     <tr>
                                         <th>
                                             Item
+                                        </th>
+                                        <th>
+                                            Batch
                                         </th>
                                         <th>
                                             Units
@@ -94,6 +81,25 @@
                                             Worth
                                         </th>
                                     </tr>
+                                    @foreach ($batches as $batch)
+                                    <tr>
+                                        <td>
+                                            {{$batch->inventory->name}}
+                                        </td>
+                                        <td>
+                                            {{$batch->number}}
+                                        </td>
+                                        <td>
+                                            {{$batch->quantity}}
+                                        </td>
+                                        <td>
+                                            {{$batch->inventory->unit_cost}}
+                                        </td>
+                                        <td>
+                                            {{$batch->worth}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </table>
                             </div> 
                         </div>

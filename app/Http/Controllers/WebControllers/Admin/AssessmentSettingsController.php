@@ -167,9 +167,9 @@ class AssessmentSettingsController extends Controller
 
     public function vitals_manage(Request $request){
         if($request->action == 'create')
-        $vitals = Vital::create(['type'=> $request->type,'status'=> $request->status]);
+        $vitals = Vital::create(['type'=> $request->type,'inputs'=> $request->inputs,'status'=> $request->status]);
         elseif($request->action == 'update')
-        $vitals = Vital::where('id',$request->vital_id)->update(['type'=> $request->type,'status'=> $request->status]);
+        $vitals = Vital::where('id',$request->vital_id)->update(['type'=> $request->type,'inputs'=> $request->inputs,'status'=> $request->status]);
         else
         $vitals = Vital::destroy($request->vital_id);
         return back();

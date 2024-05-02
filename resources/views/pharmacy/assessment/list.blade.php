@@ -149,7 +149,13 @@
                                                 </td>
                                                 
                                                 <td>
-                                                    <span class="badge badge-pill bg-warning-light">Ongoing</span>
+                                                    @if($assessment->status == 'Inconclusive')
+                                                        <span class="badge badge-pill bg-dark-light">{{$assessment->status}}</span>
+                                                    @elseif($assessment->status == 'Ongoing')
+                                                        <span class="badge badge-pill bg-warning-light">{{$assessment->status}}</span>
+                                                    @else
+                                                        <span class="badge badge-pill bg-success-light">{{$assessment->status}}</span>
+                                                    @endif
                                                 </td>
 
                                                 <td>
@@ -157,7 +163,7 @@
                                                     
                                                         @if($assessment->user->image)
                                                         <a href="#" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="{{asset('storage/user/photo/'.$user->image)}}" alt="User Image">
+                                                            <img class="avatar-img rounded-circle" src="{{asset('storage/user/photo/'.$assessment->user->image)}}" alt="User Image">
                                                         </a>
                                                         @endif 
                                                         <a href="#">{{$assessment->user->name}}</a>

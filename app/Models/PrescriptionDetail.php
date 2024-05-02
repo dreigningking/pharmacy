@@ -21,6 +21,10 @@ class PrescriptionDetail extends Model
         return $this->belongsTo(Drug::class);
     }
 
+    public function getNameAttribute(){
+        return $this->drug->name;
+    }
+
     public function getQuantityAttribute(){
         return $this->quantity_per_dose * $this->frequency * $this->duration;
     }

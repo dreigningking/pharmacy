@@ -35,6 +35,7 @@
                                 <tr>
                                     <th class="text-left"></th>
                                     <th>Vital</th>
+                                    <th>Number of Inputs</th>
                                     <th>Status</th>
                                     <th class=""> Action</th>
 
@@ -49,10 +50,8 @@
                                                 <label class="custom-control-label" for="customControlValidation1"></label>
                                             </div>
                                         </td>
-                                        <td class="d-flex align-items-center">
-                                            {{$vital->type}}
-                                        </td>
-                                        
+                                        <td class="d-flex align-items-center"> {{$vital->type}} </td>
+                                        <td class=""> {{$vital->inputs}} </td>
                                         <td class=""> @if($vital->status) Active  @else Inactive @endif    </td>
                                         <td class=""> 
                                             <div class="d-flex">
@@ -67,7 +66,7 @@
                                     </tr>    
                                 @empty
                                     <tr>
-                                        <td colspan="4"> No vital</td>
+                                        <td colspan="5"> No vital</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -98,7 +97,10 @@
                                     <label for="sel1">Describe Vital:</label>
                                     <textarea class="form-control" rows="4" name="type" placeholder="" ></textarea>
                                 </div>
-                                
+                                <div class="form-group my-3">
+                                    <label for="sel1">Number of Inputs:</label>
+                                    <input class="form-control" type="number" name="inputs" value="1" placeholder="">
+                                </div>
                                 <div class="form-group my-3">
                                     <label for="sel1">Status:</label>
                                     <select class="form-control" name="status" required>
@@ -142,6 +144,10 @@
                                 <div class="form-group my-3">
                                     <label for="sel1">Describe Conditions:</label>
                                     <textarea class="form-control" rows="4" name="type" required>{{$vital->type}}</textarea>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="sel1">Number of Inputs:</label>
+                                    <input class="form-control" type="number" name="inputs" value="{{$vital->inputs}}" >
                                 </div>
                                 <div class="form-group my-3">
                                     <label for="sel1">Status:</label>

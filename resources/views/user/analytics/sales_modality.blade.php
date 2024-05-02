@@ -78,6 +78,30 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if($results)
+                                <div class="col-md-5">
+                                    <table class="table table-stripped">
+                                        <tr>
+                                            <th>
+                                                Sales Modality
+                                            </th>
+                                            <th>
+                                                Number of Sales
+                                            </th>
+                                            <th>
+                                                Worth of Sales
+                                            </th>
+                                        </tr>
+                                        @foreach($results as $result)
+                                        <tr>
+                                            <td>{{$result['name']}}</td>
+                                            <td>{{$result['number']}}</td>
+                                            <td>{{$result['worth']}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                                @endif
                                 <div class="col-md-12 text-center">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -89,31 +113,13 @@
                             </div>
                         </form>
                         @if($results)
+                        
                         <div class="row mt-5">
-                            <div class="col-md-5">
-                                <table class="table table-stripped">
-                                    <tr>
-                                        <th>
-                                            Sales Modality
-                                        </th>
-                                        <th>
-                                            Number of Sales
-                                        </th>
-                                        <th>
-                                            Worth of Sales
-                                        </th>
-                                    </tr>
-                                    @foreach($results as $result)
-                                    <tr>
-                                        <td>{{$result['name']}}</td>
-                                        <td>{{$result['number']}}</td>
-                                        <td>{{$result['worth']}}</td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                            </div> 
-                            <div class="col-md-7">
-                                <canvas id="volumeChart" style="width:100%;max-width:700px"></canvas>
+                            <div class="col-md-6">
+                                <canvas id="numberChart" style="width:100%;max-width:700px"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <canvas id="worthChart" style="width:100%;max-width:700px"></canvas>
                             </div>
                         </div>
                         @endif
@@ -138,16 +144,16 @@
     var results = @json($results);
     if(results){
         const xVolume = results.map(a => a.name);
-        const yVolume = results.map(b => b.cases);
-        console.log(xVolume)
-        new Chart("volumeChart", {
+        const yVolume = results.map(b => b.number);
+        const zVolume = results.map(c => c.worth);
+
+        new Chart("numberChart", {
             type: "bar",
             data: {
                 labels: xVolume,
                 datasets: [{
-                    label: "Sales Modality",
+                    label: "Sales Modality (Number of Sales)",
                     backgroundColor: "rgba(0,0,255,1.0)",
-                    // borderColor: "rgba(0,0,255,0.1)",
                     data: yVolume
                 }]
             },
@@ -158,7 +164,34 @@
                     },
                     title: {
                         display: true,
-                        text: "Sales Modality"
+                        text: "Sales Modality (Number of Sales)"
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+            }
+        });
+        new Chart("worthChart", {
+            type: "bar",
+            data: {
+                labels: xVolume,
+                datasets: [{
+                    label: "Sales Modality (Worth of Sales)",
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    data: zVolume
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: "Sales Modality (Worth of Sales)"
                     },
                 },
                 scales: {

@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="diagnosis_area">
-                                        @foreach ($assessment->finalDiagnosis as $finalDiagnosis)
+                                        @foreach ($assessment->finalDiagnoses as $finalDiagnosis)
                                             <div class="row diagnosisrows">
                                                 <div class="col-md-3 form-group">
                                                     <label>Condition</label>

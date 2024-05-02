@@ -36,9 +36,28 @@ class Sale extends Model
         return $type; 
     }
 
-
     public function getTotalAttribute(){
         return $this->details->sum('amount');
+    }
+
+    public function getDayAttribute(){
+        return $this->created_at->format('l');
+    }
+
+    public function getWeekAttribute(){
+        return $this->created_at->weekOfYear;
+    }
+
+    public function getMonthAttribute(){
+        return $this->created_at->monthName;
+    }
+
+    public function getQuarterAttribute(){
+        return $this->created_at->quarter;
+    }
+
+    public function getYearAttribute(){
+        return $this->created_at->format('Y');
     }
 
     public function details(){
