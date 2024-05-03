@@ -12,14 +12,13 @@ use App\Models\SmsUnit;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use App\Http\Traits\PaystackTrait;
-use App\Http\Traits\PharmacyTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class SubscriptionController extends Controller
 {
-    use PaystackTrait,PharmacyTrait;
+    use PaystackTrait;
 
     public function __construct(){
         $this->middleware('auth')->except(['index']);
@@ -47,13 +46,14 @@ class SubscriptionController extends Controller
     }
 
     public function store(Request $request) {
+        // dd($request->subscription);
         $validator = Validator::make($request->all(), [
             'trial' => 'required|boolean',
             'total' => 'required',
             'discount' => 'required',
             'price' => 'required',
             'licenses' => 'required|numeric',
-            'subscription' => 'required|string',
+            'subscription' => 'required',
             'period' => 'required|numeric',
         ]);
         if ($validator->fails()) {
@@ -74,8 +74,8 @@ class SubscriptionController extends Controller
             'purpose'=> 'license','currency'=> $user->currency,'amount'=> $request->total]);
         }
         for($i = 1;$i <= $request->licenses;$i++){
-            $licenses = License::create(['number' => $this->getLicense(),
-                'type' => $request->subscription ? 'pharmacy + analytics':'analytics',
+            $licenses = License::create(['number' => str_shuffle(str_replace('.','',strtoupper(uniqid('',true).time()))),
+                'type' => $request->subscription,
                 'user_id' => $user->id,'payment_id' => isset($payment) ? $payment->id : null,
                 'duration_days' => $request->trial ? $subscription_trial_days : $request->period * 30,
                 'free_sms' => $request->trial ? 0 : $request->free_sms,

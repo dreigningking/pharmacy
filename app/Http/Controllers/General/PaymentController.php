@@ -6,14 +6,13 @@ use Carbon\Carbon;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Http\Traits\PaystackTrait;
-use App\Http\Traits\PharmacyTrait;
 use App\Exports\User\PaymentsExport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PaymentController extends Controller
 {
-    use PaystackTrait,PharmacyTrait;
+    use PaystackTrait;
 
     public function verify() {
         $user = auth()->user();

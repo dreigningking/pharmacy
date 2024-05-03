@@ -137,7 +137,7 @@
 
                                                         <tr class="availableLicenses">
                                                             <td class="align-middle">{{$license->number}}</td>
-                                                            <td class="align-middle">{{ucwords($license->payment_id ? $license->type : 'trial')}}</td>
+                                                            <td class="align-middle">{{implode('+',$license->type)}}</td>
                                                             <td class="align-middle">
                                                                 {{$license->duration_days < 30 ? $license->duration_days.' Days' : intval($license->duration_days/30).' Months'}}
                                                                 @if($license->expire_at). {{$license->expire_at->diffInDays(now())}} Days left @endif

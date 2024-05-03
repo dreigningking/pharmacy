@@ -14,6 +14,7 @@ class License extends Model
     protected $fillable = ['number','type','user_id','pharmacy_id','payment_id','duration_days','free_sms','start_at','warn_at','expire_at','status'];
     
     protected $dates = ['start_at','expire_at'];
+    protected $casts = ['type'=> 'array'];
     
     public function active(){
         return $this->start_at < now() && $this->expire_at > now();
@@ -27,6 +28,6 @@ class License extends Model
         return $this->belongsTo(User::class);
     }
 
-    
+
 
 }

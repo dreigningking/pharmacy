@@ -61,14 +61,14 @@
                             </div>
                             <!-- /Slider Item -->
                             
-                            <!-- Slider Item -->
+                            @if(in_array('Analytics',$pharmacy->activeLicense->type))
                             <div class="feature-item text-center col-md-3 mb-2">
                                 <a href="{{route('pharmacy.analytics.medications_monitor',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-02.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Analytics</p>
                                 </a>
-                                
                             </div>
+                            @endif
                             <!-- /Slider Item -->
                             
                             <!-- Slider Item -->

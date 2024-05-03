@@ -20,6 +20,8 @@ class SubscriptionMiddleware
                 }else{
                     Auth::logout();
                 }
+            }elseif($request->is('*/analytics/*') && !in_array('Analytics',$request->route('pharmacy')->activeLicense->type)){
+                return redirect()->route('subscription.show');
             }
         }
         return $next($request);

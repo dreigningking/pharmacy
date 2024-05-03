@@ -41,7 +41,7 @@
                             <div class="info-widget">
                                 <div class="filter-widget">
                                     <label class="custom_check">
-                                        <input type="checkbox" name="subscription" id="pharmacy" value="pharmacy" checked="" disabled>
+                                        <input type="checkbox" name="subscription[]" id="pharmacy" value="Pharmacy" checked readonly>
                                         <span class="checkmark"></span> <span class="h3">Pharmacy Subscription</span> 
                                     </label>
                                 </div>
@@ -126,7 +126,7 @@
                             <div class="info-widget">
                                 <div class="filter-widget">
                                     <label class="custom_check">
-                                        <input type="checkbox" name="subscription" id="analytics" value="analytics" checked>
+                                        <input type="checkbox" name="subscription[]" id="analytics" value="Analytics" checked>
                                         <span class="checkmark"></span> <span class="h3">Analytics</span> (optional)
                                     </label>
                                 </div>
@@ -282,7 +282,6 @@
                                                 <span class="total-cost">
                                                     <span class="currency">{{$user->currency_symbol}}</span> 
                                                     <span class="total">{{number_format( $pharmacy->items["price_".$user->currency] + $analytics->items["price_".$user->currency] )}}</span>
-                                                    
                                                 </span>
                                             </li>
                                         </ul>

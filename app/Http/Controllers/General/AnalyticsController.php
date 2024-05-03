@@ -18,6 +18,10 @@ use App\Models\Prescription;
 
 class AnalyticsController extends Controller
 {
+    public function __construct()
+    {
+        
+    }
 
     public function patient_individual(Request $request,Pharmacy $pharmacy){
         $diagnosis = PatientFinalDiagnosis::find($request->diagnosis_id);

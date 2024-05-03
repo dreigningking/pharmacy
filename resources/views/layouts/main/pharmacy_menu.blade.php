@@ -17,12 +17,14 @@
         <ul class="submenu">
             <li><a href="{{route('pharmacy.prescriptions.create',$pharmacy)}}">New Prescription</a></li>
             <li><a href="{{route('pharmacy.prescriptions.index',$pharmacy)}}">All Prescriptions</a></li>
+            @if(in_array('Analytics',$pharmacy->activeLicense->type))
             <li class="has-submenu">
-                <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Analytics</a>
+                <a href="#">Analytics</a>
                 <ul class="submenu">
                     <li><a href="{{route('pharmacy.analytics.medications_monitor',$pharmacy)}}">Medication Outcome Monitor</a></li> 
                 </ul>
             </li>
+            @endif
         </ul>
     </li>
     <li class="has-submenu">
@@ -36,7 +38,7 @@
                     <li><a href="{{route('pharmacy.inventory.expiring_soon',$pharmacy)}}">Expiring Inventory</a></li>
                 </ul>
             </li>
-            
+            @if(in_array('Analytics',$pharmacy->activeLicense->type))
             <li class="has-submenu">
                 <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Analytics</a>
                 <ul class="submenu">
@@ -46,6 +48,7 @@
                     <li><a href="{{route('pharmacy.inventory.start',$pharmacy)}}">Business Capitalization</a></li>
                 </ul>
             </li>
+            @endif
             <li><a href="{{route('pharmacy.purchases.list',$pharmacy)}}">Purchases</a></li>
             <li><a href="{{route('pharmacy.transfer.list',$pharmacy)}}">Transfers</a></li>
             <li><a href="{{route('pharmacy.inventory.settings',$pharmacy)}}">Settings</a></li>
@@ -56,6 +59,7 @@
         <ul class="submenu">
             <li><a href="{{route('pharmacy.sales.create',$pharmacy)}}">New Sale</a></li>
             <li><a href="{{route('pharmacy.sales.index',$pharmacy)}}">All Sales</a></li>
+            @if(in_array('Analytics',$pharmacy->activeLicense->type))
             <li class="has-submenu">
                 <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Analytics</a>
                 <ul class="submenu">
@@ -65,6 +69,7 @@
                     <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Per Products Monitor</a></li>
                 </ul>
             </li>
+            @endif
         </ul>
     </li>
     {{-- <li class="has-submenu">
