@@ -1,5 +1,5 @@
 PATIENT
-1. Share patient records
+1. Share patient records (personal records, medical records, assessments records, prescriptions, )
 2. Message patient
 3. Archive patient
 4. View Assessment from patient view page
