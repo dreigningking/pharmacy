@@ -58,111 +58,69 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Business Capitalization</h4>
-                        
-                        <form action="">
-                            <div class="row mt-5">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-label">Select Type</label>
-                                        <select class="form-control" name="type">
-                                            <option value="Annually" @if($type == 'Annual') selected @endif>Annual</option>
-                                            <option value="Quarterly" @if($type == 'Quarterly') selected @endif>Quarterly</option>
-                                            <option value="Monthly" @if($type == 'Monthly') selected @endif>Monthly</option>
-                                            <option value="Weekly" @if($type == 'Weekly') selected @endif>Weekly</option>
-                                            <option value="Daily" @if($type == 'Daily') selected @endif>Daily</option>
-                                        </select>
-                                    </div>
-                                </div> 
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-label">Select Category</label>
-                                        <select class="form-control" name="category">
-                                            <option value="" @if(!$category) selected @endif>All</option>
-                                            <option value="drugs" @if($category == 'drugs') selected @endif>Drugs</option>
-                                            <option value="nondrugs" @if($category == 'nondrugs') selected @endif>Non Drugs</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Date Range (From | To)</label>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="cal-icon">
-                                                    <input name="from" value="{{$from? $from->format('d/m/Y') : ''}}" type="text" class="form-control datetimepicker" placeholder="From Date">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                
-                                                <div class="cal-icon">
-                                                    <input name="to" value="{{$to? $to->format('d/m/Y') : ''}}" type="text" class="form-control datetimepicker" placeholder="To  Date">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <button class=" btn btn-primary">Generate Result</button>
-                                </div>
-                                
-                            </div>
-                        </form>
-                        @if($results)
                         <div class="row mt-5">
                             <div class="col-md-12">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" id="series">
                                     <tr>
-                                        <th>
+                                        <th style="width: 14%">
                                             Period
                                         </th>
-                                        <th>
+                                        <th style="width: 12%">
                                             Stock Valuation at Cost Price
                                         </th>
-                                        <th>
+                                        <th style="width: 12%">
                                             Cash at Hand
                                         </th>
-                                        <th>
+                                        <th style="width: 12%">
                                             Cash in Bank
                                         </th>
-                                        <th>
+                                        <th style="width: 12%">
                                             Account Receivable
                                         </th>
-                                        <th>
+                                        <th style="width: 12%">
                                             Account Payable
                                         </th>
-                                        <th>
+                                        <th style="width: 12%">
                                             Total
                                         </th>
+                                        <th style="width: 5%"></th>
                                     </tr>
-                                    @foreach($results as $key => $result)
-                                    <tr class="row_{{$Key}}">
+                                    <tr class="valuations">
                                         <td>
-                                            <input type="text" value="{{$result['name']}}" class="form-control">
+                                            <input type="text" class="form-control period input">
                                         </td>
                                         <td>
-                                            <input type="number" value="{{$result['value']}}" class="form-control">
+                                            <input type="number" class="form-control stock input" value="0">
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control cash_hand input" value="0">
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control cash_bank input" value="0">
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control account_receivable input" value="0">
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control account_payable input" value="0">
                                         </td>
+                                        <td class="total">0 </td>
                                         <td>
-                                            
+                                            <button id="removeRow" class="btn bg-danger text-white"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
-                                    @endforeach
                                 </table>
-                            </div>                         
+                                <button id="addRow" class="btn btn-dark mx-3">Add Row</button>
+                            </div> 
+                            <div class="col-md-12 text-center">
+                                <button id="generate_chart" class=" btn btn-primary">Generate Chart</button>
+                            </div>
                         </div>
-                        @endif
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <canvas id="volumeChart" style="width:100%;"></canvas>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -178,6 +136,61 @@
 @endsection
 
 @push('scripts')
+<script src="{{asset('plugins/chart/chart.min.js')}}"></script>
+<script src="{{asset('plugins/chart/chartjs-plugin-datalabels.min.js')}}"></script>
 
+<script>
+    var series;
+    var chart = new Chart("volumeChart", { 
+                    data: {},
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: "Business Capitalization"
+                            },
+                        },
+                    }
+                });
+    $(document).ready(function(){
+        series = $('.valuations').last().prop("outerHTML");
+    })
+    $(document).on('click','#addRow',function(){
+        $('#series').append(series);
+    })
+    $(document).on('click','#removeRow',function(){
+        $(this).closest('.valuations').remove();
+    })
+    $(document).on('input','.input',function(){
+        let sum = parseInt($(this).closest('.valuations').find('.stock').val()) + 
+            parseInt($(this).closest('.valuations').find('.cash_hand').val()) + 
+            parseInt($(this).closest('.valuations').find('.cash_bank').val()) + 
+            parseInt($(this).closest('.valuations').find('.account_receivable').val()) - 
+            parseInt($(this).closest('.valuations').find('.account_payable').val());
+        $(this).closest('.valuations').find('.total').text(sum)
+    })
+    $(document).on('click','#generate_chart',function(){
+        let periods = [];
+        let valuations = [];
+        $('.period').each(function( index, value ) {
+            periods.push(value.value)
+        })
+        $('.total').each(function( index, value ) {
+            valuations.push(parseInt($(value).text()))
+        })
+        let dataset = [];
+        dataset.push({ type: "line", label: "Single Input", backgroundColor: "rgba(0,0,255,1.0)", data: valuations})
+        updateChart(chart,periods,dataset)
+    })
+    
+    function updateChart(chart, label, newData) {
+        chart.data.labels = label;
+        chart.data.datasets = newData;
+        chart.update();
+    }
+</script>
 
 @endpush

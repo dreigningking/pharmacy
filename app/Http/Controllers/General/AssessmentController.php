@@ -40,7 +40,6 @@ class AssessmentController extends Controller
 
     
     public function create(Pharmacy $pharmacy,Patient $patient = null){
-        //create patient or select patient.. create complaints.. 
         $complaints = Complaint::all();
         return view('pharmacy.assessment.patient', compact('pharmacy','patient','complaints'));
     }

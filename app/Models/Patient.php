@@ -40,6 +40,7 @@ class Patient extends Model
     }
 
     public function getIdentityAttribute(){
+        dd($this->name);
         return $this->name[0].$this->name[-1].substr($this->mobile,-4);
     }
 
@@ -64,8 +65,8 @@ class Patient extends Model
         return $summary; 
     }
 
-    public function pharmacies(){
-        return $this->hasMany(Pharmacy::class);
+    public function pharmacy(){
+        return $this->belongsTo(Pharmacy::class);
     }
 
     public function prescriptions(){

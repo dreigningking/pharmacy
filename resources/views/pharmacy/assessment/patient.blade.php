@@ -304,7 +304,25 @@
 
 @push('scripts')
 <script>
-    //patients
+    var patient = @json($patient);
+    if(patient){
+        console.log(patient)
+        $('#selectpatient').trigger('change');
+        setPatient(patient.name,patient.emr,patient.mobile,patient.email,patient.age,patient.gender,patient.bloodgroup,patient.genotype);
+        $('.result,.call-footer').show();
+    }
+
+    function setPatient(name,emr,phone,email,age,gender,bloodgroup,genotype){
+        $('#patient_name').text(name)
+        $('#patient_emr').text(emr)
+        $('#patient_phone').text(phone)
+        $('#patient_email').text(email)
+        $('#patient_age_gender').text(age +' Years, '+gender)
+        $('#patient_bloodgroup').text(bloodgroup)
+        $('#patient_genotype').text(genotype)
+        $('.result,.call-footer').show(); 
+    }
+
     $('#new_patient').on('click',function(){
         $('.search').hide()
         $(this).hide()
@@ -321,16 +339,18 @@
         $('#new_patient').show()
         $('.patient_form').hide()
     })
+
     $(document).on('select2:select','#selectpatient',function(e){
         let data = e.params.data;
-        $('#patient_name').text(data.element.dataset.name)
-        $('#patient_emr').text(data.element.dataset.emr)
-        $('#patient_phone').text(data.element.dataset.phone)
-        $('#patient_email').text(data.element.dataset.email)
-        $('#patient_age_gender').text(data.element.dataset.age +' Years, '+data.element.dataset.gender)
-        $('#patient_bloodgroup').text(data.element.dataset.bloodgroup)
-        $('#patient_genotype').text(data.element.dataset.genotype)
-        $('.result,.call-footer').show(); 
+        let name = data.element.dataset.name;
+        let emr = data.element.dataset.emr;
+        let phone = data.element.dataset.phone;
+        let email = data.element.dataset.email;
+        let age = data.element.dataset.age;
+        let gender = data.element.dataset.gender;
+        let bloodgroup = data.element.dataset.bloodgroup;
+        let genotype = data.element.dataset.genotype;
+        setPatient(name,emr,phone,email,age,gender,bloodgroup,genotype);
     });
 
     $(document).on('input','#patient_form_mobile,#patient_form_name',function(){

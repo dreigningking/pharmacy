@@ -93,9 +93,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-4">
                                     <h3>Patients</h3>
-                                    <a class="btn btn-primary btn-lg"
-                                        href="{{route('pharmacy.patients.create',$pharmacy)}}">New
-                                        Patient</a>
+                                    <a class="btn btn-primary btn-lg" href="{{route('pharmacy.assessments.create',$pharmacy)}}">New Patient</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="datatable table table-hover table-center mb-0">
@@ -113,7 +111,7 @@
                                         <tbody>
                                             @foreach($patients as $patient)
                                                 <tr>
-                                                    <td>{{$patient->EMR}}HYC6574</td>
+                                                    <td>{{strtoupper($patient->emr)}}</td>
                                                     <td>{{$patient->name}}</td>
                                                     {{-- <td>{{$patient->mobile}}</td>
                                                     <td>{{$patient->email}}</td> --}}

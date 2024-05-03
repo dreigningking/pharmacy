@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <h4 class="d-block">Assessment Record</h4>
-                                    <select name="assessment_id" data-placeholder="Select Patient Assessment" id="assessment" class="form-control select2" required>
+                                    <select name="assessment_id" data-placeholder="Select Patient Assessment" id="assessment" class="form-control select2">
                                         <option value=""></option>
                                         @if($patient && $patient->assessments->count())
                                             @foreach ($patient->assessments as $assessment)

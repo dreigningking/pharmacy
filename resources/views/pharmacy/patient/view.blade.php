@@ -81,13 +81,14 @@
                     <div class="dashboard-widget">
                         <nav class="dashboard-menu">
                             <ul>
+                                @if($patient->pharmacy->owner->pharmacies->count() > 1)
                                 <li>
                                     <a href="#transfer_patient" data-toggle="modal">
                                         <i class="fas fa-share"></i>
                                         <span>Transfer Patient</span>
                                     </a>
                                 </li>
-                                
+                                @endif
                                 <li>
                                     <a href="#send_record" data-toggle="modal">
                                         <i class="fas fa-share-alt"></i>
@@ -147,20 +148,16 @@
                                 
                                 <div class="card mb-0">
                                     <div class="card-body">
-                                        <form action="{{route('pharmacy.patients.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                        <form action="{{route('pharmacy.patients.update', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                            <input type="hidden" name="patient_id" value="{{$patient->id}}">
                                             <div class="row w-100">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="form-label">First Name</label>
-                                                        <input type="text" class="form-control" value="{{explode(' ',$patient->name)[0]}}" name="first_name">
+                                                        <label class="form-label">Name</label>
+                                                        <input type="text" class="form-control" value="{{$patient->name}}" name="name">
                                                     </div>
                                                 </div>                         
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="form-label">Last Name</label>
-                                                        <input type="text" class="form-control" name="last_name" value="{{array_key_exists(1,explode(':',$patient->name))? explode(':',$patient->name)[1]:''}}">
-                                                    </div>
-                                                </div> 
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Email</label>
@@ -176,7 +173,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Age <small>(today)</small> </label>
-                                                        <input type="text" class="form-control" name="dob" value="{{$patient->age}}">
+                                                        <input type="text" class="form-control" name="age_today" value="{{$patient->age}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -197,27 +194,16 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Genotype</label>
-                                                        <input type="text" class="form-control" name="first_name">
+                                                        <input type="text" class="form-control" name="genotype" value="{{$patient->genotype}}">
                                                     </div>
                                                 </div>                         
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="form-label">Blood Group</label>
-                                                        <input type="text" class="form-control" name="last_name">
+                                                        <input type="text" class="form-control" name="bloodgroup" value="{{$patient->bloodgroup}}">
                                                     </div>
                                                 </div> 
-                                                <div class="col-md-12 mb-0">
-                                                    <div class="form-group">
-                                                        <label>Family & Social History </label>
-                                                        <select class="select form-control" multiple>
-                                                            <option value="">Smiles too much</option>
-                                                            <option value="">Takes weed</option>
-                                                            <option value="">Drinks Igbo</option>
-                                                            <option value="">Sniffs Cocaine</option>
-                                                        </select>
-                                                        
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="col-md-12">
                                                     <div class="form-group mt-2">
                                                         <br>
@@ -299,7 +285,7 @@
                             <!-- Appointment Tab -->
                             <div class="tab-pane fade" id="assessments">
                                 <div class="">
-                                    <a href="#" class="add-new-btn">New Assessment</a>
+                                    <a href="{{route('pharmacy.assessments.create',[$pharmacy,$patient])}}" class="add-new-btn">New Assessment</a>
                                     <a href="#" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Assessments</a>
                                 </div>
                                 <div class="card card-table mb-0">
@@ -376,7 +362,7 @@
                             <!-- Prescription Tab -->
                             <div class="tab-pane fade" id="prescription">
                                 <div class="">
-                                    <a href="#" class="add-new-btn">New Prescription</a>
+                                    <a href="{{route('pharmacy.prescriptions.create',['pharmacy'=> $pharmacy,'patient_id'=> $patient->id])}}" class="add-new-btn">New Prescription</a>
                                     <a href="#" class="btn btn-info rounded-pill"><i class="fa fa-download"></i> Download Prescriptions</a>
                                 </div>
                                 <div class="card card-table mb-0">
@@ -551,12 +537,17 @@
                 </div>
                 <div class="modal-body">
                     <form class="">
+                        <input type="hidden" name="patient_id" value="{{$patient->id}}">
                         <div class="form-group mt-2">
                             <label>Select Pharmacy </label>
-                            <select class="form-control">
-                                <option value="">Lagos Branch</option>
-                                <option value="">Abuja Branch</option>
-                                <option value="">Port Harcourt Branch</option>
+                            <select class="form-control select2" name="pharmacy_id" required style="width: 100%">
+                                <option value=""></option>
+                                @foreach($patient->pharmacy->owner->pharmacies as $pharmacy)
+                                    @if($pharmacy->id == $patient->pharmacy_id)
+                                        @continue
+                                    @endif
+                                    <option value="{{$pharmacy->id}}">{{$pharmacy->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <p>All the patient's records will be transfered to selected pharmacy. <span class="text-danger">This means the patient's records will no longer be available on {{$pharmacy->name}}</span> </p>
@@ -588,32 +579,32 @@
                                 <div class="col-12 text-muted mb-3">
                                     <p>What to Share</p>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_basics" name="share_basics" checked value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Basic Details</label>
+                                        <input type="checkbox" id="share_basics" name="share_basics" checked value="basic" class="custom-control-input">
+                                        <label class="custom-control-label" for="share_basics">Basic Details</label>
                                     </div>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_meds" name="share_meds" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Medical Records</label>
+                                        <input type="checkbox" id="share_meds" name="share_meds" value="medical_records" class="custom-control-input">
+                                        <label class="custom-control-label" for="share_meds">Medical Records</label>
                                     </div>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_assess" name="share_assess" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Assessments</label>
+                                        <input type="checkbox" id="share_assess" name="share_assess" value="assessment" class="custom-control-input">
+                                        <label class="custom-control-label" for="share_assess">Assessments</label>
                                     </div>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="share_pres" name="share_pres" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="autodelete">Prescriptions</label>
+                                        <input type="checkbox" id="share_pres" name="share_pres" value="prescriptions" class="custom-control-input">
+                                        <label class="custom-control-label" for="share_pres">Prescriptions</label>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group mt-2">
                                     <label for="d-block">Share by:</label>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="pdftoemail" name="share" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="share">PDF to Email</label>
+                                        <input type="radio" id="pdftoemail" name="shareTo" value="email" class="custom-control-input">
+                                        <label class="custom-control-label" for="pdftoemail">PDF to Email</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="secure" name="share" value="custom_price" class="custom-control-input">
-                                        <label class="custom-control-label" for="share">Secure Public Link</label>
+                                        <input type="radio" id="secure" name="shareTo" value="link" class="custom-control-input">
+                                        <label class="custom-control-label" for="secure">Secure Public Link</label>
                                     </div>
                                 </div>
                                 <div class="form-group mt-2">

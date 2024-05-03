@@ -38,9 +38,9 @@ Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.
     Route::group(['prefix'=>'patients','as'=> 'patients.'], function () {
         Route::get('/', [PatientController::class, 'index'])->name("index");
         Route::get('view/{patient}', [PatientController::class, 'view'])->name("view");        
-        Route::get('new', [PatientController::class, 'create'])->name("create");
-        Route::post('store', [PatientController::class, 'store'])->name("store");
         Route::post('update', [PatientController::class, 'update'])->name("update");
+        Route::post('transfer', [PatientController::class, 'transfer'])->name("create");
+        Route::post('store', [PatientController::class, 'store'])->name("store");
         Route::post('delete', [PatientController::class, 'destroy'])->name("destroy");
         Route::post('transfer', [PatientController::class, 'transfer'])->name("transfer");
         Route::post('send/records', [PatientController::class, 'send_records'])->name("send_records");

@@ -20,4 +20,3 @@ if you don't pay for analytics, what should happen
 
 
 
-Inventory::whereHas()
