@@ -49,7 +49,7 @@
                         <form action="#" method="get">
                             <div class="filter-widget">
                                 <h4>Filter Name</h4>	
-                                <input type="text" name="name" value="{{$search}}" class="form-control" placeholder="">	
+                                <input type="text" name="search" value="{{$search}}" class="form-control" placeholder="">	
                             </div>
                             
                             
@@ -88,8 +88,6 @@
                                         <option value="out_of_stock" @if($show == 'out_of_stock') selected @endif> Out of Stock</option>
                                         <option value="over_stock" @if($show == 'over_stock') selected @endif> Over Stocked</option>
                                         <option value="under_stock" @if($show == 'under_stock') selected @endif> Under Stocked</option>
-                                        <option value="expired" @if($show == 'expired') selected @endif> Expired</option>
-                                        <option value="expiring" @if($show == 'expiring') selected @endif> Expiring in 6 Months</option>
                                     </select>
                                 </div>
                                 
@@ -143,7 +141,7 @@
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>
+                                                    <th style="width: 40%">
                                                         
                                                         <div>
                                                             <label class="custom_check">
@@ -152,10 +150,8 @@
                                                             </label>Item
                                                         </div>
                                                     </th>
-                                                    <th>Type</th>                                          
+                                                    <th style="width:15%">Shelf </th>                            
                                                     <th>Available </th>
-                                                    <th>Shelf </th>
-                                                    <th>Batch Status </th>
                                                     <th>Unit Cost </th>
                                                     <th>Unit Price</th>
                                                     <th>View</th>   
@@ -170,43 +166,28 @@
                                                                 <label class="custom_check">
                                                                     <input type="checkbox" class="checkboxes" name="inventories[]" value="{{$item->id}}">
                                                                     <span class="checkmark"></span>
-                                                                    {{$item->name}}
+                                                                    {{$item->name}} 
+                                                                    <small class="d-block">@if($item->drug_id) Drug @else Others @endif | 
+                                                                        @switch($item->stock_status)
+                                                                            @case('out of stock')
+                                                                            <span class="badge badge-pill bg-danger-light">Out of Stock</span>
+                                                                            @break
+                                                                            @case('overstocked')
+                                                                            <span class="badge badge-pill bg-danger-light">{{$item->maximum_stocklevel}} Over Stocked</span>
+                                                                            @break 
+                                                                            @case('understocked')
+                                                                            <span class="badge badge-pill bg-danger-light">Under Stocked</span>
+                                                                            @break
+                                                                            @default
+                                                                            <span class="badge badge-pill bg-success-light">In Stock</span>
+                                                                        @endswitch
+                                                                    </small>
                                                                 </label>
                                                             </div>
                                                         </td>
-                                                        <td>@if($item->drug_id) Drug @else Others @endif</td>      
+                                                        <td>{{$item->shelf}}</td>        
                                                         <td>
                                                             {{$item->available}} 
-                                                        </td>   
-                                                        <td>{{$item->shelf}}</td>   
-                                                        <td>
-                                                            @if($item->batches->count() && $item->batches->where('expire_at','<',today())->count())
-                                                                <span class="badge badge-pill bg-danger-light">
-                                                                    <span class="badge badge-pill bg-danger text-white"> {{$item->batches->where('expire_at','<',today())->count()}} </span> Expired
-                                                                </span>
-                                                            @endif
-                                                            @if($item->batches->count() && $item->batches->where('expire_at','<',today()->addMonths(6))->count())
-                                                                <span class="badge badge-pill bg-warning-light">
-                                                                    <span class="badge badge-pill bg-warning text-white"> {{$item->batches->where('expire_at','<',today()->addMonths(6))->count()}} </span> Expiring
-                                                                </span>
-                                                            @endif
-                                                            @if($item->batches->count() && $item->batches->where('expire_at','>',today()->addMonths(6))->count())
-                                                                <span class="badge badge-pill bg-success-light">
-                                                                    <span class="badge badge-pill bg-success text-white"> {{$item->batches->where('expire_at','>',today()->addMonths(6))->count()}} </span>  Valid
-                                                                </span>
-                                                            @endif
-                                                            @if($item->maximum_stocklevel && $item->minimum_stocklevel)
-                                                                @if(!$item->available)
-                                                                    <span class="badge badge-pill bg-danger-light">Out of Stock</span>
-                                                                @elseif($item->available > $item->maximum_stocklevel)
-                                                                    <span class="badge badge-pill bg-danger-light">{{$item->maximum_stocklevel}} Over Stocked</span>
-                                                                @elseif($item->available < $item->minimum_stocklevel)
-                                                                    <span class="badge badge-pill bg-danger-light">Under Stocked</span>
-                                                                @else
-                                                                    <span class="badge badge-pill bg-success-light">Active Stock</span>
-                                                                @endif
-                                                            @endif
-
                                                         </td>   
                                                         <td>{{$item->unit_cost}}</td>   
                                                         <td>{{$item->unit_price}}</td> 
@@ -222,7 +203,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="7" class="text-center">
+                                                        <td colspan="6" class="text-center">
                                                             No Item in Inventory
                                                         </td>
                                                     </tr>

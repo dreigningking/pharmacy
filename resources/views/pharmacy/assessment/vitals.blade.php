@@ -78,13 +78,13 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2 answer_a">
-                                                    <input type="text" class="form-control" name="answers_a[]" value="{{$eVital->value_a}}" placeholder="Result 1">
+                                                    <input type="number" class="form-control" name="answers_a[]" value="{{$eVital->value_a}}" placeholder="Result 1">
                                                 </div>
-                                                @if($eVital->value_b)
-                                                <div class="col-md-2 answer_b">
-                                                    <input type="text" class="form-control" name="answers_b[]" value="{{$eVital->value_b}}" placeholder="Result 2">
+                                                
+                                                <div class="col-md-2 answer_b" @if(!$eVital->value_b) style="display:none" @endif>
+                                                    <input type="number" class="form-control" name="answers_b[]" value="{{$eVital->value_b}}" placeholder="Result 2">
                                                 </div>
-                                                @endif
+                                                
                                                 <div class="col-md-3">
                                                     <input type="text" class="form-control" name="comments[]" value="{{$eVital->comment}}" placeholder="Comment">
                                                 </div>
@@ -104,10 +104,10 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-2 answer_a">
-                                                <input type="text" class="form-control" name="answers_a[]" placeholder="Result">
+                                                <input type="number" class="form-control" name="answers_a[]" placeholder="Result">
                                             </div>
                                             <div class="col-md-2 answer_b" style="display: none">
-                                                <input type="text" class="form-control" name="answers_b[]" placeholder="Result 2">
+                                                <input type="number" class="form-control" name="answers_b[]" placeholder="Result 2">
                                             </div>
                                             <div class="col-md-3">
                                                 <input type="text" class="form-control" name="comments[]" placeholder="Comment">

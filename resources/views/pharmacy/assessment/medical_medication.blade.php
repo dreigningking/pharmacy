@@ -239,11 +239,11 @@
                                                     <div class="col-md-2 pr-0">
                                                         <label class="d-block">Effective?</label> 
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" id="" name="medication_effectiveness[][]" value="1" class="custom-control-input">
+                                                            <input type="radio" id="abc" name="medication_effectiveness[][]" value="1" class="custom-control-input">
                                                             <label class="custom-control-label" for="abc">yes</label>
                                                         </div>
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" id="" name="medication_effectiveness[][]" value="0" class="custom-control-input">
+                                                            <input type="radio" id="abcs" name="medication_effectiveness[][]" value="0" class="custom-control-input">
                                                             <label class="custom-control-label" for="abcs">no</label>
                                                         </div>
                                                     </div>

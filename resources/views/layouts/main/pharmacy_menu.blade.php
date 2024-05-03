@@ -31,8 +31,9 @@
             <li class="has-submenu">
                 <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Items</a> 
                 <ul class="submenu">
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">All Items</a></li>
-                    <li><a href="{{route('pharmacy.inventory.expired',$pharmacy)}}">Expiring Batches</a></li>
+                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">All Inventory</a></li>
+                    <li><a href="{{route('pharmacy.inventory.expired',$pharmacy)}}">Expired Inventory</a></li>
+                    <li><a href="{{route('pharmacy.inventory.expiring_soon',$pharmacy)}}">Expiring Inventory</a></li>
                 </ul>
             </li>
             

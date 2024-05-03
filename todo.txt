@@ -2,107 +2,51 @@ PATIENT
 1. Share patient records
 2. Message patient
 3. Archive patient
+4. View Assessment from patient view page
 4. Download patient assessment
 5. Download patient prescription
 
+ASSESSMENT
+1. View
+2. assessment reports for a singular patient to comprises all dates on a single page ( use secure link)
+3. Final Diagnosis Feedback
+4. final diagnosis becomes medical history when : (a) new assessment is created for patient (b)treatment feedback is recorded
+    
+
+PRESCRIPTION
+1. View
+2. Non Medication advise is a drop down
+3. prescription re-prescribe
+
+
 INVENTORY
-
-allow duplicate drugs in inventory
-available = quantity - expired - damaged ()
-
-Move expired, expiring,  out of stock and overstocked in to separate pages
-- expired : {name, batch, quantity}
-- expiring : {name, batch, shelf life, quantity}
-- over stock : {name, over stocked quantity}
-- under stock : {name, under stocked quantity}
-- out of stock : {name}
-
-
+1. available = quantity - expired - damaged ()
+2. allow duplicate drugs in inventory
+3. redo inventory store.. every item must have a batch, even if it is unbatched
+4. inventory create should be a separate page, and batches should be there on the list
+4. expiring_soon{
+    expire in one month, 2 months, 3 months, 4 months, 6 months, 1 year
+}
+5. bulk adding of drugs should add them to unshelved
+6. bulk adding of non-drugs should add them to unshelved and uncategorized
 
 PURCHASE 
 
 TRANSFER
-you cannot transfer items with zero quantity
-transfer should reduce quantity of the sending pharmacy inventory
-
-PATIENT 
-
-patient
-
-
-ASSESSMENT 
-
-assessment reports for a singular patient to comprises all dates on a single page ( use secure link)
-
-Final Diagnosis Feedback
-
-expected_outcome units should be in labtests or vitals
-
-
-PRESCRIPTION
-Non Medication advise is a drop down
+1. you cannot transfer items with zero quantity
+2. transfer should reduce quantity of the sending pharmacy inventory
 
 
 SALES 
-sales{
-    date|name|type|qty|price|amount|sold by|invoice
-    sidebar[drugs, non-drug,]
-}
+1. invoice view
+2. sidebar filter
+3. sales edit
 
-FEEDBACK 
+NOTIFICATIONS
+1. Welcome Email after director register
+2. subscription Notification
 
-REPORT 
-
-ANALYTICS 
 
 Settings: 
-
+1. add currency to settings
 fa user-md, fa medkit,fa heartbeat,fa plus-square,fa ambulance,fa wheelchair-alt,fa wheelchair,fa thermometer-full,fa syringe,fa microscope,fa hospital
-
-
-Recent Notification{
-    subscription notifications
-}
-
-
-? how do you know an assessment is closed?
-use it when you get a patient's assessment in helpercontroller
-
-
-prescription show
-prescription re-prescribe
-
-sales edit
-
-redo inventory store.. every item must have a batch, even if it is unbatched
-add currency to settings
-
-show batches in inventory
-inventory create should be a separate page, and batches should be there on the list
-bulk adding of drugs should add them to unshelved
-bulk adding of non-drugs should add them to unshelved and uncategorized
- 
-
-
-expiring /expired items
-by default, show expired
-filter{
-    expired, expire in one month, 2 months, 3 months, 4 months, 6 months, 1 year
-}
-sort expiry by asc or desc
-
-EXPIRED
-
-final diagnosis becomes medical history when :
-    new assessment is created for patient
-    treatment feedback is recorded
-
-
-
-
-
-
-
-
-EMAIL
-Welcome Email after director register

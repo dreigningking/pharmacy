@@ -37,9 +37,7 @@ class Inventory extends Model
         return $this->hasMany(PurchaseDetail::class);
     }
 
-    public function getAvailableAttribute(){
-        return $this->batches->where('expire_at','>',today())->sum('quantity');
-    }
+    
     public function batches(){
         return $this->hasMany(Batch::class);
     }
@@ -52,6 +50,10 @@ class Inventory extends Model
         return $this->hasMany(SaleDetail::class)->with('sale.prescription.assessment.finalDiagnoses');
     }
 
+    public function getAvailableAttribute(){
+        return $this->batches->where('expire_at','>',today())->sum('quantity');
+    }
+
     public function getSalesQuantityAttribute(){
         return $this->saleDetails->sum('quantity');
     }
@@ -60,25 +62,16 @@ class Inventory extends Model
         return $this->saleDetails->sum('amount');
     }
 
-    // public function getDayAttribute(){
-    //     return $this->created_at->format('l');
-    // }
+    public function getStockStatusAttribute(){
+        if($this->available > $this->maximum_stocklevel)
+        return 'overstocked';
+        if($this->available < $this->minimum_stocklevel)
+        return 'understocked';
+        if(!$this->available)
+        return 'out of stock';
+        return 'in stock';
+    }
 
-    // public function getWeekAttribute(){
-    //     return $this->created_at->weekOfYear;
-    // }
-
-    // public function getMonthAttribute(){
-    //     return $this->created_at->monthName;
-    // }
-
-    // public function getQuarterAttribute(){
-    //     return $this->created_at->quarter;
-    // }
-
-    // public function getYearAttribute(){
-    //     return $this->created_at->format('Y');
-    // }
 
 
   

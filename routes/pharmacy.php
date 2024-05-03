@@ -102,14 +102,16 @@ Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.
         Route::get('/', [InventoryController::class,'list'])->name("index");
         Route::get('expired', [InventoryController::class,'expired'])->name("expired");
         Route::get('expiring-soon', [InventoryController::class,'expiringSoon'])->name("expiring_soon");
-        Route::get('out-of-stock', [InventoryController::class,'outOfStock'])->name("out_of_stock");
-        Route::get('over-stocked', [InventoryController::class,'overStocked'])->name("over_stocked");
-        Route::get('under-stocked', [InventoryController::class,'underStocked'])->name("under_stocked");
+        
+        // Route::get('out-of-stock', [InventoryController::class,'outOfStock'])->name("out_of_stock");
+        // Route::get('over-stocked', [InventoryController::class,'overStocked'])->name("over_stocked");
+        // Route::get('under-stocked', [InventoryController::class,'underStocked'])->name("under_stocked");
         Route::get('add/drugs',[InventoryController::class,'drugs'] )->name('drugs');
         Route::get('view/{item}', [InventoryController::class,'show'])->name("show");
         Route::post('store', [InventoryController::class,'store'])->name("store");
-        Route::post('update', [InventoryController::class,'update'])->name("update");
         Route::post('batches', [InventoryController::class,'batches'])->name("batches");
+        Route::post('update', [InventoryController::class,'update'])->name("update");
+        
         Route::get('settings', [InventoryController::class,'settings'])->name("settings");
         Route::post('supplier/save', [InventoryController::class, 'suppliers'])->name('suppliers');
         Route::post('import', [InventoryController::class, 'import'])->name("import");

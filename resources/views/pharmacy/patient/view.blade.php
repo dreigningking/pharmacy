@@ -337,7 +337,7 @@
                                                         </td>
                                                         <td class="text-right">
                                                             <div class="table-action">
-                                                                <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                                                <a href="{{route('pharmacy.assessments.show',[$pharmacy,$assessment])}}" class="btn btn-sm bg-success-light">
                                                                     <i class="far fa-edit"></i> View
                                                                 </a>
                                                             </div>
@@ -394,7 +394,7 @@
                                                                 </h2>
                                                             </td>
                                                             <td>{{$prescription->origin}}</td>
-                                                            <td>{{$prescription->summary}}</td>
+                                                            <td>{{Str::words($prescription->summary,5)}}</td>
                                                             <td>
                                                                 @switch($prescription->status)
                                                                     @case('draft') <span class="badge badge-pill bg-dark-light">Draft</span>

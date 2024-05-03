@@ -40,8 +40,7 @@ class Patient extends Model
     }
 
     public function getIdentityAttribute(){
-        dd($this->name);
-        return $this->name[0].$this->name[-1].substr($this->mobile,-4);
+        return substr(strrev(str_replace([" ",".","-","_"],'',$this->name)),-4).substr($this->mobile,-4);
     }
 
     public function getAgeAttribute(){

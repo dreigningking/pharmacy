@@ -23,6 +23,7 @@ class InventoryController extends Controller
 
     public function list(Pharmacy $pharmacy){
         $search = request()->search ?? null;
+        // dd($search);
         $type = request()->type ?? 'both';
         $show = request()->show ?? 'all';
         $items = Inventory::where('pharmacy_id',$pharmacy->id);
@@ -31,10 +32,6 @@ class InventoryController extends Controller
         if($type == 'non-drugs') $items =  $items->whereNull('drug_id');
         if($show != 'all'){
             switch($show){
-                case 'expired': $items = $items->whereHas('batches',function($query){ $query->where('expire_at','<',today());});
-                    break;
-                case 'expiring': $items = $items->whereHas('batches',function($query){ $query->where('expire_at','<',today()->addMonths(6));});
-                    break;
                 case 'out_of_stock': $items = $items->where('quantity',0);
                     break;
                 case 'over_stock': $items = $items->whereColumn('quantity','>','maximum_stocklevel');
@@ -50,7 +47,10 @@ class InventoryController extends Controller
         $items =  $items->paginate(15);
         return view('pharmacy.inventory.items.all',compact('pharmacy','items','search','type','show'));
     }
-
+//     case 'expired': $items = $items->whereHas('batches',function($query){ $query->where('expire_at','<',today());});
+//     break;
+// case 'expiring': $items = $items->whereHas('batches',function($query){ $query->where('expire_at','<',today()->addMonths(6));});
+//     break;
     public function expired(Pharmacy $pharmacy){
         $name = '';
         $type = ['drug','non_drug'];
@@ -117,7 +117,7 @@ class InventoryController extends Controller
         $items =  $items->paginate(15);
         return view('pharmacy.inventory.items.expiring_soon',compact('pharmacy','items','name','type'));
     }
-
+    /*
     public function outOfStock(Pharmacy $pharmacy){
         $name = '';
         $type = ['drug','non_drug'];
@@ -141,6 +141,7 @@ class InventoryController extends Controller
         return view('pharmacy.inventory.items.out_of_stock',compact('pharmacy','items','name','type'));
     }
 
+   
     public function overStocked(Pharmacy $pharmacy){
         $name = '';
         $type = ['drug','non_drug'];
@@ -188,17 +189,9 @@ class InventoryController extends Controller
         $items =  $items->paginate(15);
         return view('pharmacy.inventory.items.under_stock',compact('pharmacy','items','name','type'));
     }
+    */
 
-    public function batches(Pharmacy $pharmacy,Request $request){
-        //dd($request->all());
-        $inventory = Inventory::find($request->inventory_id);
-        foreach($request->batch as $key => $number){
-                $batch = Batch::updateOrCreate(['number'=> $number,'inventory_id'=> $request->inventory_id],
-                ['quantity'=> $request->input("quantity.$key"),'expire_at'=> $request->input("expire_at.$key")]);
-        }
-        Batch::where('inventory_id',$request->inventory_id)->whereNotIn('number',$request->batch)->delete();
-        return redirect()->back();
-    }
+    
 
     public function store(Request $request,Pharmacy $pharmacy){
         // dd($request->all());
@@ -222,6 +215,17 @@ class InventoryController extends Controller
                     'unit_price'=> $request->input('unit_price'),'minimum_stocklevel'=> $request->input('minimum_stocklevel'),
                     'maximum_stocklevel' => $request->input('maximum_stocklevel') ]);
             }
+        return redirect()->back();
+    }
+
+    public function batches(Pharmacy $pharmacy,Request $request){
+        //dd($request->all());
+        $inventory = Inventory::find($request->inventory_id);
+        foreach($request->batch as $key => $number){
+                $batch = Batch::updateOrCreate(['number'=> $number,'inventory_id'=> $request->inventory_id],
+                ['quantity'=> $request->input("quantity.$key"),'expire_at'=> $request->input("expire_at.$key")]);
+        }
+        Batch::where('inventory_id',$request->inventory_id)->whereNotIn('number',$request->batch)->delete();
         return redirect()->back();
     }
 
