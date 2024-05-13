@@ -11,7 +11,7 @@ class Transfer extends Model
 {
     use HasFactory;
     protected $fillable = ['reference','sending_user','from_pharmacy','to_pharmacy','total','info','sent_at','accepted_at','rejected_at'];
-    protected $dates = ['send_at','accepted_at','rejected_at'];
+    protected $casts = ['send_at'=> 'datetime','accepted_at'=> 'datetime','rejected_at'=> 'datetime'];
     
     public static function boot(){
         parent::boot();

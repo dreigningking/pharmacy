@@ -12,9 +12,8 @@ class License extends Model
     use HasFactory,SoftDeletes;
 
     protected $fillable = ['number','type','user_id','pharmacy_id','payment_id','duration_days','free_sms','start_at','warn_at','expire_at','status'];
-    
-    protected $dates = ['start_at','expire_at'];
-    protected $casts = ['type'=> 'array'];
+
+    protected $casts = ['type'=> 'array','start_at'=> 'datetime','expire_at'=> 'datetime'];
     
     public function active(){
         return $this->start_at < now() && $this->expire_at > now();

@@ -53,7 +53,22 @@
                             <div class="filter-widget">
                                 <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="">		
                             </div>
-                            
+                            <div class="filter-widget">
+                                <h4>Filter Expiry</h4>
+                                <div>
+                                    <select name="expiry" class="form-control">
+                                        <option value="6" @if($expiry == 6) selected @endif>Less than 6 month</option>
+                                        <option value="5" @if($expiry == 5) selected @endif> Less than 5 month </option>
+                                        <option value="4" @if($expiry == 4) selected @endif> Less than 4 month </option>
+                                        <option value="3" @if($expiry == 3) selected @endif> Less than 3 month </option>
+                                        <option value="2" @if($expiry == 2) selected @endif> Less than 2 month </option>
+                                        <option value="1" @if($expiry == 1) selected @endif> Less than 1 month </option>
+                                        
+                                       
+                                    </select>
+                                </div>
+                                
+                            </div>
                             <div class="filter-widget">
                                 <h4>Type</h4>
                                 <div>
@@ -120,10 +135,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-4">
-                                    <h3>Inventories Expiring in 6 Months </h3>
+                                    <h3>Inventories Expiring soon </h3>
                                     <div>
                                         {{-- <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Upload Inventory <i class="fa fa-upload"></i></a> --}}
-                                        <a class="btn btn-dark" data-toggle="modal" href="#items">New Item</a>
+                                        <a class="btn btn-dark" href="{{route('pharmacy.inventory.index',$pharmacy)}}">All Inventories</a>
                                     </div>
                                     
                                 </div>
@@ -147,20 +162,20 @@
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>
-                                                        
+                                                    <th  style="width: 30%">
                                                         <div>
                                                             <label class="custom_check">
                                                                 <input type="checkbox" id="header_input" name="gender_type">
                                                                 <span class="checkmark"></span>
-                                                            </label>
+                                                            </label>Item
                                                         </div>
                                                     </th>
-                                                    <th>Item</th>
-                                                    <th>Batch</th>
-                                                    <th>Type</th>                                          
+                                                    
+                                                    <th>Expiry</th>
+                                                                                        
                                                     <th>Available</th>
-                                                    <th>Shelf</th>
+                                                    <th>Cost</th>
+                                                    <th>Worth</th>
                                                     <th></th>   
                                                 </tr>
                                             </thead>
@@ -173,15 +188,17 @@
                                                                 <label class="custom_check">
                                                                     <input type="checkbox" class="checkboxes" name="inventories[]" value="{{$item->id}}">
                                                                     <span class="checkmark"></span>
+                                                                    {{$item->inventory->name}} 
+                                                                    <small class="small d-block">@if($item->inventory->drug_id) Drug @else Others @endif | Batch: {{$item->number}}</small>
                                                                 </label>
                                                             </div>
                                                         </td>
-                                                        <td>{{$item->inventory->name}}</td>
-                                                        <td>{{$item->number}}</td>
-                                                        <td>@if($item->inventory->drug_id) Drug @else Others @endif</td>      
-                                                        <td>{{$item->quantity}}</td>   
-                                                        <td>{{$item->inventory->shelf}}</td>   
                                                         
+                                                        <td>{{$item->expire_at->format('d-M-Y')}}</td>
+                                                             
+                                                        <td>{{$item->quantity}}</td>   
+                                                        <td>{{$item->inventory->unit_cost}}</td>   
+                                                        <td>{{$item->inventory->unit_cost * $item->quantity}}</td> 
                                                         <td class="text-right">
                                                             <div class="table-action">
                                                                 <a href="{{route('pharmacy.inventory.show',[$pharmacy,$item->inventory])}}" class="btn btn-sm bg-primary-light">

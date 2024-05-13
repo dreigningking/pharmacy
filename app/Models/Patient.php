@@ -20,7 +20,7 @@ class Patient extends Model
 
     protected $fillable = ['pharmacy_id','name','email','mobile','gender','age_today','emr','address','genotype','bloodgroup'];
     
-    protected $dates = ['dob'];
+    protected $casts = ['dob'=> 'datetime'];
 
     protected $appends = ['age'];
 

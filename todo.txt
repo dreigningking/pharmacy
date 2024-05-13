@@ -22,13 +22,10 @@ PRESCRIPTION
 INVENTORY
 1. available = quantity - expired - damaged ()
 2. allow duplicate drugs in inventory
-3. redo inventory store.. every item must have a batch, even if it is unbatched
-4. inventory create should be a separate page, and batches should be there on the list
-4. expiring_soon{
-    expire in one month, 2 months, 3 months, 4 months, 6 months, 1 year
-}
-5. bulk adding of drugs should add them to unshelved
-6. bulk adding of non-drugs should add them to unshelved and uncategorized
+3. separate bulk addition controller and route
+6. bulk adding of drugs should lead to purchase new
+6. bulk upload of non-drugs should lead to purchase new
+7. delete expired batches
 
 PURCHASE 
 

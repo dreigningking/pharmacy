@@ -15,7 +15,7 @@ class PatientMedicationHistory extends Model
 
     protected $fillable = ['drug_id','patient_id','assessment_id','condition_id','start','end','effective'];
 
-    protected $dates = ['start','end'];
+    protected $casts = ['start'=> 'datetime','end'=> 'datetime'];
 
     public function patient(){
         return $this->belongsTo(Patient::class);

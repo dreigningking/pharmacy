@@ -1,22 +1,10 @@
-REGISTRATION
-SUBSCRIPTION
 TEAM: hard code admin roles and permissions, input pharmacy staff permissions using database
 deleting pharmacy should delete the staff
-expire all trial licenses of a user at the same time
-
-INVENTORY 
-add drugs to pharmacy.
-add single inventory to pharmacy 
-=====================================
-inventory search should retain search phrase
-inventory search feedback on search widget is not correct
-
-add unit of sales to inventory edit
-add unit of procurement to supplies
 
 
-QUESTION
-if you don't pay for analytics, what should happen
-
+personal records blade - doctor-profile-settings.html
+medical records blade, 
+assessments records blade, 
+prescriptions blade,
 
 

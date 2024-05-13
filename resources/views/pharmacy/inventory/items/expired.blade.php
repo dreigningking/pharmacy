@@ -68,48 +68,14 @@
                                         <span class="checkmark"></span> Non-drugs
                                     </label>
                                 </div> 
-                            </div>
-                            
-                            {{--                             
-                            <div class="filter-widget">
-                                <h4>Show</h4>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="show[]" value="expired" @if(in_array('expired',$show)) checked @endif>
-                                        <span class="checkmark"></span> Expired
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="show[]" value="expiring" @if(in_array('expiring',$show)) checked @endif >
-                                        <span class="checkmark"></span> Expiring (within 6months)
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="show[]" value="out_of_stock" @if(in_array('out_of_stock',$show)) checked @endif>
-                                        <span class="checkmark"></span> Out of Stock
-                                    </label>
-                                </div> 
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="show[]" value="over_stocked" disabled @if(in_array('over_stocked',$show)) checked @endif>
-                                        <span class="checkmark"></span> Over Stocked <span class="text-danger">(pending)</span>
-                                    </label>
-                                </div>
-    
-                            </div> --}}
+                            </div> 
                             
                             <div class="btn-search">
                                 <button type="submit" class="btn btn-block">Search</button>
                             </div>	
                         </form>
                     </div>
-                    {{-- <div class="card-body">
-                        <div class="clinic-booking">
-                            <a class="apt-btn" href="booking.html">View Subscription Plans</a>
-                        </div>
-                    </div> --}}
+                    
                     
                 </div>
             </div>
@@ -122,8 +88,7 @@
                                 <div class="d-flex justify-content-between mb-4">
                                     <h3>Expired Inventory</h3>
                                     <div>
-                                        {{-- <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Upload Inventory <i class="fa fa-upload"></i></a> --}}
-                                        <a class="btn btn-dark" data-toggle="modal" href="#items">New Item</a>
+                                        <a class="btn btn-dark" href="{{route('pharmacy.inventory.index',$pharmacy)}}">All Inventories</a>
                                     </div>
                                     
                                 </div>
@@ -133,11 +98,7 @@
                                             <td colspan="2" class="text-center">Selected:   <span id="checkedcount">0</span></td>
                                         </tr>
                                         <tr>
-                                            <td> <button class="btn btn-outline-dark actionbuttons disabled" id="purchase" disabled>Purchase <i class="fa fa-shopping-cart"></i></button></td>
-                                            <td> <button class="btn btn-secondary actionbuttons disabled" id="transfer" disabled>Transfer <i class="fa fa-arrow-right"></i> </button></td>
-                                            {{-- <td> <button class="btn btn-outline-dark actionbuttons disabled" id="download" disabled>Download <i class="fa fa-download"></i></button></td> --}}
-                                            
-                                            
+                                            <td> <button class="btn btn-outline-dark actionbuttons disabled" id="remove_expired" disabled>Remove Expired Batches from Inventory <i class="fa fa-trash"></i></button></td>    
                                         </tr>
                                     </table>
                                 </div>
@@ -220,45 +181,7 @@
 <!-- Add Staff Modal -->
 @section('modals')
 
-{{-- <div class=" modal fade custom-modal add-modal" id="upload">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Drug Details
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-12 col-md-12">
-                                <small>You are required to have filled the downloaded inventory sheets with all the items parameters such
-                                    as item name, unit cost, unit price, shelves (optional) and category (optional),
-                                </small>
-                                <div class="mt-3">
-                                    <div class="change-avatar justify-content-center">
-                                        <div class="">
-                                            <div class="d-flex">
-                                                <input type="file" class="upload"><button class="btn btn-primary"><i class="fa fa-upload"></i> Upload</button>
-                                            </div>
-                                            <small class="form-text text-muted">Allowed XLS, XLXS. Max size of 2MB</small>
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 <div class=" modal fade custom-modal add-modal" id="items">
     <div class="modal-dialog modal-dialog-centered modal-md">
@@ -512,20 +435,12 @@
             $('.actionbuttons').addClass('disabled').prop('disabled',true)
         $('#checkedcount').text(num)
     }
-    $('#transfer').on('click',function(){
+    $('#remove_expired').on('click',function(){
         let clicked = []
         $('.checkboxes:checked').each(function(){
             clicked.push($(this).val());
         });
         $('#submitInventory').attr('action',"{{route('pharmacy.transfer.create',$pharmacy)}}").submit();
-        
-    })
-    $('#purchase').on('click',function(){
-        let clicked = []
-        $('.checkboxes:checked').each(function(){
-            clicked.push($(this).val());
-        });
-        $('#submitInventory').attr('action',"{{route('pharmacy.purchases.create',$pharmacy)}}").submit();
         
     })
 

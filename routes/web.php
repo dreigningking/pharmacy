@@ -23,16 +23,7 @@ use App\Http\Controllers\General\SubscriptionController;
 
 
 Route::get('test',function(){
-    // $condition = \App\Models\Condition::find(16);
-    // $prescriptions = $condition->diagnoses->pluck('assessment.prescriptions');
-    // dd($prescriptions->flatten()->pluck('details')->flatten()->pluck('drug'));
-
-
-    // $drugs = \App\Models\Drug::Has('prescriptions')->get();
-    // dd($drugs);
-
-    $inventories = \App\Models\Inventory::whereHas('batches',function($query){ $query->where('expire_at','<',today()->addMonths(6));})->get();
-    dd($inventories);
+    return view('pharmacy.patient.records');
 });
 
 Route::get('/',function(){

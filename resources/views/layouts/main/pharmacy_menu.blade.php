@@ -9,7 +9,14 @@
             <li><a href="{{route('pharmacy.assessments.create',$pharmacy)}}">New Assessment</a></li>
             <li><a href="{{route('pharmacy.assessments.index',$pharmacy)}}">All Assessments</a></li>
             <li><a href="{{route('pharmacy.patients.index',$pharmacy)}}">All Patient</a></li>
-            
+            @if(in_array('Analytics',$pharmacy->activeLicense->type))
+            <li class="has-submenu">
+                <a href="#">Analytics</a>
+                <ul class="submenu">
+                    <li><a href="{{route('pharmacy.analytics.diagnosis_monitor',$pharmacy)}}">Diagnosis Monitor</a></li> 
+                </ul>
+            </li>
+            @endif
         </ul>
     </li>
     <li class="has-submenu">
@@ -33,6 +40,7 @@
             <li class="has-submenu">
                 <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Items</a> 
                 <ul class="submenu">
+                    <li><a href="{{route('pharmacy.inventory.create',$pharmacy)}}">New Inventory</a></li>
                     <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">All Inventory</a></li>
                     <li><a href="{{route('pharmacy.inventory.expired',$pharmacy)}}">Expired Inventory</a></li>
                     <li><a href="{{route('pharmacy.inventory.expiring_soon',$pharmacy)}}">Expiring Inventory</a></li>
@@ -40,12 +48,10 @@
             </li>
             @if(in_array('Analytics',$pharmacy->activeLicense->type))
             <li class="has-submenu">
-                <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Analytics</a>
+                <a href="#">Analytics</a>
                 <ul class="submenu">
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Expired Monitor</a></li>
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Volume Monitor</a></li>
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Products Monitor</a></li>
-                    <li><a href="{{route('pharmacy.inventory.start',$pharmacy)}}">Business Capitalization</a></li>
+                    <li><a href="{{route('pharmacy.analytics.expired_products',$pharmacy)}}">Expired Monitor</a></li>
+                    <li><a href="{{route('pharmacy.analytics.business_capitalization',$pharmacy)}}">Business Capitalization</a></li>
                 </ul>
             </li>
             @endif
@@ -63,10 +69,10 @@
             <li class="has-submenu">
                 <a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Analytics</a>
                 <ul class="submenu">
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Modality Plot</a></li>
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Periodic Monitor</a></li>
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Per Volume Monitor</a></li>
-                    <li><a href="{{route('pharmacy.inventory.index',$pharmacy)}}">Per Products Monitor</a></li>
+                    <li><a href="{{route('pharmacy.analytics.sales_modality',$pharmacy)}}">Modality Plot</a></li>
+                    <li><a href="{{route('pharmacy.analytics.periodic_sales_monitor',$pharmacy)}}">Periodic Monitor</a></li>
+                    <li><a href="{{route('pharmacy.analytics.sales_volume_monitor',$pharmacy)}}">Per Volume Monitor</a></li>
+                    <li><a href="{{route('pharmacy.analytics.earnings_per_product',$pharmacy)}}">Per Products Earnings</a></li>
                 </ul>
             </li>
             @endif

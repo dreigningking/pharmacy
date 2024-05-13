@@ -539,36 +539,5 @@
     })
 
 </script>
-<script>
-    $('.select-remote').select2({
-        width: 'resolve',
-        ajax: {
-            url: "{{route('pharmacy.inventory.drugs',$pharmacy)}}",
-            dataType: 'json', 
-            cache: true, 
-            data: function (params) {
-                var query = {
-                    search: params.term,
-                    pharmacy_id: @json($pharmacy->id),
-                }
-                return query;
-            },
-            processResults: function (data) {
-                var data = $.map(data.drugs, function (obj) {
-                    obj.text = obj.text || obj.name; // replace name with the property used for the text
-                    return obj;
-                });
-                return {
-                    results: data
-                };
-            }
-        }
-    })
-    $(document).on('select2:select','.select-remote',function(e){
-        var data = e.params.data;
-        console.log(data)
-        $('#drug_name').val(data.name)   
-        $('#drug_category').val(data.category_name)   
-    })
-</script>
+
 @endpush

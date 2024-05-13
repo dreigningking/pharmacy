@@ -11,7 +11,7 @@ class Batch extends Model
 {
     use HasFactory;
     protected $fillable = ['expire_at','number','quantity','inventory_id'];
-    protected $dates = ['expire_at'];
+    protected $casts = ['expire_at' => 'datetime'];
 
     public static function boot()
     {
