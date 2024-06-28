@@ -13,7 +13,6 @@ use App\Models\PrescriptionDetail;
 class PrescriptionController extends Controller
 {
     
-    
     public function plan(Pharmacy $pharmacy) {
         return view ('pharmacy.patient.non-medical-plan', compact('pharmacy'));
     }
@@ -24,34 +23,20 @@ class PrescriptionController extends Controller
         // dd($prescriptions->first()->summary);
         return view('pharmacy.prescription.list', compact('pharmacy','prescriptions'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create_new(Pharmacy $pharmacy)
-    {
-        $inventories = $pharmacy->inventories->where('drug_id','!=',null);
-        $patients = $pharmacy->patients;
-        $patient = null;
-        $assessments = null;
-        return view('pharmacy.prescription.create', compact('pharmacy','patient','patients','inventories','assessment','assessments'));
-    }
     
-    public function create_with_data(Pharmacy $pharmacy,Request $request)
+    public function create(Pharmacy $pharmacy)
     {
         $inventories = $pharmacy->inventories->where('drug_id','!=',null);
         $patients = $pharmacy->patients;
-        $assessment = $request->assessment_id ? Assessment::find($request->assessment_id) : null;
-        $patient = $request->patient_id ? Patient::find($request->patient_id) : ($assessment ? $assessment->patient : null);
-        $assessments = $patient ? $patient->assessments : null;
-        return view('pharmacy.prescription.create', compact('pharmacy','patient','patients','inventories','assessment','assessments'));
+        $assessment = request()->assessment_id ? Assessment::find(request()->assessment_id) : null;
+        $patient = request()->patient_id ? Patient::find(request()->patient_id) : ($assessment ? $assessment->patient : null);
+        
+        return view('pharmacy.prescription.create', compact('pharmacy','patient','patients','inventories','assessment'));
     }
 
     public function store(Pharmacy $pharmacy,Request $request)
     {
-        // dd($request->all());
+        //dd($request->all());
         $prescription = Prescription::create(['pharmacy_id'=> $pharmacy->id,'user_id'=> auth()->id(),
         'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id,'origin'=> $request->origin]);
         foreach($request->drugs as $key => $drug_id){
@@ -59,7 +44,7 @@ class PrescriptionController extends Controller
         }
         if($request->dispense){
             return redirect()->route('pharmacy.sales.create',['pharmacy'=> $pharmacy,'prescription'=> $prescription]);
-        }else return redirect()->route('pharmacy.sales.create',$pharmacy);
+        }else return redirect()->route('pharmacy.prescriptions.show',[$pharmacy,$prescription]);
     }
 
     /**
@@ -68,33 +53,38 @@ class PrescriptionController extends Controller
      * @param  int  Pharmacy $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function show(Pharmacy $pharmacy)
-    {
-        $inventories = $pharmacy->inventories;
-        return view('pharmacy.prescription.view', compact('pharmacy','inventories'));
+    public function show(Pharmacy $pharmacy,Prescription $prescription){
+        return view('pharmacy.prescription.view', compact('pharmacy','prescription'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  Pharmacy $pharmacy
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pharmacy $pharmacy)
-    {
-        //
+    public function edit(Pharmacy $pharmacy,Prescription $prescription){
+        $inventories = $pharmacy->inventories->where('drug_id','!=',null);
+        $patients = $pharmacy->patients;
+        $assessment = $prescription->assessment_id ? $prescription->assessment : null;
+        $patient = $prescription->patient;
+        return view('pharmacy.prescription.edit', compact('pharmacy','prescription','patient','patients','inventories','assessment'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  Pharmacy $pharmacy
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Pharmacy $pharmacy)
     {
-        //
+        $prescription = Prescription::find($request->prescription_id);
+        $drugs = array_filter($request->drug_id);
+        foreach(array_filter($request->drugs ) as $key => $drug_id){
+            if($request->drug_id[$key]){  
+                PrescriptionDetail::where('id',$request->drug_id[$key])->update([
+                    'drug_id'=> $drug_id,'quantity_per_dose'=> $request->quantity[$key],'frequency'=> $request->frequency[$key],'duration'=> $request->duration[$key]
+                ]);
+                
+            }else{
+                $nDetail = PrescriptionDetail::create(['prescription_id'=> $prescription->id,'drug_id'=> $drug_id,'quantity_per_dose'=> $request->quantity[$key],'frequency'=> $request->frequency[$key],'duration'=> $request->duration[$key]]);
+                array_push($drugs,$nDetail->id);
+            }
+        }
+        PrescriptionDetail::where('prescription_id',$prescription->id)->whereNotIn('id',$drugs)->delete();
+
+        if($request->dispense){
+            return redirect()->route('pharmacy.sales.create',['pharmacy'=> $pharmacy,'prescription'=> $prescription]);
+        }else return redirect()->route('pharmacy.prescriptions.show',[$pharmacy,$prescription]);
     }
 
     /**

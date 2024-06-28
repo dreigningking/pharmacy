@@ -69,17 +69,17 @@
                                             <div class="row diagnosisrows">
                                                 <div class="col-md-3 form-group">
                                                     <label>Condition</label>
-                                                    <select class="form-control diagnosis_condition" name="conditions[]">
+                                                    <select class="form-control diagnosis_condition" name="conditions[]" required>
                                                         <option value=""></option>
                                                         @foreach ($conditions as $condition)
-                                                        <option value="{{$condition->id}}" data-outcomes="{{str_replace('[','',str_replace(']','',$condition->treatment_outcome))}}"
+                                                        <option value="{{$condition->id}}" data-outcomes="@if($condition->treatment_outcome && is_array($condition->treatment_outcome)) {{implode(',',$condition->treatment_outcome)}} @endif"
                                                             @if($condition->id == $finalDiagnosis->condition_id) selected @endif>{{$condition->description}}</option> 
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-md-5 form-group">
                                                     <label>Expected Outcome</label>
-                                                    <select class="form-control expected_outcome" name="expected_outcome[]" >
+                                                    <select class="form-control expected_outcome" name="expected_outcome[]" required>
                                                         <option>{{$finalDiagnosis->expected_outcome}}</option>
                                                     </select>
                                                 </div>
@@ -108,16 +108,16 @@
                                             <div class="row diagnosisrows">
                                                 <div class="col-md-3 form-group">
                                                     <label>Condition</label>
-                                                    <select class="form-control diagnosis_condition" name="conditions[]">
+                                                    <select class="form-control diagnosis_condition" name="conditions[]" >
                                                         <option value=""></option>
                                                         @foreach ($conditions as $condition)
-                                                            <option value="{{$condition->id}}" data-outcomes="{{str_replace("'",'',str_replace('[','',str_replace(']','',$condition->treatment_outcome)))}}">{{$condition->description}}</option>
+                                                            <option value="{{$condition->id}}" data-outcomes="@if($condition->treatment_outcome && is_array($condition->treatment_outcome)) {{implode(',',$condition->treatment_outcome)}} @endif">{{$condition->description}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-md-5 form-group">
                                                     <label>Expected Outcome</label>
-                                                    <select class="form-control expected_outcome" name="expected_outcome[]" >
+                                                    <select class="form-control expected_outcome" name="expected_outcome[]">
                                                         
                                                     </select>
                                                 </div>
@@ -149,9 +149,11 @@
                                         <div class="col-md-10">
                                             <div class="call-foot">
                                                 <div class="d-flex justify-content-between">
-                                                    <button type="submit" name="prescription" value="0" class="btn btn-dark"> Save and Exit</button>   
-                                                    <button type="submit" name="prescription" value="1" class="btn btn-info next"><i class="fa fa-arrow-right"></i> Save & Give Prescription</button>   
-                                                    
+                                                    <button type="submit" class="btn btn-dark"> Save</button>   
+                                                    @if($assessment->finalDiagnoses->isNotEmpty())
+                                                    <a href="{{route('pharmacy.prescriptions.create',['pharmacy'=> $pharmacy,'assessment_id'=> $assessment->id,'patient_id'=> $assessment->patient_id])}}" class="btn btn-primary next"> Give Prescription</a>   
+                                                    <a href="{{route('pharmacy.patients.show',[$pharmacy,$assessment->patient])}}" class="btn btn-info next"> Back to Patient Record</a>   
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -180,6 +182,7 @@
         diagnosis = $('.diagnosisrows').last().prop("outerHTML");
         $('.diagnosis_condition').select2({width:'100%',placeholder:'Select'});
     })
+
     //family and social history
     $(document).on('click','.add_final',function(){
         $('#diagnosis_area').append(diagnosis);
@@ -193,20 +196,9 @@
         }
         //resetFamilyHistory()
     })
-    /*
-    function resetFamilyHistory(){
-        $('.diagnosisrows').each(function(outer){
-            $(this).find('.custom-control-input').each(function(inde,val){
-                $(this).attr('id',outer+'past'+inde)
-                $(this).attr('name','achieved['+outer+']')
-            })
-            $(this).find('.custom-control-label').each(function(ind,va){
-                $(this).attr('for',outer+'past'+ind)
-            })
-        })
-    }*/
 
     $(document).on('select2:select','.diagnosis_condition',function(e){
+        $(this).closest('.diagnosisrows').find('.expected_outcome').attr('required',true);
         var data = e.params.data;
         let outcomes = data.element.dataset.outcomes;
         console.log(outcomes)
@@ -214,6 +206,7 @@
         outcomes.split(",").forEach(function(value){
             options += `<option value="${value}">${value}</option>`
         })
+        $(this).closest('.diagnosisrows').find('.expected_outcome').children().remove()
         $(this).closest('.diagnosisrows').find('.expected_outcome').append(options)
     })
     

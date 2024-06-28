@@ -163,7 +163,9 @@
         family_history = $('.familyhistoryrows').last().prop("outerHTML");
         $('.familyquestions').select2({width:'100%',placeholder:'Select'});
     })
-    //family and social history
+    $(document).on('select2:select','.familyquestions',function(e){
+        $(this).closest('.familyhistoryrows').find('.custom-control-input').attr('required',true);
+    })
     $(document).on('click','.add_family_questions',function(){
         $('#family_and_social_history').append(family_history);
         $('.familyquestions').select2({width:'100%',placeholder:'Select'})

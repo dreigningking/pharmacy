@@ -120,7 +120,7 @@
                                                     <td class="text-center">
                                                         <div class="actions">
                                                             
-                                                            <a  href="{{route('pharmacy.patients.view',[$pharmacy,$patient])}}"
+                                                            <a  href="{{route('pharmacy.patients.show',[$pharmacy,$patient])}}"
                                                                 class="btn btn-sm bg-primary-light">
                                                                 <i class="fas fa-eye"></i>
                                                                 View

@@ -33,6 +33,17 @@ class PrescriptionDetail extends Model
         return $this->prescription->pharmacy->inventories->firstWhere('drug_id',$this->drug_id);
     }
 
-    
+    public function getTimelineAttribute(){
+        switch($this->frequency){
+            case '1': return 'Once';
+                break;
+            case '2': return 'Twice';
+                break;
+            case '3': return 'Thrice';
+                break;
+            case '4': return 'Four times';
+                break;
+        }
+    }
     
 }

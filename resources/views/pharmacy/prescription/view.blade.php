@@ -38,9 +38,9 @@
                                     <img src="{{asset('assets/img/patients/patient.jpg')}}" alt="User Image">
                                 </a>
                                 <div class="profile-det-info">
-                                    <h3><a href="patient-profile.html">Richard Wilson</a></h3>
+                                    <h3><a href="patient-profile.html">{{$prescription->patient->name}}</a></h3>
                                     <div class="patient-details">
-                                        <h5><b>Patient ID :</b> PT0016</h5>
+                                        <h5><b>Patient EMR :</b> {{$prescription->patient->emr}}</h5>
                                         <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Lagos, Nigeria</h5>
                                     </div>
                                 </div>
@@ -48,9 +48,10 @@
                         </div>
                         <div class="patient-info">
                             <ul>
-                                <li>Patient Record <span>View</span></li>
-                                <li>Assessment <span>View</span></li>
-                                
+                                <li><a href="{{route('pharmacy.patients.show',[$pharmacy,$prescription->patient])}}">View Patient Record</a> </li>
+                                @if($prescription->assessment)
+                                <li> <a href="{{route('pharmacy.assessments.show',[$pharmacy,$prescription->assessment])}}">View Assessment Record</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -76,15 +77,17 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="biller-info">
-                                    <h4 class="d-block">Dr. Darren Elder</h4>
-                                    <span class="d-block text-sm text-muted">Erica Pharmacy</span>
-                                    <span class="d-block text-sm text-muted">Lagos, Nigeria</span>
+                                    <h5 class="d-block">Prescribed By:</h5>
+                                    <span class="d-block text-sm text-muted">{{$prescription->user->name}}</span>
+                                    <span class="d-block text-sm text-muted">{{$prescription->pharmacy->name}} Pharmacy</span>
+                                    <span class="d-block text-sm text-muted">{{$prescription->pharmacy->location}}</span>
                                 </div>
                             </div>
                             <div class="col-sm-6 text-sm-right">
                                 <div class="billing-info">
-                                    <h4 class="d-block">1 November 2019</h4>
-                                    <span class="d-block text-muted">#INV0001</span>
+                                    <h4 class="d-block">Patient:</h4>
+                                    <span class="d-block text-muted">{{$prescription->patient->name}}</span>
+                                    <span class="d-block text-muted">#{{$prescription->id}}</span>
                                 </div>
                             </div>
                         </div>
@@ -97,111 +100,42 @@
                                     <table class="table table-hover table-center">
                                     <thead>
                                         <tr>
-                                            <th style="width: 200px">Name</th>
-                                            <th style="width: 100px">Quantity</th>
-                                            <th style="width: 100px">Days</th>
-                                            <th style="width: 100px;">Time</th>
-                                            <th style="width: 80px;"></th>
+                                            <th style="width: 50%">Name</th>
+                                            <th style="width: 10%">Qty Per Dose</th>
+                                            <th style="width: 10%">Days</th>
+                                            <th style="width: 30%">Frequency</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($prescription->details as $detail)
                                         <tr>
                                             <td>
-                                                <input class="form-control" value="Amoxapine" type="text" readonly>
+                                                <input class="form-control" value="{{$detail->drug->name}}" type="text" readonly>
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" value="2" readonly>
+                                                <input class="form-control" type="text" value="{{$detail->quantity_per_dose}}" readonly>
                                             </td>
                                             <td>
-                                                <input class="form-control" value="2 Days" type="text" readonly>
+                                                <input class="form-control" value="{{$detail->duration}}" type="text" readonly>
                                             </td>
                                             <td>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" checked> Morning
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" checked> Afternoon
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox"> Evening
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" checked> Night
-                                                    </label>
-                                                </div>
+                                                <input class="form-control" type="text" value="{{$detail->timeline}} a day" readonly>
                                             </td>
                                             
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <input class="form-control" type="text" value="Benazepril" readonly>
-                                            </td>
-                                            <td>
-                                                <input class="form-control" type="text" value="2" readonly>
-                                            </td>
-                                            <td>
-                                                <input class="form-control" value="1 Days" type="text" readonly>
-                                            </td>
-                                            <td>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" checked> Morning
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" checked> Afternoon
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox"> Evening
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" checked> Night
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            
-                                        </tr>
+                                        @endforeach
+                                        
                                     </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <!-- /Prescription Item -->
                         
-                        <!-- Signature -->
-                        {{-- <div class="row">
-                            <div class="col-md-12 text-right">
-                                <div class="signature-wrap">
-                                    <div class="signature">
-                                        Click here to sign
-                                    </div>
-                                    <div class="sign-name">
-                                        <p class="mb-0">( Dr. Darren Elder )</p>
-                                        <span class="text-muted">Signature</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- /Signature -->
-                        
-                        <!-- Submit Section -->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Back to List</button>
-                                    
+                                    <a href="{{route('pharmacy.prescriptions.edit',[$pharmacy,$prescription])}}" class="btn btn-primary submit-btn">Edit Prescription</a>
                                 </div>
                             </div>
                         </div>

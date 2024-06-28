@@ -29,6 +29,10 @@ class Patient extends Model
         parent::observe(new PatientObserver);
     }
 
+    public function getRouteKeyName(){
+        return 'emr';
+    }
+
     public function sluggable(): array
     {
         return [

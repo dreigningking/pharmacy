@@ -10,7 +10,7 @@ class Condition extends Model
 {
     use HasFactory;
     protected $fillable = ['description','medical_counsel','status'];
-    protected $casts = ['medical_counsel'=> 'array','treatmemt_outcome'=> 'array'];
+    protected $casts = ['medical_counsel'=> 'array','treatment_outcome'=> 'array'];
 
     public function diagnoses(){
         return $this->hasMany(PatientFinalDiagnosis::class)->with('assessment.prescriptions.details');

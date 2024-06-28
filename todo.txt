@@ -47,3 +47,7 @@ NOTIFICATIONS
 Settings: 
 1. add currency to settings
 fa user-md, fa medkit,fa heartbeat,fa plus-square,fa ambulance,fa wheelchair-alt,fa wheelchair,fa thermometer-full,fa syringe,fa microscope,fa hospital
+
+
+Question
+where to save Medication and non medication advise in prescription

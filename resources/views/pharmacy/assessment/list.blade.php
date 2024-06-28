@@ -136,7 +136,7 @@
                                             <tr>
                                                 <td class="text-nowrap">{{$assessment->created_at->format('d-M-Y')}} <span class="d-block text-info">{{$assessment->created_at->format('h.i A')}}</span></td>
                                                 <td>
-                                                    <a href="{{route('pharmacy.patients.view',[$pharmacy,$assessment->patient])}}" target="_blank">{{$assessment->patient->emr}}</a> 
+                                                    <a href="{{route('pharmacy.patients.show',[$pharmacy,$assessment->patient])}}" target="_blank">{{$assessment->patient->emr}}</a> 
                                                 </td>
                                                 
                                                 <td>

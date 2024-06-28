@@ -45,11 +45,12 @@
                         <h4 class="card-title mb-0">Add Prescription</h4>
                     </div> --}}
                     <div class="card-body">
-                        <form action="{{route('pharmacy.prescriptions.store',$pharmacy)}}" method="POST">@csrf
+                        <form action="{{route('pharmacy.prescriptions.update',$pharmacy)}}" method="POST">@csrf
+                            <input type="hidden" name="prescription_id" value="{{$prescription->id}}">
                             <div class= "row mb-5">
                                 <div class="col-sm-4">
                                     <h4 class="d-block">Patient</h4>
-                                    <select name="patient_id" id="patient_id" class="form-control select2" required>
+                                    <select name="patient_id" id="patient_id" class="form-control select2" disabled>
                                         <option value=""></option>
                                         @foreach($patients as $pateint)
                                             <option data-assessment="{{$pateint->assessments}}" value="{{$pateint->id}}" @if($patient && $patient->id == $pateint->id) selected @endif>{{$pateint->name}}</option>
@@ -58,22 +59,21 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <h4 class="d-block">Assessment Record</h4>
-                                    <select name="assessment_id" data-placeholder="Select Patient Assessment" id="assessment" class="form-control select2">
+                                    <select name="assessment_id" data-placeholder="Select Patient Assessment" id="assessment" class="form-control select2" disabled>
                                         <option value="">No Assessment</option>
                                         @if($patient && $patient->assessments->count())
                                             @foreach ($patient->assessments as $assess)
                                                 <option value="{{$assess->id}}" @if($assessment->id == $assess->id) selected @endif>{{$assess->summary}}</option>
                                             @endforeach
                                         @endif
-
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
                                     <h4 class="d-block">Source</h4>
                                     <select name="origin" id="origin" class="form-control" required>
-                                        <option selected>Hospital</option>
-                                        <option>Pharmacist</option>
-                                        <option>Sales Rep</option>
+                                        <option @if($prescription->origin == 'Hospital') selected @endif>Hospital</option>
+                                        <option @if($prescription->origin == 'Pharmacist') selected @endif>Pharmacist</option>
+                                        <option @if($prescription->origin == 'Sales Rep') selected @endif>Sales Rep</option>
                                     </select>
                                 </div>
                                 
@@ -115,14 +115,48 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody id="prescription_body">
+                                                            @foreach($prescription->details as $detail)
                                                             <tr class="prescription_row">
                                                                 <td>
                                                                     <select class="form-control prescription_inventory" name="drugs[]" required>
                                                                         <option></option>
                                                                         @foreach($inventories as $inventory)
-                                                                        <option value="{{$inventory->drug_id}}">{{$inventory->drug->name}}</option>
+                                                                        <option value="{{$inventory->drug_id}}" @if($detail->drug_id == $inventory->drug_id) selected @endif>{{$inventory->drug->name}}</option>
                                                                         @endforeach
                                                                     </select>
+                                                                    <input type="hidden" name="drug_id[]" value="{{$detail->drug_id}}">
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="number" value="{{$detail->quantity_per_dose}}" name="quantity[]" required>
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="number" value="{{$detail->duration}}" name="duration[]" placeholder="Number of days" required>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="">
+                                                                        <select class="form-control" name="frequency[]" required>
+                                                                            <option @if($detail->frequency == 1) selected @endif>1</option>
+                                                                            <option @if($detail->frequency == 2) selected @endif>2</option>
+                                                                            <option @if($detail->frequency == 3) selected @endif>3</option>
+                                                                            <option @if($detail->frequency == 4) selected @endif>4</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    
+                                                                </td>
+                                                                <td>
+                                                                    <a href="javascript:void(0);" class="btn bg-danger-light trash remove_prescription_item"><i class="far fa-trash-alt"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                            <tr class="prescription_row">
+                                                                <td>
+                                                                    <select class="form-control prescription_inventory" name="drugs[]" required>
+                                                                        <option></option>
+                                                                        @foreach($inventories as $inventory)
+                                                                            <option value="{{$inventory->drug_id}}">{{$inventory->drug->name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    <input type="hidden" name="drug_id[]" value="">
                                                                 </td>
                                                                 <td>
                                                                     <input class="form-control" type="number" name="quantity[]" required>
@@ -373,7 +407,6 @@
             })
             getMedicationApis('current',null,drugs)
         }
-        
     })
 
     $(document).on('select2:select','.prescription_inventory',function(e){

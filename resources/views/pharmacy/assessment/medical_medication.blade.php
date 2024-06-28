@@ -95,13 +95,13 @@
                                             <div class="col-md-3">
                                                 <label class="text-muted text-center">Start</label>    
                                                 <div class="input-group">
-                                                    <input type="month" value="{{$medHistory->start->isoFormat('YYYY-MM')}}" name="condition_start[]" placeholder="Year. e.g 2023" class="form-control">
+                                                    <input type="month" value="{{$medHistory->start ? $medHistory->start->isoFormat('YYYY-MM') :null}}" name="condition_start[]" placeholder="Year. e.g 2023" class="form-control">
                                                 </div>                                    
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="text-muted text-center">End</label>    
                                                 <div class="input-group">
-                                                    <input type="month" value="{{$medHistory->end->isoFormat('YYYY-MM')}}" name="condition_end[]" placeholder="Year. e.g 2023" class="form-control">
+                                                    <input type="month" value="{{$medHistory->end ? $medHistory->end->isoFormat('YYYY-MM'):null}}" name="condition_end[]" placeholder="Year. e.g 2023" class="form-control">
                                                 </div>                                    
                                             </div>
                                             <div class="col-md-2">
@@ -124,11 +124,11 @@
                                                         </div>
                                                         <div class="col-md-2 pr-0">
                                                             <label class="text-muted ">Start</label>    
-                                                            <input type="month" value="{{$medic->start->isoFormat('YYYY-MM')}}" name="medication_start[{{$key}}][]" placeholder="Year. e.g 2023" class="medication_start form-control">                                  
+                                                            <input type="month" value="{{$medic->start ? $medic->start->isoFormat('YYYY-MM'):null}}" name="medication_start[{{$key}}][]" placeholder="Year. e.g 2023" class="medication_start form-control">                                  
                                                         </div>
                                                         <div class="col-md-2 pr-0">
                                                             <label class="text-muted text-center">End</label>    
-                                                            <input type="month" value="{{$medic->end->isoFormat('YYYY-MM')}}" name="medication_end[{{$key}}][]" placeholder="Year. e.g 2023" class="medication_end form-control">                                   
+                                                            <input type="month" value="{{$medic->end ? $medic->end->isoFormat('YYYY-MM'):null}}" name="medication_end[{{$key}}][]" placeholder="Year. e.g 2023" class="medication_end form-control">                                   
                                                         </div>
                                                         <div class="col-md-2 pr-0">
                                                             <label class="d-block">Effective?</label> 

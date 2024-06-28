@@ -68,7 +68,7 @@
                                                     <select name="patient_id" class="select2 form-control">
                                                         <option></option>
                                                         @foreach ($patients as $patient)
-                                                            <option value="{{$patient->id}}" data-patient="{{route('pharmacy.patients.view',[$pharmacy,$patient])}}" data-assessment="{{route('pharmacy.assessment.create',[$pharmacy,$patient])}}">{{$patient->name}}</option>
+                                                            <option value="{{$patient->id}}" data-patient="{{route('pharmacy.patients.show',[$pharmacy,$patient])}}" data-assessment="{{route('pharmacy.assessment.create',[$pharmacy,$patient])}}">{{$patient->name}}</option>
                                                         @endforeach
                                                     </select>
                                                     <div class="text-center py-4" id="new_patient">

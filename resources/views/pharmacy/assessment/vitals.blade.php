@@ -70,7 +70,7 @@
                                         @foreach ($assessment->vitals as $eVital)
                                             <div class="row vitalrows mb-4">
                                                 <div class="col-md-3">
-                                                    <select class="form-control vitalquestions" name="vitals[]">
+                                                    <select class="form-control vitalquestions" name="vitals[]" >
                                                         <option value=""></option>
                                                         @foreach ($vitals as $vital)
                                                             <option value="{{$vital->id}}" data-inputs="{{$vital->inputs}}" @if($eVital->vital_id == $vital->id) selected @endif>{{$vital->type}} ({{$vital->unit}})</option>
@@ -78,7 +78,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2 answer_a">
-                                                    <input type="number" class="form-control" name="answers_a[]" value="{{$eVital->value_a}}" placeholder="Result 1">
+                                                    <input type="number" class="form-control" name="answers_a[]"  value="{{$eVital->value_a}}" placeholder="Result 1">
                                                 </div>
                                                 
                                                 <div class="col-md-2 answer_b" @if(!$eVital->value_b) style="display:none" @endif>
@@ -96,7 +96,7 @@
                                         @endforeach
                                         <div class="row vitalrows mb-4">
                                             <div class="col-md-3">
-                                                <select class="form-control vitalquestions" name="vitals[]">
+                                                <select class="form-control vitalquestions" name="vitals[]" >
                                                     <option value=""></option>
                                                     @foreach ($vitals as $vital)
                                                         <option value="{{$vital->id}}" data-inputs="{{$vital->inputs}}">{{$vital->type}} ({{$vital->unit}})</option>
@@ -104,7 +104,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-2 answer_a">
-                                                <input type="number" class="form-control" name="answers_a[]" placeholder="Result">
+                                                <input type="number" class="form-control" name="answers_a[]"  placeholder="Result">
                                             </div>
                                             <div class="col-md-2 answer_b" style="display: none">
                                                 <input type="number" class="form-control" name="answers_b[]" placeholder="Result 2">
@@ -167,6 +167,7 @@
     $(document).on('select2:select','.vitalquestions',function(e){
         var data = e.params.data;
         let inputs = data.element.dataset.inputs;
+        $(this).closest('.vitalrows').find('.answer_a input,.answer_b input').attr('required',true);
         if(inputs > 1){
             $(this).closest('.vitalrows').find('.answer_a input').attr('placeholder','Result 1');
             $(this).closest('.vitalrows').find('.answer_b').show();

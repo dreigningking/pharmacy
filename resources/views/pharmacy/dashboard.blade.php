@@ -47,7 +47,7 @@
                                 </a>
                             </div>
                             <div class="feature-item text-center col-md-3 mb-2">
-                                <a href="{{route('pharmacy.assessments.index',$pharmacy)}}">
+                                <a href="{{route('pharmacy.assessments.create',$pharmacy)}}">
                                     <img src="{{asset('assets/img/features/feature-05.jpg')}}" class="img-fluid" alt="Feature">
                                     <p>Assessments</p>
                                 </a>

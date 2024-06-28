@@ -74,7 +74,7 @@
                                                     </td>
                                                     <td>
                                                         <select class="form-control batches" name="batches[]" required>
-                                                            <option value=""</option>
+                                                            <option value=""></option>
                                                             @foreach($detail->inventory->batches as $batch)
                                                                 <option value="{{$batch->number}}">{{$batch->number}}</option>
                                                             @endforeach

@@ -3,7 +3,7 @@
 
 <style>
     .select2-container .select2-selection--single{
-        height:46px;
+        height:35px;
     }
     .select2-container--default .select2-selection--single .select2-selection__rendered{
         line-height: 42px;
@@ -78,7 +78,7 @@
                                                 </div>
                                                 <div class="col-md-5">
                                                     <label>Required Investigation</label>
-                                                    <select class="form-control required_test" multiple name="laboratory_tests[][]">
+                                                    <select class="form-control required_test" required multiple name="laboratory_tests[][]">
                                                         <option value=""></option>
                                                         @foreach ($labtests as $labtest)
                                                             <option value="{{$labtest->id}}" @if(in_array($labtest->id,$diagnosis->laboratory_tests)) selected @endif>{{$labtest->name}}</option>
@@ -149,10 +149,13 @@
 <script>
     var past_medical_history,family_history,vitals,provisional,reviews;
     $(document).ready(function(){
-        
         provisional = $('.provisionrows').last().prop("outerHTML");
         reviews = $('.systemreviewrows').last().prop("outerHTML");
         $('.provisions,.required_test').select2({width:'100%',placeholder:'Select'});
+    })
+
+    $(document).on('select2:select','.provisions',function(e){
+        $(this).closest('.provisionrows').find('.required_test').attr('required',true);
     })
    
     //provisional diagnosis

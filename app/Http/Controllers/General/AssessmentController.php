@@ -5,11 +5,9 @@ namespace App\Http\Controllers\General;
 use App\Models\Drug;
 use App\Models\Vital;
 use App\Models\Patient;
-use App\Models\Medicine;
 use App\Models\Pharmacy;
 use App\Models\Complaint;
 use App\Models\Condition;
-use App\Models\Inventory;
 use App\Models\Assessment;
 use Illuminate\Http\Request;
 use App\Models\PatientVitals;
@@ -22,6 +20,7 @@ use App\Models\PatientFinalDiagnosis;
 use App\Models\PatientMedicalHistory;
 use App\Models\PatientLaboratoryResult;
 use App\Models\PatientMedicationHistory;
+use Illuminate\Support\Facades\Validator;
 use App\Models\PatientFamilySocialHistory;
 use App\Models\PatientProvisionalDiagnosis;
 
@@ -62,7 +61,7 @@ class AssessmentController extends Controller
     }
 
     public function vitals_store(Pharmacy $pharmacy,Request $request){
-        //dd($request->all());
+        // dd($request->all());
         if(!count(array_filter($request->vitals ))){
             PatientVitals::where('patient_id',$request->patient_id)->delete();
         }else{
@@ -71,7 +70,6 @@ class AssessmentController extends Controller
             }
             PatientVitals::where('patient_id',$request->patient_id)->whereNotIn('vital_id',array_filter($request->vitals))->delete();
         }
-        
         return redirect()->back();
     }
 
@@ -91,10 +89,11 @@ class AssessmentController extends Controller
             PatientMedicationHistory::where('patient_id',$request->patient_id)->whereNotIn('condition_id',array_filter($request->conditions))->delete();
             foreach(array_filter($request->conditions ) as $key => $condition){
                 $medical_history = PatientMedicalHistory::updateOrCreate(['condition_id'=> $condition,'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id],
-                ['start'=> $request->condition_start[$key].'-01','end'=> $request->condition_end[$key].'-30']);
+                ['start'=> $request->condition_start[$key] ? $request->condition_start[$key].'-01':null,
+                'end'=> $request->condition_end[$key] ? $request->condition_end[$key].'-30':null]);
 
                 foreach(array_filter($request->medications[$key] ) as $key2 => $medication){
-                    $medications = PatientMedicationHistory::updateOrCreate(['drug_id'=> $medication,'assessment_id'=> $request->assessment_id,'condition_id'=> $condition,'patient_id'=> $request->patient_id],['start'=> $request->medication_start[$key][$key2].'-01','end'=> $request->medication_end[$key][$key2].'-30','effective'=> $request->medication_effectiveness[$key][$key2]]);
+                    $medications = PatientMedicationHistory::updateOrCreate(['drug_id'=> $medication,'assessment_id'=> $request->assessment_id,'condition_id'=> $condition,'patient_id'=> $request->patient_id],['start'=> $request->medication_start[$key][$key2] ? $request->medication_start[$key][$key2].'-01':null,'end'=> $request->medication_end[$key][$key2] ? $request->medication_end[$key][$key2].'-30':null,'effective'=> $request->medication_effectiveness[$key][$key2]]);
                 }
             }
         }
@@ -119,7 +118,6 @@ class AssessmentController extends Controller
         }
         return redirect()->back();
     }
-
     
 
     public function system_review(Pharmacy $pharmacy,Assessment $assessment){
@@ -165,7 +163,8 @@ class AssessmentController extends Controller
     }
 
     public function laboratory_test_store(Pharmacy $pharmacy,Request $request){
-        if(!count(array_filter($request->tests ))){
+        //dd($request->all());
+        if(!count(array_filter($request->tests))){
             PatientLaboratoryResult::where('patient_id',$request->patient_id)->delete();
         }else{
             PatientLaboratoryResult::where('patient_id',$request->patient_id)->whereNotIn('test_id',array_filter($request->tests))->delete();
@@ -193,10 +192,6 @@ class AssessmentController extends Controller
                 ['expected_outcome'=> $request->expected_outcome[$key],'achieved' => array_key_exists($key,$request->achieved) ? $request->achieved[$key] : null ]);
             }
         }
-
-        if($request->prescription){
-            return redirect()->route('pharmacy.prescriptions.create',['pharmacy'=> $pharmacy,'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id]);
-        }else return redirect()->route('pharmacy.assessments.index');
         return redirect()->back();
     }
 

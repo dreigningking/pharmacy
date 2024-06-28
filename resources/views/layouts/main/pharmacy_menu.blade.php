@@ -7,7 +7,7 @@
         <a href="#">PEMR<i class="fas fa-chevron-down"></i></a>
        <ul class="submenu">
             <li><a href="{{route('pharmacy.assessments.create',$pharmacy)}}">New Assessment</a></li>
-            <li><a href="{{route('pharmacy.assessments.index',$pharmacy)}}">All Assessments</a></li>
+            <!-- <li><a href="{{route('pharmacy.assessments.index',$pharmacy)}}">All Assessments</a></li> -->
             <li><a href="{{route('pharmacy.patients.index',$pharmacy)}}">All Patient</a></li>
             @if(in_array('Analytics',$pharmacy->activeLicense->type))
             <li class="has-submenu">

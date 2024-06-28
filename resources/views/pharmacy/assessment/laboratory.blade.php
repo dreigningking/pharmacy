@@ -80,7 +80,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="results[]" value="{{$labResult->result}}" placeholder="Result">
+                                                            <input type="text" class="form-control testresult" name="results[]" value="{{$labResult->result}}" placeholder="Result">
                                                         </div>    
                                                     </div>
                                                     <div class="col-md-3">
@@ -88,12 +88,12 @@
                                                             <input type="text" class="form-control" name="comments[]" value="{{$labResult->comment}}" placeholder="Comment">
                                                         </div>    
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <!-- <div class="col-md-2">
                                                         <div class="form-group">
                                                             <button type="button" class="btn btn-sm btn-info add_test " title="add more"><i class="fa fa-plus"></i></button>
                                                             <button type="button" class="btn btn-sm btn-danger remove_test " title="remove more"><i class="fa fa-trash"></i></button>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             @endforeach
                                         @endif
@@ -112,7 +112,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="results[]"  placeholder="Result">
+                                                            <input type="text" class="form-control testresult" name="results[]"  placeholder="Result">
                                                         </div>    
                                                     </div>
                                                     <div class="col-md-3">
@@ -120,12 +120,12 @@
                                                             <input type="text" class="form-control" name="comments[]" placeholder="Comment">
                                                         </div>    
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <!-- <div class="col-md-2">
                                                         <div class="form-group">
                                                             <button type="button" class="btn btn-sm btn-info add_test " title="add more"><i class="fa fa-plus"></i></button>
                                                             <button type="button" class="btn btn-sm btn-danger remove_test " title="remove more"><i class="fa fa-trash"></i></button>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             @endif
                                         @endforeach
@@ -142,7 +142,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="results[]" placeholder="Result">
+                                                    <input type="text" class="form-control testresult" name="results[]" placeholder="Result">
                                                 </div>    
                                             </div>
                                             <div class="col-md-3">
@@ -150,12 +150,12 @@
                                                     <input type="text" class="form-control" name="comments[]" placeholder="Comment">
                                                 </div>    
                                             </div>
-                                            <div class="col-md-2">
+                                            <!-- <div class="col-md-2">
                                                 <div class="form-group">
                                                     <button type="button" class="btn btn-sm btn-info add_test " title="add more"><i class="fa fa-plus"></i></button>
                                                     <button type="button" class="btn btn-sm btn-danger remove_test " title="remove more"><i class="fa fa-trash"></i></button>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="row">

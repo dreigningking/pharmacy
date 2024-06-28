@@ -49,7 +49,7 @@
             @else
                 
                 @if(request()->route('pharmacy'))
-                    @include('layouts.main.pharmacy_menu')
+                    @include('layouts.main.pharmacy_menu',['pharmacy' => request()->route('pharmacy')])
                 @else
                     @if(auth()->user()->pharmacy)
                         @include('layouts.main.pharmacy_menu',['pharmacy' => auth()->user()->pharmacy])  

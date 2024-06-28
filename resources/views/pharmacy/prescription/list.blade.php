@@ -159,18 +159,18 @@
                                                     <td class="text-right">
                                                         <div class="table-action">
                                                             @if($prescription->status == 'draft')
-                                                            <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-primary-light">
+                                                            <a href="{{route('pharmacy.prescriptions.show',[$pharmacy,$prescription])}}" class="btn btn-sm bg-primary-light">
                                                                 <i class="far fa-eye"></i> Edit
                                                             </a>
-                                                            <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm btn-danger">
+                                                            <a href="{{route('pharmacy.prescriptions.destroy',$pharmacy)}}" class="btn btn-sm btn-danger">
                                                                 <i class="far fa-trash"></i> Delete
                                                             </a>
 
                                                             @else
-                                                            <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-primary-light">
+                                                            <a href="{{route('pharmacy.prescriptions.show',[$pharmacy,$prescription])}}" class="btn btn-sm bg-primary-light">
                                                                 <i class="far fa-eye"></i> View
                                                             </a>
-                                                            <a href="{{route('pharmacy.prescriptions.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
+                                                            <a href="#" class="btn btn-sm bg-success-light">
                                                                 <i class="far fa-edit"></i> Re-prescribe
                                                             </a>
                                                             

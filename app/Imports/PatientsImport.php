@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Patient;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class PatientsImport implements ToModel

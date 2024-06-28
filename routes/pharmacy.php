@@ -37,7 +37,7 @@ Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.
     
     Route::group(['prefix'=>'patients','as'=> 'patients.'], function () {
         Route::get('/', [PatientController::class, 'index'])->name("index");
-        Route::get('view/{patient}', [PatientController::class, 'view'])->name("view");        
+        Route::get('show/{patient}', [PatientController::class, 'view'])->name("show");        
         Route::post('update', [PatientController::class, 'update'])->name("update");
         Route::post('transfer', [PatientController::class, 'transfer'])->name("create");
         Route::post('store', [PatientController::class, 'store'])->name("store");
@@ -80,10 +80,9 @@ Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.
 
     Route::group(['prefix'=>'prescriptions','as'=> 'prescriptions.'], function () {
         Route::get('/', [PrescriptionController::class, 'index'])->name("index");
-        Route::get('create-new', [PrescriptionController::class, 'create_new'])->name("create.new");
-        Route::get('create', [PrescriptionController::class, 'create_with_data'])->name("create");
+        Route::get('create', [PrescriptionController::class, 'create'])->name("create");
         Route::post('store', [PrescriptionController::class, 'store'])->name("store");
-        Route::get('show', [PrescriptionController::class, 'show'])->name("show");
+        Route::get('show/{prescription}', [PrescriptionController::class, 'show'])->name("show");
         Route::get('edit/{prescription}', [PrescriptionController::class, 'edit'])->name("edit");
         Route::post('update', [PrescriptionController::class, 'update'])->name("update");
         Route::post('delete', [PrescriptionController::class, 'destroy'])->name("destroy");

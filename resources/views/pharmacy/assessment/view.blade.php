@@ -190,7 +190,7 @@
                                                             <td class="">
                                                                 <ul>
                                                                     @forelse ($assessment->patientMedicalHistory as $medicalHistory)
-                                                                        <li>{{$medicalHistory->condition->description}} - {{$medicalHistory->start->format('M Y')}}
+                                                                        <li>{{$medicalHistory->condition->description}} @if($medicalHistory->start) - {{$medicalHistory->start->format('M Y')}} @endif
                                                                             <ul class="list-unstyled font-italic">
                                                                                 <li class="list-style-none">Medication Used</li>
                                                                                     <ul class="text-muted small">

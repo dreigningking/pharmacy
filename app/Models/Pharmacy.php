@@ -71,6 +71,9 @@ class Pharmacy extends Model
     public function city(){
         return $this->belongsTo(City::class);
     }
+    public function getLocationAttribute(){
+        return ucwords($this->address.' '.$this->city->name.', '.$this->state->name.' '.$this->country->name);
+    }
     
     public function inventories(){
         return $this->hasMany(Inventory::class);
@@ -78,9 +81,9 @@ class Pharmacy extends Model
     public function sales(){
         return $this->hasMany(Sale::class);
     }
-    public function orders(){
-        return $this->hasMany(Order::class);
-    }
+    // public function orders(){
+    //     return $this->hasMany(Order::class);
+    // }
     public function patients(){
         return $this->hasMany(Patient::class);
     }

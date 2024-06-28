@@ -147,34 +147,16 @@
 
 @push('scripts')
 <script>
-    var past_medical_history,family_history,vitals,provisional,reviews;
+    var reviews;
     $(document).ready(function(){
-        past_medical_history = $('.past_history').last().prop("outerHTML");
-        past_medication = $('.past_medication').last().prop("outerHTML");
-        family_history = $('.familyhistoryrows').last().prop("outerHTML");
-        vitals = $('.vitalrows').last().prop("outerHTML");
-        provisional = $('.provisionrows').last().prop("outerHTML");
         reviews = $('.systemreviewrows').last().prop("outerHTML");
-        $('.selectcondition,.selectmedication,.familyquestions,.vitalquestions,.provisions,.required_test,.reviewcategories,.reviewoptions').select2({width:'100%',placeholder:'Select'});
+        $('.reviewcategories,.reviewoptions').select2({width:'100%',placeholder:'Select'});
     })
-
-
    
-    
-
-   
-    //provisional diagnosis
-    $(document).on('click','.add_provisions',function(){
-        $('#provision_assessments').append(provisional);
-        $('.provisions,.required_test').select2({width:'100%',placeholder:'Select'})
+    $(document).on('select2:select','.reviewcategories',function(e){
+        $(this).closest('.systemreviewrows').find('.reviewoptions').attr('required',true);
     })
 
-    $(document).on('click','.remove_provisions',function(){
-        if($('.provisions').length > 1){
-            $(this).closest('.provisionrows').remove();
-        }
-    })
-    //system review
     $(document).on('click','.add_reviews',function(){
         $('#system_review').append(reviews);
         $('.reviewcategories,.reviewoptions').select2({width:'100%',placeholder:'Select'})
