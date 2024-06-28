@@ -124,7 +124,7 @@
                                                                         <option value="{{$inventory->drug_id}}" @if($detail->drug_id == $inventory->drug_id) selected @endif>{{$inventory->drug->name}}</option>
                                                                         @endforeach
                                                                     </select>
-                                                                    <input type="hidden" name="drug_id[]" value="{{$detail->drug_id}}">
+                                                                    <input type="hidden" name="detail_id[]" value="{{$detail->id}}">
                                                                 </td>
                                                                 <td>
                                                                     <input class="form-control" type="number" value="{{$detail->quantity_per_dose}}" name="quantity[]" required>
@@ -156,7 +156,7 @@
                                                                             <option value="{{$inventory->drug_id}}">{{$inventory->drug->name}}</option>
                                                                         @endforeach
                                                                     </select>
-                                                                    <input type="hidden" name="drug_id[]" value="">
+                                                                    <input type="hidden" name="detail_id[]" value="">
                                                                 </td>
                                                                 <td>
                                                                     <input class="form-control" type="number" name="quantity[]" required>

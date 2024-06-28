@@ -73,6 +73,7 @@ class PharmacyController extends Controller
     public function settings(Pharmacy $pharmacy){
         $countries = Country::all();
         $permissions = Permission::where('admin',false)->get();
+        // dd($pharmacy->activeLicense);
         return view('pharmacy.settings',compact('pharmacy','countries','permissions'));
     }
 

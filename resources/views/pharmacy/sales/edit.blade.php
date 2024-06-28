@@ -70,6 +70,7 @@
                                                             <option value="{{$inventory->id}}" @if($inventory->id == $detail->inventory_id) selected @endif>{{$inventory->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                    <input type="hidden" name="detail_id[]" value="{{$detail->id}}">
                                                 </td>
                                                 <td>
                                                     <select class="form-control batches" name="batches[]" required>
@@ -103,6 +104,7 @@
                                                         <option value="{{$inventory->id}}">{{$inventory->name}}</option>
                                                     @endforeach
                                                 </select>
+                                                <input type="hidden" name="detail_id[]" value="">
                                             </td>
                                             <td>
                                                 <select class="form-control batches" name="batches[]" required>
@@ -149,14 +151,7 @@
                                                     </span>
                                                 </td>
                                             </tr>
-                                            {{-- <tr>
-                                                <th>Tax (7.5%):</th>
-                                                <td>
-                                                    <span>₦
-                                                        <span id="subtotal">0</span>
-                                                    </span>
-                                                </td>
-                                            </tr> --}}
+                                        
                                             <tr>
                                                 <th>Total Amount:</th>
                                                 <td><span>₦<span id="total">{{number_format($sale->total)}}</span></span></td>
@@ -172,10 +167,11 @@
                                 <div class="col-md-12">
                                     
                                     <div class="submit-section">
-                                        <a href="{{route('pharmacy.sales.index',$pharmacy)}}" class="btn btn-dark submit-btn mb-2">Cancel</a>
+                                        <a href="{{route('pharmacy.sales.index',$pharmacy)}}" class="btn btn-dark submit-btn mb-2">Cancels</a>
+                                        @if(!$sale->status)
                                         <button type="submit" name="status" value="0" class="btn btn-secondary submit-btn mb-2">Save as Draft</button>
                                         <button type="submit" id="execute" name="status" value="1" class="btn btn-outline-primary submit-btn disabled" disabled>Execute </button>
-                                        
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -258,10 +254,10 @@
         })
         $('#subtotal').text(total)
         $('#total').text(total)
-        if(total)
-            $('#execute').removeClass('disabled').prop('disabled',false)
-        else
-            $('#execute').addClass('disabled').prop('disabled',true)
+        // if(total)
+        //     $('#execute').removeClass('disabled').prop('disabled',false)
+        // else
+        //     $('#execute').addClass('disabled').prop('disabled',true)
     }      
 </script>
 

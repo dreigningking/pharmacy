@@ -21,13 +21,10 @@ class SalesController extends Controller
     {
         $inventories = $pharmacy->inventories;
         $patients = $pharmacy->patients;
-        // dd($prescription->details->firstWhere('drug_id',1)->inventory);
         return view('pharmacy.sales.create',compact('pharmacy','inventories','prescription','patients'));
     }
 
-    public function store(Pharmacy $pharmacy,Request $request)
-    {
-        // dd($request->all());
+    public function store(Pharmacy $pharmacy,Request $request){
         $sale = Sale::create(['pharmacy_id'=> $pharmacy->id,'prescription_id'=> $request->prescription_id,
         'patient_id'=> $request->patient_id,'user_id'=> auth()->id(),'status'=> $request->status? true:false]);
         foreach($request->inventories as $key => $inventory){
@@ -36,22 +33,34 @@ class SalesController extends Controller
         return redirect()->route('pharmacy.sales.index',$pharmacy);
     }
 
-    public function show(Pharmacy $pharmacy)
-    {
+    public function show(Pharmacy $pharmacy){
         return view('pharmacy.sales.view',compact('pharmacy'));
     }
 
-    public function edit(Pharmacy $pharmacy,Sale $sale)
-    {
+    public function edit(Pharmacy $pharmacy,Sale $sale){
         $inventories = $pharmacy->inventories;
         $patients = $pharmacy->patients;
-        // dd($inventories->where('id',88));
         return view('pharmacy.sales.edit',compact('pharmacy','inventories','sale','patients'));
     }
 
-    public function update(Pharmacy $pharmacy,Request $request)
-    {
-        //
+    public function update(Pharmacy $pharmacy,Request $request){
+        $sale = Prescription::find($request->sale_id);
+        $details = array_filter($request->detail_id);
+        foreach(array_filter($request->inventories ) as $key => $inventory_id){
+            if($request->detail_id[$key]){  
+                SaleDetail::where('id',$request->detail_id[$key])->update([
+                    'inventory_id'=> $inventory_id,'batch'=> $request->batches[$key],'quantity'=> $request->quantities[$key],'price'=> $request->prices[$key],'amount'=> $request->amounts[$key]
+                ]);
+                
+            }else{
+                $nDetail = SaleDetail::create(['sale_id'=> $sale->id,'inventory_id'=> $inventory_id,'batch'=> $request->batches[$key],'quantity'=> $request->quantities[$key],'price'=> $request->prices[$key],'amount'=> $request->amounts[$key]]);
+                array_push($details,$nDetail->id);
+            }
+        }
+        SaleDetail::where('prescription_id',$sale->id)->whereNotIn('id',$details)->delete();
+        $sale->status = $request->status;
+        $sale->save();
+        return redirect()->route('pharmacy.sales.index',$pharmacy);
     }
 
     

@@ -44,7 +44,7 @@
                             </div>
                             <div class="doc-speciality">
                                 <span class="d-block">License: {{$pharmacy->activeLicense->number}}</span>
-                                <span class="d-block">License Type: {{strtoupper($pharmacy->activeLicense->type)}}</span>
+                                <span class="d-block">License Type: {{strtoupper(implode('+',$pharmacy->activeLicense->type))}}</span>
                                 <span class="d-block">Expiry: {{$pharmacy->activeLicense->expire_at->calendar()}}</span>
                             </div>
                             

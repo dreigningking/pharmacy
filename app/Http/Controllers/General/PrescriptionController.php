@@ -68,19 +68,19 @@ class PrescriptionController extends Controller
     public function update(Request $request, Pharmacy $pharmacy)
     {
         $prescription = Prescription::find($request->prescription_id);
-        $drugs = array_filter($request->drug_id);
+        $details = array_filter($request->detail_id);
         foreach(array_filter($request->drugs ) as $key => $drug_id){
-            if($request->drug_id[$key]){  
-                PrescriptionDetail::where('id',$request->drug_id[$key])->update([
+            if($request->detail_id[$key]){  
+                PrescriptionDetail::where('id',$request->detail_id[$key])->update([
                     'drug_id'=> $drug_id,'quantity_per_dose'=> $request->quantity[$key],'frequency'=> $request->frequency[$key],'duration'=> $request->duration[$key]
                 ]);
                 
             }else{
                 $nDetail = PrescriptionDetail::create(['prescription_id'=> $prescription->id,'drug_id'=> $drug_id,'quantity_per_dose'=> $request->quantity[$key],'frequency'=> $request->frequency[$key],'duration'=> $request->duration[$key]]);
-                array_push($drugs,$nDetail->id);
+                array_push($details,$nDetail->id);
             }
         }
-        PrescriptionDetail::where('prescription_id',$prescription->id)->whereNotIn('id',$drugs)->delete();
+        PrescriptionDetail::where('prescription_id',$prescription->id)->whereNotIn('id',$details)->delete();
 
         if($request->dispense){
             return redirect()->route('pharmacy.sales.create',['pharmacy'=> $pharmacy,'prescription'=> $prescription]);

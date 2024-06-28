@@ -24,7 +24,6 @@ class StaffController extends Controller
     
     public function store(Pharmacy $pharmacy,Request $request){
         // add staff should send an email to the person
-        dd('here');
         $pharmacy = Pharmacy::find($request->pharmacy_id);
         foreach($request->email as $key => $email){
             // dd($request->input("name.$key"));

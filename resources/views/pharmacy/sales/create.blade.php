@@ -66,9 +66,9 @@
                                                 <tr class="sales_row">
                                                     <td>
                                                         <select class="form-control sales_inventory" name="inventories[]" required>
-                                                            <option></option>
+                                                            <option value=""></option>
                                                             @foreach($inventories as $inventory)
-                                                                <option value="{{$inventory->id}}" @if($inventory->drug_id == $detail->inventory->drug_id) selected @endif>{{$inventory->name}}</option>
+                                                                <option value="{{$inventory->id}}" @if($inventory->id == $detail->inventory->id) selected @endif>{{$inventory->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </td>
