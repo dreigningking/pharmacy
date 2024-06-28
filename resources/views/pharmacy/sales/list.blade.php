@@ -38,12 +38,7 @@
                         <div class="filter-widget">
                             <input type="text" class="form-control" placeholder="Name or Batch">		
                         </div>
-                        {{-- <div class="filter-widget">
-                            <h4>Complaint/Diagnosis</h4>			
-                        </div>
-                        <div class="filter-widget">
-                            <input type="text" class="form-control" placeholder="e.g Headache, High Blood Pressure">		
-                        </div> --}}
+                        
                         <div class="filter-widget">
                             <h4>Date Range</h4>			
                         </div>
@@ -112,7 +107,7 @@
                                                 <tr>
                                                     <td class="text-nowrap">{{$sale->created_at->format('d-M-Y')}} </td>
                                                     <td>
-                                                        USK3834
+                                                        {{$sale->id}}
                                                     </td>
                                                     
                                                     
@@ -129,11 +124,11 @@
                                                     <td class="text-right">
                                                         <div class="table-action">
                                                             @if($sale->status)
-                                                            <a href="{{route('pharmacy.sales.show',$pharmacy)}}" class="btn btn-sm bg-success-light">
+                                                            <a href="{{route('pharmacy.sales.show',[$pharmacy,$sale])}}" class="btn btn-sm bg-success-light">
                                                                 <i class="far fa-eye"></i> View
                                                             </a>
                                                             @else
-                                                            <a href="{{route('pharmacy.sales.show',$pharmacy)}}" class="btn btn-sm bg-dark text-white">
+                                                            <a href="{{route('pharmacy.sales.edit',[$pharmacy,$sale])}}" class="btn btn-sm bg-dark text-white">
                                                                 <i class="far fa-edit"></i> Edit
                                                             </a>
                                                             @endif

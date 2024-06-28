@@ -65,7 +65,7 @@
                                             <tr class="sales_row">
                                                 <td>
                                                     <select class="form-control sales_inventory" name="inventories[]" required>
-                                                        <option></option>
+                                                        <option value=""></option>
                                                         @foreach($inventories as $inventory)
                                                             <option value="{{$inventory->id}}" @if($inventory->id == $detail->inventory_id) selected @endif>{{$inventory->name}}</option>
                                                         @endforeach
@@ -73,7 +73,7 @@
                                                 </td>
                                                 <td>
                                                     <select class="form-control batches" name="batches[]" required>
-                                                        <option value=""</option>
+                                                        <option value=""></option>
                                                         @foreach($detail->inventory->batches as $batch)
                                                             <option value="{{$batch->number}}" @if($batch->number == $detail->batch) selected @endif>{{$batch->number}}</option>
                                                         @endforeach
@@ -130,7 +130,7 @@
                             <div class="row my-3">               
                                 <div class="col-md-3 ml-4">
                                     <h4 class="d-block">Patient</h4>
-                                    <select name="patient_id" id="patient_id" class="form-control patient_id" required>
+                                    <select name="patient_id" id="patient_id" class="form-control patient_id" required disabled>
                                         <option value=""></option>
                                         @foreach($patients as $pateint)
                                             <option value="{{$pateint->id}}" @if($sale && $sale->patient_id == $pateint->id) selected @endif>{{$pateint->name}}</option>

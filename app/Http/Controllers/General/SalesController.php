@@ -21,11 +21,13 @@ class SalesController extends Controller
     {
         $inventories = $pharmacy->inventories;
         $patients = $pharmacy->patients;
+        // dd($prescription->details->firstWhere('drug_id',1)->inventory);
         return view('pharmacy.sales.create',compact('pharmacy','inventories','prescription','patients'));
     }
 
     public function store(Pharmacy $pharmacy,Request $request)
     {
+        // dd($request->all());
         $sale = Sale::create(['pharmacy_id'=> $pharmacy->id,'prescription_id'=> $request->prescription_id,
         'patient_id'=> $request->patient_id,'user_id'=> auth()->id(),'status'=> $request->status? true:false]);
         foreach($request->inventories as $key => $inventory){
@@ -34,12 +36,6 @@ class SalesController extends Controller
         return redirect()->route('pharmacy.sales.index',$pharmacy);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Pharmacy $pharmacy)
     {
         return view('pharmacy.sales.view',compact('pharmacy'));
@@ -49,6 +45,7 @@ class SalesController extends Controller
     {
         $inventories = $pharmacy->inventories;
         $patients = $pharmacy->patients;
+        // dd($inventories->where('id',88));
         return view('pharmacy.sales.edit',compact('pharmacy','inventories','sale','patients'));
     }
 

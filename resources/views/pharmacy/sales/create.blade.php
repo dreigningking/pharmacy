@@ -68,7 +68,7 @@
                                                         <select class="form-control sales_inventory" name="inventories[]" required>
                                                             <option></option>
                                                             @foreach($inventories as $inventory)
-                                                                <option value="{{$inventory->id}}" @if($inventory->drug_id == $detail->drug_id) selected @endif>{{$inventory->name}}</option>
+                                                                <option value="{{$inventory->id}}" @if($inventory->drug_id == $detail->inventory->drug_id) selected @endif>{{$inventory->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </td>
@@ -93,7 +93,7 @@
                                                         
                                                     </td>
                                                     <td>
-                                                        <input class="form-control amounts" min="1" type="number" name="amounts[]" value="{{$detail->inventory->unit_price}}" placeholder="Total" readonly>
+                                                        <input class="form-control amounts" min="1" type="number" name="amounts[]" value="{{$detail->inventory->unit_price}}" placeholder="" readonly>
                                                     </td>
                                                     <td>
                                                         <a href="javascript:void(0);" class="btn bg-danger-light trash remove_sales_item"><i class="far fa-trash-alt"></i></a>
@@ -116,14 +116,14 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input class="form-control prices" type="number" value="" name="prices[]" readonly>
+                                                <input class="form-control prices" type="number" placeholder="0" value="" name="prices[]" readonly>
                                             </td>
                                             
                                             <td>
                                                 <input class="form-control quantities" type="number" min="1" placeholder="Quantity" value="1" name="quantities[]">
                                             </td>
                                             <td>
-                                                <input class="form-control amounts" type="number" placeholder="Total" name="amounts[]" readonly>
+                                                <input class="form-control amounts" type="number" placeholder="0" name="amounts[]" readonly>
                                             </td>
                                             
                                             <td>
@@ -136,12 +136,15 @@
                             <div class="row my-3">               
                                 <div class="col-md-3 ml-4">
                                     <h4 class="d-block">Patient</h4>
-                                    <select name="patient_id" id="patient_id" class="form-control patient_id" required>
+                                    <select name="patient_id" id="patient_id" class="form-control patient_id" required @if($prescription) disabled @endif>
                                         <option value=""></option>
                                         @foreach($patients as $pateint)
                                             <option value="{{$pateint->id}}" @if($prescription && $prescription->patient_id == $pateint->id) selected @endif>{{$pateint->name}}</option>
                                         @endforeach
                                     </select>
+                                    @if($prescription) 
+                                        <input type="hidden" name="patient_id" value="{{$prescription->patient_id}}"> 
+                                    @endif
                                 </div>
                                 <div class="col-md-6 col-xl-4 ml-auto">
                                     <div class="table-responsive">
@@ -155,14 +158,7 @@
                                                     </span>
                                                 </td>
                                             </tr>
-                                            {{-- <tr>
-                                                <th>Tax (7.5%):</th>
-                                                <td>
-                                                    <span>₦
-                                                        <span id="subtotal">0</span>
-                                                    </span>
-                                                </td>
-                                            </tr> --}}
+                                            
                                             <tr>
                                                 <th>Total Amount:</th>
                                                 <td><span>₦<span id="total">0</span></span></td>
@@ -180,7 +176,7 @@
                                     <div class="submit-section">
                                         <a href="{{route('pharmacy.sales.index',$pharmacy)}}" class="btn btn-dark submit-btn mb-2">Cancel</a>
                                         <button type="submit" name="status" value="0" class="btn btn-secondary submit-btn mb-2">Save as Draft</button>
-                                        <button type="submit" id="execute" name="status" value="1" class="btn btn-outline-primary submit-btn disabled" disabled>Execute </button>
+                                        <button type="submit" id="execute" name="status" value="1" class="btn btn-outline-primary submit-btn disabled" disabled>Save as Paid </button>
                                         
                                     </div>
                                 </div>

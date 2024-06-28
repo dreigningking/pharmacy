@@ -92,7 +92,7 @@ Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.
         Route::get('/', [SalesController::class, 'index'])->name('index');
         Route::get('new/{prescription?}', [SalesController::class, 'create'])->name('create');
         Route::get('edit/{sale}', [SalesController::class, 'edit'])->name('edit');
-        Route::get('show', [SalesController::class, 'show'])->name('show');
+        Route::get('show/{sale}', [SalesController::class, 'show'])->name('show');
         Route::post('store', [SalesController::class, 'store'])->name('store');
         Route::post('update', [SalesController::class, 'update'])->name('update');
     });

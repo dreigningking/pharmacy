@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <h4 class="d-block">Source</h4>
-                                    <select name="origin" id="origin" class="form-control" required>
+                                    <select name="origin" id="origin" class="form-control" required disabled>
                                         <option @if($prescription->origin == 'Hospital') selected @endif>Hospital</option>
                                         <option @if($prescription->origin == 'Pharmacist') selected @endif>Pharmacist</option>
                                         <option @if($prescription->origin == 'Sales Rep') selected @endif>Sales Rep</option>
