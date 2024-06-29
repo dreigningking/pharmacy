@@ -8,8 +8,8 @@
             </a>
         </li>
         @for ($i = 1; $i <= $data->lastPage(); $i++)
-        <li class="page-item pagination-item">
-            <a class="page-link pagination-link @if($data->currentPage() == $i) active @endif" href="{{$data->url($i)}}">{{$i}}</a>
+        <li class="page-item pagination-item @if($data->currentPage() == $i) active @endif">
+            <a class="page-link pagination-link " href="{{$data->url($i)}}">{{$i}}</a>
         </li>
         @endfor
         

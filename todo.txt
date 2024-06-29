@@ -14,7 +14,6 @@ ASSESSMENT
     
 
 PRESCRIPTION
-1. View
 2. Non Medication advise is a drop down
 3. prescription re-prescribe
 
@@ -37,11 +36,12 @@ TRANSFER
 SALES 
 1. invoice view
 2. sidebar filter
-3. sales edit
+
 
 NOTIFICATIONS
 1. Welcome Email after director register
 2. subscription Notification
+3. pharmacy staff add
 
 
 Settings: 

@@ -25,10 +25,10 @@
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item active" aria-current="page">Inventory</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">Dashboard</h2>
+                <h2 class="breadcrumb-title">Inventory</h2>
             </div>
         </div>
     </div>
@@ -63,20 +63,7 @@
                                        
                                     </select>
                                 </div>
-                                {{-- <div class="d-flex">
-                                    <div class="mr-3">
-                                        <label class="custom_check">
-                                            <input type="checkbox" name="type[]" @if(in_array('drug',$type)) checked @endif value="drug">
-                                            <span class="checkmark"></span> Drugs
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label class="custom_check">
-                                            <input type="checkbox" name="type[]" @if(in_array('non_drug',$type)) checked @endif value="non_drug">
-                                            <span class="checkmark"></span> Non-drugs
-                                        </label>
-                                    </div> 
-                                </div> --}}
+                                
                             </div>
                             
                                                         
@@ -99,11 +86,7 @@
                             </div>	
                         </form>
                     </div>
-                    {{-- <div class="card-body">
-                        <div class="clinic-booking">
-                            <a class="apt-btn" href="booking.html">View Subscription Plans</a>
-                        </div>
-                    </div> --}}
+                    
                     
                 </div>
             </div>
@@ -114,10 +97,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-4">
-                                    {{-- <h3>Inventory ({{$items->total()}})</h3> --}}
                                     <div>
-                                        {{-- <a class="btn btn-outline-dark" data-toggle="modal" href="#upload">Upload Inventory <i class="fa fa-upload"></i></a> --}}
-                                        <a class="btn btn-dark" data-toggle="modal" href="#items">New Item</a>
+                                        <a class="btn btn-dark" href="{{route('pharmacy.inventory.create',$pharmacy)}}">New Item</a>
                                     </div>
                                     
                                 </div>
@@ -211,7 +192,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{-- @include('layouts.pagination',['data'=> $items]) --}}
+                                     @include('layouts.pagination',['data'=> $items])
                                 </form>
                             </div>
                         </div>
@@ -267,7 +248,7 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div> 
 
 <div class=" modal fade custom-modal add-modal" id="items">
     <div class="modal-dialog modal-dialog-centered modal-md">
@@ -493,7 +474,7 @@
         </div>
     </div>
 </div>
-
+--}}
 @endsection
 
 @push('scripts')

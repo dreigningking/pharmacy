@@ -12,11 +12,8 @@ use App\Models\Supplier;
 use App\Models\Inventory;
 use App\Models\DrugCategory;
 use Illuminate\Http\Request;
-use App\Exports\InventoriesExport;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\User\InventoriesImport;
+
 
 class InventoryController extends Controller
 {
@@ -171,11 +168,8 @@ class InventoryController extends Controller
     }
     */
 
-    
-
     public function store(Request $request,Pharmacy $pharmacy){
         // dd($request->all());
-        
             if($request->many){
                 for($i = 0;$i < count($request->drug_id) ;$i++){
                     // dd($request->input("name.2"));
@@ -201,9 +195,8 @@ class InventoryController extends Controller
                         ['quantity'=> $request->input("quantity.$key"),'expire_at'=> $request->input("expire_at.$key")]);
                 }
             }
-        return redirect()->route('pharmacy.inventories.index',$pharmacy);
+        return redirect()->route('pharmacy.inventory.list',$pharmacy);
     }
-
 
     public function update(Pharmacy $pharmacy,Request $request){
         
@@ -254,8 +247,6 @@ class InventoryController extends Controller
             
             
     }
-
-    
 
     public function suppliers(Pharmacy $pharmacy,Request $request){
         // dd($request->all());

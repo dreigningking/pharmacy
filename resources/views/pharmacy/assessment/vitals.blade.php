@@ -78,11 +78,11 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2 answer_a">
-                                                    <input type="number" class="form-control" name="answers_a[]"  value="{{$eVital->value_a}}" placeholder="Result 1">
+                                                    <input type="number" step="0.1" class="form-control" name="answers_a[]"  value="{{$eVital->value_a}}" placeholder="Result 1">
                                                 </div>
                                                 
                                                 <div class="col-md-2 answer_b" @if(!$eVital->value_b) style="display:none" @endif>
-                                                    <input type="number" class="form-control" name="answers_b[]" value="{{$eVital->value_b}}" placeholder="Result 2">
+                                                    <input type="number" step="0.1" class="form-control" name="answers_b[]" value="{{$eVital->value_b}}" placeholder="Result 2">
                                                 </div>
                                                 
                                                 <div class="col-md-3">

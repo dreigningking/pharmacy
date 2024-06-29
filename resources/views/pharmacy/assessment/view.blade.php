@@ -61,12 +61,7 @@
         -webkit-appearance: none;
         margin: 0;
     }
-    input[type="number"] {
-        /* -moz-appearance: textfield; */
-    }
-    .select-remote {
-        /* width: 450px !important; */
-    }
+    
 </style>
 @endpush
 @section('main')

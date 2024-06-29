@@ -140,6 +140,7 @@
                                                     <select name="unit_of_sales" class="form-control">
                                                         <option value="">Select Unit</option>
                                                         <option value="pill">Pill</option>
+                                                        <option value="card">Card</option>
                                                         <option value="bottle">Bottle</option>
                                                         <option value="sachet">Sachet</option>
                                                         <option value="packet">Packet</option>
