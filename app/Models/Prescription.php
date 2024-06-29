@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Prescription extends Model
 {
     use HasFactory;
-    protected $fillable = ['pharmacy_id','assessment_id','patient_id','user_id','origin'];
+    protected $fillable = ['pharmacy_id','assessment_id','patient_id','user_id','origin','medication_advice','non_medication_advice'];
+    protected $casts = ['medication_advice'=> 'array','non_medication_advice'=> 'array'];
     protected $appends = ['status'];
 
     public function getSummaryAttribute(){

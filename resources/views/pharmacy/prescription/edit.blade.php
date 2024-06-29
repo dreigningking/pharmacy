@@ -187,20 +187,24 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Medication Advise</label>
-                                                            <select name="" id="" class="form-control select2" multiple>
-                                                                <option value="">Take your drugs with food</option>
-                                                                <option value="">Complete all the antibiotics</option>
-                                                                <option value="">Stop the pain reliever when pain and fever are gone</option>
-                                                                
+                                                            <select name="medication_advice[]" id="" class="form-control select2" multiple data-tags="true">
+                                                                @if($prescription->medication_advice && is_array($prescription->medication_advice))
+                                                                @foreach ($prescription->medication_advice as $medication_advice)
+                                                                    <option value="{{$medication_advice}}">{{$medication_advice}}</option>
+                                                                @endforeach
+                                                                @endif 
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Non-Medication Advise</label>
-                                                            <select name="" id="" class="form-control select2" multiple>
-                                                                <option value="">Avoid Smoke-filled environment</option>
-                                                                <option value="">Sleep early</option>
+                                                            <select name="non_medication_advice[]" id="" class="form-control select2" multiple data-tags="true">
+                                                                @if($prescription->non_medication_advice && is_array($prescription->non_medication_advice))
+                                                                @foreach ($prescription->non_medication_advice as $non_medication_advice)
+                                                                    <option value="{{$non_medication_advice}}">{{$non_medication_advice}}</option>
+                                                                @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>

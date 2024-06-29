@@ -2,24 +2,14 @@ PATIENT
 1. Share patient records (personal records, medical records, assessments records, prescriptions, )
 2. Message patient
 3. Archive patient
-4. View Assessment from patient view page
 4. Download patient assessment
 5. Download patient prescription
-
+INVENTORY
+6. bulk upload of non-drugs should lead to purchase new
 ASSESSMENT
-1. View
 2. assessment reports for a singular patient to comprises all dates on a single page ( use secure link)
 3. Final Diagnosis Feedback
 4. final diagnosis becomes medical history when : (a) new assessment is created for patient (b)treatment feedback is recorded
-    
-
-PRESCRIPTION
-2. Non Medication advise is a drop down
-
-
-INVENTORY
-6. bulk upload of non-drugs should lead to purchase new
-
 
 NOTIFICATIONS
 1. Welcome Email after director register

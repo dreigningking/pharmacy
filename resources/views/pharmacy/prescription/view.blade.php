@@ -98,37 +98,62 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-hover table-center">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 50%">Name</th>
-                                            <th style="width: 10%">Qty Per Dose</th>
-                                            <th style="width: 10%">Days</th>
-                                            <th style="width: 30%">Frequency</th>
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 50%">Name</th>
+                                                <th style="width: 10%">Qty Per Dose</th>
+                                                <th style="width: 10%">Days</th>
+                                                <th style="width: 30%">Frequency</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($prescription->details as $detail)
+                                            <tr>
+                                                <td>
+                                                    <input class="form-control" value="{{$detail->drug->name}}" type="text" readonly>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" type="text" value="{{$detail->quantity_per_dose}}" readonly>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" value="{{$detail->duration}}" type="text" readonly>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" type="text" value="{{$detail->timeline}} a day" readonly>
+                                                </td>
+                                                
+                                            </tr>
+                                            @endforeach
                                             
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($prescription->details as $detail)
-                                        <tr>
-                                            <td>
-                                                <input class="form-control" value="{{$detail->drug->name}}" type="text" readonly>
-                                            </td>
-                                            <td>
-                                                <input class="form-control" type="text" value="{{$detail->quantity_per_dose}}" readonly>
-                                            </td>
-                                            <td>
-                                                <input class="form-control" value="{{$detail->duration}}" type="text" readonly>
-                                            </td>
-                                            <td>
-                                                <input class="form-control" type="text" value="{{$detail->timeline}} a day" readonly>
-                                            </td>
-                                            
-                                        </tr>
-                                        @endforeach
-                                        
-                                    </tbody>
+                                        </tbody>
                                     </table>
                                 </div>
+                                <div class="row ml-3">
+                                    <div class="col-md-6 p-3 border">
+                                        <h5 class="font-weight-bold">Medication Advise</h5>
+                                        @if($prescription->medication_advice && is_array($prescription->medication_advice))
+                                        <ul>
+                                            @foreach ($prescription->medication_advice as $med_advice)
+                                                <li>{{$med_advice}}</li>
+                                            @endforeach
+                                            
+                                        </ul>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6 p-3 border">
+                                        <h5 class="font-weight-bold">Non Medication Advise</h5>
+                                        @if($prescription->non_medication_advice && is_array($prescription->non_medication_advice))
+                                        <ul>
+                                            @foreach ($prescription->non_medication_advice as $non_med_advice)
+                                                <li>{{$non_med_advice}}</li>
+                                            @endforeach
+                                            
+                                        </ul>
+                                        @endif
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                         

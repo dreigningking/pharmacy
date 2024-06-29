@@ -51,8 +51,7 @@ class PrescriptionController extends Controller
         return view('pharmacy.prescription.list', compact('pharmacy','prescriptions','patient','drug','from','to','user','status'));
     }
     
-    public function create(Pharmacy $pharmacy)
-    {
+    public function create(Pharmacy $pharmacy){
         $inventories = $pharmacy->inventories->where('drug_id','!=',null);
         $patients = $pharmacy->patients;
         $assessment = request()->assessment_id ? Assessment::find(request()->assessment_id) : null;
@@ -65,11 +64,10 @@ class PrescriptionController extends Controller
         
     }
 
-    public function store(Pharmacy $pharmacy,Request $request)
-    {
+    public function store(Pharmacy $pharmacy,Request $request){
         //dd($request->all());
         $prescription = Prescription::create(['pharmacy_id'=> $pharmacy->id,'user_id'=> auth()->id(),
-        'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id,'origin'=> $request->origin]);
+        'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id,'origin'=> $request->origin,'medication_advice'=> $request->medication_advice,'non_medication_advice'=> $request->non_medication_advice]);
         foreach($request->drugs as $key => $drug_id){
             PrescriptionDetail::create(['prescription_id'=> $prescription->id,
             'drug_id' => $drug_id,'quantity_per_dose'=> $request->quantity[$key],
@@ -94,6 +92,9 @@ class PrescriptionController extends Controller
 
     public function update(Request $request, Pharmacy $pharmacy){
         $prescription = Prescription::find($request->prescription_id);
+        $prescription->medication_advice = $request->medication_advice;
+        $prescription->non_medication_advice = $request->non_medication_advice;
+        $prescription->save();
         $details = array_filter($request->detail_id);
         foreach(array_filter($request->drugs ) as $key => $drug_id){
             if($request->detail_id[$key]){  

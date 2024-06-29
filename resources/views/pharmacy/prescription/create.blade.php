@@ -151,21 +151,19 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Medication Advise</label>
-                                                            <select name="" id="" class="form-control select2" multiple>
-                                                                <option value="">Take your drugs with food</option>
-                                                                <option value="">Complete all the antibiotics</option>
-                                                                <option value="">Stop the pain reliever when pain and fever are gone</option>
+                                                            <select name="medication_advice[]" class="form-control select2" multiple data-tags="true">
                                                                 
                                                             </select>
+                                                            <small>Field accepts new options</small>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Non-Medication Advise</label>
-                                                            <select name="" id="" class="form-control select2" multiple>
-                                                                <option value="">Avoid Smoke-filled environment</option>
-                                                                <option value="">Sleep early</option>
+                                                            <select name="non_medication_advice[]" id="" class="form-control select2" multiple data-tags="true">
+
                                                             </select>
+                                                            <small>Field accepts new options</small>
                                                         </div>
                                                     </div>
                                                 </div>
