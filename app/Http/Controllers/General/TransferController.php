@@ -16,7 +16,7 @@ class TransferController extends Controller
 {
     
     public function list(Pharmacy $pharmacy){
-        $transfers = Transfer::where(function($query) use($pharmacy) { $query->where('from_pharmacy',$pharmacy->id)->orWhere('to_pharmacy',$pharmacy->id)->whereNotNull('sent_at'); })->get();
+        $transfers = Transfer::where(function($query) use($pharmacy) { $query->where('from_pharmacy',$pharmacy->id)->orWhere('to_pharmacy',$pharmacy->id)->whereNotNull('sent_at'); })->paginate(30);
         return view('pharmacy.inventory.transfers.list',compact('pharmacy','transfers'));
     }
     

@@ -68,8 +68,8 @@
                                     <h4>Show Drugs in Inventory</h4> 
                                     <div>
                                         <label class="custom_check">
-                                            <input type="checkbox" name="show_inventory_drugs" value="1" @if($show_inventory_drugs) checked @endif>
-                                            <span class="checkmark"></span> Show
+                                            <input type="checkbox" name="hide_inventory_drugs" value="1" @if($hide_inventory_drugs) checked @endif>
+                                            <span class="checkmark"></span> Hide
                                         </label>
                                     </div>
                                 </div>
@@ -89,8 +89,8 @@
                             <h4>Add Drugs to Inventory</h4>
                         </div>
                         <div class="card-body">
-                            <form  action="{{route('pharmacy.inventory.store', $pharmacy)}}" method="POST">@csrf
-                                <input type="hidden" name="many" value="1">
+                            <form  action="{{route('pharmacy.inventory.store.many', $pharmacy)}}" method="POST">@csrf
+                                
                                 <button type="submit"  class="btn btn-secondary mb-3">Add to Inventory </button>
                             
                                 <div class="table-responsive">
@@ -107,7 +107,7 @@
                                                 <th>Drug Name</th>
                                                 <th>Category</th>
                                                 <th>Manufacturer</th>
-                                                <th>Action</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -116,8 +116,8 @@
                                                 <td> 
                                                     <label class="custom_check">
                                                         <input type="checkbox" class="checkboxes" name="drug_id[]" value="{{$drug->id}}">
-                                                        <input type="hidden" name="category[]" value="{{$drug->category->name}}">
-                                                        <input type="hidden" name="name[]" value="{{$drug->name}}">
+                                                        <input type="hidden" name="category[{{$drug->id}}]" value="{{$drug->category->name}}">
+                                                        <input type="hidden" name="name[{{$drug->id}}]" value="{{$drug->name}}">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </td>
@@ -126,9 +126,7 @@
                                                 <td>{{$drug->manufacturer}}</td>  
                                                 <td>
                                                     @if($drug->pharmacyInventory($pharmacy->id))
-                                                        <span class="">Added</span>
-                                                    @else
-                                                        <button class="btn btn-sm btn-primary">Add</button>
+                                                        <span class="">Exist in Inventory</span>
                                                     @endif
                                                 </td>  
                                             </tr>
@@ -136,30 +134,10 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <button type="submit"  class="btn btn-secondary mb-3">Add to Inventory </button>
+                                @include('layouts.pagination',['data'=> $drugs])
                             </form>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item @if($drugs->onFirstPage()) disabled @endif">
-                                                <a class="page-link " href="{{$drugs->previousPageUrl()}}" tabindex="-1">Previous</a>
-                                            </li>
-                                            @for ($i = 1; $i <= $drugs->lastPage(); $i++)
-                                            <li class="page-item">
-                                                <a class="page-link @if($drugs->currentPage() == $i) active @endif" href="{{$drugs->url($i)}}">{{$i}} 
-                                                    @if($drugs->currentPage() == $i) <span class="sr-only">(current)</span> @endif
-                                                </a>
-                                            </li>
-                                            @endfor
-                                            
-                                            <li class="page-item @if($drugs->currentPage() == $drugs->lastPage()) disabled @endif">
-                                                <a class="page-link" href="{{$drugs->nextPageUrl()}}">Next</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -17,8 +17,7 @@ class PrescriptionController extends Controller
         return view ('pharmacy.patient.non-medical-plan', compact('pharmacy'));
     }
 
-    public function index(Pharmacy $pharmacy)
-    {
+    public function index(Pharmacy $pharmacy){
         $patient = request()->patient ?? null;
         $drug = request()->drug ?? null;
         $from = request()->from ?? null;
@@ -58,8 +57,12 @@ class PrescriptionController extends Controller
         $patients = $pharmacy->patients;
         $assessment = request()->assessment_id ? Assessment::find(request()->assessment_id) : null;
         $patient = request()->patient_id ? Patient::find(request()->patient_id) : ($assessment ? $assessment->patient : null);
-        
+        // dd($patient->assessments);
         return view('pharmacy.prescription.create', compact('pharmacy','patient','patients','inventories','assessment'));
+    }
+
+    public function represcribe(Pharmacy $pharmacy,Prescription $prescription){
+        
     }
 
     public function store(Pharmacy $pharmacy,Request $request)
@@ -68,19 +71,15 @@ class PrescriptionController extends Controller
         $prescription = Prescription::create(['pharmacy_id'=> $pharmacy->id,'user_id'=> auth()->id(),
         'assessment_id'=> $request->assessment_id,'patient_id'=> $request->patient_id,'origin'=> $request->origin]);
         foreach($request->drugs as $key => $drug_id){
-            PrescriptionDetail::create(['prescription_id'=> $prescription->id,'drug_id' => $drug_id,'quantity_per_dose'=> $request->quantity[$key],'frequency'=> $request->frequency[$key],'duration'=> $request->duration[$key]]);
+            PrescriptionDetail::create(['prescription_id'=> $prescription->id,
+            'drug_id' => $drug_id,'quantity_per_dose'=> $request->quantity[$key],
+            'frequency'=> $request->frequency[$key],'duration'=> $request->duration[$key]]);
         }
         if($request->dispense){
             return redirect()->route('pharmacy.sales.create',['pharmacy'=> $pharmacy,'prescription'=> $prescription]);
         }else return redirect()->route('pharmacy.prescriptions.show',[$pharmacy,$prescription]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  Pharmacy $pharmacy
-     * @return \Illuminate\Http\Response
-     */
     public function show(Pharmacy $pharmacy,Prescription $prescription){
         return view('pharmacy.prescription.view', compact('pharmacy','prescription'));
     }
@@ -93,8 +92,7 @@ class PrescriptionController extends Controller
         return view('pharmacy.prescription.edit', compact('pharmacy','prescription','patient','patients','inventories','assessment'));
     }
 
-    public function update(Request $request, Pharmacy $pharmacy)
-    {
+    public function update(Request $request, Pharmacy $pharmacy){
         $prescription = Prescription::find($request->prescription_id);
         $details = array_filter($request->detail_id);
         foreach(array_filter($request->drugs ) as $key => $drug_id){
@@ -114,6 +112,8 @@ class PrescriptionController extends Controller
             return redirect()->route('pharmacy.sales.create',['pharmacy'=> $pharmacy,'prescription'=> $prescription]);
         }else return redirect()->route('pharmacy.prescriptions.show',[$pharmacy,$prescription]);
     }
+
+    
 
     /**
      * Remove the specified resource from storage.

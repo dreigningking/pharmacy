@@ -112,7 +112,7 @@
                                                     
                                                     
                                                     <td>{{$sale->summary}}</td>
-                                                    <td>₦ {{number_format($sale->total)}}</td>
+                                                    <td>{{$pharmacy->country->currency_symbol}} {{number_format($sale->total)}}</td>
                                                     <td>
                                                         @if($sale->status)
                                                         <span class="badge badge-pill bg-success-light">Completed</span>

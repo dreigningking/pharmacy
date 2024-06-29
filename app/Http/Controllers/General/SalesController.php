@@ -54,8 +54,8 @@ class SalesController extends Controller
         return redirect()->route('pharmacy.sales.index',$pharmacy);
     }
 
-    public function show(Pharmacy $pharmacy){
-        return view('pharmacy.sales.view',compact('pharmacy'));
+    public function show(Pharmacy $pharmacy,Sale $sale){
+        return view('pharmacy.sales.view',compact('pharmacy','sale'));
     }
 
     public function edit(Pharmacy $pharmacy,Sale $sale){

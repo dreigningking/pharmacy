@@ -34,7 +34,7 @@ class Prescription extends Model
     }
 
     public function getStatusAttribute(){
-        if($this->sales->isEmpty() || $this->sales->where('status',false)->isNotEmpty()){
+        if($this->sales->isEmpty()){
             return 'draft';
         }else{
             if($this->created_at->addDays($this->average_duration) > now()){

@@ -167,9 +167,10 @@
     $(document).on('select2:select','.vitalquestions',function(e){
         var data = e.params.data;
         let inputs = data.element.dataset.inputs;
-        $(this).closest('.vitalrows').find('.answer_a input,.answer_b input').attr('required',true);
+        $(this).closest('.vitalrows').find('.answer_a input').attr('required',true);
         if(inputs > 1){
             $(this).closest('.vitalrows').find('.answer_a input').attr('placeholder','Result 1');
+            $(this).closest('.vitalrows').find('.answer_b input').attr('required',true);
             $(this).closest('.vitalrows').find('.answer_b').show();
         }else {
             $(this).closest('.vitalrows').find('.answer_a input').attr('placeholder','Result');

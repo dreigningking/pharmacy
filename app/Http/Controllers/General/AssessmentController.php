@@ -20,7 +20,6 @@ use App\Models\PatientFinalDiagnosis;
 use App\Models\PatientMedicalHistory;
 use App\Models\PatientLaboratoryResult;
 use App\Models\PatientMedicationHistory;
-use Illuminate\Support\Facades\Validator;
 use App\Models\PatientFamilySocialHistory;
 use App\Models\PatientProvisionalDiagnosis;
 
@@ -29,11 +28,12 @@ class AssessmentController extends Controller
 
 
     public function index(Pharmacy $pharmacy){
-        $assessments = Assessment::where('pharmacy_id',$pharmacy->id)->get();
+        $assessments = Assessment::where('pharmacy_id',$pharmacy->id)->paginate(30);
         return view('pharmacy.assessment.list', compact('pharmacy','assessments'));
     }
 
     public function show(Pharmacy $pharmacy,Assessment $assessment){
+        // dd($assessment->patient->medicalHistory);
         return view('pharmacy.assessment.view', compact('pharmacy','assessment'));
     }
 

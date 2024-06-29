@@ -105,14 +105,13 @@ Route::group(['middleware'=> ['auth','pharmacy','subscription'],'as'=>'pharmacy.
         Route::get('add/drugs',[InventoryController::class,'drugs'] )->name('drugs');
         Route::get('view/{item}', [InventoryController::class,'show'])->name("show");
         Route::post('store', [InventoryController::class,'store'])->name("store");
-        Route::post('batches', [InventoryController::class,'batches'])->name("batches");
+        Route::post('store/many', [InventoryController::class,'storeMany'])->name("store.many");
         Route::post('update', [InventoryController::class,'update'])->name("update");
-        
         Route::get('settings', [InventoryController::class,'settings'])->name("settings");
         Route::post('supplier/save', [InventoryController::class, 'suppliers'])->name('suppliers');
-        Route::post('import', [InventoryController::class, 'import'])->name("import");
 
-        Route::post('start/export', [InventoryController::class, 'export'])->name("start.export");
+        Route::post('import', [InventoryController::class, 'import'])->name("import");
+        Route::get('export/template', [InventoryController::class, 'export_template'])->name("export_template");
     });
 
     Route::group(['prefix'=>'transfer','as'=> 'transfer.'], function () {

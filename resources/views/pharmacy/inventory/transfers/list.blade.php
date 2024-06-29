@@ -168,6 +168,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                @include('layouts.pagination',['data'=> $transfers])
                             </div>
                         </div>
                     </div>

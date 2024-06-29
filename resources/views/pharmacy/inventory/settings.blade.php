@@ -260,7 +260,7 @@
                                                     <div class="card-body">
                                                         <h3 class="card-title d-flex justify-content-between">
                                                             <span>Non Drug Upload Instructions</span> 
-                                                            {{-- <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a> --}}
+                                                            
                                                         </h3>
                                                         <p class="text-muted mb-0 mb-sm-3">Uploading from excel is simple. Prepare the document in the following format:</p>
                                                         <p class="text-muted mb-0 mb-sm-3">Create an excel file and name it <span class="font-weight-bold">inventory.xls</span> (i.e with excel extension) </p>

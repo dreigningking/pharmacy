@@ -146,7 +146,7 @@
                                             <tr>
                                                 <th>Subtotal:</th>
                                                 <td>
-                                                    <span>₦
+                                                    <span>{{$pharmacy->country->currency_symbol}}
                                                         <span id="subtotal">{{number_format($sale->total)}}</span>
                                                     </span>
                                                 </td>
@@ -154,7 +154,7 @@
                                         
                                             <tr>
                                                 <th>Total Amount:</th>
-                                                <td><span>₦<span id="total">{{number_format($sale->total)}}</span></span></td>
+                                                <td><span>{{$pharmacy->country->currency_symbol}}<span id="total">{{number_format($sale->total)}}</span></span></td>
                                             </tr>
                                             </tbody>
                                         </table>

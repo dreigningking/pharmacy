@@ -103,4 +103,6 @@ class Patient extends Model
     public function diagnoses(){
         return $this->hasMany(PatientFinalDiagnosis::class);
     }
+
+    
 }

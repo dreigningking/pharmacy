@@ -15,22 +15,10 @@ ASSESSMENT
 
 PRESCRIPTION
 2. Non Medication advise is a drop down
-3. prescription re-prescribe
 
 
 INVENTORY
-1. available = quantity - expired - damaged ()
-2. allow duplicate drugs in inventory
-3. separate bulk addition controller and route
-6. bulk adding of drugs should lead to purchase new
 6. bulk upload of non-drugs should lead to purchase new
-7. delete expired batches
-
-PURCHASE 
-
-
-SALES 
-1. invoice view
 
 
 NOTIFICATIONS
@@ -40,7 +28,6 @@ NOTIFICATIONS
 
 
 Settings: 
-1. add currency to settings
 fa user-md, fa medkit,fa heartbeat,fa plus-square,fa ambulance,fa wheelchair-alt,fa wheelchair,fa thermometer-full,fa syringe,fa microscope,fa hospital
 
 

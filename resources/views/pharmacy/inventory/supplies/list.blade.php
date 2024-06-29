@@ -109,21 +109,27 @@
                                                 <th>Supplier</th>
                                                 <th>No of items</th>
                                                 <th>Total</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($purchases->sortByDesc('updated_at') as $purchase)
                                                 <tr>
-                                                    <td>{{$purchase->created_at->format('M d')}}</td>
+                                                    <td>{{$purchase->created_at->format('M d,Y')}}</td>
                                                     <td>{{$purchase->supplier->name}}</td>   
                                                     <td>{{$purchase->details->count()}}</td>   
                                                     <td>{{$purchase->total}}</td>   
+                                                    <td>    @if($purchase->status)
+                                                                <span class="badge badge-success">Completed</span>
+                                                            @else
+                                                                <span class="badge badge-dark">Draft</span>
+                                                            @endif
+                                                    </td>   
                                                     <td class="text-left">
                                                         
                                                         <div class="actions">
                                                             @if($purchase->status)
-                                                                <span class="badge badge-success">Completed</span>
                                                                 <a class="btn btn-sm bg-success-light" href="{{route('pharmacy.purchases.show',[$pharmacy,$purchase])}}">
                                                                     <i class="fa fa-eye"></i> View
                                                                 </a>
@@ -153,6 +159,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                @include('layouts.pagination',['data'=> $purchases])
                             </div>
                         </div>
                     </div>

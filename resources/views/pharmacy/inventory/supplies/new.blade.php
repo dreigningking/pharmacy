@@ -61,12 +61,7 @@
         -webkit-appearance: none;
         margin: 0;
     }
-    input[type="number"] {
-        /* -moz-appearance: textfield; */
-    }
-    .select-remote {
-        /* width: 450px !important; */
-    }
+
 </style>
 @endpush
 @section('main')
@@ -99,6 +94,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form action="{{route('pharmacy.purchases.store',$pharmacy)}}" method="POST">@csrf
+                            <input type="hidden" id="pharmacy_id" value="{{$pharmacy->id}}">
                             <div class="invoice-content">
                                 <div class="invoice-item">
                                     <div class="row">
@@ -107,15 +103,7 @@
                                                 <img src="{{asset('assets/img/logo.png')}}" alt="logo">
                                             </div>
                                         </div>
-                                        {{-- <div class="col-md-6">
-                                            <p class="invoice-details ">
-                                                <strong>Order:</strong> #
-                                                </p>
-                                                <p class="invoice-details">
-                                                <strong>Issued:</strong> 
-                                                <input type="date" name="" id="" value="{{now()->format('Y-m-d')}}" class="date">
-                                            </p>
-                                        </div> --}}
+                                        
                                     </div>
                                 </div>
                                 
@@ -176,9 +164,7 @@
                                                         <tr>
                                                             <th class="d-flex flex-wrap justify-content-between" style="min-width: 180px;">
                                                                 <span>Description</span> 
-                                                                {{-- <a data-toggle="modal" href="#add_drug" class="font-weight-normal text-info">
-                                                                    <u>Add New Drug</u>
-                                                                </a> --}}
+                                                                
                                                             </th>
                                                             <th class="text-center">Packaging</th>
                                                             <th class="text-center">Cost</th>
@@ -296,8 +282,7 @@
                                 <!-- Invoice Information -->
                                 <div class="other-info">
                                     <div class="col-md-12 text-right">
-                                        <button type="submit" class="btn btn-light btn-sm supplies_submit disabled" disabled>Save as Draft</button>
-                                        <button type="submit" name="email_supplier" value="1" class="btn btn-dark btn-sm supplies_submit disabled" disabled>Save & Email Supplier</button>
+                                        <button type="submit" class="btn btn-dark btn-sm supplies_submit disabled" disabled>Save </button>
                                     </div>
                                 </div>
                                 <!-- /Invoice Information -->
@@ -366,55 +351,6 @@
     </div>
 </div>
 
-<div class=" modal fade custom-modal add-modal" id="add_drug">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add New Item
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xl-12 d-flex">
-                        <div class="card flex-fill">
-
-                            <div class="card-body">
-                                <form>
-                                    <div class="form-group ">
-                                        <label class="form-label">Name</label>
-                                        <input type="email" class="form-control">
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="form-label">Manufacturer</label>
-                                        <input type="email" class="form-control">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="form-label d-flex justify-content-between"><span>Content</span> <small class="text-right">Can select multiple</small></label>
-                                        <select name="" id="" class="select form-control" multiple>
-                                            <option>Lumefantrine</option> 
-                                            <option>Ampicilin</option> 
-                                            <option>Flagyl</option> 
-                                            <option>Septrin</option> 
-                                        </select>
-                                    </div>
-
-                                    <div class="text-right">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 @push('scripts')
@@ -439,7 +375,7 @@
                     data: function (params) {
                         var query = {
                             search: params.term,
-                            pharmacy_id: @json($pharmacy->id)
+                            pharmacy_id: $('#pharmacy_id').val()
                         }
                         return query;
                     },
@@ -536,7 +472,7 @@
                     data: function (params) {
                         var query = {
                             search: params.term,
-                            pharmacy_id: @json($pharmacy->id)    
+                            pharmacy_id: $('#pharmacy_id').val()   
                         }
                         return query;
                     },

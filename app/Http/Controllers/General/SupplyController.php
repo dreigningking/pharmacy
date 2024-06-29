@@ -19,7 +19,7 @@ class SupplyController extends Controller
     use InventoryTrait;
 
     public function list(Pharmacy $pharmacy){
-        $purchases = Purchase::where('pharmacy_id',$pharmacy->id)->get();
+        $purchases = Purchase::where('pharmacy_id',$pharmacy->id)->paginate(30);
         return view('pharmacy.inventory.supplies.list',compact('pharmacy','purchases'));
     }
 
@@ -28,7 +28,6 @@ class SupplyController extends Controller
     }
 
     public function create_from_inventory(Pharmacy $pharmacy,Request $request){
-        $countries = Country::all();
         $inventories = Inventory::whereIn('id',$request->inventories)->get();
         return view('pharmacy.inventory.supplies.new',compact('pharmacy','inventories'));
     }

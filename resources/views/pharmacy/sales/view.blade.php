@@ -36,9 +36,9 @@
                             </div>
                             <div class="col-md-6">
                                 <p class="invoice-details">
-                                    <strong>Order:</strong> #00124 <br>
-                                    <strong>Issued:</strong> 20/07/2019 <br> 
-                                    <strong>Status:</strong> Paid
+                                    <strong>Order:</strong> #{{$sale->id}} <br>
+                                    <strong>Issued:</strong> {{$sale->created_at->format('d/m/Y')}} <br> 
+                                    <strong>Status:</strong> @if($sale->status) Paid @else Unpaid @endif
                                 </p>
                             </div>
                         </div>
@@ -61,9 +61,9 @@
                                 <div class="invoice-info invoice-info2">
                                     <strong class="customer-text">Invoice To</strong>
                                     <p class="invoice-details">
-                                        Walter Roberson <br>
-                                        299 Star Trek Drive, Panama City, <br>
-                                        Florida, 32405, USA <br>
+                                        {{$sale->patient->name}} <br>
+                                        {{$sale->patient->email}} <br>
+                                        {{$sale->patient->mobile}} <br>
                                     </p>
                                 </div>
                             </div>
@@ -71,22 +71,7 @@
                     </div>
                     <!-- /Invoice Item -->
                     
-                    <!-- Invoice Item -->
-                    {{-- <div class="invoice-item">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="invoice-info">
-                                    <strong class="customer-text">Payment Method</strong>
-                                    <p class="invoice-details invoice-details-two">
-                                        Debit Card <br>
-                                        XXXXXXXXXXXX-2541 <br>
-                                        HDFC Bank<br>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-                    <!-- /Invoice Item -->
+                    
                     
                     <!-- Invoice Item -->
                     <div class="invoice-item invoice-table-wrap">
@@ -103,18 +88,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($sale->details as $detail)
                                             <tr>
-                                                <td>Coartem (Batch ABC123)</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">$100</td>
-                                                <td class="text-right">$100</td>
+                                                <td>{{$detail->inventory->name}} ({{$detail->batch}})</td>
+                                                <td class="text-center">{{$detail->quantity}}</td>
+                                                <td class="text-center">{{$pharmacy->country->currency_symbol}}{{$detail->price}}</td>
+                                                <td class="text-right">{{$pharmacy->country->currency_symbol}}{{$detail->amount}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Pampers</td>
-                                                <td class="text-center">25</td>
-                                                <td class="text-center">$10</td>
-                                                <td class="text-right">$250</td>
-                                            </tr>
+                                            @endforeach
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -125,15 +107,12 @@
                                         <tbody>
                                         <tr>
                                             <th>Subtotal:</th>
-                                            <td><span>$350</span></td>
+                                            <td><span>{{$pharmacy->country->currency_symbol}}{{$sale->total}}</span></td>
                                         </tr>
-                                        {{-- <tr>
-                                            <th>Discount:</th>
-                                            <td><span>-10%</span></td>
-                                        </tr> --}}
+                                        
                                         <tr>
                                             <th>Total Amount:</th>
-                                            <td><span>$315</span></td>
+                                            <td><span>{{$pharmacy->country->currency_symbol}}{{$sale->total}}</span></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -145,8 +124,7 @@
                     
                     <!-- Invoice Information -->
                     <div class="other-info">
-                        <h4>Other information</h4>
-                        <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed dictum ligula, cursus blandit risus. Maecenas eget metus non tellus dignissim aliquam ut a ex. Maecenas sed vehicula dui, ac suscipit lacus. Sed finibus leo vitae lorem interdum, eu scelerisque tellus fermentum. Curabitur sit amet lacinia lorem. Nullam finibus pellentesque libero.</p>
+                        
                         <p class="text-muted text-right mb-0">
                             <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                 <i class="fas fa-print"></i> Print

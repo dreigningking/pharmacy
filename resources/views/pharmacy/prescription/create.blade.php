@@ -24,7 +24,7 @@
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item active" aria-current="page">Prescription</li>
                     </ol>
                 </nav>
                 <h2 class="breadcrumb-title">Prescription</h2>
@@ -41,9 +41,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
-                    {{-- <div class="card-header">
-                        <h4 class="card-title mb-0">Add Prescription</h4>
-                    </div> --}}
+                    
                     <div class="card-body">
                         <form action="{{route('pharmacy.prescriptions.store',$pharmacy)}}" method="POST">@csrf
                             <div class= "row mb-5">
@@ -62,7 +60,7 @@
                                         <option value="">No Assessment</option>
                                         @if($patient && $patient->assessments->count())
                                             @foreach ($patient->assessments as $assess)
-                                                <option value="{{$assess->id}}" @if($assessment->id == $assess->id) selected @endif>{{$assess->summary}}</option>
+                                                <option value="{{$assess->id}}" @if($assessment && $assessment->id == $assess->id) selected @endif>{{$assess->summary}}</option>
                                             @endforeach
                                         @endif
 

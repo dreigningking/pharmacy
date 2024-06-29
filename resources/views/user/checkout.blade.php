@@ -136,7 +136,7 @@
                                                     <span id="year">{{now()->addYear()->format("Y")}}</span>        
                                                 </span>
                                             </li>
-                                            <li>Amount <span>₦ {{$plan->amount}} </span>
+                                            <li>Amount <span>{{$pharmacy->country->currency_symbol}} {{$plan->amount}} </span>
                                                 <input type="hidden" name="amount" id="amount" value="{{$plan->amount}}"> 
                                             </li>
                                         </ul>
@@ -144,7 +144,7 @@
                                             <ul class="booking-total-list">
                                                 <li>
                                                     <span>Total</span>
-                                                    <span class="total-cost">₦<span class="total-cost" id="display-total">{{$plan->amount}}</span> </span>
+                                                    <span class="total-cost">{{$pharmacy->country->currency_symbol}}<span class="total-cost" id="display-total">{{$plan->amount}}</span> </span>
                                                 </li>
                                             </ul>
                                         </div>

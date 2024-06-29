@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\General;
 
 use App\Models\Drug;
-use App\Models\User;
 use App\Models\Batch;
-use App\Models\Country;
-
 use App\Models\Pharmacy;
 use App\Models\Supplier;
 use App\Models\Inventory;
@@ -170,32 +167,28 @@ class InventoryController extends Controller
 
     public function store(Request $request,Pharmacy $pharmacy){
         // dd($request->all());
-            if($request->many){
-                for($i = 0;$i < count($request->drug_id) ;$i++){
-                    // dd($request->input("name.2"));
-                    $inventory = Inventory::where('pharmacy_id',$pharmacy->id)->where('drug_id',$request->input("drug_id.$i"))->first();
-                    if(!$inventory){
-                        $inventory = new Inventory;
-                        $inventory->drug_id = $request->input("drug_id.$i");
-                        $inventory->pharmacy_id = $pharmacy->id;
-                        $inventory->category = $request->input("category.$i");
-                        $inventory->name = $request->input("name.$i");
-                        $inventory->save();
-                        Batch::create(['expire_at'=> now()->addYear(),'number'=> strtoupper(substr(uniqid(),0,6)),'quantity'=> 1,'inventory_id'=> $inventory->id]);
-                    }
-                }
-            }
-            else{
-                $inventory = Inventory::create(['drug_id'=> $request->input('drug_id'),'pharmacy_id'=> $pharmacy->id,'category'=> $request->input('category') ?? $request->input('drug_category'),
-                    'name'=> $request->input('name'),'shelf'=> $request->input('shelf'),'unit_cost'=> $request->input('unit_cost'),
-                    'unit_price'=> $request->input('unit_price'),'minimum_stocklevel'=> $request->input('minimum_stocklevel'),
-                    'maximum_stocklevel' => $request->input('maximum_stocklevel') ]);
-                    foreach($request->batch as $key => $number){
-                        $batch = Batch::updateOrCreate(['number'=> $number,'inventory_id'=> $inventory->id],
-                        ['quantity'=> $request->input("quantity.$key"),'expire_at'=> $request->input("expire_at.$key")]);
-                }
-            }
+        $inventory = Inventory::create(['drug_id'=> $request->input('drug_id'),'pharmacy_id'=> $pharmacy->id,'category'=> $request->input('category') ?? $request->input('drug_category'),
+            'name'=> $request->input('name'),'shelf'=> $request->input('shelf'),'unit_cost'=> $request->input('unit_cost'),
+            'unit_price'=> $request->input('unit_price'),'minimum_stocklevel'=> $request->input('minimum_stocklevel'),
+            'maximum_stocklevel' => $request->input('maximum_stocklevel') ]);
+            foreach($request->batch as $key => $number){
+                $batch = Batch::updateOrCreate(['number'=> $number,'inventory_id'=> $inventory->id],
+                ['quantity'=> $request->input("quantity.$key"),'expire_at'=> $request->input("expire_at.$key")]);
+        }
+
         return redirect()->route('pharmacy.inventory.list',$pharmacy);
+    }
+
+    public function storeMany(Request $request,Pharmacy $pharmacy){
+        //dd($request->all());
+        $inventories = collect([]);
+        foreach($request->drug_id as $drug){
+            $inventory = Inventory::create(['pharmacy_id'=> $pharmacy->id,
+            'drug_id'=> $drug,'category' => $request->category[$drug],
+            'name' => $request->name[$drug]]);
+            $inventories->push($inventory);     
+        }
+        return view('pharmacy.inventory.supplies.new',compact('pharmacy','inventories'));
     }
 
     public function update(Pharmacy $pharmacy,Request $request){
@@ -221,9 +214,17 @@ class InventoryController extends Controller
         return view('pharmacy.inventory.settings',compact('pharmacy'));
     }
 
+    public function import(Pharmacy $pharmacy,Request $request){
+
+    }
+
+    public function export_template(Pharmacy $pharmacy){
+        
+    }
+
     public function drugs(Pharmacy $pharmacy){  
         // dd(request()->all());
-        $show_inventory_drugs = true;
+        $hide_inventory_drugs = request()->hide_inventory_drugs ?? null;
         $drugs = Drug::where('status',true);
         if($name = request()->search)
         $drugs = $drugs->where('name','LIKE',"%$name%");
@@ -231,18 +232,18 @@ class InventoryController extends Controller
         $drugs = $drugs->where('manufacturer','LIKE',"%$name%");
         if($categoriz = request()->categories)
         $drugs = $drugs->whereIn('category_id',$categoriz);
-        if(!request()->show_inventory_drugs){
+
+        if($hide_inventory_drugs){
             $drugs = $drugs->whereDoesntHave('inventories',function($query) use($pharmacy){ $query->where('pharmacy_id',$pharmacy->id); });
-            $show_inventory_drugs = false;
+            $hide_inventory_drugs = true;
         }
-        
         $categories = DrugCategory::all();
         if(request()->expectsJson()){
             $drugs = $drugs->get();
             return response()->json(['drugs'=> $drugs],200);
         }else{
-            $drugs = $drugs->paginate(50);
-            return view('pharmacy.inventory.drugs',compact('drugs','categories','pharmacy','show_inventory_drugs'));
+            $drugs = $drugs->paginate(30);
+            return view('pharmacy.inventory.drugs',compact('drugs','categories','pharmacy','hide_inventory_drugs'));
         }   
             
             

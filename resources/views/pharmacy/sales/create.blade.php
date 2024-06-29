@@ -153,7 +153,7 @@
                                             <tr>
                                                 <th>Subtotal:</th>
                                                 <td>
-                                                    <span>₦
+                                                    <span>{{$pharmacy->country->currency_symbol}}
                                                         <span id="subtotal">0</span>
                                                     </span>
                                                 </td>
@@ -161,7 +161,7 @@
                                             
                                             <tr>
                                                 <th>Total Amount:</th>
-                                                <td><span>₦<span id="total">0</span></span></td>
+                                                <td><span>{{$pharmacy->country->currency_symbol}}<span id="total">0</span></span></td>
                                             </tr>
                                             </tbody>
                                         </table>

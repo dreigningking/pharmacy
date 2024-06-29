@@ -7,7 +7,6 @@ use App\Models\Patient;
 use App\Models\PatientVitals;
 use App\Models\PatientSystemReview;
 use App\Models\PatientFinalDiagnosis;
-use App\Models\PatientMedicalHistory;
 use App\Models\PatientLaboratoryResult;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PatientMedicationHistory;
@@ -66,9 +65,7 @@ class Assessment extends Model
         return $this->hasMany(PatientVitals::class);
     }
 
-    public function patientMedicalHistory(){
-        return $this->hasMany(PatientMedicalHistory::class);
-    }
+    
 
     public function patientMedicationHistory(){
         return $this->hasMany(PatientMedicationHistory::class);

@@ -114,15 +114,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div class="col-md-6">
-                                            <table class="table table-borderless">
-                                                <tr>
-                                                    {{-- <td> <a href="{{route('pharmacy.assessments.create',$pharmacy)}}" class="btn btn-light btn-sm supplies_submit">Edit Assessment</a>  </td> --}}
-                                                    <td> <a href="{{route('pharmacy.prescriptions.create',$pharmacy)}}" class="btn btn-dark btn-sm supplies_submit " >View Prescription</a> </td>
-                                                </tr>
-                                                
-                                            </table>
-                                        </div>
+                                        
                                         
                                         
                                     </div>
@@ -180,22 +172,23 @@
                                                         </tr> 
                                                         <tr class="">
                                                             <td class="extra-column">
-                                                                Past Medical Record
+                                                                Medical Record
                                                             </td>
                                                             <td class="">
                                                                 <ul>
-                                                                    @forelse ($assessment->patientMedicalHistory as $medicalHistory)
+                                                                    @forelse ($assessment->patient->medicalHistory as $medicalHistory)
+                                                
                                                                         <li>{{$medicalHistory->condition->description}} @if($medicalHistory->start) - {{$medicalHistory->start->format('M Y')}} @endif
+                                                                            @if($medicalHistory->medications->isNotEmpty())
                                                                             <ul class="list-unstyled font-italic">
                                                                                 <li class="list-style-none">Medication Used</li>
-                                                                                    <ul class="text-muted small">
-                                                                                        @forelse($medicalHistory->medications as $medication)
-                                                                                            <li>{{$medication->drug->name}}</li>
-                                                                                        @empty
-
-                                                                                        @endforelse
-                                                                                    </ul>
+                                                                                <ul class="text-muted small">
+                                                                                    @foreach($medicalHistory->medications as $medication)
+                                                                                        <li>{{$medication->drug->name}}</li>
+                                                                                    @endforeach
+                                                                                </ul>
                                                                             </ul>
+                                                                            @endif
                                                                         </li>
                                                                     @empty
                                                                         
@@ -219,7 +212,7 @@
                                                             <td class="">
                                                                 <ul>
                                                                     @forelse ($assessment->familySocialHistory as $familySocialHistory)
-                                                                    <li>{{$familySocialHistory->question->description}} - {{$familySocialHistory->value}} ({{$familySocialHistory->comment}}) </li>
+                                                                    <li>{{$familySocialHistory->question->description}} - {{$familySocialHistory->value}} @if($familySocialHistory->comment) ({{$familySocialHistory->comment}}) @endif </li>
                                                                     @empty
 
                                                                     @endforelse
@@ -288,8 +281,8 @@
                                                             </td>
                                                             <td class="">
                                                                 <ul>
-                                                                    @forelse ($assessment->provisionalDiagnosis as $diagnosis)
-                                                                        <li>{{$diagnosis->condition->description}} </span>
+                                                                    @forelse ($assessment->patientLaboratoryResults as $labtest)
+                                                                        <li>{{$labtest->test->name}} : {{$labtest->result}} @if($labtest->comment) ({{$labtest->comment}})  @endif </span>
                                                                             
                                                                         </li>
                                                                     @empty
@@ -311,7 +304,18 @@
                                                                Final Diagnosis
                                                             </td>
                                                             <td class="">
-                                                                Confirmed Presence of CBN intervention
+                                                            <ul>
+                                                                @forelse ($assessment->finalDiagnoses as $fdiagnosis)
+                                                                    <li>{{$fdiagnosis->condition->description}} <br>
+                                                                        <small class="d-block">Expected Outcome: {{$fdiagnosis->expected_outcome}}</small>
+                                                                        @if($fdiagnosis->achieved)
+                                                                        <small class="d-block">Achieved: Yes</small>
+                                                                        @endif
+                                                                    </li>
+                                                                @empty
+                                                                    
+                                                                @endforelse
+                                                                </ul>
                                                             </td>
                                                             <td>
                                                                 <div class="table-action">
