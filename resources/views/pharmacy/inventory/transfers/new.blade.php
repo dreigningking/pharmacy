@@ -99,7 +99,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form action="{{route('pharmacy.transfer.store',$pharmacy)}}" method="POST">@csrf
-                            
+                            <input type="hidden" id="pharmacy_id" value="{{$pharmacy->id}}">
                             <div class="invoice-content">
                                 <div class="invoice-item">
                                     <div class="row">
@@ -185,7 +185,7 @@
                                                     <tbody  class="select-body">
                                                         @if(isset($inventories))
                                                             @foreach($inventories as $inventory)
-                                                                @foreach ($inventory->batches as $batch)
+                                                                @foreach ($inventory->batches->where('quantity','>',0) as $batch)
                                                                     <tr class="select-row">
                                                                         <td class="first-column">
                                                                             <select name="batches[]" class="select-remote form-control w-100">
@@ -324,7 +324,7 @@
                     data: function (params) {
                         var query = {
                             search: params.term,
-                            pharmacy_id: @json($pharmacy->id),
+                            pharmacy_id: $('#pharmacy_id').val(),
                         }
                         return query;
                     },
@@ -414,7 +414,7 @@
                     data: function (params) {
                         var query = {
                             search: params.term,
-                            pharmacy_id: @json($pharmacy->id),
+                            pharmacy_id: $('#pharmacy_id').val(),
                         }
                         return query;
                     },

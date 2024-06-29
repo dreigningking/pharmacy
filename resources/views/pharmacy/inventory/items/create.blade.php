@@ -57,6 +57,7 @@
                             </ul>
                             <!-- /Appointment Tab -->
                             <form action="{{route('pharmacy.inventory.store', $pharmacy)}}" class="w-100" method="POST">@csrf
+                                <input type="hidden" id="pharmacy_id" value="{{$pharmacy->id}}">
                                 <div class="tab-content border border-grey">
                                     <div class="tab-pane active" id="upcoming-appointments">
                                         <div class="card mb-0">
@@ -250,7 +251,7 @@
             data: function (params) {
                 var query = {
                     search: params.term,
-                    pharmacy_id: @json($pharmacy->id),
+                    pharmacy_id: $('#pharmacy_id').val(),
                 }
                 return query;
             },

@@ -13,8 +13,29 @@ class SalesController extends Controller
 {
     
     public function index(Pharmacy $pharmacy){
-        $sales = Sale::where('pharmacy_id',$pharmacy->id)->paginate(50);
-        return view('pharmacy.sales.list',compact('pharmacy','sales'));
+        $search = request()->search ?? null;
+        $from = request()->from ?? null;
+        $to = request()->to ?? null;
+        $user = request()->user ?? null;
+        $sales = Sale::where('pharmacy_id',$pharmacy->id);
+        if($search){
+            $sales =  $sales->whereHas('details',function($query) use($search){
+                $query->where('batch','LIKE',"%$search%")->orWhereHas('inventory',function($q) use($search){
+                    $q->where('name','LIKE',"%$search%");
+                });
+            });
+        }
+        if($from){
+            $sales = $sales->where('created_at','>=',$to);
+        }
+        if($to){
+            $sales = $sales->where('created_at','<=',$to);
+        }
+        if($user){
+            $sales = $sales->where('user_id',$user);
+        }
+        $sales = $sales->paginate(30);
+        return view('pharmacy.sales.list',compact('pharmacy','sales','search','from','to','user'));
     }
 
     public function create(Pharmacy $pharmacy,Prescription $prescription = null)
@@ -44,7 +65,8 @@ class SalesController extends Controller
     }
 
     public function update(Pharmacy $pharmacy,Request $request){
-        $sale = Prescription::find($request->sale_id);
+        // dd($request->all());
+        $sale = Sale::find($request->sale_id);
         $details = array_filter($request->detail_id);
         foreach(array_filter($request->inventories ) as $key => $inventory_id){
             if($request->detail_id[$key]){  
@@ -57,7 +79,7 @@ class SalesController extends Controller
                 array_push($details,$nDetail->id);
             }
         }
-        SaleDetail::where('prescription_id',$sale->id)->whereNotIn('id',$details)->delete();
+        SaleDetail::where('sale_id',$sale->id)->whereNotIn('id',$details)->delete();
         $sale->status = $request->status;
         $sale->save();
         return redirect()->route('pharmacy.sales.index',$pharmacy);

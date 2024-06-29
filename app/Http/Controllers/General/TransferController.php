@@ -121,7 +121,9 @@ class TransferController extends Controller
                 if($receiver_batch){
                     $receiver_batch->quantity = $receiver_batch->quantity + $detail->quantity;
                     $receiver_batch->save();
-                }else Batch::create(['inventory_id'=>$inventory->id,'number'=> $sender_batch->number,'quantity'=> $detail->quantity,'expire_at'=> $sender_batch->expire_at]);
+                }else {
+                    Batch::create(['inventory_id'=>$inventory->id,'number'=> $sender_batch->number,'quantity'=> $detail->quantity,'expire_at'=> $sender_batch->expire_at]);
+                }
                 $sender_batch->quantity = $sender_batch->quantity - $detail->quantity;
                 $sender_batch->save();
             }   

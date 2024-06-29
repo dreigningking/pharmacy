@@ -199,12 +199,12 @@ class InventoryController extends Controller
     }
 
     public function update(Pharmacy $pharmacy,Request $request){
-        
+        // dd($request->all());
         Inventory::where('id',$request->inventory_id)->update(['category'=> $request->input('category'),
             'name'=> $request->input('name'),'shelf'=> $request->input('shelf'),'unit_cost'=> $request->input('unit_cost'),
             'unit_price'=> $request->input('unit_price'),'minimum_stocklevel'=> $request->input('minimum_stocklevel'),
             'maximum_stocklevel' => $request->input('maximum_stocklevel'),'unit_of_sales'=> $request->input('unit_of_sales'),
-            'expiry_alert_weeks'=> $request->input('expiry_alert_weeks'),'quantity'=> $request->quantity ]);
+            'expiry_alert_weeks'=> $request->input('expiry_alert_weeks') ]);
         foreach($request->batch as $key => $number){
                 $batch = Batch::updateOrCreate(['number'=> $number,'inventory_id'=> $request->inventory_id],
                 ['quantity'=> $request->input("quantity.$key"),'expire_at'=> $request->input("expire_at.$key")]);

@@ -254,10 +254,10 @@
         })
         $('#subtotal').text(total)
         $('#total').text(total)
-        // if(total)
-        //     $('#execute').removeClass('disabled').prop('disabled',false)
-        // else
-        //     $('#execute').addClass('disabled').prop('disabled',true)
+        if(total)
+            $('#execute').removeClass('disabled').prop('disabled',false)
+        else
+            $('#execute').addClass('disabled').prop('disabled',true)
     }      
 </script>
 

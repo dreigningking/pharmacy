@@ -31,12 +31,13 @@
                     <div class="card-header">
                         <h3 class="card-title mb-0">Search Filter</h3>
                     </div>
+                    <form>
                     <div class="card-body">
                         <div class="filter-widget">
                             <h4>Item</h4>			
                         </div>
                         <div class="filter-widget">
-                            <input type="text" class="form-control" placeholder="Name or Batch">		
+                            <input type="text" name="search" value="{{$search}}" class="form-control" placeholder="Item or Batch">		
                         </div>
                         
                         <div class="filter-widget">
@@ -44,12 +45,12 @@
                         </div>
                         <div class="filter-widget">
                             <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker" placeholder="From Date">
+                                <input type="text" name="from" value="{{$from}}" class="form-control datetimepicker" placeholder="From Date">
                             </div>			
                         </div>
                         <div class="filter-widget">
                             <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker" placeholder="To Date">
+                                <input type="text" name="to" value="{{$to}}" class="form-control datetimepicker" placeholder="To Date">
                             </div>			
                         </div>
                         
@@ -57,24 +58,23 @@
                         <div class="filter-widget">
                             <h4>Service Provider</h4>
                             <div>
-                                <select class="form-control">
-                                    <option>Dr Lewis</option>
-                                    <option> Mr Emmanuel</option>
+                                <select class="form-control" name="user">
+                                    <option value="0" @if(!$user) selected @endif>All Providers</option>
+                                    @foreach($pharmacy->users as $staff)
+                                    <option @if($user == $staff->name) selected @endif value="{{$staff->id}}">{{$staff->name}}</option>
+                                    @endforeach
+                                    
                                 </select>
                             </div>
                             
                         </div>
                     
                         <div class="btn-search">
-                            <button type="button" class="btn btn-block">Search</button>
+                            <button type="submit" class="btn btn-block">Search</button>
                         </div>	
                         
                     </div>
-                    {{-- <div class="card-body">
-                        <div class="clinic-booking">
-                            <a class="apt-btn" href="booking.html">View Subscription Plans</a>
-                        </div>
-                    </div> --}}
+                    </form>
                     
                 </div>
             </div>
@@ -146,26 +146,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <ul class="pagination justify-content-center">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </div>
+                                @include('layouts.pagination',['data'=> $sales])
+                                
                             </div>
                         </div>
                     </div>

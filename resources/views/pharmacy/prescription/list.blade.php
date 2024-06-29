@@ -27,92 +27,61 @@
 
         <div class="row">
             <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-                <div class="card search-filter">
-                    <div class="card-header">
-                        <h3 class="card-title mb-0">Search Filter</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="filter-widget">
-                            <h4>Patient</h4>			
+                <form action="">
+                    <div class="card search-filter">
+                        <div class="card-header">
+                            <h3 class="card-title mb-0">Search Filter</h3>
                         </div>
-                        <div class="filter-widget">
-                            <input type="text" class="form-control" placeholder="Name, EMR, Phone, Email">		
-                        </div>
-                        <div class="filter-widget">
-                            <h4>Containing</h4>			
-                        </div>
-                        <div class="filter-widget">
-                            <input type="text" class="form-control" placeholder="e.g Drug Name">		
-                        </div>
-                        <div class="filter-widget">
-                            <h4>Drug Category</h4>
-                            <div>
-                                <select class="form-control">
-                                    <option>Anti-Malaria</option>
-                                    <option>Anti-Bacteria</option>
-                                </select>
+                        <div class="card-body">
+                            <div class="filter-widget">
+                                <h4>Patient</h4>			
                             </div>
-                        </div>
-                        <div class="filter-widget">
-                            <h4>Date Range</h4>			
-                        </div>
-                        <div class="filter-widget">
-                            <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker" placeholder="From Date">
-                            </div>			
-                        </div>
-                        <div class="filter-widget">
-                            <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker" placeholder="To Date">
-                            </div>			
-                        </div>
-                        <div class="filter-widget">
-                            <h4>Status</h4>
+                            <div class="filter-widget">
+                                <input type="text" name="patient" class="form-control" placeholder="Name, EMR, Phone, Email">		
+                            </div>
+                            <div class="filter-widget">
+                                <h4>Containing</h4>			
+                            </div>
+                            <div class="filter-widget">
+                                <input type="text" name="drug" class="form-control" placeholder="e.g Drug Name">		
+                            </div>
                             
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Draft
-                                </label>
-                            </div> 
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Ongoing Treatment 
-                                </label>
+                            <div class="filter-widget">
+                                <h4>Date Range</h4>			
                             </div>
-                            <div>
-                                <label class="custom_check">
-                                    <input type="checkbox" name="gender_type" checked>
-                                    <span class="checkmark"></span> Completed
-                                </label>
-                            </div> 
+                            <div class="filter-widget">
+                                <div class="cal-icon">
+                                    <input type="text" name="from" class="form-control datetimepicker" placeholder="From Date">
+                                </div>			
+                            </div>
+                            <div class="filter-widget">
+                                <div class="cal-icon">
+                                    <input type="text" name="to" class="form-control datetimepicker" placeholder="To Date">
+                                </div>			
+                            </div>
+                            
+                            <div class="filter-widget">
+                                <h4>Service Provider</h4>
+                                <div>
+                                    <select class="form-control" name="user">
+                                        <option value="0" @if(!$user) selected @endif>All Providers</option>
+                                        @foreach($pharmacy->users as $staff)
+                                        <option @if($user == $staff->name) selected @endif value="{{$staff->id}}">{{$staff->name}}</option>
+                                        @endforeach
+                                        
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        
+                            <div class="btn-search">
+                                <button type="submit" class="btn btn-block">Search</button>
+                            </div>	
                             
                         </div>
                         
-                        <div class="filter-widget">
-                            <h4>Service Provider</h4>
-                            <div>
-                                <select class="form-control">
-                                    <option>Dr Lewis</option>
-                                    <option> Mr Emmanuel</option>
-                                </select>
-                            </div>
-                            
-                        </div>
-                    
-                        <div class="btn-search">
-                            <button type="button" class="btn btn-block">Search</button>
-                        </div>	
-                        
                     </div>
-                    {{-- <div class="card-body">
-                        <div class="clinic-booking">
-                            <a class="apt-btn" href="booking.html">View Subscription Plans</a>
-                        </div>
-                    </div> --}}
-                    
-                </div>
+                </form>
             </div>
 
             <div class="col-md-7 col-lg-8 col-xl-9">
@@ -187,26 +156,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <ul class="pagination justify-content-center">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </div>
+                                @include('layouts.pagination',['data'=> $prescriptions])
                             </div>
                         </div>
                     </div>

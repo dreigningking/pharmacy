@@ -19,9 +19,37 @@ class PrescriptionController extends Controller
 
     public function index(Pharmacy $pharmacy)
     {
-        $prescriptions = Prescription::where('pharmacy_id',$pharmacy->id)->paginate(50);
-        // dd($prescriptions->first()->summary);
-        return view('pharmacy.prescription.list', compact('pharmacy','prescriptions'));
+        $patient = request()->patient ?? null;
+        $drug = request()->drug ?? null;
+        $from = request()->from ?? null;
+        $to = request()->to ?? null;
+        $user = request()->user ?? null;
+        $status = request()->status ?? null;
+        $prescriptions = Prescription::where('pharmacy_id',$pharmacy->id);
+        if($patient){
+            $prescriptions =  $prescriptions->whereHas('patient',function($query) use($patient){
+                $query->where('name','LIKE',"%$patient%")->orWhere('email','LIKE',"%$patient%")->orWhere('emr','LIKE',"%$patient%");
+            });
+        }
+        if($drug){
+            $prescriptions =  $prescriptions->whereHas('details',function($query) use($drug){
+                $query->whereHas('drug',function($q) use($drug){
+                    $q->where('name','LIKE',"%$drug%");
+                });
+            });
+        }
+        if($from){
+            $prescriptions = $prescriptions->where('created_at','>=',$to);
+        }
+        if($to){
+            $prescriptions = $prescriptions->where('created_at','<=',$to);
+        }
+        if($user){
+            $prescriptions = $prescriptions->where('user_id',$user);
+        }
+        
+        $prescriptions = $prescriptions->paginate(30);
+        return view('pharmacy.prescription.list', compact('pharmacy','prescriptions','patient','drug','from','to','user','status'));
     }
     
     public function create(Pharmacy $pharmacy)

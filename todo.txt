@@ -28,14 +28,9 @@ INVENTORY
 
 PURCHASE 
 
-TRANSFER
-1. you cannot transfer items with zero quantity
-2. transfer should reduce quantity of the sending pharmacy inventory
-
 
 SALES 
 1. invoice view
-2. sidebar filter
 
 
 NOTIFICATIONS
