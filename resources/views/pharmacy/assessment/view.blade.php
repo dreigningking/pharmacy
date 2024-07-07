@@ -154,7 +154,7 @@
                                                             <td class="">
                                                                 <ul>
                                                                     @forelse ($assessment->vitals as $patientVital)
-                                                                    <li>{{$patientVital->vital->type}} : {{$patientVital->value}} {{$patientVital->vital->unit}} ({{$patientVital->comment}}) </li>
+                                                                    <li>{{$patientVital->vital->type}} : {{$patientVital->value_a}}  @if($patientVital->value_b) / {{$patientVital->value_b}} @endif {{$patientVital->vital->unit}} ({{$patientVital->comment}}) </li>
                                                                     @empty
 
                                                                     @endforelse

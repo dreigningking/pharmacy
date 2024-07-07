@@ -84,8 +84,7 @@
                                         <a class="nav-link active" href="#billing" data-toggle="tab"> <span>Medication planning</span> </a>
                                     </li> 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#assessments" data-toggle="tab">Check the profile of the patient’s
-                                            medications</a>
+                                        <a class="nav-link" href="#assessments" data-toggle="tab">Medication Profiling</a>
                                     </li>
                                     
                                 </ul>
@@ -238,8 +237,9 @@
                                                             <th>API</th>
                                                             <th>Side Effects</th>
                                                             <th>Contraindications</th>
+                                                            <th>Pregnancy Status</th>
                                                             <th>Lactation Status</th>
-                                                            <th>Counsel</th>
+                                                            <th>Medical Counselling</th>
                                                             <th>Alternative</th>
                                                         </tr>
                                                     </thead>
@@ -481,6 +481,7 @@
                                         <td style="white-space:normal">${value.side_effects}</td> 
                                         <td style="white-space:normal">${value.contraindications}</td> 
                                         <td style="white-space:normal">${value.pregnancy_status}</td> 
+                                        <td style="white-space:normal">${value.lactation_status}</td> 
                                         <td style="white-space:normal">${value.medication_counsel}</td> 
                                         <td style="white-space:normal">${value.alternatives}</td> 
                                         <input type="hidden" class="api_ids" name="api_ids[]" value="${value.id}">

@@ -155,13 +155,13 @@
                                                             
                                                 <div class="col-md-3">
                                                     <div class="form-group ">
-                                                        <label class="form-label">Unit Cost</label>
+                                                        <label class="form-label">Unit Cost Price</label>
                                                         <input type="number" class="form-control" name="unit_cost" value="{{$item->unit_cost}}">
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label class="form-label">Unit Price</label>
+                                                        <label class="form-label">Unit Selling Price</label>
                                                         <input type="number" class="form-control" name="unit_price" value="{{$item->unit_price}}">
                                                     </div>
                                                 </div>
@@ -260,7 +260,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="add-more m-4">
-                                                    <a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Add New</a>
+                                                    <a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Add New Batch</a>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">

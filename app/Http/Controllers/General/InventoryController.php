@@ -176,7 +176,7 @@ class InventoryController extends Controller
                 ['quantity'=> $request->input("quantity.$key"),'expire_at'=> $request->input("expire_at.$key")]);
         }
 
-        return redirect()->route('pharmacy.inventory.list',$pharmacy);
+        return redirect()->route('pharmacy.inventory.index',$pharmacy);
     }
 
     public function storeMany(Request $request,Pharmacy $pharmacy){
@@ -198,11 +198,11 @@ class InventoryController extends Controller
             'unit_price'=> $request->input('unit_price'),'minimum_stocklevel'=> $request->input('minimum_stocklevel'),
             'maximum_stocklevel' => $request->input('maximum_stocklevel'),'unit_of_sales'=> $request->input('unit_of_sales'),
             'expiry_alert_weeks'=> $request->input('expiry_alert_weeks') ]);
-        foreach($request->batch as $key => $number){
+        foreach(array_filter($request->batch) as $key => $number){
                 $batch = Batch::updateOrCreate(['number'=> $number,'inventory_id'=> $request->inventory_id],
                 ['quantity'=> $request->input("quantity.$key"),'expire_at'=> $request->input("expire_at.$key")]);
         }
-        Batch::where('inventory_id',$request->inventory_id)->whereNotIn('number',$request->batch)->delete();
+        Batch::where('inventory_id',$request->inventory_id)->whereNotIn('number',array_filter($request->batch))->delete();
         return redirect()->back();
     }
 

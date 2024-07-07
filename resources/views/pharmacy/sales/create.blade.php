@@ -135,7 +135,7 @@
                             </div>
                             <div class="row my-3">               
                                 <div class="col-md-3 ml-4">
-                                    <h4 class="d-block">Patient</h4>
+                                    <h4 class="d-block">Client</h4>
                                     <select name="patient_id" id="patient_id" class="form-control patient_id" required @if($prescription) disabled @endif>
                                         <option value=""></option>
                                         @foreach($patients as $pateint)

@@ -101,8 +101,7 @@
                                             <tr>
                                                 <th>EMR</th>
                                                 <th>Patient Name</th>
-                                                {{-- <th class="">Phone Number</th>
-                                                <th>Email</th>                                                  --}}
+                                                <th class="">Date Registered</th>
                                                 <th>Assessments</th>                                                 
                                                 <th>Prescriptions</th>                                                 
                                                 <th class="text-center">Action</th>
@@ -113,8 +112,7 @@
                                                 <tr>
                                                     <td>{{strtoupper($patient->emr)}}</td>
                                                     <td>{{$patient->name}}</td>
-                                                    {{-- <td>{{$patient->mobile}}</td>
-                                                    <td>{{$patient->email}}</td> --}}
+                                                    <td>{{$patient->created_at->format('d/m/Y')}}</td>
                                                     <td>{{$patient->assessments->count()}}</td>
                                                     <td>{{$patient->prescriptions->count()}}</td>
                                                     <td class="text-center">
